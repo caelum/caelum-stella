@@ -20,6 +20,7 @@
 
   <modules>
     <module>stella-core</module>
+    <module>stella-hibernate-validator</module>
   </modules>
 
   <dependencyManagement>

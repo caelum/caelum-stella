@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>br.com.caelum.stella</groupId>
+    <artifactId>caelum-stella</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>caelum-stella-hibernate-validator</artifactId>
+  <packaging>jar</packaging>
+  <name>Caelum Stella Hibernate Validator Bindings</name>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>3.0.0.ga</version>
+    </dependency>
+  </dependencies>
+  
+</project>
