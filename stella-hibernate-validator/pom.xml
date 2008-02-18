@@ -12,6 +12,11 @@
   
   <dependencies>
     <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>caelum-stella-core</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>3.0.0.ga</version>

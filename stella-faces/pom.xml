@@ -12,6 +12,11 @@
   
   <dependencies>
     <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>caelum-stella-core</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+    <dependency>
       <groupId>javax.faces</groupId>
       <artifactId>jsf-api</artifactId>
       <version>1.2_02</version>
