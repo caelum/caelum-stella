@@ -21,6 +21,7 @@
   <modules>
     <module>stella-core</module>
     <module>stella-hibernate-validator</module>
+    <module>stella-faces</module>
   </modules>
 
   <dependencyManagement>
