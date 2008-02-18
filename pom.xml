@@ -3,22 +3,157 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>caelum-stella</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>0.1-SNAPSHOT</version>
-  <name>caelum-stella</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jmock</groupId>
-      <artifactId>jmock</artifactId>
-      <version>2.4.0</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <name>Caelum Stella</name>
+  <description>
+    Caelum Stella is a set of validators, formatters and converters for 
+    Brazilian common ids like Zip codes, State codes, social ids and so on. 
+    Stella also provides adapters for JSF, Struts tag libs, JSP tag libs, 
+    Hibernate Validator and JS completion.
+  </description>
+  <url>http://stella.caelum.com.br</url>
+
+  <modules>
+    <module>stella-core</module>
+  </modules>  
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.4</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jmock</groupId>
+        <artifactId>jmock</artifactId>
+        <version>2.4.0</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-javadoc</id>
+              <phase>package</phase>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+              <configuration>
+                <links>
+                  <link>http://java.sun.com/j2se/1.5/docs/api</link>
+                </links>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <phase>package</phase>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <developers>
+    <developer>
+      <id>fabiokung</id>
+      <name>Fabio Kung</name>
+      <roles>
+        <role>administrator</role>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>peass</id>
+      <name>Paulo Silveira</name>
+      <roles>
+        <role>administrator</role>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>lucascs</id>
+      <name>Lucas Cavalcanti</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>lucascs</id>
+      <name>Lucas Cavalcanti</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>gui0rafa</id>
+      <name>Guilherme Moreira</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>leobessa</id>
+      <name>Leonardo Bessa</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>caires</id>
+      <name>Caires Santos</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+  </developers>
+
+  <contributors>
+  </contributors>
+
+  <scm>
+    <developerConnection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</developerConnection>
+    <url>http://caelum-stella.svn.sourceforge.net/viewvc/caelum-stella/</url>
+  </scm>
 </project>
