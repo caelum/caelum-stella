@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>caelum-stella</artifactId>
@@ -7,16 +7,20 @@
   <version>0.1-SNAPSHOT</version>
   <name>Caelum Stella</name>
   <description>
-    Caelum Stella is a set of validators, formatters and converters for 
-    Brazilian common ids like Zip codes, State codes, social ids and so on. 
-    Stella also provides adapters for JSF, Struts tag libs, JSP tag libs, 
+    Caelum Stella is a set of validators, formatters and converters for
+    Brazilian common ids like Zip codes, State codes, social ids and so on.
+    Stella also provides adapters for JSF, Struts tag libs, JSP tag libs,
     Hibernate Validator and JS completion.
   </description>
   <url>http://stella.caelum.com.br</url>
+  <organization>
+    <name>Caelum</name>
+    <url>http://www.caelum.com.br</url>
+  </organization>
 
   <modules>
     <module>stella-core</module>
-  </modules>  
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -92,6 +96,9 @@
     <developer>
       <id>fabiokung</id>
       <name>Fabio Kung</name>
+      <email>fabio.kung@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>administrator</role>
         <role>developer</role>
@@ -101,7 +108,11 @@
     <developer>
       <id>peass</id>
       <name>Paulo Silveira</name>
+      <email>paulo.silveira@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
+        <role>project owner</role>
         <role>administrator</role>
         <role>developer</role>
       </roles>
@@ -110,14 +121,20 @@
     <developer>
       <id>lucascs</id>
       <name>Lucas Cavalcanti</name>
+      <email>lucas.cavalcanti@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
       <timezone>-3</timezone>
     </developer>
     <developer>
-      <id>lucascs</id>
-      <name>Lucas Cavalcanti</name>
+      <id>jonasabreu</id>
+      <name>Jonas Abreu</name>
+      <email>jonas.abreu@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
@@ -126,6 +143,9 @@
     <developer>
       <id>gui0rafa</id>
       <name>Guilherme Moreira</name>
+      <email>guilherme.moreira@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
@@ -134,6 +154,9 @@
     <developer>
       <id>leobessa</id>
       <name>Leonardo Bessa</name>
+      <email>leonardo.bessa@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
@@ -142,6 +165,9 @@
     <developer>
       <id>caires</id>
       <name>Caires Santos</name>
+      <email>caires.santos@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
@@ -153,7 +179,31 @@
   </contributors>
 
   <scm>
+    <connection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</connection>
     <developerConnection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</developerConnection>
     <url>http://caelum-stella.svn.sourceforge.net/viewvc/caelum-stella/</url>
   </scm>
+
+  <mailingLists>
+    <mailingList>
+      <name>Users list</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/caelum-stella-users</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/caelum-stella-users</unsubscribe>
+      <post>http://lists.sourceforge.net/lists/listinfo/caelum-stella-users</post>
+    </mailingList>
+    <mailingList>
+      <name>Developers list</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/caelum-stella-devel</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/caelum-stella-devel</unsubscribe>
+      <post>http://lists.sourceforge.net/lists/listinfo/caelum-stella-devel</post>
+    </mailingList>
+  </mailingLists>
+
+  <repositories>
+    <repository>
+      <id>codehaus-repository</id>
+      <name>Codehaus Repository</name>
+      <url>http://repository.codehaus.org</url>
+    </repository>
+  </repositories>
 </project>
