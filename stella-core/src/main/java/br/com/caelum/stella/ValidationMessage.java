@@ -3,6 +3,6 @@ package br.com.caelum.stella;
 /**
  * @Author Fabio Kung
  */
-public interface ValidationError {
+public interface ValidationMessage {
     String getMessage();
 }

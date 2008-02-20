@@ -3,10 +3,14 @@ package br.com.caelum.stella;
 import java.util.List;
 
 /**
- * Base interface for all validators.
+ * <p>
+ * {Validator#getLastValidationMessages} sempre devolve <b>apenas</b> os
+ * problemas de validação relativos à última chamada de {Validator#validate}
+ * </p>
  *
  * @Author Fabio Kung
  */
 public interface Validator<T> {
-    List<ValidationError> validate(T object);
+    boolean validate(T object);
+    List<ValidationMessage> getLastValidationMessages();
 }
