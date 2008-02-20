@@ -1,6 +1,14 @@
 package br.com.caelum.stella;
 
 /**
+ * <p>
+ * MessageProducers são responsáveis por buscar mensagens de validação.
+ * </p>
+ * <p>
+ * Possíveis implementações incluem a busca em base de dados, arquivos xml e
+ * ResourceBundles.
+ * </p>
+ *
  * @Author Fabio Kung
  */
 public interface MessageProducer<T extends Enum> {

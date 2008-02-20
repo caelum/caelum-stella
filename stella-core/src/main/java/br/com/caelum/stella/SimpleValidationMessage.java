@@ -1,6 +1,8 @@
 package br.com.caelum.stella;
 
 /**
+ * Basic imutable implementation. Only holds the message.
+ *
  * @Author Fabio Kung
  */
 public class SimpleValidationMessage implements ValidationMessage {
