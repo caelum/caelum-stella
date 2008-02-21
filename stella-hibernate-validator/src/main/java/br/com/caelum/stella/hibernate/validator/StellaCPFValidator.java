@@ -10,11 +10,9 @@ import org.hibernate.validator.Validator;
  * @Author Fabio Kung
  */
 public class StellaCPFValidator implements Validator<CPF> {
-    private CPF cpf;
     private CPFValidator stellaValidator;
 
     public void initialize(CPF cpf) {
-        this.cpf = cpf;
         AnnotationMessageProducer<CPFError> messageProducer = new AnnotationMessageProducer<CPFError>(cpf);
         stellaValidator = new CPFValidator(messageProducer);
     }
