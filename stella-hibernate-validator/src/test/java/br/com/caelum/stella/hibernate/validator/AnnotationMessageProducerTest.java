@@ -43,7 +43,8 @@ public class AnnotationMessageProducerTest {
 
         AnnotationMessageProducer<Errors> producer = new AnnotationMessageProducer<Errors>(constraint);
         try {
-            ValidationMessage validationMessage = producer.getMessage(Errors.ANY);
+            @SuppressWarnings("unused")
+			ValidationMessage validationMessage = producer.getMessage(Errors.ANY);
             fail();
         } catch (IllegalArgumentException e) {
             // ok
