@@ -20,7 +20,7 @@ public class ResourceBundleMessageProducerTest {
     @Test
     public void shouldUseEnumNameLowerCasedAsKey() {
         final String errorMessage = "message for ANY error";
-        ResourceBundle bundle = new ResourceBundle() {
+        ResourceBundle bundleMock = new ResourceBundle() {
             protected Object handleGetObject(String s) {
                 if (s.equals(Errors.WITH_COMPOSITE_NAME.name().toLowerCase())) {
                     return errorMessage;
@@ -37,7 +37,7 @@ public class ResourceBundleMessageProducerTest {
             }
         };
 
-        ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundle);
+        ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundleMock);
         ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
         assertEquals(errorMessage, validationMessage.getMessage());
     }
