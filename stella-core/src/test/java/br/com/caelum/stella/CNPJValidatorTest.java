@@ -19,15 +19,15 @@ public class CNPJValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateDigitsMissMatch() {
+	public void shouldNotValidateCNPJWithLessDigitsThanAllowed() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CNPJError> messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
 			{
-				exactly(3).of(messageProducer).getMessage(
-						CNPJError.DIGITS_MISSMATCH);
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_DIGITS_PATTERN);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer);
@@ -36,9 +36,47 @@ public class CNPJValidatorTest {
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldNotValidateCNPJWithMoreDigitsThanAllowed() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CNPJError> messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_DIGITS_PATTERN);
+			}
+		});
+		CNPJValidator validator = new CNPJValidator(messageProducer);
+		List<ValidationMessage> errors;
+
 		assertFalse(validator.validate("123456789012345"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
+
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldNotValidateCNPJWithInvalidCharacter() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CNPJError> messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_DIGITS_PATTERN);
+			}
+		});
+		CNPJValidator validator = new CNPJValidator(messageProducer);
+		List<ValidationMessage> errors;
 
 		assertFalse(validator.validate("1111111a111111"));
 		errors = validator.getLastValidationMessages();
@@ -49,7 +87,7 @@ public class CNPJValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateValidCNPJ() {
+	public void shouldValidateValidCNPJ() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CNPJError> messageProducer = mockery
 				.mock(MessageProducer.class);
@@ -74,69 +112,25 @@ public class CNPJValidatorTest {
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.isEmpty());
 
-		assertTrue(validator.validate("15208211000191"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.isEmpty());
-
-		assertTrue(validator.validate("75252952000100"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.isEmpty());
-
 		mockery.assertIsSatisfied();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateAllRepeatedDigitsFaul() {
+	public void shouldNotValidateCNPJWithAllRepeatedDigits() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CNPJError> messageProducer = mockery
 				.mock(MessageProducer.class);
 		mockery.checking(new Expectations() {
 			{
-				exactly(10).of(messageProducer).getMessage(
+				exactly(1).of(messageProducer).getMessage(
 						CNPJError.ALL_REPEATED_DIGITS_FAUL);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer);
 		List<ValidationMessage> errors;
 
-		assertFalse(validator.validate("11111111111111"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("22222222222222"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("33333333333333"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("44444444444444"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
 		assertFalse(validator.validate("55555555555555"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("66666666666666"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("77777777777777"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("88888888888888"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("99999999999999"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("00000000000000"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.toString(), errors.size() == 1);
 
@@ -145,7 +139,7 @@ public class CNPJValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateNull() {
+	public void shoulValidateNullCNPJ() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CNPJError> messageProducer = mockery
 				.mock(MessageProducer.class);
@@ -165,41 +159,46 @@ public class CNPJValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateCheckDigits() {
+	public void shouldNotValidateCNPJCheckDigitsWithFirstCheckDigitWrong() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CNPJError> messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
 			{
-				exactly(6).of(messageProducer).getMessage(
-						CNPJError.CHECK_DIGITS_MISSMATCH);
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_CHECK_DIGITS);
+			}
+		});
+		CNPJValidator validator = new CNPJValidator(messageProducer);
+		List<ValidationMessage> errors;
+		
+		// VALID CNPJ = 742213250001-30
+		assertFalse(validator.validate("74221325000160"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.size() == 1);
+
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldNotValidateCNPJCheckDigitsWithSecondCheckDigitWrong() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CNPJError> messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_CHECK_DIGITS);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer);
 		List<ValidationMessage> errors;
 
-		assertFalse(validator.validate("85475820000193"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("62436601000197"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("24542848000122"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("21434696000143"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("81085255000114"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("58756334000172"));
+		// VALID CNPJ = 266371420001-58
+		assertFalse(validator.validate("26637142000154"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 

@@ -1,6 +1,8 @@
 package br.com.caelum.stella.validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
@@ -16,13 +18,22 @@ public class CNPJValidator implements Validator<String> {
 	private static final int MOD = 11;
 	private static final int CNPJ_DIGITS_SIZE = 14;
 	// Décimo terceiro digito é o primeiro digito verificador
-	private static final int dv1_position = 12;
-	// Décimo quarto primeiro digito é o segundo digito verificador
-	private static final int dv2_position = 13;
-	private static final int[] dv1Multipliers = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4,
+	private static final int dv1Position = 13;
+	// Décimo quarto digito é o segundo digito verificador
+	private static final int dv2Position = 14;
+	private static final Integer[] dv1Multipliers = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4,
 			3, 2 };
-	private static final int[] dv2Multipliers = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5,
+	private static final Integer[] dv2Multipliers = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5,
 			4, 3, 2 };
+
+	private static DigitChecker digitChecker;
+
+	{
+		HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+		map.put(dv1Position, Arrays.asList(dv1Multipliers));
+		map.put(dv2Position, Arrays.asList(dv2Multipliers));
+		digitChecker = new DigitChecker(map, MOD);
+	}
 
 	public CNPJValidator(MessageProducer<CNPJError> messageProducer) {
 		super();
@@ -43,19 +54,20 @@ public class CNPJValidator implements Validator<String> {
 			return true;
 		}
 		errors.clear();
-		
+
 		if (!cnpj.matches("\\d{" + CNPJ_DIGITS_SIZE + "}")) {
-			errors.add(CNPJError.DIGITS_MISSMATCH);
+			errors.add(CNPJError.INVALID_DIGITS_PATTERN);
 		}
 		if (hasAllRepeatedDigits(cnpj)) {
 			errors.add(CNPJError.ALL_REPEATED_DIGITS_FAUL);
 		}
-		if (errors.isEmpty() && !hasValidCheckDigits(cnpj)) {
-			errors.add(CNPJError.CHECK_DIGITS_MISSMATCH);
+		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cnpj)) {
+			errors.add(CNPJError.INVALID_CHECK_DIGITS);
 		}
 
 		return errors.isEmpty();
 	}
+
 	private boolean hasAllRepeatedDigits(String cnpj) {
 		for (int i = 1; i < cnpj.length(); i++) {
 			if (cnpj.charAt(i) != cnpj.charAt(0)) {
@@ -63,46 +75,6 @@ public class CNPJValidator implements Validator<String> {
 			}
 		}
 		return true;
-	}
-	
-	private boolean hasValidCheckDigits(String cnpj) {
-		int[] cnpjDigits = new int[CNPJ_DIGITS_SIZE];
-		for (int i = 0; i < CNPJ_DIGITS_SIZE; i++) {
-			cnpjDigits[i] = Integer.parseInt("" + cnpj.charAt(i));
-		}
-		Integer dv1 = cnpjDigits[dv1_position];
-		Integer dv2 = cnpjDigits[dv2_position];
-		Integer determinedDV1 = determineCheckDigit(cnpjDigits, dv1_position);
-		Integer determinedDV2 = determineCheckDigit(cnpjDigits, dv2_position);
-		return dv1.equals(determinedDV1) && dv2.equals(determinedDV2);
-	}
-	
-	private Integer determineCheckDigit(int[] cnpjDigits, int checkDigitPosition) {
-		int resultado;
-		int[] multipliers;
-		switch (checkDigitPosition) {
-		case dv1_position:
-			multipliers = dv1Multipliers;
-			break;
-
-		case dv2_position:
-			multipliers = dv2Multipliers;
-			break;
-
-		default:
-			throw new IllegalArgumentException("Not a check digit position.");
-		}
-		int resto = innerProduct(multipliers, cnpjDigits) % MOD;
-		resultado = (resto < 2) ? 0 : 11 - resto;
-		return resultado;
-	}
-
-	private Integer innerProduct(int[] a, int[] b) {
-		Integer result = 0;
-		for (int i = 0; i < a.length; i++) {
-			result += a[i] * b[i];
-		}
-		return result;
 	}
 
 }

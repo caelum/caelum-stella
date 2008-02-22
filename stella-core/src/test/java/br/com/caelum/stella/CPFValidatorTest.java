@@ -18,63 +18,54 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateDigitsMissMatch() {
+	public void shouldNotValidateCPFWithInvalidCharacter() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(3).of(messageProducer).getMessage(CPFError.DIGITS_MISSMATCH);
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer);
 		List<ValidationMessage> errors;
-		assertFalse(validator.validate("1234567890"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("123456789012"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-		
+				
 		assertFalse(validator.validate("1111111a111"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 		
 		mockery.assertIsSatisfied();
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateCheckDigits() {
+	public void shouldNotValidateCPFWithLessDigitsThanAllowed() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(6).of(messageProducer).getMessage(CPFError.CHECK_DIGITS_MISSMATCH);
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer);
 		List<ValidationMessage> errors;
-		
-		assertFalse(validator.validate("22233366608"));
+		assertFalse(validator.validate("1234567890"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
+		
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldNotValidateCPFWithMoreDigitsThanAlowed() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		
+		mockery.checking(new Expectations(){{
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+		}});
+		CPFValidator validator = new CPFValidator(messageProducer);
+		List<ValidationMessage> errors;
 
-		assertFalse(validator.validate("22233366630"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-		
-		assertFalse(validator.validate("34608514310"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-		
-		assertFalse(validator.validate("34608514301"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-
-		assertFalse(validator.validate("47393545628"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 1);
-		
-		assertFalse(validator.validate("47393545602"));
+		assertFalse(validator.validate("123456789012"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 		
@@ -83,7 +74,47 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateValidCpf() {
+	public void shouldNotValidateCPFWithCheckDigitsWithFirstCheckDigitWrong() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		
+		mockery.checking(new Expectations(){{
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+		}});
+		CPFValidator validator = new CPFValidator(messageProducer);
+		List<ValidationMessage> errors;
+		
+		// VALID CPF = 248.438.034-80
+		assertFalse(validator.validate("24843803470"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.size() == 1);
+
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldNotValidateCPFWithCheckDigitsWithSecondCheckDigitWrong() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		
+		mockery.checking(new Expectations(){{
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+		}});
+		CPFValidator validator = new CPFValidator(messageProducer);
+		List<ValidationMessage> errors;
+		
+		// VALID CPF = 099.075.865-60
+		assertFalse(validator.validate("09907586561"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.size() == 1);
+
+		mockery.assertIsSatisfied();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldValidateValidCPF() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
@@ -110,7 +141,7 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateNull() {
+	public void shouldValidateNullCPF() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
@@ -127,54 +158,18 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testValidateAllRepeatedDigitsFaul() {
+	public void shouldNotValidateCPFWithAllRepeatedDigitsFaul() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
-			exactly(10).of(messageProducer).getMessage(CPFError.ALL_REPEATED_DIGITS_FAUL);
+			exactly(1).of(messageProducer).getMessage(CPFError.ALL_REPEATED_DIGITS_FAUL);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer);
 		List<ValidationMessage> errors;
 		
-		assertFalse(validator.validate("11111111111"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("22222222222"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("33333333333"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
 		assertFalse(validator.validate("44444444444"));
 		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("55555555555"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("66666666666"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("77777777777"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-
-		assertFalse(validator.validate("88888888888"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("99999999999"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
-		
-		assertFalse(validator.validate("00000000000"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);
+		assertTrue(errors.toString(), errors.size() == 1);		
 		
 		mockery.assertIsSatisfied();
 	}
