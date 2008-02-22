@@ -1,6 +1,7 @@
-package br.com.caelum.stella;
+package br.com.caelum.stella.validator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -8,8 +9,8 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.validator.CPFError;
-import br.com.caelum.stella.validator.CPFValidator;
+import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 
 /**
  * @Author Leonardo Bessa
