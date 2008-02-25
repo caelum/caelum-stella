@@ -20,4 +20,5 @@ import java.lang.annotation.Target;
 @ValidatorClass(StellaCPFValidator.class)
 public @interface CPF {
     String message() default "{cpf_invalid}";
+    boolean formatted() default false;
 }

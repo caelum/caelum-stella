@@ -19,5 +19,6 @@ import org.hibernate.validator.ValidatorClass;
 @ValidatorClass(StellaCNPJValidator.class)
 public @interface CNPJ {
 	String message() default "{cnpj_invalid}";
+	boolean formatted() default false;
 
 }

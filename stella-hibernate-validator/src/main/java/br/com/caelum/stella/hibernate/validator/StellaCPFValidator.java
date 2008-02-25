@@ -14,7 +14,7 @@ public class StellaCPFValidator implements Validator<CPF> {
 
     public void initialize(CPF cpf) {
         AnnotationMessageProducer<CPFError> messageProducer = new AnnotationMessageProducer<CPFError>(cpf);
-        stellaValidator = new CPFValidator(messageProducer);
+        stellaValidator = new CPFValidator(messageProducer,cpf.formatted());
     }
 
     public boolean isValid(Object o) {

@@ -30,7 +30,7 @@ public class CNPJValidatorTest {
 						CNPJError.INVALID_DIGITS_PATTERN);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		assertFalse(validator.validate("1234567890123"));
 		errors = validator.getLastValidationMessages();
@@ -52,7 +52,7 @@ public class CNPJValidatorTest {
 						CNPJError.INVALID_DIGITS_PATTERN);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
 		assertFalse(validator.validate("123456789012345"));
@@ -75,7 +75,7 @@ public class CNPJValidatorTest {
 						CNPJError.INVALID_DIGITS_PATTERN);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
 		assertFalse(validator.validate("1111111a111111"));
@@ -96,7 +96,7 @@ public class CNPJValidatorTest {
 
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 
 		List<ValidationMessage> errors;
 
@@ -127,7 +127,7 @@ public class CNPJValidatorTest {
 						CNPJError.ALL_REPEATED_DIGITS_FAUL);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
 		assertFalse(validator.validate("55555555555555"));
@@ -148,7 +148,7 @@ public class CNPJValidatorTest {
 
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 
 		List<ValidationMessage> errors;
 		assertTrue(validator.validate(null));
@@ -170,7 +170,7 @@ public class CNPJValidatorTest {
 						CNPJError.INVALID_CHECK_DIGITS);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
 		// VALID CNPJ = 742213250001-30
@@ -194,11 +194,58 @@ public class CNPJValidatorTest {
 						CNPJError.INVALID_CHECK_DIGITS);
 			}
 		});
-		CNPJValidator validator = new CNPJValidator(messageProducer);
+		CNPJValidator validator = new CNPJValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
 		// VALID CNPJ = 266371420001-58
 		assertFalse(validator.validate("26637142000154"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.size() == 1);
+
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldValidateValidFormattedCNPJ(){
+		Mockery mockery = new Mockery();
+		final MessageProducer<CNPJError> messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				
+			}
+		});
+		CNPJValidator validator = new CNPJValidator(messageProducer,true);
+		List<ValidationMessage> errors;
+
+		// VALID CNPJ = 26.637.142/0001-58
+		assertTrue(validator.validate("26.637.142/0001-58"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.size() == 0);
+
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldVotValidateValidUnformattedCNPJ(){
+		Mockery mockery = new Mockery();
+		final MessageProducer<CNPJError> messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(1).of(messageProducer).getMessage(
+						CNPJError.INVALID_FORMAT);
+			}
+		});
+		CNPJValidator validator = new CNPJValidator(messageProducer,true);
+		List<ValidationMessage> errors;
+
+		// VALID CNPJ = 26.637.142/0001-58
+		assertFalse(validator.validate("26637142000158"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 

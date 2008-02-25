@@ -14,7 +14,7 @@ public class StellaCNPJValidator implements Validator<CNPJ> {
 
     public void initialize(CNPJ cpf) {
         AnnotationMessageProducer<CNPJError> messageProducer = new AnnotationMessageProducer<CNPJError>(cpf);
-        stellaValidator = new CNPJValidator(messageProducer);
+        stellaValidator = new CNPJValidator(messageProducer,cpf.formatted());
     }
 
     public boolean isValid(Object o) {

@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
  *
  * @Author Fabio Kung
  */
+@SuppressWarnings("unchecked")
 public class AnnotationMessageProducer<T extends Enum> implements MessageProducer<T> {
 
     private final Annotation constraint;

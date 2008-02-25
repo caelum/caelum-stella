@@ -13,6 +13,8 @@ import br.com.caelum.stella.Validator;
  * @Author Leonardo Bessa
  */
 public class CNPJValidator implements Validator<String> {
+	private final String CNPJ_FORMAT = "\\d{2}[.]\\d{3}[.]\\d{3}/\\d{4}-\\d{2}";
+	private final boolean isFormatted;
 	private final MessageProducer<CNPJError> messageProducer;
 	private final List<CNPJError> errors = new ArrayList<CNPJError>();
 	private static final int MOD = 11;
@@ -35,9 +37,10 @@ public class CNPJValidator implements Validator<String> {
 		digitChecker = new DigitChecker(map, MOD);
 	}
 
-	public CNPJValidator(MessageProducer<CNPJError> messageProducer) {
+	public CNPJValidator(MessageProducer<CNPJError> messageProducer, boolean isFormatted) {
 		super();
 		this.messageProducer = messageProducer;
+		this.isFormatted = isFormatted;
 	}
 
 	public List<ValidationMessage> getLastValidationMessages() {
@@ -54,11 +57,16 @@ public class CNPJValidator implements Validator<String> {
 			return true;
 		}
 		errors.clear();
-
-		if (!cnpj.matches("\\d{" + CNPJ_DIGITS_SIZE + "}")) {
+		if (isFormatted){
+			if(!cnpj.matches(CNPJ_FORMAT)){
+				errors.add(CNPJError.INVALID_FORMAT);
+			}
+			cnpj = cnpj.replaceAll("[^0-9]", "");
+		}
+		else if (!cnpj.matches("\\d{" + CNPJ_DIGITS_SIZE + "}")) {
 			errors.add(CNPJError.INVALID_DIGITS_PATTERN);
 		}
-		if (hasAllRepeatedDigits(cnpj)) {
+		if (errors.isEmpty() && hasAllRepeatedDigits(cnpj)) {
 			errors.add(CNPJError.ALL_REPEATED_DIGITS_FAUL);
 		}
 		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cnpj)) {

@@ -13,6 +13,8 @@ import br.com.caelum.stella.Validator;
  * @Author Leonardo Bessa
  */
 public class CPFValidator implements Validator<String> {
+	private final String CPF_FORMAT = "\\d{3}[.]\\d{3}[.]\\d{3}-\\d{2}";
+	private final boolean isFormatted;
 	private final MessageProducer<CPFError> messageProducer;
 	private static final int MOD = 11;
 	private static final int CPF_DIGITS_SIZE = 11;
@@ -35,8 +37,9 @@ public class CPFValidator implements Validator<String> {
 		digitChecker = new DigitChecker(map, MOD);
 	}
 
-	public CPFValidator(MessageProducer<CPFError> messageProducer) {
+	public CPFValidator(MessageProducer<CPFError> messageProducer, boolean isFormatted) {
 		this.messageProducer = messageProducer;
+		this.isFormatted = isFormatted;
 	}
 
 	public boolean validate(String cpf) {
@@ -45,10 +48,17 @@ public class CPFValidator implements Validator<String> {
 		}
 		errors.clear();
 
+		if (isFormatted){
+			if (!cpf.matches(CPF_FORMAT)){
+				errors.add(CPFError.INVALID_FORMAT);
+			}
+			cpf = cpf.replaceAll("[^0-9]", "");
+		}
+		else
 		if (!cpf.matches("\\d{" + CPF_DIGITS_SIZE + "}")) {
 			errors.add(CPFError.INVALID_DIGITS_PATTERN);
 		}
-		if (hasAllRepeatedDigits(cpf)) {
+		if (errors.isEmpty() && hasAllRepeatedDigits(cpf)) {
 			errors.add(CPFError.ALL_REPEATED_DIGITS_FAUL);
 		}
 		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cpf)) {
