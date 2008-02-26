@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @Author Leonardo Bessa
  */
-public class DigitChecker {
+public abstract class DigitChecker {
 	private Map<Integer, List<Integer>> dvMulipliers;
 	private int mod;
 
@@ -35,9 +35,11 @@ public class DigitChecker {
 		Integer[] multipliers = new Integer[0];
 		multipliers = dvMulipliers.get(checkDigitPosition).toArray(multipliers);
 		int resto = innerProduct(multipliers, digits) % mod;
-		resultado = (resto < 2) ? 0 : 11 - resto;
+		resultado = rotinaPosProdutoInterno(resto);
 		return resultado;
 	}
+
+	protected abstract int rotinaPosProdutoInterno(int resto);
 
 	private Integer innerProduct(Integer[] a, Integer[] b) {
 		Integer result = 0;

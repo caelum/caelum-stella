@@ -29,15 +29,21 @@ public class NITValidator implements Validator<String> {
 	private static final Integer dv1Position = 11;
 	private static final Integer[] dv1Multipliers = { 3, 2, 9, 8, 7, 6, 5, 4,
 			3, 2 };
-	private static DigitChecker digitChecker;
 
 	private final List<NITError> errors = new ArrayList<NITError>();
 
-	{
-		HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
-		map.put(dv1Position, Arrays.asList(dv1Multipliers));
-		digitChecker = new DigitChecker(map, MOD);
-	}
+	@SuppressWarnings("serial")
+	private static final DigitChecker digitChecker = new DigitChecker(
+			new HashMap<Integer, List<Integer>>() {
+				{
+					this.put(dv1Position, Arrays.asList(dv1Multipliers));
+				}
+			}, MOD) {
+		@Override
+		protected int rotinaPosProdutoInterno(int resto) {
+			return (resto < 2) ? 0 : 11 - resto;
+		}
+	};
 
 	public NITValidator(MessageProducer<NITError> messageProducer,
 			boolean isFormatted) {

@@ -28,14 +28,19 @@ public class CPFValidator implements Validator<String> {
 			3, 2 };
 	private final List<CPFError> errors = new ArrayList<CPFError>();
 
-	private static DigitChecker digitChecker;
-
-	{
-		HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
-		map.put(dv1Position, Arrays.asList(dv1Multipliers));
-		map.put(dv2Position, Arrays.asList(dv2Multipliers));
-		digitChecker = new DigitChecker(map, MOD);
-	}
+	@SuppressWarnings("serial")
+	private static final DigitChecker digitChecker = new DigitChecker(
+			new HashMap<Integer, List<Integer>>() {
+				{
+					this.put(dv1Position, Arrays.asList(dv1Multipliers));
+					this.put(dv2Position, Arrays.asList(dv2Multipliers));
+				}
+			}, MOD) {
+		@Override
+		protected int rotinaPosProdutoInterno(int resto) {
+			return (resto < 2) ? 0 : 11 - resto;
+		}
+	};
 
 	public CPFValidator(MessageProducer<CPFError> messageProducer, boolean isFormatted) {
 		this.messageProducer = messageProducer;
