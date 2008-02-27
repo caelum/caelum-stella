@@ -2,8 +2,8 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validator.NITError;
-import br.com.caelum.stella.validator.NITValidator;
+import br.com.caelum.stella.validation.NITError;
+import br.com.caelum.stella.validation.NITValidator;
 
 
 /**

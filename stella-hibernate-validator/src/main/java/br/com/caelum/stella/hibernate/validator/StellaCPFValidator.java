@@ -1,7 +1,7 @@
 package br.com.caelum.stella.hibernate.validator;
 
-import br.com.caelum.stella.validator.CPFError;
-import br.com.caelum.stella.validator.CPFValidator;
+import br.com.caelum.stella.validation.CPFError;
+import br.com.caelum.stella.validation.CPFValidator;
 import org.hibernate.validator.Validator;
 
 /**

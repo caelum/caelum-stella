@@ -1,6 +1,7 @@
-package br.com.caelum.stella.validator;
+package br.com.caelum.stella.validation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -11,22 +12,24 @@ import org.junit.Test;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
+
 /**
  * @Author Leonardo Bessa
  */
-public class CPFValidatorTest {
-
+public class NITValidatorTest {
+	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithInvalidCharacter() {
+	public void shouldNotValidateNITWithInvalidCharacter() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
+				
 		assertFalse(validator.validate("1111111a111"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
@@ -36,14 +39,14 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithLessDigitsThanAllowed() {
+	public void shouldNotValidateNITWithLessDigitsThanAllowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		assertFalse(validator.validate("1234567890"));
 		errors = validator.getLastValidationMessages();
@@ -54,14 +57,14 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithMoreDigitsThanAlowed() {
+	public void shouldNotValidateNITWithMoreDigitsThanAlowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
 		assertFalse(validator.validate("123456789012"));
@@ -73,17 +76,17 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithCheckDigitsWithFirstCheckDigitWrong() {
+	public void shouldNotValidateNITWithCheckDigitsWithFirstCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
-		// VALID CPF = 248.438.034-80
+		// VALID NIT = 24.84380.348-0
 		assertFalse(validator.validate("24843803470"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
@@ -93,17 +96,17 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithCheckDigitsWithSecondCheckDigitWrong() {
+	public void shouldNotValidateNITWithCheckDigitsWithSecondCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
-		// VALID CPF = 099.075.865-60
+		// VALID NIT = 099.075.865-60
 		assertFalse(validator.validate("09907586561"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
@@ -113,17 +116,17 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldValidateValidCPF() {
+	public void shouldValidateValidNIT() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		
 		List<ValidationMessage> errors;
 		
-		assertTrue(validator.validate("88641577947"));
+		assertTrue(validator.validate("12345678919"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.isEmpty());
 		
@@ -140,13 +143,13 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldValidateNullCPF() {
+	public void shouldValidateNullNIT() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		
 		List<ValidationMessage> errors;
 		assertTrue(validator.validate(null));
@@ -157,16 +160,16 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithAllRepeatedDigitsFaul() {
+	public void shouldNotValidateNITWithAllRepeatedDigitsFaul() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.ALL_REPEATED_DIGITS_FAUL);
+			exactly(1).of(messageProducer).getMessage(NITError.ALL_REPEATED_DIGITS_FAUL);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
-		assertFalse(validator.validate("44444444444"));
+		assertFalse(validator.validate("99999999999"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.toString(), errors.size() == 1);		
 		
@@ -175,9 +178,9 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldValidateValidFormattedCPF(){
+	public void shouldValidateValidFormattedNIT(){
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery
+		final MessageProducer<NITError> messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
@@ -185,11 +188,11 @@ public class CPFValidatorTest {
 				
 			}
 		});
-		CPFValidator validator = new CPFValidator(messageProducer,true);
+		NITValidator validator = new NITValidator(messageProducer,true);
 		List<ValidationMessage> errors;
 
-		// VALID CPF = 356.296.825-63
-		assertTrue(validator.validate("356.296.825-63"));
+		// VALID NIT = 123.45678.91-9
+		assertTrue(validator.validate("123.45678.91-9"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 0);
 
@@ -198,22 +201,22 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldVotValidateValidUnformattedCPF(){
+	public void shouldVotValidateValidUnformattedNIT(){
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery
+		final MessageProducer<NITError> messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
 			{
 				exactly(1).of(messageProducer).getMessage(
-						CPFError.INVALID_FORMAT);
+						NITError.INVALID_FORMAT);
 			}
 		});
-		CPFValidator validator = new CPFValidator(messageProducer,true);
+		NITValidator validator = new NITValidator(messageProducer,true);
 		List<ValidationMessage> errors;
 
-		// VALID CPF = 332.375.322-40
-		assertFalse(validator.validate("332.375.32240"));
+		// VALID NIT = 12.34567.891-9
+		assertFalse(validator.validate("12.34a67.891-9"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);
 

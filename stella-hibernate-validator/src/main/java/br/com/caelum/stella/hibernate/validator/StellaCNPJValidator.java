@@ -2,8 +2,8 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validator.CNPJError;
-import br.com.caelum.stella.validator.CNPJValidator;
+import br.com.caelum.stella.validation.CNPJError;
+import br.com.caelum.stella.validation.CNPJValidator;
 
 
 /**

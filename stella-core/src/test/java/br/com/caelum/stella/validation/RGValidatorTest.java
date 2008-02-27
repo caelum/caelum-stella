@@ -1,4 +1,4 @@
-package br.com.caelum.stella.validator;
+package br.com.caelum.stella.validation;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

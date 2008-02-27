@@ -2,8 +2,8 @@ package br.com.caelum.stella.faces.validation;
 
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
-import br.com.caelum.stella.validator.CPFError;
-import br.com.caelum.stella.validator.CPFValidator;
+import br.com.caelum.stella.validation.CPFError;
+import br.com.caelum.stella.validation.CPFValidator;
 
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;

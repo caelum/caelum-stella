@@ -1,4 +1,4 @@
-package br.com.caelum.stella.validator;
+package br.com.caelum.stella.validation;
 /**
  * @Author Leonardo Bessa
  */

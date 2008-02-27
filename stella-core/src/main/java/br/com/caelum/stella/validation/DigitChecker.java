@@ -1,4 +1,4 @@
-package br.com.caelum.stella.validator;
+package br.com.caelum.stella.validation;
 
 import java.util.List;
 import java.util.Map;
