@@ -1,7 +1,6 @@
 package br.com.caelum.stella.validator;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class CPFValidatorTest {
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
-				
 		assertFalse(validator.validate("1111111a111"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.size() == 1);

@@ -22,7 +22,8 @@ public class ResourceBundleMessageProducerTest {
         final String errorMessage = "message for ANY error";
         ResourceBundle bundleMock = new ResourceBundle() {
             protected Object handleGetObject(String s) {
-                if (s.equals(Errors.WITH_COMPOSITE_NAME.name().toLowerCase())) {
+                String errorKey = (Errors.class.getSimpleName()+"."+ Errors.WITH_COMPOSITE_NAME.name()).toLowerCase();
+                if (s.equals(errorKey)) {
                     return errorMessage;
                 }
                 return null;
