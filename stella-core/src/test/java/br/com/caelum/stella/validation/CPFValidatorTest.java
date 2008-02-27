@@ -198,7 +198,7 @@ public class CPFValidatorTest {
 	
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldVotValidateValidUnformattedCPF(){
+	public void shouldNotValidateValidUnformattedCPF(){
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery
 				.mock(MessageProducer.class);
