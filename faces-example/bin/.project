@@ -4,7 +4,10 @@
     Brazilian common ids like Zip codes, State codes, social ids and so on.
     Stella also provides adapters for JSF, Struts tag libs, JSP tag libs,
     Hibernate Validator and JS completion.</comment>
-  <projects/>
+  <projects>
+    <project>caelum-stella-faces</project>
+    <project>caelum-stella-core</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
@@ -17,8 +20,8 @@
     </buildCommand>
   </buildSpec>
   <natures>
-    <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
     <nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
     <nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
   </natures>

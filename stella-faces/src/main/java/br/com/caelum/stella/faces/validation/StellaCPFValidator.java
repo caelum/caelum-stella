@@ -11,6 +11,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -24,8 +25,11 @@ public class StellaCPFValidator implements javax.faces.validator.Validator {
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
         Application application = facesContext.getApplication();
         String bundleName = application.getMessageBundle();
+        Locale locale = facesContext.getViewRoot().getLocale();
         ResourceBundle bundle = application.getResourceBundle(facesContext, bundleName);
-
+        
+      //ResourceBundle.getBundle(bundleName, locale);
+        
         ResourceBundleMessageProducer<CPFError> producer = new ResourceBundleMessageProducer<CPFError>(bundle);
         CPFValidator validator = new CPFValidator(producer, false);
 

@@ -1,6 +1,7 @@
 package br.com.caelum.stella.faces;
 
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import br.com.caelum.stella.MessageProducer;
@@ -23,10 +24,18 @@ public class ResourceBundleMessageProducer<T extends Enum> implements MessagePro
 
     public ValidationMessage getMessage(T error) {
         Locale locale = bundle.getLocale();
+        if(locale == null) {
+        	locale = Locale.getDefault();
+        }
         String simpleName = error.getClass().getSimpleName();
 		String errorName = error.toString();
 		String key = (simpleName + "." + errorName);
-		String message = bundle.getString(key.toLowerCase(locale));
+		String message = null;
+		try {
+			message = bundle.getString(key.toLowerCase(locale));
+		}catch(MissingResourceException ex) {
+			message = "???" + key + "???";
+		}
         return new SimpleValidationMessage(message);
     }
 }

@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
@@ -91,4 +93,7 @@ public class CPFValidator implements Validator<String> {
 		return messages;
 	}
 
+	public List<CPFError> getErrors() {
+		return errors;
+	}
 }

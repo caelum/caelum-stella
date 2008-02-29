@@ -5,33 +5,21 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
 	version="1.2">
 
-	<application>
-		<message-bundle>messages</message-bundle>
-		<resource-bundle>
-			<base-name>messages</base-name>
-			<var>msg</var>
-		</resource-bundle>
-		<locale-config>
-			<default-locale>pt_BR</default-locale>
-			<!--<supported-locale>en</supported-locale> -->
-		</locale-config>
-	</application>
-
 	<validator>
 		<validator-id>cpfValidator</validator-id>
 		<validator-class>
-			br.com.caelum.stella.faces.validation.StellaCPFValidator
+			br.com.caelum.stella.faces.validator.StellaCPFValidador
 		</validator-class>
 	</validator>
 
-
 	<managed-bean>
-		<managed-bean-name>stellaCpfValidation</managed-bean-name>
+		<managed-bean-name>stellaCPFValidador</managed-bean-name>
 		<managed-bean-class>
-			br.com.caelum.stella.faces.validation.StellaCPFValidator
+			br.com.caelum.stella.faces.validator.StellaCPFValidador
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
+	
 
 </faces-config>
