@@ -23,6 +23,7 @@
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
     <module>stella-taglib</module>
+	<module>examples/faces-example</module>
   </modules>
 
   <dependencyManagement>
