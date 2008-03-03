@@ -34,7 +34,7 @@ public class ResourceBundleMessageProducer<T extends Enum> implements MessagePro
 		try {
 			message = bundle.getString(key.toLowerCase(locale));
 		}catch(MissingResourceException ex) {
-			message = "???" + key + "???";
+			message = key.toLowerCase(locale).replaceFirst("[.]", " : ").replaceAll("_", " ");
 		}
         return new SimpleValidationMessage(message);
     }
