@@ -35,14 +35,14 @@ public class StellaCPFValidator implements javax.faces.validator.Validator {
 
         if (!validator.validate(value.toString())) {
             List<ValidationMessage> messages = validator.getLastValidationMessages();
-            //registerAllMessages(facesContext, uiComponent, messages);
-
-            String firstErrorMessage = messages.get(0).getMessage();
-            throw new ValidatorException(new FacesMessage(firstErrorMessage));
+            registerAllMessages(facesContext, uiComponent, messages);
+//            String firstErrorMessage = messages.get(0).getMessage();
+//            throw new ValidatorException(new FacesMessage(firstErrorMessage));
         }
     }
 
-    private void registerAllMessages(FacesContext facesContext, UIComponent uiComponent, List<ValidationMessage> messages) {
+    @SuppressWarnings("unused")
+	private void registerAllMessages(FacesContext facesContext, UIComponent uiComponent, List<ValidationMessage> messages) {
         for (ValidationMessage message : messages) {
             String componentId = uiComponent.getClientId(facesContext);
             facesContext.addMessage(componentId, new FacesMessage(message.getMessage()));
