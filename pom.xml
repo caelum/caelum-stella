@@ -255,6 +255,12 @@
       <id>apache.snapshots</id>
       <url>http://people.apache.org/maven-snapshot-repository/</url>
     </repository>
+    <repository>
+      <id>dev.java.net</id>
+      <name>dev.java.net-repo</name>
+      <url>https://maven-repository.dev.java.net/repository/</url>
+      <layout>legacy</layout>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
