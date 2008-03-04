@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
-	version="1.2">
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+              version="1.2">
 
-	<application>
-		<message-bundle>messages</message-bundle>
-		<resource-bundle>
-			<base-name>messages</base-name>
-			<var>msg</var>
-		</resource-bundle>
-		<locale-config>
-			<default-locale>pt_BR</default-locale>
-			<!--<supported-locale>en</supported-locale> -->
-		</locale-config>
-	</application>
+  <application>
+    <message-bundle>messages</message-bundle>
+  </application>
 
-	<validator>
-		<validator-id>cpfValidator</validator-id>
-		<validator-class>
-			br.com.caelum.stella.faces.validation.StellaCPFValidator
-		</validator-class>
-	</validator>
+  <validator>
+    <validator-id>cpfValidator</validator-id>
+    <validator-class>br.com.caelum.stella.faces.validation.StellaCPFValidator</validator-class>
+  </validator>
 
 </faces-config>
