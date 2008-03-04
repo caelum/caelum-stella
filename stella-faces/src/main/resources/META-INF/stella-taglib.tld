@@ -9,7 +9,7 @@
     <tag-class>br.com.caelum.stella.faces.validation.StellaCPFValidatorTag</tag-class>
     <body-content>emtpy</body-content>
     <attribute>
-      <name>isFormated</name>
+      <name>formatted</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
     </attribute>

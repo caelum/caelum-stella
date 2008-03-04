@@ -21,6 +21,15 @@ import java.util.ResourceBundle;
  * @Author Fabio Kung
  */
 public class StellaCPFValidator implements javax.faces.validator.Validator {
+    public final boolean formatted;
+
+    public StellaCPFValidator() {
+        this(false);
+    }
+
+    public StellaCPFValidator(boolean formatted) {
+        this.formatted = formatted;
+    }
 
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
         Application application = facesContext.getApplication();
@@ -29,7 +38,7 @@ public class StellaCPFValidator implements javax.faces.validator.Validator {
         ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
 
         ResourceBundleMessageProducer<CPFError> producer = new ResourceBundleMessageProducer<CPFError>(bundle);
-        CPFValidator validator = new CPFValidator(producer, false);
+        CPFValidator validator = new CPFValidator(producer, formatted);
 
         if (!validator.validate(value.toString())) {
             List<ValidationMessage> messages = validator.getLastValidationMessages();

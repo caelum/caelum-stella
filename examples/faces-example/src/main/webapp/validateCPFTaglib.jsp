@@ -15,11 +15,16 @@
   <h:form id="formulario">
 
     <h:panelGrid columns="3">
-      <h:outputLabel value="cpf:"/>
+      <h:outputLabel value="cpf sem formatacao:" for="cpf"/>
       <h:inputText id="cpf">
         <stella:validateCPF/>
       </h:inputText>
       <h:message for="cpf"/>
+      <h:outputLabel value="cpf com formatacao:" for="cpfFormatado"/>
+      <h:inputText id="cpfFormatado">
+        <stella:validateCPF formatted="true"/>
+      </h:inputText>
+      <h:message for="cpfFormatado"/>
     </h:panelGrid>
 
     <h:commandButton value="Enviar"/>

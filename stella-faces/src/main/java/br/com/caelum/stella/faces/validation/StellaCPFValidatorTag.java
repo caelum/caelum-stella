@@ -12,6 +12,7 @@ import br.com.caelum.stella.faces.validation.StellaCPFValidator;
  * @author Caires V.
  */
 public class StellaCPFValidatorTag extends ValidatorELTag {
+    private Boolean formatted = Boolean.FALSE;
 
     /**
      * Creates a new validator, after that return validate method on
@@ -19,7 +20,14 @@ public class StellaCPFValidatorTag extends ValidatorELTag {
      */
     @Override
     protected Validator createValidator() throws JspException {
-        return new StellaCPFValidator();
+        return new StellaCPFValidator(formatted);
     }
 
+    public Boolean getFormatted() {
+        return formatted;
+    }
+
+    public void setFormatted(Boolean formatted) {
+        this.formatted = formatted;
+    }
 }
