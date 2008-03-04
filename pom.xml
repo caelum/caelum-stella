@@ -250,4 +250,11 @@
       <url>http://repository.codehaus.org</url>
     </repository>
   </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+       <id>apache.snapshots</id>
+       <url>http://people.apache.org/maven-snapshot-repository/</url>
+     </pluginRepository>
+  </pluginRepositories>
+
 </project>
