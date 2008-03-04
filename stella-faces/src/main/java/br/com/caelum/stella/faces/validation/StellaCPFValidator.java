@@ -27,17 +27,16 @@ public class StellaCPFValidator implements javax.faces.validator.Validator {
         String bundleName = application.getMessageBundle();
         Locale locale = facesContext.getViewRoot().getLocale();
         ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale); 
-        //application.getResourceBundle(facesContext, bundleName);  
-      
         
         ResourceBundleMessageProducer<CPFError> producer = new ResourceBundleMessageProducer<CPFError>(bundle);
         CPFValidator validator = new CPFValidator(producer, false);
 
         if (!validator.validate(value.toString())) {
             List<ValidationMessage> messages = validator.getLastValidationMessages();
+            String firstErrorMessage = messages.get(0).getMessage();
+            messages.remove(messages.get(0));
             registerAllMessages(facesContext, uiComponent, messages);
-//            String firstErrorMessage = messages.get(0).getMessage();
-//            throw new ValidatorException(new FacesMessage(firstErrorMessage));
+            throw new ValidatorException(new FacesMessage(firstErrorMessage));
         }
     }
 
