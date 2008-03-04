@@ -1,0 +1,4 @@
+<vraptor>
+  <plugin>org.vraptor.plugin.hibernate.HibernateValidatorPlugin</plugin>
+</vraptor>
+    
