@@ -3,11 +3,11 @@ package br.com.caelum.stella.example.validator;
 import br.com.caelum.stella.hibernate.validator.CPF;
 
 
-public class ValidaCPF {
+public class Usuario {
 	@CPF
-	private ValidaCPF cpf;
+	private String cpf;
 
-	public ValidaCPF getCpf() {
+	public String getCpf() {
 		return this.cpf;
 	}
 }
