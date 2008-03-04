@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Enumeration;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.text.MessageFormat;
 
@@ -44,6 +45,29 @@ public class ResourceBundleMessageProducerTest {
         ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundleMock);
         ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
         assertEquals(errorMessage, validationMessage.getMessage());
+    }
+    
+    @Test
+    public void shouldReturnMessageWhenKeyIsMissingInResourceBundle() {
+    	
+        ResourceBundle bundleMock = new ResourceBundle() {
+            protected Object handleGetObject(String s) {
+               throw new MissingResourceException(null,null,null);
+            }
+
+            public Enumeration<String> getKeys() {
+                return null;
+            }
+
+            public Locale getLocale() {
+                return Locale.getDefault();
+            }
+        };
+        
+        ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundleMock);
+        ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
+        assertEquals("errors : with composite name", validationMessage.getMessage());
+        
     }
 
 }
