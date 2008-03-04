@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
@@ -63,10 +61,10 @@ public class CPFValidator implements Validator<String> {
 		}
 		else
 		if (!cpf.matches("\\d{" + CPF_DIGITS_SIZE + "}")) {
-			errors.add(CPFError.INVALID_DIGITS_PATTERN);
+			errors.add(CPFError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty() && hasAllRepeatedDigits(cpf)) {
-			errors.add(CPFError.ALL_REPEATED_DIGITS_FAUL);
+			errors.add(CPFError.REPEATED_DIGITS);
 		}
 		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cpf)) {
 			errors.add(CPFError.INVALID_CHECK_DIGITS);

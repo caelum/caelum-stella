@@ -24,7 +24,7 @@ public class RGValidatorTest {
 		final MessageProducer<RGError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS);
 		}});
 		RGValidatorForSaoPaulo validator = new RGValidatorForSaoPaulo(messageProducer);
 		List<ValidationMessage> errors;
@@ -43,7 +43,7 @@ public class RGValidatorTest {
 		final MessageProducer<RGError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS);
 		}});
 		RGValidatorForSaoPaulo validator = new RGValidatorForSaoPaulo(messageProducer);
 		List<ValidationMessage> errors;
@@ -61,7 +61,7 @@ public class RGValidatorTest {
 		final MessageProducer<RGError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(RGError.INVALID_DIGITS);
 		}});
 		RGValidatorForSaoPaulo validator = new RGValidatorForSaoPaulo(messageProducer);
 		List<ValidationMessage> errors;

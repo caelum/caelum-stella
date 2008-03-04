@@ -23,7 +23,7 @@ public class CPFValidatorTest {
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -41,7 +41,7 @@ public class CPFValidatorTest {
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -59,7 +59,7 @@ public class CPFValidatorTest {
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -161,7 +161,7 @@ public class CPFValidatorTest {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.ALL_REPEATED_DIGITS_FAUL);
+			exactly(1).of(messageProducer).getMessage(CPFError.REPEATED_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;

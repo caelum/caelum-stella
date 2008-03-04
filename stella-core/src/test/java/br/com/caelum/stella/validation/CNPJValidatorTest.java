@@ -27,7 +27,7 @@ public class CNPJValidatorTest {
 		mockery.checking(new Expectations() {
 			{
 				exactly(1).of(messageProducer).getMessage(
-						CNPJError.INVALID_DIGITS_PATTERN);
+						CNPJError.INVALID_DIGITS);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer,false);
@@ -49,7 +49,7 @@ public class CNPJValidatorTest {
 		mockery.checking(new Expectations() {
 			{
 				exactly(1).of(messageProducer).getMessage(
-						CNPJError.INVALID_DIGITS_PATTERN);
+						CNPJError.INVALID_DIGITS);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer,false);
@@ -72,7 +72,7 @@ public class CNPJValidatorTest {
 		mockery.checking(new Expectations() {
 			{
 				exactly(1).of(messageProducer).getMessage(
-						CNPJError.INVALID_DIGITS_PATTERN);
+						CNPJError.INVALID_DIGITS);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer,false);
@@ -124,7 +124,7 @@ public class CNPJValidatorTest {
 		mockery.checking(new Expectations() {
 			{
 				exactly(1).of(messageProducer).getMessage(
-						CNPJError.ALL_REPEATED_DIGITS_FAUL);
+						CNPJError.REPEATED_DIGITS);
 			}
 		});
 		CNPJValidator validator = new CNPJValidator(messageProducer,false);

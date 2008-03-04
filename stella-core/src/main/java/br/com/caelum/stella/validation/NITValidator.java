@@ -73,10 +73,10 @@ public class NITValidator implements Validator<String> {
 			}
 			NIT = NIT.replaceAll("[^0-9]", "");
 		} else if (!NIT.matches("\\d{" + NIT_DIGITS_SIZE + "}")) {
-			errors.add(NITError.INVALID_DIGITS_PATTERN);
+			errors.add(NITError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty() && hasAllRepeatedDigits(NIT)) {
-			errors.add(NITError.ALL_REPEATED_DIGITS_FAUL);
+			errors.add(NITError.REPEATED_DIGITS);
 		}
 		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(NIT)) {
 			errors.add(NITError.INVALID_CHECK_DIGITS);

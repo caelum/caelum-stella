@@ -25,7 +25,7 @@ public class NITValidatorTest {
 		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
 		}});
 		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -44,7 +44,7 @@ public class NITValidatorTest {
 		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
 		}});
 		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -62,7 +62,7 @@ public class NITValidatorTest {
 		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS_PATTERN);
+			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
 		}});
 		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;
@@ -164,7 +164,7 @@ public class NITValidatorTest {
 		Mockery mockery = new Mockery();
 		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.ALL_REPEATED_DIGITS_FAUL);
+			exactly(1).of(messageProducer).getMessage(NITError.REPEATED_DIGITS);
 		}});
 		NITValidator validator = new NITValidator(messageProducer,false);
 		List<ValidationMessage> errors;

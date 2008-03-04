@@ -40,7 +40,7 @@ public class RGValidatorForSaoPaulo implements Validator<String> {
 		errors.clear();
 
 		if (!rg.matches("\\d{" + RG_DIGITS_SIZE + "}")) {
-			errors.add(RGError.INVALID_DIGITS_PATTERN);
+			errors.add(RGError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty() && checkDigit(rg)){
 			errors.add(RGError.INVALID_CHECK_DIGITS);

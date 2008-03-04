@@ -69,10 +69,10 @@ public class CNPJValidator implements Validator<String> {
 			}
 			cnpj = cnpj.replaceAll("[^0-9]", "");
 		} else if (!cnpj.matches("\\d{" + CNPJ_DIGITS_SIZE + "}")) {
-			errors.add(CNPJError.INVALID_DIGITS_PATTERN);
+			errors.add(CNPJError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty() && hasAllRepeatedDigits(cnpj)) {
-			errors.add(CNPJError.ALL_REPEATED_DIGITS_FAUL);
+			errors.add(CNPJError.REPEATED_DIGITS);
 		}
 		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cnpj)) {
 			errors.add(CNPJError.INVALID_CHECK_DIGITS);
