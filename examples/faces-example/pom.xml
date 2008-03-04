@@ -28,6 +28,11 @@
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>${pom.groupId}</groupId>
+			<artifactId>caelum-stella-taglib</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>1.2_02</version>

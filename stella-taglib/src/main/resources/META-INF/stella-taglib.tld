@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib>
+	<tlib-version>1.1</tlib-version>
+	<jsp-version>2.1</jsp-version>
+	<short-name>Stella Taglib</short-name>
+	<uri>http://caelum.com.br/stella-taglib</uri>
+	<tag>
+		<name>validateCPF</name>
+		<tag-class>
+		br.com.caelum.stella.taglib.validation.handler.StellaCPFValidatorTag
+		</tag-class>
+		<body-content>emtpy</body-content>
+		<attribute>
+			<name>isFormated</name>
+			<required>false</required>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+		</attribute>
+	</tag>
+</taglib>
