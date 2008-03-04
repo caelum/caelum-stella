@@ -23,7 +23,7 @@
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
     <module>stella-taglib</module>
-	<module>examples/faces-example</module>
+    <module>examples/faces-example</module>
   </modules>
 
   <dependencyManagement>
@@ -224,7 +224,8 @@
 
   <scm>
     <connection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</connection>
-    <developerConnection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</developerConnection>
+    <developerConnection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella
+    </developerConnection>
     <url>http://caelum-stella.svn.sourceforge.net/viewvc/caelum-stella/</url>
   </scm>
 
@@ -249,12 +250,16 @@
       <name>Codehaus Repository</name>
       <url>http://repository.codehaus.org</url>
     </repository>
+    <repository>
+      <id>apache.snapshots</id>
+      <url>http://people.apache.org/maven-snapshot-repository/</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-       <id>apache.snapshots</id>
-       <url>http://people.apache.org/maven-snapshot-repository/</url>
-     </pluginRepository>
+      <id>apache.snapshots</id>
+      <url>http://people.apache.org/maven-snapshot-repository/</url>
+    </pluginRepository>
   </pluginRepositories>
 
 </project>
