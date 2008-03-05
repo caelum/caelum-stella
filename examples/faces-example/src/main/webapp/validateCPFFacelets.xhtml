@@ -12,20 +12,18 @@
   <title>Validando CPF com Facelets</title>
 </head>
 <body>
-<f:view>
-  <h:form id="formulario">
+<h:form id="formulario">
 
-    <h:outputLabel value="cpf sem formatacao:" for="cpf"/>
-    <h:inputText id="cpf">
-      <stella:validateCPF/>
-    </h:inputText>
-    <h:message for="cpf"/>
+  <h:outputLabel value="cpf sem formatacao:" for="cpf"/>
+  <h:inputText id="cpf">
+    <stella:validateCPF/>
+  </h:inputText>
+  <h:message for="cpf"/>
 
 
-    <h:commandButton value="Enviar"/>
+  <h:commandButton value="Enviar"/>
 
-    <h:messages/>
-  </h:form>
-</f:view>
+  <h:messages/>
+</h:form>
 </body>
 </html>
