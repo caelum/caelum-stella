@@ -5,7 +5,7 @@ import br.com.caelum.stella.validation.CPFValidator;
 import org.hibernate.validator.Validator;
 
 /**
- * Will only accept String values
+ * Will use the toString() value for validation
  *
  * @Author Fabio Kung
  */
@@ -14,18 +14,17 @@ public class StellaCPFValidator implements Validator<CPF> {
 
     public void initialize(CPF cpf) {
         AnnotationMessageProducer<CPFError> messageProducer = new AnnotationMessageProducer<CPFError>(cpf);
-        stellaValidator = new CPFValidator(messageProducer,cpf.formatted());
+        stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
     }
 
     public boolean isValid(Object o) {
-        if (o instanceof String) {
-        	String cpf = (String) o;
-        	if (cpf.isEmpty()){
-        		return true;
-        	}else{
-        		return stellaValidator.validate((String) o);
-        	}
-            
+        if (o != null) {
+            String cpf = o.toString();
+            if (cpf.trim().length() == 0) {
+                return true;
+            } else {
+                return stellaValidator.validate(cpf);
+            }
         } else {
             return false;
         }
