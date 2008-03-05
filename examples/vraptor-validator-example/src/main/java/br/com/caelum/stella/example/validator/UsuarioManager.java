@@ -24,7 +24,7 @@ public class UsuarioManager {
     @Valid
     private Usuario usuario = new Usuario();
 
-    @Validate(fields = "usuario")
+    @Validate(params = "usuario")
     public void cadastra(Usuario usuario) {
         System.out.println("validou");
         this.usuario = usuario;

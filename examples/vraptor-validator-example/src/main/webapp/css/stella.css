@@ -1,4 +1,4 @@
-ul.errors {
+#errors ul {
   background-color: #ffffd7;
   border: 1px red dashed;
   padding: 15px;

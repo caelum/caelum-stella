@@ -19,7 +19,13 @@ public class StellaCPFValidator implements Validator<CPF> {
 
     public boolean isValid(Object o) {
         if (o instanceof String) {
-            return stellaValidator.validate((String) o);
+        	String cpf = (String) o;
+        	if (cpf.isEmpty()){
+        		return true;
+        	}else{
+        		return stellaValidator.validate((String) o);
+        	}
+            
         } else {
             return false;
         }
