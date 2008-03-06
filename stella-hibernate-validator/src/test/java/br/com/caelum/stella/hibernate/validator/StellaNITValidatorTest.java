@@ -2,6 +2,7 @@ package br.com.caelum.stella.hibernate.validator;
 
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -21,5 +22,23 @@ public class StellaNITValidatorTest {
             boolean valid = validator.isValid(14);
             assertFalse(valid);
         }
+        {
+            boolean valid = validator.isValid("34608514300");
+            assertTrue(valid);
+        }
+    }
+
+    @Test
+    public void shouldValidateNull() {
+        StellaNITValidator validator = new StellaNITValidator();
+        boolean valid = validator.isValid(null);
+        assertTrue(valid);
+    }
+
+    @Test
+    public void shouldValidateEmpty() {
+        StellaNITValidator validator = new StellaNITValidator();
+        boolean valid = validator.isValid(null);
+        assertTrue(valid);
     }
 }

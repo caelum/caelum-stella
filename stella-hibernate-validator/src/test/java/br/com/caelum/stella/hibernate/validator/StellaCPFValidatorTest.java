@@ -21,9 +21,21 @@ public class StellaCPFValidatorTest {
             boolean valid = validator.isValid(14);
             assertFalse(valid);
         }
+        {
+            boolean valid = validator.isValid("03118383402");
+            assertTrue(valid);
+        }
     }
+
     @Test
     public void shouldValidateNull(){
+    	StellaCPFValidator validator = new StellaCPFValidator();
+    	boolean valid = validator.isValid(null);
+    	assertTrue(valid);
+    }
+
+    @Test
+    public void shouldValidateEmpty(){
     	StellaCPFValidator validator = new StellaCPFValidator();
     	boolean valid = validator.isValid(null);
     	assertTrue(valid);
