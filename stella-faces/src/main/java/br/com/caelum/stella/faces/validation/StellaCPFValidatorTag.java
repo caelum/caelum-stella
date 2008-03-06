@@ -4,14 +4,11 @@ import javax.faces.validator.Validator;
 import javax.faces.webapp.ValidatorELTag;
 import javax.servlet.jsp.JspException;
 
-import br.com.caelum.stella.faces.validation.StellaCPFValidator;
-
 /**
  * This class associates a TLD with validator on StellaCPFValidator class.
  *
  * @author Caires V.
  */
-@SuppressWarnings("serial")
 public class StellaCPFValidatorTag extends ValidatorELTag {
     private Boolean formatted = Boolean.FALSE;
 

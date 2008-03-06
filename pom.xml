@@ -24,7 +24,7 @@
     <module>stella-faces</module>
     <module>stella-taglib</module>
     <module>examples/faces-example</module>
-    <module>examples/facelets-example</module>
+    <!--<module>examples/facelets-example</module>-->
     <module>examples/vraptor-validator-example</module>
   </modules>
 
