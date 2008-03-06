@@ -11,6 +11,7 @@ import br.com.caelum.stella.faces.validation.StellaCPFValidator;
  *
  * @author Caires V.
  */
+@SuppressWarnings("serial")
 public class StellaCPFValidatorTag extends ValidatorELTag {
     private Boolean formatted = Boolean.FALSE;
 

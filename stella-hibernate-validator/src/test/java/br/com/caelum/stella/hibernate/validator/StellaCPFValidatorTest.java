@@ -1,6 +1,8 @@
 package br.com.caelum.stella.hibernate.validator;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 /**
@@ -19,5 +21,11 @@ public class StellaCPFValidatorTest {
             boolean valid = validator.isValid(14);
             assertFalse(valid);
         }
+    }
+    @Test
+    public void shouldValidateNull(){
+    	StellaCPFValidator validator = new StellaCPFValidator();
+    	boolean valid = validator.isValid(null);
+    	assertTrue(valid);
     }
 }
