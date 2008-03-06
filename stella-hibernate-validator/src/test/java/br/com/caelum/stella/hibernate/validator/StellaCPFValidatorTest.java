@@ -4,15 +4,28 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.Before;
 
 /**
  * @Author Fabio Kung
  */
 public class StellaCPFValidatorTest {
+    private StellaCPFValidator validator;
+
+    private static class ObjectWithCPF {
+        @CPF
+        private String cpf;
+    }
+
+    @Before
+    public void createValidator() throws Exception {
+        CPF cpfAnnotation = ObjectWithCPF.class.getDeclaredField("cpf").getAnnotation(CPF.class);
+        validator = new StellaCPFValidator();
+        validator.initialize(cpfAnnotation);
+    }
 
     @Test
     public void shouldOnlyValidateStrings() {
-        StellaCPFValidator validator = new StellaCPFValidator();
         {
             boolean valid = validator.isValid(new Object());
             assertFalse(valid);
@@ -28,16 +41,14 @@ public class StellaCPFValidatorTest {
     }
 
     @Test
-    public void shouldValidateNull(){
-    	StellaCPFValidator validator = new StellaCPFValidator();
-    	boolean valid = validator.isValid(null);
-    	assertTrue(valid);
+    public void shouldValidateNull() {
+        boolean valid = validator.isValid(null);
+        assertTrue(valid);
     }
 
     @Test
-    public void shouldValidateEmpty(){
-    	StellaCPFValidator validator = new StellaCPFValidator();
-    	boolean valid = validator.isValid(null);
-    	assertTrue(valid);
+    public void shouldValidateEmpty() {
+        boolean valid = validator.isValid("");
+        assertTrue(valid);
     }
 }

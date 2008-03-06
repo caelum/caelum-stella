@@ -18,10 +18,15 @@ public class StellaNITValidator implements Validator<NIT> {
     }
 
     public boolean isValid(Object o) {
-        if (o instanceof String) {
-            return stellaValidator.validate((String) o);
+        if (o != null) {
+            String nit = o.toString();
+            if (nit.trim().length() == 0) {
+                return true;
+            } else {
+                return stellaValidator.validate(nit);
+            }
         } else {
-            return false;
+            return true;
         }
     }
 

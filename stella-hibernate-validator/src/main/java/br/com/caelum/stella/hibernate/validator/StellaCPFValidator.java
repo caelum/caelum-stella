@@ -26,7 +26,7 @@ public class StellaCPFValidator implements Validator<CPF> {
                 return stellaValidator.validate(cpf);
             }
         } else {
-            return false;
+            return true;
         }
     }
 }

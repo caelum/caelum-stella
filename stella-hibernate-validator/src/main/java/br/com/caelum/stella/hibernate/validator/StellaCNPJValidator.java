@@ -14,15 +14,19 @@ public class StellaCNPJValidator implements Validator<CNPJ> {
 
     public void initialize(CNPJ cpf) {
         AnnotationMessageProducer<CNPJError> messageProducer = new AnnotationMessageProducer<CNPJError>(cpf);
-        stellaValidator = new CNPJValidator(messageProducer,cpf.formatted());
+        stellaValidator = new CNPJValidator(messageProducer, cpf.formatted());
     }
 
     public boolean isValid(Object o) {
-        if (o instanceof String) {
-            return stellaValidator.validate((String) o);
+        if (o != null) {
+            String cnpj = o.toString();
+            if (cnpj.trim().length() == 0) {
+                return true;
+            } else {
+                return stellaValidator.validate(cnpj);
+            }
         } else {
-            return false;
+            return true;
         }
     }
-
 }

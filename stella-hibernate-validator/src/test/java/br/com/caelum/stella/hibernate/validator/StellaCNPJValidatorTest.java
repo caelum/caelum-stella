@@ -5,15 +5,28 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.Before;
 
 /**
  * @Author Leonardo Bessa
  */
 public class StellaCNPJValidatorTest {
+    private StellaCNPJValidator validator;
+
+    private static class ObjectWithCNPJ {
+        @CNPJ
+        private String cnpj;
+    }
+
+    @Before
+    public void createValidator() throws Exception {
+        CNPJ cnpjAnnotation = ObjectWithCNPJ.class.getDeclaredField("cnpj").getAnnotation(CNPJ.class);
+        validator = new StellaCNPJValidator();
+        validator.initialize(cnpjAnnotation);
+    }
 
     @Test
     public void shouldOnlyValidateStrings() {
-        StellaCNPJValidator validator = new StellaCNPJValidator();
         {
             boolean valid = validator.isValid(new Object());
             assertFalse(valid);
@@ -30,15 +43,13 @@ public class StellaCNPJValidatorTest {
 
     @Test
     public void shouldValidateNull() {
-        StellaCNPJValidator validator = new StellaCNPJValidator();
         boolean valid = validator.isValid(null);
         assertTrue(valid);
     }
 
     @Test
     public void shouldValidateEmpty() {
-        StellaCNPJValidator validator = new StellaCNPJValidator();
-        boolean valid = validator.isValid(null);
+        boolean valid = validator.isValid("");
         assertTrue(valid);
     }
 
