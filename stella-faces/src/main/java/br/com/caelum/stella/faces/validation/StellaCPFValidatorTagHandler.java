@@ -22,7 +22,7 @@ public class StellaCPFValidatorTagHandler extends ValidateHandler {
     }
 
     protected Validator createValidator(FaceletContext context) {
-        if (this.formatted != null) {
+        if (formatted != null) {
             return new StellaCPFValidator(formatted.getBoolean(context));
         } else {
             return new StellaCPFValidator();
