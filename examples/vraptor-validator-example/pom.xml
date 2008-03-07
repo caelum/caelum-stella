@@ -18,6 +18,20 @@
         <artifactId>maven-jetty-plugin</artifactId>
         <version>6.1.7</version>
       </plugin>
+
+      <plugin>
+        <groupId>org.vraptor</groupId>
+        <artifactId>vatx</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>translate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
