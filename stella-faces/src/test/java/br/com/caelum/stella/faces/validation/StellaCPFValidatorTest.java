@@ -20,7 +20,7 @@ import java.util.Locale;
 /**
  * StellaCPFValidator integration tests
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class StellaCPFValidatorTest {
 

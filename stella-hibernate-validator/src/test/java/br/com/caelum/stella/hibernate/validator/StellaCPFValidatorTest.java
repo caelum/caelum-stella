@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class StellaCPFValidatorTest {
     private StellaCPFValidator validator;

@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.lang.reflect.Field;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class AnnotationMessageProducerTest {
     private enum Errors {

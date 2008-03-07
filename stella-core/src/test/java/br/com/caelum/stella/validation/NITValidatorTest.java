@@ -14,7 +14,7 @@ import br.com.caelum.stella.ValidationMessage;
 
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class NITValidatorTest {
 	

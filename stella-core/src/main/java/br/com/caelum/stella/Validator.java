@@ -8,7 +8,7 @@ import java.util.List;
  * problemas de validação relativos à última chamada de {Validator#validate}
  * </p>
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public interface Validator<T> {
     boolean validate(T object);

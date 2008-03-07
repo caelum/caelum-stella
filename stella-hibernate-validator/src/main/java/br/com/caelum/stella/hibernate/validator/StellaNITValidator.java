@@ -7,7 +7,8 @@ import br.com.caelum.stella.validation.NITValidator;
 
 
 /**
- * @Author Leonardo Bessa
+ * @author Fabio Kung
+ * @author Leonardo Bessa
  */
 public class StellaNITValidator implements Validator<NIT> {
     private NITValidator stellaValidator;

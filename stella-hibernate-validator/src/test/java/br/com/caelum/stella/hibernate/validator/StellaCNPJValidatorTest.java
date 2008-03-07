@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class StellaCNPJValidatorTest {
     private StellaCNPJValidator validator;

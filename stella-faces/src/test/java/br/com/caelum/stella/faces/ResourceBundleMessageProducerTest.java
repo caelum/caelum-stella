@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import java.text.MessageFormat;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class ResourceBundleMessageProducerTest {
     enum Errors {

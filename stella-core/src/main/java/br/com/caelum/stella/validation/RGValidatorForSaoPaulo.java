@@ -8,7 +8,7 @@ import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class RGValidatorForSaoPaulo implements Validator<String> {
 

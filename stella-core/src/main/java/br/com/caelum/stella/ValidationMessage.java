@@ -1,7 +1,7 @@
 package br.com.caelum.stella;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public interface ValidationMessage {
     String getMessage();

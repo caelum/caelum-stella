@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 @Documented
 @Target({FIELD, METHOD})

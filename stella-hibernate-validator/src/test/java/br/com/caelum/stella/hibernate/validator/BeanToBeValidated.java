@@ -1,7 +1,7 @@
 package br.com.caelum.stella.hibernate.validator;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 class BeanToBeValidated {
 

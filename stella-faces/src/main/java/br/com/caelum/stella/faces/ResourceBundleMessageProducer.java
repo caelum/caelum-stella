@@ -12,7 +12,7 @@ import br.com.caelum.stella.ValidationMessage;
  * The name property from Enum (lowercased) is used as key to retrieve the
  * actual message from MessageBundles.
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class ResourceBundleMessageProducer<T extends Enum> implements MessageProducer<T> {
     private final ResourceBundle bundle;

@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 /**
  * Retrieves validation messages from hibernate validator constraint annotations.
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 @SuppressWarnings("unchecked")
 public class AnnotationMessageProducer<T extends Enum> implements MessageProducer<T> {

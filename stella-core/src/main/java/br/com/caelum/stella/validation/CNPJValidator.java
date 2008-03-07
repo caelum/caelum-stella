@@ -10,7 +10,7 @@ import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class CNPJValidator implements Validator<String> {
 	private final String CNPJ_FORMAT = "\\d{2}[.]\\d{3}[.]\\d{3}/\\d{4}-\\d{2}";

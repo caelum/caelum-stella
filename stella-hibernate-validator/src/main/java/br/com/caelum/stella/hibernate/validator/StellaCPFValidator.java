@@ -7,7 +7,7 @@ import org.hibernate.validator.Validator;
 /**
  * Will use the toString() value for validation
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class StellaCPFValidator implements Validator<CPF> {
     private CPFValidator stellaValidator;

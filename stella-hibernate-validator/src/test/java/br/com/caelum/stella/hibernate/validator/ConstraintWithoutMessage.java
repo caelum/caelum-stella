@@ -8,7 +8,7 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 
 /**
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 @Documented
 @Target({FIELD, METHOD})

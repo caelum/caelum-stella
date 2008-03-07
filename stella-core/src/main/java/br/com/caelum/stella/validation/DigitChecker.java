@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public abstract class DigitChecker {
 	private Map<Integer, List<Integer>> dvMulipliers;

@@ -12,7 +12,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class CPFValidatorTest {
 

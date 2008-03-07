@@ -9,9 +9,8 @@ package br.com.caelum.stella;
  * ResourceBundles.
  * </p>
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
-@SuppressWarnings("unchecked")
 public interface MessageProducer<T extends Enum> {
     ValidationMessage getMessage(T error);
 }

@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
  * FacesContext e associadas ao elemento inválido.
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 public class StellaCPFValidator implements javax.faces.validator.Validator {
     public final boolean formatted;

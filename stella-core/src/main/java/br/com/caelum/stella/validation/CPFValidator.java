@@ -10,7 +10,7 @@ import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 public class CPFValidator implements Validator<String> {
 	private final String CPF_FORMAT = "\\d{3}[.]\\d{3}[.]\\d{3}-\\d{2}";

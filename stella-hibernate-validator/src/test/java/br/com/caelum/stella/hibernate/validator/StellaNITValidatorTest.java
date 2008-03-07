@@ -8,7 +8,8 @@ import org.junit.Test;
 import org.junit.Before;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
+ * @author Fabio Kung
  */
 public class StellaNITValidatorTest {
 

@@ -7,7 +7,8 @@ import br.com.caelum.stella.validation.CNPJValidator;
 
 
 /**
- * @Author Leonardo Bessa
+ * @author Fabio Kung
+ * @author Leonardo Bessa
  */
 public class StellaCNPJValidator implements Validator<CNPJ> {
     private CNPJValidator stellaValidator;

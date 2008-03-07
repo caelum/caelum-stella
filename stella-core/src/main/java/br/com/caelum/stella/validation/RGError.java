@@ -1,7 +1,8 @@
 package br.com.caelum.stella.validation;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
+ * @author Fabio Kung
  */
 public enum RGError {
     INVALID_CHECK_DIGITS, INVALID_DIGITS

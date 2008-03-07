@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 import org.hibernate.validator.ValidatorClass;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

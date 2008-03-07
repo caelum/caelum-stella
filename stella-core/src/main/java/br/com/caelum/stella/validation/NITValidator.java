@@ -10,7 +10,7 @@ import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
 
 /**
- * @Author Leonardo Bessa
+ * @author Leonardo Bessa
  * 
  * Número de Identificação do Trabalhador com 11 (onze) caracteres numéricos, no
  * formato XXX.XXXXX.XX-X.
