@@ -5,6 +5,12 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="faces_example" version="2.5">
 
+  <!-- Facelets pages will use the .xhtml extension -->
+  <context-param>
+    <param-name>facelets.VIEW_MAPPINGS</param-name>
+    <param-value>*.xhtml</param-value>
+  </context-param>
+
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -14,8 +20,6 @@
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
-    <url-pattern>*.jsf</url-pattern>
-    <url-pattern>*.faces</url-pattern>
   </servlet-mapping>
 
 </web-app>
