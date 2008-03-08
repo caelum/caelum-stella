@@ -45,7 +45,7 @@ public class StellaCPFValidatorTest {
     }
 
     @Test
-    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCpfAndPtBTLocale() throws Exception {
+    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCpfAndPtBRLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         mockFacesContext(context, "messages", new Locale("pt", "BR"));

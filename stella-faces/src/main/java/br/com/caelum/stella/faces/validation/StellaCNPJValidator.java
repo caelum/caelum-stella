@@ -1,33 +1,34 @@
 package br.com.caelum.stella.faces.validation;
 
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
-import br.com.caelum.stella.validation.CPFError;
-import br.com.caelum.stella.validation.CPFValidator;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
+import br.com.caelum.stella.validation.CNPJError;
+import br.com.caelum.stella.validation.CNPJValidator;
 
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
  * FacesContext e associadas ao elemento inválido.
  *
- * @author Fabio Kung
+ * @author Leonardo Bessa
  */
-public class StellaCPFValidator implements javax.faces.validator.Validator {
+public class StellaCNPJValidator implements javax.faces.validator.Validator {
     public final boolean formatted;
 
-    public StellaCPFValidator() {
+    public StellaCNPJValidator() {
         this(false);
     }
 
-    public StellaCPFValidator(boolean formatted) {
+    public StellaCNPJValidator(boolean formatted) {
         this.formatted = formatted;
     }
 
@@ -37,8 +38,8 @@ public class StellaCPFValidator implements javax.faces.validator.Validator {
         Locale locale = facesContext.getViewRoot().getLocale();
         ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
 
-        ResourceBundleMessageProducer<CPFError> producer = new ResourceBundleMessageProducer<CPFError>(bundle);
-        CPFValidator validator = new CPFValidator(producer, formatted);
+        ResourceBundleMessageProducer<CNPJError> producer = new ResourceBundleMessageProducer<CNPJError>(bundle);
+        CNPJValidator validator = new CNPJValidator(producer, formatted);
 
         if (!validator.validate(value.toString())) {
             List<ValidationMessage> messages = validator.getLastValidationMessages();

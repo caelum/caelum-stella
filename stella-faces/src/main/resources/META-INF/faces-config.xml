@@ -7,4 +7,8 @@
     <validator-id>StellaCPFValidator</validator-id>
     <validator-class>br.com.caelum.stella.faces.validation.StellaCPFValidator</validator-class>
   </validator>
+  <validator>
+    <validator-id>StellaCPNJValidator</validator-id>
+    <validator-class>br.com.caelum.stella.faces.validation.StellaCNPJValidator</validator-class>
+  </validator>
 </faces-config>
