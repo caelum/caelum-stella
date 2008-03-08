@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * Restrição que pode ser associada a propriedades do tipo String e que
  * representem CPFs.
  *
- * @Author Fabio Kung
+ * @author Fabio Kung
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
