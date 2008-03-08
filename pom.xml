@@ -143,6 +143,7 @@
                 <workDirectory>
                   ${project.build.directory}/assembly/bin
                 </workDirectory>
+                <outputDirectory>../dist</outputDirectory>
               </configuration>
             </execution>
 
@@ -161,6 +162,7 @@
                 <workDirectory>
                   ${project.build.directory}/assembly/src
                 </workDirectory>
+                <outputDirectory>../dist</outputDirectory>
               </configuration>
             </execution>
           </executions>
