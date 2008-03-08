@@ -123,6 +123,48 @@
             </systemProperties>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>bin</id>
+              <phase>install</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <configuration>
+                <descriptors>
+                  <descriptor>
+                    ${basedir}/src/main/assembly/assembly-bin.xml
+                  </descriptor>
+                </descriptors>
+                <workDirectory>
+                  ${project.build.directory}/assembly/bin
+                </workDirectory>
+              </configuration>
+            </execution>
+
+            <execution>
+              <id>src</id>
+              <phase>install</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <configuration>
+                <descriptors>
+                  <descriptor>
+                    ${basedir}/src/main/assembly/assembly-src.xml
+                  </descriptor>
+                </descriptors>
+                <workDirectory>
+                  ${project.build.directory}/assembly/src
+                </workDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
 
