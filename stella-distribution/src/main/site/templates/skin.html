@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>${title}</title>
+</head>
+<body>
+<div id="menu">
+  <#list sitemap.sections as section>
+    <div class="section">
+      <a>${section.name}</a>
+
+      <div id="conteudo_${section_index}" class="conteudo">
+        <#list section.pages as otherPage>
+          <#if otherPage=page>
+            <div class="item" id="selecionado">${otherPage.title}</div>
+            <#else>
+              <div class="item">
+                <a href="${otherPage.href}">${otherPage.title}</a>
+              </div>
+          </#if>
+        </#list>
+      </div>
+    </div>
+  </#list>
+
+  <h1>Ferramentas</h1>
+
+  <img alt="Build with Maven 2" src="http://maven.apache.org/images/logos/maven-feather.png"/> <br/>
+  <img alt="IDEA" src="http://www.jetbrains.com/idea/opensource/img/banners/idea88x31_white.gif"/> <br/>
+</div>
+<div id="conteudo">
+  ${body}
+</div>
+</body>
+</html>
