@@ -21,16 +21,14 @@ import br.com.caelum.stella.validation.CNPJValidator;
  *
  * @author Leonardo Bessa
  */
-public class StellaCNPJValidator implements javax.faces.validator.Validator {
-    public final boolean formatted;
-
-    public StellaCNPJValidator() {
-        this(false);
-    }
-
-    public StellaCNPJValidator(boolean formatted) {
-        this.formatted = formatted;
-    }
+public class StellaCNPJValidator implements javax.faces.validator.Validator, javax.faces.component.StateHolder {
+	public static final String VALIDATOR_ID = "StellaCNPJValidator";
+	private boolean formatted;
+	private boolean transientValue = false;
+	
+	public void setFormatted(boolean formatted) {
+		this.formatted = formatted;
+	}
 
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
         Application application = facesContext.getApplication();
@@ -55,4 +53,28 @@ public class StellaCNPJValidator implements javax.faces.validator.Validator {
             facesContext.addMessage(componentId, new FacesMessage(message.getMessage()));
         }
     }
+
+	public boolean isTransientValue() {
+		return transientValue;
+	}
+
+	public void setTransientValue(boolean transientValue) {
+		this.transientValue = transientValue;
+	}
+
+	public boolean isTransient() {
+		return transientValue;
+	}
+
+	public void restoreState(FacesContext ctx, Object state) {
+		this.formatted = (Boolean) state;
+	}
+
+	public Object saveState(FacesContext arg0) {
+		return formatted;
+	}
+
+	public void setTransient(boolean transientValue) {
+		this.transientValue = transientValue;
+	}
 }

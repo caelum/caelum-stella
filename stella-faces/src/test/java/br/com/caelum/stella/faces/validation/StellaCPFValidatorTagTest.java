@@ -1,11 +1,10 @@
 package br.com.caelum.stella.faces.validation;
 
-import org.junit.Assert;
-import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 import javax.faces.validator.Validator;
-import javax.servlet.jsp.JspException;
+
+import org.junit.Test;
 
 /**
  * @author Fabio Kung

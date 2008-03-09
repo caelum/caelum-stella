@@ -27,4 +27,25 @@ public class UsuarioBean {
         System.out.println("Mudando o cpf formtado para: " + cpfFormatado);
         this.cpfFormatado = cpfFormatado;
     }
+    
+    private String cnpj;
+    private String cnpjFormatado;
+
+    public String getcnpj() {
+        return cnpj;
+    }
+
+    public void setcnpj(String cnpj) {
+        System.out.println("Mudando o cnpj para: " + cnpj);
+        this.cnpj = cnpj;
+    }
+
+    public String getcnpjFormatado() {
+        return cnpjFormatado;
+    }
+
+    public void setcnpjFormatado(String cnpjFormatado) {
+        System.out.println("Mudando o cnpj formtado para: " + cnpjFormatado);
+        this.cnpjFormatado = cnpjFormatado;
+    }
 }

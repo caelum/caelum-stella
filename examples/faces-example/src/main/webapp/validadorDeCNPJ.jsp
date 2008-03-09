@@ -7,26 +7,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Validando CPF usando o Componente do Stella Faces</title>
+<title>Validando CNPJ usando o Componente do Stella Faces</title>
 </head>
 <body>
-<h1>Validando CPF usando o Componente do Stella Faces</h1>
+<h1>Validando CNPJ usando o Componente do Stella Faces</h1>
 <h2>Versão com JSP</h2>
 <f:view>
 	<h:form id="formulario">
 
 		<h:panelGrid>
-			<h:outputLabel value="cpf sem formatacao:" for="cpf" />
-			<h:inputText id="cpf" value="#{UsuarioBean.cpf}">
-				<stella:validateCPF/>
+			<h:outputLabel value="CNPJ sem formatacao:" for="CNPJ" />
+			<h:inputText id="CNPJ" value="#{UsuarioBean.cnpj}">
+				<stella:validateCNPJ />
 			</h:inputText>
-			<h:message for="cpf" />
+			<h:message for="CNPJ" />
 
-			<h:outputLabel value="cpf com formatacao:" for="cpfFormatado" />
-			<h:inputText id="cpfFormatado" value="#{UsuarioBean.cpfFormatado}">
-				<stella:validateCPF formatted="true" />
+			<h:outputLabel value="CNPJ com formatacao:" for="CNPJFormatado" />
+			<h:inputText id="CNPJFormatado" value="#{UsuarioBean.cnpjFormatado}">
+				<stella:validateCNPJ formatted="true" />
 			</h:inputText>
-			<h:message for="cpfFormatado" />
+			<h:message for="CNPJFormatado" />
 		</h:panelGrid>
 
 		<h:commandButton value="Enviar" />

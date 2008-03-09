@@ -6,20 +6,20 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>CPF</title>
+  <title>CNPJ</title>
 </head>
 <body>
-<h1>Validando CPF com o Componente do Stella Faces</h1>
+<h1>Validando CNPJ com o Componente do Stella Faces</h1>
 <h2>Através do validator-id</h2>
 <h3>Atenção: esta é a forma menos recomendada!</h3>
 <f:view>
   <h:form id="formulario">
     <h:panelGrid columns="3">
-      <h:outputLabel value="cpf:"/>
-      <h:inputText id="cpf">
-        <f:validator validatorId="StellaCPFValidator"/>
+      <h:outputLabel value="CNPJ:"/>
+      <h:inputText id="CNPJ">
+        <f:validator validatorId="StellaCNPJValidator"/>
       </h:inputText>
-      <h:message for="cpf"/>
+      <h:message for="CNPJ"/>
     </h:panelGrid>
 
     <h:commandButton value="Enviar"/>

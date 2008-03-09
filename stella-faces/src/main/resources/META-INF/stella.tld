@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <taglib>
-  <tlib-version>1.2</tlib-version>
-  <jsp-version>2.1</jsp-version>
-  <short-name>Stella Taglib</short-name>
-  <uri>http://stella.caelum.com.br/faces</uri>
-  <tag>
-    <name>validateCPF</name>
-    <tag-class>br.com.caelum.stella.faces.validation.StellaCPFValidatorTag</tag-class>
-    <body-content>emtpy</body-content>
-    <attribute>
-      <name>formatted</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-  </tag>
+	<tlib-version>1.2</tlib-version>
+	<jsp-version>2.1</jsp-version>
+	<short-name>Stella Taglib</short-name>
+	<uri>http://stella.caelum.com.br/faces</uri>
+	<tag>
+		<name>validateCPF</name>
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaCPFValidatorTag
+		</tag-class>
+		<body-content>emtpy</body-content>
+		<attribute>
+			<name>formatted</name>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
+	<tag>
+		<name>validateCNPJ</name>
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaCNPJValidatorTag
+		</tag-class>
+		<body-content>emtpy</body-content>
+		<attribute>
+			<name>formatted</name>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
 </taglib>
