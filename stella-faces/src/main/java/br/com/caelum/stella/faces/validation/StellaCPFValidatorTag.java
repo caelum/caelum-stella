@@ -28,13 +28,9 @@ public class StellaCPFValidatorTag extends ValidatorELTag {
 	@Override
 	protected Validator createValidator() throws JspException {
 		StellaCPFValidator validator = new StellaCPFValidator();
-		try {
-			ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-			boolean isFormatted = (Boolean) formatted.getValue(elContext);
-			validator.setFormatted(isFormatted);
-		} catch (NullPointerException e) {
-			//TODO:Tratar essa Expection (causada pela falta de contexto) ou mudar o teste unitario.
-		}
+		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+		boolean isFormatted = (Boolean) formatted.getValue(elContext);
+		validator.setFormatted(isFormatted);
 		return validator;
 	}
 

@@ -7,29 +7,20 @@ import javax.faces.validator.Validator;
 import javax.faces.webapp.ValidatorELTag;
 import javax.servlet.jsp.JspException;
 
-/**
- * Associa um TLD (Descritor de Biblioteca de Tag) a um validador de CNPJ
- * (StellaCNPJValidator).
- * 
- * @author Leonardo Bessa
- */
-@SuppressWarnings("serial")
-public class StellaCNPJValidatorTag extends ValidatorELTag {
+public class StellaNITValidatorTag extends ValidatorELTag {
 	private ValueExpression formatted;
 
-	public StellaCNPJValidatorTag() {
-		super.setId(StellaCNPJValidator.VALIDATOR_ID);
+	public StellaNITValidatorTag() {
+		super.setId(StellaNITValidator.VALIDATOR_ID);
 	}
 
-	/**
-	 * @return StellaCNPJValidator
-	 */
 	@Override
 	protected Validator createValidator() throws JspException {
-		StellaCNPJValidator validator = new StellaCNPJValidator();
+		StellaNITValidator validator = new StellaNITValidator();
 		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 		boolean isFormatted = (Boolean) formatted.getValue(elContext);
 		validator.setFormatted(isFormatted);
+
 		return validator;
 	}
 
@@ -41,4 +32,5 @@ public class StellaCNPJValidatorTag extends ValidatorELTag {
 		super.release();
 		this.formatted = null;
 	}
+
 }
