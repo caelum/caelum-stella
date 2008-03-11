@@ -39,7 +39,7 @@ public class StellaNITValidator implements Validator, StateHolder {
 
 		ResourceBundleMessageProducer<NITError> producer = new ResourceBundleMessageProducer<NITError>(
 				bundle);
-		NITValidator validator = new NITValidator(producer, false);
+		NITValidator validator = new NITValidator(producer, formatted);
 
 		if (!validator.validate(value.toString())) {
 			List<ValidationMessage> messages = validator

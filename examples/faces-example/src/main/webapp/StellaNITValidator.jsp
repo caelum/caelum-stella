@@ -6,7 +6,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>CNPJ</title>
+  <title>NIT</title>
 </head>
 <body>
 <h1>Validando NIT com o Componente do Stella Faces</h1>
