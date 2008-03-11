@@ -32,4 +32,20 @@
 			<required>false</required>
 		</attribute>
 	</tag>
+		<tag>
+		<name>validateNIT</name>
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaNITValidatorTag
+		</tag-class>
+		<body-content>emtpy</body-content>
+		<attribute>
+			<name>formatted</name>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
+	
+	
 </taglib>
