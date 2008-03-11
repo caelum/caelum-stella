@@ -29,6 +29,7 @@ public class StellaNITValidator implements Validator, StateHolder {
 	public static final String VALIDATOR_ID = "StellaNITValidator";
 	private boolean formatted;
 	private boolean transientValue = false;
+	
 
 	public void validate(FacesContext facesContext, UIComponent component,
 			Object value) throws ValidatorException {
