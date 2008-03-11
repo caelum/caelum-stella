@@ -35,9 +35,11 @@
 	</tbody>
 </table>
 <br />
-<form action="usuario.cadastra.logic"><label for="cpf">CPF:</label>
-<input id="cpf" type="text" name="usuario.cpf" /> <input type="submit"
-	value="Cadastrar" /></form>
+<form action="usuario.cadastra.logic">
+	<label for="cpf">CPF:</label>
+	<input id="cpf" type="text" name="usuario.cpf" /> 
+	<input type="submit" value="Cadastrar" />
+</form>
 <h4>Exemplos de CNPJ</h4>
 <table>
 	<tbody>
@@ -56,16 +58,19 @@
 		<tr>
 			<td><label> CNPJ Formatado:</label></td>
 
-			<td><label> 26.637.142/0001-58</label></td>
+		<td><label> 26.637.142/0001-58</label></td>
 		</tr>
 	</tbody>
 </table>
 <br />
 
-<form action="usuario.cadastra.logic"><label for="CNPJ">CNPJ:</label>
-<input id="CNPJ" type="text" name="usuario.cnpj" /> <input
-	type="submit" value="Cadastrar" /></form>
 
+
+<form action="usuario.cadastra.logic">
+	<label for="CNPJ">CNPJ:</label>
+	<input id="CNPJ" type="text" name="usuario.cnpj" /> 
+	<input type="submit" value="Cadastrar" />
+</form>
 <h4>Exemplos de NIT</h4>
 <table>
 	<tbody>
@@ -90,9 +95,14 @@
 </table>
 <br />
 
-<form action="usuario.cadastra.logic"><label for="NIT">NIT:</label>
-<input id="NIT" type="text" name="usuario.nit" /> <input type="submit"
-	value="Cadastrar" /></form>
+
+
+<form action="usuario.cadastra.logic">
+	<label for="NIT">NIT:</label>
+	<input id="NIT" type="text" name="usuario.nit" /> 
+	<input type="submit"value="Cadastrar" />
+</form>
+
 
 
 </body>

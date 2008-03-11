@@ -9,8 +9,13 @@ public class Usuario {
 	private String cpf;
 	@CNPJ
 	private String cnpj;
-	@NIT
-	private String nit;
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public String getCnpj() {
 		return cnpj;
@@ -20,6 +25,9 @@ public class Usuario {
 		this.cnpj = cnpj;
 	}
 
+	@NIT
+	private String nit;
+
 	public String getNit() {
 		return nit;
 	}
@@ -27,12 +35,8 @@ public class Usuario {
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
+	
+	
 
-	public String getCpf() {
-		return this.cpf;
-	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 }
