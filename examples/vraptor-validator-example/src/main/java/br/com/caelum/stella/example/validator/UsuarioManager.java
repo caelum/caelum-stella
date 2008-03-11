@@ -26,7 +26,6 @@ public class UsuarioManager {
 
     @Validate(params = "usuario")
     public void cadastra(Usuario usuario) {
-        System.out.println("validou");
         this.usuario = usuario;
     }
 
