@@ -7,8 +7,9 @@ import javax.faces.validator.Validator;
 import javax.faces.webapp.ValidatorELTag;
 import javax.servlet.jsp.JspException;
 
+@SuppressWarnings("serial")
 public class StellaNITValidatorTag extends ValidatorELTag {
-	private ValueExpression formatted;
+	private boolean formatted;
 
 	public StellaNITValidatorTag() {
 		super.setId(StellaNITValidator.VALIDATOR_ID);
@@ -17,20 +18,18 @@ public class StellaNITValidatorTag extends ValidatorELTag {
 	@Override
 	protected Validator createValidator() throws JspException {
 		StellaNITValidator validator = new StellaNITValidator();
-		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-		boolean isFormatted = (Boolean) formatted.getValue(elContext);
-		validator.setFormatted(isFormatted);
-
+		validator.setFormatted(formatted);
 		return validator;
 	}
 
 	public void setFormatted(ValueExpression formatted) {
-		this.formatted = formatted;
+		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+		this.formatted = (Boolean) formatted.getValue(elContext);
 	}
 
 	public void release() {
 		super.release();
-		this.formatted = null;
+		this.formatted = false;
 	}
 
 }

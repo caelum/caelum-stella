@@ -19,34 +19,34 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * StellaCPFValidator integration tests
+ * StellaNITValidator integration tests
  *
- * @author Fabio Kung
+ * @author Leonardo Bessa
  */
-public class StellaCPFValidatorTest {
+public class StellaNITValidatorTest {
 
     private Mockery mockery;
-    private StellaCPFValidator validator;
+    private StellaNITValidator validator;
 
     @Before
     public void init() {
         mockery = new Mockery();
         mockery.setImposteriser(ClassImposteriser.INSTANCE);
-        this.validator = new StellaCPFValidator();
+        this.validator = new StellaNITValidator();
     }
 
     @Test
-    public void shouldNotThrowValidatorExceptionForValidCPF() throws Exception {
+    public void shouldNotThrowValidatorExceptionForValidNIT() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         mockFacesContext(context, "messages", Locale.getDefault());
 
-        validator.validate(context, component, "75885366160");
+        validator.validate(context, component, "34608514300");
         mockery.assertIsSatisfied();
     }
 
     @Test
-    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCpfAndPtBRLocale() throws Exception {
+    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidNITAndPtBRLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         mockFacesContext(context, "messages", new Locale("pt", "BR"));
@@ -55,16 +55,16 @@ public class StellaCPFValidatorTest {
             validator.validate(context, component, "1234567765");
             fail();
         } catch (ValidatorException e) {
-            // it should throw exception for invalid cpf
+            // it should throw exception for invalid NIT
             FacesMessage message = e.getFacesMessage();
-            assertEquals("CPF Invalido", message.getSummary());
+            assertEquals("NIT Invalido", message.getSummary());
             mockery.assertIsSatisfied();
         }
     }
 
 
     @Test
-    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCpfAndEnUSLocale() throws Exception {
+    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidNITAndEnUSLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         mockFacesContext(context, "messages", new Locale("en"));
@@ -73,9 +73,9 @@ public class StellaCPFValidatorTest {
             validator.validate(context, component, "1234567765");
             fail();
         } catch (ValidatorException e) {
-            // it should throw exception for invalid cpf
+            // it should throw exception for invalid NIT
             FacesMessage message = e.getFacesMessage();
-            assertEquals("Invalid CPF", message.getSummary());
+            assertEquals("Invalid NIT", message.getSummary());
             mockery.assertIsSatisfied();
         }
     }

@@ -16,11 +16,13 @@ import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
 import br.com.caelum.stella.validation.NITError;
 import br.com.caelum.stella.validation.NITValidator;
+
 /**
- * Valida o NIT atraves do método validate, 
- * retornando uma mensagem de erro ou nenhuma mensagem em caso de valido.
+ * Valida o NIT atraves do método validate, retornando uma mensagem de erro ou
+ * nenhuma mensagem em caso de valido.
+ * 
  * @author Caires V.
- *
+ * 
  */
 public class StellaNITValidator implements Validator, StateHolder {
 

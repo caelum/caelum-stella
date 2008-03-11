@@ -19,6 +19,7 @@ public class StellaNITValidatorTagHandler extends ValidateHandler{
 
 	private TagAttribute formatted;
 	
+	@SuppressWarnings("deprecation")
 	public StellaNITValidatorTagHandler(TagConfig config) {
 		super(config);
 			formatted = getAttribute("formatted");

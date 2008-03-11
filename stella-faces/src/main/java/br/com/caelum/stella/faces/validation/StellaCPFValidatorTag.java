@@ -16,7 +16,7 @@ import javax.servlet.jsp.JspException;
  */
 @SuppressWarnings("serial")
 public class StellaCPFValidatorTag extends ValidatorELTag {
-	private ValueExpression formatted;
+	private boolean formatted;
 
 	public StellaCPFValidatorTag() {
 		super.setId(StellaCPFValidator.VALIDATOR_ID);
@@ -28,19 +28,18 @@ public class StellaCPFValidatorTag extends ValidatorELTag {
 	@Override
 	protected Validator createValidator() throws JspException {
 		StellaCPFValidator validator = new StellaCPFValidator();
-		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-		boolean isFormatted = (Boolean) formatted.getValue(elContext);
-		validator.setFormatted(isFormatted);
+		validator.setFormatted(this.formatted);
 		return validator;
 	}
 
 	public void setFormatted(ValueExpression formatted) {
-		this.formatted = formatted;
+		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+		this.formatted = (Boolean) formatted.getValue(elContext);
 	}
 
 	public void release() {
 		super.release();
-		this.formatted = null;
+		this.formatted = false;
 	}
 
 }
