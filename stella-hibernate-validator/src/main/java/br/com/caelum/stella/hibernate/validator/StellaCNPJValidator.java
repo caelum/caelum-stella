@@ -13,9 +13,9 @@ import br.com.caelum.stella.validation.CNPJValidator;
 public class StellaCNPJValidator implements Validator<CNPJ> {
     private CNPJValidator stellaValidator;
 
-    public void initialize(CNPJ cpf) {
-        AnnotationMessageProducer<CNPJError> messageProducer = new AnnotationMessageProducer<CNPJError>(cpf);
-        stellaValidator = new CNPJValidator(messageProducer, cpf.formatted());
+    public void initialize(CNPJ cnpj) {
+        AnnotationMessageProducer<CNPJError> messageProducer = new AnnotationMessageProducer<CNPJError>(cnpj);
+        stellaValidator = new CNPJValidator(messageProducer, cnpj.formatted());
     }
 
     public boolean isValid(Object o) {

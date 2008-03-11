@@ -16,7 +16,7 @@ import org.hibernate.validator.ValidatorClass;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({FIELD, METHOD})
-@ValidatorClass(StellaCNPJValidator.class)
+@ValidatorClass(StellaNITValidator.class)
 public @interface NIT {
 	String message() default "{nit_invalid}";
 	boolean formatted() default false;
