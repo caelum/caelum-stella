@@ -36,6 +36,7 @@ public class StellaCNPJValidatorTag extends ValidatorELTag {
 		this.formatted = (Boolean) formatted.getValue(elContext);
 	}
 
+	@Override
 	public void release() {
 		super.release();
 		this.formatted = false;

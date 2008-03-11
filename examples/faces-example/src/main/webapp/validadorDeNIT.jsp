@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-<%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella" %>
+<%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,6 +32,9 @@
 		<h:commandButton value="Enviar" />
 		<h:messages />
 	</h:form>
+	<f:subview id="sample-nit">
+		<jsp:include page="/exemplos-NIT.jsp"></jsp:include>
+	</f:subview>
 </f:view>
 </body>
 </html>

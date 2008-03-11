@@ -32,6 +32,9 @@
 		<h:commandButton value="Enviar" />
 		<h:messages />
 	</h:form>
+	<f:subview id="sample-cnpj">
+		<jsp:include page="/exemplos-CNPJ.jsp"></jsp:include>
+	</f:subview>
 </f:view>
 </body>
 </html>

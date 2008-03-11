@@ -32,6 +32,9 @@
 		<h:commandButton value="Enviar" />
 		<h:messages />
 	</h:form>
+	<f:subview id="sample-cpf">
+		<jsp:include page="/exemplos-CPF.jsp"></jsp:include>
+	</f:subview>
 </f:view>
 </body>
 </html>
