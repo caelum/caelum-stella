@@ -17,6 +17,12 @@
   <li><a href="faces/validadorDeCNPJ.xhtml">[Facelets] Validador de CNPJ</a></li>
   <li><a href="faces/StellaCNPJValidator.jsp">Validador de CNPJ pelo ID</a></li>
 </ul>
+<h2>Validadores de NIT</h2>
+<ul>
+  <li><a href="faces/validadorDeNIT.jsp">[JSP] Validador de NIT</a></li>
+  <li><a href="faces/validadorDe.xhtml">[Facelets] Validador de NIT</a></li>
+  <li><a href="faces/StellaNITValidator.jsp">Validador de NIT pelo ID</a></li>
+</ul>
 
 </body>
 </html>
