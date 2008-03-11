@@ -20,8 +20,8 @@ import org.vraptor.plugin.hibernate.Validate;
 @Component("usuario")
 public class UsuarioManager {
 
-    @Parameter
-    @Valid
+//    @Parameter
+//    @Valid
     private Usuario usuario = new Usuario();
 
     @Validate(params = "usuario")

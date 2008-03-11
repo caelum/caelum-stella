@@ -7,10 +7,8 @@ import br.com.caelum.stella.hibernate.validator.NIT;
 public class Usuario {
 	@CPF
 	private String cpf;
-
 	@CNPJ
 	private String cnpj;
-
 	@NIT
 	private String nit;
 
