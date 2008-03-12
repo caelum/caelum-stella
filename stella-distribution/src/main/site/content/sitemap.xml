@@ -25,6 +25,10 @@
   <!--<section>-->
     <!--<name>Informações do Projeto</name>-->
   <!--</section>-->
+ <section>
+    <name>Exemplos</name>
+    <page>CPFValidator.html</page>
+  </section>
   <section>
     <name>JavaDoc</name>
     <link title="Stella Core">javadoc/core/index.html</link>
