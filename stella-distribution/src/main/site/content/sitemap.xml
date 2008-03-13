@@ -10,9 +10,10 @@
   <!--<section>-->
     <!--<name>Stella Hibernate Validator</name>-->
   <!--</section>-->
-  <!--<section>-->
-    <!--<name>Stella Faces</name>-->
-  <!--</section>-->
+  <section>
+    <name>Stella Faces</name>
+    <page>stellafaces.html</page>
+  </section>
   <!--<section>-->
     <!--<name>Tutoriais</name>-->
   <!--</section>-->
