@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<meta name="author" content="Caires Vinicius">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<html>
+<head>
+<title>Exemplos: CNPJ Stella-Faces</title>
+</head>
+<body>
+<h1>Configurando sua aplica&ccedil;&atilde;o</h1>
+
+<h2>web.xml e faces-config</h2>
+
+<p>Ap&oacute;s criar seu projeto, atribua-no as seguintes linhas ao
+web.xml:</p>
+<code>
+<textarea rows="10" cols="100" readonly="readonly">
+	&lt;servlet>
+    	&lt;servlet-name>Faces Servlet&lt;/servlet-name>
+    	&lt;servlet-class>javax.faces.webapp.FacesServlet&lt;/servlet-class>
+    	&lt;load-on-startup>1&lt;/load-on-startup>
+  	&lt;/servlet>
+
+  	&lt;servlet-mapping>
+    	&lt;servlet-name>Faces Servlet&lt;/servlet-name>
+    	&lt;url-pattern>/faces/*&lt;/url-pattern>
+  	&lt;/servlet-mapping>
+</textarea>
+</code>
+
+<p>Agora s&oacute; falta a adi&ccedil;&atilde; das linhas restantes
+ao faces-config.</p>
+
+<code>
+<textarea rows="10" cols="100" readonly="readonly">
+	  &lt;application>
+    	&lt;message-bundle>messages&lt;/message-bundle>
+	  &lt;/application>
+</textarea>
+</code>
+
+<p>Nossa configura&ccedil;&atilde;o est&aacute; pronta para ser
+implementada com as p&aacute;ginas validadoras.</p>
+
+<h3>Criando a p&aacute;gina jsp.</h3>
+
+<p>Iremos criar uma p&aacute;gina .jsp e atribuir as taglibs do JSF
+(Core e HTML) e dentro do body as seguintes linhas ser&atilde;o
+atribuidas.</p>
+
+<code>
+<textarea rows="10" cols="100" readonly="readonly">
+	&lt;f:view>
+	&lt;h:form id="formulario">
+		&lt;h:panelGrid columns="3">
+			&lt;h:outputLabel value="CNPJ:" />
+			&lt;h:inputText id="CNPJ">
+				&lt;f:validator validatorId="StellaCNPJValidator" />
+			&lt;/h:inputText>
+			&lt;h:message for="CNPJ" />
+		&lt;/h:panelGrid>
+
+		&lt;h:commandButton value="Enviar" />
+		&lt;h:messages />
+	&lt;/h:form>
+&lt;/f:view>
+</textarea>
+</code>
+
+<p>Abra a p&aacute;gina para visualizar o resultado.</p>
+
+
+<p>Entre com diversos CNPJs para ver o comportamento da
+valida&ccedil;&atilde;o.</p>
+
+<h2>Possibilidades:</h2>
+<h3>Custom Tags e Facelets</h3>
+
+
+<p>Vimos no exemplo anterior um dos m&eacute;todos de cria&ccedil;&atilde;o de um validador,
+veremos dois outros meios de se fazer essa valida&ccedil;&atilde;o. Os seguintes m&eacute;todos s&atilde;o os mais
+aconselhaveis.</p>
+
+<h3>Implemetando e utilizando as Custom Tags do Caelum Stella-Faces</h3>
+
+<p>Crie uma p&aacute;gina .jsp, atribua as taglibs do JSF e do Stella-Faces
+(http://stella.caelum.com.br/faces).</p>
+<p>Dentro do body insira o seguinte código.</p>
+<code>
+<textarea rows="10" cols="100" readonly="readonly">
+	&lt;f:view>
+	&lt;h:form id="formulario">
+
+		&lt;h:panelGrid>
+			&lt;h:outputLabel value="CNPJ sem formatacao:" for="CNPJ" />
+			&lt;h:inputText id="CNPJ" value="cnpj">
+				&lt;stella:validateCNPJ />
+			&lt;/h:inputText>
+			&lt;h:message for="CNPJ" />
+
+			&lt;h:outputLabel value="CNPJ com formatacao:" for="CNPJFormatado" />
+			&lt;h:inputText id="CNPJFormatado" value="cnpjFormatado">
+				&lt;stella:validateCNPJ formatted="true" />
+			&lt;/h:inputText>
+			&lt;h:message for="CNPJFormatado" />
+		&lt;/h:panelGrid>
+
+		&lt;h:commandButton value="Enviar" />
+		&lt;h:messages />
+	&lt;/h:form>
+&lt;/f:view>
+</textarea>
+</code>
+
+</body>
+</html>

@@ -20,15 +20,19 @@ JSF e Facelets.</p>
 <h2>Validando Documentos com Stella-Faces</h2>
 <p>Uma das caracter&iacute;sticas mais fortes do Caelum Stella-Faces
 &eacute; a poderosa valida&ccedil;&atilde;o com agilidade e
-simplicidade. Veja os exemplos de valida&ccedil;&atilde;o de CPF, e note
+simplicidade.Veja os exemplos de valida&ccedil;&atilde;o de CPF, e note
 a simplicidade dos codigos implementados.</p>
+<p>Caelum Stella-Faces possu&iacute; uma Custom Tag que v&aacute;lida os documentos, sendo assim,
+melhorando o c&oacute;digo e agilidade de desenvolvimento.</p>
 <br />
 <br />
 <br />
+
 <p>Primeiramente devemos configurar nosso web.xml e o faces-config.</p>
 
 <pre>
 <b>web.xml</b>
+<code>
 <textarea rows="10" cols="100" readonly="readonly">
  <servlet>
     <servlet-name>Faces Servlet</servlet-name>
@@ -55,12 +59,13 @@ a simplicidade dos codigos implementados.</p>
     <message-bundle>messages</message-bundle>
   </application>              
 </textarea>
+</code>
 </pre>
 <br />
 <br />
 <br />
 
-<p>Ap&oacute;s configurar o os xmls, temos que começar a construir
+<p>Ap&oacute;s configurar o os xmls, temos que come&ccedil;ar a construir
 nosso validador na p&aacute;gina.Por ordem, iremos fazer JSF e depois
 Facelet.</p>
 <h3>JavaServer Faces</h3>
@@ -68,6 +73,7 @@ Facelet.</p>
 
 <pre>
 <b>nossoPrimeiroValidador.jsp</b>
+<code>
 <textarea rows="10" cols="100" readonly="readonly" >
 	
 	&lt; %@ taglib uri="http://java.sun.com/jsf/core" prefix="f"% >
@@ -96,6 +102,7 @@ Facelet.</p>
 &lt;/body>
 &lt;/html>
 </textarea>
+</code>
 </pre>
 
 <p>Teste a p&aacute;gina para visualizar o resultado!</p>
@@ -107,11 +114,11 @@ Facelet.</p>
 <h3>Utilizando JavaServer Faces com a taglib do Stella-Faces</h3>
 
 <p>Mantendo o web.xml e o faces-config.xml do exemplo anterior,
-apenas iremos fazer mudanças sutis.</p>
+apenas iremos fazer mudan&ccedil;as sutis.</p>
 
 <pre>
 <b>validadorComCustomTag.jsp</b>
-
+<code>
 <textarea rows="10" cols="100" readonly="readonly">
 	
 	&lt;%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
@@ -119,13 +126,13 @@ apenas iremos fazer mudanças sutis.</p>
 	&lt;%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
 	&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-&lt;html>
+	&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	&lt;html>
 	&lt;head>
 	&lt;title>Validando com Custom Tag do Caelum Stella-Faces&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;f:view>
+	&lt;/head>
+	&lt;body>
+	&lt;f:view>
 	&lt;h:form id="formulario">
 
 		&lt;h:panelGrid>
@@ -150,8 +157,8 @@ apenas iremos fazer mudanças sutis.</p>
 &lt;/f:view>
 &lt;/body>
 &lt;/html>
-
 </textarea>
+</code>
 </pre>
 
 <p>Teste a p&aacute;gina e veja o resultado.</p>
@@ -167,7 +174,7 @@ faces-config.xml</p>
 
 <pre>
 <b>web.xml</b>
-<textarea rows="10" cols="100" readonly="readonly">
+<textarea rows="5" cols="70" readonly="readonly">
 	<context-param>
     	<param-name>facelets.VIEW_MAPPINGS</param-name>
     	<param-value>*.xhtml</param-value>
@@ -177,7 +184,8 @@ faces-config.xml</p>
 
 <pre>
 <b>faces-config.xml</b>
-<textarea rows="10" cols="100" readonly="readonly">
+<code>
+<textarea rows="5" cols="70" readonly="readonly">
 	<application>
     	<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   	</application>
@@ -226,8 +234,8 @@ p&aacute;gina .xhtml.</p>
 &lt;/f:view>
 &lt;/body>
 &lt;/html>
-
 </textarea>
+</code>
 </pre>
 <br />
 <br />

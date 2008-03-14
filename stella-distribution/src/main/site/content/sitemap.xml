@@ -1,39 +1,42 @@
 <sitemap>
-  <section>
-    <name>Sobre o Caelum Stella</name>
-    <page>index.html</page>
-    <!--<page>time.html</page>-->
-  </section>
-  <!--<section>-->
-    <!--<name>Stella Core</name>-->
-  <!--</section>-->
-  <!--<section>-->
-    <!--<name>Stella Hibernate Validator</name>-->
-  <!--</section>-->
-  <section>
-    <name>Stella Faces</name>
-    <page>stellafaces.html</page>
-  </section>
-  <!--<section>-->
-    <!--<name>Tutoriais</name>-->
-  <!--</section>-->
-  <!--<section>-->
-    <!--<name>Exemplos</name>-->
-  <!--</section>-->
-  <!--<section>-->
-    <!--<name>FAQ</name>-->
-  <!--</section>-->
-  <!--<section>-->
-    <!--<name>Informações do Projeto</name>-->
-  <!--</section>-->
- <section>
-    <name>Exemplos</name>
-    <page>CPFValidator.html</page>
-  </section>
-  <section>
-    <name>JavaDoc</name>
-    <link title="Stella Core">javadoc/core/index.html</link>
-    <link title="Stella Hibernate Validator">javadoc/hibernate-validator/index.html</link>
-    <link title="Stella Faces">javadoc/faces/index.html</link>
-  </section>
+	<section>
+		<name>Sobre o Caelum Stella</name>
+		<page>index.html</page>
+		<!--<page>time.html</page>-->
+	</section>
+	<!--<section>-->
+	<!--<name>Stella Core</name>-->
+	<!--</section>-->
+	<!--  	<section>  -->
+	<!-- <name>Stella Hibernate Validator</name> -->
+	<!--</section>  -->
+	<section>
+		<name>Stella Faces</name>
+		<page>stellafaces.html</page>
+	</section>
+	<!--<section>-->
+	<!--<name>Tutoriais</name>-->
+	<!--</section>-->
+	<!--<section>-->
+	<!--<name>Exemplos</name>-->
+	<!--</section>-->
+	<!--<section>-->
+	<!--<name>FAQ</name>-->
+	<!--</section>-->
+	<!--<section>-->
+	<!--<name>Informações do Projeto</name>-->
+	<!--</section>-->
+	<section>
+		<name>Exemplos</name>
+		<page>CPFValidator.html</page>
+		<page>cnpjfaces.html</page>
+	</section>
+	<section>
+		<name>JavaDoc</name>
+		<link title="Stella Core">javadoc/core/index.html</link>
+		<link title="Stella Hibernate Validator">
+			javadoc/hibernate-validator/index.html
+		</link>
+		<link title="Stella Faces">javadoc/faces/index.html</link>
+	</section>
 </sitemap>
