@@ -7,8 +7,6 @@
 <title>Stella-Faces</title>
 </head>
 <body>
-<h1>Caelum Stella - Faces</h1>
-
 <h2>O que &eacute;?</h2>
 <p>&Eacute; um dos modulos do Caelum-Stella, que tem como
 fun&ccedil;&atilde;o a valida&ccedil;&atilde;o por meio das tecnologias
@@ -34,40 +32,38 @@ ordem, iremos fazer JSF e depois Facelet.</p>
 <pre>
 <b>nossoPrimeiroValidador.jsp</b>
 <code>
-<textarea class="html:nogutter:nocontrols" name="code" readonly="readonly">
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
 	
-&lt;%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
-&lt;%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-&lt;%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"% >
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-&lt;html>
-&lt;head>
-&lt;title>Primeiro Validador&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;f:view>
-	&lt;h:form id="formulario">
-		&lt;h:panelGrid columns="3">
-			&lt;h:outputLabel value="cpf:"/>
-			&lt;h:inputText id="cpf">
-				&lt;f:validator validatorId="StellaCPFValidator"/>
-			&lt;/h:inputText>
-			&lt;h:message for="cpf"/>
-		&lt;/h:panelGrid>
-		&lt;h:commandButton value="Enviar"/>
-		&lt;h:messages/>
-	&lt;/h:form>
-&lt;/f:view>
-&lt;/body>
-&lt;/html>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"% >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+ <head>
+ <title>Primeiro Validador</title>
+ </head>
+ &lt;body>
+ <f:view>
+	<h:form id="formulario">
+		<h:panelGrid columns="3">
+			<h:outputLabel value="cpf:" />
+			<h:inputText id="cpf">
+				<f:validator validatorId="StellaCPFValidator" />
+			</h:inputText>
+			<h:message for="cpf" />
+		</h:panelGrid>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+ </f:view>
+ &lt;/body>
+ </html>
 </textarea>
 </code>
 </pre>
 
 <p>Teste a p&aacute;gina para visualizar o resultado!</p>
-<br />
-<br />
-<br />
 
 
 <h3>Utilizando JavaServer Faces com a taglib do Stella-Faces</h3>
@@ -78,138 +74,95 @@ apenas iremos fazer mudan&ccedil;as sutis.</p>
 <pre>
 <b>validadorComCustomTag.jsp</b>
 <code>
-<textarea rows="10" cols="100" readonly="readonly">
-	
-	&lt;%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
-	&lt;%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-	&lt;%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
-	&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-	&lt;html>
-	&lt;head>
-	&lt;title>Validando com Custom Tag do Caelum Stella-Faces&lt;/title>
-	&lt;/head>
+<textarea class="html:nogutter:nocontrols" name="code" readonly="readonly">
+	<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
+	<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+	<%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+	<head>
+	<title>Validando com Custom Tag do Caelum Stella-Faces</title>
+	</head>
 	&lt;body>
-	&lt;f:view>
-	&lt;h:form id="formulario">
-
-		&lt;h:panelGrid>
-			&lt;h:outputLabel value="cpf sem formatacao:" for="cpf" />
-			&lt;h:inputText id="cpf" value="cpf">
-				&lt;!--  Repare que com uma simples atribuicao o 
+	<f:view>
+	<h:form id="formulario">
+		<h:panelGrid>
+			<h:outputLabel value="cpf sem formatacao:" for="cpf" />
+			<h:inputText id="cpf" value="cpf">
+				<!--  Repare que com uma simples atribuicao o 
 				codigo aparenta mais agilidade	 -->
-				&lt;stella:validateCPF />
-			&lt;/h:inputText>
-			&lt;h:message for="cpf" />
+				<stella:validateCPF />
+			</h:inputText>
+			<h:message for="cpf" />
 
-			&lt;h:outputLabel value="cpf com formatacao:" for="cpfFormatado" />
-			&lt;h:inputText id="cpfFormatado" value="cpfFormatado">
-				&lt;stella:validateCPF formatted="true" />
-			&lt;/h:inputText>
-			&lt;h:message for="cpfFormatado" />
-		&lt;/h:panelGrid>
+			<h:outputLabel value="cpf com formatacao:" for="cpfFormatado" />
+			<h:inputText id="cpfFormatado" value="cpfFormatado">
+				<stella:validateCPF formatted="true" />
+			</h:inputText>
+			<h:message for="cpfFormatado" />
+		</h:panelGrid>
 
-		&lt;h:commandButton value="Enviar" />
-		&lt;h:messages />
-	&lt;/h:form>
-&lt;/f:view>
-&lt;/body>
-&lt;/html>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+ </f:view>
+ &lt;/body>
+ </html>
 </textarea>
 </code>
 </pre>
 
 <p>Teste a p&aacute;gina e veja o resultado.</p>
-<br />
-<br />
-<br />
-
 
 <h3>Utilizando a valida&ccedil;&atilde;o por meio do Facelets</h3>
 
-<p>Agora iremos implementar algumas linhas no nosso web.xml e
-faces-config.xml</p>
-
-<pre>
-<b>web.xml</b>
-<textarea rows="5" cols="70" readonly="readonly">
-	<context-param>
-    	<param-name>facelets.VIEW_MAPPINGS</param-name>
-    	<param-value>*.xhtml</param-value>
-  	</context-param>
-</textarea>
-</pre>
-
-<pre>
-<b>faces-config.xml</b>
-<code>
-<textarea rows="5" cols="70" readonly="readonly">
-	<application>
-    	<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-  	</application>
-</textarea>
-</pre>
-
-<p>Adicionamos as linhas necess&aacute;rias, agora criaremos nossa
-p&aacute;gina .xhtml.</p>
-
 <pre>
 <b>validadorComFacelets.xhtml</b>
-<textarea rows="10" cols="150" readonly="readonly">
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-&lt;html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:stella="http://stella.caelum.com.br/faces">
-&lt;head>
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-&lt;title>Validando com Facelets&lt;/title>
-&lt;/head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Validando com Facelets</title>
+</head>
 &lt;body>
-&lt;f:view>
-	&lt;h:form>
-		&lt;h:panelGrid>
-			&lt;h:outputLabel for="cpf" value="cpf sem formatacao:" />
-			&lt;h:inputText id="cpf" value="cpf">
-				&lt;stella:validateCPF />
-			&lt;/h:inputText>
-			&lt;h:message for="cpf" />
-
-			&lt;h:outputLabel for="cpfFormatado" value="cpf com formatacao:" />
-			&lt;h:inputText id="cpfFormatado" value="cpfFormatado">
-				&lt;stella:validateCPF formatted="true" />
-			&lt;/h:inputText>
-			&lt;h:message for="cpfFormatado" />
-		&lt;/h:panelGrid>
-		&lt;h:commandButton value="Enviar" />
-		&lt;h:messages />
-	&lt;/h:form>
-&lt;/f:view>
+<f:view>
+	<h:form>
+		<h:panelGrid>
+			<h:outputLabel for="cpf" value="cpf sem formatacao:" />
+			<h:inputText id="cpf" value="cpf">
+				<stella:validateCPF />
+			</h:inputText>
+			<h:message for="cpf" />
+			<h:outputLabel for="cpfFormatado" value="cpf com formatacao:" />
+			<h:inputText id="cpfFormatado" value="cpfFormatado">
+				<stella:validateCPF formatted="true" />
+			</h:inputText>
+			<h:message for="cpfFormatado" />
+		</h:panelGrid>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+</f:view>
 &lt;/body>
-&lt;/html>
+</html>
 </textarea>
 </code>
 </pre>
-<br />
-<br />
-<br />
-
 <p>Abra a p&aacute;gina e veja o resultado.</p>
-
 <h2>Conclus&atilde;o</h2>
 <p>O Caelum Stella-Faces facilita a valida&ccedil;&atilde;o de
 documentos utilizando de uma forma agil e poderosa as tecnologias
 JavaServer Faces e Facelets, tendo a op&ccedil;&atilde;o de implementar
 Custom Tags de valida&ccedil;&atilde;o propria do Caelum Stella-Faces.</p>
-
-
-
 
 <h2>Saiba mais.</h2>
 

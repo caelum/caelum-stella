@@ -7,12 +7,14 @@
 	<!--<section>-->
 	<!--<name>Stella Core</name>-->
 	<!--</section>-->
-	<!--  	<section>  -->
-	<!-- <name>Stella Hibernate Validator</name> -->
-	<!--</section>  -->
+	<section>
+	<name>Stella Hibernate Validator</name>
+	<page>stella-hibernate.html</page>
+	</section>
 	<section>
 		<name>Stella Faces</name>
 		<page>stellafaces.html</page>
+		<page>cnpjfaces.html</page>
 	</section>
 	<!--<section>-->
 	<!--<name>Tutoriais</name>-->
@@ -29,7 +31,6 @@
 	<section>
 		<name>Exemplos</name>
 		<page>CPFValidator.html</page>
-		<page>cnpjfaces.html</page>
 	</section>
 	<section>
 		<name>JavaDoc</name>

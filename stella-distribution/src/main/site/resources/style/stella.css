@@ -91,7 +91,7 @@ body {
   color: #555;
   text-align: left;
   padding: 0 0 10px 0;
-  background-color:  #b2dfee;
+  background-color:  #4682b4;
 }
 
 h2 {
@@ -109,7 +109,7 @@ body, td, select, input, li {
 
 div.section {
 
-  background-color:  #b2dfee;
+  background-color: #ececec;
   position: absolute;
   top: 140px;
   padding: 15px;
@@ -236,8 +236,8 @@ table.bodyTable tr.b {
 }
 
 #MSelected {
-  background-color: #FFFFFF;
-  border-right: 4px solid #FFFFFF;
+  background-color: #ececec;
+  border-right: 4px solid #ececec;
   color: #333333;
   text-shadow: none;
 }
