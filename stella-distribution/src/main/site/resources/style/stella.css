@@ -91,7 +91,7 @@ body {
   color: #555;
   text-align: left;
   padding: 0 0 10px 0;
-  background-color: #F5F5F5;
+  background-color:  #b2dfee;
 }
 
 h2 {
@@ -109,7 +109,7 @@ body, td, select, input, li {
 
 div.section {
 
-  background-color: white;
+  background-color:  #b2dfee;
   position: absolute;
   top: 140px;
   padding: 15px;
