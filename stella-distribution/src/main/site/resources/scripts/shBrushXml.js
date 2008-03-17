@@ -1,6 +1,10 @@
 dp.sh.Brushes.Xml = function()
 {
 	this.CssClass = 'dp-xml';
+	this.Style =	'.dp-xml .cdata { color: #ff1493; }' +
+					'.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }' +
+					'.dp-xml .attribute { color: red; }' +
+					'.dp-xml .attribute-value { color: blue; }';
 }
 
 dp.sh.Brushes.Xml.prototype	= new dp.sh.Highlighter();
@@ -30,8 +34,8 @@ dp.sh.Brushes.Xml.prototype.ProcessRegexList = function()
 	this.GetMatches(new RegExp('(\&lt;|<)\\!\\[[\\w\\s]*?\\[(.|\\s)*?\\]\\](\&gt;|>)', 'gm'), 'cdata');
 	
 	// Match comments
-	// (\&lt;|<)!--\s*.*\s*?--(\&gt;|>)
-	this.GetMatches(new RegExp('(\&lt;|<)!--\\s*.*\\s*?--(\&gt;|>)', 'gm'), 'comments');
+	// (\&lt;|<)!--\s*.*?\s*--(\&gt;|>)
+	this.GetMatches(new RegExp('(\&lt;|<)!--\\s*.*?\\s*--(\&gt;|>)', 'gm'), 'comments');
 
 	// Match attributes and their values
 	// (:|\w+)\s*=\s*(".*?"|\'.*?\'|\w+)*

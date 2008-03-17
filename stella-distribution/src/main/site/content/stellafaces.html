@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <html>
 <head>
-<title>Stella-Faces </title>
+<title>Stella-Faces</title>
 </head>
 <body>
 <h1>Caelum Stella - Faces</h1>
@@ -13,90 +13,49 @@
 <p>&Eacute; um dos modulos do Caelum-Stella, que tem como
 fun&ccedil;&atilde;o a valida&ccedil;&atilde;o por meio das tecnologias
 JSF e Facelets.</p>
-<br />
-<br />
-<br />
+
 
 <h2>Validando Documentos com Stella-Faces</h2>
 <p>Uma das caracter&iacute;sticas mais fortes do Caelum Stella-Faces
 &eacute; a poderosa valida&ccedil;&atilde;o com agilidade e
 simplicidade.Veja os exemplos de valida&ccedil;&atilde;o de CPF, e note
 a simplicidade dos codigos implementados.</p>
-<p>Caelum Stella-Faces possu&iacute; uma Custom Tag que v&aacute;lida os documentos, sendo assim,
-melhorando o c&oacute;digo e agilidade de desenvolvimento.</p>
-<br />
-<br />
-<br />
+<p>Caelum Stella-Faces possu&iacute; uma CustomTag que valida os
+documentos. Dessa forma, melhora o c&oacute;digo e agilidade de
+desenvolvimento.</p>
 
-<p>Primeiramente devemos configurar nosso web.xml e o faces-config.</p>
+<p>Partindo de uma aplica&ccedil;&atilde;o configurada para JSF
+podemos come&ccedil;ar a utilizar nosso validador na p&aacute;gina. Por
+ordem, iremos fazer JSF e depois Facelet.</p>
 
-<pre>
-<b>web.xml</b>
-<code>
-<textarea rows="10" cols="100" readonly="readonly">
- <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/faces/*</url-pattern>
-  </servlet-mapping>
-</textarea>
-<br /><br /><br />
-<b>faces-config.xml</b>
-<textarea rows="10" cols="100" readonly="readonly">
-	<?xml version="1.0" encoding="UTF-8"?>
-
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd "
-	version="1.2">
-	
-	<application>
-    <message-bundle>messages</message-bundle>
-  </application>              
-</textarea>
-</code>
-</pre>
-<br />
-<br />
-<br />
-
-<p>Ap&oacute;s configurar o os xmls, temos que come&ccedil;ar a construir
-nosso validador na p&aacute;gina.Por ordem, iremos fazer JSF e depois
-Facelet.</p>
 <h3>JavaServer Faces</h3>
 <p>Criaremos uma p&aacute;gina .jsp, com o seguinte esquema:</p>
 
 <pre>
 <b>nossoPrimeiroValidador.jsp</b>
 <code>
-<textarea rows="10" cols="100" readonly="readonly" >
+<textarea class="html:nogutter:nocontrols" name="code" readonly="readonly">
 	
-	&lt; %@ taglib uri="http://java.sun.com/jsf/core" prefix="f"% >
-	&lt; %@ taglib uri="http://java.sun.com/jsf/html" prefix="h"% >
-	&lt; %@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"% >
+&lt;%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
+&lt;%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+&lt;%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"% >
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-&lt; html >
-&lt; head >
-&lt; title >Primeiro Validador&lt; /title >
+&lt;html>
+&lt;head>
+&lt;title>Primeiro Validador&lt;/title>
 &lt;/head>
 &lt;body>
 &lt;f:view>
 	&lt;h:form id="formulario">
 		&lt;h:panelGrid columns="3">
-			&lt;h:outputLabel value="cpf:" />
+			&lt;h:outputLabel value="cpf:"/>
 			&lt;h:inputText id="cpf">
-				&lt;f:validator validatorId="StellaCPFValidator" />
+				&lt;f:validator validatorId="StellaCPFValidator"/>
 			&lt;/h:inputText>
-			&lt;h:message for="cpf" />
+			&lt;h:message for="cpf"/>
 		&lt;/h:panelGrid>
-		&lt;h:commandButton value="Enviar" />
-		&lt;h:messages />
+		&lt;h:commandButton value="Enviar"/>
+		&lt;h:messages/>
 	&lt;/h:form>
 &lt;/f:view>
 &lt;/body>
