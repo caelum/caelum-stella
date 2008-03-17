@@ -85,7 +85,71 @@ aconselhaveis.</p>
 <h3>Validando com Facelets</h3>
 
 
-<p>Quando utilizamos facelets, devemos
+<p>Para utilizar o Facelets, adicione as seguintes linhas ao web.xml e ao faces-config.xml
+respectivamente.</p>
+
+<h4>web.xml</h4>
+<textarea rows="10" cols="100" readonly="readonly">
+	  <context-param>
+    <param-name>facelets.VIEW_MAPPINGS</param-name>
+    <param-value>*.xhtml</param-value>
+  </context-param>
+</textarea>
+
+<h4>faces-config.xml</h4>
+<textarea rows="10" cols="100" readonly="readonly">
+<application>
+    <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+</application>
+</textarea>
+
+<p>Depois de configurado, crie uma p&aacute;gina com a extens&atilde;o .xhtml e atribua a ela
+as seguintes linhas: </p>
+
+<h4>validadorDeCNPJComFacelets.xhtml</h4>
+
+<textarea rows="10" cols="100" readonly="readonly">
+	&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:stella="http://stella.caelum.com.br/faces">
+&lt;head>
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  &lt;title>Validando CNPJ usando o Componente do Stella Faces&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;h1>Validando CNPJ usando o Componente do Stella Faces&lt;/h1>
+&lt;h2>Vers&atilde;o com Facelets&lt;/h2>
+&lt;h:form>
+  &lt;h:panelGrid>
+    &lt;h:outputLabel for="CNPJ" value="CNPJ sem formatacao:"/>
+    &lt;h:inputText id="CNPJ" value="cnpj">
+      &lt;stella:validateCNPJ/>
+    &lt;/h:inputText>
+    &lt;h:message for="CNPJ"/>
+
+    &lt;h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:"/>
+    &lt;h:inputText id="CNPJFormatado" value="cnpjFormatado">
+      &lt;stella:validateCNPJ formatted="true"/>
+    &lt;/h:inputText>
+    &lt;h:message for="CNPJFormatado"/>
+  &lt;/h:panelGrid>
+
+  &lt;h:commandButton value="Enviar"/>
+  &lt;h:messages/>
+&lt;/h:form>
+&lt;/body>
+&lt;/html>
+</textarea>
+
+<p>Abra a p&aacute;gina e veja o resultado.Entre com n&uacute;meros variados de CNPJ para 
+ver as poss&iacute;veis mensagens de erros.</p>
 
 </body>
 </html>
