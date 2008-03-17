@@ -26,6 +26,7 @@
         <exclude>**/.ipr</exclude>
         <exclude>**/.iws</exclude>
         <exclude>**/.iml</exclude>
+	<exclude>dist/**</exclude>
       </excludes>
     </fileSet>
   </fileSets>
