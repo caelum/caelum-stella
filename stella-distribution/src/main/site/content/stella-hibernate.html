@@ -5,20 +5,55 @@
 <title>Caelum-Stella Hibernate Validator</title>
 </head>
 <body>
-<h2>Valide valores usando anotações</h2>
+<h2>O que é?</h2>
 <p>
-	Com o Caelum-Stella você pode validar valores utilizando as anotações. Veja o exemplo abaixo:
+O Caelum-Stella Hibernate é uma API que fornece anotações para validação de documentos brasileiros.
 </p>
-
-<code>
+<h2>Validando na camada de Negócio</h2>
+<p>
+ Na camada de aplicação, queremos validar uma classe que contem um ou mais documentos como atributo. Veja o exemplo abaixo:
+</p>
   <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
-    public class Cliente {
-        @CPF
+    public class Pessoa {
         private String cpf;
+        private String cnpj;
         // getters e setters omitdos
     }
   </textarea>
-</code>
 
+<p>
+ Seria interessante se nos fosse fornecida uma classe que validasse este bean. </p>
+<p>
+Com o Hibernate Validator isto é possível, mas antes devemos indicar quais são as regras para validar uma instância desse bean. Ou seja, devemos indicar que um é bean válido se seus atributos "cpf" e "cnpj" são válidos. 
+</p>
+<p>
+Vamos inserir anotações de validação na classe Pessoa.
+</p>
+
+  <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
+    public class Pessoa {
+        @CPF
+        private String cpf;
+        @CNPJ
+        private String cnpj;
+        // getters e setters omitdos
+    }
+  </textarea>
+
+<p/> Estas anotações estão disponíveis na distribuição do Caelum-Stella Hibernate Validator.<p>
+<p> Agora, utilizando a API de validação do Hibernate, podemos validar instâncias do nosso bean. Veja como é simples.</p>
+
+  <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
+	Cliente cliente = new Cliente();
+	cliente.setCpf("XXXXXXXXXXX");	
+
+	ClassValidator validator = new ClassValidator(Cliente.class);
+ 
+	InvalidValue[] validationMessages = validator.getInvalidValues(cliente);
+	InvalidValue[] propertyMessages = validator.getInvalidValues(cliente, "cpf");
+
+</textarea>
+
+<!--><h2>Validando na camada de Persistência</h2><-->
 </body>
 </html>
