@@ -3,7 +3,7 @@
         font-family: "Consolas", "Monaco", "Courier New", Courier, monospace;
         font-size: 12px;
         background-color: #E7E5DC;
-        width: 99%;
+        width: 100%;
         overflow: auto;
         margin: 18px 0 18px 0 !important;
         padding-top: 1px; /* adds a little border on top when controls are hidden */
@@ -15,7 +15,7 @@
 .dp-highlighter ol li span 
 {
         margin: 0;
-        padding: 0;
+        padding: 0px;
         border: none;
 }
 
@@ -24,7 +24,7 @@
 {
         background: none;
         border: none;
-        padding: 0;
+        padding: 0px;
         margin: 0;
 }
 
@@ -43,7 +43,7 @@
 {
         list-style: decimal; /* for ie */
         background-color: #fff;
-        margin: 0px 0px 1px 45px !important; /* 1px bottom margin seems to fix occasional Firefox scrolling */
+        margin: 0px 0px 2px 45px !important; /* 1px bottom margin seems to fix occasional Firefox scrolling */
         padding: 0px;
         color: #5C5C5C;
 }
