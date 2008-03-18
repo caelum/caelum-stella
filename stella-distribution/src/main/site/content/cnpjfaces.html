@@ -10,146 +10,134 @@
 <h1>Validando CNPJ:</h1>
 <h2>JSF e Facelets</h2>
 
-<h3>Criando a p&aacute;gina jsp.</h3>
+<h3>Criando a página jsp.</h3>
 
 <p>Iremos criar uma p&aacute;gina .jsp e atribuir as taglibs do JSF
-(Core e HTML) e dentro do body as seguintes linhas ser&atilde;o
-atribuidas.</p>
-
+(Core e HTML) e dentro do body as seguintes linhas serão atribuidas.</p>
+<pre>
 <code>
-<textarea rows="10" cols="100" name="code" readonly="readonly">
-	&lt;f:view>
-	&lt;h:form id="formulario">
-		&lt;h:panelGrid columns="3">
-			&lt;h:outputLabel value="CNPJ:" />
-			&lt;h:inputText id="CNPJ">
-				&lt;f:validator validatorId="StellaCNPJValidator" />
-			&lt;/h:inputText>
-			&lt;h:message for="CNPJ" />
-			&lt;/h:panelGrid>
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+	<f:view>
+	<h:form id="formulario">
+		<h:panelGrid columns="3">
+			<h:outputLabel value="CNPJ:" />
+			<h:inputText id="CNPJ">
+				<f:validator validatorId="StellaCNPJValidator" />
+			</h:inputText>
+			<h:message for="CNPJ" />
+			</h:panelGrid>
 
-		&lt;h:commandButton value="Enviar" />
-		&lt;h:messages />
-	&lt;/h:form>
-&lt;/f:view>
-</textarea>
-</code>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+</f:view>
+</textarea> </code>
+</pre>
 
-<p>Abra a p&aacute;gina para visualizar o resultado.</p>
+<p>Abra a página para visualizar o resultado.</p>
 
 
-<p>Entre com diversos CNPJs para ver o comportamento da
-valida&ccedil;&atilde;o.</p>
+<p>Entre com diversos CNPJs para ver o comportamento da validação.</p>
 
 <h2>Possibilidades:</h2>
 <h3>Custom Tags e Facelets</h3>
 
 
-<p>Vimos no exemplo anterior um dos m&eacute;todos de cria&ccedil;&atilde;o de um validador,
-veremos dois outros meios de se fazer essa valida&ccedil;&atilde;o. Os seguintes m&eacute;todos s&atilde;o os mais
-aconselhaveis.</p>
+<p>Vimos no exemplo anterior um dos métodos de criação de um
+validador, veremos dois outros meios de se fazer essa validação. Os
+seguintes métodos são os mais aconselhaveis.</p>
 
 <h3>Implemetando e utilizando as Custom Tags do Caelum Stella-Faces</h3>
 
-<p>Crie uma p&aacute;gina .jsp, atribua as taglibs do JSF e do Stella-Faces
+<p>Crie uma página .jsp, atribua as taglibs do JSF e do Stella-Faces
 (http://stella.caelum.com.br/faces).</p>
-<p>Dentro do body insira o seguinte c&oacute;digo.</p>
-<code>
-<textarea rows="10" cols="100" name="code" readonly="readonly">
-	&lt;f:view>
-	&lt;h:form id="formulario">
+<p>Dentro do body insira o seguinte código.</p>
+<pre>
+<code> 
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+	<f:view>
+	<h:form id="formulario">
 
-		&lt;h:panelGrid>
-			&lt;h:outputLabel value="CNPJ sem formatacao:" for="CNPJ" />
-			&lt;h:inputText id="CNPJ" value="cnpj">
-				&lt;stella:validateCNPJ />
-				&lt;/h:inputText>
-				&lt;h:message for="CNPJ" />
+		<h:panelGrid>
+			<h:outputLabel value="CNPJ sem formatacao:" for="CNPJ" />
+			<h:inputText id="CNPJ" value="cnpj">
+				<stella:validateCNPJ />
+				</h:inputText>
+				<h:message for="CNPJ" />
 
-				&lt;h:outputLabel value="CNPJ com formatacao:" for="CNPJFormatado" />
-				&lt;h:inputText id="CNPJFormatado" value="cnpjFormatado">
-				&lt;stella:validateCNPJ formatted="true" />
-				&lt;/h:inputText>
-				&lt;h:message for="CNPJFormatado" />
-			&lt;/h:panelGrid>
+				<h:outputLabel value="CNPJ com formatacao:" for="CNPJFormatado" />
+				<h:inputText id="CNPJFormatado" value="cnpjFormatado">
+				<stella:validateCNPJ formatted="true" />
+				</h:inputText>
+				<h:message for="CNPJFormatado" />
+			</h:panelGrid>
 
-		&lt;h:commandButton value="Enviar" />
-		&lt;h:messages />
-	&lt;/h:form>
-&lt;/f:view>
-</textarea>
-</code>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+</f:view>
+</textarea> </code>
+</pre>
 
-<p>Teste a p&aacute;gina para ver o resultado.</p>
+<p>Teste a página para ver o resultado.</p>
 
 <h3>Validando com Facelets</h3>
 
 
-<p>Para utilizar o Facelets, adicione as seguintes linhas ao web.xml e ao faces-config.xml
-respectivamente.</p>
+<p>Para utilizar o Facelets não esqueça de configurar o web.xml e o
+faces-config.xml apropriadamente.</p>
 
-<h4>web.xml</h4>
-<textarea rows="10" cols="100" readonly="readonly">
-	  <context-param>
-    <param-name>facelets.VIEW_MAPPINGS</param-name>
-    <param-value>*.xhtml</param-value>
-  </context-param>
-</textarea>
 
-<h4>faces-config.xml</h4>
-<textarea rows="10" cols="100" readonly="readonly">
-<application>
-    <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-</application>
-</textarea>
-
-<p>Depois de configurado, crie uma p&aacute;gina com a extens&atilde;o .xhtml e atribua a ela
-as seguintes linhas: </p>
+<p>Depois de configurado, crie uma página com a extensão .xhtml e
+atribua a ela as seguintes linhas:</p>
 
 <h4>validadorDeCNPJComFacelets.xhtml</h4>
-
-<textarea rows="10" cols="100" readonly="readonly">
-	&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE html
+<pre>
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+	<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-&lt;html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:stella="http://stella.caelum.com.br/faces">
-&lt;head>
-  &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  &lt;title>Validando CNPJ usando o Componente do Stella Faces&lt;/title>
-&lt;/head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:stella="http://stella.caelum.com.br/faces">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Validando CNPJ usando o Componente do Stella Faces</title>
+</head>
 &lt;body>
-&lt;h1>Validando CNPJ usando o Componente do Stella Faces&lt;/h1>
-&lt;h2>Vers&atilde;o com Facelets&lt;/h2>
-&lt;h:form>
-  &lt;h:panelGrid>
-    &lt;h:outputLabel for="CNPJ" value="CNPJ sem formatacao:"/>
-    &lt;h:inputText id="CNPJ" value="cnpj">
-      &lt;stella:validateCNPJ/>
-    &lt;/h:inputText>
-    &lt;h:message for="CNPJ"/>
+<h1>Validando CNPJ usando o Componente do Stella Faces</h1>
+<h2>Vers&atilde;o com Facelets</h2>
+<h:form>
+  <h:panelGrid>
+    <h:outputLabel for="CNPJ" value="CNPJ sem formatacao:" />
+    <h:inputText id="CNPJ" value="cnpj">
+      <stella:validateCNPJ />
+    </h:inputText>
+    <h:message for="CNPJ" />
 
-    &lt;h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:"/>
-    &lt;h:inputText id="CNPJFormatado" value="cnpjFormatado">
-      &lt;stella:validateCNPJ formatted="true"/>
-    &lt;/h:inputText>
-    &lt;h:message for="CNPJFormatado"/>
-  &lt;/h:panelGrid>
+    <h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:" />
+    <h:inputText id="CNPJFormatado" value="cnpjFormatado">
+      <stella:validateCNPJ formatted="true" />
+    </h:inputText>
+    <h:message for="CNPJFormatado" />
+  </h:panelGrid>
 
-  &lt;h:commandButton value="Enviar"/>
-  &lt;h:messages/>
-&lt;/h:form>
+  <h:commandButton value="Enviar" />
+  <h:messages />
+</h:form>
 &lt;/body>
-&lt;/html>
+</html>
 </textarea>
+</pre>
 
-<p>Abra a p&aacute;gina e veja o resultado.Entre com n&uacute;meros variados de CNPJ para 
-ver as poss&iacute;veis mensagens de erros.</p>
-
+<p>Abra a página e veja o resultado.Entre com números variados de
+CNPJ para ver as possíveis mensagens de erros.</p>
 </body>
 </html>

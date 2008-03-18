@@ -44,6 +44,7 @@
   background-color: #666D80;
   color: white;
   border: 1px solid;
+  border-color: white;
   padding: 5px 0 5px 0;
   margin-top: 50px;
   font-size: 0.8em;
@@ -115,6 +116,14 @@ div.section {
   padding: 15px;
   right: 10px;
   left: 210px;
+  border: 0px;
+  border-left: 0px;
+  border-right-color: blue;
+  border-right:medium;
+  border-top-color: blue;
+  border-top: medium; 
+  border-style: solid;
+  color: black;
 }
 
 /* My Comment */
