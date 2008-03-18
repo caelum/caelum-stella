@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<meta name="author" content="Caires Vinicius">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<html>
+<head>
+<title>Caelum Stella Hibernate: Validação Ágil com Vraptor</title>
+</head>
+<body>
+<h1>Vraptor e a Validação do Stella Hibernate</h1>
+
+<p>O Caelum Stella Hibernate é uma otima opção para validar documentos,
+pode ser simples e eficaz. Usando o framework Vraptor(http://www.vraptor.com.br/)
+iremos exemplificar essa validação de uma forma mais ágil.</p>
+
+<h2>Validando CPF</h2>
+
+<p>Tendo configurado o Vraptor, criaremos uma classe chamada Pessoa, que recebera os atributos que serão validados.
+Se lembre de utilizar as anotações apropriadas.</p>
+
+
+<pre>
+<textarea class="java:nogutter:nocontrols" name="code"
+	readonly="readonly">
+import br.com.caelum.stella.hibernate.validator.CPF;
+
+public class Pessoa {
+	@CPF
+	private String cpf;
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+}
+</textarea>	
+</pre>
+
+<p>Tendo a classe Pessoa igual ao exemplos, iremos começar a modelar a classe Logic
+da classe Pessoa.</p>
+
+<pre>
+<textarea class="java:nogutter:nocontrols" name="code"
+	readonly="readonly">
+@Component("pessoa")
+public class PessoaLogic {
+
+    private Pessoa pessoa = new Pessoa();
+
+    @Validate(params = "pessoa")
+    public void cadastra(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+}
+</textarea>
+</pre>
+
+<h2>Incluindo Página com formulário e as saídas de sucesso e erro.</h2>
+
+
+
+
+</body>
+</html>
