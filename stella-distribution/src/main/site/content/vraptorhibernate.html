@@ -9,14 +9,16 @@
 <body>
 <h1>Vraptor e a Validação do Stella Hibernate</h1>
 
-<p>O Caelum Stella Hibernate é uma otima opção para validar documentos,
-pode ser simples e eficaz. Usando o framework Vraptor(http://www.vraptor.com.br/)
-iremos exemplificar essa validação de uma forma mais ágil.</p>
+<p>O Caelum Stella Hibernate é uma otima opção para validar
+documentos, pode ser simples e eficaz. Usando o framework
+Vraptor(http://www.vraptor.com.br/) e seu plugin Hibernate Validator Plugin,iremos exemplificar essa validação
+de uma forma mais ágil.</p>
 
 <h2>Validando CPF</h2>
 
-<p>Tendo configurado o Vraptor, criaremos uma classe chamada Pessoa, que recebera os atributos que serão validados.
-Se lembre de utilizar as anotações apropriadas.</p>
+<p>Tendo configurado o Vraptor, criaremos uma classe chamada Pessoa,
+que recebera os atributos que serão validados. Se lembre de utilizar as
+anotações apropriadas.</p>
 
 
 <pre>
@@ -39,8 +41,8 @@ public class Pessoa {
 </textarea>	
 </pre>
 
-<p>Tendo a classe Pessoa igual ao exemplos, iremos começar a modelar a classe Logic
-da classe Pessoa.</p>
+<p>Tendo a classe Pessoa igual ao exemplos, iremos começar a modelar
+a classe Logic da classe Pessoa.</p>
 
 <pre>
 <textarea class="java:nogutter:nocontrols" name="code"
@@ -64,6 +66,74 @@ public class PessoaLogic {
 
 <h2>Incluindo Página com formulário e as saídas de sucesso e erro.</h2>
 
+
+<p>Crie uma página .jsp que contenha um formulário, usaremos esse
+formulário para validar a Pessoa e seu respectivo documento.</p>
+
+<code>form.html</code>
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/stella.css" type="text/css"
+	media="screen" />
+<title>Cadastro de Usu&aacute;rios</title>
+</head>
+&lt;body>
+<form action="usuario.cadastra.logic">
+	<label for="cpf">CPF:</label>
+	<input id="cpf" type="text" name="usuario.cpf" /> 
+	<input type="submit" value="Cadastrar" />
+</form>
+&lt;/body>
+</html>
+</textarea>
+
+<p>Após ter feito o nosso form, devemos criar a saida da validação, se é valido ou não</p>
+
+<code>cadastra.ok.jsp</code>
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+&lt;body>
+Docs de Usuario valido!
+&lt;/body>
+</html>
+</textarea>
+
+<code>cadastra.invalid.jsp</code>
+<textarea class="html:nogutter:nocontrols" name="code"
+	readonly="readonly">
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+&lt;body>
+<h4>Docs de Usuario Invalido</h4>
+&lt;/body>
+</html>
+</textarea>	
+
+
+<p>Abra a página e veja o resultado.Repare que de uma forma simples o processo de
+validação ficou mais ágil.</p>
 
 
 
