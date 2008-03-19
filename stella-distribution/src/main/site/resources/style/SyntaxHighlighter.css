@@ -61,7 +61,7 @@
         list-style: decimal-leading-zero; /* better look for others, override cascade from OL */
         list-style-position: outside !important;
         border-left: 3px solid #6CE26C;
-        background-color: #F8F8F8;
+        background-color: #ececec;
         color: #5C5C5C;
         padding: 0 3px 0 10px !important;
         margin: 0 !important;
@@ -89,7 +89,7 @@
 
 .dp-highlighter ol li.alt
 {
-        background-color: #FFF;
+        background-color: #ececec;
         color: inherit;
 }
 
