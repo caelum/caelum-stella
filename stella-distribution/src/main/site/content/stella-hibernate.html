@@ -6,52 +6,61 @@
 </head>
 <body>
 <h2>O que é?</h2>
-<p>
-O Caelum-Stella Hibernate é uma API que fornece anotações para validação de documentos brasileiros.
-</p>
-<h2>Validando na camada de Negócio</h2>
-<p>
- Na camada de aplicação, queremos validar uma classe que contem um ou mais documentos como atributo. Veja o exemplo abaixo:
-</p>
-  <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
-    public class Pessoa {
+<p>O Caelum-Stella Hibernate é uma API que fornece anotações para
+validação de documentos brasileiros.</p>
+<h2>Validação na camada de Negócio</h2>
+<p>Suponha que temos interesse em validar uma classe que contem um
+ou mais documentos como atributo. Vamos tomar como exemplo a classe
+abaixo:</p>
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+  public class Pessoa {
         private String cpf;
         private String cnpj;
         // getters e setters omitdos
     }
   </textarea>
 
-<p>
- Seria interessante se nos fosse fornecida uma classe que validasse este bean. </p>
-<p>
-Com o Hibernate Validator isto é possível, mas antes devemos indicar quais são as regras para validar uma instância desse bean. Ou seja, devemos indicar que um é bean válido se seus atributos "cpf" e "cnpj" são válidos. 
+<p>Seria interessante se nos fosse fornecida uma classe que
+validasse este bean.</p>
+<p>Com o Hibernate Validator isto é possível. Para isso, devemos
+indicar quais são as regras que validam uma instância desse bean. Ou
+seja, devemos indicar que um é bean válido se seus atributos "cpf" e
+"cnpj" são válidos.</p>
+<p>Vamos inserir as anotações de validação na classe Pessoa.</p>
+
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+  import br.com.caelum.stella.hibernate.validator.*;
+  
+  public class Pessoa {
+      @CPF
+      private String cpf;
+      @CNPJ
+      private String cnpj;
+      // getters e setters omitdos
+  }
+</textarea>
+
+<p>Estas anotações estão disponíveis na distribuição do Caelum-Stella
+Hibernate Validator.
 </p>
-<p>
-Vamos inserir anotações de validação na classe Pessoa.
-</p>
+<p>Agora, utilizando a API de validação do Hibernate, podemos
+validar instâncias do nosso bean. Veja como é simples.</p>
 
-  <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
-    public class Pessoa {
-        @CPF
-        private String cpf;
-        @CNPJ
-        private String cnpj;
-        // getters e setters omitdos
-    }
-  </textarea>
-
-<p/> Estas anotações estão disponíveis na distribuição do Caelum-Stella Hibernate Validator.<p>
-<p> Agora, utilizando a API de validação do Hibernate, podemos validar instâncias do nosso bean. Veja como é simples.</p>
-
-  <textarea rows="10" cols="65" class="java:nogutter:nocontrols" name="code" readonly="readonly">
-	Cliente cliente = new Cliente();
-	cliente.setCpf("XXXXXXXXXXX");	
-
-	ClassValidator validator = new ClassValidator(Cliente.class);
- 
-	InvalidValue[] validationMessages = validator.getInvalidValues(cliente);
-	InvalidValue[] propertyMessages = validator.getInvalidValues(cliente, "cpf");
-
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+	public static void main(String[] args) {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setCpf("XXXXXXXXXXX");
+		pessoa.setCnpj("YYYYYYYYYYYY");
+		ClassValidator<Pessoa> validator = new ClassValidator<Pessoa>(Pessoa.class);
+		InvalidValue[] validationMessages = validator.getInvalidValues(pessoa);
+		
+		for (InvalidValue invalidValue : validationMessages) {
+			System.out.println(invalidValue.getMessage());
+		}
+	}
 </textarea>
 
 <!--><h2>Validando na camada de Persistência</h2><-->
