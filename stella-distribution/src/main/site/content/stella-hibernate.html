@@ -6,14 +6,24 @@
 </head>
 <body>
 <h2>O que é?</h2>
-<p>O Caelum-Stella Hibernate é uma API que fornece anotações para
-validação de documentos brasileiros.</p>
+<p>O <b>Caelum-Stella Hibernate</b> é uma API que fornece anotações
+para validação de documentos brasileiros.</p>
+<p>As anotações fornecidas são compatíveis com o poderoso <i>framework</i>
+de validação <b>Hibernate Validator</b>.</p>
+<p>De acordo com a documentação do <b>Hibernate Validator</b>, ao
+utilizá-lo, nos beneficiamos do princípio <b>DRY</b> (<b>D</b>on't <b>R</b>epeat
+<b>Y</b>ourself). Isto significa que podemos expressar as restrições de
+domínio apenas uma vez e garantir um domínio coeso em vários níveis do
+sistema.</p>
+<p>As anotações são um maneira muito conveniente e elegante para
+descrever as restrições invariantes no modelo de domínio, as classes.</p>
+
 <h2>Validação na camada de Negócio</h2>
 <p>Suponha que temos interesse em validar uma classe que contem um
 ou mais documentos como atributo. Vamos tomar como exemplo a classe
 abaixo:</p>
-<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
-	name="code" readonly="readonly">
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
   public class Pessoa {
         private String cpf;
         private String cnpj;
@@ -23,10 +33,10 @@ abaixo:</p>
 
 <p>Seria interessante se nos fosse fornecida uma classe que
 validasse este bean.</p>
-<p>Com o Hibernate Validator isto é possível. Para isso, devemos
-indicar quais são as regras que validam uma instância desse bean. Ou
-seja, devemos indicar que um é bean válido se seus atributos "cpf" e
-"cnpj" são válidos.</p>
+<p>Com o <b>Hibernate Validator</b> isto é possível. Para isso, devemos
+indicar quais são as regras que validam esse bean. No nosso caso,
+devemos indicar que um é bean válido se seus atributos <b>cpf</b> e <b>cnpj</b>
+são válidos.</p>
 <p>Vamos inserir as anotações de validação na classe Pessoa.</p>
 
 <textarea rows="10" cols="65" class="java:nogutter:nocontrols"
@@ -42,12 +52,44 @@ seja, devemos indicar que um é bean válido se seus atributos "cpf" e
   }
 </textarea>
 
-<p>Estas anotações estão disponíveis na distribuição do Caelum-Stella
-Hibernate Validator.
-</p>
-<p>Agora, utilizando a API de validação do Hibernate, podemos
+<p>Estas anotações estão disponíveis na distribuição do
+Caelum-Stella Hibernate Validator, portanto não esqueça de incluir no
+seu <i>classpath</i> as bibliotecas necesárias.</p>
+<p>Agora, utilizando a API de validação do <b>Hibernate</b>, podemos
 validar instâncias do nosso bean. Veja como é simples.</p>
 
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+  import org.hibernate.validator.ClassValidator;
+  import org.hibernate.validator.InvalidStateException;
+
+  public class HelloCaelumStella {
+
+	public static void main(String[] args) {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setCpf("XXXXXXXXXXX");
+		pessoa.setCnpj("YYYYYYYYYYYY");
+		ClassValidator<Pessoa> validator = new ClassValidator<Pessoa>(Pessoa.class);
+		try {
+			validator.assertValid(pessoa);
+		} catch (InvalidStateException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+}
+</textarea>
+
+<p>Após a execução deste programa a saída do console apresentará a
+seguinte linha:</p>
+
+<textarea rows="10" cols="65" class="html" name="code"
+	readonly="readonly">
+	validation failed for: Pessoa
+</textarea>
+
+<p>Veja agora como podemos indentificar os erros de validação que
+ocorreram.</p>
 <textarea rows="10" cols="65" class="java:nogutter:nocontrols"
 	name="code" readonly="readonly">
 	public static void main(String[] args) {
@@ -62,7 +104,34 @@ validar instâncias do nosso bean. Veja como é simples.</p>
 		}
 	}
 </textarea>
-
-<!--><h2>Validando na camada de Persistência</h2><-->
+<p>A saída do programa será:</p>
+<textarea rows="10" cols="65" class="html" name="code"
+	readonly="readonly">
+	{cpf_invalid}
+	{cnpj_invalid}
+</textarea>
+<h2>Validação na camada de Persistência</h2>
+<p>Ao utilizarmos as anotações do <b>Stella Hibernate</b>, o <b>Hibernate
+Validator</b> se encarrega de aplicar as restrições no <i>schema</i> do
+banco de dados e de verificar a validade antes de inserir ou atulizar
+instâncias.</p>
+<p>Além de inserir as anotações, o que é preciso fazer para
+garantir a inserção e atualização no banco de dados coesa?</p>
+<p>Nada. Lembre-se do princípio <b>DRY</b>. As restrições de
+validação estão, de alguma forma, descritas pela anotação fornecida. <b>Qualquer
+implementação da JPA</b> é capaz de realizar a validação através dessa descrição.</p>
+<p>Dessa forma, um exemplo para realizar a validação na camada de persistência é igual ao das outras camadas.</p>
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+  import br.com.caelum.stella.hibernate.validator.*;
+  
+  public class Pessoa {
+      @CPF
+      private String cpf;
+      @CNPJ
+      private String cnpj;
+      // getters e setters omitdos
+  }
+</textarea>
 </body>
 </html>

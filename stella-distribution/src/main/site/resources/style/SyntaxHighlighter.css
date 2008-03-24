@@ -51,6 +51,7 @@
 .dp-highlighter.nogutter ol,
 .dp-highlighter.nogutter ol li
 {
+        background:white none repeat scroll 0%;
         list-style: none !important;
         margin-left: 0px !important;
 }
@@ -89,7 +90,7 @@
 
 .dp-highlighter ol li.alt
 {
-        background-color: #ececec;
+        background-color: white;
         color: inherit;
 }
 
