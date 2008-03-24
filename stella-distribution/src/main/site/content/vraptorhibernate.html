@@ -11,7 +11,7 @@
 
 <p>O Caelum Stella Hibernate é uma otima opção para validar
 documentos, pode ser simples e eficaz. Usando o framework
-Vraptor(http://www.vraptor.com.br/) e seu plugin Hibernate Validator Plugin,iremos exemplificar essa validação
+Vraptor(http://www.vraptor.com.br/) e seu plugin Hibernate Validator Plugin, iremos exemplificar essa validação
 de uma forma mais ágil.</p>
 
 <h2>Validando CPF</h2>
@@ -21,7 +21,6 @@ que recebera os atributos que serão validados. Se lembre de utilizar as
 anotações apropriadas.</p>
 
 
-<pre>
 <textarea class="java:nogutter:nocontrols" name="code"
 	readonly="readonly">
 import br.com.caelum.stella.hibernate.validator.CPF;
@@ -39,12 +38,10 @@ public class Pessoa {
 	}
 }
 </textarea>	
-</pre>
 
 <p>Tendo a classe Pessoa igual ao exemplos, iremos começar a modelar
 a classe Logic da classe Pessoa.</p>
 
-<pre>
 <textarea class="java:nogutter:nocontrols" name="code"
 	readonly="readonly">
 @Component("pessoa")
@@ -62,7 +59,6 @@ public class PessoaLogic {
     }
 }
 </textarea>
-</pre>
 
 <h2>Incluindo Página com formulário e as saídas de sucesso e erro.</h2>
 
@@ -96,7 +92,6 @@ formulário para validar a Pessoa e seu respectivo documento.</p>
 
 <p>Após ter feito o nosso form, devemos criar a saida da validação, se é valido ou não</p>
 
-<code>cadastra.ok.jsp</code>
 <textarea class="html:nogutter:nocontrols" name="code"
 	readonly="readonly">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -126,7 +121,7 @@ Docs de Usuario valido!
 <title>Insert title here</title>
 </head>
 &lt;body>
-<h4>Docs de Usuario Invalido</h4>
+<h4>Docs de Usuario Inválido</h4>
 &lt;/body>
 </html>
 </textarea>	
