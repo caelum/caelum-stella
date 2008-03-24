@@ -24,7 +24,7 @@
   border-bottom: 1px solid #aaa;
   padding-top: 12px;
   margin-right: 20px;
-  color: #66665c;
+  color: white;
 }
 
 #navColumn ul {
@@ -92,12 +92,13 @@ body {
   color: #555;
   text-align: left;
   padding: 0 0 10px 0;
-  background-color:  #4682b4;
+  background-color:  #0066B3;
 }
 
 h2 {
   color: white;
-  background-color: #25255c;
+  background: darkred none repeat scroll 0%;
+  text-shadow: #1C1D1F 2px 2px 1px;
   border-bottom:1px solid #8c8c8c;
   opacity: 0.75;
   margin-bottom: 10px;
@@ -193,6 +194,7 @@ table.bodyTable tr.b {
   position: absolute;
   top: 0pt;
   width: 210px;
+  color:white;
 }
 
 .MGroup {
@@ -204,7 +206,7 @@ table.bodyTable tr.b {
 }
 
 .MGroup a {
-  background: #666d80 none repeat scroll 0%;
+  background: #00487D none repeat scroll 0%;
   border-right: 4px solid #b3b3a1;
   color: #FFFFFF;
   cursor: pointer;
@@ -225,8 +227,8 @@ table.bodyTable tr.b {
 }
 
 #MSelected, .MFile a:link, .MFile a:visited, .MIndex a:link, .MIndex a:visited {
-  background: #232529 none repeat scroll 0%;
-  border-right: 4px solid #1C1D1F;
+  background: #00487D none repeat scroll 0%;
+  border-right: 4px solid #b3b3a1;
   color: #A4ACBA;
   display: block;
   font-weight: bold;

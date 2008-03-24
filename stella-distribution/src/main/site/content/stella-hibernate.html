@@ -33,10 +33,10 @@ abaixo:</p>
 
 <p>Seria interessante se nos fosse fornecida uma classe que
 validasse este bean.</p>
-<p>Com o <b>Hibernate Validator</b> isto é possível. Para isso, devemos
-indicar quais são as regras que validam esse bean. No nosso caso,
-devemos indicar que um é bean válido se seus atributos <b>cpf</b> e <b>cnpj</b>
-são válidos.</p>
+<p>Com o <b>Hibernate Validator</b> isto é possível. Para isso,
+devemos indicar quais são as regras que validam esse bean. No nosso
+caso, devemos indicar que um é bean válido se seus atributos <b>cpf</b>
+e <b>cnpj</b> são válidos.</p>
 <p>Vamos inserir as anotações de validação na classe Pessoa.</p>
 
 <textarea rows="10" cols="65" class="java:nogutter:nocontrols"
@@ -115,12 +115,14 @@ ocorreram.</p>
 Validator</b> se encarrega de aplicar as restrições no <i>schema</i> do
 banco de dados e de verificar a validade antes de inserir ou atulizar
 instâncias.</p>
-<p>Além de inserir as anotações, o que é preciso fazer para
-garantir a inserção e atualização no banco de dados coesa?</p>
+<p>Além de inserir as anotações, o que é preciso fazer para manter
+coesa a inserção e atualização no banco de dados?</p>
 <p>Nada. Lembre-se do princípio <b>DRY</b>. As restrições de
 validação estão, de alguma forma, descritas pela anotação fornecida. <b>Qualquer
-implementação da JPA</b> é capaz de realizar a validação através dessa descrição.</p>
-<p>Dessa forma, um exemplo para realizar a validação na camada de persistência é igual ao das outras camadas.</p>
+implementação da JPA</b> é capaz de realizar a validação através dessa
+descrição.</p>
+<p>Dessa forma, um exemplo para realizar a validação na camada de
+persistência é igual ao das outras camadas.</p>
 <textarea rows="10" cols="65" class="java:nogutter:nocontrols"
 	name="code" readonly="readonly">
   import br.com.caelum.stella.hibernate.validator.*;
