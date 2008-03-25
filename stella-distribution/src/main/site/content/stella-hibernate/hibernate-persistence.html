@@ -1,0 +1,27 @@
+<title>Camada de Persistência</title>
+<body>
+<h2>Validação na camada de Persistência</h2>
+<p>Ao utilizarmos as anotações do <b>Stella Hibernate</b>, o <b>Hibernate
+Validator</b> se encarrega de aplicar as restrições no <i>schema</i> do
+banco de dados e de verificar a validade antes de inserir ou atulizar
+instâncias.</p>
+<p>Além de inserir as anotações, o que é preciso fazer para manter
+coesa a inserção e atualização no banco de dados?</p>
+<p>Nada. Lembre-se do princípio <b>DRY</b>. As restrições de
+validação estão, de alguma forma, descritas pela anotação fornecida. <b>Qualquer
+implementação da JPA</b> é capaz de realizar a validação através dessa
+descrição.</p>
+
+<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+	name="code" readonly="readonly">
+  import br.com.caelum.stella.hibernate.validator.*;
+  
+  public class Pessoa {
+      @CPF
+      private String cpf;
+      @CNPJ
+      private String cnpj;
+      // getters e setters omitdos
+  }
+</textarea>
+</body>

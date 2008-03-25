@@ -37,11 +37,10 @@ h2 {
 }
 
 #content {
-  margin: 0 0 0 211px;
+  margin: 0 0 2px 211px;
   padding: 10px;
   background-color: #fff;
   border-right: 3px solid #05001f;
-  border-left: 3px solid #0066B3;  
   color: black;
   font-size: 16px;
   height: 100%
@@ -101,6 +100,7 @@ a {
   background-color: #00487D;
   border-right: 3px solid #05001f;
   border-bottom: 1px solid #05001f;
+  border-left: 2px solid #0047D3;
   color: #FFFFFF;
   cursor: pointer;
   display: block;
@@ -138,10 +138,10 @@ a {
 }
 
 #MSelected {
-  border-right: 1px dotted #05001f;
-  background-color: #0066B3;
+  border-left: 2px solid #0047D3;
+  background-color: white;
   font-weight: bold;
-  color: #fff;
+  color: #00487D;
   text-shadow: none;
 }
 
