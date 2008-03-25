@@ -6,73 +6,58 @@
   <title>${title}</title>
 
   <style type="text/css" media="all">
-   @import url( "./style/stella.css" );
+    @import url( "./style/stella.css" );
     @import url( "./style/SyntaxHighlighter.css" );
   </style>
-
-  
-  <script type="text/javascript" src="./scripts/mootools-beta-1.2b2.js">
-   
-  </script>
-  <script type="text/javascript" src="./scripts/docs.js">
-    
-  </script>
-  <style media="screen" type="text/css">
-div.MGroupContent{display: none}
-</style>
+  <script type="text/javascript" src="./scripts/mootools-beta-1.2b2.js"></script>
+  <script type="text/javascript" src="./scripts/docs.js"></script>
   <meta name="verify-v1" content="UsIBiaQhhmjFrBwcJ2n4XIvEImPNG4SMVP365rRcpxE="/>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 </head>
 
-<body class="composite">
-  <div id="banner">
-    <img src="images/logos/caelum_stella_log.png" alt="Caelum Stella"/>
-    <div class="clear"></div>
-  </div>
+<body>
+<div id="banner">
+  <img src="images/logos/stella.jpg" alt="Caelum Stella"/>
 
-  
-    <div id="Menu">
-      <#list sitemap.sections as section>
-        <div class="MGroup MEntry">
-          <a>${section.name}</a>
-          <div id="MGroupContent${section_index}" class="MGroupContent" style="display: block;">
-            <#list section.pages as otherPage>
-              <#if otherPage=page>
-                <div class="MFile MEntry" id="MSelected">${otherPage.title}</div>
-              <#else>
-                <div class="MFile MEntry">
-                  <a href="${otherPage.href}">${otherPage.title}</a>
-                </div>
-              </#if>
-            </#list>
-          </div>
-        </div>
-      </#list>
+  <h1>Caelum Stella</h1>
 
-      <h1>Ferramentas</h1>
+  <h2>Simplificando o desenvolvimento no Brasil</h2>
+</div>
 
-      <img alt="Build with Maven 2" src="http://maven.apache.org/images/logos/maven-feather.png"/> <br/>
-      <img alt="IDEA" src="http://www.jetbrains.com/idea/opensource/img/banners/idea88x31_white.gif"/> <br/>
+<div id="Menu">
+  <#list sitemap.sections as section>
+    <div class="MGroup MEntry">
+      <a>${section.name}</a>
 
-  </div>
-   
-
-  <div id="bodyColumn">
-    <div id="contentBox">
-      <div class="section">
-        ${body}
-        <br/><br/>
+      <div id="MGroupContent${section_index}" class="MGroupContent" style="display: block;">
+        <#list section.pages as otherPage>
+          <#if otherPage=page>
+            <div class="MFile MEntry" id="MSelected">${otherPage.title}</div>
+            <#else>
+              <div class="MFile MEntry">
+                <a href="${otherPage.href}">${otherPage.title}</a>
+              </div>
+          </#if>
+        </#list>
       </div>
     </div>
-  </div>
-  <div class="clear"></div>
-  <div id="footer">
-    <div class="right">&#169; 2008</div>
-    <div class="clear"></div>
+  </#list>
+
+  <div class="poweredBy">
+    <img alt="Build with Maven 2" src="http://maven.apache.org/images/logos/maven-feather.png"/>
+    <img alt="IDEA" src="http://www.jetbrains.com/idea/opensource/img/banners/idea88x31_white.gif"/>
   </div>
 
+</div>
+
+<div id="content">
+  ${body}
+</div>
+
+<div id="footer">
+  <div class="right">Todos os direitos reservados a <a href="http://www.caelum.com.br">Caelum</a> &#169; 2008</div>
+</div>
 </body>
-
 
 <!--  SyntaxHighlighter scripts:  MUST be left AFTER the body -->
 <script language="javascript" src="./scripts/shCore.js"></script>
