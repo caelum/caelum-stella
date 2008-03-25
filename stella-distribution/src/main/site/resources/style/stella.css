@@ -108,7 +108,6 @@ a {
   padding: 6px 10px;
   text-align: right;
   text-decoration: none;
-  text-shadow: #5E708E 2px 2px 1px;
 }
 
 .MGroupContent {
@@ -123,18 +122,16 @@ a {
   color: #ddd;
   display: block;
   font-weight: bold;
-  margin: 2px 0pt;
+  margin: 2px 0;
   padding: 4px 4px 4px 30px;
   text-align: left;
   text-decoration: none;
-  text-shadow: #1C1D1F 2px 2px 1px;
 }
 
 .MFile a:hover, .MFile a:active, .MIndex a:hover, .MIndex a:active {
   background-color: #3E4043;
   border-right: 4px solid #303234;
   color: #FAEC8F;
-  text-shadow: #303234 2px 2px 1px;
 }
 
 #MSelected {
@@ -142,7 +139,6 @@ a {
   background-color: white;
   font-weight: bold;
   color: #00487D;
-  text-shadow: none;
 }
 
 
