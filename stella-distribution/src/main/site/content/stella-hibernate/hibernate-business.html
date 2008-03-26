@@ -9,7 +9,7 @@ abaixo:</p>
         private String cpf;
         // getters e setters omitdos
     }
-  </textarea>
+</textarea>
 
 <p>Seria interessante se nos fosse fornecida uma classe que
 validasse este bean.</p>
@@ -19,7 +19,7 @@ caso, devemos indicar que um é bean válido se seu atributo <b>cpf</b>
 é válido.</p>
 <p>Vamos inserir a anotação de validação sobre o atributo desejado.</p>
 
-<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+<textarea rows="10" cols="65" class="java"
 	name="code" readonly="readonly">
       @CPF
       private String cpf;
@@ -31,7 +31,7 @@ seu <i>classpath</i> as bibliotecas necesárias.</p>
 <p>Agora, utilizando a API de validação do <b>Hibernate</b>, podemos
 validar instâncias do nosso bean. Veja como é simples.</p>
 
-<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+<textarea rows="10" cols="65" class="java"
 	name="code" readonly="readonly">
 		Pessoa pessoa = new Pessoa();
 		pessoa.setCpf("XXXXXXXXXXX");
@@ -50,7 +50,7 @@ seguinte linha: <b>	validation failed for: Pessoa</b>
 
 <p>Veja agora como podemos indentificar os erros de validação que
 ocorreram.</p>
-<textarea rows="10" cols="65" class="java:nogutter:nocontrols"
+<textarea rows="10" cols="65" class="java"
 	name="code" readonly="readonly">
 		ClassValidator<Pessoa> validator = new ClassValidator<Pessoa>(Pessoa.class);
 		InvalidValue[] validationMessages = validator.getInvalidValues(pessoa);

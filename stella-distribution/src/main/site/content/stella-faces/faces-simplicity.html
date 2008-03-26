@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Simplicidale</title>
+</head>
+<body>
+
+<h2>Validando Documentos com Stella-Faces</h2>
+<p>Uma das características mais fortes do Caelum Stella-Faces
+é a poderosa validação com agilidade e
+simplicidade.Veja os exemplos de validação e note
+a simplicidade dos codigos implementados.</p>
+<p>Caelum <b>Stella Faces</b> possuí uma CustomTag que valida os
+documentos. Dessa forma, melhora o código e agilidade de
+desenvolvimento.</p>
+
+<p>Partindo de uma aplicação configurada para JSF
+podemos começar a utilizar nosso validador na página.</p>
+
+<h2>Utilizando a taglib do Stella-Faces</h2>
+
+<p>
+  O <b>Stella Faces</b> fornece uma biblioteca de <i>tags</i> para facilitar o 
+  trabalho do desenvolvedor.
+</p>
+
+<textarea class="html" name="code" readonly="readonly">
+	<%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
+	<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
+	<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+	<html>
+	<head>
+		<title>Validando com Custom Tag do Caelum Stella-Faces</title>
+	</head>
+	&lt;body>
+	<f:view>
+		<h:form id="formulario">
+			<h:panelGrid>
+				<h:outputLabel value="cpf" for="cpf" />
+				<h:inputText id="cpf" value="cpf">
+					<stella:validateCPF />
+				</h:inputText>
+				<h:message for="cpf" />
+			</h:panelGrid>
+			<h:commandButton value="Enviar" />
+		</h:form>
+ 	</f:view>
+ &lt;/body>
+ </html>
+</textarea>
+
+<p>Repare nas linhas 1 e 13. Com simplicidade, temos a funcionalidade desejada.</p>
+
+<h2>Utilizando o validatorId</h2>
+
+<p>Outra maneira de realizar a validação é inserindo o validador através
+ de seu <b>validatorId</b>. Por sua complexidade desnecessária, 
+ <b>essa abordagem é menos é recomendada</b>.
+</p>
+<p>Veja o exemplo.</p>
+<textarea class="html:nogutter:nocontrols" name="code"	readonly="readonly">
+			<h:inputText id="cpf">
+				<f:validator validatorId="StellaCPFValidator" />
+			</h:inputText>
+</textarea>
+
+</body>
+</html>

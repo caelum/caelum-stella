@@ -21,7 +21,7 @@ que recebera os atributos que serão validados. Se lembre de utilizar as
 anotações apropriadas.</p>
 
 
-<textarea class="java:nogutter:nocontrols" name="code"
+<textarea class="java" name="code"
 	readonly="readonly">
 import br.com.caelum.stella.hibernate.validator.CPF;
 
@@ -42,7 +42,7 @@ public class Pessoa {
 <p>Tendo a classe Pessoa igual ao exemplos, iremos começar a modelar
 a classe Logic da classe Pessoa.</p>
 
-<textarea class="java:nogutter:nocontrols" name="code"
+<textarea class="java" name="code"
 	readonly="readonly">
 @Component("pessoa")
 public class PessoaLogic {
@@ -67,7 +67,7 @@ public class PessoaLogic {
 formulário para validar a Pessoa e seu respectivo documento.</p>
 
 <code>form.html</code>
-<textarea class="html:nogutter:nocontrols" name="code"
+<textarea class="html" name="code"
 	readonly="readonly">
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -92,7 +92,7 @@ formulário para validar a Pessoa e seu respectivo documento.</p>
 
 <p>Após ter feito o nosso form, devemos criar a saida da validação, se é valido ou não</p>
 
-<textarea class="html:nogutter:nocontrols" name="code"
+<textarea class="html" name="code"
 	readonly="readonly">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -109,7 +109,7 @@ Docs de Usuario valido!
 </textarea>
 
 <code>cadastra.invalid.jsp</code>
-<textarea class="html:nogutter:nocontrols" name="code"
+<textarea class="html" name="code"
 	readonly="readonly">
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
