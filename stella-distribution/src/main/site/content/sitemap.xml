@@ -13,17 +13,19 @@
 		<page>stella-hibernate/hibernate-index.html</page>
 		<page>stella-hibernate/hibernate-persistence.html</page>
 		<page>stella-hibernate/hibernate-business.html</page>
-		<page>stella-hibernate/hibernate-vraptor.html</page>
 <!--		<page>stella-hibernate/hibernate-conventions.html</page>-->
 <!--		<page>stella-hibernate/hibernate-messages-setup.html</page>-->
 	</section>
 	<section>
 		<name>Stella Faces</name>
 		<page>stella-faces/faces-index.html</page>
-		<page>stella-faces/faces-simplicity.html</page>
-		<page>stella-faces/faces-flexibility.html</page>
+		<page>stella-faces/faces-view.html</page>
 <!--		<page>stella-faces/faces-conventions.html</page>-->
 <!--		<page>stella-faces/faces-messages-setup.html</page>-->
+	</section>
+	<section>
+		<name>Utilização em Frameworks</name>
+		<page>frameworks/frameworks-vraptor.html</page>
 	</section>
 	<!--<section>-->
 	<!--<name>Tutoriais</name>-->

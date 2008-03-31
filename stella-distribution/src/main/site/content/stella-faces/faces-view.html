@@ -1,17 +1,17 @@
 <html>
 <head>
-<title>Simplicidale</title>
+<title>Camada de Apresentação</title>
 </head>
 <body>
 
 <h2>Validando Documentos com Stella-Faces</h2>
-<p>Uma das características mais fortes do Caelum Stella-Faces
-é a poderosa validação com agilidade e
-simplicidade.Veja os exemplos de validação e note
+<p>O Caelum Stella-Faces foi desenvolvido para realizar validações 
+em camadas de apresentação baseadas em Java Server Faces.
+</p>
+Veja os exemplos de validação e note
 a simplicidade dos codigos implementados.</p>
 <p>Caelum <b>Stella Faces</b> possuí uma CustomTag que valida os
-documentos. Dessa forma, melhora o código e agilidade de
-desenvolvimento.</p>
+documentos. Dessa forma, o desenvolvimento é simplificado e a matendo a clareza do código.</p>
 
 <p>Partindo de uma aplicação configurada para JSF
 podemos começar a utilizar nosso validador na página.</p>
@@ -50,6 +50,44 @@ podemos começar a utilizar nosso validador na página.</p>
 </textarea>
 
 <p>Repare nas linhas 1 e 13. Com simplicidade, temos a funcionalidade desejada.</p>
+
+<h2>Validação com Facelets</h2>
+
+<p>Crie uma página com extensão .xhtml como o exemplo abaixo.
+Lembre-se de configurar os xmls apropriadamente.</p> 
+
+<b>validadorComFacelets.xhtml</b>
+<textarea class="html" name="code"
+	readonly="readonly">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:stella="http://stella.caelum.com.br/faces">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Validando com Facelets</title>
+</head>
+&lt;body>
+<textarea class="xhtml" name="code"	readonly="readonly">
+<f:view>
+	<h:form>
+		<h:panelGrid>
+			<h:outputLabel for="cpf" value="CPF:" />
+			<h:inputText id="cpf" value="cpf">
+				<stella:validateCPF formatted="true"/>
+			</h:inputText>
+			<h:message for="cpf" />
+		</h:panelGrid>
+		<h:commandButton value="Enviar" />
+	</h:form>
+</f:view>
+&lt;/body>
+</html>
+</textarea>
 
 <h2>Utilizando o validatorId</h2>
 
