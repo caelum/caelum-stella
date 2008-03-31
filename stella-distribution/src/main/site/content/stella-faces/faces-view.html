@@ -33,18 +33,18 @@ podemos começar a utilizar nosso validador na página.</p>
 		<title>Validando com Custom Tag do Caelum Stella-Faces</title>
 	</head>
 	&lt;body>
-	<f:view>
-		<h:form id="formulario">
-			<h:panelGrid>
-				<h:outputLabel value="cpf" for="cpf" />
-				<h:inputText id="cpf" value="cpf">
-					<stella:validateCPF />
-				</h:inputText>
-				<h:message for="cpf" />
-			</h:panelGrid>
-			<h:commandButton value="Enviar" />
-		</h:form>
- 	</f:view>
+	&lt;f:view>
+		&lt;h:form id="formulario">
+			&lt;h:panelGrid>
+				&lt;h:outputLabel value="cpf" for="cpf" />
+				&lt;h:inputText id="cpf" value="cpf">
+					&lt;stella:validateCPF />
+				&lt;/h:inputText>
+				&lt;h:message for="cpf" />
+			&lt;/h:panelGrid>
+			&lt;h:commandButton value="Enviar" />
+		&lt;/h:form>
+ 	&lt;/f:view>
  &lt;/body>
  </html>
 </textarea>
@@ -73,18 +73,18 @@ Lembre-se de configurar os xmls apropriadamente.</p>
 </head>
 &lt;body>
 <textarea class="xhtml" name="code"	readonly="readonly">
-<f:view>
-	<h:form>
-		<h:panelGrid>
-			<h:outputLabel for="cpf" value="CPF:" />
-			<h:inputText id="cpf" value="cpf">
-				<stella:validateCPF formatted="true"/>
-			</h:inputText>
-			<h:message for="cpf" />
-		</h:panelGrid>
-		<h:commandButton value="Enviar" />
-	</h:form>
-</f:view>
+&lt;f:view>
+	&lt;h:form>
+		&lt;h:panelGrid>
+			&lt;h:outputLabel for="cpf" value="CPF:" />
+			&lt;h:inputText id="cpf" value="cpf">
+				&lt;stella:validateCPF formatted="true"/>
+			&lt;/h:inputText>
+			&lt;h:message for="cpf" />
+		&lt;/h:panelGrid>
+		&lt;h:commandButton value="Enviar" />
+	&lt;/h:form>
+&lt;/f:view>
 &lt;/body>
 </html>
 </textarea>
@@ -97,9 +97,9 @@ Lembre-se de configurar os xmls apropriadamente.</p>
 </p>
 <p>Veja o exemplo.</p>
 <textarea class="html:nogutter:nocontrols" name="code"	readonly="readonly">
-			<h:inputText id="cpf">
-				<f:validator validatorId="StellaCPFValidator" />
-			</h:inputText>
+			&lt;h:inputText id="cpf">
+				&lt;f:validator validatorId="StellaCPFValidator" />
+			&lt;/h:inputText>
 </textarea>
 
 </body>
