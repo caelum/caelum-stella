@@ -11,6 +11,7 @@ package br.com.caelum.stella;
  *
  * @author Fabio Kung
  */
+@SuppressWarnings("unchecked")
 public interface MessageProducer<T extends Enum> {
     ValidationMessage getMessage(T error);
 }

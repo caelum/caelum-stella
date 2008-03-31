@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -13,11 +14,12 @@ import br.com.caelum.stella.Validator;
  * @author Leonardo Bessa
  */
 public class CPFValidator implements Validator<String> {
-	private final String CPF_FORMAT = "\\d{3}[.]\\d{3}[.]\\d{3}-\\d{2}";
+	private static final int CPF_DIGITS_SIZE = 11;
+	private static final Pattern CPF_FORMATED = Pattern.compile("\\d{3}[.]\\d{3}[.]\\d{3}-\\d{2}");
+	private static final Pattern CPF_UNFORMATED = Pattern.compile("\\d{"+CPF_DIGITS_SIZE+"}");
 	private final boolean isFormatted;
 	private final MessageProducer<CPFError> messageProducer;
 	private static final int MOD = 11;
-	private static final int CPF_DIGITS_SIZE = 11;
 	// Décimo digito é o primeiro digito verificador
 	private static final Integer dv1Position = 10;
 	// Décimo primeiro digito é o segundo digito verificador
@@ -48,19 +50,19 @@ public class CPFValidator implements Validator<String> {
 	}
 
 	public boolean validate(String cpf) {
+		errors.clear();
 		if (cpf == null) {
 			return true;
 		}
-		errors.clear();
 
 		if (isFormatted){
-			if (!cpf.matches(CPF_FORMAT)){
+			if (!CPF_FORMATED.matcher(cpf).matches()){
 				errors.add(CPFError.INVALID_FORMAT);
 			}
 			cpf = cpf.replaceAll("[^0-9]", "");
 		}
 		else
-		if (!cpf.matches("\\d{" + CPF_DIGITS_SIZE + "}")) {
+		if (!(CPF_UNFORMATED.matcher(cpf).matches())) {
 			errors.add(CPFError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty() && hasAllRepeatedDigits(cpf)) {

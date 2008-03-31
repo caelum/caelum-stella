@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -21,11 +22,12 @@ import br.com.caelum.stella.Validator;
  * </p>
  */
 public class NITValidator implements Validator<String> {
-	private final String NIT_FORMAT = "\\d{3}[.]\\d{5}[.]\\d{2}-\\d{1}";
+	private static final int NIT_DIGITS_SIZE = 11;
+	private final Pattern NIT_FORMATED = Pattern.compile("\\d{3}[.]\\d{5}[.]\\d{2}-\\d{1}");
+	private final Pattern NIT_UNFORMATED = Pattern.compile("\\d{"+NIT_DIGITS_SIZE+"}");
 	private final boolean isFormatted;
 	private final MessageProducer<NITError> messageProducer;
 	private static final int MOD = 11;
-	private static final int NIT_DIGITS_SIZE = 11;
 	private static final Integer dv1Position = 11;
 	private static final Integer[] dv1Multipliers = { 3, 2, 9, 8, 7, 6, 5, 4,
 			3, 2 };
@@ -61,24 +63,24 @@ public class NITValidator implements Validator<String> {
 		return messages;
 	}
 
-	public boolean validate(String NIT) {
-		if (NIT == null) {
+	public boolean validate(String nit) {
+		errors.clear();
+		if (nit == null) {
 			return true;
 		}
-		errors.clear();
 
 		if (isFormatted) {
-			if (!NIT.matches(NIT_FORMAT)) {
+			if (!NIT_FORMATED.matcher(nit).matches()) {
 				errors.add(NITError.INVALID_FORMAT);
 			}
-			NIT = NIT.replaceAll("[^0-9]", "");
-		} else if (!NIT.matches("\\d{" + NIT_DIGITS_SIZE + "}")) {
+			nit = nit.replaceAll("[^0-9]", "");
+		} else if (!NIT_UNFORMATED.matcher(nit).matches()) {
 			errors.add(NITError.INVALID_DIGITS);
 		}
-		if (errors.isEmpty() && hasAllRepeatedDigits(NIT)) {
+		if (errors.isEmpty() && hasAllRepeatedDigits(nit)) {
 			errors.add(NITError.REPEATED_DIGITS);
 		}
-		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(NIT)) {
+		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(nit)) {
 			errors.add(NITError.INVALID_CHECK_DIGITS);
 		}
 
