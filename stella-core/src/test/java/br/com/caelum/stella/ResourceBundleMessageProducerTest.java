@@ -1,5 +1,6 @@
-package br.com.caelum.stella.faces;
+package br.com.caelum.stella;
 
+import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

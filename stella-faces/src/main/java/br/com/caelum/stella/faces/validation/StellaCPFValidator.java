@@ -10,8 +10,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
 import br.com.caelum.stella.validation.CPFError;
 import br.com.caelum.stella.validation.CPFValidator;
 

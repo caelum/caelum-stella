@@ -1,12 +1,9 @@
-package br.com.caelum.stella.faces;
+package br.com.caelum.stella;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.SimpleValidationMessage;
-import br.com.caelum.stella.ValidationMessage;
 
 /**
  * The name property from Enum (lowercased) is used as key to retrieve the
@@ -14,6 +11,7 @@ import br.com.caelum.stella.ValidationMessage;
  *
  * @author Fabio Kung
  */
+@SuppressWarnings("unchecked")
 public class ResourceBundleMessageProducer<T extends Enum> implements MessageProducer<T> {
     private final ResourceBundle bundle;
 

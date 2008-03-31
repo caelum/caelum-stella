@@ -12,8 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.faces.ResourceBundleMessageProducer;
 import br.com.caelum.stella.validation.NITError;
 import br.com.caelum.stella.validation.NITValidator;
 
