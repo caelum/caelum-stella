@@ -22,7 +22,6 @@
     <module>stella-core</module>
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
-    <module>stella-taglib</module>
     <module>examples/faces-example</module>
     <module>examples/vraptor-validator-example</module>
     <module>stella-distribution</module>

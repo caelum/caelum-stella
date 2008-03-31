@@ -76,6 +76,26 @@
             </configuration>
           </execution>
           <execution>
+            <id>unpack-tlddoc-faces</id>
+            <phase>install</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/tlddoc/faces</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${pom.groupId}</groupId>
+                  <artifactId>caelum-stella-faces</artifactId>
+                  <version>${pom.version}</version>
+                  <classifier>tlddoc</classifier>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
             <id>unpack-javadoc-faces</id>
             <phase>install</phase>
             <goals>
