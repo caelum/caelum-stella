@@ -9,6 +9,7 @@
 		<tag-class>
 			br.com.caelum.stella.faces.validation.StellaCPFValidatorTag
 		</tag-class>
+<!--		<description>A <![CDATA[<b>very</b>]]> cool tag library</description>-->
 		<body-content>emtpy</body-content>
 		<attribute>
 			<name>formatted</name>
@@ -32,7 +33,7 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-		<tag>
+	<tag>
 		<name>validateNIT</name>
 		<tag-class>
 			br.com.caelum.stella.faces.validation.StellaNITValidatorTag
@@ -46,6 +47,6 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-	
-	
+
+
 </taglib>
