@@ -1,17 +1,20 @@
 package br.com.caelum.stella;
 
 /**
- * Basic imutable implementation. Only holds the message.
+ * Implementação básica e imutável. Apenas guarda a mensagem.
  *
  * @author Fabio Kung
  */
 public class SimpleValidationMessage implements ValidationMessage {
     private final String message;
 
-    public SimpleValidationMessage(String message) {
+     public SimpleValidationMessage(String message) {
         this.message = message;
     }
 
+    /**
+     * @see br.com.caelum.stella.ValidationMessage#getMessage()
+     */
     public String getMessage() {
         return this.message;
     }

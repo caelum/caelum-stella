@@ -118,28 +118,6 @@ public class CNPJValidatorTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldNotValidateCNPJWithAllRepeatedDigits() {
-        Mockery mockery = new Mockery();
-        final MessageProducer<CNPJError> messageProducer = mockery
-                .mock(MessageProducer.class);
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.REPEATED_DIGITS);
-            }
-        });
-        CNPJValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
-
-        assertFalse(validator.validate("55555555555555"));
-        errors = validator.getLastValidationMessages();
-        assertTrue(errors.toString(), errors.size() == 1);
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
     public void shoulValidateNullCNPJ() {
         Mockery mockery = new Mockery();
         final MessageProducer<CNPJError> messageProducer = mockery

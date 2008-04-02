@@ -90,6 +90,8 @@
                 <links>
                   <link>http://java.sun.com/j2se/1.5/docs/api</link>
                 </links>
+                <encoding>utf-8</encoding>
+                <charset>utf-8</charset>
               </configuration>
             </execution>
           </executions>

@@ -157,18 +157,36 @@ public class CPFValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldNotValidateCPFWithAllRepeatedDigitsFaul() {
+	public void shouldNotValidateCPFWithAllRepeatedDigitsFaulWhenNotIgnoringIt() {
 		Mockery mockery = new Mockery();
 		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(CPFError.REPEATED_DIGITS);
 		}});
-		CPFValidator validator = new CPFValidator(messageProducer,false);
+		CPFValidator validator = new CPFValidator(messageProducer,false,false);
 		List<ValidationMessage> errors;
 		
 		assertFalse(validator.validate("44444444444"));
 		errors = validator.getLastValidationMessages();
 		assertTrue(errors.toString(), errors.size() == 1);		
+		
+		mockery.assertIsSatisfied();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldValidateCPFWithAllRepeatedDigitsFaulWhenIgnoringIt() {
+		Mockery mockery = new Mockery();
+		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		mockery.checking(new Expectations(){{
+			
+		}});
+		CPFValidator validator = new CPFValidator(messageProducer,false);
+		List<ValidationMessage> errors;
+		
+		assertTrue(validator.validate("44444444444"));
+		errors = validator.getLastValidationMessages();
+		assertTrue(errors.toString(), errors.size() == 0);		
 		
 		mockery.assertIsSatisfied();
 	}

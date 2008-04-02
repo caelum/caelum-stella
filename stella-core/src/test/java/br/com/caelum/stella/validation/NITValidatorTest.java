@@ -158,24 +158,7 @@ public class NITValidatorTest {
 		mockery.assertIsSatisfied();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateNITWithAllRepeatedDigitsFaul() {
-		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.REPEATED_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
-		List<ValidationMessage> errors;
-		
-		assertFalse(validator.validate("99999999999"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);		
-		
-		mockery.assertIsSatisfied();
-	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldValidateValidFormattedNIT(){
