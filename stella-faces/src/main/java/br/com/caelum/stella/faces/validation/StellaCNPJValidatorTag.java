@@ -31,6 +31,9 @@ public class StellaCNPJValidatorTag extends ValidatorELTag {
 		return validator;
 	}
 
+	/**
+	 * @see StellaCNPJValidator#setFormatted(boolean)
+	 */
 	public void setFormatted(ValueExpression formatted) {
 		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 		this.formatted = (Boolean) formatted.getValue(elContext);

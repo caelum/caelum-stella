@@ -8,6 +8,10 @@ import com.sun.facelets.tag.TagConfig;
 import com.sun.facelets.tag.jsf.ValidateHandler;
 import com.sun.facelets.tag.jsf.ValidatorConfig;
 
+/**
+ * 
+ * @author Leonardo Bessa
+ */
 public class StellaCNPJValidatorTagHandler extends ValidateHandler {
 
 	private final TagAttribute formatted;
@@ -23,6 +27,9 @@ public class StellaCNPJValidatorTagHandler extends ValidateHandler {
 		formatted = getAttribute("formatted");
 	}
 
+	/**
+	 * @see com.sun.facelets.tag.jsf.ValidateHandler#createValidator(com.sun.facelets.FaceletContext)
+	 */
 	protected Validator createValidator(FaceletContext context) {
 		StellaCNPJValidator validator = new StellaCNPJValidator();
 		if (formatted != null) {

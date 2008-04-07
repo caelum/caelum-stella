@@ -5,18 +5,26 @@ import br.com.caelum.stella.validation.CPFValidator;
 import org.hibernate.validator.Validator;
 
 /**
- * Will use the toString() value for validation
+ * Valida a cadeia gerada através do método {@linkplain #toString()} para
+ * verificar se ela está de acordo com o padrão de CPF.
  *
  * @author Fabio Kung
+ * @author Leonardo Bessa
  */
 public class StellaCPFValidator implements Validator<CPF> {
     private CPFValidator stellaValidator;
 
+    /**
+     * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
+     */
     public void initialize(CPF cpf) {
         AnnotationMessageProducer<CPFError> messageProducer = new AnnotationMessageProducer<CPFError>(cpf);
         stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
     }
 
+    /**
+     * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
+     */
     public boolean isValid(Object o) {
         if (o != null) {
             String cpf = o.toString();

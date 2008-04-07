@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 import org.hibernate.validator.ValidatorClass;
 
 /**
+ * Restrição que pode ser associada a objetos em que o método {@linkplain #toString()} 
+ * represente um CNPJ.
  * @author Leonardo Bessa
  */
 @Documented

@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Retrieves validation messages from hibernate validator constraint annotations.
+ * Recupera mensagens de validação definida na anotação do Hibernate Validator.
  *
  * @author Fabio Kung
  */

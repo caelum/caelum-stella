@@ -9,10 +9,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Restrição que pode ser associada a propriedades do tipo String e que
- * representem CPFs.
+ * Restrição que pode ser associada a objetos em que o método {@linkplain #toString()} 
+ * represente um CPF.
  *
  * @author Fabio Kung
+ * @author Leonardo Bessa
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

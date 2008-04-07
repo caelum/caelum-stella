@@ -18,14 +18,17 @@ import br.com.caelum.stella.validation.NITError;
 import br.com.caelum.stella.validation.NITValidator;
 
 /**
- * Valida o NIT atraves do método validate, retornando uma mensagem de erro ou
- * nenhuma mensagem em caso de valido.
+ * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
+ * FacesContext e associadas ao elemento inválido.
  * 
  * @author Caires V.
+ * @author Leonardo Bessa
  * 
  */
 public class StellaNITValidator implements Validator, StateHolder {
-
+	/**
+	 * Identificador do Validador JSF.
+	 */
 	public static final String VALIDATOR_ID = "StellaNITValidator";
 	private boolean formatted;
 	private boolean transientValue = false;
@@ -83,7 +86,15 @@ public class StellaNITValidator implements Validator, StateHolder {
 	public void setTransient(boolean transientValue) {
 		this.transientValue = transientValue;
 	}
-
+	/**
+	 * Atribui se a regra de validação deve considerar, ou não, a cadeia no
+	 * formato do documento.
+	 * 
+	 * @param formatted
+	 *            caso seja <code>true</code> o validador considera que a
+	 *            cadeia está formatada; caso contrário, considera que a cadeia
+	 *            contém apenas dígitos numéricos.
+	 */
 	public void setFormatted(boolean formatted) {
 		this.formatted = formatted;
 	}

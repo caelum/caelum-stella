@@ -18,15 +18,28 @@ import br.com.caelum.stella.validation.CPFValidator;
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
  * FacesContext e associadas ao elemento inválido.
- *
+ * 
  * @author Fabio Kung
  * @author Leonardo Bessa
  */
-public class StellaCPFValidator implements javax.faces.validator.Validator, javax.faces.component.StateHolder {
+public class StellaCPFValidator implements javax.faces.validator.Validator,
+		javax.faces.component.StateHolder {
+	/**
+	 * Identificador do Validador JSF.
+	 */
 	public static final String VALIDATOR_ID = "StellaCPFValidator";
 	private boolean formatted;
 	private boolean transientValue = false;
 
+	/**
+	 * Atribui se a regra de validação deve considerar, ou não, a cadeia no
+	 * formato do documento.
+	 * 
+	 * @param formatted
+	 *            caso seja <code>true</code> o validador considera que a
+	 *            cadeia está formatada; caso contrário, considera que a cadeia
+	 *            contém apenas dígitos numéricos.
+	 */
 	public void setFormatted(boolean formatted) {
 		this.formatted = formatted;
 	}
