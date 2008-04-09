@@ -1,15 +1,16 @@
 package br.com.caelum.stella.validation;
 
+import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
+import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
-
 /**
  * <p>
  * Validador do Número de Identificação do Trabalhador. Este documento contém 11
@@ -24,11 +25,7 @@ import br.com.caelum.stella.Validator;
  * @author Leonardo Bessa
  */
 public class NITValidator implements Validator<String> {
-	private static final int NIT_DIGITS_SIZE = 11;
-	private static final Pattern NIT_FORMATED = Pattern
-			.compile("\\d{3}[.]\\d{5}[.]\\d{2}-\\d{1}");
-	private static final Pattern NIT_UNFORMATED = Pattern.compile("\\d{"
-			+ NIT_DIGITS_SIZE + "}");
+	
 	private static final int MOD = 11;
 	private final boolean isFormatted;
 	private final MessageProducer<NITError> messageProducer;
@@ -92,7 +89,6 @@ public class NITValidator implements Validator<String> {
 		if (nit == null) {
 			return true;
 		}
-
 		if (isFormatted) {
 			if (!NIT_FORMATED.matcher(nit).matches()) {
 				errors.add(NITError.INVALID_FORMAT);

@@ -1,10 +1,12 @@
 package br.com.caelum.stella.validation;
 
+import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
+import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -17,11 +19,6 @@ import br.com.caelum.stella.Validator;
  * @author Leonardo Bessa
  */
 public class CPFValidator implements Validator<String> {
-	private static final int CPF_DIGITS_SIZE = 11;
-	private static final Pattern CPF_FORMATED = Pattern
-			.compile("\\d{3}[.]\\d{3}[.]\\d{3}-\\d{2}");
-	private static final Pattern CPF_UNFORMATED = Pattern.compile("\\d{"
-			+ CPF_DIGITS_SIZE + "}");
 	private static final int MOD = 11;
 	private final boolean isFormatted;
 	private final boolean isIgnoringRepeatedDigits;
@@ -54,8 +51,8 @@ public class CPFValidator implements Validator<String> {
 	 * Por padrão o validador criado aceita cadeias de CPF com todos os dígitos
 	 * repetidos, quando todas as outras condições de validação são aceitas.
 	 * Para considerar estes documentos inválidos use o construtor
-	 * {@link #CPFValidator(MessageProducer, boolean, boolean)} com a
-	 * váriavel {@linkplain #isIgnoringRepeatedDigits} em <code>false</code>.
+	 * {@link #CPFValidator(MessageProducer, boolean, boolean)} com a váriavel
+	 * {@linkplain #isIgnoringRepeatedDigits} em <code>false</code>.
 	 * </p>
 	 * 
 	 * @param messageProducer
@@ -142,7 +139,8 @@ public class CPFValidator implements Validator<String> {
 	}
 
 	/**
-	 * @return lista de enum de erros gerados pela última chamada de {@link #validate(String)}
+	 * @return lista de enum de erros gerados pela última chamada de
+	 *         {@link #validate(String)}
 	 */
 	public List<CPFError> getErrors() {
 		return errors;

@@ -1,10 +1,12 @@
 package br.com.caelum.stella.validation;
 
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -14,11 +16,6 @@ import br.com.caelum.stella.Validator;
  * @author Leonardo Bessa
  */
 public class CNPJValidator implements Validator<String> {
-	private static final int CNPJ_DIGITS_SIZE = 14;
-	private static final Pattern CNPJ_FORMATED = Pattern
-			.compile("\\d{2}[.]\\d{3}[.]\\d{3}/\\d{4}-\\d{2}");
-	private static final Pattern CNPJ_UNFORMATED = Pattern.compile("\\d{"
-			+ CNPJ_DIGITS_SIZE + "}");
 	private final boolean isFormatted;
 	private final MessageProducer<CNPJError> messageProducer;
 	private final List<CNPJError> errors = new ArrayList<CNPJError>();
