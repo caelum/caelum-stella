@@ -2,6 +2,10 @@ package br.com.caelum.stella.constraint;
 
 import java.util.regex.Pattern;
 
+/**
+ * @author Leonardo Bessa
+ *
+ */
 public class CNPJConstraints {
 
 	public static final Pattern CNPJ_FORMATED = Pattern

@@ -5,6 +5,10 @@ import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
 
 import java.util.regex.Matcher;
 
+/**
+ * @author Leonardo Bessa
+ *
+ */
 public class CPFFormatter implements Formatter {
 
 	/*

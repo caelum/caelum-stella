@@ -6,6 +6,10 @@ import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
 import java.util.regex.Matcher;
 
 
+/**
+ * @author Leonardo Bessa
+ *
+ */
 public class NITFormatter implements Formatter {
 
 	/*
