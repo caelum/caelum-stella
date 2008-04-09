@@ -1,4 +1,4 @@
-package br.com.caelum.stella.formater;
+package br.com.caelum.stella.formatter;
 
 import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
 import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
@@ -17,7 +17,7 @@ public class CNPJFormatter implements Formatter {
 		if (value != null) {
 			Matcher matcher = CNPJ_UNFORMATED.matcher(value);
 			if (matcher.matches()) {
-				result = matcher.replaceAll("$1.$2.$3-$4");
+				result = matcher.replaceAll("$1.$2.$3/$4-$5");
 			}
 		} else {
 			throw new IllegalArgumentException();
@@ -35,7 +35,7 @@ public class CNPJFormatter implements Formatter {
 		if (value != null) {
 			Matcher matcher = CNPJ_FORMATED.matcher(value);
 			if (matcher.matches()) {
-				result = matcher.replaceAll("$1$2$3$4");
+				result = matcher.replaceAll("$1$2$3$4$5");
 			}
 		} else {
 			throw new IllegalArgumentException();
