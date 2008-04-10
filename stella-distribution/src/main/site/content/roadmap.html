@@ -37,13 +37,26 @@
       <stella:boleto banco="35" valor="${compra.valor}"/>
     </textarea>
   </li>
+  <li>
+    Códigos de Barra (via JBoleto):
+    <textarea class="xhtml:nogutter:nocontrols" name="code" readonly="readonly">
+      <stella:barcode valor="${item.codigo}"/>
+     </textarea>
+  </li>
   <li>Taglibs para o Struts</li>
   <li>Taglibs para o Waffle/VRaptor</li>
 </ul>
 
 <h2>Stella Faces</h2>
 <ul>
+  <li>
+    Componentes input com validator e converter já embutidos:
+    <textarea class="xhtml:nogutter:nocontrols" name="code" readonly="readonly">
+      <stella:inputCPF value="#{pessoaHandler.pessoa.cpf}" />
+    </textarea>
+  </li>
   <li>Componente JBoleto baseado na tag do stella-taglib</li>
+  <li>Componente Código de Barras baseado na tag do stella-taglib</li>
   <li>Converters para CPF, RG, CNPJ, etc.</li>
 </ul>
 
