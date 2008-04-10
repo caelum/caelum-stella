@@ -7,10 +7,11 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 <body>
-<h1>Vraptor e a Validação do Stella Hibernate</h1>
+<h2>Vraptor e a Validação do Stella Hibernate</h2>
 
 <p>Para os desenvolvedores que usam ou pretendem usar o  <a href="http://www.vraptor.com.br/">VRaptor</a>,
- recomendamos o <b>Caelum Stella Hibernate</b> para a validação de documentos.
+recomendamos o <b>Caelum Stella Hibernate</b> para a validação de documentos.</p>
+
 <p>Iremos exemplificar uma validação usando o VRaptor e o plugin Hibernate Validator para o mesmo.</p>
 
 <h2>Exemplo - Validando CPF</h2>
@@ -61,46 +62,39 @@ public class PessoaLogic {
 
 <h2>Incluindo Página com formulário e as saídas de sucesso e erro.</h2>
 
-
 <p>Crie uma página .jsp que contenha um formulário, usaremos esse
 formulário para validar a Pessoa e seu respectivo documento.</p>
 
 <code>form.html</code>
 <textarea class="html" name="code"	readonly="readonly">
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/stella.css" type="text/css"
-	media="screen" />
-<title>Cadastro de Usuários</title>
-</head>
-&lt;body>
-<form action="usuario.cadastra.logic">
-	<label for="cpf">CPF:</label>
-	<input id="cpf" type="text" name="usuario.cpf" /> 
-	<input type="submit" value="Cadastrar" />
-</form>
-&lt;/body>
+&lt;head&gt;
+  &lt;title&gt;Cadastro de Usuários&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  <form action="usuario.cadastra.logic">
+    <label for="cpf">CPF:</label>
+    <input id="cpf" type="text" name="usuario.cpf" />
+    <input type="submit" value="Cadastrar" />
+  </form>
+&lt;/body&gt;
 </html>
 </textarea>
 
-<p>Agora iremos criar as saídas da validação: uma para o caso em que o documento é válido; e outra em que é inválido.</p>
+<p>
+Agora iremos criar as páginas de resultado da lógica:
+uma para o caso em que o documento é válido; e outra em que é inválido.
+</p>
 
 <code>cadastra.ok.jsp</code>
 <textarea class="html" name="code"
 	readonly="readonly">
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+&lt;head&gt;
+  &lt;title&gt;Dados válidos&lt;/title&gt;
+&lt;/head&gt;
 &lt;body>
-Documentos de usuário válidos!
+  Documentos de usuário válidos!
 &lt;/body>
 </html>
 </textarea>
@@ -108,24 +102,16 @@ Documentos de usuário válidos!
 <code>cadastra.invalid.jsp</code>
 <textarea class="html" name="code"
 	readonly="readonly">
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+&lt;head&gt;
+  &lt;title&gt;Dados inválidos&lt;/title&gt;
+&lt;/head&gt;
 &lt;body>
-Documentos de usuário inválidos!
+  Documentos de usuário inválidos!
 &lt;/body>
 </html>
 </textarea>	
 
-
 <p>Abra a página, teste valores diferentes e veja o resultado.</p>
-
-
-
 </body>
 </html>

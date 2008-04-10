@@ -5,13 +5,15 @@
 <body>
 
 <h2>Validando Documentos com Stella-Faces</h2>
-<p>O Caelum Stella-Faces foi desenvolvido para realizar validações 
+<p>Um dos objetivos do Caelum Stella-Faces é realizar validações
 em camadas de apresentação baseadas em Java Server Faces.
 </p>
-Veja os exemplos de validação e note
+<p>Veja os exemplos de validação e note
 a simplicidade dos codigos implementados.</p>
-<p>Caelum <b>Stella Faces</b> possuí uma CustomTag que valida os
-documentos. Dessa forma, o desenvolvimento é simplificado e a matendo a clareza do código.</p>
+
+<p>Caelum <b>Stella Faces</b> fornece componentes validadores para
+documentos brasileiros. Dessa forma, você não precisa mais se preocupar
+com este código a cada novo projeto que começar!</p>
 
 <p>Partindo de uma aplicação configurada para JSF
 podemos começar a utilizar nosso validador na página.</p>
@@ -27,11 +29,10 @@ podemos começar a utilizar nosso validador na página.</p>
 	<%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%>
 	<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 	<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-	<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 	<html>
-	<head>
-		<title>Validando com Custom Tag do Caelum Stella-Faces</title>
-	</head>
+	&lt;head&gt;
+		&lt;title&gt;Validando com Custom Tag do Caelum Stella-Faces&lt;/title&gt;
+	&lt;/head&gt;
 	&lt;body>
 	&lt;f:view>
 		&lt;h:form id="formulario">
@@ -49,7 +50,7 @@ podemos começar a utilizar nosso validador na página.</p>
  </html>
 </textarea>
 
-<p>Repare nas linhas 1 e 13. Com simplicidade, temos a funcionalidade desejada.</p>
+<p>Repare nas linhas 1 e 14. Com simplicidade, temos a funcionalidade desejada.</p>
 
 <h2>Validação com Facelets</h2>
 
@@ -67,12 +68,11 @@ Lembre-se de configurar os xmls apropriadamente.</p>
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:stella="http://stella.caelum.com.br/faces">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Validando com Facelets</title>
-</head>
+&lt;head&gt;
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+  &lt;title&gt;Validando com Facelets&lt;/title&gt;
+&lt;/head>
 &lt;body>
-<textarea class="xhtml" name="code"	readonly="readonly">
 &lt;f:view>
 	&lt;h:form>
 		&lt;h:panelGrid>
