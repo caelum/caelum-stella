@@ -1,0 +1,55 @@
+<title>Configurando mensagens</title>
+<body>
+<h2>Mensagens de erro</h2>
+
+<!-- <p>Hibernate Validator comes with a default set of error messages translated 
+in about ten languages (if yours is not part of it, please sent us a patch). 
+You can override those messages by creating a ValidatorMessages.properties or
+ ( ValidatorMessages_loc.properties ) and override the needed keys. You can even
+  add your own additional set of messages while writing your validator annotations. 
+  If Hibernate Validator cannot resolve a key from your resourceBundle nor from ValidatorMessage, 
+  it falls back to the default built-in values.</p>
+
+<p>Alternatively you can provide a ResourceBundle while checking programmatically the validation
+ rules on a bean or if you want a completly different interpolation mechanism, you can provide
+  an implementation of org.hibernate.validator.MessageInterpolator (check the JavaDoc for more informations).</p>
+  
+  Extending the set of built-in constraints is extremely easy. Any constraint consists of two pieces:
+   the constraint descriptor (the annotation) and the constraint validator (the implementation class).
+    Here is a simple user-defined descriptor:
+
+@ValidatorClass(CapitalizedValidator.class)
+@Target(METHOD)
+@Retention(RUNTIME)
+@Documented
+public @interface Capitalized {
+    CapitalizeType type() default Capitalize.FIRST;
+    String message() default "has incorrect capitalization"
+}        
+
+type is a parameter describing how the property should to be capitalized.
+ This is a user parameter fully dependant on the annotation business.
+
+message is the default string used to describe the constraint violation and is mandatory.
+ You can hard code the string or you can externalize part/all of it through the Java
+  ResourceBundle mechanism. Parameters values are going to be injected inside the message when
+   the {parameter} string is found (in our example Capitalization is not {type} would generate
+    Capitalization is not FIRST ), externalizing the whole string in ValidatorMessages.properties
+     is considered good practice. See Error messages .
+
+@ValidatorClass(CapitalizedValidator.class)
+@Target(METHOD)
+@Retention(RUNTIME)
+@Documented
+public @interface Capitalized {
+    CapitalizeType type() default Capitalize.FIRST;
+    String message() default "{validator.capitalized}";
+}
+
+
+#in ValidatorMessages.properties
+validator.capitalized = Capitalization is not {type}
+        
+
+As you can see the {} notation is recursive. -->
+</body>

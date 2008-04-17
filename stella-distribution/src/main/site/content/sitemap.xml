@@ -12,10 +12,11 @@
 	<section>
 		<name>Stella Hibernate</name>
 		<page>stella-hibernate/hibernate-index.html</page>
+		<page>stella-hibernate/hibernate-annotating-domain-model.html</page>
 		<page>stella-hibernate/hibernate-persistence.html</page>
-		<page>stella-hibernate/hibernate-business.html</page>
+		<page>stella-hibernate/hibernate-business.html</page>		
 <!--		<page>stella-hibernate/hibernate-conventions.html</page>-->
-<!--		<page>stella-hibernate/hibernate-messages-setup.html</page>-->
+		<!-- <page>stella-hibernate/hibernate-messages-setup.html</page> -->
 	</section>
 	<section>
 		<name>Stella Faces</name>

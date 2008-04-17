@@ -1,0 +1,74 @@
+<title>Anotando o modelo</title>
+<body>
+
+<p>Este texto está baseado na
+<a href="http://www.hibernate.org/hib_docs/validator/reference/en/html_single/#d0e334">documentação do Hibernate Validator</a>.</p>
+
+<h2>Inserindo anotações no seu modelo de domínio</h2>
+<p>Se você já está familiarizado com as anotações, esta sintaxe será familiar.</p>
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+  public class Empresa {
+    
+    private String nome;
+    private String cnpj;
+        
+    // não nula com 20 caracterers no máximo
+    @Length(max=20)
+    @NotNull
+    public String getNome() {
+        return nome;
+    }
+
+    // uma representação válida par CNPJ, não nula.
+    @CNPJ
+    @NotNull
+    public String getCNPJ() {
+        return cnpj;
+    }
+        
+    }
+</textarea>
+
+
+<p>O exemplo acima mostra apenas validação em propriedades públicas, mas você também pode anotar campos com qualquer visibilidade.</p>
+
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+  public class Pessoa {
+    
+    private String nome;
+    private String cpf;
+        
+    @NotNull 
+    @CPF    
+    protected String getCPF() { ... };
+    ...
+}
+</textarea>     
+
+<p>Você pode também inserir anotações em interfaces. O Hibernate Validator irá verificar todas as superclasses e interfaces extendidas
+ ou implementadas por qualquer Bean fornecido para carregar as anotações apropriadas. 
+</p>
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+public interface EmpresaPrivada {
+
+    @NIT
+    String getPIS();
+    ...
+}
+
+public class Acme implements EmpresaPrivada {
+
+    
+    public String getPIS(){...}
+    ...
+}
+</textarea>          
+
+<p>A propriedade PIS será verificada quando um Bean é validado.</p>
+</body>
