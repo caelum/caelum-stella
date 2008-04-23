@@ -14,7 +14,8 @@ public class StellaCNPJValidatorTest {
     private StellaCNPJValidator validator;
 
     private static class ObjectWithCNPJ {
-        @CNPJ
+        @SuppressWarnings("unused")
+		@CNPJ
         private String cnpj;
     }
 

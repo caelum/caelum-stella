@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
+import br.com.caelum.stella.formatter.CNPJFormatter;
 
 /**
  * @author Leonardo Bessa
@@ -66,7 +67,7 @@ public class CNPJValidator implements Validator<String> {
 			if (!(CNPJ_FORMATED.matcher(cnpj).matches())) {
 				errors.add(CNPJError.INVALID_FORMAT);
 			}
-			cnpj = cnpj.replaceAll("[^0-9]", "");
+			cnpj = (new CNPJFormatter()).unformat(cnpj);
 		} else if (!CNPJ_UNFORMATED.matcher(cnpj).matches()) {
 			errors.add(CNPJError.INVALID_DIGITS);
 		}

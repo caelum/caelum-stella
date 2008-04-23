@@ -16,7 +16,8 @@ public class StellaNITValidatorTest {
     private StellaNITValidator validator;
 
     private static class ObjectWithNIT {
-        @NIT
+        @SuppressWarnings("unused")
+		@NIT
         private String nit;
     }
 

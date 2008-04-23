@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
+import br.com.caelum.stella.formatter.NITFormatter;
 /**
  * <p>
  * Validador do Número de Identificação do Trabalhador. Este documento contém 11
@@ -93,7 +94,7 @@ public class NITValidator implements Validator<String> {
 			if (!NIT_FORMATED.matcher(nit).matches()) {
 				errors.add(NITError.INVALID_FORMAT);
 			}
-			nit = nit.replaceAll("[^0-9]", "");
+			nit = (new NITFormatter()).unformat(nit);;
 		} else if (!NIT_UNFORMATED.matcher(nit).matches()) {
 			errors.add(NITError.INVALID_DIGITS);
 		}

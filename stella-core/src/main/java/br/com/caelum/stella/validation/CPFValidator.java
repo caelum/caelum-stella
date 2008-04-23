@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
+import br.com.caelum.stella.formatter.CPFFormatter;
 
 /**
  * Verifica se uma cadeia (String) é válida para o documento de CPF (Cadastro de
@@ -102,7 +103,7 @@ public class CPFValidator implements Validator<String> {
 			if (!CPF_FORMATED.matcher(cpf).matches()) {
 				errors.add(CPFError.INVALID_FORMAT);
 			}
-			cpf = cpf.replaceAll("[^0-9]", "");
+			cpf = (new CPFFormatter()).unformat(cpf);
 		} else if (!(CPF_UNFORMATED.matcher(cpf).matches())) {
 			errors.add(CPFError.INVALID_DIGITS);
 		}

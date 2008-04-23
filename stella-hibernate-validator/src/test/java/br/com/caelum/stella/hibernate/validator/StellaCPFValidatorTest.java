@@ -13,7 +13,8 @@ public class StellaCPFValidatorTest {
     private StellaCPFValidator validator;
 
     private static class ObjectWithCPF {
-        @CPF
+        @SuppressWarnings("unused")
+		@CPF
         private String cpf;
     }
 
