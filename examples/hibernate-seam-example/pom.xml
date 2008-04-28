@@ -7,13 +7,12 @@
 		<artifactId>caelum-stella</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>hibernate-persistence-example</artifactId>
-	<packaging>jar</packaging>
-	<name>Hibernate Persistence Example</name>
+	<artifactId>hibernate-seam-example</artifactId>
+	<packaging>war</packaging>
+	<name>Stella Hibernate Validator and JBoss Seam Example</name>
 	<url>http://www.caelum.com.br/</url>
-	
+
 	<dependencies>
-		
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>caelum-stella-hibernate-validator</artifactId>
@@ -36,11 +35,24 @@
 		</dependency>
 
 		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.1</version>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam</artifactId>
+			<version>2.0.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-ui</artifactId>
+			<version>2.0.1.GA</version>
 		</dependency>
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>jboss-maven-repository</id>
+			<name>JBoss Maven 2 snapshot repository</name>
+			<url>http://snapshots.jboss.org/maven2</url>
+		</repository>
+	</repositories>
 
 </project>
