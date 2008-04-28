@@ -22,6 +22,7 @@
     <module>stella-core</module>
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
+    <module>stella-jboleto</module>
     <module>stella-distribution</module>
     <module>examples/faces-example</module>
     <module>examples/vraptor-validator-example</module>
