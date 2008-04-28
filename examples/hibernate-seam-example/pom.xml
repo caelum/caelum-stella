@@ -38,12 +38,104 @@
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam</artifactId>
 			<version>2.0.1.GA</version>
+			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam-ui</artifactId>
 			<version>2.0.1.GA</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-remoting</artifactId>
+			<version>2.0.1.GA</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-ioc</artifactId>
+			<version>2.0.1.GA</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.sun.facelets</groupId>
+			<artifactId>jsf-facelets</artifactId>
+			<version>1.1.11</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>1.2_08</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>1.2_08</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!--      <dependency>-->
+		<!--         <groupId>org.jboss.embedded</groupId>-->
+		<!--         <artifactId>hibernate-all</artifactId>-->
+		<!--         <version>beta2</version>-->
+		<!--         <scope>provided</scope>-->
+		<!--      </dependency>-->
+
+		<dependency>
+			<groupId>apache-log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.8</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.embedded</groupId>
+			<artifactId>jboss-embedded-all</artifactId>
+			<version>beta2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.0EA3</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.0EA3</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 
@@ -59,5 +151,9 @@
 			<url>http://repository.jboss.org/maven2/</url>
 		</repository>
 	</repositories>
+
+	<properties>
+		<ear.name>seamtestapp-ear-1.0</ear.name>
+	</properties>
 
 </project>

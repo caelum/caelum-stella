@@ -1,14 +1,23 @@
 package br.com.caelum.stella.hibernate.persistence;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
+
 import br.com.caelum.stella.hibernate.validator.CNPJ;
 import br.com.caelum.stella.hibernate.validator.CPF;
 
+@SuppressWarnings("serial")
 @Entity
-public class Modelo {
+@Name("modelo")                                                                            
+@Scope(ScopeType.SESSION) 
+public class Modelo implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
