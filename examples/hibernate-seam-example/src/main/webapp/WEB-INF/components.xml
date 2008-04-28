@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+xmlns:bpm="http://jboss.com/products/seam/bpm"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation=
+"http://jboss.com/products/seam/bpm http://jboss.com/products/seam/bpm-2.0.xsd
+http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.0.xsd">
+
+</components>

@@ -49,9 +49,14 @@
 
 	<repositories>
 		<repository>
-			<id>jboss-maven-repository</id>
+			<id>jboss-snapshot-maven2-repository</id>
 			<name>JBoss Maven 2 snapshot repository</name>
 			<url>http://snapshots.jboss.org/maven2</url>
+		</repository>
+		<repository>
+			<id>jboss-maven2-repository</id>
+			<name>JBoss Maven 2 repository</name>
+			<url>http://repository.jboss.org/maven2/</url>
 		</repository>
 	</repositories>
 
