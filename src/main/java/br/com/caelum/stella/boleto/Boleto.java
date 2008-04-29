@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto;
 
-import java.util.Calendar;
 
 public interface Boleto {
 	public String getAgencia();
@@ -8,9 +7,6 @@ public interface Boleto {
 	public String getCarteira();
 	public String getNumConvenio();
 	public String getNossoNumero();
-	public Calendar getDataVencimento();
-	public Calendar getDataDocumento();
-	public Calendar getDataProcessamento();
 	public String getValorBoleto();
 	public String getCaminho();
 	public String getTipoSaida();
@@ -29,4 +25,6 @@ public interface Boleto {
 	public String getUfSacado();
 	public String getEspecieDocumento();
 	public String getAceite();
+	public Datas getDatas();
+	public Banco getBanco();
 }
