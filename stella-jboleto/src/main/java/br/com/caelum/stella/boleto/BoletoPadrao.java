@@ -4,41 +4,40 @@ import java.util.Calendar;
 
 
 public class BoletoPadrao implements Boleto {
-	String agencia;
-	String contaCorrente;
-	String carteira;
-	String numConvenio;
-	String nossoNumero;
-	Calendar dataVencimento;
-	Calendar dataDocumento;
-	Calendar dataProcessamento;
-	String valorBoleto;
-	String caminho;
-	String tipoSaida;
+	private String agencia;
+	private String contaCorrente;
+	private String carteira;
+	private String numConvenio;
+	private String nossoNumero;
+	private String valorBoleto;
+	private String caminho;
+	private String tipoSaida;
 
-	String localPagamento;
-	String cedente;
-	String qtdMoeda;
-	String valorMoeda;
-	double acrescimo;
+	private String localPagamento;
+	private String cedente;
+	private String qtdMoeda;
+	private String valorMoeda;
+	private double acrescimo;
 
-	String instrucao;
+	private String instrucao;
 
-	String nomeSacado;
-	String cpfSacado;
-	String enderecoSacado;
-	String cepSacado;
-	String bairroSacado;
-	String cidadeSacado;
-	String ufSacado;
-	String especieDocumento;
-	String aceite;
+	private String nomeSacado;
+	private String cpfSacado;
+	private String enderecoSacado;
+	private String cepSacado;
+	private String bairroSacado;
+	private String cidadeSacado;
+	private String ufSacado;
+	private String especieDocumento;
+	private String aceite;
+	private Banco banco;
+	private DatasPadrao datas;
 	
 	private BoletoPadrao() {
 	}
 	
-	public Boleto newBoleto() {
-		Boleto boleto = new BoletoPadrao();
+	public Datas newBoleto() {
+		Datas boleto = new BoletoPadrao();
 		return boleto;
 	}
 
@@ -50,7 +49,7 @@ public class BoletoPadrao implements Boleto {
 		return this.acrescimo;
 	}
 	
-	public Boleto comAcrescimo(double acrescimo) {
+	public Datas comAcrescimo(double acrescimo) {
 		this.acrescimo = acrescimo;
 		return this;
 	}
@@ -59,7 +58,7 @@ public class BoletoPadrao implements Boleto {
 		return this.agencia;
 	}
 	
-	public Boleto comAgencia(String agencia) {
+	public Datas comAgencia(String agencia) {
 		this.agencia = agencia;
 		return this;
 	}
@@ -68,7 +67,7 @@ public class BoletoPadrao implements Boleto {
 		return this.bairroSacado;
 	}
 	
-	public Boleto comBairroSacado(String bairroSacado) {
+	public Datas comBairroSacado(String bairroSacado) {
 		this.bairroSacado = bairroSacado;
 		return this;
 	}
@@ -77,7 +76,7 @@ public class BoletoPadrao implements Boleto {
 		return this.caminho;
 	}
 	
-	public Boleto comCaminho(String caminho) {
+	public Datas comCaminho(String caminho) {
 		this.caminho = caminho;
 		return this;
 	}
@@ -86,7 +85,7 @@ public class BoletoPadrao implements Boleto {
 		return this.carteira;
 	}
 	
-	public Boleto comCarteira(String carteira) {
+	public Datas comCarteira(String carteira) {
 		this.carteira = carteira;
 		return this;
 	}
@@ -95,7 +94,7 @@ public class BoletoPadrao implements Boleto {
 		return this.cedente;
 	}
 	
-	public Boleto comCedente(String cedente) {
+	public Datas comCedente(String cedente) {
 		this.cedente = cedente;
 		return this;
 	}
@@ -104,7 +103,7 @@ public class BoletoPadrao implements Boleto {
 		return this.cepSacado;
 	}
 	
-	public Boleto comCepSacado(String cepSacado) {
+	public Datas comCepSacado(String cepSacado) {
 		this.cepSacado = cepSacado;
 		return this;
 	}
@@ -113,7 +112,7 @@ public class BoletoPadrao implements Boleto {
 		return this.cidadeSacado;
 	}
 	
-	public Boleto comCidadeSacado(String cidadeSacado) {
+	public Datas comCidadeSacado(String cidadeSacado) {
 		this.cidadeSacado = cidadeSacado;
 		return this;
 	}
@@ -122,7 +121,7 @@ public class BoletoPadrao implements Boleto {
 		return this.contaCorrente;
 	}
 	
-	public Boleto comContaCorrente(String contaCorrente) {
+	public Datas comContaCorrente(String contaCorrente) {
 		this.contaCorrente = contaCorrente;
 		return this;
 	}
@@ -131,7 +130,7 @@ public class BoletoPadrao implements Boleto {
 		return this.cpfSacado;
 	}
 	
-	public Boleto comCpfSacado(String cpfSacado) {
+	public Datas comCpfSacado(String cpfSacado) {
 		this.cpfSacado = cpfSacado;
 		return this;
 	}
@@ -140,7 +139,7 @@ public class BoletoPadrao implements Boleto {
 		return this.dataDocumento;
 	}
 	
-	public Boleto comDataDocumento(Calendar dataDocumento) {
+	public Datas comDataDocumento(Calendar dataDocumento) {
 		this.dataDocumento = dataDocumento;
 		return this;
 	}
@@ -149,7 +148,7 @@ public class BoletoPadrao implements Boleto {
 		return this.dataProcessamento;
 	}
 	
-	public Boleto comDataProcessamento(Calendar dataProcessamento) {
+	public Datas comDataProcessamento(Calendar dataProcessamento) {
 		this.dataProcessamento = dataProcessamento;
 		return this;
 	}
@@ -158,7 +157,7 @@ public class BoletoPadrao implements Boleto {
 		return this.dataVencimento;
 	}
 	
-	public Boleto comDataVencimento(Calendar dataVencimento) {
+	public Datas comDataVencimento(Calendar dataVencimento) {
 		this.dataVencimento = dataVencimento;
 		return this;
 	}
@@ -167,7 +166,7 @@ public class BoletoPadrao implements Boleto {
 		return this.enderecoSacado;
 	}
 	
-	public Boleto comEnderecoSacado(String enderecoSacado) {
+	public Datas comEnderecoSacado(String enderecoSacado) {
 		this.enderecoSacado = enderecoSacado;
 		return this;
 	}
@@ -176,7 +175,7 @@ public class BoletoPadrao implements Boleto {
 		return this.especieDocumento;
 	}
 	
-	public Boleto comEspecieDocumento(String especieDocumento) {
+	public Datas comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
 		return this;
 	}
@@ -185,7 +184,7 @@ public class BoletoPadrao implements Boleto {
 		return this.instrucao;
 	}
 	
-	public Boleto comInstrucao(String instrucao) {
+	public Datas comInstrucao(String instrucao) {
 		this.instrucao = instrucao;
 		return this;
 	}
@@ -194,7 +193,7 @@ public class BoletoPadrao implements Boleto {
 		return this.localPagamento;
 	}
 	
-	public Boleto comLocalPagamento(String localPagamento) {
+	public Datas comLocalPagamento(String localPagamento) {
 		this.localPagamento = localPagamento;
 		return this;
 	}
@@ -203,7 +202,7 @@ public class BoletoPadrao implements Boleto {
 		return this.nomeSacado;
 	}
 	
-	public Boleto paraNomeSacado(String nomeSacado) {
+	public Datas paraNomeSacado(String nomeSacado) {
 		this.nomeSacado = nomeSacado;
 		return this;
 	}
@@ -212,7 +211,7 @@ public class BoletoPadrao implements Boleto {
 		return this.nossoNumero;
 	}
 	
-	public Boleto comNossoNumero(String nossoNumero) {
+	public Datas comNossoNumero(String nossoNumero) {
 		this.nossoNumero = nossoNumero;
 		return this;
 	}
@@ -221,7 +220,7 @@ public class BoletoPadrao implements Boleto {
 		return this.numConvenio;
 	}
 	
-	public Boleto comNumConvenio(String numConvenio) {
+	public Datas comNumConvenio(String numConvenio) {
 		this.numConvenio = numConvenio;
 		return this;
 	}
@@ -230,7 +229,7 @@ public class BoletoPadrao implements Boleto {
 		return this.qtdMoeda;
 	}
 	
-	public Boleto comQtdMoeda(String qtdMoeda) {
+	public Datas comQtdMoeda(String qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
 		return this;
 	}
@@ -239,7 +238,7 @@ public class BoletoPadrao implements Boleto {
 		return this.tipoSaida;
 	}
 	
-	public Boleto comTipoSaida(String tipoSaida) {
+	public Datas comTipoSaida(String tipoSaida) {
 		this.tipoSaida = tipoSaida;
 		return this;
 	}
@@ -248,7 +247,7 @@ public class BoletoPadrao implements Boleto {
 		return this.ufSacado;
 	}
 	
-	public Boleto comUfSacado(String ufSacado) {
+	public Datas comUfSacado(String ufSacado) {
 		this.ufSacado = ufSacado;
 		return this;
 	}
@@ -257,7 +256,7 @@ public class BoletoPadrao implements Boleto {
 		return this.valorBoleto;
 	}
 	
-	public Boleto comValorBoleto(String valorBoleto) {
+	public Datas comValorBoleto(String valorBoleto) {
 		this.valorBoleto = valorBoleto;
 		return this;
 	}
@@ -266,13 +265,35 @@ public class BoletoPadrao implements Boleto {
 		return this.valorMoeda;
 	}
 	
-	public Boleto comValorMoeda(String valorMoeda) {
+	public Datas comValorMoeda(String valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
+	}
+	
+	public Banco getBanco() {
+		return this.banco;
+	}
+	
+	public Datas comBanco(Banco banco) {
+		this.banco = banco;
+		return this;
+	}
+	
+	
+	
+	public void gerar() {
+		BoletoFactory boletoFactory = new BoletoFactory();
+		boletoFactory.generateBoleto(this);
 	}
 	
 	public String getLinhaDigitavel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Datas getDatas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
