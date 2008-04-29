@@ -1,18 +1,19 @@
 package br.com.caelum.stella.validation.ie;
+
 /**
  * @author Leonardo Bessa
  */
 public class CalculoDVInfo {
 
 	interface Rotina {
-		public Integer transform(Integer x);
-	};
+		Integer transform(Integer x);
+	}
 
 	interface RequiresDigits {
-		public void setDigits(Integer[] numeros);
-	};
+		void setDigits(Integer[] numeros);
+	}
 
-	public class RotinaA implements Rotina, RequiresDigits {
+	private class RotinaA implements Rotina, RequiresDigits {
 
 		private Integer[] numeros;
 
@@ -33,25 +34,25 @@ public class CalculoDVInfo {
 		}
 	}
 
-	public class RotinaB implements Rotina {
+	private class RotinaB implements Rotina {
 		public Integer transform(Integer x) {
 			return 10 * x;
 		}
 	}
 
-	public class RotinaC implements Rotina {
+	private class RotinaC implements Rotina {
 		public Integer transform(Integer x) {
 			return x + (5 + 4 * FATOR);
 		}
 	}
 
-	public class RotinaD implements Rotina {
+	private class RotinaD implements Rotina {
 		public Integer transform(Integer x) {
 			return x % MOD;
 		}
 	}
 
-	public class RotinaE implements Rotina {
+	private class RotinaE implements Rotina {
 		public Integer transform(Integer x) {
 			return (MOD) - (x % MOD);
 		}
@@ -84,6 +85,9 @@ public class CalculoDVInfo {
 	public static final Integer[] P13 = { 0, 0, 3, 2, 10, 9, 8, 7, 6, 5, 4, 3,
 			2, 0 };
 
+	public static final Integer[][] PESOS = { P1, P2, P3, P4, P5, P6, P7, P8,
+			P9, P10, P11, P12, P13 };
+
 	private final Rotina[] ROTINAS;
 	private final Integer MOD;
 	private final Integer[] TABELA_DE_PESOS;
@@ -96,7 +100,6 @@ public class CalculoDVInfo {
 
 	public CalculoDVInfo(Integer fator, RotinaCode[] rotinaCodes, Integer mod,
 			int codigoDosPesos, Integer posicaoDoDv) {
-		super();
 		FATOR = fator;
 		ROTINAS = new Rotina[rotinaCodes.length];
 		for (int i = 0; i < rotinaCodes.length; i++) {
@@ -124,57 +127,17 @@ public class CalculoDVInfo {
 	}
 
 	private Integer[] tabelaDePesos(int code) {
-		Integer[] pesos;
-		switch (code) {
-		case 1:
-			pesos = P1;
-			break;
-		case 2:
-			pesos = P2;
-			break;
-		case 3:
-			pesos = P3;
-			break;
-		case 4:
-			pesos = P4;
-			break;
-		case 5:
-			pesos = P5;
-			break;
-		case 6:
-			pesos = P6;
-			break;
-		case 7:
-			pesos = P7;
-			break;
-		case 8:
-			pesos = P8;
-			break;
-		case 9:
-			pesos = P9;
-			break;
-		case 10:
-			pesos = P10;
-			break;
-		case 11:
-			pesos = P11;
-			break;
-		case 12:
-			pesos = P12;
-			break;
-		case 13:
-			pesos = P13;
-			break;
-		default:
+		if (code < 1 || code > 13) {
 			throw new IllegalArgumentException();
 		}
-		return pesos;
+		return PESOS[code - 1];
 	}
 
 	public boolean DVisValid(String digitos) {
 		boolean isValid = false;
-		
-		Integer dvCandidate = Integer.parseInt(digitos.substring(POSICAO_DO_DV - 1,POSICAO_DO_DV));
+
+		Integer dvCandidate = Integer.parseInt(digitos.substring(
+				POSICAO_DO_DV - 1, POSICAO_DO_DV));
 		Integer dv = generateDV(digitos);
 		if (dv.equals(dvCandidate)) {
 			isValid = true;
@@ -186,7 +149,7 @@ public class CalculoDVInfo {
 	private Integer generateDV(String digitos) {
 		Integer[] intDigits = new Integer[digitos.length()];
 		for (int i = 0; i < digitos.length(); i++) {
-			intDigits[i] = Integer.parseInt(digitos.substring(i,i+1));
+			intDigits[i] = Integer.parseInt(digitos.substring(i, i + 1));
 		}
 		Integer innerProduct = innerProduct(TABELA_DE_PESOS, intDigits);
 		Integer result = innerProduct;
