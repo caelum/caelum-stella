@@ -1,4 +1,4 @@
-package br.com.caelum.stella;
+package br.com.caelum.stella.boleto;
 
 public enum Banco {
 
