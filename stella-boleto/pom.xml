@@ -3,14 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	
-
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>stella-jboleto</artifactId>
+
+	<artifactId>stella-boleto</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1-SNAPSHOT</version>
 	<name>stella-jboleto</name>
@@ -29,12 +28,6 @@
             <version>2.1.0</version>
         </dependency>
 	
-		<!--  Leia o readme.txt no diretório resources para resolver essa dependencia! -->
-		<dependency>
-            <groupId>org.jboleto</groupId>
-            <artifactId>jboleto</artifactId>
-            <version>0.9.6</version>
-        </dependency>
 	</dependencies>
 	
 </project>
