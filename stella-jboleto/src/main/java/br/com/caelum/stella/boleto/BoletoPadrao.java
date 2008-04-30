@@ -149,14 +149,4 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public void gerar() {
-		BoletoFactory boletoFactory = new BoletoFactory();
-		boletoFactory.generateBoleto(this);
-	}
-
-	public String getLinhaDigitavel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
