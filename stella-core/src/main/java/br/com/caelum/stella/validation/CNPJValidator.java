@@ -4,13 +4,12 @@ import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
 import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
+import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
 import br.com.caelum.stella.formatter.CNPJFormatter;
 
 /**
@@ -28,19 +27,14 @@ public class CNPJValidator implements Validator<String> {
 	private static final Integer[] dv2Multipliers = { 6, 5, 4, 3, 2, 9, 8, 7,
 			6, 5, 4, 3, 2 };
 
-	@SuppressWarnings("serial")
-	private static final DigitChecker digitChecker = new DigitChecker(
-			new HashMap<Integer, List<Integer>>() {
-				{
-					this.put(dv1Position, Arrays.asList(dv1Multipliers));
-					this.put(dv2Position, Arrays.asList(dv2Multipliers));
-				}
-			}, MOD) {
-		@Override
-		protected int rotinaPosProdutoInterno(int resto) {
-			return (resto < 2) ? 0 : 11 - resto;
-		}
-	};
+	private static final DigitoVerificadorInfo dv1info = new DigitoVerificadorInfo(
+			0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
+			dv1Multipliers, dv1Position);
+	private static final DigitoVerificadorInfo dv2info = new DigitoVerificadorInfo(
+			0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
+			dv2Multipliers, dv2Position);
+	private static final ValidadorDeDV dv1Checker = new ValidadorDeDV(dv1info);
+	private static final ValidadorDeDV dv2Checker = new ValidadorDeDV(dv2info);
 
 	public CNPJValidator(MessageProducer<CNPJError> messageProducer,
 			boolean isFormatted) {
@@ -71,8 +65,10 @@ public class CNPJValidator implements Validator<String> {
 		} else if (!CNPJ_UNFORMATED.matcher(cnpj).matches()) {
 			errors.add(CNPJError.INVALID_DIGITS);
 		}
-		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cnpj)) {
-			errors.add(CNPJError.INVALID_CHECK_DIGITS);
+		if (errors.isEmpty()) {
+			if ((!dv1Checker.DVisValid(cnpj)) || (!dv2Checker.DVisValid(cnpj))) {
+				errors.add(CNPJError.INVALID_CHECK_DIGITS);
+			}
 		}
 
 		return errors.isEmpty();
