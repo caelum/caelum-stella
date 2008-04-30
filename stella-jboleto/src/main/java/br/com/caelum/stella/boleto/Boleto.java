@@ -16,15 +16,9 @@ public interface Boleto {
 	public String getValorMoeda();
 	public double getAcrescimo();
 	public String getInstrucao();
-	public String getNomeSacado();
-	public String getCpfSacado();
-	public String getEnderecoSacado();
-	public String getCepSacado();
-	public String getBairroSacado();
-	public String getCidadeSacado();
-	public String getUfSacado();
 	public String getEspecieDocumento();
 	public String getAceite();
 	public Datas getDatas();
 	public Banco getBanco();
+	public Sacado getSacado();
 }

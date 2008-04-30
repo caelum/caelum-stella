@@ -17,18 +17,12 @@ public class BoletoPadrao implements Boleto {
 	private double acrescimo;
 
 	private String instrucao;
-
-	private String nomeSacado;
-	private String cpfSacado;
-	private String enderecoSacado;
-	private String cepSacado;
-	private String bairroSacado;
-	private String cidadeSacado;
-	private String ufSacado;
 	private String especieDocumento;
 	private String aceite;
+	
 	private Banco banco;
 	private Datas datas;
+	private Sacado sacado;
 
 	private BoletoPadrao() {
 	}
@@ -60,15 +54,6 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getBairroSacado() {
-		return this.bairroSacado;
-	}
-
-	public BoletoPadrao comBairroSacado(String bairroSacado) {
-		this.bairroSacado = bairroSacado;
-		return this;
-	}
-
 	public String getCaminho() {
 		return this.caminho;
 	}
@@ -96,24 +81,6 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getCepSacado() {
-		return this.cepSacado;
-	}
-
-	public BoletoPadrao comCepSacado(String cepSacado) {
-		this.cepSacado = cepSacado;
-		return this;
-	}
-
-	public String getCidadeSacado() {
-		return this.cidadeSacado;
-	}
-
-	public BoletoPadrao comCidadeSacado(String cidadeSacado) {
-		this.cidadeSacado = cidadeSacado;
-		return this;
-	}
-
 	public String getContaCorrente() {
 		return this.contaCorrente;
 	}
@@ -123,30 +90,12 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getCpfSacado() {
-		return this.cpfSacado;
-	}
-
-	public BoletoPadrao comCpfSacado(String cpfSacado) {
-		this.cpfSacado = cpfSacado;
-		return this;
-	}
-
 	public Datas getDatas() {
 		return this.datas;
 	}
 
 	public BoletoPadrao comDatas(Datas datas) {
 		this.datas = datas;
-		return this;
-	}
-
-	public String getEnderecoSacado() {
-		return this.enderecoSacado;
-	}
-
-	public BoletoPadrao comEnderecoSacado(String enderecoSacado) {
-		this.enderecoSacado = enderecoSacado;
 		return this;
 	}
 
@@ -174,15 +123,6 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comLocalPagamento(String localPagamento) {
 		this.localPagamento = localPagamento;
-		return this;
-	}
-
-	public String getNomeSacado() {
-		return this.nomeSacado;
-	}
-
-	public BoletoPadrao paraNomeSacado(String nomeSacado) {
-		this.nomeSacado = nomeSacado;
 		return this;
 	}
 
@@ -222,15 +162,6 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getUfSacado() {
-		return this.ufSacado;
-	}
-
-	public BoletoPadrao comUfSacado(String ufSacado) {
-		this.ufSacado = ufSacado;
-		return this;
-	}
-
 	public String getValorBoleto() {
 		return this.valorBoleto;
 	}
@@ -255,6 +186,15 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comBanco(Banco banco) {
 		this.banco = banco;
+		return this;
+	}
+	
+	public Sacado getSacado() {
+		return this.sacado;
+	}
+	
+	public BoletoPadrao comSacado(Sacado sacado) {
+		this.sacado = sacado;
 		return this;
 	}
 

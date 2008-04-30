@@ -6,6 +6,14 @@ public class DatasPadrao implements Datas {
 	private Calendar documento;
 	private Calendar processamento;
 	private Calendar vencimento;
+	
+	private DatasPadrao() {
+	}
+	
+	public DatasPadrao newDatas() {
+		DatasPadrao datas = new DatasPadrao();
+		return datas;
+	}
 
 	public Calendar getDataDoDocumento() {
 		return this.documento;
