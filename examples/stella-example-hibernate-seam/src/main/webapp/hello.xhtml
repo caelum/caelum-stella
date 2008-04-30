@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [     <!ENTITY nbsp "&#160;">  ]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	template="/WEB-INF/template/default.xhtml">
+	<ui:define name="title">Hello #{docBean.name}</ui:define>
+	<ui:define name="content">
+		<f:view>
+				<h2>Hello #{docBean.name}</h2>
+				<h2>CPF: #{docBean.cpf}</h2>
+			<a href=".">GO HOME</a>
+		</f:view>
+	</ui:define>
+</ui:composition>

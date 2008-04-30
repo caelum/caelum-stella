@@ -1,0 +1,14 @@
+<!DOCTYPE components PUBLIC  "-//JBoss/Seam Component Configuration DTD 1.1//EN" 
+  "http://jboss.com/products/seam/components-1.1.dtd">
+
+<components xmlns="http://jboss.com/products/seam/components"
+	    xmlns:core="http://jboss.com/products/seam/core"> 
+
+    <core:init debug="true"/>
+
+    <core:manager conversation-timeout="120000"
+                  concurrent-request-timeout="500"
+                  conversation-id-parameter="cid"
+                  conversation-is-long-running-parameter="clr"/>
+
+</components>

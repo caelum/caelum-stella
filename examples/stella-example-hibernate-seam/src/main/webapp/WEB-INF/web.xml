@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <description>stella-example-hibernate-seam Web</description>
+
+    <context-param>
+        <description>Comma separated list of URIs of (additional) faces config files.
+            (e.g. /WEB-INF/my-config.xml)
+            See JSF 1.0 PRD2, 10.3.2
+            Attention: You do not need to put /WEB-INF/faces-config.xml in here.
+        </description>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/my-config.xml</param-value>
+    </context-param>
+    <context-param>
+        <description>State saving method: "client" or "server" (= default)
+            See JSF Specification 2.5.3</description>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+    <context-param>
+        <description>This parameter tells MyFaces if javascript code should be allowed in the
+            rendered HTML output.
+            If javascript is allowed, command_link anchors will have javascript code
+            that submits the corresponding form.
+            If javascript is not allowed, the state saving info and nested parameters
+            will be added as url parameters.
+            Default: "true"</description>
+        <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <description>If true, rendered HTML code will be formatted, so that it is "human readable".
+            i.e. additional line separators and whitespace will be written, that do not
+            influence the HTML code.
+            Default: "true"</description>
+        <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.request.charset</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+    <context-param>
+        <description>Used for encrypting view state. Only relevant for client side
+            state saving. See MyFaces wiki/web site documentation for instructions
+            on how to configure an application for diffenent encryption strengths.
+        </description>
+        <param-name>org.apache.myfaces.SECRET</param-name>
+        <param-value>NzY1NDMyMTA=</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            Validate managed beans, navigation rules and ensure that forms are not nested.
+        </description>
+        <param-name>org.apache.myfaces.VALIDATE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+                <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+                <param-value>.xhtml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>facelets.DEVELOPMENT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+	<!-- Seam -->
+        <listener>
+                <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
+        </listener>
+        <context-param>
+                <param-name>org.jboss.seam.core.manager.conversationTimeout</param-name>
+                <param-value>30000</param-value>
+        </context-param>
+
+    <!-- Extensions Filter -->
+    <filter>
+        <filter-name>extensionsFilter</filter-name>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+        <init-param>
+            <description>Set the size limit for uploaded files.
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB</description>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>100m</param-value>
+        </init-param>
+        <init-param>
+            <description>Set the threshold size - files
+                below this limit are stored in memory, files above
+                this limit are stored on disk.
+
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB</description>
+            <param-name>uploadThresholdSize</param-name>
+            <param-value>100k</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+                <filter-name>RewriterFilter</filter-name>
+                <filter-class>cz.softeu.rewriter.RewriterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RewriterFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Listener, to allow serving MyFaces apps -->
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+
+    <!-- Faces Servlet -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Faces Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <!-- Welcome files -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

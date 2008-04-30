@@ -1,0 +1,6 @@
+body {background:#e1f4ff color:#000;margin:0;padding:0;font-family:Tahoma, "Helvetica CE", Helvetica, sans-serif;text-align:center;font-size:0.8em}
+h1 {color:#ef9832;font-size:1.7em;margin:0 0 5px 0;font-weight:bold;display:block;border-bottom:1px dotted #00659f}
+h2 {font-size:1.2em;margin:10px 0 2px 0;padding:0;color:#00659f}
+h3 {font-size:1em;color:#ef9832;margin:0}
+p {text-align:justify}
+errors {text-color:red}
