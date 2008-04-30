@@ -1,17 +1,12 @@
 package br.com.caelum.stella.boleto;
 
 public class BoletoPadrao implements Boleto {
-	private String agencia;
-	private String contaCorrente;
-	private String carteira;
-	private String numConvenio;
-	private String nossoNumero;
+	
 	private String valorBoleto;
 	private String caminho;
 	private String tipoSaida;
 
 	private String localPagamento;
-	private String cedente;
 	private String qtdMoeda;
 	private String valorMoeda;
 	private double acrescimo;
@@ -23,6 +18,7 @@ public class BoletoPadrao implements Boleto {
 	private Banco banco;
 	private Datas datas;
 	private Sacado sacado;
+	private Emissor emissor;
 
 	private BoletoPadrao() {
 	}
@@ -45,48 +41,12 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getAgencia() {
-		return this.agencia;
-	}
-
-	public BoletoPadrao comAgencia(String agencia) {
-		this.agencia = agencia;
-		return this;
-	}
-
 	public String getCaminho() {
 		return this.caminho;
 	}
 
 	public BoletoPadrao comCaminho(String caminho) {
 		this.caminho = caminho;
-		return this;
-	}
-
-	public String getCarteira() {
-		return this.carteira;
-	}
-
-	public BoletoPadrao comCarteira(String carteira) {
-		this.carteira = carteira;
-		return this;
-	}
-
-	public String getCedente() {
-		return this.cedente;
-	}
-
-	public BoletoPadrao comCedente(String cedente) {
-		this.cedente = cedente;
-		return this;
-	}
-
-	public String getContaCorrente() {
-		return this.contaCorrente;
-	}
-
-	public BoletoPadrao comContaCorrente(String contaCorrente) {
-		this.contaCorrente = contaCorrente;
 		return this;
 	}
 
@@ -123,24 +83,6 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comLocalPagamento(String localPagamento) {
 		this.localPagamento = localPagamento;
-		return this;
-	}
-
-	public String getNossoNumero() {
-		return this.nossoNumero;
-	}
-
-	public BoletoPadrao comNossoNumero(String nossoNumero) {
-		this.nossoNumero = nossoNumero;
-		return this;
-	}
-
-	public String getNumConvenio() {
-		return this.numConvenio;
-	}
-
-	public BoletoPadrao comNumConvenio(String numConvenio) {
-		this.numConvenio = numConvenio;
 		return this;
 	}
 
@@ -195,6 +137,15 @@ public class BoletoPadrao implements Boleto {
 	
 	public BoletoPadrao comSacado(Sacado sacado) {
 		this.sacado = sacado;
+		return this;
+	}
+	
+	public Emissor getEmissor() {
+		return this.emissor;
+	}
+	
+	public BoletoPadrao comEmissor(Emissor emissor) {
+		this.emissor = emissor;
 		return this;
 	}
 
