@@ -20,21 +20,21 @@ public class CNPJValidator implements Validator<String> {
 	private final MessageProducer<CNPJError> messageProducer;
 	private final List<CNPJError> errors = new ArrayList<CNPJError>();
 	private static final int MOD = 11;
-	private static final int dv1Position = 13;
-	private static final int dv2Position = 14;
-	private static final Integer[] dv1Multipliers = { 5, 4, 3, 2, 9, 8, 7, 6,
+	private static final int DV1_POSITION = 13;
+	private static final int DV2_POSITION = 14;
+	private static final Integer[] DV1_MULTIPLIERS = { 5, 4, 3, 2, 9, 8, 7, 6,
 			5, 4, 3, 2 };
-	private static final Integer[] dv2Multipliers = { 6, 5, 4, 3, 2, 9, 8, 7,
+	private static final Integer[] DV2_MULTIPLIERS = { 6, 5, 4, 3, 2, 9, 8, 7,
 			6, 5, 4, 3, 2 };
 
-	private static final DigitoVerificadorInfo dv1info = new DigitoVerificadorInfo(
+	private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
 			0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
-			dv1Multipliers, dv1Position);
-	private static final DigitoVerificadorInfo dv2info = new DigitoVerificadorInfo(
+			DV1_MULTIPLIERS, DV1_POSITION);
+	private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(
 			0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
-			dv2Multipliers, dv2Position);
-	private static final ValidadorDeDV dv1Checker = new ValidadorDeDV(dv1info);
-	private static final ValidadorDeDV dv2Checker = new ValidadorDeDV(dv2info);
+			DV2_MULTIPLIERS, DV2_POSITION);
+	private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
+	private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
 	public CNPJValidator(MessageProducer<CNPJError> messageProducer,
 			boolean isFormatted) {
@@ -66,7 +66,8 @@ public class CNPJValidator implements Validator<String> {
 			errors.add(CNPJError.INVALID_DIGITS);
 		}
 		if (errors.isEmpty()) {
-			if ((!dv1Checker.DVisValid(cnpj)) || (!dv2Checker.DVisValid(cnpj))) {
+			if ((!DV1_CHECKER.DVisValid(cnpj))
+					|| (!DV2_CHECKER.DVisValid(cnpj))) {
 				errors.add(CNPJError.INVALID_CHECK_DIGITS);
 			}
 		}
