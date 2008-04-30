@@ -1,4 +1,4 @@
-package br.com.caelum.stella.validation.ie;
+package br.com.caelum.stella.validation;
 
 /**
  * @author Leonardo Bessa
