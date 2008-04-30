@@ -20,15 +20,19 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithInvalidCharacter() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
-		assertFalse(validator.validate("1111111a111"));
-		errors = validator.getLastValidationMessages();
+		try {
+			validator.assertValid("1111111a111");
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages("1111111a111");
 		assertTrue(errors.size() == 1);
 		
 		mockery.assertIsSatisfied();
@@ -38,15 +42,19 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithLessDigitsThanAllowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
-		assertFalse(validator.validate("1234567890"));
-		errors = validator.getLastValidationMessages();
+		try {
+			validator.assertValid("1234567890");
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages("1234567890");
 		assertTrue(errors.size() == 1);
 		
 		mockery.assertIsSatisfied();
@@ -56,16 +64,21 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithMoreDigitsThanAlowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 
-		assertFalse(validator.validate("123456789012"));
-		errors = validator.getLastValidationMessages();
+		String value = "123456789012";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 		
 		mockery.assertIsSatisfied();
@@ -75,17 +88,22 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithCheckDigitsWithFirstCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
 		// VALID CPF = 248.438.034-80
-		assertFalse(validator.validate("24843803470"));
-		errors = validator.getLastValidationMessages();
+		String value = "24843803470";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 
 		mockery.assertIsSatisfied();
@@ -95,17 +113,22 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithCheckDigitsWithSecondCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
 		// VALID CPF = 099.075.865-60
-		assertFalse(validator.validate("09907586561"));
-		errors = validator.getLastValidationMessages();
+		String value = "09907586561";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 
 		mockery.assertIsSatisfied();
@@ -115,7 +138,7 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldValidateValidCPF() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			
 		}});
@@ -123,16 +146,31 @@ public class CPFValidatorTest {
 		
 		List<ValidationMessage> errors;
 		
-		assertTrue(validator.validate("88641577947"));
-		errors = validator.getLastValidationMessages();
+		String value = "88641577947";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
 		
-		assertTrue(validator.validate("34608514300"));
-		errors = validator.getLastValidationMessages();
+		value = "34608514300";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
 		
-		assertTrue(validator.validate("47393545608"));
-		errors = validator.getLastValidationMessages();
+		value = "47393545608";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -142,16 +180,22 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldValidateNullCPF() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		
 		List<ValidationMessage> errors;
-		assertTrue(validator.validate(null));
-		errors = validator.getLastValidationMessages();
+		String value = null;
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
+		
 		mockery.assertIsSatisfied();
 	}
 
@@ -159,16 +203,21 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateCPFWithAllRepeatedDigitsFaulWhenNotIgnoringIt() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(CPFError.REPEATED_DIGITS);
+			exactly(2).of(messageProducer).getMessage(CPFError.REPEATED_DIGITS);
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false,false);
 		List<ValidationMessage> errors;
 		
-		assertFalse(validator.validate("44444444444"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 1);		
+		String value = "44444444444";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
+		assertTrue(errors.size() == 1);
 		
 		mockery.assertIsSatisfied();
 	}
@@ -177,16 +226,21 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldValidateCPFWithAllRepeatedDigitsFaulWhenIgnoringIt() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery.mock(MessageProducer.class);
+		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 		mockery.checking(new Expectations(){{
 			
 		}});
 		CPFValidator validator = new CPFValidator(messageProducer,false);
 		List<ValidationMessage> errors;
 		
-		assertTrue(validator.validate("44444444444"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.toString(), errors.size() == 0);		
+		String value = "44444444444";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
+		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
 	}
@@ -195,7 +249,7 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldValidateValidFormattedCPF(){
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery
+		final MessageProducer messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
@@ -207,10 +261,15 @@ public class CPFValidatorTest {
 		List<ValidationMessage> errors;
 
 		// VALID CPF = 356.296.825-63
-		assertTrue(validator.validate("356.296.825-63"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 0);
-
+		String value = "356.296.825-63";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
+		assertTrue(errors.isEmpty());
+		
 		mockery.assertIsSatisfied();
 	}
 	
@@ -218,12 +277,12 @@ public class CPFValidatorTest {
 	@Test
 	public void shouldNotValidateValidUnformattedCPF(){
 		Mockery mockery = new Mockery();
-		final MessageProducer<CPFError> messageProducer = mockery
+		final MessageProducer messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
 			{
-				exactly(1).of(messageProducer).getMessage(
+				exactly(2).of(messageProducer).getMessage(
 						CPFError.INVALID_FORMAT);
 			}
 		});
@@ -231,10 +290,15 @@ public class CPFValidatorTest {
 		List<ValidationMessage> errors;
 
 		// VALID CPF = 332.375.322-40
-		assertFalse(validator.validate("332.375.32240"));
-		errors = validator.getLastValidationMessages();
+		String value = "332.375.32240";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
-
+		
 		mockery.assertIsSatisfied();
 	}
 

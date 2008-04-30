@@ -1,7 +1,6 @@
 package br.com.caelum.stella.validation;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -12,65 +11,92 @@ import org.junit.Test;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
-
 /**
  * @author Leonardo Bessa
  */
 public class NITValidatorTest {
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldNotValidateNITWithInvalidCharacter() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
+						NITError.INVALID_DIGITS);
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
 		List<ValidationMessage> errors;
-				
-		assertFalse(validator.validate("1111111a111"));
-		errors = validator.getLastValidationMessages();
+
+		String value = "1111111a111";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
-		
+
 		mockery.assertIsSatisfied();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldNotValidateNITWithLessDigitsThanAllowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
+						NITError.INVALID_DIGITS);
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
 		List<ValidationMessage> errors;
-		assertFalse(validator.validate("1234567890"));
-		errors = validator.getLastValidationMessages();
+
+		String value = "1234567890";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
-		
+
 		mockery.assertIsSatisfied();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldNotValidateNITWithMoreDigitsThanAlowed() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
+						NITError.INVALID_DIGITS);
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
 		List<ValidationMessage> errors;
 
-		assertFalse(validator.validate("123456789012"));
-		errors = validator.getLastValidationMessages();
+		String value = "123456789012";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
-		
+
 		mockery.assertIsSatisfied();
 	}
 
@@ -78,37 +104,55 @@ public class NITValidatorTest {
 	@Test
 	public void shouldNotValidateNITWithCheckDigitsWithFirstCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
+						NITError.INVALID_CHECK_DIGITS);
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
 		List<ValidationMessage> errors;
-		
+
 		// VALID NIT = 24.84380.348-0
-		assertFalse(validator.validate("24843803470"));
-		errors = validator.getLastValidationMessages();
+		String value = "24843803470";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 
 		mockery.assertIsSatisfied();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldNotValidateNITWithCheckDigitsWithSecondCheckDigitWrong() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
+						NITError.INVALID_CHECK_DIGITS);
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
 		List<ValidationMessage> errors;
-		
+
 		// VALID NIT = 099.075.865-60
-		assertFalse(validator.validate("09907586561"));
-		errors = validator.getLastValidationMessages();
+		String value = "09907586561";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 
 		mockery.assertIsSatisfied();
@@ -118,26 +162,44 @@ public class NITValidatorTest {
 	@Test
 	public void shouldValidateValidNIT() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
-		
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+		mockery.checking(new Expectations() {
+			{
+
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, false);
+
 		List<ValidationMessage> errors;
-		
-		assertTrue(validator.validate("12345678919"));
-		errors = validator.getLastValidationMessages();
+
+		String value = "12345678919";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
-		
-		assertTrue(validator.validate("34608514300"));
-		errors = validator.getLastValidationMessages();
+
+		value = "34608514300";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
-		
-		assertTrue(validator.validate("47393545608"));
-		errors = validator.getLastValidationMessages();
+
+		value = "47393545608";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.isEmpty());
-		
+
 		mockery.assertIsSatisfied();
 	}
 
@@ -145,62 +207,78 @@ public class NITValidatorTest {
 	@Test
 	public void shouldValidateNullNIT() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			
-		}});
-		NITValidator validator = new NITValidator(messageProducer,false);
-		
-		List<ValidationMessage> errors;
-		assertTrue(validator.validate(null));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.isEmpty());
-		mockery.assertIsSatisfied();
-	}
-
-
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidFormattedNIT(){
-		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery
+		final MessageProducer messageProducer = mockery
 				.mock(MessageProducer.class);
-
 		mockery.checking(new Expectations() {
 			{
-				
+
 			}
 		});
-		NITValidator validator = new NITValidator(messageProducer,true);
-		List<ValidationMessage> errors;
+		NITValidator validator = new NITValidator(messageProducer, false);
 
-		// VALID NIT = 123.45678.91-9
-		assertTrue(validator.validate("123.45678.91-9"));
-		errors = validator.getLastValidationMessages();
-		assertTrue(errors.size() == 0);
+		String value = null;
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		List<ValidationMessage> errors = validator.getValidationMessages(value);
+		assertTrue(errors.isEmpty());
 
 		mockery.assertIsSatisfied();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldVotValidateValidUnformattedNIT(){
+	public void shouldValidateValidFormattedNIT() {
 		Mockery mockery = new Mockery();
-		final MessageProducer<NITError> messageProducer = mockery
+		final MessageProducer messageProducer = mockery
 				.mock(MessageProducer.class);
 
 		mockery.checking(new Expectations() {
 			{
-				exactly(1).of(messageProducer).getMessage(
+
+			}
+		});
+		NITValidator validator = new NITValidator(messageProducer, true);
+
+		// VALID NIT = 123.45678.91-9
+		String value = "123.45678.91-9";
+		try {
+			validator.assertValid(value);
+		} catch (InvalidStateException e) {
+			fail();
+		}
+		List<ValidationMessage> errors = validator.getValidationMessages(value);
+		assertTrue(errors.isEmpty());
+
+		mockery.assertIsSatisfied();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void shouldVotValidateValidUnformattedNIT() {
+		Mockery mockery = new Mockery();
+		final MessageProducer messageProducer = mockery
+				.mock(MessageProducer.class);
+
+		mockery.checking(new Expectations() {
+			{
+				exactly(2).of(messageProducer).getMessage(
 						NITError.INVALID_FORMAT);
 			}
 		});
-		NITValidator validator = new NITValidator(messageProducer,true);
+		NITValidator validator = new NITValidator(messageProducer, true);
 		List<ValidationMessage> errors;
 
 		// VALID NIT = 12.34567.891-9
-		assertFalse(validator.validate("12.34a67.891-9"));
-		errors = validator.getLastValidationMessages();
+		String value = "12.34a67.891-9";
+		try {
+			validator.assertValid(value);
+			fail();
+		} catch (InvalidStateException e) {
+		}
+		errors = validator.getValidationMessages(value);
 		assertTrue(errors.size() == 1);
 
 		mockery.assertIsSatisfied();

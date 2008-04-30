@@ -7,18 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.Validator;
 import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
 import br.com.caelum.stella.formatter.CNPJFormatter;
 
 /**
  * @author Leonardo Bessa
  */
-public class CNPJValidator implements Validator<String> {
+public class CNPJValidator extends AbstractValidator<String> {
 	private final boolean isFormatted;
-	private final MessageProducer<CNPJError> messageProducer;
-	private final List<CNPJError> errors = new ArrayList<CNPJError>();
 	private static final int MOD = 11;
 	private static final int DV1_POSITION = 13;
 	private static final int DV2_POSITION = 14;
@@ -36,43 +32,32 @@ public class CNPJValidator implements Validator<String> {
 	private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 	private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
-	public CNPJValidator(MessageProducer<CNPJError> messageProducer,
+	public CNPJValidator(MessageProducer messageProducer,
 			boolean isFormatted) {
-		super();
-		this.messageProducer = messageProducer;
+		super(messageProducer);
 		this.isFormatted = isFormatted;
 	}
-
-	public List<ValidationMessage> getLastValidationMessages() {
-		List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
-		for (CNPJError error : errors) {
-			ValidationMessage message = messageProducer.getMessage(error);
-			messages.add(message);
-		}
-		return messages;
-	}
-
-	public boolean validate(String cnpj) {
+	
+	protected List<InvalidValue> getInvalidValues(String cnpj) {
+		List<InvalidValue> errors = new ArrayList<InvalidValue>();
 		errors.clear();
-		if (cnpj == null) {
-			return true;
-		}
-		if (isFormatted) {
-			if (!(CNPJ_FORMATED.matcher(cnpj).matches())) {
-				errors.add(CNPJError.INVALID_FORMAT);
+		if (cnpj != null) {
+			if (isFormatted) {
+				if (!(CNPJ_FORMATED.matcher(cnpj).matches())) {
+					errors.add(CNPJError.INVALID_FORMAT);
+				}
+				cnpj = (new CNPJFormatter()).unformat(cnpj);
+			} else if (!CNPJ_UNFORMATED.matcher(cnpj).matches()) {
+				errors.add(CNPJError.INVALID_DIGITS);
 			}
-			cnpj = (new CNPJFormatter()).unformat(cnpj);
-		} else if (!CNPJ_UNFORMATED.matcher(cnpj).matches()) {
-			errors.add(CNPJError.INVALID_DIGITS);
-		}
-		if (errors.isEmpty()) {
-			if ((!DV1_CHECKER.DVisValid(cnpj))
-					|| (!DV2_CHECKER.DVisValid(cnpj))) {
-				errors.add(CNPJError.INVALID_CHECK_DIGITS);
+			if (errors.isEmpty()) {
+				if ((!DV1_CHECKER.DVisValid(cnpj))
+						|| (!DV2_CHECKER.DVisValid(cnpj))) {
+					errors.add(CNPJError.INVALID_CHECK_DIGITS);
+				}
 			}
 		}
-
-		return errors.isEmpty();
+		return errors;
 	}
 
 }

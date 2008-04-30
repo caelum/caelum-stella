@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * <p>
- * {@link #getLastValidationMessages()} sempre devolve <b>apenas</b> os
- * problemas de validação relativos à última chamada de {@link #validate(Object)}
+ * {@link #getValidationMessages()} sempre devolve <b>apenas</b> os
+ * problemas de validação relativos à última chamada de {@link #assertValid(Object)}
  * </p>
  * 
  * @author Fabio Kung
@@ -20,11 +20,11 @@ public interface Validator<T> {
 	 * @return <code>false</code> caso algum erro de validação seja
 	 *         encontrado; <code>true</code> caso contrário.
 	 */
-	boolean validate(T object);
+	void assertValid(T object);
 
 	/**
 	 * @return <b>apenas</b> os problemas de validação relativos à última
-	 *         chamada de {@link #validate(Object)}
+	 *         chamada de {@link #assertValid(Object)}
 	 */
-	List<ValidationMessage> getLastValidationMessages();
+	List<ValidationMessage> getValidationMessages(T object);
 }

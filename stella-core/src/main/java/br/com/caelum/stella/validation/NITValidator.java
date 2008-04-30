@@ -9,9 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.Validator;
 import br.com.caelum.stella.formatter.NITFormatter;
+
 /**
  * <p>
  * Validador do Número de Identificação do Trabalhador. Este documento contém 11
@@ -25,12 +24,10 @@ import br.com.caelum.stella.formatter.NITFormatter;
  * 
  * @author Leonardo Bessa
  */
-public class NITValidator implements Validator<String> {
-	
+public class NITValidator extends AbstractValidator<String> {
+
 	private static final int MOD = 11;
 	private final boolean isFormatted;
-	private final MessageProducer<NITError> messageProducer;
-	private final List<NITError> errors = new ArrayList<NITError>();
 
 	@SuppressWarnings("serial")
 	private static final DigitChecker digitChecker = new DigitChecker(
@@ -59,49 +56,28 @@ public class NITValidator implements Validator<String> {
 	 *            considera cadeia no formato de NIT: "ddd.ddddd.dd-d" onde "d"
 	 *            é um dígito decimal.
 	 */
-	public NITValidator(MessageProducer<NITError> messageProducer,
-			boolean isFormatted) {
-		super();
+	public NITValidator(MessageProducer messageProducer, boolean isFormatted) {
+		super(messageProducer);
 		this.isFormatted = isFormatted;
-		this.messageProducer = messageProducer;
 	}
 
-	/** 
-	 * @see br.com.caelum.stella.Validator#getLastValidationMessages()
-	 */
-	public List<ValidationMessage> getLastValidationMessages() {
-		List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
-		for (NITError error : errors) {
-			ValidationMessage message = messageProducer.getMessage(error);
-			messages.add(message);
-		}
-		return messages;
-	}
-
-	/**
-	 * Valida se a cadeia está de acordo com as regras de um NIT.
-	 * 
-	 * @see br.com.caelum.stella.Validator#validate(java.lang.Object)
-	 * @return <code>true</code> se a cadeia é válida ou é nula;
-	 *         <code>false</code> caso contrario.
-	 */
-	public boolean validate(String nit) {
+	protected List<InvalidValue> getInvalidValues(String nit) {
+		List<InvalidValue> errors = new ArrayList<InvalidValue>();
 		errors.clear();
-		if (nit == null) {
-			return true;
-		}
-		if (isFormatted) {
-			if (!NIT_FORMATED.matcher(nit).matches()) {
-				errors.add(NITError.INVALID_FORMAT);
+		if (nit != null) {
+			if (isFormatted) {
+				if (!NIT_FORMATED.matcher(nit).matches()) {
+					errors.add(NITError.INVALID_FORMAT);
+				}
+				nit = (new NITFormatter()).unformat(nit);
+			} else if (!NIT_UNFORMATED.matcher(nit).matches()) {
+				errors.add(NITError.INVALID_DIGITS);
 			}
-			nit = (new NITFormatter()).unformat(nit);;
-		} else if (!NIT_UNFORMATED.matcher(nit).matches()) {
-			errors.add(NITError.INVALID_DIGITS);
+			if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(nit)) {
+				errors.add(NITError.INVALID_CHECK_DIGITS);
+			}
 		}
-		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(nit)) {
-			errors.add(NITError.INVALID_CHECK_DIGITS);
-		}
-		return errors.isEmpty();
+		return errors;
 	}
 
 }

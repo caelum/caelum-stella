@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.Validator;
 import br.com.caelum.stella.formatter.CPFFormatter;
 
 /**
@@ -19,12 +17,10 @@ import br.com.caelum.stella.formatter.CPFFormatter;
  * 
  * @author Leonardo Bessa
  */
-public class CPFValidator implements Validator<String> {
+public class CPFValidator extends AbstractValidator<String> {
 	private static final int MOD = 11;
 	private final boolean isFormatted;
 	private final boolean isIgnoringRepeatedDigits;
-	private final MessageProducer<CPFError> messageProducer;
-	private final List<CPFError> errors = new ArrayList<CPFError>();
 
 	@SuppressWarnings("serial")
 	private static final DigitChecker digitChecker = new DigitChecker(
@@ -62,9 +58,8 @@ public class CPFValidator implements Validator<String> {
 	 *            considera cadeia no formato de CPF: "ddd.ddd.ddd-dd" onde "d"
 	 *            é um dígito decimal.
 	 */
-	public CPFValidator(MessageProducer<CPFError> messageProducer,
-			boolean isFormatted) {
-		this.messageProducer = messageProducer;
+	public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
+		super(messageProducer);
 		this.isFormatted = isFormatted;
 		this.isIgnoringRepeatedDigits = true;
 	}
@@ -79,9 +74,9 @@ public class CPFValidator implements Validator<String> {
 	 *            condição para ignorar cadeias de CPF com todos os dígitos
 	 *            repetidos.
 	 */
-	public CPFValidator(MessageProducer<CPFError> messageProducer,
-			boolean isFormatted, boolean isIgnoringRepeatedDigits) {
-		this.messageProducer = messageProducer;
+	public CPFValidator(MessageProducer messageProducer, boolean isFormatted,
+			boolean isIgnoringRepeatedDigits) {
+		super(messageProducer);
 		this.isFormatted = isFormatted;
 		this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
 	}
@@ -89,34 +84,33 @@ public class CPFValidator implements Validator<String> {
 	/**
 	 * Valida se a cadeia está de acordo com as regras de um CPF.
 	 * 
-	 * @see br.com.caelum.stella.Validator#validate(java.lang.Object)
+	 * @see br.com.caelum.stella.Validator#assertValid(java.lang.Object)
 	 * @return <code>true</code> se a cadeia é válida ou é nula;
 	 *         <code>false</code> caso contrario.
 	 */
-	public boolean validate(String cpf) {
+	protected List<InvalidValue> getInvalidValues(String cpf) {
+		List<InvalidValue> errors = new ArrayList<InvalidValue>();
 		errors.clear();
-		if (cpf == null) {
-			return true;
-		}
-
-		if (isFormatted) {
-			if (!CPF_FORMATED.matcher(cpf).matches()) {
-				errors.add(CPFError.INVALID_FORMAT);
+		if (cpf != null) {
+			if (isFormatted) {
+				if (!CPF_FORMATED.matcher(cpf).matches()) {
+					errors.add(CPFError.INVALID_FORMAT);
+				}
+				cpf = (new CPFFormatter()).unformat(cpf);
+			} else if (!(CPF_UNFORMATED.matcher(cpf).matches())) {
+				errors.add(CPFError.INVALID_DIGITS);
 			}
-			cpf = (new CPFFormatter()).unformat(cpf);
-		} else if (!(CPF_UNFORMATED.matcher(cpf).matches())) {
-			errors.add(CPFError.INVALID_DIGITS);
+			if (errors.isEmpty() && (!isIgnoringRepeatedDigits)
+					&& hasAllRepeatedDigits(cpf)) {
+				errors.add(CPFError.REPEATED_DIGITS);
+			}
+			if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cpf)) {
+				errors.add(CPFError.INVALID_CHECK_DIGITS);
+			}
 		}
-		if (errors.isEmpty() && (!isIgnoringRepeatedDigits)
-				&& hasAllRepeatedDigits(cpf)) {
-			errors.add(CPFError.REPEATED_DIGITS);
-		}
-		if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cpf)) {
-			errors.add(CPFError.INVALID_CHECK_DIGITS);
-		}
-
-		return errors.isEmpty();
+		return errors;
 	}
+	
 
 	private boolean hasAllRepeatedDigits(String cpf) {
 		for (int i = 1; i < cpf.length(); i++) {
@@ -127,23 +121,4 @@ public class CPFValidator implements Validator<String> {
 		return true;
 	}
 
-	/**
-	 * @see br.com.caelum.stella.Validator#getLastValidationMessages()
-	 */
-	public List<ValidationMessage> getLastValidationMessages() {
-		List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
-		for (CPFError error : errors) {
-			ValidationMessage message = messageProducer.getMessage(error);
-			messages.add(message);
-		}
-		return messages;
-	}
-
-	/**
-	 * @return lista de enum de erros gerados pela última chamada de
-	 *         {@link #validate(String)}
-	 */
-	public List<CPFError> getErrors() {
-		return errors;
-	}
 }

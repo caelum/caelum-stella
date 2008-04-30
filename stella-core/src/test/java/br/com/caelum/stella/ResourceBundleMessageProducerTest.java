@@ -2,6 +2,7 @@ package br.com.caelum.stella;
 
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.InvalidValue;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ import java.text.MessageFormat;
  * @author Fabio Kung
  */
 public class ResourceBundleMessageProducerTest {
-    enum Errors {
+    enum Errors implements InvalidValue{
         ANY, OTHER, WITH_COMPOSITE_NAME;
     }
 
@@ -43,7 +44,7 @@ public class ResourceBundleMessageProducerTest {
             }
         };
 
-        ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundleMock);
+        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundleMock);
         ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
         assertEquals(errorMessage, validationMessage.getMessage());
     }

@@ -1,5 +1,7 @@
 package br.com.caelum.stella;
 
+import br.com.caelum.stella.validation.InvalidValue;
+
 /**
  * <p>
  * MessageProducers são responsáveis pela busca de mensagens de validação.
@@ -11,13 +13,11 @@ package br.com.caelum.stella;
  *
  * @author Fabio Kung
  * @author Leonardo Bessa
- * @param <T> <code>enum</code> onde os erros estão declarados.
  */
-@SuppressWarnings("unchecked")
-public interface MessageProducer<T extends Enum> {
+public interface MessageProducer{
     /**
-     * @param error erro ao qual se procura a mensagem associada.
+     * @param invalidValue valor inválido ao qual se procura a mensagem associada.
      * @return mensagem de validação associada ao erro.
      */
-    ValidationMessage getMessage(T error);
+    ValidationMessage getMessage(InvalidValue invalidValue);
 }

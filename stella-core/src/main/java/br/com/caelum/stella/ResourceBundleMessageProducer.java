@@ -4,6 +4,8 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import br.com.caelum.stella.validation.InvalidValue;
+
 /**
  * <p>
  * ResourceBlundeMessageProducer é responsável pela geração de mensagens de
@@ -26,12 +28,10 @@ import java.util.ResourceBundle;
  * @author Fabio Kung
  * @author Leonardo Bessa
  * 
- * @param <T> O enum onde os erros estão definidos.
- * 
  */
 @SuppressWarnings("unchecked")
-public class ResourceBundleMessageProducer<T extends Enum> implements
-		MessageProducer<T> {
+public class ResourceBundleMessageProducer implements
+		MessageProducer {
 	
 	private final ResourceBundle bundle;
 
@@ -47,7 +47,7 @@ public class ResourceBundleMessageProducer<T extends Enum> implements
 	/**
 	 * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
 	 */
-	public ValidationMessage getMessage(T error) {
+	public ValidationMessage getMessage(InvalidValue error) {
 		Locale locale = bundle.getLocale();
 		if (locale == null) {
 			locale = Locale.getDefault();
