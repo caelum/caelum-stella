@@ -28,13 +28,10 @@ public class ValidadorDeDV {
 		Integer[] intDigits = extractIntegerDigits(digitos);
 		Integer innerProduct = innerProduct(info.getPesos(), intDigits);
 		Integer result = innerProduct;
-		System.out.println("innerProduct "+innerProduct);
 		RotinaParameters parameters = new RotinaParameters(info,intDigits,innerProduct);
 		for (RotinaDeDigitoVerificador rotina : info.getRotinas()) {
-			System.out.println(rotina.getClass());
 			result = rotina.transform(parameters);
 			parameters.setResult(result);
-			System.out.println("generateDV result "+result);
 		}
 		Integer dv = result;
 		return dv;
