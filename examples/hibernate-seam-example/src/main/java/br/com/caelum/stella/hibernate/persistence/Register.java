@@ -1,6 +1,6 @@
 package br.com.caelum.stella.hibernate.persistence;
 
-@Local
+//@Local
 public interface Register
 {
    public String register();
