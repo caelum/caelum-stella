@@ -7,21 +7,31 @@ public class DatasPadrao implements Datas {
 	private Calendar processamento;
 	private Calendar vencimento;
 
-	public Calendar getDataDocumento() {
+	public Calendar getDataDoDocumento() {
 		return this.documento;
 	}
 	
-	public DatasPadrao comDataDocumento(Calendar documento) {
+	public DatasPadrao comDataDeDocumento(Calendar documento) {
 		this.documento = documento;
 		return this;
 	}
 
-	public Calendar getDataProcessamento() {
+	public Calendar getDataDoProcessamento() {
 		return this.processamento;
 	}
+	
+	public DatasPadrao comDataDeProcessamento(Calendar processamento) {
+		this.processamento = processamento;
+		return this;
+	}
 
-	public Calendar getDataVencimento() {
+	public Calendar getDataDeVencimento() {
 		return this.vencimento;
+	}
+
+	public DatasPadrao comDataDeVencimento(Calendar vencimento) {
+		this.vencimento = vencimento;
+		return this;
 	}
 
 }
