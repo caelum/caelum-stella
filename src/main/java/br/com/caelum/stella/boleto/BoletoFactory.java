@@ -16,12 +16,9 @@ public class BoletoFactory {
 		
 		jBoletoBean.setAceite(boleto.getAceite());
 		jBoletoBean.setAgencia(boleto.getAgencia());
-		jBoletoBean.setBairroSacado(boleto.getBairroSacado());
 		jBoletoBean.setCaminho(boleto.getCaminho());
 		jBoletoBean.setCarteira(boleto.getCarteira());
 		jBoletoBean.setCedente(boleto.getCedente());
-		jBoletoBean.setCepSacado(boleto.getCepSacado());
-		jBoletoBean.setCidadeSacado(boleto.getCidadeSacado());
 		
 		JBoleto jBoleto = new JBoleto();
 		jBoleto.addBoleto(jBoletoBean, boleto.getBanco().ordinal());
