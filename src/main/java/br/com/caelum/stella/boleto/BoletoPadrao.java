@@ -1,8 +1,5 @@
 package br.com.caelum.stella.boleto;
 
-import java.util.Calendar;
-
-
 public class BoletoPadrao implements Boleto {
 	private String agencia;
 	private String contaCorrente;
@@ -31,13 +28,13 @@ public class BoletoPadrao implements Boleto {
 	private String especieDocumento;
 	private String aceite;
 	private Banco banco;
-	private DatasPadrao datas;
-	
+	private Datas datas;
+
 	private BoletoPadrao() {
 	}
-	
-	public Datas newBoleto() {
-		Datas boleto = new BoletoPadrao();
+
+	public BoletoPadrao newBoleto() {
+		BoletoPadrao boleto = new BoletoPadrao();
 		return boleto;
 	}
 
@@ -48,8 +45,8 @@ public class BoletoPadrao implements Boleto {
 	public double getAcrescimo() {
 		return this.acrescimo;
 	}
-	
-	public Datas comAcrescimo(double acrescimo) {
+
+	public BoletoPadrao comAcrescimo(double acrescimo) {
 		this.acrescimo = acrescimo;
 		return this;
 	}
@@ -57,8 +54,8 @@ public class BoletoPadrao implements Boleto {
 	public String getAgencia() {
 		return this.agencia;
 	}
-	
-	public Datas comAgencia(String agencia) {
+
+	public BoletoPadrao comAgencia(String agencia) {
 		this.agencia = agencia;
 		return this;
 	}
@@ -66,8 +63,8 @@ public class BoletoPadrao implements Boleto {
 	public String getBairroSacado() {
 		return this.bairroSacado;
 	}
-	
-	public Datas comBairroSacado(String bairroSacado) {
+
+	public BoletoPadrao comBairroSacado(String bairroSacado) {
 		this.bairroSacado = bairroSacado;
 		return this;
 	}
@@ -75,8 +72,8 @@ public class BoletoPadrao implements Boleto {
 	public String getCaminho() {
 		return this.caminho;
 	}
-	
-	public Datas comCaminho(String caminho) {
+
+	public BoletoPadrao comCaminho(String caminho) {
 		this.caminho = caminho;
 		return this;
 	}
@@ -84,8 +81,8 @@ public class BoletoPadrao implements Boleto {
 	public String getCarteira() {
 		return this.carteira;
 	}
-	
-	public Datas comCarteira(String carteira) {
+
+	public BoletoPadrao comCarteira(String carteira) {
 		this.carteira = carteira;
 		return this;
 	}
@@ -93,8 +90,8 @@ public class BoletoPadrao implements Boleto {
 	public String getCedente() {
 		return this.cedente;
 	}
-	
-	public Datas comCedente(String cedente) {
+
+	public BoletoPadrao comCedente(String cedente) {
 		this.cedente = cedente;
 		return this;
 	}
@@ -102,8 +99,8 @@ public class BoletoPadrao implements Boleto {
 	public String getCepSacado() {
 		return this.cepSacado;
 	}
-	
-	public Datas comCepSacado(String cepSacado) {
+
+	public BoletoPadrao comCepSacado(String cepSacado) {
 		this.cepSacado = cepSacado;
 		return this;
 	}
@@ -111,8 +108,8 @@ public class BoletoPadrao implements Boleto {
 	public String getCidadeSacado() {
 		return this.cidadeSacado;
 	}
-	
-	public Datas comCidadeSacado(String cidadeSacado) {
+
+	public BoletoPadrao comCidadeSacado(String cidadeSacado) {
 		this.cidadeSacado = cidadeSacado;
 		return this;
 	}
@@ -120,8 +117,8 @@ public class BoletoPadrao implements Boleto {
 	public String getContaCorrente() {
 		return this.contaCorrente;
 	}
-	
-	public Datas comContaCorrente(String contaCorrente) {
+
+	public BoletoPadrao comContaCorrente(String contaCorrente) {
 		this.contaCorrente = contaCorrente;
 		return this;
 	}
@@ -129,44 +126,26 @@ public class BoletoPadrao implements Boleto {
 	public String getCpfSacado() {
 		return this.cpfSacado;
 	}
-	
-	public Datas comCpfSacado(String cpfSacado) {
+
+	public BoletoPadrao comCpfSacado(String cpfSacado) {
 		this.cpfSacado = cpfSacado;
 		return this;
 	}
 
-	public Calendar getDataDocumento() {
-		return this.dataDocumento;
-	}
-	
-	public Datas comDataDocumento(Calendar dataDocumento) {
-		this.dataDocumento = dataDocumento;
-		return this;
+	public Datas getDatas() {
+		return this.datas;
 	}
 
-	public Calendar getDataProcessamento() {
-		return this.dataProcessamento;
-	}
-	
-	public Datas comDataProcessamento(Calendar dataProcessamento) {
-		this.dataProcessamento = dataProcessamento;
-		return this;
-	}
-
-	public Calendar getDataVencimento() {
-		return this.dataVencimento;
-	}
-	
-	public Datas comDataVencimento(Calendar dataVencimento) {
-		this.dataVencimento = dataVencimento;
+	public BoletoPadrao comDatas(Datas datas) {
+		this.datas = datas;
 		return this;
 	}
 
 	public String getEnderecoSacado() {
 		return this.enderecoSacado;
 	}
-	
-	public Datas comEnderecoSacado(String enderecoSacado) {
+
+	public BoletoPadrao comEnderecoSacado(String enderecoSacado) {
 		this.enderecoSacado = enderecoSacado;
 		return this;
 	}
@@ -174,8 +153,8 @@ public class BoletoPadrao implements Boleto {
 	public String getEspecieDocumento() {
 		return this.especieDocumento;
 	}
-	
-	public Datas comEspecieDocumento(String especieDocumento) {
+
+	public BoletoPadrao comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
 		return this;
 	}
@@ -183,8 +162,8 @@ public class BoletoPadrao implements Boleto {
 	public String getInstrucao() {
 		return this.instrucao;
 	}
-	
-	public Datas comInstrucao(String instrucao) {
+
+	public BoletoPadrao comInstrucao(String instrucao) {
 		this.instrucao = instrucao;
 		return this;
 	}
@@ -192,8 +171,8 @@ public class BoletoPadrao implements Boleto {
 	public String getLocalPagamento() {
 		return this.localPagamento;
 	}
-	
-	public Datas comLocalPagamento(String localPagamento) {
+
+	public BoletoPadrao comLocalPagamento(String localPagamento) {
 		this.localPagamento = localPagamento;
 		return this;
 	}
@@ -201,8 +180,8 @@ public class BoletoPadrao implements Boleto {
 	public String getNomeSacado() {
 		return this.nomeSacado;
 	}
-	
-	public Datas paraNomeSacado(String nomeSacado) {
+
+	public BoletoPadrao paraNomeSacado(String nomeSacado) {
 		this.nomeSacado = nomeSacado;
 		return this;
 	}
@@ -210,8 +189,8 @@ public class BoletoPadrao implements Boleto {
 	public String getNossoNumero() {
 		return this.nossoNumero;
 	}
-	
-	public Datas comNossoNumero(String nossoNumero) {
+
+	public BoletoPadrao comNossoNumero(String nossoNumero) {
 		this.nossoNumero = nossoNumero;
 		return this;
 	}
@@ -219,8 +198,8 @@ public class BoletoPadrao implements Boleto {
 	public String getNumConvenio() {
 		return this.numConvenio;
 	}
-	
-	public Datas comNumConvenio(String numConvenio) {
+
+	public BoletoPadrao comNumConvenio(String numConvenio) {
 		this.numConvenio = numConvenio;
 		return this;
 	}
@@ -228,8 +207,8 @@ public class BoletoPadrao implements Boleto {
 	public String getQtdMoeda() {
 		return this.qtdMoeda;
 	}
-	
-	public Datas comQtdMoeda(String qtdMoeda) {
+
+	public BoletoPadrao comQtdMoeda(String qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
 		return this;
 	}
@@ -237,8 +216,8 @@ public class BoletoPadrao implements Boleto {
 	public String getTipoSaida() {
 		return this.tipoSaida;
 	}
-	
-	public Datas comTipoSaida(String tipoSaida) {
+
+	public BoletoPadrao comTipoSaida(String tipoSaida) {
 		this.tipoSaida = tipoSaida;
 		return this;
 	}
@@ -246,8 +225,8 @@ public class BoletoPadrao implements Boleto {
 	public String getUfSacado() {
 		return this.ufSacado;
 	}
-	
-	public Datas comUfSacado(String ufSacado) {
+
+	public BoletoPadrao comUfSacado(String ufSacado) {
 		this.ufSacado = ufSacado;
 		return this;
 	}
@@ -255,8 +234,8 @@ public class BoletoPadrao implements Boleto {
 	public String getValorBoleto() {
 		return this.valorBoleto;
 	}
-	
-	public Datas comValorBoleto(String valorBoleto) {
+
+	public BoletoPadrao comValorBoleto(String valorBoleto) {
 		this.valorBoleto = valorBoleto;
 		return this;
 	}
@@ -264,36 +243,29 @@ public class BoletoPadrao implements Boleto {
 	public String getValorMoeda() {
 		return this.valorMoeda;
 	}
-	
-	public Datas comValorMoeda(String valorMoeda) {
+
+	public BoletoPadrao comValorMoeda(String valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
 	}
-	
+
 	public Banco getBanco() {
 		return this.banco;
 	}
-	
-	public Datas comBanco(Banco banco) {
+
+	public BoletoPadrao comBanco(Banco banco) {
 		this.banco = banco;
 		return this;
 	}
-	
-	
-	
+
 	public void gerar() {
 		BoletoFactory boletoFactory = new BoletoFactory();
 		boletoFactory.generateBoleto(this);
 	}
-	
+
 	public String getLinhaDigitavel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Datas getDatas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }
