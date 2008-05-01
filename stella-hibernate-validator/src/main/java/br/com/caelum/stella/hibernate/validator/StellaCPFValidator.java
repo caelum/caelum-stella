@@ -1,8 +1,8 @@
 package br.com.caelum.stella.hibernate.validator;
 
-import br.com.caelum.stella.validation.CPFError;
-import br.com.caelum.stella.validation.CPFValidator;
 import org.hibernate.validator.Validator;
+
+import br.com.caelum.stella.validation.CPFValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
@@ -18,7 +18,7 @@ public class StellaCPFValidator implements Validator<CPF> {
      * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
      */
     public void initialize(CPF cpf) {
-        AnnotationMessageProducer<CPFError> messageProducer = new AnnotationMessageProducer<CPFError>(cpf);
+        AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cpf);
         stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
     }
 
@@ -31,7 +31,7 @@ public class StellaCPFValidator implements Validator<CPF> {
             if (cpf.trim().length() == 0) {
                 return true;
             } else {
-                return stellaValidator.validate(cpf);
+                return stellaValidator.getValidationMessages(cpf).isEmpty();
             }
         } else {
             return true;

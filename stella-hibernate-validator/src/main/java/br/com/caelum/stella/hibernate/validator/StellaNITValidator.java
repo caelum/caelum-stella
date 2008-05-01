@@ -2,7 +2,6 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.NITError;
 import br.com.caelum.stella.validation.NITValidator;
 
 /**
@@ -20,7 +19,7 @@ public class StellaNITValidator implements Validator<NIT> {
 	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
 	 */
 	public void initialize(NIT nit) {
-		AnnotationMessageProducer<NITError> messageProducer = new AnnotationMessageProducer<NITError>(
+		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
 				nit);
 		stellaValidator = new NITValidator(messageProducer, nit.formatted());
 	}
@@ -34,7 +33,7 @@ public class StellaNITValidator implements Validator<NIT> {
 			if (nit.trim().length() == 0) {
 				return true;
 			} else {
-				return stellaValidator.validate(nit);
+				return stellaValidator.getValidationMessages(nit).isEmpty();
 			}
 		} else {
 			return true;

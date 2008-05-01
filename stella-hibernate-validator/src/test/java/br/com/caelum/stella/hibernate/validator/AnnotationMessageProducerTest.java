@@ -2,6 +2,7 @@ package br.com.caelum.stella.hibernate.validator;
 
 
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.InvalidValue;
 import junit.framework.Assert;
 import static org.junit.Assert.fail;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import java.lang.reflect.Field;
  * @author Fabio Kung
  */
 public class AnnotationMessageProducerTest {
-    private enum Errors {
+    private enum Errors implements InvalidValue {
         ANY, OTHER;
     }
 
@@ -23,12 +24,12 @@ public class AnnotationMessageProducerTest {
         FakeConstraint constraint = field.getAnnotation(FakeConstraint.class);
 
         {
-            AnnotationMessageProducer<Errors> producer = new AnnotationMessageProducer<Errors>(constraint);
+            AnnotationMessageProducer producer = new AnnotationMessageProducer(constraint);
             ValidationMessage validationMessage = producer.getMessage(Errors.ANY);
             Assert.assertEquals(constraint.message(), validationMessage.getMessage());
         }
         {
-            AnnotationMessageProducer<Errors> producer = new AnnotationMessageProducer<Errors>(constraint);
+            AnnotationMessageProducer producer = new AnnotationMessageProducer(constraint);
             ValidationMessage validationMessage = producer.getMessage(Errors.OTHER);
             Assert.assertEquals(constraint.message(), validationMessage.getMessage());
         }
@@ -41,7 +42,7 @@ public class AnnotationMessageProducerTest {
         field.setAccessible(true);
         ConstraintWithoutMessage constraint = field.getAnnotation(ConstraintWithoutMessage.class);
 
-        AnnotationMessageProducer<Errors> producer = new AnnotationMessageProducer<Errors>(constraint);
+        AnnotationMessageProducer producer = new AnnotationMessageProducer(constraint);
         try {
             @SuppressWarnings("unused")
 			ValidationMessage validationMessage = producer.getMessage(Errors.ANY);

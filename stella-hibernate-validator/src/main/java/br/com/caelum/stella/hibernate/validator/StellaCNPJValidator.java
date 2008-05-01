@@ -2,7 +2,6 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.CNPJError;
 import br.com.caelum.stella.validation.CNPJValidator;
 
 /**
@@ -19,8 +18,7 @@ public class StellaCNPJValidator implements Validator<CNPJ> {
 	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
 	 */
 	public void initialize(CNPJ cnpj) {
-		AnnotationMessageProducer<CNPJError> messageProducer = new AnnotationMessageProducer<CNPJError>(
-				cnpj);
+		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cnpj);
 		stellaValidator = new CNPJValidator(messageProducer, cnpj.formatted());
 	}
 
@@ -33,7 +31,7 @@ public class StellaCNPJValidator implements Validator<CNPJ> {
 			if (cnpj.trim().length() == 0) {
 				return true;
 			} else {
-				return stellaValidator.validate(cnpj);
+				return stellaValidator.getValidationMessages(cnpj).isEmpty();
 			}
 		} else {
 			return true;
