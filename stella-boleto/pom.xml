@@ -12,7 +12,7 @@
 	<artifactId>stella-boleto</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1-SNAPSHOT</version>
-	<name>stella-jboleto</name>
+	<name>Caelum Stella Boleto</name>
 
 	<dependencies>
 		<dependency>		
