@@ -66,7 +66,7 @@ public class ResourceBundleMessageProducerTest {
             }
         };
         
-        ResourceBundleMessageProducer<Errors> producer = new ResourceBundleMessageProducer<Errors>(bundleMock);
+        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundleMock);
         ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
         assertEquals("errors : with composite name", validationMessage.getMessage());
         

@@ -1,15 +1,14 @@
 package br.com.caelum.stella.validation;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.Validator;
 
 /**
  * @author Leonardo Bessa
@@ -26,19 +25,18 @@ public class CNPJValidatorTest {
 
         mockery.checking(new Expectations() {
             {
-                exactly(2).of(messageProducer).getMessage(
+                exactly(1).of(messageProducer).getMessage(
                         CNPJError.INVALID_DIGITS);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
+        Validator validator = new CNPJValidator(messageProducer, false);
         try {
-        	validator.assertValid("1234567890123");
+        	String value = "1234567890123";
+			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
+        	assertTrue(e.getValidationMessages().size()==1);
 		}
-        errors = validator.getValidationMessages("1234567890123");
-        assertTrue(errors.size() == 1);
 
         mockery.assertIsSatisfied();
     }
@@ -56,12 +54,14 @@ public class CNPJValidatorTest {
                         CNPJError.INVALID_DIGITS);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
-
-        assertFalse(validator.assertValid("123456789012345"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 1);
+        Validator validator = new CNPJValidator(messageProducer, false);
+        try {
+        	String value = "123456789012345";
+			validator.assertValid(value);
+        	fail();
+        } catch (InvalidStateException e) {
+        	assertTrue(e.getValidationMessages().size()==1);
+		}
 
         mockery.assertIsSatisfied();
     }
@@ -79,13 +79,14 @@ public class CNPJValidatorTest {
                         CNPJError.INVALID_DIGITS);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
-
-        assertFalse(validator.assertValid("1111111a111111"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 1);
-
+        Validator validator = new CNPJValidator(messageProducer, false);
+        try {
+        	String value = "1111111a111111";
+			validator.assertValid(value);
+        	fail();
+        } catch (InvalidStateException e) {
+        	assertTrue(e.getValidationMessages().size()==1);
+		}
         mockery.assertIsSatisfied();
     }
 
@@ -100,21 +101,28 @@ public class CNPJValidatorTest {
 
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
+        Validator validator = new CNPJValidator(messageProducer, false);
 
-        List<ValidationMessage> errors;
-
-        assertTrue(validator.assertValid("63025530002409"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.isEmpty());
-
-        assertTrue(validator.assertValid("61519128000150"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.isEmpty());
-
-        assertTrue(validator.assertValid("68745386000102"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.isEmpty());
+        try {
+        	String value = "63025530002409";
+			validator.assertValid(value);
+        } catch (InvalidStateException e) {
+        	fail();
+		}
+        
+        try {
+        	String value = "61519128000150";
+			validator.assertValid(value);
+        } catch (InvalidStateException e) {
+        	fail();
+		}
+        
+        try {
+        	String value = "68745386000102";
+			validator.assertValid(value);
+        } catch (InvalidStateException e) {
+        	fail();
+		}
 
         mockery.assertIsSatisfied();
     }
@@ -130,12 +138,14 @@ public class CNPJValidatorTest {
 
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
+        Validator validator = new CNPJValidator(messageProducer, false);
 
-        List<ValidationMessage> errors;
-        assertTrue(validator.assertValid(null));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.isEmpty());
+        try {
+        	String value = null;
+			validator.assertValid(value);
+        } catch (InvalidStateException e) {
+        	fail();
+		}
         mockery.assertIsSatisfied();
     }
 
@@ -152,13 +162,15 @@ public class CNPJValidatorTest {
                         CNPJError.INVALID_CHECK_DIGITS);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
-
+        Validator validator = new CNPJValidator(messageProducer, false);
         // VALID CNPJ = 742213250001-30
-        assertFalse(validator.assertValid("74221325000160"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 1);
+        try {
+        	String value = "74221325000160";
+			validator.assertValid(value);
+        	fail();
+        } catch (InvalidStateException e) {
+        	assertTrue(e.getValidationMessages().size()==1);
+		}
 
         mockery.assertIsSatisfied();
     }
@@ -176,14 +188,16 @@ public class CNPJValidatorTest {
                         CNPJError.INVALID_CHECK_DIGITS);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, false);
-        List<ValidationMessage> errors;
+        Validator validator = new CNPJValidator(messageProducer, false);
 
         // VALID CNPJ = 266371420001-58
-        assertFalse(validator.assertValid("26637142000154"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 1);
-
+        try {
+        	String value = "26637142000154";
+			validator.assertValid(value);
+        	fail();
+        } catch (InvalidStateException e) {
+        	assertTrue(e.getValidationMessages().size()==1);
+		}
         mockery.assertIsSatisfied();
     }
 
@@ -199,20 +213,21 @@ public class CNPJValidatorTest {
 
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, true);
-        List<ValidationMessage> errors;
+        Validator validator = new CNPJValidator(messageProducer, true);
 
         // VALID CNPJ = 26.637.142/0001-58
-        assertTrue(validator.assertValid("26.637.142/0001-58"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 0);
-
+        try {
+        	String value = "26.637.142/0001-58";
+			validator.assertValid(value);
+        } catch (InvalidStateException e) {
+        	fail();
+		}
         mockery.assertIsSatisfied();
     }
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldVotValidateValidUnformattedCNPJ() {
+    public void shouldNotValidateValidUnformattedCNPJ() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
@@ -223,13 +238,15 @@ public class CNPJValidatorTest {
                         CNPJError.INVALID_FORMAT);
             }
         });
-        AbstractValidator validator = new CNPJValidator(messageProducer, true);
-        List<ValidationMessage> errors;
+        Validator validator = new CNPJValidator(messageProducer, true);
 
         // VALID CNPJ = 26.637.142/0001-58
-        assertFalse(validator.assertValid("26637142000158"));
-        errors = validator.getValidationMessages();
-        assertTrue(errors.size() == 1);
+        try {
+        	String value = "26637142000158";
+			validator.assertValid(value);
+			fail();
+        } catch (InvalidStateException e) {
+		}
 
         mockery.assertIsSatisfied();
     }
