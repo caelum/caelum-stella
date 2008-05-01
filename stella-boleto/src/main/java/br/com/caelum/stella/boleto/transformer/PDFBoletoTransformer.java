@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -91,6 +92,10 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		BaseFont fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD,
 				BaseFont.WINANSI, BaseFont.EMBEDDED);
 
+		
+		
+		// TODO ver se cada descricao nao ultrapassa margem. medir length da string
+		
 		// inicio das descricoes do boleto
 		cb.beginText();
 		cb.setFontAndSize(fonteBold, 10);
@@ -124,7 +129,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getSacado().getNome());
 
 		cb.setTextMatrix(LEFT_MARGIN + 230, ALTURA);
-		cb.showText(boleto.getDatas().getDataDeVencimento());
+		cb.showText(dateFormatter(boleto.getDatas().getDataDeVencimento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 400, ALTURA);
 		cb.showText(formatter
@@ -156,21 +161,21 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getLocalPagamento2());
 
 		cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
-		cb.showText(boleto.getDatas().getDataDeVencimento());
+		cb.showText(dateFormatter(boleto.getDatas().getDataDeVencimento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 141);
-		cb.showText(boleto.getCedente());
+		cb.showText(boleto.getEmissor().getCedente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 420, ALTURA - 141);
 		cb.showText(boleto.getEmissor().getAgencia() + " / " + boleto.getEmissor().getContaCorrente()
-				+ "-" + boleto.getDvContaCorrente());
+				+ "-" + boleto.getEmissor().getDvContaCorrente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 162);
-		cb.showText(boleto.getDatas().getDataDoDocumento());
+		cb.showText(dateFormatter(boleto.getDatas().getDataDoDocumento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 70, ALTURA - 162);
 		cb.showText((!boleto.getNoDocumento().isEmpty()) ? boleto
-				.getNoDocumento() : boleto.getNossoNumero());
+				.getNoDocumento() : boleto.getEmissor().getNossoNumero());
 
 		cb.setTextMatrix(LEFT_MARGIN + 180, ALTURA - 162);
 		cb.showText(boleto.getEspecieDocumento());
@@ -179,38 +184,39 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getAceite());
 
 		cb.setTextMatrix(LEFT_MARGIN + 300, ALTURA - 162);
-		cb.showText(boleto.getDatas().getDataDoProcessamento());
+		cb.showText(dateFormatter(boleto.getDatas().getDataDoProcessamento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 410, ALTURA - 162);
-		cb.showText(boleto.getCarteira() + " / " + boleto.getNossoNumero());
+		cb.showText(boleto.getEmissor().getCarteira() + " / " + boleto.getEmissor().getNossoNumero());
 
 		cb.setTextMatrix(LEFT_MARGIN + 122, ALTURA - 185);
-		cb.showText(boleto.getCarteira());
+		cb.showText(boleto.getEmissor().getCarteira());
 
 		cb.setTextMatrix(LEFT_MARGIN + 430, ALTURA - 185);
 		cb.showText(formatter
 				.valueToString(new Double(boleto.getValorBoleto())));
+		
+		
+		// TODO ver se cada instrucao nao ultrapassa margem. medir length da string
+		
+		// inicio das instrucoes do boleto
+		cb.beginText();
+		cb.setFontAndSize(fonteBold, 10);
 
-		// TODO: substituir por for com de 0 a 5.
-		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 207);
-		cb.showText(boleto.getInstrucao1());
+		List<String> instrucoes = boleto.getInstrucoes();
 
-		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 217);
-		cb.showText(boleto.getInstrucao2());
+		for (int i = 0; i < instrucoes.size(); i++) {
+			cb.setTextMatrix(LEFT_MARGIN, document.top() - 207 + i * 10);
+			cb.showText(String.valueOf(instrucoes.get(i)));
+		}
 
-		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 227);
-		cb.showText(boleto.getInstrucao3());
+		cb.endText();
 
-		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 237);
-		cb.showText(boleto.getInstrucao4());
-
-		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 247);
-		cb.showText(boleto.getInstrucao5());
+		// fim instrucoes
+		
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 277);
-		cb.showText(boleto.getCedente());
-		
-		
+		cb.showText(boleto.getEmissor().getCedente());
 		
 
 		cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 302);
@@ -237,6 +243,10 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.addTemplate(imgCB, 40, 10);
 
 		return new ByteArrayInputStream(baos.toByteArray());
+	}
+	
+	private String dateFormatter(Calendar date) {
+		return String.format("%1Dt/%1Mt/%1Yt", date);
 	}
 	
 	public void escreve(int x, int y, String texto) {
