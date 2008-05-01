@@ -2,6 +2,7 @@ package br.com.caelum.stella.validation;
 
 
 public class IEConstraints {
+	
 	public static final Integer[] P1 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
 			2, 1 };
 	public static final Integer[] P2 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2,
