@@ -1,18 +1,38 @@
 package br.com.caelum.stella.boleto;
 
+import java.util.List;
 
 public interface Boleto {
-	public String getValorBoleto();
-	public String getCaminho();
-	public String getTipoSaida();
-	public String getLocalPagamento();
-	public String getQtdMoeda();
-	public String getValorMoeda();
-	public double getAcrescimo();
-	public String getInstrucao();
-	public String getEspecieDocumento();
-	public String getAceite();
-	public Datas getDatas();
-	public Banco getBanco();
-	public Sacado getSacado();
+	String getValorBoleto();
+
+	String getCaminho();
+
+	String getTipoSaida();
+
+	String getLocalPagamento();
+
+	String getQtdMoeda();
+
+	String getValorMoeda();
+
+	double getAcrescimo();
+
+	String getInstrucao();
+
+	String getEspecieDocumento();
+
+	String getAceite();
+
+	Datas getDatas();
+
+	Banco getBanco();
+
+	Sacado getSacado();
+
+	Emissor getEmissor();
+	
+	List<String> getInstrucoes();
+
+	List<String> getDescricoes();
+	
 }

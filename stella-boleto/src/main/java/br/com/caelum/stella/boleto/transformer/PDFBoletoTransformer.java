@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
@@ -95,11 +95,11 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.beginText();
 		cb.setFontAndSize(fonteBold, 10);
 
-		Vector descricoes = boleto.getDescricoes();
+		List<String> descricoes = boleto.getDescricoes();
 
 		for (int i = 0; i < descricoes.size(); i++) {
 			cb.setTextMatrix(LEFT_MARGIN, document.top() - 70 + i * 15);
-			cb.showText(String.valueOf(descricoes.elementAt(i)));
+			cb.showText(String.valueOf(descricoes.get(i)));
 		}
 
 		cb.endText();
@@ -118,24 +118,24 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.setFontAndSize(fonteSimples, 8);
 
 		cb.setTextMatrix(LEFT_MARGIN + 50, ALTURA + 23);
-		cb.showText(boleto.getCedente()); // imprime o cedente
+		cb.showText(boleto.getEmissor().getCedente()); // imprime o cedente
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA);
-		cb.showText(boleto.getNomeSacado());
+		cb.showText(boleto.getSacado().getNome());
 
 		cb.setTextMatrix(LEFT_MARGIN + 230, ALTURA);
-		cb.showText(boleto.getDataVencimento());
+		cb.showText(boleto.getDatas().getDataDeVencimento());
 
 		cb.setTextMatrix(LEFT_MARGIN + 400, ALTURA);
 		cb.showText(formatter
 				.valueToString(new Double(boleto.getValorBoleto())));
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 19);
-		cb.showText(boleto.getAgencia() + " / " + boleto.getContaCorrente()
-				+ "-" + boleto.getDvContaCorrente());
+		cb.showText(boleto.getEmissor().getAgencia() + " / " + boleto.getEmissor().getContaCorrente()
+				+ "-" + boleto.getEmissor().getDvContaCorrente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 146, ALTURA - 19);
-		cb.showText(boleto.getNossoNumero());
+		cb.showText(boleto.getEmissor().getNossoNumero());
 		cb.endText();
 
 		cb.beginText();
@@ -151,21 +151,22 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 111);
 		cb.showText(boleto.getLocalPagamento());
 
+		
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 121);
 		cb.showText(boleto.getLocalPagamento2());
 
 		cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
-		cb.showText(boleto.getDataVencimento());
+		cb.showText(boleto.getDatas().getDataDeVencimento());
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 141);
 		cb.showText(boleto.getCedente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 420, ALTURA - 141);
-		cb.showText(boleto.getAgencia() + " / " + boleto.getContaCorrente()
+		cb.showText(boleto.getEmissor().getAgencia() + " / " + boleto.getEmissor().getContaCorrente()
 				+ "-" + boleto.getDvContaCorrente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 162);
-		cb.showText(boleto.getDataDocumento());
+		cb.showText(boleto.getDatas().getDataDoDocumento());
 
 		cb.setTextMatrix(LEFT_MARGIN + 70, ALTURA - 162);
 		cb.showText((!boleto.getNoDocumento().isEmpty()) ? boleto
@@ -178,7 +179,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getAceite());
 
 		cb.setTextMatrix(LEFT_MARGIN + 300, ALTURA - 162);
-		cb.showText(boleto.getDataProcessamento());
+		cb.showText(boleto.getDatas().getDataDoProcessamento());
 
 		cb.setTextMatrix(LEFT_MARGIN + 410, ALTURA - 162);
 		cb.showText(boleto.getCarteira() + " / " + boleto.getNossoNumero());
@@ -190,6 +191,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(formatter
 				.valueToString(new Double(boleto.getValorBoleto())));
 
+		// TODO: substituir por for com de 0 a 5.
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 207);
 		cb.showText(boleto.getInstrucao1());
 
@@ -207,6 +209,9 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 277);
 		cb.showText(boleto.getCedente());
+		
+		
+		
 
 		cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 302);
 		cb.showText(boleto.getSacado().getNome() + "     " + boleto.getSacado().getCpf());
@@ -269,8 +274,6 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 	static private Image getImagemDoBanco(Boleto boleto) throws BadElementException,
 			MalformedURLException, IOException {
 		// TODO: cachear invocacao ao ImageIO?
-		
-		
 		
 		Image banco = Image.getInstance(ImageIO.read(boleto.getBanco().getImage()), null);
 		banco.scaleToFit(IMAGEM_BANCO_WIDTH, IMAGEM_BANCO_HEIGHT);

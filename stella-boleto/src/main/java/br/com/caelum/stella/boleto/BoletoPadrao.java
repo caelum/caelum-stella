@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import java.util.List;
+
 public class BoletoPadrao implements Boleto {
 	
 	private String valorBoleto;
@@ -19,6 +21,8 @@ public class BoletoPadrao implements Boleto {
 	private Datas datas;
 	private Sacado sacado;
 	private Emissor emissor;
+	private List<String> instrucoes;
+	private List<String> descricoes;
 
 	private BoletoPadrao() {
 	}
@@ -148,5 +152,27 @@ public class BoletoPadrao implements Boleto {
 		this.emissor = emissor;
 		return this;
 	}
+
+	public List<String> getInstrucoes() {
+		return instrucoes;
+	}
+
+	public BoletoPadrao comInstrucoes(List<String> instrucoes) {
+		// verificar se tem max 5 no size
+		this.instrucoes = instrucoes;
+		return this;
+	}
+
+	public List<String> getDescricoes() {
+		return descricoes;
+	}
+
+	public BoletoPadrao comDescricoes(List<String> descricoes) {
+		// TODO: verificar se tem max 5 no size
+		this.descricoes = descricoes;
+		return this;
+	}
+
+	
 
 }

@@ -7,6 +7,7 @@ public class EmissorPadrao implements Emissor {
 	private String numConvenio;
 	private String nossoNumero;
 	private String cedente;
+	private String dvContaCorrete;
 	
 	private EmissorPadrao() {
 	}
@@ -67,6 +68,15 @@ public class EmissorPadrao implements Emissor {
 	
 	public EmissorPadrao comCedente(String cedente) {
 		this.cedente = cedente;
+		return this;
+	}
+
+	public String getDvContaCorrente() {
+		return this.dvContaCorrete;
+	}
+	
+	public EmissorPadrao comDvContaCorrete(String dv) {
+		this.dvContaCorrete = dv;
 		return this;
 	}
 }
