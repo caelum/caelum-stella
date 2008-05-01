@@ -1,13 +1,12 @@
 package br.com.caelum.stella.boleto;
 
-import java.net.URL;
 
 public enum Bancos implements Banco {
-	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), 
-	CAIXA_ECONOMICA(104), UNIBANCO(409), HSBC(399);
+	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
+			104), UNIBANCO(409), HSBC(399);
 
 	private int numero;
-	
+
 	private Bancos(int numero) {
 		this.numero = numero;
 	}
@@ -25,12 +24,14 @@ public enum Bancos implements Banco {
 	public int getNumero() {
 		return this.numero;
 	}
-	
+
 	public String getNumeroFormatado() {
 		return String.format("%03d", this.numero);
 	}
 
-	public URL getImage() {
-		return Bancos.class.getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
+	public java.net.URL getImage() {
+		return Bancos.class.getResource(String
+				.format("/br/com/caelum/stella/boleto/img/%s.png",
+						getNumeroFormatado()));
 	}
 }

@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import java.awt.Image;
+import java.io.IOException;
 import java.net.URL;
 
 public interface Banco {
@@ -29,6 +31,7 @@ public interface Banco {
 	/**
 	 * Devolve a imagem referente a esse banco
 	 * @return
+	 * @throws IOException 
 	 */
 	URL getImage();
 }

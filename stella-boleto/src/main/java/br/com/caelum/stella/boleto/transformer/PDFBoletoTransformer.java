@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
 
 import br.com.caelum.stella.boleto.Boleto;
@@ -66,8 +67,9 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		PdfContentByte cb = writer.getDirectContent();
 
 		// gera template com o fundo do boleto
+		// TODO: talvez fazer isso so uma vez e deixar em memoria, ou ainda receber no construtor
 		Image imagemTitulo = Image.getInstance(getClass().getResource(
-				"/br/com/stlla/boleto/img/template.png"));
+				"/br/com/caelum/stella/boleto/img/template.png"));
 		imagemTitulo.scaleToFit(IMAGEM_BOLETO_WIDTH, IMAGEM_BOLETO_HEIGHT);
 		imagemTitulo.setAbsolutePosition(0, 0);
 
@@ -78,20 +80,20 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		PdfTemplate imagemBanco = cb.createTemplate(IMAGEM_BANCO_WIDTH,
 				IMAGEM_BANCO_HEIGHT);
 		imagemBanco.addImage(getImagemDoBanco(boleto));
-
+		
 		document.newPage();
 
 		cb.addTemplate(imagemBoleto, LEFT_MARGIN, document.top() - 750);
 		cb.addTemplate(imagemBanco, LEFT_MARGIN, document.top() - 486);
 
-		BaseFont bfTextoSimples = BaseFont.createFont(BaseFont.HELVETICA,
+		BaseFont fonteSimples = BaseFont.createFont(BaseFont.HELVETICA,
 				BaseFont.WINANSI, BaseFont.EMBEDDED);
-		BaseFont bfTextoCB = BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+		BaseFont fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD,
 				BaseFont.WINANSI, BaseFont.EMBEDDED);
 
 		// inicio das descricoes do boleto
 		cb.beginText();
-		cb.setFontAndSize(bfTextoCB, 10);
+		cb.setFontAndSize(fonteBold, 10);
 
 		Vector descricoes = boleto.getDescricoes();
 
@@ -105,7 +107,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		// fim descricoes
 
 		cb.beginText();
-		cb.setFontAndSize(bfTextoCB, 13);
+		cb.setFontAndSize(fonteBold, 13);
 
 		cb.setTextMatrix(LEFT_MARGIN + 125, ALTURA - 87);
 
@@ -113,7 +115,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.endText();
 
 		cb.beginText();
-		cb.setFontAndSize(bfTextoSimples, 8);
+		cb.setFontAndSize(fonteSimples, 8);
 
 		cb.setTextMatrix(LEFT_MARGIN + 50, ALTURA + 23);
 		cb.showText(boleto.getCedente()); // imprime o cedente
@@ -137,14 +139,14 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.endText();
 
 		cb.beginText();
-		cb.setFontAndSize(bfTextoCB, 10);
+		cb.setFontAndSize(fonteBold, 10);
 
 		cb.setTextMatrix(LEFT_MARGIN + 175, ALTURA - 87);
 		cb.showText(boleto.getBanco().getLinhaDigitavelPara(boleto));
 		cb.endText();
 
 		cb.beginText();
-		cb.setFontAndSize(bfTextoSimples, 8);
+		cb.setFontAndSize(fonteSimples, 8);
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 111);
 		cb.showText(boleto.getLocalPagamento());
@@ -207,16 +209,19 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getCedente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 302);
-		cb.showText(boleto.getNomeSacado() + "     " + boleto.getCpfSacado());
+		cb.showText(boleto.getSacado().getNome() + "     " + boleto.getSacado().getCpf());
 
 		cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 312);
-		cb.showText(boleto.getEnderecoSacado());
+		cb.showText(boleto.getSacado().getEndereco());
 
+		
+		
+		// TODO: talvez isso aqui estoure a margem, nao? precisa medir o length da string.
 		cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 322);
 		cb
-				.showText(boleto.getCepSacado() + " "
-						+ boleto.getBairroSacado() + " - "
-						+ boleto.getCidadeSacado() + " " + boleto.getUfSacado());
+				.showText(boleto.getSacado().getCep() + " "
+						+ boleto.getSacado().getBairro() + " - "
+						+ boleto.getSacado().getCidade() + " " + boleto.getSacado().getUf());
 
 		cb.endText();
 
@@ -227,6 +232,10 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.addTemplate(imgCB, 40, 10);
 
 		return new ByteArrayInputStream(baos.toByteArray());
+	}
+	
+	public void escreve(int x, int y, String texto) {
+		
 	}
 
 	/**
@@ -245,7 +254,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		code.setFont(null);
 		code.setX(0.73f);
 		code.setN(3);
-	
+
 		return code;
 	}
 
@@ -259,10 +268,14 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 	 */
 	static private Image getImagemDoBanco(Boleto boleto) throws BadElementException,
 			MalformedURLException, IOException {
-		Image imgBanco = Image.getInstance(boleto.getBanco().getImage());
-		imgBanco.scaleToFit(IMAGEM_BANCO_WIDTH, IMAGEM_BANCO_HEIGHT);
-		imgBanco.setAbsolutePosition(0, 0);
-		return imgBanco;
+		// TODO: cachear invocacao ao ImageIO?
+		
+		
+		
+		Image banco = Image.getInstance(ImageIO.read(boleto.getBanco().getImage()), null);
+		banco.scaleToFit(IMAGEM_BANCO_WIDTH, IMAGEM_BANCO_HEIGHT);
+		banco.setAbsolutePosition(0, 0);
+		return banco;
 	}
 
 }

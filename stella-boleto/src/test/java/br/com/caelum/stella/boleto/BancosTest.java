@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 public class BancosTest {
@@ -10,12 +12,11 @@ public class BancosTest {
 	public void testGetNumeroFormatado() {
 		for(Bancos b : Bancos.values()) {
 			assertEquals(b.getNumero(), Integer.parseInt(b.getNumeroFormatado()));
-			
 		}
 	}
 
 	@Test
-	public void testGetImage() {
+	public void testGetImage() throws IOException {
 		for(Bancos b : Bancos.values()) {
 			assertNotNull(b.getImage());
 		}
