@@ -12,7 +12,7 @@ public class SacadoPadrao implements Sacado {
 	private SacadoPadrao() {
 	}
 	
-	private SacadoPadrao newSacado() {
+	public SacadoPadrao newSacado() {
 		SacadoPadrao sacado = new SacadoPadrao();
 		return sacado;
 	}

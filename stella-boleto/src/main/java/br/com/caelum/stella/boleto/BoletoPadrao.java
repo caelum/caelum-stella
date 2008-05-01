@@ -158,7 +158,9 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	public BoletoPadrao comInstrucoes(List<String> instrucoes) {
-		// verificar se tem max 5 no size
+		if(instrucoes.size() > 5) {
+			throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
+		}
 		this.instrucoes = instrucoes;
 		return this;
 	}
@@ -168,7 +170,10 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	public BoletoPadrao comDescricoes(List<String> descricoes) {
-		// TODO: verificar se tem max 5 no size
+		// TODO: verificar se 5 eh max mesmo
+		if(descricoes.size() > 5) {
+			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
+		}
 		this.descricoes = descricoes;
 		return this;
 	}
