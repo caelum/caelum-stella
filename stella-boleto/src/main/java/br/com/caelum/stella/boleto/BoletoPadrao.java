@@ -8,7 +8,6 @@ public class BoletoPadrao implements Boleto {
 	private String caminho;
 	private String tipoSaida;
 
-	private String localPagamento;
 	private String qtdMoeda;
 	private String valorMoeda;
 	private double acrescimo;
@@ -23,6 +22,7 @@ public class BoletoPadrao implements Boleto {
 	private Emissor emissor;
 	private List<String> instrucoes;
 	private List<String> descricoes;
+	private List<String> locaisDePagamento;
 
 	private BoletoPadrao() {
 	}
@@ -78,15 +78,6 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comInstrucao(String instrucao) {
 		this.instrucao = instrucao;
-		return this;
-	}
-
-	public String getLocalPagamento() {
-		return this.localPagamento;
-	}
-
-	public BoletoPadrao comLocalPagamento(String localPagamento) {
-		this.localPagamento = localPagamento;
 		return this;
 	}
 
@@ -175,6 +166,18 @@ public class BoletoPadrao implements Boleto {
 			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
 		}
 		this.descricoes = descricoes;
+		return this;
+	}
+	
+	public List<String> getLocaisDePagamento() {
+		return locaisDePagamento;
+	}
+	
+	public BoletoPadrao comLocaisDePagamento(List<String> locaisDePagamento) {
+		if(locaisDePagamento.size() > 2) {
+			throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");
+		}
+		this.locaisDePagamento = locaisDePagamento;
 		return this;
 	}
 

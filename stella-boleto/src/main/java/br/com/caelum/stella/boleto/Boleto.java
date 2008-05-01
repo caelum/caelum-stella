@@ -9,8 +9,6 @@ public interface Boleto {
 
 	String getTipoSaida();
 
-	String getLocalPagamento();
-
 	String getQtdMoeda();
 
 	String getValorMoeda();
@@ -34,5 +32,7 @@ public interface Boleto {
 	List<String> getInstrucoes();
 
 	List<String> getDescricoes();
+	
+	List<String> getLocaisDePagamento();
 	
 }
