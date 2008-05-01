@@ -12,8 +12,8 @@ import javax.faces.validator.ValidatorException;
 
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.CNPJError;
 import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
@@ -50,13 +50,14 @@ public class StellaCNPJValidator implements javax.faces.validator.Validator,
 		Locale locale = facesContext.getViewRoot().getLocale();
 		ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
 
-		ResourceBundleMessageProducer<CNPJError> producer = new ResourceBundleMessageProducer<CNPJError>(
-				bundle);
+		ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
 		CNPJValidator validator = new CNPJValidator(producer, formatted);
 
-		if (!validator.validate(value.toString())) {
-			List<ValidationMessage> messages = validator
-					.getLastValidationMessages();
+		try {
+			validator.assertValid(value.toString());
+		}
+		catch (InvalidStateException e){
+			List<ValidationMessage> messages = e.getValidationMessages();
 			String firstErrorMessage = messages.remove(0).getMessage();
 			registerAllMessages(facesContext, uiComponent, messages);
 			throw new ValidatorException(new FacesMessage(firstErrorMessage));

@@ -14,7 +14,7 @@ import javax.faces.validator.ValidatorException;
 
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.NITError;
+import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.NITValidator;
 
 /**
@@ -34,22 +34,23 @@ public class StellaNITValidator implements Validator, StateHolder {
 	private boolean transientValue = false;
 	
 
-	public void validate(FacesContext facesContext, UIComponent component,
+	public void validate(FacesContext facesContext, UIComponent uiComponent,
 			Object value) throws ValidatorException {
 		Application application = facesContext.getApplication();
 		String bundleName = application.getMessageBundle();
 		Locale locale = facesContext.getViewRoot().getLocale();
 		ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
 
-		ResourceBundleMessageProducer<NITError> producer = new ResourceBundleMessageProducer<NITError>(
-				bundle);
+		ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
 		NITValidator validator = new NITValidator(producer, formatted);
 
-		if (!validator.validate(value.toString())) {
-			List<ValidationMessage> messages = validator
-					.getLastValidationMessages();
+		try {
+			validator.assertValid(value.toString());
+		}
+		catch (InvalidStateException e){
+			List<ValidationMessage> messages = e.getValidationMessages();
 			String firstErrorMessage = messages.remove(0).getMessage();
-			registerAllMessages(facesContext, component, messages);
+			registerAllMessages(facesContext, uiComponent, messages);
 			throw new ValidatorException(new FacesMessage(firstErrorMessage));
 		}
 	}

@@ -12,8 +12,8 @@ import javax.faces.validator.ValidatorException;
 
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.CPFError;
 import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
@@ -51,13 +51,14 @@ public class StellaCPFValidator implements javax.faces.validator.Validator,
 		Locale locale = facesContext.getViewRoot().getLocale();
 		ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
 
-		ResourceBundleMessageProducer<CPFError> producer = new ResourceBundleMessageProducer<CPFError>(
-				bundle);
+		ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
 		CPFValidator validator = new CPFValidator(producer, formatted);
 
-		if (!validator.validate(value.toString())) {
-			List<ValidationMessage> messages = validator
-					.getLastValidationMessages();
+		try {
+			validator.assertValid(value.toString());
+		}
+		catch (InvalidStateException e){
+			List<ValidationMessage> messages = e.getValidationMessages();
 			String firstErrorMessage = messages.remove(0).getMessage();
 			registerAllMessages(facesContext, uiComponent, messages);
 			throw new ValidatorException(new FacesMessage(firstErrorMessage));
