@@ -4,8 +4,6 @@ import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
 import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
@@ -19,26 +17,48 @@ import br.com.caelum.stella.formatter.CPFFormatter;
  */
 public class CPFValidator extends AbstractValidator<String> {
 	private static final int MOD = 11;
+
 	private final boolean isFormatted;
+
 	private final boolean isIgnoringRepeatedDigits;
 
-	@SuppressWarnings("serial")
-	private static final DigitChecker digitChecker = new DigitChecker(
-			new HashMap<Integer, List<Integer>>() {
-				{
-					Integer dv1Position = 10;
-					Integer[] dv1Multipliers = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-					Integer dv2Position = 11;
-					Integer[] dv2Multipliers = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-					this.put(dv1Position, Arrays.asList(dv1Multipliers));
-					this.put(dv2Position, Arrays.asList(dv2Multipliers));
-				}
-			}, MOD) {
-		@Override
-		protected int rotinaPosProdutoInterno(int resto) {
-			return (resto < 2) ? 0 : 11 - resto;
+	private static class RotinaPosProdutoInterno implements
+			RotinaDeDigitoVerificador {
+		public Integer transform(RotinaParameters parameter) {
+			Integer mod = parameter.getDigitoVerificadorInfo().getMod();
+			Integer result = parameter.getResult() % mod;
+			if (result < 2) {
+				result = 0;
+			} else {
+				result = 11 - result;
+			}
+			return result;
 		}
-	};
+	}
+
+	private static final Integer DV1_POSITION = 10;
+
+	private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3,
+			2 };
+
+	private static final Integer DV2_POSITION = 11;
+
+	private static final Integer[] DV2_MULTIPLIERS = { 11, 10, 9, 8, 7, 6, 5,
+			4, 3, 2 };
+
+	private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
+			0,
+			new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
+			MOD, DV1_MULTIPLIERS, DV1_POSITION);
+
+	private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(
+			0,
+			new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
+			MOD, DV2_MULTIPLIERS, DV2_POSITION);
+
+	private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
+
+	private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
 	/**
 	 * <p>
@@ -90,27 +110,43 @@ public class CPFValidator extends AbstractValidator<String> {
 	 */
 	protected List<InvalidValue> getInvalidValues(String cpf) {
 		List<InvalidValue> errors = new ArrayList<InvalidValue>();
-		errors.clear();
 		if (cpf != null) {
-			if (isFormatted) {
-				if (!CPF_FORMATED.matcher(cpf).matches()) {
-					errors.add(CPFError.INVALID_FORMAT);
+			String unformatedCPF = checkForCorrectFormat(cpf, errors);
+
+			if (errors.isEmpty()) {
+				if ((!isIgnoringRepeatedDigits)
+						&& hasAllRepeatedDigits(unformatedCPF)) {
+					errors.add(CPFError.REPEATED_DIGITS);
 				}
-				cpf = (new CPFFormatter()).unformat(cpf);
-			} else if (!(CPF_UNFORMATED.matcher(cpf).matches())) {
-				errors.add(CPFError.INVALID_DIGITS);
 			}
-			if (errors.isEmpty() && (!isIgnoringRepeatedDigits)
-					&& hasAllRepeatedDigits(cpf)) {
-				errors.add(CPFError.REPEATED_DIGITS);
-			}
-			if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(cpf)) {
-				errors.add(CPFError.INVALID_CHECK_DIGITS);
+			if (errors.isEmpty()) {
+				if (!hasValidCheckDigits(unformatedCPF)) {
+					errors.add(CPFError.INVALID_CHECK_DIGITS);
+				}				
 			}
 		}
 		return errors;
 	}
-	
+
+	private String checkForCorrectFormat(String string, List<InvalidValue> errors) {
+		String unformatedCPF = null;
+		if (isFormatted) {
+			if (!CPF_FORMATED.matcher(string).matches()) {
+				errors.add(CPFError.INVALID_FORMAT);
+			}
+			unformatedCPF = (new CPFFormatter()).unformat(string);
+		} else {
+			if (!(CPF_UNFORMATED.matcher(string).matches())) {
+				errors.add(CPFError.INVALID_DIGITS);
+			}
+			unformatedCPF = string;
+		}
+		return unformatedCPF;
+	}
+
+	private boolean hasValidCheckDigits(String value) {
+		return (DV1_CHECKER.DVisValid(value)) && (DV2_CHECKER.DVisValid(value));
+	}
 
 	private boolean hasAllRepeatedDigits(String cpf) {
 		for (int i = 1; i < cpf.length(); i++) {

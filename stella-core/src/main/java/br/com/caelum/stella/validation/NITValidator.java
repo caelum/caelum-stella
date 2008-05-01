@@ -4,8 +4,6 @@ import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
 import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
@@ -27,23 +25,34 @@ import br.com.caelum.stella.formatter.NITFormatter;
 public class NITValidator extends AbstractValidator<String> {
 
 	private static final int MOD = 11;
+
 	private final boolean isFormatted;
 
-	@SuppressWarnings("serial")
-	private static final DigitChecker digitChecker = new DigitChecker(
-			new HashMap<Integer, List<Integer>>() {
-				{
-					final Integer dv1Position = 11;
-					final Integer[] dv1Multipliers = { 3, 2, 9, 8, 7, 6, 5, 4,
-							3, 2 };
-					this.put(dv1Position, Arrays.asList(dv1Multipliers));
-				}
-			}, MOD) {
-		@Override
-		protected int rotinaPosProdutoInterno(int resto) {
-			return (resto < 2) ? 0 : 11 - resto;
+	private static class RotinaPosProdutoInterno implements
+			RotinaDeDigitoVerificador {
+		public Integer transform(RotinaParameters parameter) {
+			Integer mod = parameter.getDigitoVerificadorInfo().getMod();
+			Integer result = parameter.getResult() % mod;
+			if (result < 2) {
+				result = 0;
+			} else {
+				result = 11 - result;
+			}
+			return result;
 		}
-	};
+	}
+
+	private static final Integer DV1_POSITION = 11;
+
+	private static final Integer[] DV1_MULTIPLIERS = { 3, 2, 9, 8, 7, 6, 5, 4,
+			3, 2 };
+
+	private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
+			0,
+			new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
+			MOD, DV1_MULTIPLIERS, DV1_POSITION);
+
+	private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 
 	/**
 	 * <p>
@@ -63,21 +72,36 @@ public class NITValidator extends AbstractValidator<String> {
 
 	protected List<InvalidValue> getInvalidValues(String nit) {
 		List<InvalidValue> errors = new ArrayList<InvalidValue>();
-		errors.clear();
 		if (nit != null) {
-			if (isFormatted) {
-				if (!NIT_FORMATED.matcher(nit).matches()) {
-					errors.add(NITError.INVALID_FORMAT);
+			String unformatedNit = checkForCorrectFormat(nit, errors);
+
+			if (errors.isEmpty()) {
+				if (!hasValidCheckDigits(unformatedNit)) {
+					errors.add(NITError.INVALID_CHECK_DIGITS);
 				}
-				nit = (new NITFormatter()).unformat(nit);
-			} else if (!NIT_UNFORMATED.matcher(nit).matches()) {
-				errors.add(NITError.INVALID_DIGITS);
-			}
-			if (errors.isEmpty() && !digitChecker.hasValidCheckDigits(nit)) {
-				errors.add(NITError.INVALID_CHECK_DIGITS);
 			}
 		}
 		return errors;
 	}
 
+	private String checkForCorrectFormat(String string,
+			List<InvalidValue> errors) {
+		String unformatedNit;
+		if (isFormatted) {
+			if (!NIT_FORMATED.matcher(string).matches()) {
+				errors.add(NITError.INVALID_FORMAT);
+			}
+			unformatedNit = (new NITFormatter()).unformat(string);
+		} else {
+			if (!NIT_UNFORMATED.matcher(string).matches()) {
+				errors.add(NITError.INVALID_DIGITS);
+			}
+			unformatedNit = string;
+		}
+		return unformatedNit;
+	}
+
+	private boolean hasValidCheckDigits(String value) {
+		return (DV1_CHECKER.DVisValid(value));
+	}
 }
