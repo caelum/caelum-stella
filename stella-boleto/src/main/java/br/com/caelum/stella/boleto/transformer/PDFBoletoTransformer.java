@@ -28,7 +28,7 @@ import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
 
 /**
- * Dada as informações de um boleto, gera um PDF deste.
+ * Dada as informaÔøΩÔøΩes de um boleto, gera um PDF deste.
  * 
  * 
  * @author Paulo Silveira
@@ -259,6 +259,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		PdfTemplate imgCB = code.createTemplateWithBarcode(cb, null, null);
 		cb.addTemplate(imgCB, 40, 10);
 
+		document.close();
 		return new ByteArrayInputStream(baos.toByteArray());
 	}
 
@@ -286,7 +287,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		code.setFont(null);
 		code.setX(0.73f);
 		code.setN(3);
-
+		
 		return code;
 	}
 

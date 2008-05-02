@@ -17,6 +17,7 @@ import com.lowagie.text.DocumentException;
 
 public class BoletoPadraoTest {
 
+	// TODO: integration test!
 	@Test
 	public void testNewBoleto() throws NumberFormatException, IOException, DocumentException, ParseException {
 		
@@ -63,6 +64,10 @@ public class BoletoPadraoTest {
 		File arquivo = new File("arquivo.pdf");  
         FileOutputStream fos = new FileOutputStream(arquivo);  
         
-        fos.write(is.read());
+        byte[] b = new byte[is.available()];
+        is.read(b);
+        
+        fos.write(b);
+        fos.close();
 	}
 }

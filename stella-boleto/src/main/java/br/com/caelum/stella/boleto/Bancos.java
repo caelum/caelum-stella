@@ -13,12 +13,12 @@ public enum Bancos implements Banco {
 
 	public String getCodigoBarras(Boleto boleto) {
 		// TODO Auto-generated method stub
-		return null;
+		return "00";
 	}
 
 	public String getLinhaDigitavelPara(Boleto boleto) {
 		// TODO Auto-generated method stub
-		return null;
+		return "00";
 	}
 
 	public int getNumero() {
