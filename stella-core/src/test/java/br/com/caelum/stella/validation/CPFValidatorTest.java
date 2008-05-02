@@ -30,7 +30,7 @@ public class CPFValidatorTest {
 			validator.assertValid("1111111a111");
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -50,7 +50,7 @@ public class CPFValidatorTest {
 			validator.assertValid("1234567890");
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -72,7 +72,7 @@ public class CPFValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -95,7 +95,7 @@ public class CPFValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -118,7 +118,7 @@ public class CPFValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -142,7 +142,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		value = "34608514300";
@@ -151,7 +151,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		value = "47393545608";
@@ -160,7 +160,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -183,7 +183,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -204,7 +204,7 @@ public class CPFValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -227,7 +227,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -255,7 +255,7 @@ public class CPFValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -282,7 +282,7 @@ public class CPFValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();

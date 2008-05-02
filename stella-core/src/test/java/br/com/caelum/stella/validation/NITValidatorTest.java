@@ -36,7 +36,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -62,7 +62,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -88,7 +88,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -115,7 +115,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -142,7 +142,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -169,7 +169,7 @@ public class NITValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 
 		value = "34608514300";
@@ -178,7 +178,7 @@ public class NITValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 
 		value = "47393545608";
@@ -187,7 +187,7 @@ public class NITValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 
 		mockery.assertIsSatisfied();
@@ -212,7 +212,7 @@ public class NITValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		List<ValidationMessage> errors = validator.getValidationMessages(value);
+		List<ValidationMessage> errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 
 		mockery.assertIsSatisfied();
@@ -239,7 +239,7 @@ public class NITValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		List<ValidationMessage> errors = validator.getValidationMessages(value);
+		List<ValidationMessage> errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 
 		mockery.assertIsSatisfied();
@@ -266,7 +266,7 @@ public class NITValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);			
+			assertTrue(e.getInvalidMessages().size()==1);			
 		}
 
 		mockery.assertIsSatisfied();

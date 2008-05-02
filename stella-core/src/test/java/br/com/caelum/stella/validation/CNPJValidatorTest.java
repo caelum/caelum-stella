@@ -35,7 +35,7 @@ public class CNPJValidatorTest {
 			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getValidationMessages().size()==1);
+        	assertTrue(e.getInvalidMessages().size()==1);
 		}
 
         mockery.assertIsSatisfied();
@@ -60,7 +60,7 @@ public class CNPJValidatorTest {
 			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getValidationMessages().size()==1);
+        	assertTrue(e.getInvalidMessages().size()==1);
 		}
 
         mockery.assertIsSatisfied();
@@ -85,7 +85,7 @@ public class CNPJValidatorTest {
 			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getValidationMessages().size()==1);
+        	assertTrue(e.getInvalidMessages().size()==1);
 		}
         mockery.assertIsSatisfied();
     }
@@ -169,7 +169,7 @@ public class CNPJValidatorTest {
 			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getValidationMessages().size()==1);
+        	assertTrue(e.getInvalidMessages().size()==1);
 		}
 
         mockery.assertIsSatisfied();
@@ -196,7 +196,7 @@ public class CNPJValidatorTest {
 			validator.assertValid(value);
         	fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getValidationMessages().size()==1);
+        	assertTrue(e.getInvalidMessages().size()==1);
 		}
         mockery.assertIsSatisfied();
     }

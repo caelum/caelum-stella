@@ -42,7 +42,7 @@ public class AbstractValidatorTest {
 				}
 	        	
 	        };
-			List<ValidationMessage> messages0 = validator.getValidationMessages(any);
+			List<ValidationMessage> messages0 = validator.getInvalidMessages(any);
 			List<ValidationMessage> messages1 = new ArrayList<ValidationMessage>();
 			messages1.add(validationMessage);
 			assertEquals(messages0, messages1);
@@ -82,7 +82,7 @@ public class AbstractValidatorTest {
 				validator.assertValid(any);
 				fail();
 			} catch (InvalidStateException e) {
-				List<ValidationMessage> messages0 = e.getValidationMessages();
+				List<ValidationMessage> messages0 = e.getInvalidMessages();
 				List<ValidationMessage> messages1 = new ArrayList<ValidationMessage>();
 				messages1.add(validationMessage);
 				assertEquals(messages0, messages1);

@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * <p>
- * {@link #getValidationMessages()} sempre devolve <b>apenas</b> os
+ * {@link #getInvalidMessages()} sempre devolve <b>apenas</b> os
  * problemas de validação relativos à última chamada de {@link #assertValid(Object)}
  * </p>
  * 
@@ -26,5 +26,5 @@ public interface Validator<T> {
 	 * @return <b>apenas</b> os problemas de validação relativos à última
 	 *         chamada de {@link #assertValid(Object)}
 	 */
-	List<ValidationMessage> getValidationMessages(T object);
+	List<ValidationMessage> getInvalidMessages(T object);
 }

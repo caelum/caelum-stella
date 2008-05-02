@@ -29,7 +29,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid("1234567a9012");
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -49,7 +49,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid("12345678901");
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -71,7 +71,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();
@@ -94,7 +94,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -117,7 +117,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 
 		mockery.assertIsSatisfied();
@@ -141,7 +141,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -164,7 +164,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -192,7 +192,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getValidationMessages(value);
+		errors = validator.getInvalidMessages(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -219,7 +219,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getValidationMessages().size()==1);
+			assertTrue(e.getInvalidMessages().size()==1);
 		}
 		
 		mockery.assertIsSatisfied();

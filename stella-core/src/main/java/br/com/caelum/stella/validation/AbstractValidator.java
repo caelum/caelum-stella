@@ -23,7 +23,7 @@ public abstract class AbstractValidator<T> implements Validator<T>{
 		return messages;
 	}
 
-	public List<ValidationMessage> getValidationMessages(T value) {
+	public List<ValidationMessage> getInvalidMessages(T value) {
 		List<InvalidValue> invalidValues = getInvalidValues(value);
 		List<ValidationMessage> messages = getValidationMessages(invalidValues);
 		return messages;

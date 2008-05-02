@@ -13,7 +13,7 @@ public class InvalidStateException extends RuntimeException {
 		this.validationMessages = validationMessages;
 	}
 
-	public List<ValidationMessage> getValidationMessages() {
+	public List<ValidationMessage> getInvalidMessages() {
 		return validationMessages;
 	}
 	

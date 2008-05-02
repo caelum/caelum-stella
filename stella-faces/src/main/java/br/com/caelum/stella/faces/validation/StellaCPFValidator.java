@@ -58,7 +58,7 @@ public class StellaCPFValidator implements javax.faces.validator.Validator,
 			validator.assertValid(value.toString());
 		}
 		catch (InvalidStateException e){
-			List<ValidationMessage> messages = e.getValidationMessages();
+			List<ValidationMessage> messages = e.getInvalidMessages();
 			String firstErrorMessage = messages.remove(0).getMessage();
 			registerAllMessages(facesContext, uiComponent, messages);
 			throw new ValidatorException(new FacesMessage(firstErrorMessage));
