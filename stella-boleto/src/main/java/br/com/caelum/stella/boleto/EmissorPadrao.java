@@ -12,9 +12,8 @@ public class EmissorPadrao implements Emissor {
 	private EmissorPadrao() {
 	}
 	
-	public EmissorPadrao newEmissor() {
-		EmissorPadrao emissor = new EmissorPadrao();
-		return emissor;
+	public static EmissorPadrao newEmissor() {
+		return new EmissorPadrao();
 	}
 	
 	public String getAgencia() {

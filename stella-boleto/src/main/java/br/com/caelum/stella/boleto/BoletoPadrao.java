@@ -12,7 +12,6 @@ public class BoletoPadrao implements Boleto {
 	private String valorMoeda;
 	private double acrescimo;
 
-	private String instrucao;
 	private String especieDocumento;
 	private String noDocumento;
 	private String aceite;
@@ -28,9 +27,8 @@ public class BoletoPadrao implements Boleto {
 	private BoletoPadrao() {
 	}
 
-	public BoletoPadrao newBoleto() {
-		BoletoPadrao boleto = new BoletoPadrao();
-		return boleto;
+	public static BoletoPadrao newBoleto() {
+		return new BoletoPadrao();
 	}
 
 	public String getAceite() {
@@ -79,15 +77,6 @@ public class BoletoPadrao implements Boleto {
 	
 	public BoletoPadrao comNoDocumento(String noDocumento) {
 		this.noDocumento = noDocumento;
-		return this;
-	}
-
-	public String getInstrucao() {
-		return this.instrucao;
-	}
-
-	public BoletoPadrao comInstrucao(String instrucao) {
-		this.instrucao = instrucao;
 		return this;
 	}
 

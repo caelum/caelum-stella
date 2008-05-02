@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto;
 
-import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 

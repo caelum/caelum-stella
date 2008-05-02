@@ -15,8 +15,6 @@ public interface Boleto {
 
 	double getAcrescimo();
 
-	String getInstrucao();
-
 	String getEspecieDocumento();
 	
 	String getNoDocumento();

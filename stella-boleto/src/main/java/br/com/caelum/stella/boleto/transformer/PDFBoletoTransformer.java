@@ -263,7 +263,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 	}
 
 	private String dateFormatter(Calendar date) {
-		return String.format("%1Dt/%1Mt/%1Yt", date);
+		return String.format("%1$te/%1$tm/%1$tY", date);
 	}
 
 	public void escreve(int x, int y, String texto) {

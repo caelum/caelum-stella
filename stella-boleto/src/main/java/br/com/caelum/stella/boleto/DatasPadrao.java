@@ -10,9 +10,8 @@ public class DatasPadrao implements Datas {
 	private DatasPadrao() {
 	}
 	
-	public DatasPadrao newDatas() {
-		DatasPadrao datas = new DatasPadrao();
-		return datas;
+	public static DatasPadrao newDatas() {
+		return new DatasPadrao();
 	}
 
 	public Calendar getDataDoDocumento() {

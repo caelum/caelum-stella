@@ -12,9 +12,8 @@ public class SacadoPadrao implements Sacado {
 	private SacadoPadrao() {
 	}
 	
-	public SacadoPadrao newSacado() {
-		SacadoPadrao sacado = new SacadoPadrao();
-		return sacado;
+	public static SacadoPadrao newSacado() {
+		return new SacadoPadrao();
 	}
 	
 	public String getNome() {
