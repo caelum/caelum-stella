@@ -13,7 +13,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.Validator;
 
-public class InscricaoEstatudalDeSaoPauloValidatorTest {
+public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidatorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
@@ -24,7 +24,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		try {
 			validator.assertValid("1234567a9012");
 			fail();
@@ -44,7 +44,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		try {
 			validator.assertValid("12345678901");
 			fail();
@@ -64,7 +64,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 
 		String value = "1234567890123";
 		try {
@@ -86,7 +86,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		
 		// VALID IE = 110.042.490.114 
 		String value = "110042490104";
@@ -109,7 +109,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		
 		// VALID IE = 110.042.490.114 
 		String value = "110042490118";
@@ -131,7 +131,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		
 		List<ValidationMessage> errors;
 		
@@ -155,7 +155,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 		mockery.checking(new Expectations(){{
 			
 		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,false);
 		
 		List<ValidationMessage> errors;
 		String value = null;
@@ -182,7 +182,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 				
 			}
 		});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,true);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,true);
 		List<ValidationMessage> errors;
 
 		// VALID IE = 110.042.490.114
@@ -211,7 +211,7 @@ public class InscricaoEstatudalDeSaoPauloValidatorTest {
 						IEError.INVALID_FORMAT);
 			}
 		});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,true);
+		Validator validator = new InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(messageProducer,true);
 
 		// VALID IE = 110.042.490.114
 		String value = "110.0424.490.114";
