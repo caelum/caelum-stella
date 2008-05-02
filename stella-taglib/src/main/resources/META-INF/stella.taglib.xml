@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+    "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+    "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
+
+<facelet-taglib>
+<namespace>http://stella.caelum.com.br/faces</namespace>
+  <tag>
+    <tag-name>validateCPF</tag-name>
+    <validator>
+      <validator-id>cpfValidator</validator-id>
+      <handler-class>br.com.caelum.stella.faces.validation.StellaCPFValidatorTagHandler</handler-class>
+    </validator>
+  </tag>
+  <tag>
+    <tag-name>validateCNPJ</tag-name>
+    <validator>
+      <validator-id>cpnjValidator</validator-id>
+      <handler-class>br.com.caelum.stella.faces.validation.StellaCNPJValidatorTagHandler</handler-class>
+    </validator>
+  </tag>
+    <tag>
+    <tag-name>validateNIT</tag-name>
+    <validator>
+      <validator-id>nitValidator</validator-id>
+      <handler-class>br.com.caelum.stella.faces.validation.StellaNITValidatorTagHandler</handler-class>
+    </validator>
+  </tag>
+</facelet-taglib>

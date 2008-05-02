@@ -7,7 +7,7 @@
 	<artifactId>stella-example-hibernate-seam</artifactId>
 	<packaging>war</packaging>
 	<version>0.1-SNAPSHOT</version>
-	<name>A custom project using myfaces, facelets and seam.</name>
+	<name>Example project using Stella Hibernate Validator, myfaces, facelets and seam.</name>
 	<url>http://www.example.com</url>
 	<build>
 		<finalName>stella-example-hibernate-seam</finalName>

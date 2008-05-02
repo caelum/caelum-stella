@@ -1,0 +1,84 @@
+<!--<description><![CDATA[ ]]></description>-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib>
+	<tlib-version>1.2</tlib-version>
+	<jsp-version>2.1</jsp-version>
+	<short-name>Stella Taglib</short-name>
+	<uri>http://stella.caelum.com.br/faces</uri>
+	<description>
+		Esta biblioteca dispõe tags para validação de documentos
+		brasileiros.
+	</description>
+
+	<tag>
+		<name>validateCPF</name>
+		<description>
+			Valida campo considerando que este representa um CPF.
+		</description>
+
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaCPFValidatorTag
+		</tag-class>
+
+		<body-content>emtpy</body-content>
+
+		<attribute>
+			<name>formatted</name>
+			<description>
+				O campo está formatado com caracteres não numéricos (pontos, barras e traços)?
+			</description>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>validateCNPJ</name>
+		<description>
+			Valida campo considerando que este representa um CNPJ.
+		</description>
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaCNPJValidatorTag
+		</tag-class>
+
+		<body-content>emtpy</body-content>
+
+		<attribute>
+			<name>formatted</name>
+			<description>
+				O campo está formatado com caracteres não numéricos (pontos, barras e traços)?
+			</description>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>validateNIT</name>
+		<description>
+			Valida campo considerando que este representa um NIT (Número de Inscrição do Trabalhor).
+			Esta validação serve para os documentos: PIS, PASEP e SUS.
+		</description>
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaNITValidatorTag
+		</tag-class>
+
+		<body-content>emtpy</body-content>
+
+		<attribute>
+			<name>formatted</name>
+			<description>
+				O campo está formatado com caracteres não numéricos (pontos, barras e traços)?
+			</description>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+	</tag>
+
+</taglib>
