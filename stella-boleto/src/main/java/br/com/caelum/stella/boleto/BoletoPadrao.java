@@ -14,6 +14,7 @@ public class BoletoPadrao implements Boleto {
 
 	private String instrucao;
 	private String especieDocumento;
+	private String noDocumento;
 	private String aceite;
 	
 	private Banco banco;
@@ -69,6 +70,15 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
+		return this;
+	}
+	
+	public String getNoDocumento() {
+		return this.noDocumento;
+	}
+	
+	public BoletoPadrao comNoDocumento(String noDocumento) {
+		this.noDocumento = noDocumento;
 		return this;
 	}
 

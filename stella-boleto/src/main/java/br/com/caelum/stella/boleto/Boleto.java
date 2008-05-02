@@ -18,6 +18,8 @@ public interface Boleto {
 	String getInstrucao();
 
 	String getEspecieDocumento();
+	
+	String getNoDocumento();
 
 	String getAceite();
 

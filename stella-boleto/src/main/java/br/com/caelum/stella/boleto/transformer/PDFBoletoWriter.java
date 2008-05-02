@@ -25,7 +25,7 @@ public class PDFBoletoWriter implements BoletoWriter {
 
 	private void checkIfDocIsClosed() {
 		if(stream != null) {
-			throw new IllegalStateException("boleto j√° gerado, voc√™ n√£o pode mais escrever na imagem");
+			throw new IllegalStateException("boleto já gerado, você não pode mais escrever na imagem");
 		}
 	}
 
