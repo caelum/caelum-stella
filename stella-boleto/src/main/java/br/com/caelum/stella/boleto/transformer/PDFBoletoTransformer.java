@@ -28,13 +28,13 @@ import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
 
 /**
- * Dada as informa��es de um boleto, gera um PDF deste.
+ * Dada as informações de um boleto, gera um PDF deste.
  * 
  * 
  * @author Paulo Silveira
  * 
  */
-public class PDFBoletoTransformer implements BoletoTransformer {
+public class PDFBoletoTransformer  {
 
 	private static final float IMAGEM_BOLETO_WIDTH = 514.22f;
 	private static final float IMAGEM_BOLETO_HEIGHT = 385.109f;
@@ -43,7 +43,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 	private static final float IMAGEM_BANCO_HEIGHT = 23.0f;
 
 	private static final float ALTURA = 412;
-	private static final float LEFT_MARGIN = 0;
+	private static final float LEFT_MARGIN = 36;
 
 	/**
 	 * Gera o PDF em memoria e aloca-o em um InputStream.
@@ -65,7 +65,6 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 				"#,##0.00"));
 
 		Document document = new Document(PageSize.A4);
-		System.out.println(document.left());
 
 		PdfWriter writer = PdfWriter.getInstance(document, baos);
 
@@ -135,7 +134,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getSacado().getNome());
 
 		cb.setTextMatrix(LEFT_MARGIN + 230, ALTURA);
-		cb.showText(dateFormatter(boleto.getDatas().getDataDeVencimento()));
+		cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 400, ALTURA);
 		cb.showText(formatter
@@ -179,7 +178,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		// fim locais de pagamento
 
 		cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
-		cb.showText(dateFormatter(boleto.getDatas().getDataDeVencimento()));
+		cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 141);
 		cb.showText(boleto.getEmissor().getCedente());
@@ -190,7 +189,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 				+ boleto.getEmissor().getDvContaCorrente());
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 162);
-		cb.showText(dateFormatter(boleto.getDatas().getDataDoDocumento()));
+		cb.showText(formatDate(boleto.getDatas().getDataDoDocumento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 70, ALTURA - 162);
 		cb.showText((!boleto.getNoDocumento().isEmpty()) ? boleto
@@ -203,7 +202,7 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		cb.showText(boleto.getAceite());
 
 		cb.setTextMatrix(LEFT_MARGIN + 300, ALTURA - 162);
-		cb.showText(dateFormatter(boleto.getDatas().getDataDoProcessamento()));
+		cb.showText(formatDate(boleto.getDatas().getDataDoProcessamento()));
 
 		cb.setTextMatrix(LEFT_MARGIN + 410, ALTURA - 162);
 		cb.showText(boleto.getEmissor().getCarteira() + " / "
@@ -263,13 +262,10 @@ public class PDFBoletoTransformer implements BoletoTransformer {
 		return new ByteArrayInputStream(baos.toByteArray());
 	}
 
-	private String dateFormatter(Calendar date) {
+	private String formatDate(Calendar date) {
 		return String.format("%1$te/%1$tm/%1$tY", date);
 	}
 
-	public void escreve(int x, int y, String texto) {
-
-	}
 
 	/**
 	 * Gera o codigo de barra via IText
