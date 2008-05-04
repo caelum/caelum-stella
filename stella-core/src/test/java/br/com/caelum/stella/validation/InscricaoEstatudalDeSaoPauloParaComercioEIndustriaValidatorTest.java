@@ -141,7 +141,7 @@ public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getInvalidMessages(value);
+		errors = validator.invalidMessagesFor(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -164,7 +164,7 @@ public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getInvalidMessages(value);
+		errors = validator.invalidMessagesFor(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();
@@ -192,7 +192,7 @@ public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidatorTest {
 		} catch (InvalidStateException e) {
 			fail();
 		}
-		errors = validator.getInvalidMessages(value);
+		errors = validator.invalidMessagesFor(value);
 		assertTrue(errors.isEmpty());
 		
 		mockery.assertIsSatisfied();

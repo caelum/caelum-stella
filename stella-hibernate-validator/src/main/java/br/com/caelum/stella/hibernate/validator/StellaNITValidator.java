@@ -33,7 +33,7 @@ public class StellaNITValidator implements Validator<NIT> {
 			if (nit.trim().length() == 0) {
 				return true;
 			} else {
-				return stellaValidator.getInvalidMessages(nit).isEmpty();
+				return stellaValidator.invalidMessagesFor(nit).isEmpty();
 			}
 		} else {
 			return true;

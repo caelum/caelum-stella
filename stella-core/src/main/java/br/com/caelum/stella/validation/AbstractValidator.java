@@ -14,7 +14,7 @@ public abstract class AbstractValidator<T> implements Validator<T>{
 		this.messageProducer = messageProducer;
 	}
 
-	protected List<ValidationMessage> getValidationMessages(List<InvalidValue> invalidValues) {
+	protected List<ValidationMessage> generateValidationMessages(List<InvalidValue> invalidValues) {
 		List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
 		for (InvalidValue invalidValue : invalidValues) {
 			ValidationMessage message = messageProducer.getMessage(invalidValue);
@@ -23,16 +23,16 @@ public abstract class AbstractValidator<T> implements Validator<T>{
 		return messages;
 	}
 
-	public List<ValidationMessage> getInvalidMessages(T value) {
+	public List<ValidationMessage> invalidMessagesFor(T value) {
 		List<InvalidValue> invalidValues = getInvalidValues(value);
-		List<ValidationMessage> messages = getValidationMessages(invalidValues);
+		List<ValidationMessage> messages = generateValidationMessages(invalidValues);
 		return messages;
 	}
 
 	public void assertValid(T value) {
 		List<InvalidValue> errors = getInvalidValues(value);
 		if (!errors.isEmpty()) {
-			throw new InvalidStateException(getValidationMessages(errors));
+			throw new InvalidStateException(generateValidationMessages(errors));
 		}
 	}
 

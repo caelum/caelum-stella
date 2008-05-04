@@ -42,7 +42,7 @@ public class AbstractValidatorTest {
 				}
 	        	
 	        };
-			List<ValidationMessage> messages0 = validator.getInvalidMessages(any);
+			List<ValidationMessage> messages0 = validator.invalidMessagesFor(any);
 			List<ValidationMessage> messages1 = new ArrayList<ValidationMessage>();
 			messages1.add(validationMessage);
 			assertEquals(messages0, messages1);

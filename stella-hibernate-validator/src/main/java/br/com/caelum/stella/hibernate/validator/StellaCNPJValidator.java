@@ -31,7 +31,7 @@ public class StellaCNPJValidator implements Validator<CNPJ> {
 			if (cnpj.trim().length() == 0) {
 				return true;
 			} else {
-				return stellaValidator.getInvalidMessages(cnpj).isEmpty();
+				return stellaValidator.invalidMessagesFor(cnpj).isEmpty();
 			}
 		} else {
 			return true;

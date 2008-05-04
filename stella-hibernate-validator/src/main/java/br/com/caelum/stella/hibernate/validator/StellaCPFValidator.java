@@ -31,7 +31,7 @@ public class StellaCPFValidator implements Validator<CPF> {
             if (cpf.trim().length() == 0) {
                 return true;
             } else {
-                return stellaValidator.getInvalidMessages(cpf).isEmpty();
+                return stellaValidator.invalidMessagesFor(cpf).isEmpty();
             }
         } else {
             return true;

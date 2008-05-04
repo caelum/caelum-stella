@@ -26,5 +26,5 @@ public interface Validator<T> {
 	 * @return <b>apenas</b> os problemas de validação relativos à última
 	 *         chamada de {@link #assertValid(Object)}
 	 */
-	List<ValidationMessage> getInvalidMessages(T object);
+	List<ValidationMessage> invalidMessagesFor(T object);
 }
