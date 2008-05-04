@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 
-public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator extends
+public class InscricaoEstatudalDeSaoPauloParaComercioIndustriaValidator extends
 		AbstractValidator<String> {
 
 	private static final int MOD = 11;
@@ -42,7 +42,7 @@ public class InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator extends
 	public static final Pattern UNFORMATED = Pattern
 			.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{3})");
 
-	public InscricaoEstatudalDeSaoPauloParaComercioEIndustriaValidator(MessageProducer messageProducer,
+	public InscricaoEstatudalDeSaoPauloParaComercioIndustriaValidator(MessageProducer messageProducer,
 			boolean isFormatted) {
 		super(messageProducer);
 		this.isFormatted = isFormatted;
