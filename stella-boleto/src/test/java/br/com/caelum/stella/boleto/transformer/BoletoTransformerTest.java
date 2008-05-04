@@ -40,13 +40,13 @@ public class BoletoTransformerTest {
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
 
-		List<String> descricoes = Arrays.asList("descricao 1", "descricao 2",
-				"descricao 3", "descricao 4", "descricao 5");
+		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
+				"descricao 4", "descricao 5" };
 
-		List<String> locaisDePagamento = Arrays.asList("loca1", "loca2");
+		String[] locaisDePagamento = { "loca1", "loca2" };
 
-		List<String> instrucoes = Arrays.asList("instrucao 1", "instrucao  2",
-				"instrucao  3", "instrucao 4", "instrucao 5");
+		String[] instrucoes = { "instrucao 1", "instrucao  2", "instrucao  3",
+				"instrucao 4", "instrucao 5" };
 
 		this.boleto = BoletoPadrao.newBoleto().comBanco(Bancos.BANCO_DO_BRASIL)
 				.comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)

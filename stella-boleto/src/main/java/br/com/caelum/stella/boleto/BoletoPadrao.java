@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BoletoPadrao implements Boleto {
@@ -147,11 +148,11 @@ public class BoletoPadrao implements Boleto {
 		return instrucoes;
 	}
 
-	public BoletoPadrao comInstrucoes(List<String> instrucoes) {
-		if(instrucoes.size() > 5) {
+	public BoletoPadrao comInstrucoes(String ... instrucoes) {
+		if(instrucoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
 		}
-		this.instrucoes = instrucoes;
+		this.instrucoes = Arrays.asList(instrucoes);
 		return this;
 	}
 
@@ -159,12 +160,12 @@ public class BoletoPadrao implements Boleto {
 		return descricoes;
 	}
 
-	public BoletoPadrao comDescricoes(List<String> descricoes) {
+	public BoletoPadrao comDescricoes(String ... descricoes) {
 		// TODO: verificar se 5 eh max mesmo
-		if(descricoes.size() > 5) {
+		if(descricoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
 		}
-		this.descricoes = descricoes;
+		this.descricoes = Arrays.asList(descricoes);
 		return this;
 	}
 	
@@ -172,11 +173,11 @@ public class BoletoPadrao implements Boleto {
 		return locaisDePagamento;
 	}
 	
-	public BoletoPadrao comLocaisDePagamento(List<String> locaisDePagamento) {
-		if(locaisDePagamento.size() > 2) {
+	public BoletoPadrao comLocaisDePagamento(String ... locaisDePagamento) {
+		if(locaisDePagamento.length > 2) {
 			throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");
 		}
-		this.locaisDePagamento = locaisDePagamento;
+		this.locaisDePagamento = Arrays.asList(locaisDePagamento);
 		return this;
 	}
 

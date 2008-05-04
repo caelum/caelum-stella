@@ -1,10 +1,10 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -211,11 +211,30 @@ public class BoletoTransformer {
 	}
 
 	static BufferedImage scaleTo(BufferedImage image, int width, int height) {
+		// TODO: usar altura tambem
+		System.out.println((double)image.getWidth());
+		if ((double)width / image.getWidth() < 0.5) {
+			System.out.println("!!!");
+	        Kernel kernel = createBlurKernel((double)image.getWidth() / width);
+	        ConvolveOp op = new ConvolveOp(
+	                kernel, ConvolveOp.EDGE_NO_OP, null);
+	        image = op.filter(image, null);
+	    }
 
 		AffineTransformOp transform = new AffineTransformOp(AffineTransform.getScaleInstance(
 				(double) width / image.getWidth(), (double) height
-						/ image.getHeight()), AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+						/ image.getHeight()), AffineTransformOp.TYPE_BICUBIC);
 		return transform.filter(image, null);
+	}
+
+	private static Kernel createBlurKernel(double scale) {
+	    int size = 1 + (int) (0.25 / scale);
+	    float[] data = new float[size * size];
+	    float factor = 1 / (float) data.length;
+	    for (int i = 0; i < data.length; i++) {
+	        data[i] = factor;
+	    }
+	    return new Kernel(size, size, data);
 	}
 
 	/**
