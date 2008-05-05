@@ -30,16 +30,16 @@ public class BoletoPadraoTest {
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("0633").comContaCorrente("4720135")
-				.comDvContaCorrete("6").comCarteira("18");
+				.comDvContaCorrete("6").comCarteira("18").comNossoNumero("12345").comNumConvenio("232323");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
 				"descricao 4", "descricao 5" };
 
-		String[] locaisDePagamento = { "loca1", "loca2" };
+		String[] locaisDePagamento = { "local 1", "local 2" };
 
-		String[] instrucoes = { "instrucao 1", "instrucao  2", "instrucao  3",
+		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
 				"instrucao 4", "instrucao 5" };
 
 		BoletoPadrao boleto = BoletoPadrao.newBoleto().comBanco(

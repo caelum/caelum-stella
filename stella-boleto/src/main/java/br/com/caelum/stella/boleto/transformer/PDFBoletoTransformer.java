@@ -108,7 +108,7 @@ public class PDFBoletoTransformer  {
 		List<String> descricoes = boleto.getDescricoes();
 
 		for (int i = 0; i < descricoes.size(); i++) {
-			cb.setTextMatrix(LEFT_MARGIN, document.top() - 70 + i * 15);
+			cb.setTextMatrix(LEFT_MARGIN + 5, document.top() - 70 + i * 15);
 			cb.showText(String.valueOf(descricoes.get(i)));
 		}
 
@@ -176,6 +176,9 @@ public class PDFBoletoTransformer  {
 		cb.endText();
 
 		// fim locais de pagamento
+		
+		cb.beginText();
+		cb.setFontAndSize(fonteSimples, 8);
 
 		cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
 		cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
@@ -214,24 +217,25 @@ public class PDFBoletoTransformer  {
 		cb.setTextMatrix(LEFT_MARGIN + 430, ALTURA - 185);
 		cb.showText(formatter
 				.valueToString(new Double(boleto.getValorBoleto())));
+		
+		cb.endText();
 
 		// TODO ver se cada instrucao nao ultrapassa margem. medir length da
 		// string
 
 		// inicio das instrucoes do boleto
 		cb.beginText();
-		cb.setFontAndSize(fonteBold, 10);
+		cb.setFontAndSize(fonteSimples, 8);
 
 		List<String> instrucoes = boleto.getInstrucoes();
 
 		for (int i = 0; i < instrucoes.size(); i++) {
-			cb.setTextMatrix(LEFT_MARGIN + 5, document.top() - 207 - i * 10);
+			cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 207 - i * 10);
 			cb.showText(String.valueOf(instrucoes.get(i)));
 		}
 
-		cb.endText();
-
 		// fim instrucoes
+		
 
 		cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 277);
 		cb.showText(boleto.getEmissor().getCedente());
@@ -263,7 +267,7 @@ public class PDFBoletoTransformer  {
 	}
 
 	private String formatDate(Calendar date) {
-		return String.format("%1$te/%1$tm/%1$tY", date);
+		return String.format("%1$td/%1$tm/%1$tY", date);
 	}
 
 
