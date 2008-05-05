@@ -50,10 +50,7 @@ public class PDFBoletoWriter implements BoletoWriter {
 		this.height = (float) height;
 
 		this.bytes = new ByteArrayOutputStream();
-		this.document = new Document(PageSize.A4/*
-												 * new Rectangle(this.width,
-												 * this.height)
-												 */);
+		this.document = new Document();
 
 		NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
 				"#,##0.00"));
@@ -78,10 +75,7 @@ public class PDFBoletoWriter implements BoletoWriter {
 	}
 
 	public PDFBoletoWriter() {
-		this(BoletoTransformer.IMAGEM_BOLETO_WIDTH
-				* BoletoTransformer.BOLETO_TEMPLATE_SCALE,
-				BoletoTransformer.IMAGEM_BOLETO_HEIGHT
-						* BoletoTransformer.BOLETO_TEMPLATE_SCALE);
+		this(PageSize.A4.getWidth(), PageSize.A4.getHeight());
 	}
 
 	public InputStream toInputStream() {

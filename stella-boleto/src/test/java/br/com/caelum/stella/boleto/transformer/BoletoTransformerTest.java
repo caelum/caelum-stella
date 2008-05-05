@@ -60,8 +60,6 @@ public class BoletoTransformerTest {
 		BufferedImage template = ImageIO.read(BoletoTransformer.class.getResourceAsStream("/br/com/caelum/stella/boleto/img/template.png"));
 		
 		PDFBoletoWriter writer = new PDFBoletoWriter();
-		System.out.println(template.getHeight());
-		System.out.println(template.getWidth());
 		
 		BoletoTransformer transformer = new BoletoTransformer(writer);
 		

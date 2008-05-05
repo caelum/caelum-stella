@@ -58,11 +58,11 @@ public class BoletoTransformer {
 
 		writer.writeImage(0, 0, imageFor(imagemTitulo),
 				514.22f, 385.109f);
-		writer.writeImage(0, 0, imageFor(boleto.getBanco().getImage()),
+		writer.writeImage(0, 700-486, imageFor(boleto.getBanco().getImage()),
 				100, 23);
 
 		for (int i = 0; i < boleto.getDescricoes().size(); i++) {
-			writer.write(0, 500 - 150 + i * 15, boleto.getDescricoes().get(i));
+			writer.write(0, 700 - 70 + i * 15, boleto.getDescricoes().get(i));
 		}
 
 		// cb.addTemplate(imagemBoleto, LEFT_MARGIN, document.top() - 750);

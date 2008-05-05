@@ -17,17 +17,15 @@ public class PNGBoletoWriter implements BoletoWriter {
 	private InputStream stream;
 	private Graphics2D graphics;
 
-	
 	public PNGBoletoWriter() {
 		this(514.22f, 385.109f);
 	}
 
-
 	public PNGBoletoWriter(double w, double h) {
-		this.image = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage((int) w, (int) h,
+				BufferedImage.TYPE_INT_ARGB);
 		this.graphics = image.createGraphics();
 	}
-
 
 	public InputStream toInputStream() {
 		if (this.stream == null) {
@@ -44,21 +42,23 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
+		this.graphics.drawString(text, (int) scaleX(x), (int) scaleY(y));
 	}
+
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
+		this.graphics.drawString(text, (int) scaleX(x), (int) scaleY(y));
 	}
 
 	public void writeImage(float x, float y, BufferedImage image, float width,
 			float height) throws IOException {
-		
+
 		checkIfDocIsClosed();
 
-		image = scaleTo(image, (int) width,
-				(int) height);
-		graphics.drawImage(image, (int) x, (int) y, image.getWidth(),
-				image.getHeight(), null);
+		image = scaleTo(image, (int) width, (int) height);
+		graphics.drawImage(image, (int) scaleX(x), (int) scaleY(y), image.getWidth(), image
+				.getHeight(), null);
 	}
 
 	private void checkIfDocIsClosed() {
@@ -67,20 +67,30 @@ public class PNGBoletoWriter implements BoletoWriter {
 					"boleto ja gerado, voce nao pode mais escrever na imagem");
 		}
 	}
-	
-	
+
+
+	/*
+	 * Convertendo coordenadas PDF para PNG
+	 */
+	private float scaleY(float y) {
+		y = this.image.getHeight() - y;
+		return y * 1.3f;
+	}
+
+	private float scaleX(float x) {
+		return x * 1.3f;
+	}
+
 	/*
 	 * Metodos auxiliares para trabalhar com BufferedImages com Java 2D
 	 */
-	
+
 	private BufferedImage scaleTo(BufferedImage image, double scale) {
 		if (scale == 1)
 			return image;
 		return scaleTo(image, (int) (image.getWidth() * scale), (int) (image
 				.getHeight() * scale));
 	}
-	
-	
 
 	static BufferedImage scaleTo(BufferedImage image, int width, int height) {
 		return getScaledInstance(image, width, height,
@@ -158,6 +168,5 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 		return ret;
 	}
-
 
 }
