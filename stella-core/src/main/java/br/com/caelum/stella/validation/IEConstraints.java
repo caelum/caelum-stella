@@ -29,6 +29,8 @@ public class IEConstraints {
 			0, 0 };
 	public static final Integer[] P13 = { 0, 0, 3, 2, 10, 9, 8, 7, 6, 5, 4, 3,
 			2, 0 };
+	public static final Integer[] P14 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
+		2, 0 };
 
 	public enum Rotina implements RotinaDeDigitoVerificador {
 		A {
