@@ -163,22 +163,15 @@ public class PDFBoletoTransformer  {
 		// length da string
 
 		// inicio dos locais de pagamento do boleto
-		cb.beginText();
-		cb.setFontAndSize(fonteBold, 10);
 
 		List<String> locaisDePagamento = boleto.getLocaisDePagamento();
 
 		for (int i = 0; i < locaisDePagamento.size(); i++) {
-			cb.setTextMatrix(LEFT_MARGIN + 5, document.top() - 111 - i * 10);
+			cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 111 - i * 10);
 			cb.showText(String.valueOf(locaisDePagamento.get(i)));
 		}
 
-		cb.endText();
-
 		// fim locais de pagamento
-		
-		cb.beginText();
-		cb.setFontAndSize(fonteSimples, 8);
 
 		cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
 		cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
@@ -217,15 +210,11 @@ public class PDFBoletoTransformer  {
 		cb.setTextMatrix(LEFT_MARGIN + 430, ALTURA - 185);
 		cb.showText(formatter
 				.valueToString(new Double(boleto.getValorBoleto())));
-		
-		cb.endText();
 
 		// TODO ver se cada instrucao nao ultrapassa margem. medir length da
 		// string
 
 		// inicio das instrucoes do boleto
-		cb.beginText();
-		cb.setFontAndSize(fonteSimples, 8);
 
 		List<String> instrucoes = boleto.getInstrucoes();
 
