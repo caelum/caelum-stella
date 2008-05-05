@@ -76,4 +76,25 @@ public class BoletoTransformerTest {
 		fos.write(b);
 		fos.close();
 	}
+	
+	
+	@Test
+	public void testPNGWrite() throws NumberFormatException, IOException, DocumentException, ParseException {
+		BufferedImage template = ImageIO.read(BoletoTransformer.class.getResourceAsStream("/br/com/caelum/stella/boleto/img/template.png"));
+		
+		PNGBoletoWriter writer = new PNGBoletoWriter();
+		
+		BoletoTransformer transformer = new BoletoTransformer(writer);
+		
+		InputStream is = transformer.transform(boleto);
+		
+		File arquivo = new File("arquivo.png");
+		FileOutputStream fos = new FileOutputStream(arquivo);
+
+		byte[] b = new byte[is.available()];
+		is.read(b);
+
+		fos.write(b);
+		fos.close();
+	}
 }

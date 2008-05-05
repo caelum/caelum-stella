@@ -15,6 +15,7 @@ import com.lowagie.text.BadElementException;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -49,7 +50,10 @@ public class PDFBoletoWriter implements BoletoWriter {
 		this.height = (float) height;
 
 		this.bytes = new ByteArrayOutputStream();
-		this.document = new Document(new Rectangle(this.width, this.height));
+		this.document = new Document(PageSize.A4/*
+												 * new Rectangle(this.width,
+												 * this.height)
+												 */);
 
 		NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
 				"#,##0.00"));
@@ -114,13 +118,14 @@ public class PDFBoletoWriter implements BoletoWriter {
 		}
 	}
 
-	public void writeImage(float x, float y, BufferedImage image)
-			throws IOException {
+	public void writeImage(float x, float y, BufferedImage image, float width,
+			float height) throws IOException {
 		checkIfDocIsClosed();
 
 		try {
 			Image pdfImage = Image.getInstance(image, null);
 			pdfImage.setAbsolutePosition(0, 0);
+			pdfImage.scaleToFit(width, height);
 			PdfTemplate template = contentByte.createTemplate(image.getWidth(),
 					image.getHeight());
 			template.addImage(pdfImage);
