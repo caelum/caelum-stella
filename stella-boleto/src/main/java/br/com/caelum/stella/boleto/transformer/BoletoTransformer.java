@@ -205,7 +205,7 @@ public class BoletoTransformer {
 	}
 
 	private String formatDate(Calendar date) {
-		return String.format("%1$te/%1$tm/%1$tY", date);
+		return String.format("%1$td/%1$tm/%1$tY", date);
 	}
 
 	/**
