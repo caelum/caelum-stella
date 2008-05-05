@@ -44,11 +44,10 @@ public class IEConstraints {
 				Integer[] a = info.getPesos();
 				Integer[] b = parameter.getNumeros();
 				Integer result = 0;
-				int somaDosQuocientes = 0;
 				for (int i = 0; i < a.length; i++) {
-					somaDosQuocientes = (a[i] * b[i]) / 10;
+					result += (a[i] * b[i]) / 10;
+					result += (a[i] * b[i]) % 10;
 				}
-				result = somaDosQuocientes + parameter.getResult();
 				return result;
 			}
 		},
@@ -79,7 +78,8 @@ public class IEConstraints {
 				DigitoVerificadorInfo info = parameter
 						.getDigitoVerificadorInfo();
 				Integer x = parameter.getResult();
-				return (info.getMod()) - (x % info.getMod());
+				int result = (info.getMod()) - (x % info.getMod());
+				return result;
 			}
 		},
 		POS_IE {
