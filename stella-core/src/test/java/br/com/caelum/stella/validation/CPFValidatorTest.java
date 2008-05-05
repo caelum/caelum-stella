@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.error.CPFError;
 
 /**
  * @author Leonardo Bessa

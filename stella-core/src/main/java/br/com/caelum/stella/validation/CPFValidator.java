@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.formatter.CPFFormatter;
+import br.com.caelum.stella.validation.error.CPFError;
 
 /**
  * Verifica se uma cadeia (String) é válida para o documento de CPF (Cadastro de
@@ -104,7 +105,7 @@ public class CPFValidator extends AbstractValidator<String> {
 	/**
 	 * Valida se a cadeia está de acordo com as regras de um CPF.
 	 * 
-	 * @see br.com.caelum.stella.Validator#assertValid(java.lang.Object)
+	 * @see br.com.caelum.stella.validation.Validator#assertValid(java.lang.Object)
 	 * @return <code>true</code> se a cadeia é válida ou é nula;
 	 *         <code>false</code> caso contrario.
 	 */

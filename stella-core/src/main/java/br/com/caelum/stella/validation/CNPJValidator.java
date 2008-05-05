@@ -9,6 +9,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
 import br.com.caelum.stella.formatter.CNPJFormatter;
+import br.com.caelum.stella.validation.error.CNPJError;
 
 /**
  * @author Leonardo Bessa

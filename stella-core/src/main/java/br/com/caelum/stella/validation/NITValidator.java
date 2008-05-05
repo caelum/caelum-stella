@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.formatter.NITFormatter;
+import br.com.caelum.stella.validation.error.NITError;
 
 /**
  * <p>

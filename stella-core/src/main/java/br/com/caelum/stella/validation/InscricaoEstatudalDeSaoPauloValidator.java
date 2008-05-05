@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.Validator;
 
 public class InscricaoEstatudalDeSaoPauloValidator implements Validator<String> {
 	

@@ -8,7 +8,7 @@ import org.jmock.Mockery;
 import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.Validator;
+import br.com.caelum.stella.validation.error.CNPJError;
 
 /**
  * @author Leonardo Bessa
