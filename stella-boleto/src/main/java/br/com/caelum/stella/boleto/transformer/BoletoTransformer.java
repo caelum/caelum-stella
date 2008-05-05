@@ -58,82 +58,44 @@ public class BoletoTransformer {
 
 		writer.writeImage(0, 0, imageFor(imagemTitulo),
 				514.22f, 385.109f);
-		writer.writeImage(0, 700-486, imageFor(boleto.getBanco().getImage()),
+		writer.writeImage(0, 750 - 486, imageFor(boleto.getBanco().getImage()),
 				100, 23);
 
 		for (int i = 0; i < boleto.getDescricoes().size(); i++) {
-			writer.write(0, 700 - 70 + i * 15, boleto.getDescricoes().get(i));
+			writer.writeBold(5, 750 - 70 + i * 15, boleto.getDescricoes().get(i));
 		}
+		
+		writer.writeBold(125, 750 - 486, boleto.getBanco().getNumeroFormatado());
+		
+		writer.write(50, 400 - 21, boleto.getEmissor().getCedente());
+		
+		writer.write(5, 400 - 43, boleto.getSacado().getNome());
+		
+		writer.write(230, 400 - 43, formatDate(boleto.getDatas().getDataDeVencimento()));
 
-		// cb.addTemplate(imagemBoleto, LEFT_MARGIN, document.top() - 750);
-		// cb.addTemplate(imagemBanco, LEFT_MARGIN, document.top() - 486);
-
+		writer.write(400, 400 - 43, formatter.valueToString(new Double(boleto.getValorBoleto())));
+		
+		writer.write(5, 400 - 43 - 21, boleto.getEmissor().getAgencia() + " / " +
+									   boleto.getEmissor().getContaCorrente() + "-" +
+									   boleto.getEmissor().getDvContaCorrente());
+		
+		//writer.write(146, 400 - 43 - 21, boleto.getEmissor().getNossoNumero());
+		
+		//writer.writeBold(175, 400 - 43 - 87, boleto.getBanco().geraLinhaDigitavelPara(boleto));
+		
+		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
+			writer.write(5, 400 - 250 - i * 10, boleto.getLocaisDePagamento().get(i));
+		}
+		
+		writer.write(425, 400 - 43 - 121, formatDate(boleto.getDatas().getDataDeVencimento()));
+		
+		writer.write(5, 400 - 43 - 141, boleto.getEmissor().getCedente());
+		
+		writer.write(420, 400 - 43 - 141, boleto.getEmissor().getAgencia() + " / " +
+										  boleto.getEmissor().getContaCorrente() + "-" +
+										  boleto.getEmissor().getDvContaCorrente());
+		
 		/*
-		 * List<String> descricoes = boleto.getDescricoes();
-		 * 
-		 * for (int i = 0; i < descricoes.size(); i++) {
-		 * cb.setTextMatrix(LEFT_MARGIN, document.top() - 70 + i * 15);
-		 * cb.showText(String.valueOf(descricoes.get(i))); }
-		 * 
-		 * cb.endText(); // fim descricoes
-		 * 
-		 * cb.beginText(); cb.setFontAndSize(fonteBold, 13);
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 125, ALTURA - 87);
-		 * 
-		 * cb.showText(boleto.getBanco().getNumeroFormatado()); cb.endText();
-		 * 
-		 * cb.beginText(); cb.setFontAndSize(fonteSimples, 8);
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 50, ALTURA + 23);
-		 * cb.showText(boleto.getEmissor().getCedente()); // imprime o cedente
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA);
-		 * cb.showText(boleto.getSacado().getNome());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 230, ALTURA);
-		 * cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 400, ALTURA); cb.showText(formatter
-		 * .valueToString(new Double(boleto.getValorBoleto())));
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 19);
-		 * cb.showText(boleto.getEmissor().getAgencia() + " / " +
-		 * boleto.getEmissor().getContaCorrente() + "-" +
-		 * boleto.getEmissor().getDvContaCorrente());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 146, ALTURA - 19);
-		 * cb.showText(boleto.getEmissor().getNossoNumero()); cb.endText();
-		 * 
-		 * cb.beginText(); cb.setFontAndSize(fonteBold, 10);
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 175, ALTURA - 87);
-		 * cb.showText(boleto.getBanco().getLinhaDigitavelPara(boleto));
-		 * cb.endText();
-		 * 
-		 * cb.beginText(); cb.setFontAndSize(fonteSimples, 8); // TODO ver se
-		 * cada local de pagamento nao ultrapassa margem. medir // length da
-		 * string // inicio dos locais de pagamento do boleto cb.beginText();
-		 * cb.setFontAndSize(fonteBold, 10);
-		 * 
-		 * List<String> locaisDePagamento = boleto.getLocaisDePagamento();
-		 * 
-		 * for (int i = 0; i < locaisDePagamento.size(); i++) {
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, document.top() - 111 - i * 10);
-		 * cb.showText(String.valueOf(locaisDePagamento.get(i))); }
-		 * 
-		 * cb.endText(); // fim locais de pagamento
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 425, ALTURA - 121);
-		 * cb.showText(formatDate(boleto.getDatas().getDataDeVencimento()));
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 141);
-		 * cb.showText(boleto.getEmissor().getCedente());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 420, ALTURA - 141);
-		 * cb.showText(boleto.getEmissor().getAgencia() + " / " +
-		 * boleto.getEmissor().getContaCorrente() + "-" +
-		 * boleto.getEmissor().getDvContaCorrente());
 		 * 
 		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 162);
 		 * cb.showText(formatDate(boleto.getDatas().getDataDoDocumento()));

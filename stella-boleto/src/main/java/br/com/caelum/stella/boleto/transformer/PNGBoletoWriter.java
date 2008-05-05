@@ -73,6 +73,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 	 * Convertendo coordenadas PDF para PNG
 	 */
 	private float scaleY(float y) {
+		//System.out.println(y);
 		y = this.image.getHeight() - y;
 		return y * 1.3f;
 	}

@@ -30,9 +30,8 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public class PDFBoletoWriter implements BoletoWriter {
 
-	private static final int NORMAL_SIZE = 10;
-	private static final int BIG_SIZE = 13;
-	private static final int SMALL_SIZE = 8;
+	private static final int NORMAL_SIZE = 8;
+	private static final int BIG_SIZE = 10;
 
 	private InputStream stream;
 	private ByteArrayOutputStream bytes;
