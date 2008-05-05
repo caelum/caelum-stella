@@ -69,6 +69,10 @@ public class PNGBoletoWriter implements BoletoWriter {
 	}
 	
 	
+	/*
+	 * Metodos auxiliares para trabalhar com BufferedImages com Java 2D
+	 */
+	
 	private BufferedImage scaleTo(BufferedImage image, double scale) {
 		if (scale == 1)
 			return image;

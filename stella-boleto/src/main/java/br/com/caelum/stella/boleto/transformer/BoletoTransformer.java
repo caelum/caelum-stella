@@ -216,7 +216,7 @@ public class BoletoTransformer {
 	 */
 	static private BarcodeInter25 getBarCode(Boleto boleto) {
 		BarcodeInter25 code = new BarcodeInter25();
-		code.setCode(boleto.getBanco().getCodigoBarras(boleto));
+		code.setCode(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
 		code.setExtended(true);
 
 		code.setTextAlignment(Element.ALIGN_LEFT);
