@@ -1,10 +1,11 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -25,7 +26,7 @@ public class BoletoTransformer {
 
 	public static final float IMAGEM_BOLETO_WIDTH = 2144;
 	public static final float IMAGEM_BOLETO_HEIGHT = 1604;
-	public static final double BOLETO_TEMPLATE_SCALE = 1 / 4d;
+	public static final double BOLETO_TEMPLATE_SCALE = 1/2d;
 
 	private static final float IMAGEM_BANCO_WIDTH = 100.0f;
 	private static final float IMAGEM_BANCO_HEIGHT = 23.0f;
@@ -198,6 +199,8 @@ public class BoletoTransformer {
 	}
 
 	private BufferedImage scaleTo(BufferedImage image, double scale) {
+		if (scale == 1)
+			return image;
 		return scaleTo(image, (int) (image.getWidth() * scale), (int) (image
 				.getHeight() * scale));
 	}
@@ -211,30 +214,80 @@ public class BoletoTransformer {
 	}
 
 	static BufferedImage scaleTo(BufferedImage image, int width, int height) {
-		// TODO: usar altura tambem
-		System.out.println((double)image.getWidth());
-		if ((double)width / image.getWidth() < 0.5) {
-			System.out.println("!!!");
-	        Kernel kernel = createBlurKernel((double)image.getWidth() / width);
-	        ConvolveOp op = new ConvolveOp(
-	                kernel, ConvolveOp.EDGE_NO_OP, null);
-	        image = op.filter(image, null);
-	    }
-
-		AffineTransformOp transform = new AffineTransformOp(AffineTransform.getScaleInstance(
-				(double) width / image.getWidth(), (double) height
-						/ image.getHeight()), AffineTransformOp.TYPE_BICUBIC);
-		return transform.filter(image, null);
+		return getScaledInstance(image, width, height,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
 	}
 
-	private static Kernel createBlurKernel(double scale) {
-	    int size = 1 + (int) (0.25 / scale);
-	    float[] data = new float[size * size];
-	    float factor = 1 / (float) data.length;
-	    for (int i = 0; i < data.length; i++) {
-	        data[i] = factor;
-	    }
-	    return new Kernel(size, size, data);
+	/**
+	 * Convenience method that returns a scaled instance of the provided
+	 * {@code BufferedImage}.
+	 * 
+	 * @param img
+	 *            the original image to be scaled
+	 * @param targetWidth
+	 *            the desired width of the scaled instance, in pixels
+	 * @param targetHeight
+	 *            the desired height of the scaled instance, in pixels
+	 * @param hint
+	 *            one of the rendering hints that corresponds to
+	 *            {@code RenderingHints.KEY_INTERPOLATION} (e.g.
+	 *            {@code RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR},
+	 *            {@code RenderingHints.VALUE_INTERPOLATION_BILINEAR},
+	 *            {@code RenderingHints.VALUE_INTERPOLATION_BICUBIC})
+	 * @param higherQuality
+	 *            if true, this method will use a multi-step scaling technique
+	 *            that provides higher quality than the usual one-step technique
+	 *            (only useful in down-scaling cases, where {@code targetWidth}
+	 *            or {@code targetHeight} is smaller than the original
+	 *            dimensions, and generally only when the {@code BILINEAR} hint
+	 *            is specified)
+	 * @return a scaled version of the original {@codey BufferedImage}
+	 */
+	public static BufferedImage getScaledInstance(BufferedImage img,
+			int targetWidth, int targetHeight, Object hint,
+			boolean higherQuality) {
+		int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB
+				: BufferedImage.TYPE_INT_ARGB;
+		BufferedImage ret = img;
+		int w, h;
+		if (higherQuality) {
+			// Use multi-step technique: start with original size, then
+			// scale down in multiple passes with drawImage()
+			// until the target size is reached
+			w = img.getWidth();
+			h = img.getHeight();
+		} else {
+			// Use one-step technique: scale directly from original
+			// size to target size with a single drawImage() call
+			w = targetWidth;
+			h = targetHeight;
+		}
+
+		do {
+			if (higherQuality && w > targetWidth) {
+				w /= 2;
+				if (w < targetWidth) {
+					w = targetWidth;
+				}
+			}
+
+			if (higherQuality && h > targetHeight) {
+				h /= 2;
+				if (h < targetHeight) {
+					h = targetHeight;
+				}
+			}
+
+			BufferedImage tmp = new BufferedImage(w, h, type);
+			Graphics2D g2 = tmp.createGraphics();
+			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, hint);
+			g2.drawImage(ret, 0, 0, w, h, null);
+			g2.dispose();
+
+			ret = tmp;
+		} while (w != targetWidth || h != targetHeight);
+
+		return ret;
 	}
 
 	/**
