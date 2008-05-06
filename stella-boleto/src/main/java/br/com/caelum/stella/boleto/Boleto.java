@@ -26,12 +26,16 @@ public interface Boleto {
 	String getAceite();
 
 	Datas getDatas();
+	
+	int getFatorVencimento();
 
 	Banco getBanco();
 
 	Sacado getSacado();
 
 	Emissor getEmissor();
+	
+	String getValorFormatado();
 	
 	List<String> getInstrucoes();
 

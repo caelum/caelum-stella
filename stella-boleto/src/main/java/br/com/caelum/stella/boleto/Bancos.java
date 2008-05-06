@@ -32,15 +32,38 @@ public enum Bancos implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getNumeroFormatado());
-		builder.append(boleto.getCodEspecieMoeda());
-		builder.append(calculaCampo4(boleto));
+		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		builder.append("D"); // digito verificador, calculado depois
+		builder.append(String.valueOf(boleto.getFatorVencimento()));
+		builder.append(boleto.getValorFormatado());
+		builder.append("CAMPO LIVRE");
+		builder.append(boleto.getEmissor().getAgencia());
+		builder.append(boleto.getEmissor().getCarteira());
+		builder.append(boleto.getEmissor().getNossoNumero());
+		builder.append(boleto.getEmissor().getContaCorrente());
+		builder.append("0"); // zero fixo
+		
+		String codigoDeBarras = builder.toString();
+		codigoDeBarras.replace("D", geraDVCodigoDeBarras(codigoDeBarras));
 
-		return getNumeroFormatado() + String.valueOf(boleto.getCodEspecieMoeda())
-				+ getCampo4(boleto) + String.valueOf(getCampo5()) + "9"
-				+ boleto.getEmissor().getNossoNumero() + "00000" + boleto.getEmissor().getNossoNumero()
-				+ boleto.getIOS() + boleto.getEmissor().getCarteira();
+		return codigoDeBarras;
+	}
+	
+	private String geraDVCodigoDeBarras(String codigoDeBarras) {
+		int soma = 0;
+		for (int i = 0, multiplicador = 2; i < codigoDeBarras.length(); i++, multiplicador++) {
+			if (i == 4) // pula posição 5
+				i++;
+			if (multiplicador == 10) // volta pro 2
+				multiplicador = 2;
+			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i))) * multiplicador;
+		}
+		
+		int resto = soma % 11;
+		return String.valueOf(11 - resto);
 	}
 
+	
 	public String geraLinhaDigitavelPara(Boleto boleto) {
 		return calculaCampo1(boleto).substring(0, 5) + "."
 				+ calculaCampo1(boleto).substring(5) + "  "
@@ -65,45 +88,4 @@ public enum Bancos implements Banco {
 						getNumeroFormatado()));
 	}
 		
-	
-	/*
-	 * Metodos privados auxiliares para calcular os campos!
-	 */
-
-	String calculaCampo1(Boleto boleto) {
-		String campo = getNumero() + String.valueOf(boleto.getMoeda())
-				+ boleto.getCodCliente().substring(0, 4);
-
-		return boleto.getDigitoCampo(campo, 2);
-	}
-
-	String calculaCampo2(Boleto boleto) {
-		String campo = boleto.getCodCliente().substring(4)
-				+ boleto.getNossoNumero().substring(0, 7);
-
-		return boleto.getDigitoCampo(campo, 1);
-	}
-
-	String calculaCampo3(Boleto boleto) {
-		String campo = boleto.getNossoNumero().substring(7) + boleto.getIOS()
-				+ boleto.getCarteira();
-
-		return boleto.getDigitoCampo(campo, 1);
-	}
-
-	String calculaCampo4(Boleto boleto) {
-		String campo = getNumero() + String.valueOf(boleto.getMoeda())
-				+ boleto.getFatorVencimento() + boleto.getValorTitulo() + "9"
-				+ boleto.getCodCliente()
-				+ String.valueOf(boleto.getNossoNumero()) + boleto.getIOS()
-				+ boleto.getCarteira();
-
-		return boleto.getDigitoCodigoBarras(campo);
-	}
-
-	String calculaCampo5(Boleto boleto) {
-		String campo = boleto.getFatorVencimento() + boleto.getValorTitulo();
-		return campo;
-	}
-
 }

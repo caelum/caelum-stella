@@ -1,6 +1,7 @@
 package br.com.caelum.stella.boleto;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class BoletoPadrao implements Boleto {
@@ -199,5 +200,22 @@ public class BoletoPadrao implements Boleto {
 		}
 		this.locaisDePagamento = Arrays.asList(locaisDePagamento);
 		return this;
+	}
+
+	public int getFatorVencimento() {
+		Calendar dataBase = null;
+		dataBase.set(1997, 10, 07);
+		
+		int diferencasEmMiliSegundos = this.datas.getVencimento().compareTo(dataBase);
+		int diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
+		
+		return diferencasEmDias;
+	}
+	
+	public String getValorFormatado() {
+		String formatado = this.valorBoleto.replaceAll(".", "");
+		formatado = formatado.replaceAll(",", "");
+		
+		return String.format("%08d", formatado);
 	}
 }
