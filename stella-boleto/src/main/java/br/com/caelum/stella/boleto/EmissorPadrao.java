@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto;
 
 public class EmissorPadrao implements Emissor {
 	private String agencia;
+	private String dvAgencia;
 	private String contaCorrente;
 	private String carteira;
 	private String numConvenio;
@@ -76,6 +77,15 @@ public class EmissorPadrao implements Emissor {
 	
 	public EmissorPadrao comDvContaCorrete(String dv) {
 		this.dvContaCorrete = dv;
+		return this;
+	}
+
+	public String getDvAgencia() {
+		return this.dvAgencia;
+	}
+	
+	public EmissorPadrao comDvAgencia(String dv) {
+		this.dvAgencia = dv;
 		return this;
 	}
 }

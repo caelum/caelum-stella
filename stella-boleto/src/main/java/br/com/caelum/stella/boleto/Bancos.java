@@ -45,7 +45,7 @@ public enum Bancos implements Banco {
 				.format("/br/com/caelum/stella/boleto/img/%s.png",
 						getNumeroFormatado()));
 	}
-	
+		
 	
 	/*
 	 * Metodos privados auxiliares para calcular os campos!
