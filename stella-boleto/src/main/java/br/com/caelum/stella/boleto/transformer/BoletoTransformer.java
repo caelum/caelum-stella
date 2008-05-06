@@ -123,7 +123,9 @@ public class BoletoTransformer {
 		
 		writer.write(122, LINHA8, boleto.getEmissor().getCarteira());
 		
-		// TODO: colocar especie moeda, quantidade moeda, valor moeda
+		writer.write(190, LINHA8, boleto.getEspecieMoeda());
+		
+		// TODO: quantidade moeda, valor moeda
 		
 		writer.write(430, LINHA8, formatter.valueToString(new Double(boleto.getValorBoleto())));
 		
@@ -145,6 +147,9 @@ public class BoletoTransformer {
 										  boleto.getSacado().getCidade() + " " +
 										  boleto.getSacado().getUf());
 
+		//Image imagemDoCodigoDeBarras = generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
+		//writer.writeImage(40, 10, (BufferedImage) imagemDoCodigoDeBarras, 200, 300);
+		
 		/*
 		 * 
 		 * BarcodeInter25 code = getBarCode(boleto);
@@ -164,26 +169,6 @@ public class BoletoTransformer {
 
 	private String formatDate(Calendar date) {
 		return String.format("%1$td/%1$tm/%1$tY", date);
-	}
-
-	/**
-	 * Gera o codigo de barra via IText
-	 * 
-	 * @param boleto
-	 * @return
-	 */
-	static private BarcodeInter25 getBarCode(Boleto boleto) {
-		BarcodeInter25 code = new BarcodeInter25();
-		code.setCode(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
-		code.setExtended(true);
-
-		code.setTextAlignment(Element.ALIGN_LEFT);
-		code.setBarHeight(37.00f);
-		code.setFont(null);
-		code.setX(0.73f);
-		code.setN(3);
-
-		return code;
 	}
 
 	static private java.awt.Image generateBarcodeFor(String code) {

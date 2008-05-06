@@ -32,13 +32,13 @@ public enum Bancos implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getNumeroFormatado());
-		builder.append(boleto.getMoeda());
+		builder.append(boleto.getCodEspecieMoeda());
 		builder.append(calculaCampo4(boleto));
 
-		return getNumeroFormatado() + String.valueOf(boleto.getMoeda())
+		return getNumeroFormatado() + String.valueOf(boleto.getCodEspecieMoeda())
 				+ getCampo4(boleto) + String.valueOf(getCampo5()) + "9"
-				+ boleto.getCodCliente() + "00000" + boleto.getNossoNumero()
-				+ boleto.getIOS() + boleto.getCarteira();
+				+ boleto.getEmissor().getNossoNumero() + "00000" + boleto.getEmissor().getNossoNumero()
+				+ boleto.getIOS() + boleto.getEmissor().getCarteira();
 	}
 
 	public String geraLinhaDigitavelPara(Boleto boleto) {

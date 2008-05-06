@@ -8,6 +8,10 @@ public interface Boleto {
 	String getCaminho();
 
 	String getTipoSaida();
+	
+	String getEspecieMoeda();
+	
+	String getCodEspecieMoeda();
 
 	String getQtdMoeda();
 
