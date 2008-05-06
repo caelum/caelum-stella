@@ -11,7 +11,7 @@ public interface Boleto {
 	
 	String getEspecieMoeda();
 	
-	String getCodEspecieMoeda();
+	int getCodEspecieMoeda();
 
 	String getQtdMoeda();
 

@@ -12,7 +12,7 @@ public class BoletoPadrao implements Boleto {
 	private String qtdMoeda;
 	private String valorMoeda;
 	private String especieMoeda;
-	private String codEspecieMoeda;
+	private int codEspecieMoeda;
 	private double acrescimo;
 
 	private String especieDocumento;
@@ -31,7 +31,7 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	public static BoletoPadrao newBoleto() {
-		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda("9");
+		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9);
 	}
 
 	public String getAceite() {
@@ -119,11 +119,11 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 	
-	public String getCodEspecieMoeda() {
+	public int getCodEspecieMoeda() {
 		return this.codEspecieMoeda;
 	}
 	
-	private BoletoPadrao comCodEspecieMoeda(String codEspecieMoeda) {
+	private BoletoPadrao comCodEspecieMoeda(int codEspecieMoeda) {
 		this.codEspecieMoeda = codEspecieMoeda;
 		return this;
 	}
