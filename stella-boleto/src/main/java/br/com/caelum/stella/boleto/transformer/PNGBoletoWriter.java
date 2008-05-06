@@ -17,26 +17,26 @@ import com.lowagie.text.pdf.BaseFont;
 
 public class PNGBoletoWriter implements BoletoWriter {
 
-	private BufferedImage image;
+	private BufferedImage PNGimage;
 	private InputStream stream;
 	private Graphics2D graphics;
 	
 
 	public PNGBoletoWriter() {
-		this(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+		this(514.22f, 434);
 	}
 
 	public PNGBoletoWriter(double w, double h) {
-		this.image = new BufferedImage((int) w, (int) h,
+		this.PNGimage = new BufferedImage((int) w, (int) h,
 				BufferedImage.TYPE_INT_ARGB);
-		this.graphics = image.createGraphics();
+		this.graphics = PNGimage.createGraphics();
 	}
 
 	public InputStream toInputStream() {
 		if (this.stream == null) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			try {
-				ImageIO.write(this.image, "PNG", baos);
+				ImageIO.write(this.PNGimage, "PNG", baos);
 			} catch (IOException e) {
 				throw new RuntimeException(e); // nao esperado
 			}
@@ -63,7 +63,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 		checkIfDocIsClosed();
 		image = scaleTo(image, (int) width, (int) height);
-		graphics.drawImage(image, (int) x, (int) (PageSize.A4.getHeight() - y - image.getHeight()), image.getWidth(), image
+		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight() - image.getHeight() - y), image.getWidth(), image
 				.getHeight(), null);
 	}
 
@@ -79,7 +79,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 	 * Convertendo coordenadas PDF para PNG
 	 */
 	private float scaleY(float y) {
-		y = this.image.getHeight() - y;
+		y = this.PNGimage.getHeight() - y;
 		return y;
 	}
 
