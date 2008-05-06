@@ -56,75 +56,75 @@ public class BoletoTransformer {
 		URL imagemTitulo = BoletoTransformer.class
 				.getResource("/br/com/caelum/stella/boleto/img/template.png");
 
-		writer.writeImage(0, 0, imageFor(imagemTitulo),
+		writer.writeImage(0, 55, imageFor(imagemTitulo),
 				514.22f, 385.109f);
-		writer.writeImage(0, 750 - 486, imageFor(boleto.getBanco().getImage()),
+		writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco().getImage()),
 				100, 23);
 
 		for (int i = 0; i < boleto.getDescricoes().size(); i++) {
-			writer.writeBold(5, 750 - 70 + i * 15, boleto.getDescricoes().get(i));
+			writer.writeBold(5, 805 - 70 + i * 15, boleto.getDescricoes().get(i));
 		}
 		
-		writer.writeBold(125, 750 - 486, boleto.getBanco().getNumeroFormatado());
+		writer.writeBold(125, 805 - 486, boleto.getBanco().getNumeroFormatado());
 		
-		writer.write(50, 400 - 21, boleto.getEmissor().getCedente());
+		writer.write(50, 455 - 21, boleto.getEmissor().getCedente());
 		
-		writer.write(5, 400 - 43, boleto.getSacado().getNome());
+		writer.write(5, 455 - 43, boleto.getSacado().getNome());
 		
-		writer.write(230, 400 - 43, formatDate(boleto.getDatas().getDataDeVencimento()));
+		writer.write(230, 455 - 43, formatDate(boleto.getDatas().getDataDeVencimento()));
 
-		writer.write(400, 400 - 43, formatter.valueToString(new Double(boleto.getValorBoleto())));
+		writer.write(400, 455 - 43, formatter.valueToString(new Double(boleto.getValorBoleto())));
 		
-		writer.write(5, 400 - 43 - 21, boleto.getEmissor().getAgencia() + " / " +
+		writer.write(5, 455 - 43 - 21, boleto.getEmissor().getAgencia() + " / " +
 									   boleto.getEmissor().getContaCorrente() + "-" +
 									   boleto.getEmissor().getDvContaCorrente());
 		
-		//writer.write(146, 400 - 43 - 21, boleto.getEmissor().getNossoNumero());
+		//writer.write(146, 455 - 43 - 21, boleto.getEmissor().getNossoNumero());
 		
-		//writer.writeBold(175, 400 - 43 - 87, boleto.getBanco().geraLinhaDigitavelPara(boleto));
+		//writer.writeBold(175, 455 - 43 - 87, boleto.getBanco().geraLinhaDigitavelPara(boleto));
 		
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
-			writer.write(5, 400 - 154 - i * 10, boleto.getLocaisDePagamento().get(i));
+			writer.write(5, 455 - 154 - i * 10, boleto.getLocaisDePagamento().get(i));
 		}
 		
-		writer.write(425, 400 - 43 - 121, formatDate(boleto.getDatas().getDataDeVencimento()));
+		writer.write(425, 455 - 43 - 121, formatDate(boleto.getDatas().getDataDeVencimento()));
 		
-		writer.write(5, 400 - 43 - 141, boleto.getEmissor().getCedente());
+		writer.write(5, 455 - 43 - 141, boleto.getEmissor().getCedente());
 		
-		writer.write(420, 400 - 43 - 141, boleto.getEmissor().getAgencia() + " / " +
+		writer.write(420, 455 - 43 - 141, boleto.getEmissor().getAgencia() + " / " +
 										  boleto.getEmissor().getContaCorrente() + "-" +
 										  boleto.getEmissor().getDvContaCorrente());
 		
-		writer.write(5, 400 - 43 - 162, formatDate(boleto.getDatas().getDataDoDocumento()));
+		writer.write(5, 455 - 43 - 162, formatDate(boleto.getDatas().getDataDoDocumento()));
 		
-		writer.write(70, 400 - 43 - 162, !boleto.getNoDocumento().isEmpty() ? boleto
+		writer.write(70, 455 - 43 - 162, !boleto.getNoDocumento().isEmpty() ? boleto
 		 .getNoDocumento() : boleto.getEmissor().getNossoNumero());
 		
-		//writer.write(180, 400 - 43 - 162, boleto.getEspecieDocumento());
+		//writer.write(180, 455 - 43 - 162, boleto.getEspecieDocumento());
 		
-		//writer.write(250, 400 - 43 - 162, boleto.getAceite());
+		//writer.write(250, 455 - 43 - 162, boleto.getAceite());
 		
-		writer.write(300, 400 - 43 - 162, formatDate(boleto.getDatas().getDataDoProcessamento()));
+		writer.write(300, 455 - 43 - 162, formatDate(boleto.getDatas().getDataDoProcessamento()));
 		
-		writer.write(410, 400 - 43 - 162, boleto.getEmissor().getCarteira() + " / " +
+		writer.write(410, 455 - 43 - 162, boleto.getEmissor().getCarteira() + " / " +
 										  boleto.getEmissor().getNossoNumero());
 		
-		writer.write(122, 400 - 43 - 185, boleto.getEmissor().getCarteira());
+		writer.write(122, 455 - 43 - 185, boleto.getEmissor().getCarteira());
 		
-		writer.write(430, 400 - 43 - 185, formatter.valueToString(new Double(boleto.getValorBoleto())));
+		writer.write(430, 455 - 43 - 185, formatter.valueToString(new Double(boleto.getValorBoleto())));
 		
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-			writer.write(5, 400 - 250 - i * 10, boleto.getInstrucoes().get(i));
+			writer.write(5, 455 - 250 - i * 10, boleto.getInstrucoes().get(i));
 		}
 		
-		writer.write(5, 400 - 43 - 277, boleto.getEmissor().getCedente());
+		writer.write(5, 455 - 43 - 280, boleto.getEmissor().getCedente());
 		
-		writer.write(100, 400 - 43 - 302, boleto.getSacado().getNome() + " " +
+		writer.write(100, 455 - 43 - 315, boleto.getSacado().getNome() + " " +
 										  boleto.getSacado().getCpf());
 		
-		//writer.write(100, 400 - 43 - 312, boleto.getSacado().getEndereco());
+		writer.write(100, 455 - 43 - 325, boleto.getSacado().getEndereco());
 		
-		writer.write(100, 400 - 43 - 322, boleto.getSacado().getCep() + " " +
+		writer.write(100, 455 - 43 - 335, boleto.getSacado().getCep() + " " +
 										  boleto.getSacado().getBairro() + " - " + 
 										  boleto.getSacado().getCidade() + " " +
 										  boleto.getSacado().getUf());

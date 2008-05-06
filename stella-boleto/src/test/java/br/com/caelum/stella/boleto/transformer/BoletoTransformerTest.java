@@ -1,16 +1,11 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,18 +29,24 @@ public class BoletoTransformerTest {
 				Calendar.getInstance()).comDataDeVencimento(
 				Calendar.getInstance());
 
-		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
-				.comAgencia("0633").comContaCorrente("4720135")
-				.comDvContaCorrete("6").comCarteira("18");
+		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Empresa de Teste")
+				.comAgencia("1111").comContaCorrente("2222222")
+				.comDvContaCorrete("3").comCarteira("33");
 
-		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
+		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
+										  .comCpf("111.222.333-12")
+										  .comEndereco("Av dos testes, 111 apto 333")
+										  .comBairro("Bairro Teste")
+										  .comCep("01234-111")
+										  .comCidade("S‹o Paulo")
+										  .comUf("SP");
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
 				"descricao 4", "descricao 5" };
 
-		String[] locaisDePagamento = { "loca1", "loca2" };
+		String[] locaisDePagamento = { "local 1", "local 2" };
 
-		String[] instrucoes = { "instrucao 1", "instrucao  2", "instrucao  3",
+		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
 				"instrucao 4", "instrucao 5" };
 
 		this.boleto = BoletoPadrao.newBoleto().comBanco(Bancos.BANCO_DO_BRASIL)
@@ -56,9 +57,7 @@ public class BoletoTransformerTest {
 	}
 	
 	@Test
-	public void testPDFWrite() throws NumberFormatException, IOException, DocumentException, ParseException {
-		BufferedImage template = ImageIO.read(BoletoTransformer.class.getResourceAsStream("/br/com/caelum/stella/boleto/img/template.png"));
-		
+	public void testPDFWrite() throws NumberFormatException, IOException, DocumentException, ParseException {	
 		PDFBoletoWriter writer = new PDFBoletoWriter();
 		
 		BoletoTransformer transformer = new BoletoTransformer(writer);
@@ -78,8 +77,6 @@ public class BoletoTransformerTest {
 	
 	@Test
 	public void testPNGWrite() throws NumberFormatException, IOException, DocumentException, ParseException {
-		BufferedImage template = ImageIO.read(BoletoTransformer.class.getResourceAsStream("/br/com/caelum/stella/boleto/img/template.png"));
-		
 		PNGBoletoWriter writer = new PNGBoletoWriter();
 		
 		BoletoTransformer transformer = new BoletoTransformer(writer);

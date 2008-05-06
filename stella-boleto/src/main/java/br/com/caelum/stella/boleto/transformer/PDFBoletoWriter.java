@@ -5,10 +5,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.text.DecimalFormat;
 
-import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
 
 import com.lowagie.text.BadElementException;
@@ -16,7 +14,6 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
@@ -50,9 +47,6 @@ public class PDFBoletoWriter implements BoletoWriter {
 
 		this.bytes = new ByteArrayOutputStream();
 		this.document = new Document();
-
-		NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
-				"#,##0.00"));
 
 		try {
 			this.writer = PdfWriter.getInstance(document, this.bytes);
