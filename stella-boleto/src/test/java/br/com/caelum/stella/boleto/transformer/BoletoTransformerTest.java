@@ -30,7 +30,7 @@ public class BoletoTransformerTest {
 				Calendar.getInstance());
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Empresa de Teste")
-				.comAgencia("1111").comContaCorrente("2222222")
+				.comAgencia("1111").comDvAgencia("1").comContaCorrente("2222222")
 				.comDvContaCorrete("3").comCarteira("33");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
@@ -38,7 +38,7 @@ public class BoletoTransformerTest {
 										  .comEndereco("Av dos testes, 111 apto 333")
 										  .comBairro("Bairro Teste")
 										  .comCep("01234-111")
-										  .comCidade("S‹o Paulo")
+										  .comCidade("SÃ£o Paulo")
 										  .comUf("SP");
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
