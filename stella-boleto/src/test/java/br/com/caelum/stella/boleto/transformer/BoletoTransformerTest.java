@@ -18,15 +18,16 @@ import br.com.caelum.stella.boleto.SacadoPadrao;
 
 import com.lowagie.text.DocumentException;
 
+// TODO:  isso é um teste de integracao!
 public class BoletoTransformerTest {
 
 	private BoletoPadrao boleto;
 
 	@Before
 	public void setUp() {
-		DatasPadrao datas = DatasPadrao.newDatas().comDataDeDocumento(
-				Calendar.getInstance()).comDataDeProcessamento(
-				Calendar.getInstance()).comDataDeVencimento(
+		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
+				Calendar.getInstance()).comProcessamento(
+				Calendar.getInstance()).comVencimento(
 				Calendar.getInstance());
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Empresa de Teste")

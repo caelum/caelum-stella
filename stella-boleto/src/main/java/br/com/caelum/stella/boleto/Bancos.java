@@ -1,5 +1,15 @@
 package br.com.caelum.stella.boleto;
-
+/**
+ * Define a implementação dos Bancos no modo geral.
+ * 
+ * Documentação que pode ser consultada:
+ * 
+ * http://www.macoratti.net/boleto.htm
+ * http://evandro.net/codigo_barras.html
+ * 
+ * @author Paulo Silveira
+ *
+ */
 public enum Bancos implements Banco {
 	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
 			104), UNIBANCO(409), HSBC(399);

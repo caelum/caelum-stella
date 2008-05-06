@@ -4,10 +4,10 @@ import java.util.Calendar;
 
 public interface Datas {
 
-	Calendar getDataDeVencimento();
+	Calendar getVencimento();
 
-	Calendar getDataDoDocumento();
+	Calendar getDocumento();
 
-	Calendar getDataDoProcessamento();
+	Calendar getProcessamento();
 
 }

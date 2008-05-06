@@ -28,9 +28,9 @@ public class BancosTest {
 	@Test
 	public void testLinhaDoBancoDoBrasil() {
 
-		DatasPadrao datas = DatasPadrao.newDatas().comDataDeDocumento(
-				dataPara(5, 5, 2008)).comDataDeProcessamento(
-				dataPara(5, 5, 2008)).comDataDeVencimento(dataPara(6, 5, 2008));
+		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
+				dataPara(5, 5, 2008)).comProcessamento(
+				dataPara(5, 5, 2008)).comVencimento(dataPara(6, 5, 2008));
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("1824-4").comContaCorrente("76000")

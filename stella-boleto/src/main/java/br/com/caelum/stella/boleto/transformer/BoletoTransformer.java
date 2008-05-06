@@ -83,7 +83,7 @@ public class BoletoTransformer {
 		
 		writer.write(5, LINHA2, boleto.getSacado().getNome());
 		
-		writer.write(230, LINHA2, formatDate(boleto.getDatas().getDataDeVencimento()));
+		writer.write(230, LINHA2, formatDate(boleto.getDatas().getVencimento()));
 
 		writer.write(400, LINHA2, formatter.valueToString(new Double(boleto.getValorBoleto())));
 		
@@ -99,7 +99,7 @@ public class BoletoTransformer {
 			writer.write(5, LINHA5 - (i - 1) * 10, boleto.getLocaisDePagamento().get(i));
 		}
 		
-		writer.write(425, LINHA5, formatDate(boleto.getDatas().getDataDeVencimento()));
+		writer.write(425, LINHA5, formatDate(boleto.getDatas().getVencimento()));
 		
 		writer.write(5, LINHA6, boleto.getEmissor().getCedente());
 		
@@ -107,7 +107,7 @@ public class BoletoTransformer {
 										  boleto.getEmissor().getContaCorrente() + "-" +
 										  boleto.getEmissor().getDvContaCorrente());
 		
-		writer.write(5, LINHA7, formatDate(boleto.getDatas().getDataDoDocumento()));
+		writer.write(5, LINHA7, formatDate(boleto.getDatas().getDocumento()));
 		
 		writer.write(70, LINHA7, !boleto.getNoDocumento().isEmpty() ? boleto
 		 .getNoDocumento() : boleto.getEmissor().getNossoNumero());
@@ -116,7 +116,7 @@ public class BoletoTransformer {
 		
 		//writer.write(250, LINHA7, boleto.getAceite());
 		
-		writer.write(300, LINHA7, formatDate(boleto.getDatas().getDataDoProcessamento()));
+		writer.write(300, LINHA7, formatDate(boleto.getDatas().getProcessamento()));
 		
 		writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / " +
 										  boleto.getEmissor().getNossoNumero());

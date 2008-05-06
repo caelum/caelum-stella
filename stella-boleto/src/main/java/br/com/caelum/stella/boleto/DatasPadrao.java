@@ -14,29 +14,29 @@ public class DatasPadrao implements Datas {
 		return new DatasPadrao();
 	}
 
-	public Calendar getDataDoDocumento() {
+	public Calendar getDocumento() {
 		return this.documento;
 	}
 	
-	public DatasPadrao comDataDeDocumento(Calendar documento) {
+	public DatasPadrao comDocumento(Calendar documento) {
 		this.documento = documento;
 		return this;
 	}
 
-	public Calendar getDataDoProcessamento() {
+	public Calendar getProcessamento() {
 		return this.processamento;
 	}
 	
-	public DatasPadrao comDataDeProcessamento(Calendar processamento) {
+	public DatasPadrao comProcessamento(Calendar processamento) {
 		this.processamento = processamento;
 		return this;
 	}
 
-	public Calendar getDataDeVencimento() {
+	public Calendar getVencimento() {
 		return this.vencimento;
 	}
 
-	public DatasPadrao comDataDeVencimento(Calendar vencimento) {
+	public DatasPadrao comVencimento(Calendar vencimento) {
 		this.vencimento = vencimento;
 		return this;
 	}
