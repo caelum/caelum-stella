@@ -11,6 +11,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import com.lowagie.text.PageSize;
+
 public class PNGBoletoWriter implements BoletoWriter {
 
 	private BufferedImage image;
@@ -18,7 +20,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 	private Graphics2D graphics;
 
 	public PNGBoletoWriter() {
-		this(514.22f, 385.109f);
+		this(PageSize.A4.getWidth(), PageSize.A4.getHeight());
 	}
 
 	public PNGBoletoWriter(double w, double h) {
@@ -42,22 +44,21 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
-		this.graphics.drawString(text, (int) scaleX(x), (int) scaleY(y));
+		this.graphics.drawString(text, x, (float) scaleY(y));
 	}
 
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
-		this.graphics.drawString(text, (int) scaleX(x), (int) scaleY(y));
+		this.graphics.drawString(text, x, (float) scaleY(y));
 	}
 
 	public void writeImage(float x, float y, BufferedImage image, float width,
 			float height) throws IOException {
 
 		checkIfDocIsClosed();
-
 		image = scaleTo(image, (int) width, (int) height);
-		graphics.drawImage(image, (int) scaleX(x), (int) scaleY(y), image.getWidth(), image
+		graphics.drawImage(image, (int) x, (int) (PageSize.A4.getHeight() - y - image.getHeight()), image.getWidth(), image
 				.getHeight(), null);
 	}
 
@@ -73,13 +74,8 @@ public class PNGBoletoWriter implements BoletoWriter {
 	 * Convertendo coordenadas PDF para PNG
 	 */
 	private float scaleY(float y) {
-		//System.out.println(y);
 		y = this.image.getHeight() - y;
-		return y * 1.3f;
-	}
-
-	private float scaleX(float x) {
-		return x * 1.3f;
+		return y;
 	}
 
 	/*

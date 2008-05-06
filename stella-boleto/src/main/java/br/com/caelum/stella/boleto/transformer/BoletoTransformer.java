@@ -84,7 +84,7 @@ public class BoletoTransformer {
 		//writer.writeBold(175, 400 - 43 - 87, boleto.getBanco().geraLinhaDigitavelPara(boleto));
 		
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
-			writer.write(5, 400 - 250 - i * 10, boleto.getLocaisDePagamento().get(i));
+			writer.write(5, 400 - 154 - i * 10, boleto.getLocaisDePagamento().get(i));
 		}
 		
 		writer.write(425, 400 - 43 - 121, formatDate(boleto.getDatas().getDataDeVencimento()));
@@ -95,61 +95,41 @@ public class BoletoTransformer {
 										  boleto.getEmissor().getContaCorrente() + "-" +
 										  boleto.getEmissor().getDvContaCorrente());
 		
+		writer.write(5, 400 - 43 - 162, formatDate(boleto.getDatas().getDataDoDocumento()));
+		
+		writer.write(70, 400 - 43 - 162, !boleto.getNoDocumento().isEmpty() ? boleto
+		 .getNoDocumento() : boleto.getEmissor().getNossoNumero());
+		
+		//writer.write(180, 400 - 43 - 162, boleto.getEspecieDocumento());
+		
+		//writer.write(250, 400 - 43 - 162, boleto.getAceite());
+		
+		writer.write(300, 400 - 43 - 162, formatDate(boleto.getDatas().getDataDoProcessamento()));
+		
+		writer.write(410, 400 - 43 - 162, boleto.getEmissor().getCarteira() + " / " +
+										  boleto.getEmissor().getNossoNumero());
+		
+		writer.write(122, 400 - 43 - 185, boleto.getEmissor().getCarteira());
+		
+		writer.write(430, 400 - 43 - 185, formatter.valueToString(new Double(boleto.getValorBoleto())));
+		
+		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
+			writer.write(5, 400 - 250 - i * 10, boleto.getInstrucoes().get(i));
+		}
+		
+		writer.write(5, 400 - 43 - 277, boleto.getEmissor().getCedente());
+		
+		writer.write(100, 400 - 43 - 302, boleto.getSacado().getNome() + " " +
+										  boleto.getSacado().getCpf());
+		
+		//writer.write(100, 400 - 43 - 312, boleto.getSacado().getEndereco());
+		
+		writer.write(100, 400 - 43 - 322, boleto.getSacado().getCep() + " " +
+										  boleto.getSacado().getBairro() + " - " + 
+										  boleto.getSacado().getCidade() + " " +
+										  boleto.getSacado().getUf());
+
 		/*
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 162);
-		 * cb.showText(formatDate(boleto.getDatas().getDataDoDocumento()));
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 70, ALTURA - 162);
-		 * cb.showText((!boleto.getNoDocumento().isEmpty()) ? boleto
-		 * .getNoDocumento() : boleto.getEmissor().getNossoNumero());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 180, ALTURA - 162);
-		 * cb.showText(boleto.getEspecieDocumento());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 250, ALTURA - 162);
-		 * cb.showText(boleto.getAceite());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 300, ALTURA - 162);
-		 * cb.showText(formatDate(boleto.getDatas().getDataDoProcessamento()));
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 410, ALTURA - 162);
-		 * cb.showText(boleto.getEmissor().getCarteira() + " / " +
-		 * boleto.getEmissor().getNossoNumero());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 122, ALTURA - 185);
-		 * cb.showText(boleto.getEmissor().getCarteira());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 430, ALTURA - 185);
-		 * cb.showText(formatter .valueToString(new
-		 * Double(boleto.getValorBoleto()))); // TODO ver se cada instrucao nao
-		 * ultrapassa margem. medir length da // string // inicio das instrucoes
-		 * do boleto cb.beginText(); cb.setFontAndSize(fonteBold, 10);
-		 * 
-		 * List<String> instrucoes = boleto.getInstrucoes();
-		 * 
-		 * for (int i = 0; i < instrucoes.size(); i++) {
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, document.top() - 207 - i * 10);
-		 * cb.showText(String.valueOf(instrucoes.get(i))); }
-		 * 
-		 * cb.endText(); // fim instrucoes
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 5, ALTURA - 277);
-		 * cb.showText(boleto.getEmissor().getCedente());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 302);
-		 * cb.showText(boleto.getSacado().getNome() + " " +
-		 * boleto.getSacado().getCpf());
-		 * 
-		 * cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 312);
-		 * cb.showText(boleto.getSacado().getEndereco()); // TODO: talvez isso
-		 * aqui estoure a margem, nao? precisa medir o length // da string.
-		 * cb.setTextMatrix(LEFT_MARGIN + 100, ALTURA - 322);
-		 * cb.showText(boleto.getSacado().getCep() + " " +
-		 * boleto.getSacado().getBairro() + " - " +
-		 * boleto.getSacado().getCidade() + " " + boleto.getSacado().getUf());
-		 * 
-		 * cb.endText();
 		 * 
 		 * BarcodeInter25 code = getBarCode(boleto);
 		 * 
