@@ -20,7 +20,14 @@ package br.com.caelum.stella.boleto;
  *
  */
 public enum Bancos implements Banco {
-	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
+	BANCO_DO_BRASIL(1) {
+		public String geraCampoEspecificoDoCodigoDeBarrasPara(Boleto boleto) {
+
+			// Coloca aqui o codigo do BB
+			return null;
+		}
+	}
+	, BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
 			104), UNIBANCO(409), HSBC(399);
 
 	private int numero;
@@ -29,6 +36,8 @@ public enum Bancos implements Banco {
 		this.numero = numero;
 	}
 
+	public abstract String geraCampoEspecificoDoCodigoDeBarrasPara(Boleto boleto);
+	
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getNumeroFormatado());
