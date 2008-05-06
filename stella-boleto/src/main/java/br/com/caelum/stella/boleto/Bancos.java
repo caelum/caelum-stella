@@ -5,7 +5,16 @@ package br.com.caelum.stella.boleto;
  * Documentação que pode ser consultada:
  * 
  * http://www.macoratti.net/boleto.htm
+ * http://pt.wikipedia.org/wiki/Boleto_bancário
+ * 
+ * Manual oficial da Febraban:
+ * http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf
+ * 
+ * Para testes rapidos:
  * http://evandro.net/codigo_barras.html
+ * 
+ * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com valores
+ * e testar alguns boletos, em especial se valores serão altos.
  * 
  * @author Paulo Silveira
  *
