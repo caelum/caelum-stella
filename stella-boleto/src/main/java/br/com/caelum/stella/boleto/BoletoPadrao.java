@@ -212,8 +212,9 @@ public class BoletoPadrao implements Boleto {
 		return (int) diferencasEmDias;
 	}
 	
+	// TODO: formatar mais bonito: algo como %010d nao funciona
 	public String getValorFormatado() {
 		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");
-		return String.format("%08d", Integer.parseInt(formatado));
+		return "0" + String.format("%09d", Integer.parseInt(formatado));
 	}
 }

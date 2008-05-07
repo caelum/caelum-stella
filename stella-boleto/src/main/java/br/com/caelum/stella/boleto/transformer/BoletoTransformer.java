@@ -96,8 +96,7 @@ public class BoletoTransformer {
 
 		// writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
 
-		// writer.writeBold(175, LINHA4,
-		// boleto.getBanco().geraLinhaDigitavelPara(boleto));
+		writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(boleto));
 
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
 			writer.write(5, LINHA5 - (i - 1) * 10, boleto
@@ -184,7 +183,7 @@ public class BoletoTransformer {
 		return String.format("%1$td/%1$tm/%1$tY", date);
 	}
 
-	static private java.awt.Image generateBarcodeFor(String code) {
+	static private Image generateBarcodeFor(String code) {
 		BarcodeInter25 bar = new BarcodeInter25();
 		bar.setCode(code);
 		bar.setExtended(true);

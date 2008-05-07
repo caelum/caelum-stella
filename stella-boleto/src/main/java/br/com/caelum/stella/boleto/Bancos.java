@@ -41,15 +41,11 @@ public enum Bancos implements Banco {
 		builder.append(boleto.getEmissor().getNossoNumero());
 		builder.append(boleto.getEmissor().getContaCorrente());
 		builder.append("0"); // zero fixo
-
 		
 		String codigoDeBarras = builder.toString();
-		
-		// TODO: em vez de replace, setar na enesima posicao ataves do builder
-		codigoDeBarras = codigoDeBarras.replace('D', Character.forDigit(
-				geraDVCodigoDeBarras(codigoDeBarras), 10));
+		builder.replace(4, 5, String.valueOf(geraDVCodigoDeBarras(codigoDeBarras)));
 
-		return codigoDeBarras;
+		return builder.toString();
 	}
 
 	int geraDVCodigoDeBarras(String codigoDeBarras) {
@@ -68,16 +64,39 @@ public enum Bancos implements Banco {
 	}
 
 	public String geraLinhaDigitavelPara(Boleto boleto) {
-		return null;
-		/*
-		 * return calculaCampo1(boleto).substring(0, 5) + "." +
-		 * calculaCampo1(boleto).substring(5) + " " +
-		 * calculaCampo2(boleto).substring(0, 5) + "." +
-		 * calculaCampo2(boleto).substring(5) + " " +
-		 * calculaCampo3(boleto).substring(0, 5) + "." +
-		 * calculaCampo3(boleto).substring(5) + " " + calculaCampo4(boleto) + " " +
-		 * calculaCampo5(boleto);
-		 */
+		String codigoDeBarras = this.geraCodigoDeBarrasPara(boleto);
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(getNumeroFormatado());
+		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		builder.append(codigoDeBarras.substring(19, 24));
+		builder.append("D"); // digito verificador, calculado depois
+		builder.append(codigoDeBarras.substring(24, 34));
+		builder.append("D"); // digito verificador, calculado depois
+		builder.append(codigoDeBarras.substring(34, 44));
+		builder.append("D"); // digito verificador, calculado depois
+		builder.append(codigoDeBarras.charAt(4));
+		builder.append(String.valueOf(boleto.getFatorVencimento()));
+		builder.append(boleto.getValorFormatado());
+		
+		String linhaDigitavel = builder.toString();
+		builder.replace(9, 10, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(0, 9))));
+		builder.replace(20, 21, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(10, 20))));
+		builder.replace(31, 32, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(21, 31))));
+
+		return builder.toString();
+	}
+	
+	private int geraDVLinhaDigitavel(String campo) {
+		int soma = 0;
+		for (int i = campo.length() - 1; i >= 0; i--) {
+			int multiplicador = (campo.length() - i) % 2 + 1;
+			int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo.charAt(i))) * multiplicador;
+			soma += (algarismoMultiplicado / 10) + (algarismoMultiplicado % 10);
+		}
+		
+		int resto = soma % 10;
+		return 10 - resto;
 	}
 
 	public int getNumero() {
