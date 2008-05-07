@@ -116,7 +116,7 @@ public class BoletoTransformer {
 
 		writer.write(5, LINHA7, formatDate(boleto.getDatas().getDocumento()));
 
-		writer.write(70, LINHA7, !boleto.getNoDocumento().isEmpty() ? boleto
+		writer.write(70, LINHA7, !boleto.getNoDocumento().equals("") ? boleto
 				.getNoDocumento() : boleto.getEmissor().getNossoNumero());
 
 		// writer.write(180, LINHA7, boleto.getEspecieDocumento());
