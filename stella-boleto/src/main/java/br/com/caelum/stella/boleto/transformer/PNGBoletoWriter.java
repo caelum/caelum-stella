@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -28,7 +29,9 @@ public class PNGBoletoWriter implements BoletoWriter {
 	public PNGBoletoWriter(double w, double h) {
 		this.PNGimage = new BufferedImage((int) w, (int) h,
 				BufferedImage.TYPE_INT_ARGB);
+
 		this.graphics = PNGimage.createGraphics();
+		this.graphics.setColor(Color.BLACK);
 	}
 
 	public InputStream toInputStream() {

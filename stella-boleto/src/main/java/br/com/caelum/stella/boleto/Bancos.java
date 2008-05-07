@@ -83,7 +83,15 @@ public enum Bancos implements Banco {
 		builder.replace(9, 10, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(0, 9))));
 		builder.replace(20, 21, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(10, 20))));
 		builder.replace(31, 32, String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(21, 31))));
-
+		
+		builder.insert(5, '.');
+		builder.insert(11, "   ");
+		builder.insert(19, '.');
+		builder.insert(26, "   ");
+		builder.insert(34, '.');
+		builder.insert(41, "   ");
+		builder.insert(45, "   ");
+		
 		return builder.toString();
 	}
 	
