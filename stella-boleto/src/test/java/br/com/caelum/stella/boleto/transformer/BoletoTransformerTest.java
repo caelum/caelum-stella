@@ -32,7 +32,7 @@ public class BoletoTransformerTest {
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Empresa de Teste")
 				.comAgencia("1111").comDvAgencia("1").comContaCorrente("2222222")
-				.comDvContaCorrete("3").comCarteira("33");
+				.comDvContaCorrete("3").comCarteira("33").comNossoNumero("34512398789");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
 										  .comCpf("111.222.333-12")

@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;

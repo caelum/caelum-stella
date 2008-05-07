@@ -20,14 +20,7 @@ package br.com.caelum.stella.boleto;
  *
  */
 public enum Bancos implements Banco {
-	BANCO_DO_BRASIL(1) {
-		public String geraCampoEspecificoDoCodigoDeBarrasPara(Boleto boleto) {
-
-			// Coloca aqui o codigo do BB
-			return null;
-		}
-	}
-	, BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
+	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
 			104), UNIBANCO(409), HSBC(399);
 
 	private int numero;
@@ -35,8 +28,6 @@ public enum Bancos implements Banco {
 	private Bancos(int numero) {
 		this.numero = numero;
 	}
-
-	public abstract String geraCampoEspecificoDoCodigoDeBarrasPara(Boleto boleto);
 	
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
@@ -45,7 +36,6 @@ public enum Bancos implements Banco {
 		builder.append("D"); // digito verificador, calculado depois
 		builder.append(String.valueOf(boleto.getFatorVencimento()));
 		builder.append(boleto.getValorFormatado());
-		builder.append("CAMPO LIVRE");
 		builder.append(boleto.getEmissor().getAgencia());
 		builder.append(boleto.getEmissor().getCarteira());
 		builder.append(boleto.getEmissor().getNossoNumero());
@@ -53,12 +43,12 @@ public enum Bancos implements Banco {
 		builder.append("0"); // zero fixo
 		
 		String codigoDeBarras = builder.toString();
-		codigoDeBarras.replace("D", geraDVCodigoDeBarras(codigoDeBarras));
-
+		codigoDeBarras = codigoDeBarras.replace('D', geraDVCodigoDeBarras(codigoDeBarras));
+		
 		return codigoDeBarras;
 	}
 	
-	private String geraDVCodigoDeBarras(String codigoDeBarras) {
+	private char geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
 		for (int i = 0, multiplicador = 2; i < codigoDeBarras.length(); i++, multiplicador++) {
 			if (i == 4) // pula posição 5
@@ -69,18 +59,20 @@ public enum Bancos implements Banco {
 		}
 		
 		int resto = soma % 11;
-		return String.valueOf(11 - resto);
+		return String.valueOf(11 - resto).charAt(0);
 	}
 
 	
 	public String geraLinhaDigitavelPara(Boleto boleto) {
+		return null;
+		/*
 		return calculaCampo1(boleto).substring(0, 5) + "."
 				+ calculaCampo1(boleto).substring(5) + "  "
 				+ calculaCampo2(boleto).substring(0, 5) + "."
 				+ calculaCampo2(boleto).substring(5) + "  "
 				+ calculaCampo3(boleto).substring(0, 5) + "."
 				+ calculaCampo3(boleto).substring(5) + "  "
-				+ calculaCampo4(boleto) + "  " + calculaCampo5(boleto);
+				+ calculaCampo4(boleto) + "  " + calculaCampo5(boleto);*/
 	}
 
 	public int getNumero() {
