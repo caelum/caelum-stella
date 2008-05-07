@@ -1,4 +1,5 @@
 package br.com.caelum.stella.boleto;
+
 /**
  * Define a implementação dos Bancos no modo geral.
  * 
@@ -10,14 +11,13 @@ package br.com.caelum.stella.boleto;
  * Manual oficial da Febraban:
  * http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf
  * 
- * Para testes rapidos:
- * http://evandro.net/codigo_barras.html
+ * Para testes rapidos: http://evandro.net/codigo_barras.html
  * 
- * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com valores
- * e testar alguns boletos, em especial se valores serão altos.
+ * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
+ * valores e testar alguns boletos, em especial se valores serão altos.
  * 
  * @author Paulo Silveira
- *
+ * 
  */
 public enum Bancos implements Banco {
 	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
@@ -28,7 +28,7 @@ public enum Bancos implements Banco {
 	private Bancos(int numero) {
 		this.numero = numero;
 	}
-	
+
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getNumeroFormatado());
@@ -41,38 +41,43 @@ public enum Bancos implements Banco {
 		builder.append(boleto.getEmissor().getNossoNumero());
 		builder.append(boleto.getEmissor().getContaCorrente());
 		builder.append("0"); // zero fixo
+
 		
 		String codigoDeBarras = builder.toString();
-		codigoDeBarras = codigoDeBarras.replace('D', geraDVCodigoDeBarras(codigoDeBarras));
 		
+		// TODO: em vez de replace, setar na enesima posicao ataves do builder
+		codigoDeBarras = codigoDeBarras.replace('D', Character.forDigit(
+				geraDVCodigoDeBarras(codigoDeBarras), 10));
+
 		return codigoDeBarras;
 	}
-	
-	private char geraDVCodigoDeBarras(String codigoDeBarras) {
+
+	int geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
 		for (int i = 0, multiplicador = 2; i < codigoDeBarras.length(); i++, multiplicador++) {
 			if (i == 4) // pula posição 5
 				i++;
 			if (multiplicador == 10) // volta pro 2
 				multiplicador = 2;
-			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i))) * multiplicador;
+			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i)))
+					* multiplicador;
 		}
-		
+
 		int resto = soma % 11;
-		return String.valueOf(11 - resto).charAt(0);
+		return 11 - resto;
 	}
 
-	
 	public String geraLinhaDigitavelPara(Boleto boleto) {
 		return null;
 		/*
-		return calculaCampo1(boleto).substring(0, 5) + "."
-				+ calculaCampo1(boleto).substring(5) + "  "
-				+ calculaCampo2(boleto).substring(0, 5) + "."
-				+ calculaCampo2(boleto).substring(5) + "  "
-				+ calculaCampo3(boleto).substring(0, 5) + "."
-				+ calculaCampo3(boleto).substring(5) + "  "
-				+ calculaCampo4(boleto) + "  " + calculaCampo5(boleto);*/
+		 * return calculaCampo1(boleto).substring(0, 5) + "." +
+		 * calculaCampo1(boleto).substring(5) + " " +
+		 * calculaCampo2(boleto).substring(0, 5) + "." +
+		 * calculaCampo2(boleto).substring(5) + " " +
+		 * calculaCampo3(boleto).substring(0, 5) + "." +
+		 * calculaCampo3(boleto).substring(5) + " " + calculaCampo4(boleto) + " " +
+		 * calculaCampo5(boleto);
+		 */
 	}
 
 	public int getNumero() {
@@ -88,5 +93,5 @@ public enum Bancos implements Banco {
 				.format("/br/com/caelum/stella/boleto/img/%s.png",
 						getNumeroFormatado()));
 	}
-		
+
 }
