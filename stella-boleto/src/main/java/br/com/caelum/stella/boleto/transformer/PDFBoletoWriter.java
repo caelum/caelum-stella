@@ -5,9 +5,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
-
-import javax.swing.text.NumberFormatter;
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Document;
