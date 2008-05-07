@@ -32,7 +32,7 @@ public class BoletoTransformer {
 	private static final float LINHA1 = 434;
 	private static final float LINHA2 = 412;
 	private static final float LINHA3 = 391;
-	private static final float LINHA4 = 325;
+	private static final float LINHA4 = 319;
 	private static final float LINHA5 = 291;
 	private static final float LINHA6 = 271;
 	private static final float LINHA7 = 250;
@@ -75,8 +75,7 @@ public class BoletoTransformer {
 					.get(i));
 		}
 
-		writer
-				.writeBold(125, 805 - 486, boleto.getBanco()
+		writer.writeBold(125, LINHA4, boleto.getBanco()
 						.getNumeroFormatado());
 
 		writer.write(50, LINHA1, boleto.getEmissor().getCedente());
@@ -94,7 +93,7 @@ public class BoletoTransformer {
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
-		// writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
+		writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
 
 		writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(boleto));
 
