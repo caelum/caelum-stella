@@ -49,7 +49,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA, 9, 9);
+		Font font = new Font(BaseFont.HELVETICA, 8, 8);
 		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, (float) scaleY(y));
 	}
@@ -57,6 +57,8 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
+		Font font = new Font(BaseFont.HELVETICA_BOLD, 10, 10);
+		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, (float) scaleY(y));
 	}
 

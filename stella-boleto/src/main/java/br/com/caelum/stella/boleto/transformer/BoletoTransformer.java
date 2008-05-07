@@ -94,8 +94,7 @@ public class BoletoTransformer {
 
 		writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatado());
 
-		writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(
-				boleto));
+		writer.writeBold(175, LINHA4, boleto.geraLinhaDigitavel());
 
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
 			writer.write(5, LINHA5 - (i - 1) * 10, boleto
@@ -154,10 +153,9 @@ public class BoletoTransformer {
 				+ boleto.getSacado().getCidade() + " "
 				+ boleto.getSacado().getUf());
 
-		Image imagemDoCodigoDeBarras = generateBarcodeFor(boleto.getBanco()
-				.geraCodigoDeBarrasPara(boleto));
+		Image imagemDoCodigoDeBarras = generateBarcodeFor(boleto.geraCodigoDeBarras());
 
-		writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, 1),
+		writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
 				imagemDoCodigoDeBarras.getWidth(null), imagemDoCodigoDeBarras
 						.getHeight(null));
 

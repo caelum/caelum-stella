@@ -11,16 +11,6 @@ public interface Banco {
 	int getNumero();
 	
 	/**
-	 * Pga codigo de barras para determinado boleto
-	 */
-	String geraCodigoDeBarrasPara(Boleto boleto);
-	
-    /**
-     * Recupera a numeracao para a geracao da linha digitavel do boleto
-     */
-	String geraLinhaDigitavelPara(Boleto boleto);
-	
-	/**
 	 * Devolve numero do banco como uma String com três digitos.
 	 * 
 	 * @return
