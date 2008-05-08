@@ -42,8 +42,4 @@ public interface Boleto {
 	List<String> getDescricoes();
 	
 	List<String> getLocaisDePagamento();
-	
-	String geraCodigoDeBarras();
-	
-	String geraLinhaDigitavel();
 }

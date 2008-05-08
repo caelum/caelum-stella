@@ -10,7 +10,8 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.stella.boleto.Bancos;
+import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.BancoDoBrasil;
 import br.com.caelum.stella.boleto.BoletoPadrao;
 import br.com.caelum.stella.boleto.DatasPadrao;
 import br.com.caelum.stella.boleto.EmissorPadrao;
@@ -49,8 +50,10 @@ public class BoletoTransformerTest {
 
 		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
 				"instrucao 4", "instrucao 5" };
+		
+		Banco banco = new BancoDoBrasil();
 
-		this.boleto = BoletoPadrao.newBoleto().comBanco(Bancos.BANCO_DO_BRASIL)
+		this.boleto = BoletoPadrao.newBoleto().comBanco(banco)
 				.comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)
 				.comSacado(sacado).comValorBoleto("2.00")
 				.comNoDocumento("4323").comInstrucoes(instrucoes)

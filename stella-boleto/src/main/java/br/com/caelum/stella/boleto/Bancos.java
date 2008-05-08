@@ -19,7 +19,7 @@ package br.com.caelum.stella.boleto;
  * @author Paulo Silveira
  * 
  */
-public enum Bancos implements Banco {
+public enum Bancos {
 	BANCO_DO_BRASIL(1), BRADESCO(237), ITAU(341), BANCO_REAL(356), CAIXA_ECONOMICA(
 			104), UNIBANCO(409), HSBC(399);
 
@@ -43,4 +43,5 @@ public enum Bancos implements Banco {
 						getNumeroFormatado()));
 	}
 
+	
 }
