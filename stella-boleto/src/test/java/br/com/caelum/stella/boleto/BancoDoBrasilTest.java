@@ -13,11 +13,11 @@ public class BancoDoBrasilTest {
 
 		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
 				dataPara(5, 5, 2008)).comProcessamento(
-				dataPara(5, 5, 2008)).comVencimento(dataPara(6, 5, 2008));
+				dataPara(5, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
-				.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("41")
-				.comDvContaCorrete("5").comCarteira("18").comNossoNumero("00009000133");
+				.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("1207113")
+				.comDvContaCorrete("5").comCarteira("18").comNossoNumero("0009000206");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
 
@@ -29,7 +29,7 @@ public class BancoDoBrasilTest {
 				.comNoDocumento("4323");
 
 		Assert.assertEquals(
-				"00190.00009  01207.113000  09000.133182  3  38640000007000",
+				"00190.00009  01207.113000  09000.206186  1  38600000007000",
 				banco.geraLinhaDigitavelPara(boleto));
 	}
 	
@@ -38,11 +38,11 @@ public class BancoDoBrasilTest {
 		
 		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
 				dataPara(5, 5, 2008)).comProcessamento(
-				dataPara(5, 5, 2008)).comVencimento(dataPara(6, 5, 2008));
+				dataPara(5, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
-				.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("41")
-				.comDvContaCorrete("5").comCarteira("18").comNossoNumero("00009000133");
+				.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("1207113")
+				.comDvContaCorrete("5").comCarteira("18").comNossoNumero("0009000206");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
 
@@ -54,7 +54,7 @@ public class BancoDoBrasilTest {
 				.comNoDocumento("4323");
 		
 		Assert.assertEquals(
-				"0019838330000007000000000410000900013318",
+				"00191386000000070000000001207113000900020618",
 				banco.geraCodigoDeBarrasPara(boleto));
 	}
 	

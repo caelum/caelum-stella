@@ -26,6 +26,8 @@ public class BancoDoBrasil implements Banco {
 		builder.append("D"); // digito verificador, calculado depois
 		builder.append(String.valueOf(boleto.getFatorVencimento()));
 		builder.append(boleto.getValorFormatado());
+		
+		//CAMPO LIVRE
 		builder.append("000000");
 		builder.append(boleto.getEmissor().getNumConvenio());
 		builder.append(boleto.getEmissor().getNossoNumero());
@@ -50,7 +52,7 @@ public class BancoDoBrasil implements Banco {
 		builder.append(codigoDeBarras.substring(34, 44));
 		builder.append("D"); // digito verificador, calculado depois
 		builder.append(codigoDeBarras.charAt(4));
-		builder.append(String.valueOf(boleto.getFatorVencimento()));
+		builder.append(codigoDeBarras.substring(5, 9));
 		builder.append(boleto.getValorFormatado());
 		
 		String linhaDigitavel = builder.toString();
@@ -93,7 +95,7 @@ public class BancoDoBrasil implements Banco {
 		}
 		
 		int resto = soma % 10;
-		return 10 - resto;
+		return (10 - resto) % 10;
 	}
 	
 }

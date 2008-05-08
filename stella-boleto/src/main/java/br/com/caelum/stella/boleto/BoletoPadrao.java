@@ -204,7 +204,10 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	public int getFatorVencimento() {
-		Calendar dataBase = new GregorianCalendar(1997, 10, 07);
+		Calendar dataBase = Calendar.getInstance();
+		dataBase.set(Calendar.DAY_OF_MONTH, 7);
+		dataBase.set(Calendar.MONTH, 10 - 1);
+		dataBase.set(Calendar.YEAR, 1997);
 		
 		long diferencasEmMiliSegundos = this.datas.getVencimento().getTimeInMillis() - dataBase.getTimeInMillis();
 		long diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
