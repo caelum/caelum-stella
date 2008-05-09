@@ -20,8 +20,9 @@ public class BancosTest {
 	@Before
 	public void setUp() {
 		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
-				dataPara(5, 5, 2008)).comProcessamento(dataPara(5, 5, 2008))
+				dataPara(4, 5, 2008)).comProcessamento(dataPara(4, 5, 2008))
 				.comVencimento(dataPara(2, 5, 2008));
+		
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("1824").comDvAgencia("4").comContaCorrente(
 						"0076000").comNumConvenio("1207113").comDvContaCorrete(

@@ -86,7 +86,8 @@ public class BoletoTransformer {
 		writer.write(400, LINHA2, formatter.valueToString(new Double(boleto
 				.getValorBoleto())));
 
-		writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + " / "
+		writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + "-"
+				+ boleto.getEmissor().getDvAgencia() + " / "
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
@@ -106,7 +107,8 @@ public class BoletoTransformer {
 
 		writer.write(5, LINHA6, boleto.getEmissor().getCedente());
 
-		writer.write(420, LINHA6, boleto.getEmissor().getAgencia() + " / "
+		writer.write(420, LINHA6, boleto.getEmissor().getAgencia() + " - "
+				+ boleto.getEmissor().getDvAgencia() + " / "
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
