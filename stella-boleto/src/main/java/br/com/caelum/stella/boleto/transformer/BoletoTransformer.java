@@ -14,8 +14,6 @@ import java.util.Calendar;
 import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
 
-import br.com.caelum.stella.boleto.Banco;
-import br.com.caelum.stella.boleto.BancoDoBrasil;
 import br.com.caelum.stella.boleto.Boleto;
 
 import com.lowagie.text.DocumentException;
@@ -96,7 +94,7 @@ public class BoletoTransformer {
 
 		writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatado());
 
-		writer.writeBold(175, LINHA4, Banco.geraLinhaDigitavelPara(boleto));
+		writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(boleto));
 
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
 			writer.write(5, LINHA5 - (i - 1) * 10, boleto
@@ -155,7 +153,7 @@ public class BoletoTransformer {
 				+ boleto.getSacado().getCidade() + " "
 				+ boleto.getSacado().getUf());
 
-		Image imagemDoCodigoDeBarras = generateBarcodeFor(Banco.geraCodigoDeBarrasPara(boleto));
+		Image imagemDoCodigoDeBarras = generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
 
 		writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
 				imagemDoCodigoDeBarras.getWidth(null), imagemDoCodigoDeBarras

@@ -11,11 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.stella.boleto.Banco;
-import br.com.caelum.stella.boleto.BancoDoBrasil;
 import br.com.caelum.stella.boleto.BoletoPadrao;
 import br.com.caelum.stella.boleto.DatasPadrao;
 import br.com.caelum.stella.boleto.EmissorPadrao;
 import br.com.caelum.stella.boleto.SacadoPadrao;
+import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 
 import com.lowagie.text.DocumentException;
 
@@ -27,13 +27,12 @@ public class BoletoTransformerTest {
 	@Before
 	public void setUp() {
 		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
-				Calendar.getInstance()).comProcessamento(
-				Calendar.getInstance()).comVencimento(
-				Calendar.getInstance());
+				dataPara(5, 5, 2008)).comProcessamento(
+				dataPara(5, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
 
-		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Empresa de Teste")
-				.comAgencia("1111").comDvAgencia("1").comContaCorrente("2222222")
-				.comDvContaCorrete("3").comCarteira("33").comNossoNumero("34512398789");
+		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
+		.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("1207113")
+		.comDvContaCorrete("5").comCarteira("18").comNossoNumero("0009000206");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
 										  .comCpf("111.222.333-12")
@@ -95,5 +94,13 @@ public class BoletoTransformerTest {
 
 		fos.write(b);
 		fos.close();
+	}
+	
+	static Calendar dataPara(int dia, int mes, int ano) {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH, dia);
+		c.set(Calendar.MONTH, mes - 1);
+		c.set(Calendar.YEAR, ano);
+		return c;
 	}
 }
