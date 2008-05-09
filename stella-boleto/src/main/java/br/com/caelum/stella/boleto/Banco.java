@@ -25,11 +25,8 @@ public interface Banco {
 	 */
 	URL getImage();
 
-	public String geraCodigoDeBarrasPara(Boleto boleto);
-	
-	public int geraDVCodigoDeBarras(String codigoDeBarras);
+	String geraCodigoDeBarrasPara(Boleto boleto);
 
-	public String geraLinhaDigitavelPara(Boleto boleto);
-	
-	public int geraDVLinhaDigitavel(String campo);
+	String geraLinhaDigitavelPara(Boleto boleto);
+
 }

@@ -1,4 +1,6 @@
-package br.com.caelum.stella.boleto;
+package br.com.caelum.stella.boleto.bancos;
+
+import br.com.caelum.stella.boleto.Banco;
 
 /**
  * Define a implementação dos Bancos no modo geral.
@@ -16,37 +18,18 @@ package br.com.caelum.stella.boleto;
  * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
  * valores e testar alguns boletos, em especial se valores serão altos.
  * 
- * Bancos:
- * Banco do Brasil: 001
- * Bradesco: 237
- * Itau: 341
- * Banco Real: 356
- * Caixa Economica: 104
- * Unibanco: 409
- * HSBC: 399
+ * Bancos: Banco do Brasil: 001 Bradesco: 237 Itau: 341 Banco Real: 356 Caixa
+ * Economica: 104 Unibanco: 409 HSBC: 399
  * 
  * @author Paulo Silveira
  * 
  */
-public abstract class AbstractBanco implements Banco {
-	private int numero;
-
-	public int getNumero() {
-		return this.numero;
-	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+abstract class AbstractBanco implements Banco {
 
 	public String getNumeroFormatado() {
-		return String.format("%03d", this.numero);
+		return String.format("%03d", this.getNumero());
 	}
 
-	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		return null;
-	}
-	
 	public int geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
 		for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
@@ -57,29 +40,27 @@ public abstract class AbstractBanco implements Banco {
 			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i)))
 					* multiplicador;
 		}
-		
+
 		soma *= 10;
 
 		int resto = soma % 11;
-		
+
 		if (resto == 10 || resto == 0)
 			return 1;
 		else
 			return resto;
 	}
 
-	public String geraLinhaDigitavelPara(Boleto boleto) {
-		return null;
-	}
-	
 	public int geraDVLinhaDigitavel(String campo) {
 		int soma = 0;
 		for (int i = campo.length() - 1; i >= 0; i--) {
 			int multiplicador = (campo.length() - i) % 2 + 1;
-			int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo.charAt(i))) * multiplicador;
+			int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo
+					.charAt(i)))
+					* multiplicador;
 			soma += (algarismoMultiplicado / 10) + (algarismoMultiplicado % 10);
 		}
-		
+
 		int resto = soma % 10;
 		return (10 - resto) % 10;
 	}

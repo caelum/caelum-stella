@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -17,10 +16,9 @@ import com.lowagie.text.pdf.BaseFont;
 
 public class PNGBoletoWriter implements BoletoWriter {
 
-	private BufferedImage PNGimage;
+	private final BufferedImage PNGimage;
 	private InputStream stream;
-	private Graphics2D graphics;
-	
+	private final Graphics2D graphics;
 
 	public PNGBoletoWriter() {
 		this(514.22f, 434);
@@ -29,9 +27,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 	public PNGBoletoWriter(double w, double h) {
 		this.PNGimage = new BufferedImage((int) w, (int) h,
 				BufferedImage.TYPE_INT_ARGB);
-
 		this.graphics = PNGimage.createGraphics();
-		this.graphics.setColor(Color.BLACK);
 	}
 
 	public InputStream toInputStream() {
@@ -49,16 +45,13 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA, 8, 8);
+		Font font = new Font(BaseFont.HELVETICA, 9, 9);
 		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
-
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA_BOLD, 10, 10);
-		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
@@ -67,8 +60,9 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 		checkIfDocIsClosed();
 		image = scaleTo(image, (int) width, (int) height);
-		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight() - image.getHeight() - y), image.getWidth(), image
-				.getHeight(), null);
+		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight()
+				- image.getHeight() - y), image.getWidth(), image.getHeight(),
+				null);
 	}
 
 	private void checkIfDocIsClosed() {
@@ -77,7 +71,6 @@ public class PNGBoletoWriter implements BoletoWriter {
 					"boleto ja gerado, voce nao pode mais escrever na imagem");
 		}
 	}
-
 
 	/*
 	 * Convertendo coordenadas PDF para PNG
