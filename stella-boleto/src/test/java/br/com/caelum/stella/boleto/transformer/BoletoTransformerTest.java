@@ -27,8 +27,8 @@ public class BoletoTransformerTest {
 	@Before
 	public void setUp() {
 		DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
-				dataPara(4, 5, 2008)).comProcessamento(
-				dataPara(4, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
+				dataPara(1, 5, 2008)).comProcessamento(
+				dataPara(1, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 		.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("1207113")
@@ -54,7 +54,7 @@ public class BoletoTransformerTest {
 
 		this.boleto = BoletoPadrao.newBoleto().comBanco(banco)
 				.comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)
-				.comSacado(sacado).comValorBoleto("2.00")
+				.comSacado(sacado).comValorBoleto("40.00")
 				.comNoDocumento("4323").comInstrucoes(instrucoes)
 				.comLocaisDePagamento(locaisDePagamento);
 	}

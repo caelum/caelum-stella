@@ -49,17 +49,23 @@ public abstract class AbstractBanco implements Banco {
 	
 	public int geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
-		for (int i = 0, multiplicador = 2; i < codigoDeBarras.length(); i++, multiplicador++) {
+		for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
 			if (i == 4) // pula posição 5
-				i++;
+				i--;
 			if (multiplicador == 10) // volta pro 2
 				multiplicador = 2;
 			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i)))
 					* multiplicador;
 		}
+		
+		soma *= 10;
 
 		int resto = soma % 11;
-		return 11 - resto;
+		
+		if (resto == 10 || resto == 0)
+			return 1;
+		else
+			return resto;
 	}
 
 	public String geraLinhaDigitavelPara(Boleto boleto) {

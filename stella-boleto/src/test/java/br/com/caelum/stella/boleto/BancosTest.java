@@ -33,7 +33,7 @@ public class BancosTest {
 		banco = new BancoDoBrasil();
 
 		boleto = BoletoPadrao.newBoleto().comDatas(datas)
-				.comEmissor(emissor).comSacado(sacado).comValorBoleto("70.00")
+				.comEmissor(emissor).comSacado(sacado).comValorBoleto("40.00")
 				.comNoDocumento("4323");
 	}
 
@@ -43,7 +43,7 @@ public class BancosTest {
 		boleto = boleto.comBanco(banco);
 		
 		assertEquals(
-				"00190.00009  01207.113000  09000.206186  1  38600000007000",
+				"00190.00009  01207.113000  09000.206186  5  38600000004000",
 				banco.geraLinhaDigitavelPara(boleto));
 	}
 
@@ -52,7 +52,7 @@ public class BancosTest {
 		banco = new BancoDoBrasil();
 		boleto = boleto.comBanco(banco);
 
-		assertEquals("00191386000000070000000001207113000900020618", banco
+		assertEquals("00195386000000040000000001207113000900020618", banco
 				.geraCodigoDeBarrasPara(boleto));
 	}
 	
