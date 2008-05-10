@@ -5,6 +5,13 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.RotinaParameters;
 
 
+/**
+ * Documentação que pode ser consultada:
+ * {@link http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm} 
+ * 
+ * @author leobessa
+ *
+ */
 public class IEConstraints {
 	
 	public static final Integer[] P1 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
@@ -43,10 +50,9 @@ public class IEConstraints {
 						.getDigitoVerificadorInfo();
 				Integer[] a = info.getPesos();
 				Integer[] b = parameter.getNumeros();
-				Integer result = 0;
+				Integer result = parameter.getResult();
 				for (int i = 0; i < a.length; i++) {
 					result += (a[i] * b[i]) / 10;
-					result += (a[i] * b[i]) % 10;
 				}
 				return result;
 			}
