@@ -11,7 +11,9 @@
 
 <p>
   Esta lista contém as funcionalidades desejadas para as próximas
-  versões do Caelum Stella.
+  versões do Caelum Stella. Caso você tenha alguma sugestão, não
+  deixe de opinar na nossa lista de discussão, GUJ, ou diretamente
+  com os desenvolvedores!
 </p>
 
 <h2>Core</h2>
@@ -38,13 +40,13 @@
 <h2>Stella Taglib</h2>
 <ul>
   <li>
-    Integracao com JBoleto:
+    Integracao com o StellaBoleto:
     <textarea class="xhtml:nogutter:nocontrols" name="code" readonly="readonly">
       <stella:boleto banco="35" valor="${compra.valor}"/>
     </textarea>
   </li>
   <li>
-    Códigos de Barra (via JBoleto):
+    Códigos de Barras de diversos tipos:
     <textarea class="xhtml:nogutter:nocontrols" name="code" readonly="readonly">
       <stella:barcode valor="${item.codigo}"/>
      </textarea>
@@ -61,7 +63,7 @@
       <stella:inputCPF value="#{pessoaHandler.pessoa.cpf}" />
     </textarea>
   </li>
-  <li>Componente JBoleto baseado na tag do stella-taglib</li>
+  <li>Componente para Boleto baseado na tag do stella-taglib</li>
   <li>Componente Código de Barras baseado na tag do stella-taglib</li>
   <li>Converters para CPF, RG, CNPJ, etc.</li>
 </ul>
