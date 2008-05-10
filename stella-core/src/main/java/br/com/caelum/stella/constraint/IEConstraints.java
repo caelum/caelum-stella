@@ -15,7 +15,7 @@ import br.com.caelum.stella.validation.RotinaParameters;
 public class IEConstraints {
 	
 	public static final Integer[] P1 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
-			2, 1 };
+			2, 0 };
 	public static final Integer[] P2 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2,
 			0, 0 };
 	public static final Integer[] P3 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
@@ -40,8 +40,7 @@ public class IEConstraints {
 			0, 0 };
 	public static final Integer[] P13 = { 0, 0, 3, 2, 10, 9, 8, 7, 6, 5, 4, 3,
 			2, 0 };
-	public static final Integer[] P14 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
-		2, 0 };
+	
 
 	public enum Rotina implements RotinaDeDigitoVerificador {
 		A {
