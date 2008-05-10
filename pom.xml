@@ -175,6 +175,16 @@
     </pluginManagement>
 
     <plugins>
+	<!-- Setting eclipse code format options -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <configuration>
+          <workspace>${basedir}</workspace>
+          <workspaceCodeStylesURL>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml</workspaceCodeStylesURL>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -268,6 +278,17 @@
       <id>caires</id>
       <name>Caires Santos</name>
       <email>caires.santos@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+    <developer>
+      <id>caueguerra</id>
+      <name>Caires Santos</name>
+      <email>caue.guerra@caelum.com.br</email>
       <organization>Caelum</organization>
       <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>
