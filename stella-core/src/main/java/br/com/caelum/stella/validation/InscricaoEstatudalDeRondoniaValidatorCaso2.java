@@ -23,7 +23,7 @@ class InscricaoEstatudalDeRondoniaValidatorCaso2 extends
 			IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
 	private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-			0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+			1, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
 
 	private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 

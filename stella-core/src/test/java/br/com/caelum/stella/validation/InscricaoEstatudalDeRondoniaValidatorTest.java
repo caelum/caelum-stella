@@ -146,7 +146,7 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
 
 		String[] validValues = { "101625213", "00000001721593",
 				"00000001721585", "00000001721577", "00000001721097",
-				"00000001721569", "00000001721550", "00000001721542",
+				"00000001721569", "00000001721542", "00000001721551",
 				"00000001721534", "00000001721526", "00000001721518",
 				"00000001721283", "00000001721267", "00000001721500",
 				"00000001721496", "00000001721488", "00000001721470",
@@ -155,7 +155,7 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
 				"00000000587125", "00000001721313", "00000001721445",
 				"00000001721437", "101200107", "101910805", "101540552",
 				"203010197", "403514179", "209495042", "109475203",
-				"401510335", "203404811" };
+				"401510335", "203404811", "00000001721411" };
 		for (String validValue : validValues) {
 			try {
 				validator.assertValid(validValue);
@@ -167,31 +167,6 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
 		}
 
 		mockery.assertIsSatisfied();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidIEButItsNot() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-		mockery.checking(new Expectations() {
-			{
-
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRondoniaValidator(
-				messageProducer, false);
-
-		List<ValidationMessage> errors;
-		String validValueThatIsNotValidating = "00000001721411";
-		try {
-			validator.assertValid(validValueThatIsNotValidating);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(validValueThatIsNotValidating);
-		assertTrue(errors.isEmpty());
 	}
 
 	@SuppressWarnings("unchecked")
