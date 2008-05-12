@@ -155,7 +155,8 @@ public class BoletoTransformer {
 				+ boleto.getSacado().getCidade() + " "
 				+ boleto.getSacado().getUf());
 
-		Image imagemDoCodigoDeBarras = generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
+		
+		Image imagemDoCodigoDeBarras = BarcodeGenerator.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
 
 		writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
 				imagemDoCodigoDeBarras.getWidth(null), imagemDoCodigoDeBarras
@@ -181,18 +182,4 @@ public class BoletoTransformer {
 	private String formatDate(Calendar date) {
 		return String.format("%1$td/%1$tm/%1$tY", date);
 	}
-
-	static private Image generateBarcodeFor(String code) {
-		BarcodeInter25 bar = new BarcodeInter25();
-		bar.setCode(code);
-		bar.setExtended(true);
-
-		bar.setTextAlignment(Element.ALIGN_LEFT);
-		bar.setBarHeight(37.00f);
-		bar.setFont(null);
-		bar.setX(0.73f);
-		bar.setN(3);
-		return bar.createAwtImage(Color.BLACK, Color.WHITE);
-	}
-
 }

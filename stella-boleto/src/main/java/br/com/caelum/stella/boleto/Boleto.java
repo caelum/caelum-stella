@@ -4,10 +4,6 @@ import java.util.List;
 
 public interface Boleto {
 	String getValorBoleto();
-
-	String getCaminho();
-
-	String getTipoSaida();
 	
 	String getEspecieMoeda();
 	

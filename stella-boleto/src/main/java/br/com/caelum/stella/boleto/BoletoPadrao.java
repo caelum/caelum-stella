@@ -7,8 +7,6 @@ import java.util.List;
 public class BoletoPadrao implements Boleto {
 	
 	private String valorBoleto;
-	private String caminho;
-	private String tipoSaida;
 
 	private String qtdMoeda;
 	private String valorMoeda;
@@ -54,15 +52,6 @@ public class BoletoPadrao implements Boleto {
 		return this;
 	}
 
-	public String getCaminho() {
-		return this.caminho;
-	}
-
-	public BoletoPadrao comCaminho(String caminho) {
-		this.caminho = caminho;
-		return this;
-	}
-
 	public Datas getDatas() {
 		return this.datas;
 	}
@@ -96,15 +85,6 @@ public class BoletoPadrao implements Boleto {
 
 	public BoletoPadrao comQtdMoeda(String qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
-		return this;
-	}
-
-	public String getTipoSaida() {
-		return this.tipoSaida;
-	}
-
-	public BoletoPadrao comTipoSaida(String tipoSaida) {
-		this.tipoSaida = tipoSaida;
 		return this;
 	}
 
