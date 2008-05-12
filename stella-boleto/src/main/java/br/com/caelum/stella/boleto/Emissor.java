@@ -22,4 +22,5 @@ public interface Emissor {
 	String getNumConvenio();
 	String getNossoNumero();
 	String getCedente();
+	String getContaCorrenteFormatado();
 }

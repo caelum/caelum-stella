@@ -28,7 +28,7 @@ public class BradescoTest {
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("1824").comDvAgencia("4").comContaCorrente(
-						"0076000").comNumConvenio("1207113").comDvContaCorrete(
+						"76000").comNumConvenio("1207113").comDvContaCorrete(
 						"5").comCarteira("18").comNossoNumero("0009000206");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano");
@@ -46,7 +46,7 @@ public class BradescoTest {
 		boleto = boleto.comBanco(banco);
 
 		assertEquals(
-				"23790.18241  18000.900029  06007.600007  5  38600000007000",
+				"23790.18241  18000.900029  06007.600007  5  38600000004000",
 				banco.geraLinhaDigitavelPara(boleto));
 	}
 
@@ -55,7 +55,7 @@ public class BradescoTest {
 		banco = new Bradesco();
 		boleto = boleto.comBanco(banco);
 
-		assertEquals("23795386000000070000182418000900020600760000", banco
+		assertEquals("23795386000000040000182418000900020600760000", banco
 				.geraCodigoDeBarrasPara(boleto));
 	}
 

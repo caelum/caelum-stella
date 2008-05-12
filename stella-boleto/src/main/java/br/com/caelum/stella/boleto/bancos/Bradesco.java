@@ -16,7 +16,7 @@ public class Bradesco extends AbstractBanco {
 		builder.append(boleto.getEmissor().getAgencia());
 		builder.append(boleto.getEmissor().getCarteira());
 		builder.append(boleto.getEmissor().getNossoNumero());
-		builder.append(boleto.getEmissor().getContaCorrente());
+		builder.append(boleto.getEmissor().getContaCorrenteFormatado());
 		builder.append("0");
 
 		String codigoDeBarras = builder.toString();

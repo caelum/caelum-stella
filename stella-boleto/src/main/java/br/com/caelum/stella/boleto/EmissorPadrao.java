@@ -88,4 +88,8 @@ public class EmissorPadrao implements Emissor {
 		this.dvAgencia = dv;
 		return this;
 	}
+	
+	public String getContaCorrenteFormatado() {
+		return String.format("%08d", Integer.parseInt(this.contaCorrente));
+	}
 }

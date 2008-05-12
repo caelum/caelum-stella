@@ -31,7 +31,7 @@ public class BoletoTransformerTest {
 				dataPara(1, 5, 2008)).comVencimento(dataPara(2, 5, 2008));
 
 		EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Caue")
-		.comAgencia("1824").comDvAgencia("4").comContaCorrente("0076000").comNumConvenio("1207113")
+		.comAgencia("1824").comDvAgencia("4").comContaCorrente("76000").comNumConvenio("1207113")
 		.comDvContaCorrete("5").comCarteira("18").comNossoNumero("0009000206");
 
 		SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")

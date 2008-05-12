@@ -32,11 +32,17 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	public static BoletoPadrao newBoleto() {
-		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9);
+		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9).comAceite("N")
+								 .comEspecieDocumento("DV");
 	}
 
 	public String getAceite() {
 		return this.aceite;
+	}
+	
+	public BoletoPadrao comAceite(String aceite) {
+		this.aceite = aceite;
+		return this;
 	}
 
 	public double getAcrescimo() {
