@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -28,6 +29,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 		this.PNGimage = new BufferedImage((int) w, (int) h,
 				BufferedImage.TYPE_INT_ARGB);
 		this.graphics = PNGimage.createGraphics();
+		this.graphics.setColor(Color.BLACK);
 	}
 
 	public InputStream toInputStream() {
@@ -45,13 +47,15 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA, 9, 9);
+		Font font = new Font(BaseFont.HELVETICA, Font.PLAIN, 9);
 		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
+		Font font = new Font(BaseFont.HELVETICA, Font.BOLD, 9);
+		this.graphics.setFont(font);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
