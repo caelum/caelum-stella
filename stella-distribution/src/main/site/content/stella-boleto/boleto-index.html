@@ -3,14 +3,76 @@
 <html>
 <head>
 <title>Sobre</title>
+  <meta name="author" content="Cauê Haucke Porta Guerra">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 <body>
 <h2>O que é?</h2>
-<p>
+<p>É um dos modulos do Caelum Stella, que tem como
+objetivo facilitar a criação de boletos bancários de maneira simples e
+usando fluent-interfaces. 
 </p>
 
 <h2>Gerando Boletos</h2>
-<p></p>
+<textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
+      import br.com.caelum.stella.boleto.*;
+      
+      private BoletoPadrao boleto;
+      
+      public Boleto GeraBoleto() {
+      	DatasPadrao datas = DatasPadrao.newDatas().comDocumento(
+				new GregorianCalendar(5, 1, 2008)).comProcessamento(
+				new GregorianCalendar(5, 1, 2008)).comVencimento(new GregorianCalendar(5, 2, 2008));
+
+			EmissorPadrao emissor = EmissorPadrao.newEmissor().comCedente("Fulano de Tal")
+			.comAgencia("2345").comDvAgencia("6").comContaCorrente("12345").comNumConvenio("1234567")
+			.comDvContaCorrete("1").comCarteira("22").comNossoNumero("0009050987");
+
+			SacadoPadrao sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
+										  .comCpf("111.222.333-12")
+										  .comEndereco("Av dos testes, 111 apto 333")
+										  .comBairro("Bairro Teste")
+										  .comCep("01234-111")
+										  .comCidade("São Paulo")
+										  .comUf("SP");
+
+			String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
+				"descricao 4", "descricao 5" };
+
+			String[] locaisDePagamento = { "local 1", "local 2" };
+
+			String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
+				"instrucao 4", "instrucao 5" };
+		
+			Banco banco = new BancoDoBrasil();
+
+			this.boleto = BoletoPadrao.newBoleto().comBanco(banco)
+				.comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)
+				.comSacado(sacado).comValorBoleto("200.00")
+				.comNoDocumento("1234").comInstrucoes(instrucoes)
+				.comLocaisDePagamento(locaisDePagamento);
+			
+			return this.boleto;
+		}
+		
+		public void GeraPDF(Boleto boleto) {
+		
+			PDFBoletoWriter writer = new PDFBoletoWriter();
+		
+			BoletoTransformer transformer = new BoletoTransformer(writer);
+		
+			InputStream is = transformer.transform(this.boleto);
+		
+			File arquivo = new File("arquivo.pdf");
+			FileOutputStream fos = new FileOutputStream(arquivo);
+
+			byte[] b = new byte[is.available()];
+			is.read(b);
+
+			fos.write(b);
+			fos.close();
+		}
+</textarea>
 
 </body>
 </html>
