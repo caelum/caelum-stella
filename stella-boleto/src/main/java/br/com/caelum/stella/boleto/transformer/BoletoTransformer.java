@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -17,17 +16,12 @@ import javax.swing.text.NumberFormatter;
 import br.com.caelum.stella.boleto.Boleto;
 
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.pdf.BarcodeInter25;
 
 public class BoletoTransformer {
 
 	public static final float IMAGEM_BOLETO_WIDTH = 2144;
 	public static final float IMAGEM_BOLETO_HEIGHT = 1604;
 	public static final double BOLETO_TEMPLATE_SCALE = 1 / 2d;
-
-	private static final float IMAGEM_BANCO_WIDTH = 100.0f;
-	private static final float IMAGEM_BANCO_HEIGHT = 23.0f;
 
 	private static final float LINHA1 = 434;
 	private static final float LINHA2 = 412;
@@ -42,7 +36,6 @@ public class BoletoTransformer {
 	private static final float LINHA11 = 97;
 	private static final float LINHA12 = 87;
 	private static final float LINHA13 = 77;
-	private static final float LEFT_MARGIN = 0;
 
 	private BoletoWriter writer;
 

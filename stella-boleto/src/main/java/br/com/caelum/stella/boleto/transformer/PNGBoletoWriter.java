@@ -16,6 +16,12 @@ import javax.imageio.ImageIO;
 import com.lowagie.text.pdf.BaseFont;
 
 public class PNGBoletoWriter implements BoletoWriter {
+	
+	private static final int NORMAL_SIZE = 8;
+	private static final int BIG_SIZE = 10;
+
+	private Font fonteSimples;
+	private Font fonteBold;
 
 	private final BufferedImage PNGimage;
 	private InputStream stream;
@@ -26,10 +32,23 @@ public class PNGBoletoWriter implements BoletoWriter {
 	}
 
 	public PNGBoletoWriter(double w, double h) {
+		
 		this.PNGimage = new BufferedImage((int) w, (int) h,
-				BufferedImage.TYPE_INT_ARGB);
+				BufferedImage.TYPE_INT_RGB);
 		this.graphics = PNGimage.createGraphics();
-		this.graphics.setColor(Color.BLACK);
+	
+		this.graphics.setColor(Color.white);  
+		this.graphics.fillRect(0, 0, (int) w, (int) h);  
+		this.graphics.drawImage(this.PNGimage, 0, 0, null);  
+		
+		this.graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,  
+	             RenderingHints.VALUE_ANTIALIAS_ON);
+
+        this.graphics.setColor(Color.BLACK);  
+        
+		this.fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
+		
+		this.fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
 	}
 
 	public InputStream toInputStream() {
@@ -47,15 +66,13 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA, Font.PLAIN, 9);
-		this.graphics.setFont(font);
+		this.graphics.setFont(fonteSimples);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
-		Font font = new Font(BaseFont.HELVETICA, Font.BOLD, 9);
-		this.graphics.setFont(font);
+		this.graphics.setFont(fonteBold);
 		this.graphics.drawString(text, x, scaleY(y));
 	}
 
@@ -64,8 +81,9 @@ public class PNGBoletoWriter implements BoletoWriter {
 
 		checkIfDocIsClosed();
 		image = scaleTo(image, (int) width, (int) height);
+
 		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight()
-				- image.getHeight() - y), image.getWidth(), image.getHeight(),
+				- image.getHeight() - y), (int) image.getWidth(), (int) image.getHeight(),
 				null);
 	}
 
