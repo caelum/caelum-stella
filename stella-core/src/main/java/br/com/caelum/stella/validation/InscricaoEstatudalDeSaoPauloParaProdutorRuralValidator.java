@@ -8,7 +8,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class InscricaoEstatudalDeSaoPauloParaProdutorRuralValidator extends
+class InscricaoEstatudalDeSaoPauloParaProdutorRuralValidator extends
 		AbstractValidator<String> {
 
 	private static final int MOD = 11;
