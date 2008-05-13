@@ -3,6 +3,8 @@ package br.com.caelum.stella.boleto;
 import java.util.List;
 
 /**
+ * Interface com métodos do boleto
+ * 
  * @author caue
  *
  */

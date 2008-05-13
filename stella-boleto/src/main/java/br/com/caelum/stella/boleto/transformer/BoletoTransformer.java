@@ -44,8 +44,14 @@ public class BoletoTransformer {
 	}
 
 	/**
-	 * Gera o PDF em memoria e aloca-o em um InputStream.
+	 * Gera o boleto em memoria e aloca-o em um InputStream.
 	 * 
+	 * @param boleto
+	 * @return
+	 * @throws IOException
+	 * @throws DocumentException
+	 * @throws NumberFormatException
+	 * @throws ParseException
 	 */
 	public InputStream transform(Boleto boleto) throws IOException,
 			DocumentException, NumberFormatException, ParseException {

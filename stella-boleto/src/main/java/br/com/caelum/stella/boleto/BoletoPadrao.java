@@ -113,6 +113,7 @@ public class BoletoPadrao implements Boleto {
 	
 	/**
 	 * Associa o número do documento ao boleto
+	 * Código informado pelo banco.
 	 * 
 	 * @param noDocumento
 	 * @return
