@@ -7,7 +7,7 @@
     <artifactId>caelum-stella</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>caelum-stella-distribution</artifactId>
+  <artifactId>stella-distribution</artifactId>
   <packaging>pom</packaging>
   <name>Caelum Stella Distribution</name>
 
@@ -25,6 +25,11 @@
     <dependency>
       <groupId>${pom.groupId}</groupId>
       <artifactId>caelum-stella-hibernate-validator</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>caelum-stella-boleto</artifactId>
       <version>${pom.version}</version>
     </dependency>
   </dependencies>
@@ -111,6 +116,26 @@
                 <artifactItem>
                   <groupId>${pom.groupId}</groupId>
                   <artifactId>caelum-stella-faces</artifactId>
+                  <version>${pom.version}</version>
+                  <classifier>javadoc</classifier>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-javadoc-boleto</id>
+            <phase>install</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/javadoc/boleto</outputDirectory>
+              <overWriteReleases>true</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${pom.groupId}</groupId>
+                  <artifactId>caelum-stella-boleto</artifactId>
                   <version>${pom.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>

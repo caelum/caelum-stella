@@ -61,6 +61,9 @@
 		<link title="Stella Hibernate Validator">
 			javadoc/hibernate-validator/index.html
 		</link>
+		<link title="Stella Boleto">
+			javadoc/boleto/index.html
+		</link>
 		<link title="Stella Faces">javadoc/faces/index.html</link>
 	</section>
 	<section>
