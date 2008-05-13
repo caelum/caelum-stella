@@ -13,6 +13,28 @@ objetivo facilitar a criação de boletos bancários de maneira simples e
 usando fluent-interfaces. 
 </p>
 
+<h2>Dependências</h2>
+<ul>
+	<li>stella-boleto.jar</li>
+	<li>itext.jar</li>
+</ul>
+
+<h2>Domínio</h2>
+<ul>
+	<li>Aceite: diz se o banco deve aceitar o boleto após a data de vencimento. Padrão: 'N'</li>
+	<li>Espécie de Documnto: identificador do tipo de boleto. Padrão: "DV"</li>
+	<li>Número do Documento: código informado pelo banco para identificação do cliente</li>
+	<li>Carteira: código informado pelo banco pra identificação do tipo do boleto</li>
+	<li>Número do Convênio: código que identifica um emissor junto ao seu banco para associar seus boletos. 
+Fornecido pelo banco</li>
+	<li>Nosso Número: código que o cedente escolhe para manter controle sobre seus boletos. Esse valor serve
+para o cedente identificar quais boletos foram pagos ou não. Recomenda-se o uso de números
+sequenciais, na geração de diversos boletos, para facilitar a identificação dos boletos pagos</li>
+	<li>Cedente: nome do emissor</li>
+	<li>Emissor: pessoa/empresa que gera o boleto</li>
+	<li>Sacado: pessoa/empresa que deve pagar o boleto</li>
+</ul>
+
 <h2>Gerando Boletos</h2>
 <textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
 import br.com.caelum.stella.boleto.*;
