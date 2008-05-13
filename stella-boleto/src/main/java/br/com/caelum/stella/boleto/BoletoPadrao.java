@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Implementa um boleto padrão
+ * 
+ * @author caue
+ *
+ */
 public class BoletoPadrao implements Boleto {
 	
 	private String valorBoleto;
@@ -29,6 +35,11 @@ public class BoletoPadrao implements Boleto {
 	private BoletoPadrao() {
 	}
 
+	/**
+	 * Cria um novo boleto com valores padrão.
+	 * 
+	 * @return
+	 */
 	public static BoletoPadrao newBoleto() {
 		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9).comAceite("N")
 								 .comEspecieDocumento("DV");
@@ -38,6 +49,13 @@ public class BoletoPadrao implements Boleto {
 		return this.aceite;
 	}
 	
+	/**
+	 * Associa o aceite ao boleto.
+	 * Valor padrão: 'N'
+	 * 
+	 * @param aceite
+	 * @return
+	 */
 	public BoletoPadrao comAceite(String aceite) {
 		this.aceite = aceite;
 		return this;
@@ -47,6 +65,12 @@ public class BoletoPadrao implements Boleto {
 		return this.acrescimo;
 	}
 
+	/**
+	 * Associa o acréscimo ao boleto
+	 * 
+	 * @param acrescimo
+	 * @return
+	 */
 	public BoletoPadrao comAcrescimo(double acrescimo) {
 		this.acrescimo = acrescimo;
 		return this;
@@ -56,6 +80,12 @@ public class BoletoPadrao implements Boleto {
 		return this.datas;
 	}
 
+	/**
+	 * Associa as datas ao boleto
+	 * 
+	 * @param datas
+	 * @return
+	 */
 	public BoletoPadrao comDatas(Datas datas) {
 		this.datas = datas;
 		return this;
@@ -65,6 +95,13 @@ public class BoletoPadrao implements Boleto {
 		return this.especieDocumento;
 	}
 
+	/**
+	 * Associa a espécie do documento ao boleto
+	 * Valor padrão: "DV"
+	 * 
+	 * @param especieDocumento
+	 * @return
+	 */
 	public BoletoPadrao comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
 		return this;
@@ -74,6 +111,12 @@ public class BoletoPadrao implements Boleto {
 		return this.noDocumento;
 	}
 	
+	/**
+	 * Associa o número do documento ao boleto
+	 * 
+	 * @param noDocumento
+	 * @return
+	 */
 	public BoletoPadrao comNoDocumento(String noDocumento) {
 		this.noDocumento = noDocumento;
 		return this;
@@ -83,6 +126,12 @@ public class BoletoPadrao implements Boleto {
 		return this.qtdMoeda;
 	}
 
+	/**
+	 * Associa a quantidade de moeda ao boleto
+	 * 
+	 * @param qtdMoeda
+	 * @return
+	 */
 	public BoletoPadrao comQtdMoeda(String qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
 		return this;
@@ -92,6 +141,12 @@ public class BoletoPadrao implements Boleto {
 		return this.valorBoleto;
 	}
 
+	/**
+	 * Associa o valor do boleto
+	 * 
+	 * @param valorBoleto
+	 * @return
+	 */
 	public BoletoPadrao comValorBoleto(String valorBoleto) {
 		this.valorBoleto = valorBoleto;
 		return this;
@@ -119,6 +174,12 @@ public class BoletoPadrao implements Boleto {
 		return this.valorMoeda;
 	}
 
+	/**
+	 * Associa o valor da moeda ao boleto
+	 * 
+	 * @param valorMoeda
+	 * @return
+	 */
 	public BoletoPadrao comValorMoeda(String valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
@@ -128,6 +189,12 @@ public class BoletoPadrao implements Boleto {
 		return this.banco;
 	}
 
+	/**
+	 * Associa o banco ao boleto
+	 * 
+	 * @param banco
+	 * @return
+	 */
 	public BoletoPadrao comBanco(Banco banco) {
 		this.banco = banco;
 		return this;
@@ -137,6 +204,12 @@ public class BoletoPadrao implements Boleto {
 		return this.sacado;
 	}
 	
+	/**
+	 * Associa o sacado ao boleto
+	 * 
+	 * @param sacado
+	 * @return
+	 */
 	public BoletoPadrao comSacado(Sacado sacado) {
 		this.sacado = sacado;
 		return this;
@@ -146,6 +219,12 @@ public class BoletoPadrao implements Boleto {
 		return this.emissor;
 	}
 	
+	/**
+	 * Associa o emissor ao boleto
+	 * 
+	 * @param emissor
+	 * @return
+	 */
 	public BoletoPadrao comEmissor(Emissor emissor) {
 		this.emissor = emissor;
 		return this;
@@ -155,6 +234,12 @@ public class BoletoPadrao implements Boleto {
 		return instrucoes;
 	}
 
+	/**
+	 * Associa as instruções ao boleto
+	 * 
+	 * @param instrucoes
+	 * @return
+	 */
 	public BoletoPadrao comInstrucoes(String ... instrucoes) {
 		if(instrucoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
@@ -167,8 +252,13 @@ public class BoletoPadrao implements Boleto {
 		return descricoes;
 	}
 
+	/**
+	 * Associa as descrições ao boleto
+	 * 
+	 * @param descricoes
+	 * @return
+	 */
 	public BoletoPadrao comDescricoes(String ... descricoes) {
-		// TODO: verificar se 5 eh max mesmo
 		if(descricoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
 		}
@@ -180,6 +270,12 @@ public class BoletoPadrao implements Boleto {
 		return locaisDePagamento;
 	}
 	
+	/**
+	 * Associa os locais de pagamento ao boleto
+	 * 
+	 * @param locaisDePagamento
+	 * @return
+	 */
 	public BoletoPadrao comLocaisDePagamento(String ... locaisDePagamento) {
 		if(locaisDePagamento.length > 2) {
 			throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");

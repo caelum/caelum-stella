@@ -25,7 +25,7 @@ import br.com.caelum.stella.boleto.Banco;
  * 
  */
 abstract class AbstractBanco implements Banco {
-
+	
 	public String getNumeroFormatado() {
 		return String.format("%03d", this.getNumero());
 	}
