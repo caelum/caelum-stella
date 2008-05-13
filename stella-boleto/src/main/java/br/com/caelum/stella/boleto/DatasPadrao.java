@@ -6,28 +6,26 @@ public class DatasPadrao implements Datas {
 	private Calendar documento;
 	private Calendar processamento;
 	private Calendar vencimento;
-	
+
 	private DatasPadrao() {
 	}
-	
+
 	/**
-	 * Cria novas datas
-	 * Data do documento padrão: data atual
-	 * Data do processamento padrão: data atual
+	 * Cria novas datas Data do documento padrão: data atual Data do
+	 * processamento padrão: data atual
 	 * 
 	 */
 	public static DatasPadrao newDatas() {
 		return new DatasPadrao().comDocumento(Calendar.getInstance())
-								.comProcessamento(Calendar.getInstance());
+				.comProcessamento(Calendar.getInstance());
 	}
 
 	public Calendar getDocumento() {
 		return this.documento;
 	}
-	
+
 	/**
-	 * Associa uma data do documento.
-	 * Valor padrão: data atual
+	 * Associa uma data do documento. Valor padrão: data atual
 	 * 
 	 * @param documento
 	 */
@@ -39,10 +37,9 @@ public class DatasPadrao implements Datas {
 	public Calendar getProcessamento() {
 		return this.processamento;
 	}
-	
+
 	/**
-	 * Associa uma data do processamento.
-	 * Valor padrão: data atual
+	 * Associa uma data do processamento. Valor padrão: data atual
 	 * 
 	 * @param processamento
 	 */
