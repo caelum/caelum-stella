@@ -5,19 +5,18 @@ import java.util.Calendar;
 import java.util.List;
 
 public class BoletoPadrao implements Boleto {
-	
+
 	private String valorBoleto;
 
 	private String qtdMoeda;
 	private String valorMoeda;
 	private String especieMoeda;
 	private int codEspecieMoeda;
-	private double acrescimo;
 
 	private String especieDocumento;
 	private String noDocumento;
 	private String aceite;
-	
+
 	private Banco banco;
 	private Datas datas;
 	private Sacado sacado;
@@ -34,31 +33,21 @@ public class BoletoPadrao implements Boleto {
 	 * 
 	 */
 	public static BoletoPadrao newBoleto() {
-		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9).comAceite("N")
-								 .comEspecieDocumento("DV");
+		return new BoletoPadrao().comEspecieMoeda("R$").comCodEspecieMoeda(9)
+				.comAceite("N").comEspecieDocumento("DV");
 	}
 
 	public String getAceite() {
 		return this.aceite;
 	}
-	
+
 	/**
-	 * Associa o aceite ao boleto.
-	 * Valor padrão: 'N'
+	 * Associa o aceite ao boleto. Valor padrão: 'N'
 	 * 
 	 * @param aceite
 	 */
 	public BoletoPadrao comAceite(String aceite) {
 		this.aceite = aceite;
-		return this;
-	}
-
-	public double getAcrescimo() {
-		return this.acrescimo;
-	}
-
-	public BoletoPadrao comAcrescimo(double acrescimo) {
-		this.acrescimo = acrescimo;
 		return this;
 	}
 
@@ -76,8 +65,7 @@ public class BoletoPadrao implements Boleto {
 	}
 
 	/**
-	 * Associa a espécie do documento ao boleto
-	 * Valor padrão: "DV"
+	 * Associa a espécie do documento ao boleto Valor padrão: "DV"
 	 * 
 	 * @param especieDocumento
 	 */
@@ -85,14 +73,13 @@ public class BoletoPadrao implements Boleto {
 		this.especieDocumento = especieDocumento;
 		return this;
 	}
-	
+
 	public String getNoDocumento() {
 		return this.noDocumento;
 	}
-	
+
 	/**
-	 * Associa o número do documento ao boleto
-	 * Código informado pelo banco.
+	 * Associa o número do documento ao boleto Código informado pelo banco.
 	 * 
 	 * @param noDocumento
 	 */
@@ -118,20 +105,20 @@ public class BoletoPadrao implements Boleto {
 		this.valorBoleto = valorBoleto;
 		return this;
 	}
-	
+
 	public String getEspecieMoeda() {
 		return this.especieMoeda;
 	}
-	
+
 	private BoletoPadrao comEspecieMoeda(String especieMoeda) {
 		this.especieMoeda = especieMoeda;
 		return this;
 	}
-	
+
 	public int getCodEspecieMoeda() {
 		return this.codEspecieMoeda;
 	}
-	
+
 	private BoletoPadrao comCodEspecieMoeda(int codEspecieMoeda) {
 		this.codEspecieMoeda = codEspecieMoeda;
 		return this;
@@ -154,57 +141,57 @@ public class BoletoPadrao implements Boleto {
 		this.banco = banco;
 		return this;
 	}
-	
+
 	public Sacado getSacado() {
 		return this.sacado;
 	}
-	
+
 	public BoletoPadrao comSacado(Sacado sacado) {
 		this.sacado = sacado;
 		return this;
 	}
-	
+
 	public Emissor getEmissor() {
 		return this.emissor;
 	}
-	
+
 	public BoletoPadrao comEmissor(Emissor emissor) {
 		this.emissor = emissor;
 		return this;
 	}
 
 	public List<String> getInstrucoes() {
-		return instrucoes;
+		return this.instrucoes;
 	}
 
-	public BoletoPadrao comInstrucoes(String ... instrucoes) {
-		if(instrucoes.length > 5) {
-			throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
-		}
+	public BoletoPadrao comInstrucoes(String... instrucoes) {
+		if (instrucoes.length > 5)
+			throw new IllegalArgumentException(
+					"maximo de 5 instrucoes permitidas");
 		this.instrucoes = Arrays.asList(instrucoes);
 		return this;
 	}
 
 	public List<String> getDescricoes() {
-		return descricoes;
+		return this.descricoes;
 	}
 
-	public BoletoPadrao comDescricoes(String ... descricoes) {
-		if(descricoes.length > 5) {
-			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
-		}
+	public BoletoPadrao comDescricoes(String... descricoes) {
+		if (descricoes.length > 5)
+			throw new IllegalArgumentException(
+					"maximo de 5 descricoes permitidas");
 		this.descricoes = Arrays.asList(descricoes);
 		return this;
 	}
-	
+
 	public List<String> getLocaisDePagamento() {
-		return locaisDePagamento;
+		return this.locaisDePagamento;
 	}
-	
-	public BoletoPadrao comLocaisDePagamento(String ... locaisDePagamento) {
-		if(locaisDePagamento.length > 2) {
-			throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");
-		}
+
+	public BoletoPadrao comLocaisDePagamento(String... locaisDePagamento) {
+		if (locaisDePagamento.length > 2)
+			throw new IllegalArgumentException(
+					"maximo de 2 locais de pagamento permitidos");
 		this.locaisDePagamento = Arrays.asList(locaisDePagamento);
 		return this;
 	}
@@ -214,13 +201,16 @@ public class BoletoPadrao implements Boleto {
 		dataBase.set(Calendar.DAY_OF_MONTH, 7);
 		dataBase.set(Calendar.MONTH, 10 - 1);
 		dataBase.set(Calendar.YEAR, 1997);
-		
-		long diferencasEmMiliSegundos = this.datas.getVencimento().getTimeInMillis() - dataBase.getTimeInMillis();
-		long diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
-		
+
+		long diferencasEmMiliSegundos = this.datas.getVencimento()
+				.getTimeInMillis()
+				- dataBase.getTimeInMillis();
+		long diferencasEmDias = diferencasEmMiliSegundos
+				/ (1000 * 60 * 60 * 24);
+
 		return (int) diferencasEmDias;
 	}
-	
+
 	// TODO: formatar mais bonito: algo como %010d nao funciona
 	public String getValorFormatado() {
 		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");

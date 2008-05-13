@@ -60,108 +60,106 @@ public class BoletoTransformer {
 				"#,##0.00"));
 
 		// gera template com o fundo do boleto
-		// TODO: talvez fazer isso so uma vez e deixar em memoria, ou ainda
-		// receber no construtor
 		URL imagemTitulo = BoletoTransformer.class
 				.getResource("/br/com/caelum/stella/boleto/img/template.png");
 
-		writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f, 385.109f);
-		writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco().getImage()),
-				100, 23);
+		this.writer
+				.writeImage(0, 55, imageFor(imagemTitulo), 514.22f, 385.109f);
+		this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
+				.getImage()), 100, 23);
 
-		for (int i = 0; i < boleto.getDescricoes().size(); i++) {
-			writer.writeBold(5, 805 - 70 - i * 15, boleto.getDescricoes()
+		for (int i = 0; i < boleto.getDescricoes().size(); i++)
+			this.writer.writeBold(5, 805 - 70 - i * 15, boleto.getDescricoes()
 					.get(i));
-		}
 
-		writer.write(50, LINHA1, boleto.getEmissor().getCedente());
+		this.writer.write(50, LINHA1, boleto.getEmissor().getCedente());
 
-		writer.write(5, LINHA2, boleto.getSacado().getNome());
+		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 
-		writer
-				.write(230, LINHA2, formatDate(boleto.getDatas()
-						.getVencimento()));
+		this.writer.write(230, LINHA2, formatDate(boleto.getDatas()
+				.getVencimento()));
 
-		writer.write(400, LINHA2, formatter.valueToString(new Double(boleto
-				.getValorBoleto())));
+		this.writer.write(400, LINHA2, formatter.valueToString(new Double(
+				boleto.getValorBoleto())));
 
-		writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + "-"
+		this.writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + "-"
 				+ boleto.getEmissor().getDvAgencia() + " / "
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
-		writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
+		this.writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
 
-		writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatado());
+		this.writer.writeBold(125, LINHA4, boleto.getBanco()
+				.getNumeroFormatado());
 
-		writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(boleto));
+		this.writer.writeBold(175, LINHA4, boleto.getBanco()
+				.geraLinhaDigitavelPara(boleto));
 
-		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
-			writer.write(5, LINHA5 - (i - 1) * 10, boleto
+		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++)
+			this.writer.write(5, LINHA5 - (i - 1) * 10, boleto
 					.getLocaisDePagamento().get(i));
-		}
 
-		writer.write(425, LINHA5, formatDate(boleto.getDatas()
-						.getVencimento()));
+		this.writer.write(425, LINHA5, formatDate(boleto.getDatas()
+				.getVencimento()));
 
-		writer.write(5, LINHA6, boleto.getEmissor().getCedente());
+		this.writer.write(5, LINHA6, boleto.getEmissor().getCedente());
 
-		writer.write(420, LINHA6, boleto.getEmissor().getAgencia() + " - "
+		this.writer.write(420, LINHA6, boleto.getEmissor().getAgencia() + " - "
 				+ boleto.getEmissor().getDvAgencia() + " / "
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
-		writer.write(5, LINHA7, formatDate(boleto.getDatas().getDocumento()));
+		this.writer.write(5, LINHA7, formatDate(boleto.getDatas()
+				.getDocumento()));
 
-		writer.write(70, LINHA7, !boleto.getNoDocumento().equals("") ? boleto
-				.getNoDocumento() : boleto.getEmissor().getNossoNumero());
+		this.writer.write(70, LINHA7,
+				!boleto.getNoDocumento().equals("") ? boleto.getNoDocumento()
+						: boleto.getEmissor().getNossoNumero());
 
-		writer.write(180, LINHA7, boleto.getEspecieDocumento());
+		this.writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
-		writer.write(250, LINHA7, boleto.getAceite());
+		this.writer.write(250, LINHA7, boleto.getAceite());
 
-		writer.write(300, LINHA7, formatDate(boleto.getDatas()
+		this.writer.write(300, LINHA7, formatDate(boleto.getDatas()
 				.getProcessamento()));
 
-		writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / "
-				+ boleto.getEmissor().getNossoNumero());
+		this.writer.write(410, LINHA7, boleto.getEmissor().getCarteira()
+				+ " / " + boleto.getEmissor().getNossoNumero());
 
-		writer.write(122, LINHA8, boleto.getEmissor().getCarteira());
+		this.writer.write(122, LINHA8, boleto.getEmissor().getCarteira());
 
-		writer.write(190, LINHA8, boleto.getEspecieMoeda());
+		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
 		// TODO: quantidade moeda, valor moeda
 
-		writer.write(430, LINHA8, formatter.valueToString(new Double(boleto
-				.getValorBoleto())));
+		this.writer.write(430, LINHA8, formatter.valueToString(new Double(
+				boleto.getValorBoleto())));
 
-		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-			writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
-		}
+		for (int i = 0; i < boleto.getInstrucoes().size(); i++)
+			this.writer
+					.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
 
-		// TODO: colocar desconto, outras deducoes, mora, outros acrescimos,
-		// valor cobrado
+		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 
-		writer.write(5, LINHA10, boleto.getEmissor().getCedente());
-
-		writer.write(100, LINHA11, boleto.getSacado().getNome() + " "
+		this.writer.write(100, LINHA11, boleto.getSacado().getNome() + " "
 				+ boleto.getSacado().getCpf());
 
-		writer.write(100, LINHA12, boleto.getSacado().getEndereco());
+		this.writer.write(100, LINHA12, boleto.getSacado().getEndereco());
 
-		writer.write(100, LINHA13, boleto.getSacado().getCep() + " "
+		this.writer.write(100, LINHA13, boleto.getSacado().getCep() + " "
 				+ boleto.getSacado().getBairro() + " - "
 				+ boleto.getSacado().getCidade() + " "
 				+ boleto.getSacado().getUf());
 
-		
-		Image imagemDoCodigoDeBarras = BarcodeGenerator.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(boleto));
+		Image imagemDoCodigoDeBarras = BarcodeGenerator
+				.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
+						boleto));
 
-		writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
-				imagemDoCodigoDeBarras.getWidth(null), imagemDoCodigoDeBarras
-						.getHeight(null));
+		this.writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras,
+				BufferedImage.TYPE_INT_ARGB), imagemDoCodigoDeBarras
+				.getWidth(null), imagemDoCodigoDeBarras.getHeight(null));
 
-		return writer.toInputStream();
+		return this.writer.toInputStream();
 	}
 
 	/**
@@ -180,7 +178,7 @@ public class BoletoTransformer {
 		g.dispose();
 		return result;
 	}
-	
+
 	/**
 	 * Abre um arquivo em um BufferedImage
 	 * 
