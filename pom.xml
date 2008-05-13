@@ -24,6 +24,7 @@
     <module>stella-faces</module>
     <module>stella-boleto</module>
     <module>stella-distribution</module>
+    <module>examples/core-example</module>
     <module>examples/faces-example</module>
     <module>examples/vraptor-validator-example</module>
     <module>examples/hibernate-persistence-example</module>

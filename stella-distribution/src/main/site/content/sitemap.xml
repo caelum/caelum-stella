@@ -10,6 +10,12 @@
 	<!--<name>Stella Core</name>-->
 	<!--</section>-->
 	<section>
+		<name>Stella Core</name>
+		<page>stella-core/core-index.html</page>
+		<page>stella-core/core-business.html</page>
+		<page>stella-core/core-resoucebundle.html</page>
+	</section>
+	<section>
 		<name>Stella Hibernate</name>
 		<page>stella-hibernate/hibernate-index.html</page>
 		<page>stella-hibernate/hibernate-annotating-domain-model.html</page>

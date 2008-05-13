@@ -1,0 +1,53 @@
+<title>Camada de Negócios</title>
+<body>
+<h2>Validação na camada de Negócio</h2>
+<p>Vamos validar um documento de CPF utilzando o Stella Core.</p>
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+  String cpf = "222.888.444-52";
+</textarea>
+
+<p>O Stella forncede uma classe que valida este documento.</p>
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+ MessageProducer producer = new SimpleMessageProducer();
+ boolean isFormatted      = true; 
+ CPFValidator validator   = new CPFValidator(messageProducer,isFormatted);
+</textarea>
+
+<p>Agora, veja como é simples realizar a validação do documento.</p>
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+		try {
+			// lógica de negócio ...
+			validator.assertValid(cpf);
+			// continuação da lógica de negócio ...
+		} catch (InvalidStateException e) {
+			System.out.println(e.getInvalidMessages());
+		}
+</textarea>
+
+<p>Após a execução deste programa a saída do console apresentará a
+seguinte linha: <b> [cpferror : invalid check digits]</b>
+</p>
+<p>Atenção: Ao se chamar o método <i>assertValid()</i> este <b>lançará
+uma exceção (do tipo RuntimeException) InvalidStateException</b>.
+</p>
+
+
+<p>Podemos capturar as messagens de erro utilizando o método <i>invalidaMessagesFor()</i>.
+Este método <b>não lança a InvalidStateException</b>.</p>
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+		// lógica de negócio ...
+		List<ValidationMessage> validationMessages = validator.invalidMessagesFor(cpf);
+		System.out.println(validationMessages.getInvalidMessages());
+		// continuação da lógica de negócio ...
+</textarea>
+
+<p>Após a execução deste programa a saída do console será a mesma: <b>
+[cpferror : invalid check digits]</b></p>
+
+</body>
