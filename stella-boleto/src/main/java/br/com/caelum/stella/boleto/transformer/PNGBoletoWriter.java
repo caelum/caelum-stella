@@ -17,8 +17,8 @@ import com.lowagie.text.pdf.BaseFont;
 
 public class PNGBoletoWriter implements BoletoWriter {
 	
-	private static final int NORMAL_SIZE = 8;
-	private static final int BIG_SIZE = 10;
+	private static final int NORMAL_SIZE = 36;
+	private static final int BIG_SIZE = 45;
 
 	private Font fonteSimples;
 	private Font fonteBold;
@@ -28,7 +28,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 	private final Graphics2D graphics;
 
 	public PNGBoletoWriter() {
-		this(514.22f, 434);
+		this(2144f, 1900);
 	}
 
 	public PNGBoletoWriter(double w, double h) {
@@ -67,23 +67,23 @@ public class PNGBoletoWriter implements BoletoWriter {
 	public void write(float x, float y, String text) {
 		checkIfDocIsClosed();
 		this.graphics.setFont(fonteSimples);
-		this.graphics.drawString(text, x, scaleY(y));
+		this.graphics.drawString(text, scaleX(x), scaleY(y));
 	}
 
 	public void writeBold(float x, float y, String text) {
 		checkIfDocIsClosed();
 		this.graphics.setFont(fonteBold);
-		this.graphics.drawString(text, x, scaleY(y));
+		this.graphics.drawString(text, scaleX(x), scaleY(y));
 	}
 
 	public void writeImage(float x, float y, BufferedImage image, float width,
 			float height) throws IOException {
 
 		checkIfDocIsClosed();
-		image = scaleTo(image, (int) width, (int) height);
+		//image = scaleTo(image, (int) width, (int) height);
 
 		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight()
-				- image.getHeight() - y), (int) image.getWidth(), (int) image.getHeight(),
+				- image.getHeight() - (y * 4.2f)), (int) image.getWidth(), (int) image.getHeight(),
 				null);
 	}
 
@@ -97,96 +97,12 @@ public class PNGBoletoWriter implements BoletoWriter {
 	/*
 	 * Convertendo coordenadas PDF para PNG
 	 */
+	private float scaleX(float x) {
+		return x * 4.2f;
+	}
+	
 	private float scaleY(float y) {
 		y = this.PNGimage.getHeight() - y;
-		return y;
-	}
-
-	/*
-	 * Metodos auxiliares para trabalhar com BufferedImages com Java 2D
-	 */
-
-	private BufferedImage scaleTo(BufferedImage image, double scale) {
-		if (scale == 1)
-			return image;
-		return scaleTo(image, (int) (image.getWidth() * scale), (int) (image
-				.getHeight() * scale));
-	}
-
-	static BufferedImage scaleTo(BufferedImage image, int width, int height) {
-		return getScaledInstance(image, width, height,
-				RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
-	}
-
-	/**
-	 * Convenience method that returns a scaled instance of the provided
-	 * {@code BufferedImage}.
-	 * 
-	 * @param img
-	 *            the original image to be scaled
-	 * @param targetWidth
-	 *            the desired width of the scaled instance, in pixels
-	 * @param targetHeight
-	 *            the desired height of the scaled instance, in pixels
-	 * @param hint
-	 *            one of the rendering hints that corresponds to
-	 *            {@code RenderingHints.KEY_INTERPOLATION} (e.g.
-	 *            {@code RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR},
-	 *            {@code RenderingHints.VALUE_INTERPOLATION_BILINEAR},
-	 *            {@code RenderingHints.VALUE_INTERPOLATION_BICUBIC})
-	 * @param higherQuality
-	 *            if true, this method will use a multi-step scaling technique
-	 *            that provides higher quality than the usual one-step technique
-	 *            (only useful in down-scaling cases, where {@code targetWidth}
-	 *            or {@code targetHeight} is smaller than the original
-	 *            dimensions, and generally only when the {@code BILINEAR} hint
-	 *            is specified)
-	 * @return a scaled version of the original {@codey BufferedImage}
-	 */
-	public static BufferedImage getScaledInstance(BufferedImage img,
-			int targetWidth, int targetHeight, Object hint,
-			boolean higherQuality) {
-		int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB
-				: BufferedImage.TYPE_INT_ARGB;
-		BufferedImage ret = img;
-		int w, h;
-		if (higherQuality) {
-			// Use multi-step technique: start with original size, then
-			// scale down in multiple passes with drawImage()
-			// until the target size is reached
-			w = img.getWidth();
-			h = img.getHeight();
-		} else {
-			// Use one-step technique: scale directly from original
-			// size to target size with a single drawImage() call
-			w = targetWidth;
-			h = targetHeight;
-		}
-
-		do {
-			if (higherQuality && w > targetWidth) {
-				w /= 2;
-				if (w < targetWidth) {
-					w = targetWidth;
-				}
-			}
-
-			if (higherQuality && h > targetHeight) {
-				h /= 2;
-				if (h < targetHeight) {
-					h = targetHeight;
-				}
-			}
-
-			BufferedImage tmp = new BufferedImage(w, h, type);
-			Graphics2D g2 = tmp.createGraphics();
-			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, hint);
-			g2.drawImage(ret, 0, 0, w, h, null);
-			g2.dispose();
-
-			ret = tmp;
-		} while (w != targetWidth || h != targetHeight);
-
-		return ret;
+		return y * 4.2f - 6075;
 	}
 }
