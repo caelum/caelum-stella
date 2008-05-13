@@ -41,7 +41,7 @@ import br.com.caelum.stella.boleto.*;
       
 private BoletoPadrao boleto;
       
-public Boleto GeraBoleto() {
+public static void main(String[] args) {
 	DatasPadrao datas = DatasPadrao.newDatas()
       					    	   .comDocumento(new GregorianCalendar(5, 1, 2008))
       					    	   .comProcessamento(new GregorianCalendar(5, 1, 2008))
@@ -85,7 +85,8 @@ public Boleto GeraBoleto() {
 							  .comInstrucoes(instrucoes)
 							  .comLocaisDePagamento(locaisDePagamento);
 			
-	return this.boleto;
+	GeraPDF(this.boleto);
+	GeraPNG(this.boleto);
 }
 		
 public void GeraPDF(Boleto boleto) {
