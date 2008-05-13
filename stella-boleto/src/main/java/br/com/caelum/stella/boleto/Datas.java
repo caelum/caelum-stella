@@ -2,19 +2,8 @@ package br.com.caelum.stella.boleto;
 
 import java.util.Calendar;
 
-/**
- * Interface das datas
- * 
- * @author caue
- *
- */
 public interface Datas {
 
-	/**
-	 * Devolve a data de vencimento do boleto
-	 * 
-	 * @return
-	 */
 	Calendar getVencimento();
 
 	/**
@@ -32,5 +21,4 @@ public interface Datas {
 	 * @return
 	 */
 	Calendar getProcessamento();
-
 }

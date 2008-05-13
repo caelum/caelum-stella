@@ -2,35 +2,13 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 
-/**
- * Define a implementação dos Bancos no modo geral.
- * 
- * Documentação que pode ser consultada:
- * 
- * http://www.macoratti.net/boleto.htm
- * http://pt.wikipedia.org/wiki/Boleto_bancário
- * 
- * Manual oficial da Febraban:
- * http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf
- * 
- * Para testes rapidos: http://evandro.net/codigo_barras.html
- * 
- * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
- * valores e testar alguns boletos, em especial se valores serão altos.
- * 
- * Bancos: Banco do Brasil: 001 Bradesco: 237 Itau: 341 Banco Real: 356 Caixa
- * Economica: 104 Unibanco: 409 HSBC: 399
- * 
- * @author Paulo Silveira
- * 
- */
 abstract class AbstractBanco implements Banco {
 	
 	public String getNumeroFormatado() {
 		return String.format("%03d", this.getNumero());
 	}
 
-	public int geraDVCodigoDeBarras(String codigoDeBarras) {
+	protected int geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
 		for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
 			if (i == 4) // pula posição 5
@@ -51,7 +29,7 @@ abstract class AbstractBanco implements Banco {
 			return resto;
 	}
 
-	public int geraDVLinhaDigitavel(String campo) {
+	protected int geraDVLinhaDigitavel(String campo) {
 		int soma = 0;
 		for (int i = campo.length() - 1; i >= 0; i--) {
 			int multiplicador = (campo.length() - i) % 2 + 1;

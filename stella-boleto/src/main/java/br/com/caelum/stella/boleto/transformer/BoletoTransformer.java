@@ -164,6 +164,13 @@ public class BoletoTransformer {
 		return writer.toInputStream();
 	}
 
+	/**
+	 * Converte um Image em um BufferedImage
+	 * 
+	 * @param image
+	 * @param type
+	 * @return
+	 */
 	private BufferedImage toBufferedImage(Image image, int type) {
 		int w = image.getWidth(null);
 		int h = image.getHeight(null);
@@ -173,11 +180,24 @@ public class BoletoTransformer {
 		g.dispose();
 		return result;
 	}
-
+	
+	/**
+	 * Abre um arquivo em um BufferedImage
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 */
 	private BufferedImage imageFor(URL file) throws IOException {
 		return ImageIO.read(file);
 	}
 
+	/**
+	 * Formata uma data para dd/mm/yyyy
+	 * 
+	 * @param date
+	 * @return
+	 */
 	private String formatDate(Calendar date) {
 		return String.format("%1$td/%1$tm/%1$tY", date);
 	}

@@ -2,12 +2,6 @@ package br.com.caelum.stella.boleto;
 
 import java.util.Calendar;
 
-/**
- * Implementa datas padrão
- * 
- * @author caue
- *
- */
 public class DatasPadrao implements Datas {
 	private Calendar documento;
 	private Calendar processamento;
@@ -21,7 +15,6 @@ public class DatasPadrao implements Datas {
 	 * Data do documento padrão: data atual
 	 * Data do processamento padrão: data atual
 	 * 
-	 * @return
 	 */
 	public static DatasPadrao newDatas() {
 		return new DatasPadrao().comDocumento(Calendar.getInstance())
@@ -37,7 +30,6 @@ public class DatasPadrao implements Datas {
 	 * Valor padrão: data atual
 	 * 
 	 * @param documento
-	 * @return
 	 */
 	public DatasPadrao comDocumento(Calendar documento) {
 		this.documento = documento;
@@ -53,7 +45,6 @@ public class DatasPadrao implements Datas {
 	 * Valor padrão: data atual
 	 * 
 	 * @param processamento
-	 * @return
 	 */
 	public DatasPadrao comProcessamento(Calendar processamento) {
 		this.processamento = processamento;
@@ -64,15 +55,8 @@ public class DatasPadrao implements Datas {
 		return this.vencimento;
 	}
 
-	/**
-	 * Associa uma data de vencimento.
-	 * 
-	 * @param vencimento
-	 * @return
-	 */
 	public DatasPadrao comVencimento(Calendar vencimento) {
 		this.vencimento = vencimento;
 		return this;
 	}
-
 }

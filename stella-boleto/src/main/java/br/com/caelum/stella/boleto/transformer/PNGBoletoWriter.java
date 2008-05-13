@@ -14,6 +14,15 @@ import javax.imageio.ImageIO;
 
 import com.lowagie.text.pdf.BaseFont;
 
+/**
+ * Writer que sabe escrever num PNG
+ * 
+ * @see doc => inserir link
+ * 
+ * @author Cauê Guerra
+ * @author Paulo Silveira
+ * 
+ */
 public class PNGBoletoWriter implements BoletoWriter {
 	
 	private static final int NORMAL_SIZE = 36;

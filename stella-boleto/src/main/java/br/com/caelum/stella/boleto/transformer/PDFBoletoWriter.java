@@ -19,6 +19,9 @@ import com.lowagie.text.pdf.PdfWriter;
 /**
  * Writer que sabe escrever num PDF usando IText como dependencia.
  * 
+ * @see doc => inserir link
+ * 
+ * @author Cauê Guerra
  * @author Paulo Silveira
  * 
  */

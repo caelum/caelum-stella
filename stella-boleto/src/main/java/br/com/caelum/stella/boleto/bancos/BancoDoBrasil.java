@@ -2,7 +2,19 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Boleto;
 
+/**
+ * 
+ * @see doc => inserir link
+ * 
+ * @author Cauê Guerra
+ * @author Guilherme Silveira
+ *
+ */
 public class BancoDoBrasil extends AbstractBanco {
+	
+	public BancoDoBrasil(){
+		
+	}
 
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
