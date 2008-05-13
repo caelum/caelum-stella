@@ -79,10 +79,9 @@ public class PNGBoletoWriter implements BoletoWriter {
 			float height) throws IOException {
 
 		checkIfDocIsClosed();
-		//image = scaleTo(image, (int) width, (int) height);
 
 		graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight()
-				- image.getHeight() - (y * 4.2f)), (int) image.getWidth(), (int) image.getHeight(),
+				- (height * 4.16f) - (y * 4.16f)), (int) (width * 4.16f), (int) (height * 4.16f),
 				null);
 	}
 
@@ -97,11 +96,11 @@ public class PNGBoletoWriter implements BoletoWriter {
 	 * Convertendo coordenadas PDF para PNG
 	 */
 	private float scaleX(float x) {
-		return x * 4.2f;
+		return x * 4.16f;
 	}
 	
 	private float scaleY(float y) {
 		y = this.PNGimage.getHeight() - y;
-		return y * 4.2f - 6075;
+		return y * 4.16f - 6005;
 	}
 }
