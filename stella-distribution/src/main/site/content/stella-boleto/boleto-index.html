@@ -15,76 +15,92 @@ usando fluent-interfaces.
 
 <h2>Gerando Boletos</h2>
 <textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
-      import br.com.caelum.stella.boleto.*;
+import br.com.caelum.stella.boleto.*;
       
-      private BoletoPadrao boleto;
+private BoletoPadrao boleto;
       
-      public Boleto GeraBoleto() {
-      	DatasPadrao datas = DatasPadrao.newDatas()
-      					    		   .comDocumento(new GregorianCalendar(5, 1, 2008))
-      					    		   .comProcessamento(new GregorianCalendar(5, 1, 2008))
-      					    		   .comVencimento(new GregorianCalendar(5, 2, 2008));
+public Boleto GeraBoleto() {
+	DatasPadrao datas = DatasPadrao.newDatas()
+      					    	   .comDocumento(new GregorianCalendar(5, 1, 2008))
+      					    	   .comProcessamento(new GregorianCalendar(5, 1, 2008))
+      					    	   .comVencimento(new GregorianCalendar(5, 2, 2008));
 
-			EmissorPadrao emissor = EmissorPadrao.newEmissor()
-												 .comCedente("Fulano de Tal")
-												 .comAgencia("2345")
-												 .comDvAgencia("6")
-												 .comContaCorrente("12345")
-												 .comNumConvenio("1234567")
-												 .comDvContaCorrete("1")
-												 .comCarteira("22")
-												 .comNossoNumero("0009050987");
+	EmissorPadrao emissor = EmissorPadrao.newEmissor()
+										 .comCedente("Fulano de Tal")
+										 .comAgencia("2345")
+										 .comDvAgencia("6")
+										 .comContaCorrente("12345")
+										 .comNumConvenio("1234567")
+										 .comDvContaCorrete("1")
+										 .comCarteira("22")
+										 .comNossoNumero("0009050987");
 
-			SacadoPadrao sacado = SacadoPadrao.newSacado()
-											  .comNome("Fulano da Silva")
-											  .comCpf("111.222.333-12")
-											  .comEndereco("Av dos testes, 111 apto 333")
-											  .comBairro("Bairro Teste")
-											  .comCep("01234-111")
-											  .comCidade("São Paulo")
-											  .comUf("SP");
+	SacadoPadrao sacado = SacadoPadrao.newSacado()
+									  .comNome("Fulano da Silva")
+									  .comCpf("111.222.333-12")
+									  .comEndereco("Av dos testes, 111 apto 333")
+									  .comBairro("Bairro Teste")
+									  .comCep("01234-111")
+									  .comCidade("São Paulo")
+									  .comUf("SP");
 
-			String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
-				"descricao 4", "descricao 5" };
+	String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
 
-			String[] locaisDePagamento = { "local 1", "local 2" };
+	String[] locaisDePagamento = { "local 1", "local 2" };
 
-			String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
-				"instrucao 4", "instrucao 5" };
+	String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 		
-			Banco banco = new BancoDoBrasil();
+	Banco banco = new BancoDoBrasil();
 
-			this.boleto = BoletoPadrao.newBoleto()
-									  .comBanco(banco)
-									  .comDatas(datas)
-									  .comDescricoes(descricoes)
-									  .comEmissor(emissor)
-									  .comSacado(sacado)
-									  .comValorBoleto("200.00")
-									  .comNoDocumento("1234")
-									  .comInstrucoes(instrucoes)
-									  .comLocaisDePagamento(locaisDePagamento);
+	this.boleto = BoletoPadrao.newBoleto()
+							  .comBanco(banco)
+							  .comDatas(datas)
+							  .comDescricoes(descricoes)
+							  .comEmissor(emissor)
+							  .comSacado(sacado)
+							  .comValorBoleto("200.00")
+							  .comNoDocumento("1234")
+							  .comInstrucoes(instrucoes)
+							  .comLocaisDePagamento(locaisDePagamento);
 			
-			return this.boleto;
-		}
+	return this.boleto;
+}
 		
-		public void GeraPDF(Boleto boleto) {
+public void GeraPDF(Boleto boleto) {
 		
-			PDFBoletoWriter writer = new PDFBoletoWriter();
+	PDFBoletoWriter writer = new PDFBoletoWriter();
 		
-			BoletoTransformer transformer = new BoletoTransformer(writer);
+	BoletoTransformer transformer = new BoletoTransformer(writer);
 		
-			InputStream is = transformer.transform(this.boleto);
+	InputStream is = transformer.transform(this.boleto);
 		
-			File arquivo = new File("arquivo.pdf");
-			FileOutputStream fos = new FileOutputStream(arquivo);
+	File arquivo = new File("arquivo.pdf");
+	FileOutputStream fos = new FileOutputStream(arquivo);
 
-			byte[] b = new byte[is.available()];
-			is.read(b);
+	byte[] b = new byte[is.available()];
+	is.read(b);
 
-			fos.write(b);
-			fos.close();
-		}
+	fos.write(b);
+	fos.close();
+
+}
+		
+public void GeraPNG(Boleto boleto) throws NumberFormatException, IOException, DocumentException, ParseException {
+	PNGBoletoWriter writer = new PNGBoletoWriter();
+		
+	BoletoTransformer transformer = new BoletoTransformer(writer);
+		
+	InputStream is = transformer.transform(boleto);
+		
+	File arquivo = new File("arquivo.png");
+	FileOutputStream fos = new FileOutputStream(arquivo);
+
+	byte[] b = new byte[is.available()];
+	is.read(b);
+
+	fos.write(b);
+	fos.close();
+}
 </textarea>
 
 </body>
