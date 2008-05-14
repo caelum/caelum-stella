@@ -2,26 +2,26 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.InscricaoEstatudalDeMatoGrossoValidator;
+import br.com.caelum.stella.validation.InscricaoEstatudalDoAmazonasValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
- * verificar se ela está de acordo com o padrão de Inscrição Estadual de Mato
- * Grosso.
+ * verificar se ela está de acordo com o padrão de Inscrição Estadual do
+ * Amazonas.
  * 
  * @author Leonardo Bessa
  */
-public class StellaIncricaoEstadualDeMTValidator implements
-		Validator<InscricaoEstadualMT> {
-	private InscricaoEstatudalDeMatoGrossoValidator stellaValidator;
+public class StellaInscricaoEstadualDeAMValidator implements
+		Validator<InscricaoEstadualAM> {
+	private InscricaoEstatudalDoAmazonasValidator stellaValidator;
 
 	/**
 	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
 	 */
-	public void initialize(InscricaoEstadualMT ie) {
+	public void initialize(InscricaoEstadualAM ie) {
 		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
 				ie);
-		stellaValidator = new InscricaoEstatudalDeMatoGrossoValidator(
+		stellaValidator = new InscricaoEstatudalDoAmazonasValidator(
 				messageProducer, ie.formatted());
 	}
 

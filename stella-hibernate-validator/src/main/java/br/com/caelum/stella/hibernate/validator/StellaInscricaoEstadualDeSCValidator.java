@@ -2,25 +2,25 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.InscricaoEstatudalDeRoraimaValidator;
+import br.com.caelum.stella.validation.InscricaoEstatudalDeSantaCatarinaValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
- * verificar se ela está de acordo com o padrão de Inscrição Estadual de Roraima.
+ * verificar se ela está de acordo com o padrão de Inscrição Estadual de Santa Catarina.
  * 
  * @author Leonardo Bessa
  */
-public class StellaIncricaoEstadualDeRRValidator implements
-		Validator<InscricaoEstadualRR> {
-	private InscricaoEstatudalDeRoraimaValidator stellaValidator;
+public class StellaInscricaoEstadualDeSCValidator implements
+		Validator<InscricaoEstadualSC> {
+	private InscricaoEstatudalDeSantaCatarinaValidator stellaValidator;
 
 	/**
 	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
 	 */
-	public void initialize(InscricaoEstadualRR ie) {
+	public void initialize(InscricaoEstadualSC ie) {
 		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
 				ie);
-		stellaValidator = new InscricaoEstatudalDeRoraimaValidator(
+		stellaValidator = new InscricaoEstatudalDeSantaCatarinaValidator(
 				messageProducer, ie.formatted());
 	}
 

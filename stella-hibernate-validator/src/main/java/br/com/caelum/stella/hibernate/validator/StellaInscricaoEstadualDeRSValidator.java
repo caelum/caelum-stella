@@ -2,26 +2,26 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.InscricaoEstatudalDeMinasGeraisValidator;
+import br.com.caelum.stella.validation.InscricaoEstatudalDeRioGrandeDoSulValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
- * verificar se ela está de acordo com o padrão de Inscrição Estadual de Minas
- * Gerais.
+ * verificar se ela está de acordo com o padrão de Inscrição Estadual do Rio
+ * Grande do Sul.
  * 
  * @author Leonardo Bessa
  */
-public class StellaIncricaoEstadualDeMGValidator implements
-		Validator<InscricaoEstadualMG> {
-	private InscricaoEstatudalDeMinasGeraisValidator stellaValidator;
+public class StellaInscricaoEstadualDeRSValidator implements
+		Validator<InscricaoEstadualRS> {
+	private InscricaoEstatudalDeRioGrandeDoSulValidator stellaValidator;
 
 	/**
 	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
 	 */
-	public void initialize(InscricaoEstadualMG ie) {
+	public void initialize(InscricaoEstadualRS ie) {
 		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
 				ie);
-		stellaValidator = new InscricaoEstatudalDeMinasGeraisValidator(
+		stellaValidator = new InscricaoEstatudalDeRioGrandeDoSulValidator(
 				messageProducer, ie.formatted());
 	}
 

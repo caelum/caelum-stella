@@ -18,7 +18,7 @@ import org.hibernate.validator.ValidatorClass;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({FIELD, METHOD})
-@ValidatorClass(StellaIncricaoEstadualDeSPValidator.class)
+@ValidatorClass(StellaInscricaoEstadualDeSPValidator.class)
 public @interface InscricaoEstadualSP {
 	String message() default "{ie_invalid}";
 	boolean formatted() default false;
