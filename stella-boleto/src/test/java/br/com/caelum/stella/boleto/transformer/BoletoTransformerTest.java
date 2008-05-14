@@ -11,12 +11,9 @@ import org.junit.Test;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.SacadoPadrao;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 
 import com.lowagie.text.DocumentException;
@@ -30,14 +27,13 @@ public class BoletoTransformerTest {
 		Datas datas = Datas.newDatas().comDocumento(4, 5, 2008)
 				.comProcessamento(4, 5, 2008).comVencimento(2, 5, 2008);
 
-		Emissor emissor = Emissor.newEmissor().comCedente("Caue")
-				.comAgencia("1824").comDvAgencia("4").comContaCorrente("76000")
+		Emissor emissor = Emissor.newEmissor().comCedente("Caue").comAgencia(
+				"1824").comDvAgencia("4").comContaCorrente("76000")
 				.comNumConvenio("1207113").comDvContaCorrete("5").comCarteira(
 						"18").comNossoNumero("0009000206");
 
-		Sacado sacado = SacadoPadrao.newSacado().comNome("Fulano da Silva")
-				.comCpf("111.222.333-12").comEndereco(
-						"Av dos testes, 111 apto 333")
+		Sacado sacado = Sacado.newSacado().comNome("Fulano da Silva").comCpf(
+				"111.222.333-12").comEndereco("Av dos testes, 111 apto 333")
 				.comBairro("Bairro Teste").comCep("01234-111").comCidade(
 						"São Paulo").comUf("SP");
 

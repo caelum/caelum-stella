@@ -12,9 +12,7 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.SacadoPadrao;
 
 public class BancoDoBrasilTest {
 
@@ -26,18 +24,18 @@ public class BancoDoBrasilTest {
 		Datas datas = Datas.newDatas().comDocumento(4, 5, 2008)
 				.comProcessamento(4, 5, 2008).comVencimento(2, 5, 2008);
 
-		Emissor emissor = Emissor.newEmissor().comCedente("Caue")
-				.comAgencia("1824").comDvAgencia("4").comContaCorrente("76000")
+		Emissor emissor = Emissor.newEmissor().comCedente("Caue").comAgencia(
+				"1824").comDvAgencia("4").comContaCorrente("76000")
 				.comNumConvenio("1207113").comDvContaCorrete("5").comCarteira(
 						"18").comNossoNumero("0009000206");
 
-		Sacado sacado = SacadoPadrao.newSacado().comNome("Fulano");
+		Sacado sacado = Sacado.newSacado().comNome("Fulano");
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.newBoleto().comDatas(datas).comEmissor(
-				emissor).comSacado(sacado).comValorBoleto("40.00")
-				.comNoDocumento("4323");
+		this.boleto = Boleto.newBoleto().comDatas(datas).comEmissor(emissor)
+				.comSacado(sacado).comValorBoleto("40.00").comNoDocumento(
+						"4323");
 	}
 
 	@Test
