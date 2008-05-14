@@ -26,7 +26,7 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.transformer.GeradorBoleto;
+import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
       
 private BoletoPadrao boleto;
 
@@ -71,7 +71,7 @@ public class Teste {
 							  .comLocaisDePagamento("local 1", "local 2")
 							  .comNoDocumento("4343");
 
-		GeradorBoleto gerador = new GeradorBoleto(boleto);
+		BoletoGenerator gerador = new BoletoGenerator(boleto);
 
 		// Para gerar um boleto em PDF
 		gerador.toPDF("teste.pdf");
