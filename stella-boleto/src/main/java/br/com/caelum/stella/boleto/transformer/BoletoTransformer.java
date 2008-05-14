@@ -64,7 +64,7 @@ public class BoletoTransformer {
 					.getImage()), 100, 23);
 		} catch (IOException e) {
 			throw new CriacaoBoletoException(
-					"Erro na leitura das imagens do boleto");
+					"Erro na leitura das imagens do boleto", e);
 		}
 
 		for (int i = 0; i < boleto.getDescricoes().size(); i++)
@@ -83,10 +83,10 @@ public class BoletoTransformer {
 					boleto.getValorBoleto())));
 		} catch (NumberFormatException e) {
 			throw new CriacaoBoletoException(
-					"Erro na formatação do valor do boleto");
+					"Erro na formatação do valor do boleto", e);
 		} catch (ParseException e) {
 			throw new CriacaoBoletoException(
-					"Erro na formatação do valor do boleto");
+					"Erro na formatação do valor do boleto", e);
 		}
 
 		this.writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + "-"
@@ -144,10 +144,10 @@ public class BoletoTransformer {
 					boleto.getValorBoleto())));
 		} catch (NumberFormatException e) {
 			throw new CriacaoBoletoException(
-					"Erro na formatação do valor do boleto");
+					"Erro na formatação do valor do boleto", e);
 		} catch (ParseException e) {
 			throw new CriacaoBoletoException(
-					"Erro na formatação do valor do boleto");
+					"Erro na formatação do valor do boleto", e);
 		}
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++)
@@ -177,7 +177,7 @@ public class BoletoTransformer {
 					imagemDoCodigoDeBarras.getHeight(null));
 		} catch (IOException e) {
 			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras");
+					"Erro na geração do código de barras", e);
 		}
 
 		return this.writer.toInputStream();

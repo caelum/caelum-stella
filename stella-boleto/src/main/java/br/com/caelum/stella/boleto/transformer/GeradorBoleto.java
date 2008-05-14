@@ -54,12 +54,15 @@ public class GeradorBoleto {
 
 			fos.write(b);
 			fos.close();
-		} catch (FileNotFoundException e1) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+		} catch (FileNotFoundException e) {
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PDF", e);
 		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PDF", e);
 		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PDF", e);
 		}
 	}
 
@@ -94,9 +97,11 @@ public class GeradorBoleto {
 			fos.write(b);
 			fos.close();
 		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PNG");
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PNG", e);
 		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PNG");
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PNG", e);
 		}
 
 	}
