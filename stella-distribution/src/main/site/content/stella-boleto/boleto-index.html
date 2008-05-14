@@ -56,12 +56,14 @@ public class Teste {
 		Boleto boleto = Boleto.newBoleto()
 							  .comBanco(banco)
 							  .comDatas(datas)
-							  .comDescricoes("descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5")
+							  .comDescricoes("descricao 1", "descricao 2", "descricao 3", 
+							  				 "descricao 4", "descricao 5")
 							  .comEmissor(emissor)
 							  .comSacado(sacado)
 							  .comValorBoleto("200.00")
 							  .comNoDocumento("1234")
-							  .comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5")
+							  .comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", 
+							  				 "instrucao 4", "instrucao 5")
 							  .comLocaisDePagamento("local 1", "local 2")
 							  .comNoDocumento("4343");
 
