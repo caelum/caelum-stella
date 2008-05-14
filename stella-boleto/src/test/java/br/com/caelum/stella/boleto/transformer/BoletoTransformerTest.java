@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +13,6 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.BoletoPadrao;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.DatasPadrao;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.EmissorPadrao;
 import br.com.caelum.stella.boleto.Sacado;
@@ -29,9 +27,9 @@ public class BoletoTransformerTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = DatasPadrao.newDatas().comDocumento(dataPara(1, 5, 2008))
-				.comProcessamento(dataPara(1, 5, 2008)).comVencimento(
-						dataPara(2, 5, 2008));
+		Datas datas = Datas.newDatas().comDocumento(Datas.dataPara(1, 5, 2008))
+				.comProcessamento(Datas.dataPara(1, 5, 2008)).comVencimento(
+						Datas.dataPara(2, 5, 2008));
 
 		Emissor emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("1824").comDvAgencia("4").comContaCorrente("76000")
@@ -97,13 +95,5 @@ public class BoletoTransformerTest {
 
 		fos.write(b);
 		fos.close();
-	}
-
-	static Calendar dataPara(int dia, int mes, int ano) {
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.DAY_OF_MONTH, dia);
-		c.set(Calendar.MONTH, mes - 1);
-		c.set(Calendar.YEAR, ano);
-		return c;
 	}
 }
