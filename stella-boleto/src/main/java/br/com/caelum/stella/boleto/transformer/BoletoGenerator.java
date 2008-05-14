@@ -15,13 +15,13 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  * @author Cauê Guerra
  * 
  */
-public class GeradorBoleto {
+public class BoletoGenerator {
 
 	private BoletoWriter writer;
 
 	private Boleto boleto;
 
-	public GeradorBoleto(Boleto boleto) {
+	public BoletoGenerator(Boleto boleto) {
 		this.boleto = boleto;
 	}
 

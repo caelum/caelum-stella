@@ -1,10 +1,5 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,38 +47,16 @@ public class BoletoTransformerTest {
 	}
 
 	@Test
-	public void testPDFWrite() throws IOException {
-		PDFBoletoWriter writer = new PDFBoletoWriter();
+	public void testPDFWrite() {
+		BoletoGenerator generator = new BoletoGenerator(this.boleto);
 
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-
-		InputStream is = transformer.transform(this.boleto);
-
-		File arquivo = new File("arquivo.pdf");
-		FileOutputStream fos = new FileOutputStream(arquivo);
-
-		byte[] b = new byte[is.available()];
-		is.read(b);
-
-		fos.write(b);
-		fos.close();
+		generator.toPDF("arquivo.pdf");
 	}
 
 	@Test
-	public void testPNGWrite() throws IOException {
-		PNGBoletoWriter writer = new PNGBoletoWriter();
+	public void testPNGWrite() {
+		BoletoGenerator generator = new BoletoGenerator(this.boleto);
 
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-
-		InputStream is = transformer.transform(this.boleto);
-
-		File arquivo = new File("arquivo.png");
-		FileOutputStream fos = new FileOutputStream(arquivo);
-
-		byte[] b = new byte[is.available()];
-		is.read(b);
-
-		fos.write(b);
-		fos.close();
+		generator.toPNG("arquivo.png");
 	}
 }
