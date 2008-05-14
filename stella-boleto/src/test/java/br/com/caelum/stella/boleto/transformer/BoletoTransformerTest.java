@@ -27,9 +27,8 @@ public class BoletoTransformerTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().comDocumento(Datas.dataPara(1, 5, 2008))
-				.comProcessamento(Datas.dataPara(1, 5, 2008)).comVencimento(
-						Datas.dataPara(2, 5, 2008));
+		Datas datas = Datas.newDatas().comDocumento(4, 5, 2008)
+				.comProcessamento(4, 5, 2008).comVencimento(2, 5, 2008);
 
 		Emissor emissor = EmissorPadrao.newEmissor().comCedente("Caue")
 				.comAgencia("1824").comDvAgencia("4").comContaCorrente("76000")

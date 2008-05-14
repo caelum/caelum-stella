@@ -41,6 +41,15 @@ public class Datas {
 	}
 
 	/**
+	 * Associa uma data do documento.<br/> Valor padrão: data atual
+	 * 
+	 * @param documento
+	 */
+	public Datas comDocumento(int dia, int mes, int ano) {
+		return this.comDocumento(dataPara(dia, mes, ano));
+	}
+
+	/**
 	 * Devolve a data de processamento do boleto. (data de geração do boleto)<br/>
 	 * Valor padrão: data de criação do boleto
 	 * 
@@ -60,6 +69,15 @@ public class Datas {
 		return this;
 	}
 
+	/**
+	 * Associa uma data do processamento.<br/> Valor padrão: data atual
+	 * 
+	 * @param processamento
+	 */
+	public Datas comProcessamento(int dia, int mes, int ano) {
+		return this.comProcessamento(dataPara(dia, mes, ano));
+	}
+
 	public Calendar getVencimento() {
 		return this.vencimento;
 	}
@@ -69,15 +87,11 @@ public class Datas {
 		return this;
 	}
 
-	/**
-	 * Devolve um Calendar, dado dia, mês e ano
-	 * 
-	 * @param dia
-	 * @param mes
-	 * @param ano
-	 * @return
-	 */
-	public static Calendar dataPara(int dia, int mes, int ano) {
+	public Datas comVencimento(int dia, int mes, int ano) {
+		return this.comVencimento(dataPara(dia, mes, ano));
+	}
+
+	private Calendar dataPara(int dia, int mes, int ano) {
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH, dia);
 		c.set(Calendar.MONTH, mes - 1);
