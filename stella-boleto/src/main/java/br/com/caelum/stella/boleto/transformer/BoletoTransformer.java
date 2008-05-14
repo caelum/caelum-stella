@@ -14,8 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
 
 import br.com.caelum.stella.boleto.Boleto;
-
-import com.lowagie.text.DocumentException;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class BoletoTransformer {
 
@@ -47,14 +46,9 @@ public class BoletoTransformer {
 	 * Gera o boleto em memoria e aloca-o em um InputStream.
 	 * 
 	 * @param boleto
-	 * @return
-	 * @throws IOException
-	 * @throws DocumentException
-	 * @throws NumberFormatException
-	 * @throws ParseException
+	 * 
 	 */
-	public InputStream transform(Boleto boleto) throws IOException,
-			DocumentException, NumberFormatException, ParseException {
+	public InputStream transform(Boleto boleto) {
 
 		NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
 				"#,##0.00"));
@@ -63,10 +57,15 @@ public class BoletoTransformer {
 		URL imagemTitulo = BoletoTransformer.class
 				.getResource("/br/com/caelum/stella/boleto/img/template.png");
 
-		this.writer
-				.writeImage(0, 55, imageFor(imagemTitulo), 514.22f, 385.109f);
-		this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
-				.getImage()), 100, 23);
+		try {
+			this.writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f,
+					385.109f);
+			this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
+					.getImage()), 100, 23);
+		} catch (IOException e) {
+			throw new CriacaoBoletoException(
+					"Erro na leitura das imagens do boleto");
+		}
 
 		for (int i = 0; i < boleto.getDescricoes().size(); i++)
 			this.writer.writeBold(5, 805 - 70 - i * 15, boleto.getDescricoes()
@@ -79,8 +78,16 @@ public class BoletoTransformer {
 		this.writer.write(230, LINHA2, formatDate(boleto.getDatas()
 				.getVencimento()));
 
-		this.writer.write(400, LINHA2, formatter.valueToString(new Double(
-				boleto.getValorBoleto())));
+		try {
+			this.writer.write(400, LINHA2, formatter.valueToString(new Double(
+					boleto.getValorBoleto())));
+		} catch (NumberFormatException e) {
+			throw new CriacaoBoletoException(
+					"Erro na formatação do valor do boleto");
+		} catch (ParseException e) {
+			throw new CriacaoBoletoException(
+					"Erro na formatação do valor do boleto");
+		}
 
 		this.writer.write(5, LINHA3, boleto.getEmissor().getAgencia() + "-"
 				+ boleto.getEmissor().getDvAgencia() + " / "
@@ -132,8 +139,16 @@ public class BoletoTransformer {
 
 		// TODO: quantidade moeda, valor moeda
 
-		this.writer.write(430, LINHA8, formatter.valueToString(new Double(
-				boleto.getValorBoleto())));
+		try {
+			this.writer.write(430, LINHA8, formatter.valueToString(new Double(
+					boleto.getValorBoleto())));
+		} catch (NumberFormatException e) {
+			throw new CriacaoBoletoException(
+					"Erro na formatação do valor do boleto");
+		} catch (ParseException e) {
+			throw new CriacaoBoletoException(
+					"Erro na formatação do valor do boleto");
+		}
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++)
 			this.writer
@@ -155,9 +170,15 @@ public class BoletoTransformer {
 				.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
 						boleto));
 
-		this.writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras,
-				BufferedImage.TYPE_INT_ARGB), imagemDoCodigoDeBarras
-				.getWidth(null), imagemDoCodigoDeBarras.getHeight(null));
+		try {
+			this.writer.writeImage(40, 10, toBufferedImage(
+					imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
+					imagemDoCodigoDeBarras.getWidth(null),
+					imagemDoCodigoDeBarras.getHeight(null));
+		} catch (IOException e) {
+			throw new CriacaoBoletoException(
+					"Erro na geração do código de barras");
+		}
 
 		return this.writer.toInputStream();
 	}
@@ -167,7 +188,6 @@ public class BoletoTransformer {
 	 * 
 	 * @param image
 	 * @param type
-	 * @return
 	 */
 	private BufferedImage toBufferedImage(Image image, int type) {
 		int w = image.getWidth(null);

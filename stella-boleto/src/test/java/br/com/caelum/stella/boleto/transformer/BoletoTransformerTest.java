@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +14,6 @@ import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
-
-import com.lowagie.text.DocumentException;
 
 public class BoletoTransformerTest {
 
@@ -55,8 +52,7 @@ public class BoletoTransformerTest {
 	}
 
 	@Test
-	public void testPDFWrite() throws NumberFormatException, IOException,
-			DocumentException, ParseException {
+	public void testPDFWrite() throws IOException {
 		PDFBoletoWriter writer = new PDFBoletoWriter();
 
 		BoletoTransformer transformer = new BoletoTransformer(writer);
@@ -74,8 +70,7 @@ public class BoletoTransformerTest {
 	}
 
 	@Test
-	public void testPNGWrite() throws NumberFormatException, IOException,
-			DocumentException, ParseException {
+	public void testPNGWrite() throws IOException {
 		PNGBoletoWriter writer = new PNGBoletoWriter();
 
 		BoletoTransformer transformer = new BoletoTransformer(writer);

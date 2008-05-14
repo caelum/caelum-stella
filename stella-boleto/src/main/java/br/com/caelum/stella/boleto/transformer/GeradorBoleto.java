@@ -1,14 +1,13 @@
 package br.com.caelum.stella.boleto.transformer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 
 import br.com.caelum.stella.boleto.Boleto;
-
-import com.lowagie.text.DocumentException;
+import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 /**
  * Geração do boleto em arquivos
@@ -30,13 +29,8 @@ public class GeradorBoleto {
 	 * Gera um boleto em PDF, e grava no caminho indicado
 	 * 
 	 * @param arquivo
-	 * @throws NumberFormatException
-	 * @throws IOException
-	 * @throws DocumentException
-	 * @throws ParseException
 	 */
-	public void toPDF(String arquivo) throws NumberFormatException,
-			IOException, DocumentException, ParseException {
+	public void toPDF(String arquivo) {
 		File file = new File(arquivo);
 		toPDF(file);
 	}
@@ -45,39 +39,36 @@ public class GeradorBoleto {
 	 * Gera um boleto em PDF, e grava no arquivo indicado
 	 * 
 	 * @param arquivo
-	 * @throws NumberFormatException
-	 * @throws IOException
-	 * @throws DocumentException
-	 * @throws ParseException
 	 */
-	public void toPDF(File arquivo) throws NumberFormatException, IOException,
-			DocumentException, ParseException {
+	public void toPDF(File arquivo) {
 		this.writer = new PDFBoletoWriter();
 
 		BoletoTransformer transformer = new BoletoTransformer(this.writer);
 
 		InputStream is = transformer.transform(this.boleto);
 
-		FileOutputStream fos = new FileOutputStream(arquivo);
+		try {
+			FileOutputStream fos = new FileOutputStream(arquivo);
+			byte[] b = new byte[is.available()];
+			is.read(b);
 
-		byte[] b = new byte[is.available()];
-		is.read(b);
-
-		fos.write(b);
-		fos.close();
+			fos.write(b);
+			fos.close();
+		} catch (FileNotFoundException e1) {
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+		} catch (NumberFormatException e) {
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+		} catch (IOException e) {
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF");
+		}
 	}
 
 	/**
 	 * Gera um boleto em PNG, e grava no caminho indicado
 	 * 
 	 * @param arquivo
-	 * @throws NumberFormatException
-	 * @throws IOException
-	 * @throws DocumentException
-	 * @throws ParseException
 	 */
-	public void toPNG(String arquivo) throws NumberFormatException,
-			IOException, DocumentException, ParseException {
+	public void toPNG(String arquivo) {
 		File file = new File(arquivo);
 		toPNG(file);
 	}
@@ -86,26 +77,27 @@ public class GeradorBoleto {
 	 * Gera um boleto em PNG, e grava no arquivo indicado
 	 * 
 	 * @param arquivo
-	 * @throws NumberFormatException
-	 * @throws IOException
-	 * @throws DocumentException
-	 * @throws ParseException
 	 */
-	public void toPNG(File arquivo) throws NumberFormatException, IOException,
-			DocumentException, ParseException {
+	public void toPNG(File arquivo) {
 		this.writer = new PNGBoletoWriter();
 
 		BoletoTransformer transformer = new BoletoTransformer(this.writer);
 
 		InputStream is = transformer.transform(this.boleto);
 
-		FileOutputStream fos = new FileOutputStream(arquivo);
+		try {
+			FileOutputStream fos = new FileOutputStream(arquivo);
 
-		byte[] b = new byte[is.available()];
-		is.read(b);
+			byte[] b = new byte[is.available()];
+			is.read(b);
 
-		fos.write(b);
-		fos.close();
+			fos.write(b);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			throw new GeracaoBoletoException("Erro na geração do boleto em PNG");
+		} catch (IOException e) {
+			throw new GeracaoBoletoException("Erro na geração do boleto em PNG");
+		}
+
 	}
-
 }
