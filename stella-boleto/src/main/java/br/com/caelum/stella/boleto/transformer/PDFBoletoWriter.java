@@ -19,7 +19,7 @@ import com.lowagie.text.pdf.PdfWriter;
 /**
  * Writer que sabe escrever num PDF usando IText como dependencia.
  * 
- * @see doc => inserir link
+ * @see http://stella.caelum.com.br/boleto-setup.html
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira

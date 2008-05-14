@@ -5,7 +5,7 @@ import br.com.caelum.stella.boleto.Boleto;
 
 /**
  * 
- * @see doc => inserir link
+ * @see http://stella.caelum.com.br/boleto-setup.html
  * 
  * @author Cauê Guerra
  * @author Guilherme Silveira
