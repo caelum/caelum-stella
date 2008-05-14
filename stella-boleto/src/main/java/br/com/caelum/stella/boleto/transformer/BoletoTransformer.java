@@ -137,8 +137,6 @@ public class BoletoTransformer {
 
 		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
-		// TODO: quantidade moeda, valor moeda
-
 		try {
 			this.writer.write(430, LINHA8, formatter.valueToString(new Double(
 					boleto.getValorBoleto())));

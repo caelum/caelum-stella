@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 
 /**
@@ -8,17 +9,21 @@ import br.com.caelum.stella.boleto.Boleto;
  * 
  * @author Cauê Guerra
  * @author Guilherme Silveira
- *
+ * 
  */
-public class BancoDoBrasil extends AbstractBanco {
-	
-	public BancoDoBrasil(){
-		
+public class BancoDoBrasil implements Banco {
+
+	private static final String NUMERO_BB = "001";
+
+	private final DVGenerator dvGenerator = new DVGenerator();
+
+	public BancoDoBrasil() {
+
 	}
 
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getNumeroFormatado());
+		builder.append(getNumeroFormatado());
 		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
 		builder.append("D"); // digito verificador, calculado depois
 		builder.append(String.valueOf(boleto.getFatorVencimento()));
@@ -31,17 +36,17 @@ public class BancoDoBrasil extends AbstractBanco {
 		builder.append(boleto.getEmissor().getCarteira());
 
 		String codigoDeBarras = builder.toString();
-		builder.replace(4, 5, String
-				.valueOf(geraDVCodigoDeBarras(codigoDeBarras)));
+		builder.replace(4, 5, String.valueOf(this.dvGenerator
+				.geraDVCodigoDeBarras(codigoDeBarras)));
 
 		return builder.toString();
 	}
 
 	public String geraLinhaDigitavelPara(Boleto boleto) {
-		String codigoDeBarras = this.geraCodigoDeBarrasPara(boleto);
+		String codigoDeBarras = geraCodigoDeBarrasPara(boleto);
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getNumeroFormatado());
+		builder.append(getNumeroFormatado());
 		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
 		builder.append(codigoDeBarras.substring(19, 24));
 		builder.append("D"); // digito verificador, calculado depois
@@ -54,14 +59,12 @@ public class BancoDoBrasil extends AbstractBanco {
 		builder.append(boleto.getValorFormatado());
 
 		String linhaDigitavel = builder.toString();
-		builder.replace(9, 10, String
-				.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(0, 9))));
-		builder.replace(20, 21,
-				String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(
-						10, 20))));
-		builder.replace(31, 32,
-				String.valueOf(geraDVLinhaDigitavel(linhaDigitavel.substring(
-						21, 31))));
+		builder.replace(9, 10, String.valueOf(this.dvGenerator
+				.geraDVLinhaDigitavel(linhaDigitavel.substring(0, 9))));
+		builder.replace(20, 21, String.valueOf(this.dvGenerator
+				.geraDVLinhaDigitavel(linhaDigitavel.substring(10, 20))));
+		builder.replace(31, 32, String.valueOf(this.dvGenerator
+				.geraDVLinhaDigitavel(linhaDigitavel.substring(21, 31))));
 
 		builder.insert(5, '.');
 		builder.insert(11, "  ");
@@ -74,7 +77,14 @@ public class BancoDoBrasil extends AbstractBanco {
 		return builder.toString();
 	}
 
-	public int getNumero() {
-		return 1;
+	public String getNumeroFormatado() {
+		return NUMERO_BB;
 	}
+
+	public java.net.URL getImage() {
+		return getClass().getResource(
+				String.format("/br/com/caelum/stella/boleto/img/%s.png",
+						getNumeroFormatado()));
+	}
+
 }

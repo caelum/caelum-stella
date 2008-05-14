@@ -21,8 +21,6 @@ import java.net.URL;
  */
 public interface Banco {
 
-	int getNumero();
-
 	String getNumeroFormatado();
 
 	URL getImage();
