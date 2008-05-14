@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.BoletoPadrao;
+import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.EmissorPadrao;
@@ -51,7 +51,7 @@ public class BoletoTransformerTest {
 
 		Banco banco = new BancoDoBrasil();
 
-		this.boleto = BoletoPadrao.newBoleto().comBanco(banco).comDatas(datas)
+		this.boleto = Boleto.newBoleto().comBanco(banco).comDatas(datas)
 				.comDescricoes(descricoes).comEmissor(emissor)
 				.comSacado(sacado).comValorBoleto("40.00").comNoDocumento(
 						"4323").comInstrucoes(instrucoes).comLocaisDePagamento(

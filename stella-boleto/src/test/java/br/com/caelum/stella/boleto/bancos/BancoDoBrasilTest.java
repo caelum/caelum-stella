@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.stella.boleto.Banco;
-import br.com.caelum.stella.boleto.BoletoPadrao;
+import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.EmissorPadrao;
@@ -18,7 +18,7 @@ import br.com.caelum.stella.boleto.SacadoPadrao;
 
 public class BancoDoBrasilTest {
 
-	private BoletoPadrao boleto;
+	private Boleto boleto;
 	private Banco banco;
 
 	@Before
@@ -35,7 +35,7 @@ public class BancoDoBrasilTest {
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = BoletoPadrao.newBoleto().comDatas(datas).comEmissor(
+		this.boleto = Boleto.newBoleto().comDatas(datas).comEmissor(
 				emissor).comSacado(sacado).comValorBoleto("40.00")
 				.comNoDocumento("4323");
 	}
