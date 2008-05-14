@@ -1,9 +1,37 @@
 <title>Produzindo Mensagens de Validação</title>
 <body>
 <h2>Motivação</h2>
+<p>Ao identificar um documento inválido, na camada de apresentação, devemos 
+notificar o usuário com um mensagem. Dependendo do contexto, podemos sentir a
+ necessidade de apresentar mensagens personalizadas, como por exemplo
+em diferentes idiomas ou simplesmente seguir um padrão de mensagem. 
+Dessa necessidade surgiu a interface <i>MessageProducer</i>.
+As classes que a implementam são responsáveis por fornecer uma mensagem
+ de validação para cada erro.</p>
+ <p>Neste módulo estão disponíveis a <i>ResourceBundleMessageProducer</i>
+  e a <i>SimpleMessageProducer</i>. </p>   
 
 <h2>Lógica de geração da chave de erro</h2>
 
+<p>Os erros de validação são representados por classes que implementam a interface <i>invalidValue</i>.
+Na prática as enumerações (<b>enum</b>) são utlizadas, pois já implementam esta interface.
+</p>
+<p>Com base nesta interface, o padrão as chaves de validação são formadas por nomes: o da classe e o da enum.</p>
+<p>Suponha que deseja-se econtrar uma mesangem de erro para a classe CPFERROR, 
+cuja instancia (dessa enum) respresenta um erro do tipo INVALID_FORMAT. A chave 
+gerada é a composição desses dois nomes (em letras minúsculas) separados por um ponto.
+Ou seja, "cpferror.invalid_format".
+</p>
+
 <h2>SimpleMessageProducer</h2>
+<p>O SimpleMessageProducer é um produtor de mensagens muito simples. Ele 
+também utiliza o nome da classe e da enum para gerar a mensagem de validação.
+Ao invés de gerar um chave de busca, este produtor cria a mensagem sem consultar
+nenhum outro recurso. A mensangem gerada é semelhante a chave descrita anteriormente,
+no entantno troca-se o primeiro ponto (".") por " : " e todos underscores ("_") por espaços em branco (" ").
+</p>
+<p>A mensagem gerada pelo exemplo anterior seria : "cpferror : invalid format" . 
+Assim, com pouca configuração, temos uma mensagem mais legível.
+</p>
 
 </body>
