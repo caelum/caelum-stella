@@ -15,14 +15,14 @@ usando idioma mais simples.
 
 <h2>Gerando Boletos</h2>
 <textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
+import java.io.InputStream;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
-      
-private BoletoPadrao boleto;
 
 public class Teste {
       
@@ -74,14 +74,14 @@ public class Teste {
 		gerador.toPNG("teste.png");
 		
 		// Para gerar um InputStream a partir de um PDF
-		PDFBoletoWriter writer = new PDFBoletoWriter();
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-		InputStream is = transformer.transform(boleto);
-		
+		BoletoWriter PDFwriter = new PDFBoletoWriter();
+		BoletoTransformer PDFtransformer = new BoletoTransformer(PDFwriter);
+		InputStream PDFis = PDFtransformer.transform(boleto);
+
 		// Para gerar um InputStream a partir de um PNG
-		PDFBoletoWriter writer = new PNGBoletoWriter();
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-		InputStream is = transformer.transform(boleto);
+		BoletoWriter PNGwriter = new PNGBoletoWriter();
+		BoletoTransformer PNGtransformer = new BoletoTransformer(PNGwriter);
+		InputStream PNGis = PNGtransformer.transform(boleto);
 	}
 }
 </textarea>
