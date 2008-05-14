@@ -17,7 +17,8 @@ import com.lowagie.text.pdf.BaseFont;
 /**
  * Writer que sabe escrever num PNG
  * 
- * @see http://stella.caelum.com.br/boleto-setup.html
+ * @see <a
+ *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira

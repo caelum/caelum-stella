@@ -5,7 +5,8 @@ import br.com.caelum.stella.boleto.Boleto;
 
 /**
  * 
- * @see http://stella.caelum.com.br/boleto-setup.html
+ * @see <a
+ *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
  * @author Guilherme Silveira
