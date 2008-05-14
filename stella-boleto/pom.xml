@@ -6,12 +6,11 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-		<version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
 	</parent>
 
 	<artifactId>caelum-stella-boleto</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1-SNAPSHOT</version>
 	<name>Caelum Stella Boleto</name>
 
 	<dependencies>

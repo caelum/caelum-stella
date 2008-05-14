@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-		<version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
 	</parent>
 	<groupId>br.com.caelum.stella</groupId>
 	<artifactId>core-example</artifactId>
 	<packaging>jar</packaging>
-	<name>core-example</name>
+	<name>Stella Validator Examples</name>
 	<dependencies>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>caelum-stella-core</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>${pom.version}</version>
 		</dependency>
 	</dependencies>
 </project>
