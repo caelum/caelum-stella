@@ -9,44 +9,44 @@ public interface Emissor {
 	String getAgencia();
 
 	String getDvAgencia();
-	
+
 	/**
 	 * Devolve o número da conta corrente sem o digito
 	 * 
 	 */
 	String getContaCorrente();
-	
+
 	String getDvContaCorrente();
-	
+
 	/**
-	 * Devolve a carteira
-	 * Valor informado pelo banco para identificação do tipo de boleto
+	 * Devolve a carteira<br/> Valor informado pelo banco para identificação do
+	 * tipo de boleto
 	 * 
 	 */
 	String getCarteira();
-	
+
 	/**
-	 * Devolve o número do convênio
-	 * Valor que identifica um emissor junto ao seu banco para associar seus boletos
-	 * Valor informado pelo banco
+	 * Devolve o número do convênio<br/> Valor que identifica um emissor junto
+	 * ao seu banco para associar seus boletos<br/> Valor informado pelo banco
 	 * 
 	 */
 	String getNumConvenio();
-	
+
 	/**
-	 * Devolve o nosso número
-	 * Valor que o cedente escolhe para manter controle sobre seus boletos. Esse valor serve
-	 * para o cedente identificar quais boletos foram pagos ou não. Recomenda-se o uso de números
-	 * sequenciais, na geração de diversos boletos, para facilitar a identificação dos boletos pagos
+	 * Devolve o nosso número<br/> Valor que o cedente escolhe para manter
+	 * controle sobre seus boletos. Esse valor serve para o cedente identificar
+	 * quais boletos foram pagos ou não. Recomenda-se o uso de números
+	 * sequenciais, na geração de diversos boletos, para facilitar a
+	 * identificação dos boletos pagos
 	 * 
 	 */
 	String getNossoNumero();
-	
+
 	/**
 	 * Devolve o cedente. (nome do emissor)
 	 * 
 	 */
 	String getCedente();
-	
+
 	String getContaCorrenteFormatado();
 }

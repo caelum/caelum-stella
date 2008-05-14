@@ -7,7 +7,7 @@ public interface Datas {
 	Calendar getVencimento();
 
 	/**
-	 * Devolve a data do documento do boleto. (data de geração do boleto)
+	 * Devolve a data do documento do boleto. (data de geração do boleto)<br/>
 	 * Valor padrão: data de criação do boleto
 	 * 
 	 * @return
@@ -15,7 +15,7 @@ public interface Datas {
 	Calendar getDocumento();
 
 	/**
-	 * Devolve a data de processamento do boleto. (data de geração do boleto)
+	 * Devolve a data de processamento do boleto. (data de geração do boleto)<br/>
 	 * Valor padrão: data de criação do boleto
 	 * 
 	 * @return

@@ -11,7 +11,7 @@ public class DatasPadrao implements Datas {
 	}
 
 	/**
-	 * Cria novas datas Data do documento padrão: data atual Data do
+	 * Cria novas datas<br/> Data do documento padrão: data atual<br/> Data do
 	 * processamento padrão: data atual
 	 * 
 	 */
@@ -25,7 +25,7 @@ public class DatasPadrao implements Datas {
 	}
 
 	/**
-	 * Associa uma data do documento. Valor padrão: data atual
+	 * Associa uma data do documento.<br/> Valor padrão: data atual
 	 * 
 	 * @param documento
 	 */
@@ -39,7 +39,7 @@ public class DatasPadrao implements Datas {
 	}
 
 	/**
-	 * Associa uma data do processamento. Valor padrão: data atual
+	 * Associa uma data do processamento.<br/> Valor padrão: data atual
 	 * 
 	 * @param processamento
 	 */
