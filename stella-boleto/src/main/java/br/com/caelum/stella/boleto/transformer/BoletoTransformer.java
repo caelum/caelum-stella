@@ -94,7 +94,8 @@ public class BoletoTransformer {
 				+ boleto.getEmissor().getContaCorrente() + "-"
 				+ boleto.getEmissor().getDvContaCorrente());
 
-		this.writer.write(146, LINHA3, boleto.getEmissor().getNossoNumero());
+		this.writer.write(146, LINHA3, boleto.getEmissor()
+				.getNossoNumeroFormatado());
 
 		this.writer.writeBold(125, LINHA4, boleto.getBanco()
 				.getNumeroFormatado());
@@ -120,8 +121,9 @@ public class BoletoTransformer {
 				.getDocumento()));
 
 		this.writer.write(70, LINHA7,
-				!boleto.getNoDocumento().equals("") ? boleto.getNoDocumento()
-						: boleto.getEmissor().getNossoNumero());
+				!boleto.getNoDocumento().equals("") ? boleto
+						.getNoDocumentoFormatado() : boleto.getEmissor()
+						.getNossoNumeroFormatado());
 
 		this.writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
@@ -131,7 +133,7 @@ public class BoletoTransformer {
 				.getProcessamento()));
 
 		this.writer.write(410, LINHA7, boleto.getEmissor().getCarteira()
-				+ " / " + boleto.getEmissor().getNossoNumero());
+				+ " / " + boleto.getEmissor().getNossoNumeroFormatado());
 
 		this.writer.write(122, LINHA8, boleto.getEmissor().getCarteira());
 

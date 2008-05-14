@@ -31,8 +31,8 @@ public class BancoDoBrasil implements Banco {
 
 		// CAMPO LIVRE
 		builder.append("000000");
-		builder.append(boleto.getEmissor().getNumConvenio());
-		builder.append(boleto.getEmissor().getNossoNumero());
+		builder.append(boleto.getEmissor().getNumConvenioFormatado());
+		builder.append(boleto.getEmissor().getNossoNumeroFormatado());
 		builder.append(boleto.getEmissor().getCarteira());
 
 		String codigoDeBarras = builder.toString();

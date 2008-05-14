@@ -22,7 +22,7 @@ public class BoletoTransformerTest {
 		Emissor emissor = Emissor.newEmissor().comCedente("Caue").comAgencia(
 				"1824").comDvAgencia("4").comContaCorrente("76000")
 				.comNumConvenio("1207113").comDvContaCorrete("5").comCarteira(
-						"18").comNossoNumero("0009000206");
+						"18").comNossoNumero("9000206");
 
 		Sacado sacado = Sacado.newSacado().comNome("Fulano da Silva").comCpf(
 				"111.222.333-12").comEndereco("Av dos testes, 111 apto 333")

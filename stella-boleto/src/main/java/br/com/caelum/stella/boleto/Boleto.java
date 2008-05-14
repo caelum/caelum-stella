@@ -238,4 +238,8 @@ public class Boleto {
 		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");
 		return String.format("%010d", Integer.parseInt(formatado));
 	}
+
+	public String getNoDocumentoFormatado() {
+		return String.format("%04d", Integer.parseInt(this.noDocumento));
+	}
 }

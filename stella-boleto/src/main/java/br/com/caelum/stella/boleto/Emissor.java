@@ -159,4 +159,12 @@ public class Emissor {
 	public String getContaCorrenteFormatado() {
 		return String.format("%08d", Integer.parseInt(this.contaCorrente));
 	}
+
+	public String getNossoNumeroFormatado() {
+		return String.format("%010d", Integer.parseInt(this.nossoNumero));
+	}
+
+	public String getNumConvenioFormatado() {
+		return String.format("%07d", Integer.parseInt(this.numConvenio));
+	}
 }
