@@ -13,11 +13,7 @@ import com.lowagie.text.pdf.BarcodeInter25;
  * @author Paulo Silveira
  *
  */
-public class BarcodeGenerator {
-	
-	public BarcodeGenerator() {
-		
-	}
+class BarcodeGenerator {
 	
 	/**
 	 * Retorna uma imagem com o código de barras para uma determinada String
