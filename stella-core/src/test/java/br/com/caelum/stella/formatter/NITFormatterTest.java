@@ -5,6 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.validation.Formatter;
+import br.com.caelum.stella.validation.NITFormatter;
+
 public class NITFormatterTest {
 	
 	private Formatter formatter;

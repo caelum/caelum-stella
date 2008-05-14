@@ -1,7 +1,7 @@
 package br.com.caelum.stella.validation;
 
 
-public class DigitoVerificadorInfo {
+class DigitoVerificadorInfo {
 	private final Integer fator;
 	private final RotinaDeDigitoVerificador[] rotinas;
 	private final Integer mod;

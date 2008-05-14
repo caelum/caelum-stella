@@ -1,4 +1,4 @@
-package br.com.caelum.stella.constraint;
+package br.com.caelum.stella.validation;
 
 import java.util.regex.Pattern;
 
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * 
  * @author Leonardo Bessa
  */
-public class NITConstraints {
+class NITConstraints {
 	public static final Pattern NIT_FORMATED = Pattern
 			.compile("(\\d{3})[.](\\d{5})[.](\\d{2})-(\\d{1})");
 	public static final Pattern NIT_UNFORMATED = Pattern

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
-public abstract class AbstractValidator<T> implements Validator<T> {
+abstract class AbstractValidator<T> implements Validator<T> {
 	private final MessageProducer messageProducer;
 
 	public AbstractValidator(MessageProducer messageProducer) {

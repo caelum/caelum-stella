@@ -1,13 +1,12 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
-import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
+import static br.com.caelum.stella.validation.NITConstraints.NIT_FORMATED;
+import static br.com.caelum.stella.validation.NITConstraints.NIT_UNFORMATED;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.formatter.NITFormatter;
 import br.com.caelum.stella.validation.error.NITError;
 
 /**

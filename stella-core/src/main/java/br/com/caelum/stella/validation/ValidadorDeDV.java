@@ -3,7 +3,7 @@ package br.com.caelum.stella.validation;
 /**
  * @author Leonardo Bessa
  */
-public class ValidadorDeDV {
+class ValidadorDeDV {
 
 	private DigitoVerificadorInfo info;
 

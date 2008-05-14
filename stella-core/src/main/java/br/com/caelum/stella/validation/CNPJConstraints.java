@@ -1,15 +1,13 @@
-package br.com.caelum.stella.constraint;
+package br.com.caelum.stella.validation;
 
 import java.util.regex.Pattern;
 
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.RotinaParameters;
 
 /**
  * @author Leonardo Bessa
  *
  */
-public class CNPJConstraints {
+class CNPJConstraints {
 
 	public static final Pattern CNPJ_FORMATED = Pattern
 			.compile("(\\d{2})[.](\\d{3})[.](\\d{3})/(\\d{4})-(\\d{2})");

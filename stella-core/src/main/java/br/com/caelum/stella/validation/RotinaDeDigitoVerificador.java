@@ -3,6 +3,6 @@
  */
 package br.com.caelum.stella.validation;
 
-public interface RotinaDeDigitoVerificador {
+interface RotinaDeDigitoVerificador {
 	Integer transform(RotinaParameters parameters);
 }

@@ -5,6 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.validation.CPFFormatter;
+import br.com.caelum.stella.validation.Formatter;
+
 public class CPFFormatterTest {
 	
 	private Formatter formatter;

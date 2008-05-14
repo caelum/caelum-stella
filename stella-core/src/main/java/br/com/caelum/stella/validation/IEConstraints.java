@@ -1,8 +1,5 @@
-package br.com.caelum.stella.constraint;
+package br.com.caelum.stella.validation;
 
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.RotinaParameters;
 
 
 /**
@@ -12,7 +9,7 @@ import br.com.caelum.stella.validation.RotinaParameters;
  * @author leobessa
  *
  */
-public class IEConstraints {
+class IEConstraints {
 	
 	public static final Integer[] P1 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3,
 			2, 0 };

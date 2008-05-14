@@ -12,19 +12,15 @@ import br.com.caelum.stella.validation.InvalidValue;
  * A messagem de erro é composta do seguinte modo:
  * </p>
  * <code>
- String simpleName = error.getClass().getSimpleName();
- String errorName = error.name();
- String key = (simpleName + "." + errorName);
- String message;
- message = key.replaceFirst("[.]", " : ").replaceAll("_", " ");
- *</code>
+ * String message = (simpleName + "." + errorName).replaceFirst("[.]", " : ").replaceAll("_", " "); 
+ * </code>
  * </p>
  * <p>
  * Veja o exemplo:
  * </p>
  * <p>
- * A mesagem do erro representado por CPFError.INVALID_DIGITS é
- * cpferror : invalid digits .
+ * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/> cpferror :
+ * invalid digits .
  * </p>
  * 
  * @author Leonardo Bessa

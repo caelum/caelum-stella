@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeSantaCatarinaValidator extends

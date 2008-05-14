@@ -1,4 +1,4 @@
-package br.com.caelum.stella.formatter;
+package br.com.caelum.stella.validation;
 
 /**
  * Formatter é responsável por transfomar cadeias sem formatação em cadeias

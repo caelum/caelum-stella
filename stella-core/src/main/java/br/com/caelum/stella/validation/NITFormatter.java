@@ -1,15 +1,17 @@
-package br.com.caelum.stella.formatter;
+package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
+import static br.com.caelum.stella.validation.NITConstraints.NIT_FORMATED;
+import static br.com.caelum.stella.validation.NITConstraints.NIT_UNFORMATED;
 
 import java.util.regex.Matcher;
+
+
 
 /**
  * @author Leonardo Bessa
  *
  */
-public class CPFFormatter implements Formatter {
+public class NITFormatter implements Formatter {
 
 	/*
 	 * (non-Javadoc)
@@ -19,7 +21,7 @@ public class CPFFormatter implements Formatter {
 	public String format(String value) {
 		String result = null;
 		if (value != null) {
-			Matcher matcher = CPF_UNFORMATED.matcher(value);
+			Matcher matcher = NIT_UNFORMATED.matcher(value);
 			if (matcher.matches()) {
 				result = matcher.replaceAll("$1.$2.$3-$4");
 			}
@@ -37,7 +39,7 @@ public class CPFFormatter implements Formatter {
 	public String unformat(String value) {
 		String result = null;
 		if (value != null) {
-			Matcher matcher = CPF_FORMATED.matcher(value);
+			Matcher matcher = NIT_FORMATED.matcher(value);
 			if (matcher.matches()) {
 				result = matcher.replaceAll("$1$2$3$4");
 			}

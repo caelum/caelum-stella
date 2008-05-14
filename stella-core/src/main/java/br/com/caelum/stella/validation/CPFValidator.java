@@ -1,13 +1,12 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
+import static br.com.caelum.stella.validation.CPFConstraints.CPF_FORMATED;
+import static br.com.caelum.stella.validation.CPFConstraints.CPF_UNFORMATED;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.formatter.CPFFormatter;
 import br.com.caelum.stella.validation.error.CPFError;
 
 /**

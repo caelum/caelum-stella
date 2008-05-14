@@ -1,9 +1,10 @@
-package br.com.caelum.stella.formatter;
+package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
-import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
+import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_FORMATED;
+import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_UNFORMATED;
 
 import java.util.regex.Matcher;
+
 
 /**
  * @author Leonardo Bessa
