@@ -28,12 +28,14 @@
 		<page>stella-hibernate/hibernate-presentation.html</page>
 		<!-- <page>stella-hibernate/hibernate-conventions.html</page> -->
 		<page>stella-hibernate/hibernate-messages-setup.html</page>
+		<page>stella-hibernate/hibernate-validators.html</page>
 	</section>
 	<section>
 		<name>Stella Faces</name>
 		<page>stella-faces/faces-index.html</page>
 		<page>stella-faces/faces-setup.html</page>
 		<page>stella-faces/faces-view.html</page>
+		<page>stella-faces/faces-validators.html</page>
 		<!--		<page>stella-faces/faces-conventions.html</page>-->
 		<!--		<page>stella-faces/faces-messages-setup.html</page>-->
 	</section>
@@ -45,6 +47,7 @@
 	<section>
 		<name>Utilização em Frameworks</name>
 		<page>frameworks/frameworks-vraptor.html</page>
+		<page>frameworks/frameworks-seam.html</page>
 	</section>
 	<!--<section>-->
 	<!--<name>Tutoriais</name>-->
