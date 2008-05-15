@@ -9,7 +9,7 @@ import br.com.caelum.stella.boleto.Boleto;
  *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
- * @author Guilherme Silveira
+ * @author Paulo Silveira
  * 
  */
 public class BancoDoBrasil implements Banco {
