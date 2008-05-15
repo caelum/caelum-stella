@@ -1,4 +1,4 @@
-package br.com.caelum.stella.hibernate.persistence;
+package br.com.caelum.stella.hibernate.example.persistence;
 
 import java.io.Serializable;
 import java.util.List;

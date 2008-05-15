@@ -1,12 +1,12 @@
-package br.com.caelum.stella.hibernate.main;
+package br.com.caelum.stella.hibernate.example.main;
 
 import org.hibernate.classic.Session;
 import org.hibernate.validator.InvalidStateException;
 import org.hibernate.validator.InvalidValue;
 
 import util.HibernateUtil;
-import br.com.caelum.stella.hibernate.persistence.Modelo;
-import br.com.caelum.stella.hibernate.persistence.ModeloDAO;
+import br.com.caelum.stella.hibernate.example.persistence.Modelo;
+import br.com.caelum.stella.hibernate.example.persistence.ModeloDAO;
 
 public class HibernatePersistenceExample {
 

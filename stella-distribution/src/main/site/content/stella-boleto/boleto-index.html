@@ -16,6 +16,7 @@ idioma mais simples através do uso da técnica de Method Chaining.
 <h2>Gerando Boletos</h2>
 <textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
 import java.io.InputStream;
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
@@ -23,6 +24,10 @@ import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
+import br.com.caelum.stella.boleto.transformer.BoletoTransformer;
+import br.com.caelum.stella.boleto.transformer.BoletoWriter;
+import br.com.caelum.stella.boleto.transformer.PDFBoletoWriter;
+import br.com.caelum.stella.boleto.transformer.PNGBoletoWriter;
 
 public class Teste {
       

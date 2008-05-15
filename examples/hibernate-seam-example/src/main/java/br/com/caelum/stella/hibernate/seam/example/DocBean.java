@@ -1,4 +1,4 @@
-package br.com.yourcompany;
+package br.com.caelum.stella.hibernate.seam.example;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;

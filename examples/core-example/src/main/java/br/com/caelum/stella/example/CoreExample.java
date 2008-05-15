@@ -1,4 +1,4 @@
-package com.yourcompany.example;
+package br.com.caelum.stella.example;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
