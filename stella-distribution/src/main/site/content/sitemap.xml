@@ -7,9 +7,6 @@
     <link title="Página Técnica (Maven)">dev/index.html</link>
     <link title="Download">http://sourceforge.net/project/showfiles.php?group_id=217573</link>
   </section>
-  <!--<section>-->
-	<!--<name>Stella Core</name>-->
-	<!--</section>-->
 	<section>
 		<name>Stella Core</name>
 		<page>stella-core/core-index.html</page>
@@ -26,8 +23,7 @@
 		<page>stella-hibernate/hibernate-domain-model.html</page>
 		<page>stella-hibernate/hibernate-persistence.html</page>
 		<page>stella-hibernate/hibernate-business.html</page>
-		<page>stella-hibernate/hibernate-presentation.html</page>
-		<!-- <page>stella-hibernate/hibernate-conventions.html</page> -->
+    <page>frameworks/frameworks-seam.html</page>
 		<page>stella-hibernate/hibernate-messages-setup.html</page>
 		<page>stella-hibernate/hibernate-validators.html</page>
 	</section>
