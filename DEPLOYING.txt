@@ -1,0 +1,31 @@
+mvn clean
+mvn install
+mvn package assembly:assembly
+
+faça upload de target/*.tar.gz e target/*.zip para o sourceforge:
+http://sourceforge.net/projects/caelum-stella
+
+configure a senha para o servidor da Caelum no seu ~/.m2/settings.xml:
+<settings>
+  <servers>
+    <server>
+      <id>stella.caelum.com.br</id>
+      <username>tomcat</username>
+      <password>XXXXXXXXXXX</password>
+    </server>
+  </servers>
+</settings>
+
+mvn site-upload
+
+SITE
+====
+cd stella-distribution
+mvn xsite:run
+upload target/site/* para o servidor (/usr/java/webapps/stella.caelum.com.br/)
+
+
+SINCRONIZANDO SERVIDOR MAVEN
+============================
+mvn deploy
+(demora alguns dias para refletir)
