@@ -10,7 +10,6 @@ abstract class AbstractValidator<T> implements Validator<T> {
 	private final MessageProducer messageProducer;
 
 	public AbstractValidator(MessageProducer messageProducer) {
-		super();
 		this.messageProducer = messageProducer;
 	}
 
