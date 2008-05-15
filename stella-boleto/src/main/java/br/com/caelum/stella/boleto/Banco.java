@@ -3,7 +3,11 @@ package br.com.caelum.stella.boleto;
 import java.net.URL;
 
 /**
- * Define a implementação dos Bancos no modo geral.<br/><br/>
+ * Interface que define métodos específicos ao funcionamento de cada banco para
+ * gerar o código de barras e a linha digitável.<br/><br/>
+ * 
+ * Infelizmente cada banco funciona de uma maneira diferente para gerar esses
+ * valores, e as vezes até mudam de funcionamento.
  * 
  * Documentação que pode ser consultada:<br/><br/>
  * 
@@ -21,12 +25,29 @@ import java.net.URL;
  */
 public interface Banco {
 
+	/**
+	 * Retorna o número desse banco, formatado com 3 dígitos
+	 * 
+	 * @return
+	 */
 	String getNumeroFormatado();
 
+	/**
+	 * Pega a URL com a imagem de um banco
+	 * 
+	 * @return
+	 */
 	URL getImage();
 
+	/**
+	 * Gera o código de barras para determinado boleto
+	 */
 	String geraCodigoDeBarrasPara(Boleto boleto);
 
+	/**
+	 * Gera a linha digitavel para determinado boleto
+	 * 
+	 */
 	String geraLinhaDigitavelPara(Boleto boleto);
 
 }

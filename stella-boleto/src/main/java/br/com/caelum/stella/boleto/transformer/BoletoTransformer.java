@@ -14,8 +14,16 @@ import javax.imageio.ImageIO;
 import javax.swing.text.NumberFormatter;
 
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.CriacaoBoletoException;
 
+/**
+ * Classe responsável por escrever os dados de um Boleto em um Writer. Um
+ * Writer, como é uma interface, pode acabar escrevendo em um PNG, JPG, PDF,
+ * HTML ou mesmo TXT, de acordo com sua implementação
+ * 
+ * @author Paulo Silveira
+ * 
+ */
 public class BoletoTransformer {
 
 	public static final float IMAGEM_BOLETO_WIDTH = 2144;
@@ -36,7 +44,7 @@ public class BoletoTransformer {
 	private static final float LINHA12 = 87;
 	private static final float LINHA13 = 77;
 
-	private BoletoWriter writer;
+	private final BoletoWriter writer;
 
 	public BoletoTransformer(BoletoWriter writer) {
 		this.writer = writer;

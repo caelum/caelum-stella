@@ -4,6 +4,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Bean que representa os dados de um boleto.
+ * 
+ * @author Paulo Silveira
+ * @author Caue Guerra
+ * 
+ */
 public class Boleto {
 
 	private String valorBoleto;

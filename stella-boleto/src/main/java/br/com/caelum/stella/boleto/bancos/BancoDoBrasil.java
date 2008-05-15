@@ -4,6 +4,7 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 
 /**
+ * Gera dados de um boleto relativos ao Banco do Brasil.
  * 
  * @see <a
  *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>

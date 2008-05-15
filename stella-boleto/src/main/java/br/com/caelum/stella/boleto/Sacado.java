@@ -2,7 +2,7 @@ package br.com.caelum.stella.boleto;
 
 /**
  * Interface com métodos do sacado<br/> Sacado é a pessoa/empresa que irá pagar
- * pelo boleto gerado
+ * pelo boleto gerado.
  * 
  * @author Cauê Guerra
  * 

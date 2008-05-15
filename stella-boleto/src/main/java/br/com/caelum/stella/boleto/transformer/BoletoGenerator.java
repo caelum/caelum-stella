@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
+import br.com.caelum.stella.boleto.GeracaoBoletoException;
 
 /**
  * Geração do boleto em arquivos

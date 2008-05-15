@@ -1,4 +1,5 @@
-package br.com.caelum.stella.boleto.exception;
+package br.com.caelum.stella.boleto;
+
 
 public class GeracaoBoletoException extends BoletoException {
 

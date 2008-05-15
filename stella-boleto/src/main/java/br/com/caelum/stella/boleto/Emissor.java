@@ -1,5 +1,12 @@
 package br.com.caelum.stella.boleto;
 
+/**
+ * Bean que representa os dados do emissor de um Boleto.
+ * 
+ * @author Paulo Silveira
+ * @author Caue Guerra
+ * 
+ */
 public class Emissor {
 	private String agencia;
 	private String dvAgencia;

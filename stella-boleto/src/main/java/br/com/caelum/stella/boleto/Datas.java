@@ -2,6 +2,13 @@ package br.com.caelum.stella.boleto;
 
 import java.util.Calendar;
 
+/**
+ * Bean que representa as datas relacionadas a um Boleto.
+ * 
+ * @author Paulo Silveira
+ * @author Caue Guerra
+ * 
+ */
 public class Datas {
 	private Calendar documento;
 	private Calendar processamento;
