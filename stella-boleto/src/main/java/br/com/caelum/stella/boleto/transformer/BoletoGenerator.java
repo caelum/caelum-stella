@@ -10,16 +10,18 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.GeracaoBoletoException;
 
 /**
- * Geração do boleto em arquivos
+ * Geração do boleto em arquivos. Essa é uma classe utilitária, dessa maneira
+ * você não precisa trabalhar com InputStream, byte[], BoletoWriters, etc.
+ * 
+ * Basta passar um Boleto para o construtor e usar o método adequado para gerar
+ * um PDF, PNG, etc e grava-lo como o arquivo desejado.
  * 
  * @author Cauê Guerra
  * 
  */
 public class BoletoGenerator {
 
-	private BoletoWriter writer;
-
-	private Boleto boleto;
+	private final Boleto boleto;
 
 	public BoletoGenerator(Boleto boleto) {
 		this.boleto = boleto;
@@ -41,9 +43,9 @@ public class BoletoGenerator {
 	 * @param arquivo
 	 */
 	public void toPDF(File arquivo) {
-		this.writer = new PDFBoletoWriter();
+		PDFBoletoWriter writer = new PDFBoletoWriter();
 
-		BoletoTransformer transformer = new BoletoTransformer(this.writer);
+		BoletoTransformer transformer = new BoletoTransformer(writer);
 
 		InputStream is = transformer.transform(this.boleto);
 
@@ -82,9 +84,9 @@ public class BoletoGenerator {
 	 * @param arquivo
 	 */
 	public void toPNG(File arquivo) {
-		this.writer = new PNGBoletoWriter();
+		PNGBoletoWriter writer = new PNGBoletoWriter();
 
-		BoletoTransformer transformer = new BoletoTransformer(this.writer);
+		BoletoTransformer transformer = new BoletoTransformer(writer);
 
 		InputStream is = transformer.transform(this.boleto);
 
