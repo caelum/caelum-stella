@@ -9,7 +9,7 @@
   </parent>
   <artifactId>vraptor-validator-example</artifactId>
   <packaging>war</packaging>
-  <name>VRaptor with Hibernate Validator Example</name>
+  <name>Example: Validator and VRaptor</name>
 
   <build>
     <plugins>

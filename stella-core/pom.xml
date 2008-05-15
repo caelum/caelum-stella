@@ -8,7 +8,7 @@
   </parent>
   <artifactId>caelum-stella-core</artifactId>
   <packaging>jar</packaging>
-  <name>Caelum Stella Core</name>
+  <name>Stella Core</name>
 
   <dependencies>
   </dependencies>

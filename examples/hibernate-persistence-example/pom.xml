@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>hibernate-persistence-example</artifactId>
 	<packaging>jar</packaging>
-	<name>Hibernate Persistence Example</name>
+	<name>Example: Validator and Persistence</name>
 	<url>http://stella.caelum.com.br/</url>
 	
 	<dependencies>

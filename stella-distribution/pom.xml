@@ -9,7 +9,7 @@
   </parent>
   <artifactId>stella-distribution</artifactId>
   <packaging>pom</packaging>
-  <name>Caelum Stella Distribution</name>
+  <name>Stella Distribution</name>
 
   <dependencies>
     <dependency>

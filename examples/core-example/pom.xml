@@ -10,7 +10,7 @@
 	<groupId>br.com.caelum.stella</groupId>
 	<artifactId>core-example</artifactId>
 	<packaging>jar</packaging>
-	<name>Stella Validator Examples</name>
+	<name>Example: Stella Validator</name>
 	<dependencies>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>

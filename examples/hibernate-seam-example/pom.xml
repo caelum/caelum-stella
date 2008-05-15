@@ -10,7 +10,7 @@
   </parent>
   <artifactId>hibernate-seam-example</artifactId>
   <packaging>war</packaging>
-  <name>Stella Hibernate Validator and Jboss Seam Example.</name>
+  <name>Example: Validator and Jboss Seam</name>
   <url>http://stella.caelum.com.br/</url>
 
   <build>

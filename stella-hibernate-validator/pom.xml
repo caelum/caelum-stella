@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>caelum-stella-hibernate-validator</artifactId>
 	<packaging>jar</packaging>
-	<name>Caelum Stella Hibernate Validator Bindings</name>
+	<name>Stella Hibernate Validator</name>
 
 	<dependencies>
 		<dependency>

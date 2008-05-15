@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>faces-example</artifactId>
 	<packaging>war</packaging>
-	<name>Java Server Faces Stella Example</name>
+	<name>Example: Stella Faces</name>
   <url>http://stella.caelum.com.br/</url>
 
 	<build>

@@ -11,7 +11,7 @@
 
 	<artifactId>caelum-stella-boleto</artifactId>
 	<packaging>jar</packaging>
-	<name>Caelum Stella Boleto</name>
+	<name>Stella Boleto</name>
 
 	<dependencies>
 		<dependency>

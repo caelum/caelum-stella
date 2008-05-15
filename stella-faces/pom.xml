@@ -11,7 +11,7 @@
 	
 	<artifactId>caelum-stella-faces</artifactId>
 	<packaging>jar</packaging>
-	<name>Caelum Stella Java Server Faces Bindings</name>
+	<name>Stella Faces</name>
 
 	<dependencies>
 		<dependency>
