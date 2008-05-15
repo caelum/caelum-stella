@@ -3,10 +3,10 @@
 <h2>Validação na camada de Persistência</h2>
 <p>Ao utilizarmos as anotações do <b>Stella Hibernate</b>, o <b>Hibernate
 Validator</b> se encarrega de aplicar as restrições no <i>schema</i> do
-banco de dados e de verificar a validade antes de inserir ou atulizar
+banco de dados e de verificar a validade antes de inserir ou atualizar
 instâncias.</p>
 <p>Além de inserir as anotações, o que é preciso fazer para manter
-coesa a inserção e atualização no banco de dados?</p>
+valida a inserção e atualização no banco de dados?</p>
 <p>Nada. Lembre-se do princípio <b>DRY</b>. As restrições de
 validação estão, de alguma forma, descritas pela anotação fornecida. <b>Qualquer
 implementação da JPA</b> é capaz de realizar a validação através dessa
@@ -55,6 +55,6 @@ public class Submarino {
 }
 </textarea>
 
-<p>Note que se optar por não usar o Hibernate, precisará definir o <i>entity listner</i>
+<p>Note que se optar por não usar o Hibernate, precisará definir o <code>EntityListener</code>
  em toda entidade a ser validada.</p>
 </body>

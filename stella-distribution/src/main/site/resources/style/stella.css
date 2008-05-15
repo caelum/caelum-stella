@@ -17,6 +17,13 @@ h2 {
   padding: 5px 10px;
 }
 
+code {
+  font-family: Monaco, Consola, Courier New, Courier, monospace;
+  font-size: 0.9em;
+  border: 1px dashed #888;
+  padding: 2px 4px;
+}
+
 #banner {
   background-color: #fff;
 }

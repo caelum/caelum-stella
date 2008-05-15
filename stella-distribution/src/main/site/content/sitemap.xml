@@ -4,8 +4,8 @@
 		<page>index.html</page>
 		<page>roadmap.html</page>
 		<page>release-notes.html</page>
-    <page>time.html</page>
-    <link title="http://sourceforge.net/project/showfiles.php?group_id=217573">Download</link>
+    <link title="Página Técnica (Maven)">dev/index.html</link>
+    <link title="Download">http://sourceforge.net/project/showfiles.php?group_id=217573</link>
   </section>
   <!--<section>-->
 	<!--<name>Stella Core</name>-->
@@ -17,7 +17,7 @@
 		<page>stella-core/core-validators.html</page>
 		<page>stella-core/core-formatters.html</page>
 		<page>stella-core/core-messageproducer.html</page>
-		<page>stella-core/core-resoucebundle.html</page>
+		<page>stella-core/core-resourcebundle.html</page>
 	</section>
 	<section>
 		<name>Stella Hibernate</name>

@@ -11,8 +11,8 @@
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
  MessageProducer producer = new SimpleMessageProducer();
- boolean isFormatted      = true; 
- CPFValidator validator   = new CPFValidator(messageProducer,isFormatted);
+ boolean isFormatted = true;
+ CPFValidator validator = new CPFValidator(messageProducer,isFormatted);
 </textarea>
 
 <p>Agora, veja como é simples realizar a validação do documento.</p>
@@ -31,12 +31,12 @@
 <p>Após a execução deste programa a saída do console apresentará a
 seguinte linha: <b> [cpferror : invalid check digits]</b>
 </p>
-<p>Atenção: Ao se chamar o método <i>assertValid()</i> este <b>lançará
-uma exceção (do tipo RuntimeException) InvalidStateException</b>.
+<p>Atenção: Ao se chamar o método <code>assertValid()</code> este <b>lançará
+uma exceção (do tipo <code>RuntimeException</code>) <code>InvalidStateException</code></b>.
 </p>
 
 
-<p>Podemos capturar as messagens de erro utilizando o método <i>invalidaMessagesFor()</i>.
+<p>Podemos capturar as messagens de erro utilizando o método <code>invalidMessagesFor()</code>.
 Este método <b>não lança a InvalidStateException</b>.</p>
 
 <textarea rows="10" cols="65" class="java" name="code"
@@ -50,7 +50,11 @@ Este método <b>não lança a InvalidStateException</b>.</p>
 <p>Após a execução deste programa a saída do console será a mesma: <b>
 [cpferror : invalid check digits]</b></p>
 
-<h2>Lista de todos os validadores e respectivas mensagens de erro</h2>
+<h2>Lista de todos os validadores</h2>
+Cada validador pode produzir diversos erros, com diferentes mensagens. A lista abaixo é
+uma referência de todos os validadores disponiveis, e de todas as mensagens de erro que
+podem produzir.
+
 <ul>
 <li>CPFValidator  
 	<ul><li>CPFError.INVALID_DIGITS</li><li>CPFError.INVALID_FORMAT</li>

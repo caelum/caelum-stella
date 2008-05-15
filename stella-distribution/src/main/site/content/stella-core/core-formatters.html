@@ -4,20 +4,18 @@
 
 <p><b>Formatando...</b></p>
 
-<textarea rows="10" cols="65" class="java" name="code"
-	readonly="readonly">
+<textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
 		Formatter formatter = new NITFormatter();
-    	String unfotmatedValue = "17033259504";
+    String unfotmatedValue = "17033259504";
 		String formatedValue = formatter.format(unfotmatedValue );
 		// formatedValue = "170.33259.50-4" ;
 </textarea>
 
 <p><b>Removendo formatação...</b></p>
 
-<textarea rows="10" cols="65" class="java" name="code"
-	readonly="readonly">
+<textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
 		Formatter formatter = new NITFormatter();
-    	String fotmatedValue = "170.33259.50-4";
+    String fotmatedValue = "170.33259.50-4";
 		String unformatedValue = formatter.unformat(fotmatedValue );
 		// unformatedValue = "17033259504" ;
 </textarea>
