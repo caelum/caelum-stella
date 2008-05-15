@@ -8,18 +8,20 @@ buscaremos as mensagens de erro em um arquivo.</p>
   String cnpj = "26.637.142/0001-48";
 </textarea>
 
-<p>O MessageProducer que instanciaremos irá buscar as mensagens em
-um arquivo. Para isso passamos o resourceBlunde como argumento do
+<p>O <code>MessageProducer</code> que instanciaremos irá buscar as mensagens em
+um arquivo. Para isso passamos o <code>ResourceBundle</code> como argumento do
 construtor.</p>
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
 	ResourceBundle resourceBundle = ResourceBundle
 				.getBundle("StellaValidationMessages",new Locale("pt","BR"));
-    MessageProducer messageProducer = new ResourceBundleMessageProducer(resourceBundle);
-		boolean isFormatted = true;
-		CNPJValidator validator = new CNPJValidator(messageProducer,isFormatted);
+  MessageProducer messageProducer = new ResourceBundleMessageProducer(resourceBundle);
+	boolean isFormatted = true;
+	CNPJValidator validator = new CNPJValidator(messageProducer,isFormatted);
 </textarea>
 
+Portanto, devemos ter o arquivo <code>StellaValidationMessages_pt_BR.properties</code>
+no classpath:
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
 # StellaValidationMessages_pt_BR.properties  
