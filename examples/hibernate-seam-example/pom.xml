@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.caelum.stella</groupId>
-  <artifactId>stella-example-hibernate-seam</artifactId>
+  <parent>
+    <groupId>br.com.caelum.stella</groupId>
+    <artifactId>caelum-stella</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>hibernate-seam-example</artifactId>
   <packaging>war</packaging>
-  <version>1.0</version>
   <name>Stella Hibernate Validator and Jboss Seam Example.</name>
-  <url>http://www.example.com</url>
+  <url>http://stella.caelum.com.br/</url>
+
+  <build>
+    <finalName>stella-example-hibernate-seam</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <version>6.0.1</version>
+        <configuration>
+          <contextPath>/</contextPath>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <!-- Project dependencies -->
   <dependencies>
     <dependency>
-      <groupId>br.com.caelum.stella</groupId>
+      <groupId>${pom.groupId}</groupId>
       <artifactId>caelum-stella-hibernate-validator</artifactId>
       <version>${pom.version}</version>
     </dependency>
@@ -50,31 +67,6 @@
       <scope>compile</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <finalName>stella-example-hibernate-seam</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.mortbay.jetty</groupId>
-        <artifactId>maven-jetty-plugin</artifactId>
-        <version>6.0.1</version>
-        <configuration>
-          <scanIntervalSeconds>10</scanIntervalSeconds>
-          <contextPath>/</contextPath>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <inherited>true</inherited>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-          <encoding>utf-8</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
   <repositories>
     <!-- repository for tomahawk -->
