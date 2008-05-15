@@ -74,6 +74,7 @@
     </moduleSet>
     <moduleSet>
       <includes>
+        <include>br.com.caelum.stella:boleto-example</include>
         <include>br.com.caelum.stella:core-example</include>
         <include>br.com.caelum.stella:faces-example</include>
         <include>br.com.caelum.stella:hibernate-persistence-example</include>
