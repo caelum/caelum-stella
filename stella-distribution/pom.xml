@@ -44,7 +44,7 @@
           <sitemapPath>content/sitemap.xml</sitemapPath>
           <skinPath>templates/skin.html</skinPath>
           <resourcePaths>resources</resourcePaths>
-          <outputDirectoryPath>${project.build.directory}/site</outputDirectoryPath>
+          <outputDirectoryPath>${project.build.directory}/docs</outputDirectoryPath>
         </configuration>
         <executions>
           <execution>
@@ -67,7 +67,7 @@
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/site/javadoc/core</outputDirectory>
+              <outputDirectory>${project.build.directory}/docs/javadoc/core</outputDirectory>
               <overWriteReleases>true</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
@@ -89,7 +89,7 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
           <!--              <goal>unpack</goal>-->
           <!--            </goals>-->
           <!--            <configuration>-->
-          <!--              <outputDirectory>${project.build.directory}/site/tlddoc/faces</outputDirectory>-->
+          <!--              <outputDirectory>${project.build.directory}/docs/tlddoc/faces</outputDirectory>-->
           <!--              <overWriteReleases>true</overWriteReleases>-->
           <!--              <overWriteSnapshots>true</overWriteSnapshots>-->
           <!--              <artifactItems>-->
@@ -109,7 +109,7 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/site/javadoc/faces</outputDirectory>
+              <outputDirectory>${project.build.directory}/docs/javadoc/faces</outputDirectory>
               <overWriteReleases>true</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
@@ -129,7 +129,7 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/site/javadoc/boleto</outputDirectory>
+              <outputDirectory>${project.build.directory}/docs/javadoc/boleto</outputDirectory>
               <overWriteReleases>true</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
@@ -149,7 +149,7 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/site/javadoc/hibernate-validator</outputDirectory>
+              <outputDirectory>${project.build.directory}/docs/javadoc/hibernate-validator</outputDirectory>
               <overWriteReleases>true</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>

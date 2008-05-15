@@ -161,7 +161,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -280,6 +280,15 @@
     <url>http://caelum-stella.svn.sourceforge.net/viewvc/caelum-stella/</url>
   </scm>
 
+  <distributionManagement>
+    <downloadUrl>http://sourceforge.net/project/showfiles.php?group_id=217573</downloadUrl>
+    <site>
+      <id>stella.caelum.com.br</id>
+      <name>Caelum Stella Server</name>
+      <url>scp://caelum.com.br/usr/java/webapps/stella.com.br/dev</url>
+    </site>
+  </distributionManagement>
+
   <mailingLists>
     <mailingList>
       <name>Users list</name>
@@ -294,34 +303,5 @@
       <post>http://lists.sourceforge.net/lists/listinfo/caelum-stella-devel</post>
     </mailingList>
   </mailingLists>
-
-  <repositories>
-    <repository>
-      <id>codehaus-repository</id>
-      <name>Codehaus Repository</name>
-      <url>http://repository.codehaus.org</url>
-    </repository>
-    <repository>
-      <id>codehaus-snapshots-repository</id>
-      <name>Codehaus Snapshots Repository</name>
-      <url>http://snapshots.repository.codehaus.org</url>
-    </repository>
-    <repository>
-      <id>apache.snapshots</id>
-      <url>http://people.apache.org/maven-snapshot-repository/</url>
-    </repository>
-    <repository>
-      <id>dev.java.net</id>
-      <name>dev.java.net-repo</name>
-      <url>https://maven-repository.dev.java.net/repository/</url>
-      <layout>legacy</layout>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache.snapshots</id>
-      <url>http://people.apache.org/maven-snapshot-repository/</url>
-    </pluginRepository>
-  </pluginRepositories>
 
 </project>
