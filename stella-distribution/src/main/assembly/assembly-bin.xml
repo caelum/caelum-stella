@@ -13,9 +13,29 @@
       <outputDirectory>doc</outputDirectory>
     </fileSet>
   </fileSets>
+  <moduleSets>
+    <moduleSet>
+      <includes>
+        <include>br.com.caelum.stella:caelum-stella-core</include>
+      </includes>
+      <binaries>
+        <outputDirectory>${artifactId}</outputDirectory>
+        <unpack>false</unpack>
+      </binaries>
+    </moduleSet>
+    <moduleSet>
+      <includes>
+        <include>br.com.caelum.stella:caelum-stella-hibernate-validator</include>
+      </includes>
+      <binaries>
+        <outputDirectory>${artifactId}</outputDirectory>
+        <unpack>false</unpack>
+      </binaries>
+    </moduleSet>
+  </moduleSets>
   <dependencySets>
     <dependencySet>
-      <outputDirectory>/lib</outputDirectory>
+      <outputDirectory>/</outputDirectory>
     </dependencySet>
   </dependencySets>
 </assembly>

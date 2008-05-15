@@ -4,9 +4,10 @@
 		<page>index.html</page>
 		<page>roadmap.html</page>
 		<page>release-notes.html</page>
-		<!--<page>time.html</page>-->
-	</section>
-	<!--<section>-->
+    <page>time.html</page>
+    <link title="http://sourceforge.net/project/showfiles.php?group_id=217573">Download</link>
+  </section>
+  <!--<section>-->
 	<!--<name>Stella Core</name>-->
 	<!--</section>-->
 	<section>
@@ -72,9 +73,5 @@
 		</link>
 		<link title="Stella Boleto">javadoc/boleto/index.html</link>
 		<link title="Stella Faces">javadoc/faces/index.html</link>
-	</section>
-	<section>
-		<name>TagLibDoc</name>
-		<link title="Stella Faces">tlddoc/faces/index.html</link>
 	</section>
 </sitemap>

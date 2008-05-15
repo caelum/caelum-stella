@@ -80,28 +80,28 @@
               </artifactItems>
             </configuration>
           </execution>
-<!--  Esta execucao faz com que as outras tentativas de "unpack" do mesmo artifact (caelum-stella-faces neste caso)
-      nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
-<!--          <execution>-->
-<!--            <id>unpack-tlddoc-faces</id>-->
-<!--            <phase>install</phase>-->
-<!--            <goals>-->
-<!--              <goal>unpack</goal>-->
-<!--            </goals>-->
-<!--            <configuration>-->
-<!--              <outputDirectory>${project.build.directory}/site/tlddoc/faces</outputDirectory>-->
-<!--              <overWriteReleases>true</overWriteReleases>-->
-<!--              <overWriteSnapshots>true</overWriteSnapshots>-->
-<!--              <artifactItems>-->
-<!--                <artifactItem>-->
-<!--                  <groupId>${pom.groupId}</groupId>-->
-<!--                  <artifactId>caelum-stella-faces</artifactId>-->
-<!--                  <version>${pom.version}</version>-->
-<!--                  <classifier>tlddoc</classifier>-->
-<!--                </artifactItem>-->
-<!--              </artifactItems>-->
-<!--            </configuration>-->
-<!--          </execution>-->
+          <!--  Esta execucao faz com que as outras tentativas de "unpack" do mesmo artifact (caelum-stella-faces neste caso)
+nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
+          <!--          <execution>-->
+          <!--            <id>unpack-tlddoc-faces</id>-->
+          <!--            <phase>install</phase>-->
+          <!--            <goals>-->
+          <!--              <goal>unpack</goal>-->
+          <!--            </goals>-->
+          <!--            <configuration>-->
+          <!--              <outputDirectory>${project.build.directory}/site/tlddoc/faces</outputDirectory>-->
+          <!--              <overWriteReleases>true</overWriteReleases>-->
+          <!--              <overWriteSnapshots>true</overWriteSnapshots>-->
+          <!--              <artifactItems>-->
+          <!--                <artifactItem>-->
+          <!--                  <groupId>${pom.groupId}</groupId>-->
+          <!--                  <artifactId>caelum-stella-faces</artifactId>-->
+          <!--                  <version>${pom.version}</version>-->
+          <!--                  <classifier>tlddoc</classifier>-->
+          <!--                </artifactItem>-->
+          <!--              </artifactItems>-->
+          <!--            </configuration>-->
+          <!--          </execution>-->
           <execution>
             <id>unpack-javadoc-faces</id>
             <phase>install</phase>
@@ -163,11 +163,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

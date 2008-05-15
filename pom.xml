@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.caelum.stella</groupId>
@@ -128,61 +129,19 @@
             </systemProperties>
           </configuration>
         </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>bin</id>
-              <phase>install</phase>
-              <goals>
-                <goal>single</goal>
-              </goals>
-              <configuration>
-                <descriptors>
-                  <descriptor>
-                    ${basedir}/src/main/assembly/assembly-bin.xml
-                  </descriptor>
-                </descriptors>
-                <workDirectory>
-                  ${project.build.directory}/assembly/bin
-                </workDirectory>
-                <outputDirectory>../dist</outputDirectory>
-              </configuration>
-            </execution>
-
-            <execution>
-              <id>src</id>
-              <phase>install</phase>
-              <goals>
-                <goal>single</goal>
-              </goals>
-              <configuration>
-                <descriptors>
-                  <descriptor>
-                    ${basedir}/src/main/assembly/assembly-src.xml
-                  </descriptor>
-                </descriptors>
-                <workDirectory>
-                  ${project.build.directory}/assembly/src
-                </workDirectory>
-                <outputDirectory>../dist</outputDirectory>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
-	<!-- Setting eclipse code format options -->
+      <!-- Setting eclipse code format options -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
         <configuration>
           <workspace>${basedir}</workspace>
-          <workspaceCodeStylesURL>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml</workspaceCodeStylesURL>
+          <workspaceCodeStylesURL>
+            http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml
+          </workspaceCodeStylesURL>
         </configuration>
       </plugin>
 
@@ -201,6 +160,18 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-2</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/assembly-bin.xml</descriptor>
+            <descriptor>src/main/assembly/assembly-src.xml</descriptor>
+          </descriptors>
+        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -58,8 +58,9 @@ h2 {
 }
 
 #footer {
+  float: none;
+  clear: both;
   text-align: right;
-  width: 100%;
   background-color: #666D80;
   color: white;
   border: 1px solid;
@@ -67,9 +68,6 @@ h2 {
   padding: 5px;
   margin-top: 50px;
   font-size: 0.8em;
-  position: fixed;
-  bottom: 0;
-  width:976px;
 }
 
 #footer a {
