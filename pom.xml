@@ -286,7 +286,7 @@
     <site>
       <id>stella.caelum.com.br</id>
       <name>Caelum Stella Server</name>
-      <url>scp://caelum.com.br/usr/java/webapps/stella.com.br/dev</url>
+      <url>scp://caelum.com.br/usr/java/webapps/stella.caelum.com.br/dev</url>
     </site>
   </distributionManagement>
 
