@@ -22,8 +22,8 @@ SITE
 ====
 cd stella-distribution
 mvn xsite:run
-upload target/docs/* para o servidor (/usr/java/webapps/stella.caelum.com.br/)
-
+- upload target/docs/*:
+scp -r target/docs/* tomcat@caelum.com.br:/usr/java/webapps/stella.caelum.com.br/ROOT
 
 SINCRONIZANDO SERVIDOR MAVEN
 ============================
