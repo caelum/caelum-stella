@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto.transformer;
+package br.com.caelum.stella.integration.boleto.transformer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 
 public class BoletoTransformerTest {

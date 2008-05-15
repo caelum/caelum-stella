@@ -126,6 +126,7 @@
             <forkMode>once</forkMode>
             <printSummary>true</printSummary>
             <useFile>true</useFile>
+            <skip>true</skip>
             <systemProperties>
               <property>
                 <name>java.awt.headless</name>
@@ -133,6 +134,23 @@
               </property>
             </systemProperties>
           </configuration>
+          <executions>
+            <execution>
+              <id>run unit tests</id>
+              <phase>test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <skip>false</skip>
+                <excludes>
+                  <exclude>
+                    **/integration/**/*.java
+                  </exclude>
+                </excludes>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -277,6 +295,46 @@
 
   <contributors>
   </contributors>
+
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <comments>Copyright Caelum</comments>
+      <url>LICENSE.txt</url>
+    </license>
+  </licenses>
+
+  <profiles>
+    <profile>
+      <id>integration</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>run integration tests</id>
+                  <phase>test</phase>
+                  <goals>
+                    <goal>test</goal>
+                  </goals>
+                  <configuration>
+                    <skip>false</skip>
+                    <includes>
+                      <include>
+                        **/integration/**/*Test.java
+                      </include>
+                    </includes>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
 
   <scm>
     <connection>scm:svn:https://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella</connection>
