@@ -10,7 +10,7 @@
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>boleto-example</artifactId>
   <packaging>jar</packaging>
-  <name>Examples: Stella Boleto</name>
+  <name>Example: Stella Boleto</name>
   <dependencies>
     <dependency>
       <groupId>${pom.groupId}</groupId>
