@@ -16,7 +16,8 @@ configure a senha para o servidor da Caelum no seu ~/.m2/settings.xml:
   </servers>
 </settings>
 
-mvn site-upload
+mvn site:site
+mvn site:deploy
 
 SITE
 ====
