@@ -85,15 +85,25 @@ public class Datas {
 		return this.comProcessamento(dataPara(dia, mes, ano));
 	}
 
+	/**
+	 * Retorna a data de vencimento do boleto
+	 */
 	public Calendar getVencimento() {
 		return this.vencimento;
 	}
 
+	/**
+	 * Modifica o vencimento do respectivo boleto com um Calendar.
+	 */
 	public Datas comVencimento(Calendar vencimento) {
 		this.vencimento = vencimento;
 		return this;
 	}
 
+	/**
+	 * Modifica o vencimento.
+	 * 
+	 */
 	public Datas comVencimento(int dia, int mes, int ano) {
 		return this.comVencimento(dataPara(dia, mes, ano));
 	}
