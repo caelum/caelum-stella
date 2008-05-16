@@ -135,7 +135,7 @@ public class BoletoTransformer {
 
 		this.writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
-		this.writer.write(250, LINHA7, boleto.getAceite());
+		this.writer.write(250, LINHA7, boleto.getAceite() ? "S" : "N");
 
 		this.writer.write(300, LINHA7, formatDate(boleto.getDatas()
 				.getProcessamento()));

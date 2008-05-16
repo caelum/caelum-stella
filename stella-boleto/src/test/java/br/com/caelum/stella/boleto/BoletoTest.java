@@ -13,7 +13,7 @@ public class BoletoTest {
 		Boleto b = Boleto.newBoleto();
 		assertEquals("R$", b.getEspecieMoeda());
 		assertEquals(9, b.getCodEspecieMoeda());
-		assertEquals("N", b.getAceite());
+		assertEquals(false, b.getAceite());
 		assertEquals("DV", b.getEspecieDocumento());
 	}
 

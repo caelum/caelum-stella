@@ -22,7 +22,7 @@ public class Boleto {
 
 	private String especieDocumento;
 	private String noDocumento;
-	private String aceite;
+	private boolean aceite;
 
 	private Banco banco;
 	private Datas datas;
@@ -41,7 +41,7 @@ public class Boleto {
 	 */
 	public static Boleto newBoleto() {
 		return new Boleto().comEspecieMoeda("R$").comCodEspecieMoeda(9)
-				.comAceite("N").comEspecieDocumento("DV");
+				.comAceite(false).comEspecieDocumento("DV");
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Boleto {
 	 * 
 	 * @return
 	 */
-	public String getAceite() {
+	public boolean getAceite() {
 		return this.aceite;
 	}
 
@@ -58,7 +58,7 @@ public class Boleto {
 	 * 
 	 * @param aceite
 	 */
-	public Boleto comAceite(String aceite) {
+	public Boleto comAceite(boolean aceite) {
 		this.aceite = aceite;
 		return this;
 	}
