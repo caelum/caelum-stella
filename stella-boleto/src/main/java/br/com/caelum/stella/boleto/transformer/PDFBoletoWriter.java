@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import br.com.caelum.stella.boleto.GeracaoBoletoException;
+
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -32,12 +34,12 @@ public class PDFBoletoWriter implements BoletoWriter {
 	private static final int BIG_SIZE = 10;
 
 	private InputStream stream;
-	private ByteArrayOutputStream bytes;
-	private Document document;
+	private final ByteArrayOutputStream bytes;
+	private final Document document;
 	private PdfWriter writer;
 	private BaseFont fonteSimples;
 	private BaseFont fonteBold;
-	private PdfContentByte contentByte;
+	private final PdfContentByte contentByte;
 	private final int scale = 1;
 
 	public PDFBoletoWriter(double width, double height) {
@@ -53,9 +55,9 @@ public class PDFBoletoWriter implements BoletoWriter {
 					BaseFont.WINANSI, BaseFont.EMBEDDED);
 
 		} catch (DocumentException e) {
-			throw new RuntimeException(e);
+			throw new GeracaoBoletoException(e);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new GeracaoBoletoException(e);
 		}
 
 		this.document.open();
@@ -113,9 +115,9 @@ public class PDFBoletoWriter implements BoletoWriter {
 			template.addImage(pdfImage);
 			this.contentByte.addTemplate(template, x, y);
 		} catch (BadElementException e) {
-			throw new RuntimeException(e);
+			throw new GeracaoBoletoException(e);
 		} catch (DocumentException e) {
-			throw new RuntimeException(e);
+			throw new GeracaoBoletoException(e);
 		}
 	}
 

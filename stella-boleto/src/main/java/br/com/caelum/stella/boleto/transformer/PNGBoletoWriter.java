@@ -12,6 +12,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import br.com.caelum.stella.boleto.GeracaoBoletoException;
+
 import com.lowagie.text.pdf.BaseFont;
 
 /**
@@ -29,8 +31,8 @@ public class PNGBoletoWriter implements BoletoWriter {
 	private static final int NORMAL_SIZE = 36;
 	private static final int BIG_SIZE = 45;
 
-	private Font fonteSimples;
-	private Font fonteBold;
+	private final Font fonteSimples;
+	private final Font fonteBold;
 
 	private final BufferedImage PNGimage;
 	private InputStream stream;
@@ -67,7 +69,7 @@ public class PNGBoletoWriter implements BoletoWriter {
 			try {
 				ImageIO.write(this.PNGimage, "PNG", baos);
 			} catch (IOException e) {
-				throw new RuntimeException(e); // nao esperado
+				throw new GeracaoBoletoException(e); // nao esperado
 			}
 			this.stream = new ByteArrayInputStream(baos.toByteArray());
 		}
