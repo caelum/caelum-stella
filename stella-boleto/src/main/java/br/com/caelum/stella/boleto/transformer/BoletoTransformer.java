@@ -15,6 +15,7 @@ import javax.swing.text.NumberFormatter;
 
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.GeracaoBoletoException;
 
 /**
  * Classe responsável por escrever os dados de um Boleto em um Writer. Um
@@ -71,7 +72,7 @@ public class BoletoTransformer {
 			this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
 					.getImage()), 100, 23);
 		} catch (IOException e) {
-			throw new CriacaoBoletoException(
+			throw new GeracaoBoletoException(
 					"Erro na leitura das imagens do boleto", e);
 		}
 
