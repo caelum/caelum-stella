@@ -21,70 +21,70 @@ public class BoletoTest {
 	public void testGetFatorVencimentoParaDataDaManha() {
 		Boleto b = Boleto.newBoleto();
 
-		Calendar passado10diasManha = Calendar.getInstance();
-		passado10diasManha.set(Calendar.DAY_OF_MONTH, 17);
-		passado10diasManha.set(Calendar.MONTH, 10 - 1);
-		passado10diasManha.set(Calendar.YEAR, 1997);
+		Calendar data = Calendar.getInstance();
+		data.set(Calendar.DAY_OF_MONTH, 2);
+		data.set(Calendar.MONTH, 5 - 1);
+		data.set(Calendar.YEAR, 2008);
 
-		passado10diasManha.set(Calendar.HOUR_OF_DAY, 1);
+		data.set(Calendar.HOUR_OF_DAY, 1);
 
-		b.comDatas(Datas.newDatas().comVencimento(passado10diasManha));
+		b.comDatas(Datas.newDatas().comVencimento(data));
 
-		assertEquals(10, b.getFatorVencimento());
+		assertEquals(3860, b.getFatorVencimento());
 	}
 
 	@Test
 	public void testGetFatorVencimentoParaDataDaNoite() {
 		Boleto b = Boleto.newBoleto();
 
-		Calendar passado10diasNoite = Calendar.getInstance();
-		passado10diasNoite.set(Calendar.DAY_OF_MONTH, 17);
-		passado10diasNoite.set(Calendar.MONTH, 10 - 1);
-		passado10diasNoite.set(Calendar.YEAR, 1997);
+		Calendar data = Calendar.getInstance();
+		data.set(Calendar.DAY_OF_MONTH, 2);
+		data.set(Calendar.MONTH, 5 - 1);
+		data.set(Calendar.YEAR, 2008);
 
-		passado10diasNoite.set(Calendar.HOUR_OF_DAY, 23);
+		data.set(Calendar.HOUR_OF_DAY, 23);
 
-		b.comDatas(Datas.newDatas().comVencimento(passado10diasNoite));
+		b.comDatas(Datas.newDatas().comVencimento(data));
 
-		assertEquals(10, b.getFatorVencimento());
+		assertEquals(3860, b.getFatorVencimento());
 	}
 
 	@Test
 	public void testGetFatorVencimentoParaDataDaExtremaNoite() {
 		Boleto b = Boleto.newBoleto();
 
-		Calendar passado10diasNoite = Calendar.getInstance();
-		passado10diasNoite.set(Calendar.DAY_OF_MONTH, 17);
-		passado10diasNoite.set(Calendar.MONTH, 10 - 1);
-		passado10diasNoite.set(Calendar.YEAR, 1997);
+		Calendar data = Calendar.getInstance();
+		data.set(Calendar.DAY_OF_MONTH, 2);
+		data.set(Calendar.MONTH, 5 - 1);
+		data.set(Calendar.YEAR, 2008);
 
-		passado10diasNoite.set(Calendar.HOUR_OF_DAY, 23);
-		passado10diasNoite.set(Calendar.MINUTE, 59);
-		passado10diasNoite.set(Calendar.SECOND, 59);
-		passado10diasNoite.set(Calendar.MILLISECOND, 999);
+		data.set(Calendar.HOUR_OF_DAY, 23);
+		data.set(Calendar.MINUTE, 59);
+		data.set(Calendar.SECOND, 59);
+		data.set(Calendar.MILLISECOND, 999);
 
-		b.comDatas(Datas.newDatas().comVencimento(passado10diasNoite));
+		b.comDatas(Datas.newDatas().comVencimento(data));
 
-		assertEquals(10, b.getFatorVencimento());
+		assertEquals(3860, b.getFatorVencimento());
 	}
 
 	@Test
 	public void testGetFatorVencimentoParaDataDoExtremaManha() {
 		Boleto b = Boleto.newBoleto();
 
-		Calendar passado10diasDia = Calendar.getInstance();
-		passado10diasDia.set(Calendar.DAY_OF_MONTH, 17);
-		passado10diasDia.set(Calendar.MONTH, 10 - 1);
-		passado10diasDia.set(Calendar.YEAR, 1997);
+		Calendar data = Calendar.getInstance();
+		data.set(Calendar.DAY_OF_MONTH, 2);
+		data.set(Calendar.MONTH, 5 - 1);
+		data.set(Calendar.YEAR, 2008);
 
-		passado10diasDia.set(Calendar.HOUR_OF_DAY, 0);
-		passado10diasDia.set(Calendar.MINUTE, 0);
-		passado10diasDia.set(Calendar.SECOND, 0);
-		passado10diasDia.set(Calendar.MILLISECOND, 0);
+		data.set(Calendar.HOUR_OF_DAY, 0);
+		data.set(Calendar.MINUTE, 0);
+		data.set(Calendar.SECOND, 0);
+		data.set(Calendar.MILLISECOND, 0);
 
-		b.comDatas(Datas.newDatas().comVencimento(passado10diasDia));
+		b.comDatas(Datas.newDatas().comVencimento(data));
 
-		assertEquals(10, b.getFatorVencimento());
+		assertEquals(3860, b.getFatorVencimento());
 	}
 
 	@Test

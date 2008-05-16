@@ -36,8 +36,7 @@ public class Boleto {
 	}
 
 	/**
-	 * Cria um novo boleto com valores padrão: moeda é o real, aceite é N e
-	 * especie de documento é DV.
+	 * Cria um novo boleto com valores padrão.
 	 * 
 	 */
 	public static Boleto newBoleto() {
@@ -64,24 +63,15 @@ public class Boleto {
 		return this;
 	}
 
-	/**
-	 * Pega as datas relacionadas a este Boleto
-	 */
 	public Datas getDatas() {
 		return this.datas;
 	}
 
-	/**
-	 * Define as datas relacionadas a este boleto
-	 */
 	public Boleto comDatas(Datas datas) {
 		this.datas = datas;
 		return this;
 	}
 
-	/**
-	 * Devolve a especie de documento deste boleto.
-	 */
 	public String getEspecieDocumento() {
 		return this.especieDocumento;
 	}
@@ -182,16 +172,10 @@ public class Boleto {
 		return this;
 	}
 
-	/**
-	 * Devolve as instruções relacionadas a esse boleto.
-	 */
 	public List<String> getInstrucoes() {
 		return this.instrucoes;
 	}
 
-	/**
-	 * Associa até 5 instruções que aparecerão no corpo desse boleto
-	 */
 	public Boleto comInstrucoes(String... instrucoes) {
 		if (instrucoes.length > 5)
 			throw new IllegalArgumentException(
@@ -202,7 +186,7 @@ public class Boleto {
 
 	/**
 	 * Devolve as descrições do boleto. Note que esse campo não aparece no
-	 * boleto gerado de algumas formas, como em PNG.
+	 * boleto gerado em PNG
 	 * 
 	 * @return
 	 */
@@ -243,11 +227,14 @@ public class Boleto {
 	 * @return
 	 */
 	public int getFatorVencimento() {
-		// TODO: problemas com horario
 		Calendar dataBase = Calendar.getInstance();
 		dataBase.set(Calendar.DAY_OF_MONTH, 7);
 		dataBase.set(Calendar.MONTH, 10 - 1);
 		dataBase.set(Calendar.YEAR, 1997);
+		dataBase.set(Calendar.HOUR_OF_DAY, 0);
+		dataBase.set(Calendar.MINUTE, 0);
+		dataBase.set(Calendar.SECOND, 0);
+		dataBase.set(Calendar.MILLISECOND, 0);
 
 		long diferencasEmMiliSegundos = this.datas.getVencimento()
 				.getTimeInMillis()
@@ -258,22 +245,12 @@ public class Boleto {
 		return (int) diferencasEmDias;
 	}
 
-	/**
-	 * Pega o valor desse boleto formatado com 10 dígitos
-	 */
 	public String getValorFormatado() {
-		// TODO: check se nao tem caracter estranho ANTES de dar o replaceAll.
-		// ou no setter
 		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");
 		return String.format("%010d", Integer.parseInt(formatado));
 	}
 
-	/**
-	 * Pega o numero do documento formatado com 4 digitos
-	 */
 	public String getNoDocumentoFormatado() {
-		// TODO: check se nao tem caracter estranho ANTES de dar o replaceAll.
-		// ou no setter
 		return String.format("%04d", Integer.parseInt(this.noDocumento));
 	}
 }
