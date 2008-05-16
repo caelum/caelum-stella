@@ -8,8 +8,8 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
+import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 
 public class BoletoTransformerTest {
 
@@ -52,6 +52,8 @@ public class BoletoTransformerTest {
 		BoletoGenerator generator = new BoletoGenerator(this.boleto);
 
 		generator.toPDF("arquivo.pdf");
+		// TODO: check se ele foi gravado e tem mesmo tamanho que o InputStream
+		// gerado
 	}
 
 	@Test
@@ -59,5 +61,7 @@ public class BoletoTransformerTest {
 		BoletoGenerator generator = new BoletoGenerator(this.boleto);
 
 		generator.toPNG("arquivo.png");
+		// TODO: check se ele foi gravado e tem mesmo tamanho que o InputStream
+		// gerado
 	}
 }
