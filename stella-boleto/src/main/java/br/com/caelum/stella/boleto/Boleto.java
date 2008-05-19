@@ -235,8 +235,19 @@ public class Boleto {
 		dataBase.set(Calendar.MINUTE, 0);
 		dataBase.set(Calendar.SECOND, 0);
 		dataBase.set(Calendar.MILLISECOND, 0);
+		
+		
+		Calendar vencimentoSemHoras = Calendar.getInstance();
+		vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, datas.getVencimento().get(Calendar.DAY_OF_MONTH));
+		vencimentoSemHoras.set(Calendar.MONTH, datas.getVencimento().get(Calendar.MONTH));
+		vencimentoSemHoras.set(Calendar.YEAR, datas.getVencimento().get(Calendar.YEAR));
+		vencimentoSemHoras.set(Calendar.HOUR_OF_DAY, 0);
+		vencimentoSemHoras.set(Calendar.MINUTE, 0);
+		vencimentoSemHoras.set(Calendar.SECOND, 0);
+		vencimentoSemHoras.set(Calendar.MILLISECOND, 0);
+		
 
-		long diferencasEmMiliSegundos = this.datas.getVencimento()
+		long diferencasEmMiliSegundos = vencimentoSemHoras
 				.getTimeInMillis()
 				- dataBase.getTimeInMillis();
 		long diferencasEmDias = diferencasEmMiliSegundos

@@ -32,12 +32,12 @@
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
-			<version>1.2_08</version>
+			<version>1.2_02</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
-			<version>1.2_08</version>
+			<version>1.2-b19</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
