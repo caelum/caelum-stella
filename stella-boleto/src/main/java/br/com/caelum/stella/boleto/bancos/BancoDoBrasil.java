@@ -24,24 +24,22 @@ public class BancoDoBrasil implements Banco {
 	}
 
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(getNumeroFormatado());
-		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
-		builder.append("D"); // digito verificador, calculado depois
-		builder.append(String.valueOf(boleto.getFatorVencimento()));
-		builder.append(boleto.getValorFormatado());
+		StringBuilder codigoDeBarras = new StringBuilder();
+		codigoDeBarras.append(getNumeroFormatado());
+		codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		codigoDeBarras.append(String.valueOf(boleto.getFatorVencimento()));
+		codigoDeBarras.append(boleto.getValorFormatado());
 
 		// CAMPO LIVRE
-		builder.append("000000");
-		builder.append(boleto.getEmissor().getNumConvenioFormatado());
-		builder.append(boleto.getEmissor().getNossoNumeroFormatado());
-		builder.append(boleto.getEmissor().getCarteira());
+		codigoDeBarras.append("000000");
+		codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
+		codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
+		codigoDeBarras.append(boleto.getEmissor().getCarteira());
 
-		String codigoDeBarras = builder.toString();
-		builder.replace(4, 5, String.valueOf(this.dvGenerator
-				.geraDVCodigoDeBarras(codigoDeBarras)));
+		codigoDeBarras.insert(4, this.dvGenerator
+				.geraDVCodigoDeBarras(codigoDeBarras.toString()));
 
-		return builder.toString();
+		return codigoDeBarras.toString();
 	}
 
 	public String geraLinhaDigitavelPara(Boleto boleto) {

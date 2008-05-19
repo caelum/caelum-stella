@@ -5,8 +5,6 @@ class DVGenerator {
 	public int geraDVCodigoDeBarras(String codigoDeBarras) {
 		int soma = 0;
 		for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
-			if (i == 4) // pula posição 5
-				i--;
 			if (multiplicador == 10) // volta pro 2
 				multiplicador = 2;
 			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i)))
