@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-    <version>1.0</version>
+		<version>1.0</version>
 	</parent>
 
 	<artifactId>caelum-stella-boleto</artifactId>
@@ -18,17 +18,23 @@
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
 			<version>2.1.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>bouncycastle</groupId>
-          <artifactId>bcmail-jdk14</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>bouncycastle</groupId>
-          <artifactId>bcprov-jdk14</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

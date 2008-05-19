@@ -1,7 +1,14 @@
 package br.com.caelum.stella.integration.boleto.transformer;
 
-import org.junit.Before;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.pdfbox.pdmodel.PDDocument;
+import org.pdfbox.util.PDFTextStripper;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
@@ -17,10 +24,10 @@ import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
  */
 public class BoletoTransformerIntegrationTest {
 
-	private Boleto boleto;
+	@BeforeClass
+	public static void setUp() {
 
-	@Before
-	public void setUp() {
+		Boleto boleto;
 		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
 				.withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
@@ -44,28 +51,48 @@ public class BoletoTransformerIntegrationTest {
 
 		Banco banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
+		boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
 				.withDescricoes(descricoes).withEmissor(emissor).withSacado(
 						sacado).withValorBoleto("40.00")
 				.withNoDocumento("4323").withInstrucoes(instrucoes)
 				.withLocaisDePagamento(locaisDePagamento);
-	}
 
-	@Test
-	public void testPDFWrite() {
-		BoletoGenerator generator = new BoletoGenerator(this.boleto);
+		BoletoGenerator generator = new BoletoGenerator(boleto);
 
 		generator.toPDF("arquivo.pdf");
-		// TODO: check se ele foi gravado e tem mesmo tamanho que o InputStream
-		// gerado
+		generator.toPNG("arquivo.png");
 	}
 
 	@Test
-	public void testPNGWrite() {
-		BoletoGenerator generator = new BoletoGenerator(this.boleto);
+	public void testPDFWriteGeneration() {
+		assertTrue(new File("arquivo.pdf").exists());
+	}
 
-		generator.toPNG("arquivo.png");
-		// TODO: check se ele foi gravado e tem mesmo tamanho que o InputStream
-		// gerado
+	@Test
+	public void testPDFWrriteEscreveValorCorreto() throws IOException {
+		PDFTextStripper stripper = new PDFTextStripper();
+
+		PDDocument document = PDDocument.load(new File("arquivo.pdf"));
+		String text = stripper.getText(document);
+		document.close();
+
+		assertTrue(text.contains("40.00"));
+	}
+
+	@Test
+	public void testPDFWrriteEscreveLinhaDigitavelCorreta() throws IOException {
+		PDFTextStripper stripper = new PDFTextStripper();
+
+		PDDocument document = PDDocument.load(new File("arquivo.pdf"));
+		String text = stripper.getText(document);
+		document.close();
+
+		assertTrue(text
+				.contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
+	}
+
+	@Test
+	public void testPNGWriteGeneration() {
+		assertTrue(new File("arquivo.png").exists());
 	}
 }
