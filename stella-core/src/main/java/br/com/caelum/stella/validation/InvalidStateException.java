@@ -4,19 +4,17 @@ import java.util.List;
 
 import br.com.caelum.stella.ValidationMessage;
 
-@SuppressWarnings("serial")
 public class InvalidStateException extends RuntimeException {
 
-	private final List<ValidationMessage> validationMessages;
+    private static final long serialVersionUID = 1L;
 
-	public InvalidStateException(List<ValidationMessage> validationMessages) {
+    private final List<ValidationMessage> validationMessages;
+
+    public InvalidStateException(List<ValidationMessage> validationMessages) {
 		this.validationMessages = validationMessages;
 	}
 
 	public List<ValidationMessage> getInvalidMessages() {
 		return validationMessages;
 	}
-	
-	
-
 }
