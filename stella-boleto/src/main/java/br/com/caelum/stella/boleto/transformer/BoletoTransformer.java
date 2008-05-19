@@ -88,8 +88,8 @@ public class BoletoTransformer {
 				.getVencimento()));
 
 		try {
-			this.writer.write(400, LINHA2, formatter.valueToString(new Double(
-					boleto.getValorBoleto())));
+			this.writer.write(400, LINHA2, formatter.valueToString(boleto
+					.getValorBoleto().doubleValue()));
 		} catch (NumberFormatException e) {
 			throw new CriacaoBoletoException(
 					"Erro na formatação do valor do boleto", e);
@@ -149,8 +149,8 @@ public class BoletoTransformer {
 		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
 		try {
-			this.writer.write(430, LINHA8, formatter.valueToString(new Double(
-					boleto.getValorBoleto())));
+			this.writer.write(430, LINHA8, formatter.valueToString(boleto
+					.getValorBoleto().doubleValue()));
 		} catch (NumberFormatException e) {
 			throw new CriacaoBoletoException(
 					"Erro na formatação do valor do boleto", e);

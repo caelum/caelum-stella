@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
  */
 public class Boleto {
 
-	private String valorBoleto;
+	private BigDecimal valorBoleto;
 
-	private String qtdMoeda;
-	private String valorMoeda;
+	private BigDecimal qtdMoeda;
+	private BigDecimal valorMoeda;
 	private String especieMoeda;
 	private int codEspecieMoeda;
 
@@ -126,7 +127,7 @@ public class Boleto {
 	 * 
 	 * @return
 	 */
-	public String getQtdMoeda() {
+	public BigDecimal getQtdMoeda() {
 		return this.qtdMoeda;
 	}
 
@@ -136,28 +137,38 @@ public class Boleto {
 	 * @param qtdMoeda
 	 * @return
 	 */
-	public Boleto withQtdMoeda(String qtdMoeda) {
+	public Boleto withQtdMoeda(BigDecimal qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
 		return this;
 	}
 
 	/**
-	 * Devolve o valor do boleto
-	 * 
-	 * @return
+	 * Devolve o valor desse boleto
 	 */
-	public String getValorBoleto() {
-		return this.valorBoleto;
+	public BigDecimal getValorBoleto() {
+		return valorBoleto;
 	}
 
 	/**
-	 * Associa um valor ao boleto
+	 * Associa um valor ao boleto, convertendo a String para BigDecimal
+	 * utilizando o Locale da JVM
 	 * 
 	 * @param valorBoleto
 	 * @return
 	 */
 	public Boleto withValorBoleto(String valorBoleto) {
+		this.valorBoleto = new BigDecimal(valorBoleto);
+		return this;
+
+	}
+
+	public Boleto withValorBoleto(BigDecimal valorBoleto) {
 		this.valorBoleto = valorBoleto;
+		return this;
+	}
+
+	public Boleto withValorBoleto(double valorBoleto) {
+		this.valorBoleto = new BigDecimal(valorBoleto);
 		return this;
 	}
 
@@ -203,21 +214,19 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o valor da moeda
+	 * Devolve o valor da moeda, format
 	 * 
 	 * @return
 	 */
-	public String getValorMoeda() {
+	public BigDecimal getValorMoeda() {
 		return this.valorMoeda;
 	}
 
 	/**
 	 * Associa um valor de moeda ao boleto
 	 * 
-	 * @param valorMoeda
-	 * @return
 	 */
-	public Boleto withValorMoeda(String valorMoeda) {
+	public Boleto withValorMoeda(BigDecimal valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
 	}
@@ -394,8 +403,7 @@ public class Boleto {
 	 * @return
 	 */
 	public String getValorFormatado() {
-		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");
-		return String.format("%010d", Integer.parseInt(formatado));
+		return String.format("%011.2f", valorBoleto).replaceAll("[^0-9]", "");
 	}
 
 	/**

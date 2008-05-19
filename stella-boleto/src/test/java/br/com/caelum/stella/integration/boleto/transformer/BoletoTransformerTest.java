@@ -11,6 +11,10 @@ import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 
+/**
+ * Teste de INTEGRACAO apesar de estar no de unidade FIXME
+ * 
+ */
 public class BoletoTransformerTest {
 
 	private Boleto boleto;
@@ -22,8 +26,8 @@ public class BoletoTransformerTest {
 
 		Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
 				"1824").withDvAgencia("4").withContaCorrente("76000")
-				.withNumConvenio("1207113").withDvContaCorrete("5").withCarteira(
-						"18").withNossoNumero("9000206");
+				.withNumConvenio("1207113").withDvContaCorrete("5")
+				.withCarteira("18").withNossoNumero("9000206");
 
 		Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf(
 				"111.222.333-12").withEndereco("Av dos testes, 111 apto 333")
@@ -41,10 +45,10 @@ public class BoletoTransformerTest {
 		Banco banco = new BancoDoBrasil();
 
 		this.boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
-				.withDescricoes(descricoes).withEmissor(emissor)
-				.withSacado(sacado).withValorBoleto("40.00").withNoDocumento(
-						"4323").withInstrucoes(instrucoes).withLocaisDePagamento(
-						locaisDePagamento);
+				.withDescricoes(descricoes).withEmissor(emissor).withSacado(
+						sacado).withValorBoleto("40.00")
+				.withNoDocumento("4323").withInstrucoes(instrucoes)
+				.withLocaisDePagamento(locaisDePagamento);
 	}
 
 	@Test

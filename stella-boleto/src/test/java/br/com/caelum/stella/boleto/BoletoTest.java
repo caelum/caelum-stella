@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import org.junit.Test;
@@ -88,9 +89,30 @@ public class BoletoTest {
 	}
 
 	@Test
-	public void testGetValorFormatado() {
+	public void testGetValorFormatadoPorString() {
+		Boleto b = Boleto.newBoleto();
+		b.withValorBoleto("3.00");
+		assertEquals("0000000300", b.getValorFormatado());
+	}
+
+	@Test
+	public void testGetValorFormatadoPorStringSemPontos() {
 		Boleto b = Boleto.newBoleto();
 		b.withValorBoleto("300");
+		assertEquals("0000030000", b.getValorFormatado());
+	}
+
+	@Test
+	public void testGetValorFormatadoPorDouble() {
+		Boleto b = Boleto.newBoleto();
+		b.withValorBoleto(3d);
+		assertEquals("0000000300", b.getValorFormatado());
+	}
+
+	@Test
+	public void testGetValorFormatadoPorBigDecimal() {
+		Boleto b = Boleto.newBoleto();
+		b.withValorBoleto(new BigDecimal(3));
 		assertEquals("0000000300", b.getValorFormatado());
 	}
 
