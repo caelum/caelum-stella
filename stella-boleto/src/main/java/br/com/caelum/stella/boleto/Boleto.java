@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,9 +30,9 @@ public class Boleto {
 	private Datas datas;
 	private Sacado sacado;
 	private Emissor emissor;
-	private List<String> instrucoes;
-	private List<String> descricoes;
-	private List<String> locaisDePagamento;
+	private List<String> instrucoes = Collections.emptyList();
+	private List<String> descricoes = Collections.emptyList();
+	private List<String> locaisDePagamento = Collections.emptyList();
 
 	private Boleto() {
 	}
