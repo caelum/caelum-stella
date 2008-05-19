@@ -17,25 +17,6 @@ import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 
 public class BoletoTransformerTest {
 
-	static class BoletoWriterTest implements BoletoWriter {
-		public void write(float x, float y, String text) {
-			Assert.assertNotNull(text);
-		}
-
-		public void writeBold(float x, float y, String text) {
-			write(x, y, text);
-		}
-
-		public void writeImage(float x, float y, BufferedImage image,
-				float width, float height) throws IOException {
-			Assert.assertNotNull(image);
-		}
-
-		public InputStream toInputStream() {
-			return null;
-		}
-	}
-
 	private Boleto boleto;
 	private Datas datas;
 	private Emissor emissor;
@@ -98,8 +79,29 @@ public class BoletoTransformerTest {
 
 	@Test
 	public void transforma() {
+
+		class BoletoWriterMock implements BoletoWriter {
+
+			public void write(float x, float y, String text) {
+				Assert.assertNotNull(text);
+			}
+
+			public void writeBold(float x, float y, String text) {
+				Assert.assertNotNull(text);
+			}
+
+			public void writeImage(float x, float y, BufferedImage image,
+					float width, float height) throws IOException {
+				Assert.assertNotNull(image);
+			}
+
+			public InputStream toInputStream() {
+				return null;
+			}
+		}
+
 		BoletoTransformer transformer = new BoletoTransformer(
-				new BoletoWriterTest());
+				new BoletoWriterMock());
 		transformer.transform(this.boleto);
 	}
 }
