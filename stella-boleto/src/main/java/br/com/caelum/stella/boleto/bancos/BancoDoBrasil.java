@@ -47,36 +47,46 @@ public class BancoDoBrasil implements Banco {
 	public String geraLinhaDigitavelPara(Boleto boleto) {
 		String codigoDeBarras = geraCodigoDeBarrasPara(boleto);
 
-		StringBuilder builder = new StringBuilder();
-		builder.append(getNumeroFormatado());
-		builder.append(String.valueOf(boleto.getCodEspecieMoeda()));
-		builder.append(codigoDeBarras.substring(19, 24));
-		builder.append("D"); // digito verificador, calculado depois
-		builder.append(codigoDeBarras.substring(24, 34));
-		builder.append("D"); // digito verificador, calculado depois
-		builder.append(codigoDeBarras.substring(34, 44));
-		builder.append("D"); // digito verificador, calculado depois
-		builder.append(codigoDeBarras.charAt(4));
-		builder.append(codigoDeBarras.substring(5, 9));
-		builder.append(boleto.getValorFormatado());
+		StringBuilder bloco1 = new StringBuilder();
+		bloco1.append(getNumeroFormatado());
+		bloco1.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		bloco1.append(codigoDeBarras.substring(19, 24));
+		bloco1.append(this.dvGenerator.geraDVLinhaDigitavel(bloco1.toString()));
 
-		String linhaDigitavel = builder.toString();
-		builder.replace(9, 10, String.valueOf(this.dvGenerator
-				.geraDVLinhaDigitavel(linhaDigitavel.substring(0, 9))));
-		builder.replace(20, 21, String.valueOf(this.dvGenerator
-				.geraDVLinhaDigitavel(linhaDigitavel.substring(10, 20))));
-		builder.replace(31, 32, String.valueOf(this.dvGenerator
-				.geraDVLinhaDigitavel(linhaDigitavel.substring(21, 31))));
+		StringBuilder bloco2 = new StringBuilder();
+		bloco2.append(codigoDeBarras.substring(24, 34));
+		bloco2.append(this.dvGenerator.geraDVLinhaDigitavel(bloco2.toString()));
 
-		builder.insert(5, '.');
-		builder.insert(11, "  ");
-		builder.insert(18, '.');
-		builder.insert(25, "  ");
-		builder.insert(32, '.');
-		builder.insert(39, "  ");
-		builder.insert(42, "  ");
+		StringBuilder bloco3 = new StringBuilder();
+		bloco3.append(codigoDeBarras.substring(34, 44));
+		bloco3.append(this.dvGenerator.geraDVLinhaDigitavel(bloco3.toString()));
 
-		return builder.toString();
+		StringBuilder bloco4 = new StringBuilder();
+		bloco4.append(codigoDeBarras.charAt(4));
+		bloco4.append(codigoDeBarras.substring(5, 9));
+		bloco4.append(boleto.getValorFormatado());
+
+		StringBuilder linhaDigitavel = new StringBuilder();
+		linhaDigitavel.append(bloco1);
+		linhaDigitavel.append(bloco2);
+		linhaDigitavel.append(bloco3);
+		linhaDigitavel.append(bloco4);
+
+		linhaDigitavel = linhaDigitavelFormater(linhaDigitavel);
+
+		return linhaDigitavel.toString();
+	}
+
+	private StringBuilder linhaDigitavelFormater(StringBuilder linhaDigitavel) {
+		linhaDigitavel.insert(5, '.');
+		linhaDigitavel.insert(11, "  ");
+		linhaDigitavel.insert(18, '.');
+		linhaDigitavel.insert(25, "  ");
+		linhaDigitavel.insert(32, '.');
+		linhaDigitavel.insert(39, "  ");
+		linhaDigitavel.insert(42, "  ");
+
+		return linhaDigitavel;
 	}
 
 	public String getNumeroFormatado() {
