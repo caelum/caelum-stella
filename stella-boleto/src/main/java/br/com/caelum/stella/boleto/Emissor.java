@@ -20,6 +20,11 @@ public class Emissor {
 	private Emissor() {
 	}
 
+	/**
+	 * Cria novo emissor
+	 * 
+	 * @return
+	 */
 	public static Emissor newEmissor() {
 		return new Emissor();
 	}
@@ -145,32 +150,69 @@ public class Emissor {
 		return this;
 	}
 
+	/**
+	 * Devolve o digito verificador (DV) da conta corrente
+	 * 
+	 * @return
+	 */
 	public String getDvContaCorrente() {
 		return this.dvContaCorrete;
 	}
 
+	/**
+	 * Associa um digito verificador (DV) da conta corrente ao emissor
+	 * 
+	 * @param dv
+	 * @return
+	 */
 	public Emissor withDvContaCorrete(String dv) {
 		this.dvContaCorrete = dv;
 		return this;
 	}
 
+	/**
+	 * Devolve o digito verificador (DV) da agencia
+	 * 
+	 * @return
+	 */
 	public String getDvAgencia() {
 		return this.dvAgencia;
 	}
 
+	/**
+	 * Associa um digito verificador (DV) da agencia ao emissor
+	 * 
+	 * @param dv
+	 * @return
+	 */
 	public Emissor withDvAgencia(String dv) {
 		this.dvAgencia = dv;
 		return this;
 	}
 
+	/**
+	 * Devolve a conta corrente formatada (com 8 digitos)
+	 * 
+	 * @return
+	 */
 	public String getContaCorrenteFormatado() {
 		return String.format("%08d", Integer.parseInt(this.contaCorrente));
 	}
 
+	/**
+	 * Devolve o nosso número formatado (com 10 digitos)
+	 * 
+	 * @return
+	 */
 	public String getNossoNumeroFormatado() {
 		return String.format("%010d", Integer.parseInt(this.nossoNumero));
 	}
 
+	/**
+	 * Devolve o número do convênio formatado (com 7 digitos)
+	 * 
+	 * @return
+	 */
 	public String getNumConvenioFormatado() {
 		return String.format("%07d", Integer.parseInt(this.numConvenio));
 	}

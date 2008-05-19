@@ -63,21 +63,37 @@ public class Boleto {
 		return this;
 	}
 
+	/**
+	 * Devolve as datas do boleto
+	 * 
+	 * @return
+	 */
 	public Datas getDatas() {
 		return this.datas;
 	}
 
+	/**
+	 * Associa datas ao boleto
+	 * 
+	 * @param datas
+	 * 
+	 */
 	public Boleto withDatas(Datas datas) {
 		this.datas = datas;
 		return this;
 	}
 
+	/**
+	 * Devolve a espécie do documento do boleto. Valor padrão: "DV"
+	 * 
+	 * @return
+	 */
 	public String getEspecieDocumento() {
 		return this.especieDocumento;
 	}
 
 	/**
-	 * Associa a espécie do documento ao boleto Valor padrão: "DV"
+	 * Associa a espécie do documento ao boleto. Valor padrão: "DV"
 	 * 
 	 * @param especieDocumento
 	 */
@@ -86,6 +102,11 @@ public class Boleto {
 		return this;
 	}
 
+	/**
+	 * Devolve o número do documento. Código informado pelo banco.
+	 * 
+	 * @return
+	 */
 	public String getNoDocumento() {
 		return this.noDocumento;
 	}
@@ -100,82 +121,182 @@ public class Boleto {
 		return this;
 	}
 
+	/**
+	 * Devolve a quantidade da moeda
+	 * 
+	 * @return
+	 */
 	public String getQtdMoeda() {
 		return this.qtdMoeda;
 	}
 
+	/**
+	 * Associa a quantidade de moeda ao boleto
+	 * 
+	 * @param qtdMoeda
+	 * @return
+	 */
 	public Boleto withQtdMoeda(String qtdMoeda) {
 		this.qtdMoeda = qtdMoeda;
 		return this;
 	}
 
+	/**
+	 * Devolve o valor do boleto
+	 * 
+	 * @return
+	 */
 	public String getValorBoleto() {
 		return this.valorBoleto;
 	}
 
+	/**
+	 * Associa um valor ao boleto
+	 * 
+	 * @param valorBoleto
+	 * @return
+	 */
 	public Boleto withValorBoleto(String valorBoleto) {
 		this.valorBoleto = valorBoleto;
 		return this;
 	}
 
+	/**
+	 * Devolve a espécie da moeda. Valor padrão: "R$"
+	 * 
+	 * @return
+	 */
 	public String getEspecieMoeda() {
 		return this.especieMoeda;
 	}
 
+	/**
+	 * Associa uma espécie de moeda ao boleto. Valor padrão: "R$"
+	 * 
+	 * @param especieMoeda
+	 * @return
+	 */
 	private Boleto withEspecieMoeda(String especieMoeda) {
 		this.especieMoeda = especieMoeda;
 		return this;
 	}
 
+	/**
+	 * Devolve o código da espécie da moeda. Valor padrão: '9' (para R$)
+	 * 
+	 * @return
+	 */
 	public int getCodEspecieMoeda() {
 		return this.codEspecieMoeda;
 	}
 
+	/**
+	 * Associa um código da espécie da moeda ao boleto. Valor padrão: '9' (para
+	 * R$)
+	 * 
+	 * @param codEspecieMoeda
+	 * @return
+	 */
 	private Boleto withCodEspecieMoeda(int codEspecieMoeda) {
 		this.codEspecieMoeda = codEspecieMoeda;
 		return this;
 	}
 
+	/**
+	 * Devolve o valor da moeda
+	 * 
+	 * @return
+	 */
 	public String getValorMoeda() {
 		return this.valorMoeda;
 	}
 
+	/**
+	 * Associa um valor de moeda ao boleto
+	 * 
+	 * @param valorMoeda
+	 * @return
+	 */
 	public Boleto withValorMoeda(String valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
 	}
 
+	/**
+	 * Devolve o banco do boleto
+	 * 
+	 * @return
+	 */
 	public Banco getBanco() {
 		return this.banco;
 	}
 
+	/**
+	 * Associa um banco ao boleto
+	 * 
+	 * @param banco
+	 * @return
+	 */
 	public Boleto withBanco(Banco banco) {
 		this.banco = banco;
 		return this;
 	}
 
+	/**
+	 * Devolve o sacado do banco
+	 * 
+	 * @return
+	 */
 	public Sacado getSacado() {
 		return this.sacado;
 	}
 
+	/**
+	 * Associa um sacado ao banco
+	 * 
+	 * @param sacado
+	 * @return
+	 */
 	public Boleto withSacado(Sacado sacado) {
 		this.sacado = sacado;
 		return this;
 	}
 
+	/**
+	 * Devolve o emissor do boleto
+	 * 
+	 * @return
+	 */
 	public Emissor getEmissor() {
 		return this.emissor;
 	}
 
+	/**
+	 * Associa um sacado ao boleto
+	 * 
+	 * @param emissor
+	 * @return
+	 */
 	public Boleto withEmissor(Emissor emissor) {
 		this.emissor = emissor;
 		return this;
 	}
 
+	/**
+	 * Devolve as instruções do boleto
+	 * 
+	 * @return
+	 */
 	public List<String> getInstrucoes() {
 		return this.instrucoes;
 	}
 
+	/**
+	 * Associa instruções ao boleto
+	 * 
+	 * @param instrucoes
+	 * @return
+	 */
 	public Boleto withInstrucoes(String... instrucoes) {
 		if (instrucoes.length > 5)
 			throw new IllegalArgumentException(
@@ -208,10 +329,21 @@ public class Boleto {
 		return this;
 	}
 
+	/**
+	 * Devolve os locais de pagamento do boleto
+	 * 
+	 * @return
+	 */
 	public List<String> getLocaisDePagamento() {
 		return this.locaisDePagamento;
 	}
 
+	/**
+	 * Associa locais de pagamento ao boleto
+	 * 
+	 * @param locaisDePagamento
+	 * @return
+	 */
 	public Boleto withLocaisDePagamento(String... locaisDePagamento) {
 		if (locaisDePagamento.length > 2)
 			throw new IllegalArgumentException(
@@ -256,11 +388,21 @@ public class Boleto {
 		return (int) diferencasEmDias;
 	}
 
+	/**
+	 * Devolve o valor do boleto formatado (com 10 digitos)
+	 * 
+	 * @return
+	 */
 	public String getValorFormatado() {
 		String formatado = this.valorBoleto.replaceAll("[^0-9]", "");
 		return String.format("%010d", Integer.parseInt(formatado));
 	}
 
+	/**
+	 * Devolve o número do documento formatado (com 4 digitos)
+	 * 
+	 * @return
+	 */
 	public String getNoDocumentoFormatado() {
 		return String.format("%04d", Integer.parseInt(this.noDocumento));
 	}

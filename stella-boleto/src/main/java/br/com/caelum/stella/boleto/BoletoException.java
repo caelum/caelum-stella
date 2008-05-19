@@ -1,10 +1,13 @@
 package br.com.caelum.stella.boleto;
 
+/**
+ * Define as Exceptions de um boleto
+ * 
+ * @author Cauê Guerra
+ * 
+ */
 public class BoletoException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public BoletoException(String message, Exception e) {

@@ -19,10 +19,6 @@ public class BancoDoBrasil implements Banco {
 
 	private final DVGenerator dvGenerator = new DVGenerator();
 
-	public BancoDoBrasil() {
-
-	}
-
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder codigoDeBarras = new StringBuilder();
 		codigoDeBarras.append(getNumeroFormatado());
