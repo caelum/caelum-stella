@@ -21,27 +21,27 @@ public class BancoDoBrasilTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().comDocumento(4, 5, 2008)
-				.comProcessamento(4, 5, 2008).comVencimento(2, 5, 2008);
+		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+				.withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
-		Emissor emissor = Emissor.newEmissor().comCedente("Caue").comAgencia(
-				"1824").comDvAgencia("4").comContaCorrente("76000")
-				.comNumConvenio("1207113").comDvContaCorrete("5").comCarteira(
-						"18").comNossoNumero("0009000206");
+		Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
+				"1824").withDvAgencia("4").withContaCorrente("76000")
+				.withNumConvenio("1207113").withDvContaCorrete("5").withCarteira(
+						"18").withNossoNumero("0009000206");
 
-		Sacado sacado = Sacado.newSacado().comNome("Fulano");
+		Sacado sacado = Sacado.newSacado().withNome("Fulano");
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.newBoleto().comDatas(datas).comEmissor(emissor)
-				.comSacado(sacado).comValorBoleto("40.00").comNoDocumento(
+		this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
+				.withSacado(sacado).withValorBoleto("40.00").withNoDocumento(
 						"4323");
 	}
 
 	@Test
 	public void testLinhaDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.comBanco(this.banco);
+		this.boleto = this.boleto.withBanco(this.banco);
 
 		assertEquals(
 				"00190.00009  01207.113000  09000.206186  5  38600000004000",
@@ -51,7 +51,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.comBanco(this.banco);
+		this.boleto = this.boleto.withBanco(this.banco);
 
 		assertEquals("00195386000000040000000001207113000900020618", this.banco
 				.geraCodigoDeBarrasPara(this.boleto));

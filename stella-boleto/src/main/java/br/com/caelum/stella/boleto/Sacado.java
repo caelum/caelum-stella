@@ -27,7 +27,7 @@ public class Sacado {
 		return this.nome;
 	}
 
-	public Sacado comNome(String nome) {
+	public Sacado withNome(String nome) {
 		this.nome = nome;
 		return this;
 	}
@@ -36,7 +36,7 @@ public class Sacado {
 		return this.cpf;
 	}
 
-	public Sacado comCpf(String cpf) {
+	public Sacado withCpf(String cpf) {
 		this.cpf = cpf;
 		return this;
 	}
@@ -45,7 +45,7 @@ public class Sacado {
 		return this.endereco;
 	}
 
-	public Sacado comEndereco(String endereco) {
+	public Sacado withEndereco(String endereco) {
 		this.endereco = endereco;
 		return this;
 	}
@@ -54,7 +54,7 @@ public class Sacado {
 		return this.cep;
 	}
 
-	public Sacado comCep(String cep) {
+	public Sacado withCep(String cep) {
 		this.cep = cep;
 		return this;
 	}
@@ -63,7 +63,7 @@ public class Sacado {
 		return this.bairro;
 	}
 
-	public Sacado comBairro(String bairro) {
+	public Sacado withBairro(String bairro) {
 		this.bairro = bairro;
 		return this;
 	}
@@ -72,7 +72,7 @@ public class Sacado {
 		return this.cidade;
 	}
 
-	public Sacado comCidade(String cidade) {
+	public Sacado withCidade(String cidade) {
 		this.cidade = cidade;
 		return this;
 	}
@@ -81,7 +81,7 @@ public class Sacado {
 		return this.uf;
 	}
 
-	public Sacado comUf(String uf) {
+	public Sacado withUf(String uf) {
 		this.uf = uf;
 		return this;
 	}

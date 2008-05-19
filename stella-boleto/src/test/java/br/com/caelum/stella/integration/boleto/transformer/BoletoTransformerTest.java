@@ -17,18 +17,18 @@ public class BoletoTransformerTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().comDocumento(4, 5, 2008)
-				.comProcessamento(4, 5, 2008).comVencimento(2, 5, 2008);
+		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+				.withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
-		Emissor emissor = Emissor.newEmissor().comCedente("Caue").comAgencia(
-				"1824").comDvAgencia("4").comContaCorrente("76000")
-				.comNumConvenio("1207113").comDvContaCorrete("5").comCarteira(
-						"18").comNossoNumero("9000206");
+		Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
+				"1824").withDvAgencia("4").withContaCorrente("76000")
+				.withNumConvenio("1207113").withDvContaCorrete("5").withCarteira(
+						"18").withNossoNumero("9000206");
 
-		Sacado sacado = Sacado.newSacado().comNome("Fulano da Silva").comCpf(
-				"111.222.333-12").comEndereco("Av dos testes, 111 apto 333")
-				.comBairro("Bairro Teste").comCep("01234-111").comCidade(
-						"São Paulo").comUf("SP");
+		Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf(
+				"111.222.333-12").withEndereco("Av dos testes, 111 apto 333")
+				.withBairro("Bairro Teste").withCep("01234-111").withCidade(
+						"São Paulo").withUf("SP");
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
 				"descricao 4", "descricao 5" };
@@ -40,10 +40,10 @@ public class BoletoTransformerTest {
 
 		Banco banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.newBoleto().comBanco(banco).comDatas(datas)
-				.comDescricoes(descricoes).comEmissor(emissor)
-				.comSacado(sacado).comValorBoleto("40.00").comNoDocumento(
-						"4323").comInstrucoes(instrucoes).comLocaisDePagamento(
+		this.boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
+				.withDescricoes(descricoes).withEmissor(emissor)
+				.withSacado(sacado).withValorBoleto("40.00").withNoDocumento(
+						"4323").withInstrucoes(instrucoes).withLocaisDePagamento(
 						locaisDePagamento);
 	}
 

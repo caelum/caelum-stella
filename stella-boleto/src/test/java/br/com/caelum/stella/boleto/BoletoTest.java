@@ -28,7 +28,7 @@ public class BoletoTest {
 
 		data.set(Calendar.HOUR_OF_DAY, 1);
 
-		b.comDatas(Datas.newDatas().comVencimento(data));
+		b.withDatas(Datas.newDatas().withVencimento(data));
 
 		assertEquals(3860, b.getFatorVencimento());
 	}
@@ -44,7 +44,7 @@ public class BoletoTest {
 
 		data.set(Calendar.HOUR_OF_DAY, 23);
 
-		b.comDatas(Datas.newDatas().comVencimento(data));
+		b.withDatas(Datas.newDatas().withVencimento(data));
 
 		assertEquals(3860, b.getFatorVencimento());
 	}
@@ -63,7 +63,7 @@ public class BoletoTest {
 		data.set(Calendar.SECOND, 59);
 		data.set(Calendar.MILLISECOND, 999);
 
-		b.comDatas(Datas.newDatas().comVencimento(data));
+		b.withDatas(Datas.newDatas().withVencimento(data));
 
 		assertEquals(3860, b.getFatorVencimento());
 	}
@@ -82,7 +82,7 @@ public class BoletoTest {
 		data.set(Calendar.SECOND, 0);
 		data.set(Calendar.MILLISECOND, 0);
 
-		b.comDatas(Datas.newDatas().comVencimento(data));
+		b.withDatas(Datas.newDatas().withVencimento(data));
 
 		assertEquals(3860, b.getFatorVencimento());
 	}
@@ -90,51 +90,51 @@ public class BoletoTest {
 	@Test
 	public void testGetValorFormatado() {
 		Boleto b = Boleto.newBoleto();
-		b.comValorBoleto("300");
+		b.withValorBoleto("300");
 		assertEquals("0000000300", b.getValorFormatado());
 	}
 
 	@Test
 	public void testGetNoDocumentoFormatado() {
 		Boleto b = Boleto.newBoleto();
-		b.comNoDocumento("232");
+		b.withNoDocumento("232");
 		assertEquals("0232", b.getNoDocumentoFormatado());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBoletoComMaisDe5Instrucoes() {
 		Boleto b = Boleto.newBoleto();
-		b.comInstrucoes("", "", "", "", "", "");
+		b.withInstrucoes("", "", "", "", "", "");
 	}
 
 	@Test
 	public void testBoletoCom5Instrucoes() {
 		Boleto b = Boleto.newBoleto();
-		b.comInstrucoes("", "", "", "", "");
+		b.withInstrucoes("", "", "", "", "");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBoletoComMaisDe5Descricoes() {
 		Boleto b = Boleto.newBoleto();
-		b.comDescricoes("", "", "", "", "", "");
+		b.withDescricoes("", "", "", "", "", "");
 	}
 
 	@Test
 	public void testBoletoCom5Descricoes() {
 		Boleto b = Boleto.newBoleto();
-		b.comDescricoes("", "", "", "", "");
+		b.withDescricoes("", "", "", "", "");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBoletoComMaisDe2Locais() {
 		Boleto b = Boleto.newBoleto();
-		b.comLocaisDePagamento("", "", "");
+		b.withLocaisDePagamento("", "", "");
 	}
 
 	@Test
 	public void testBoletoCom2Locais() {
 		Boleto b = Boleto.newBoleto();
-		b.comLocaisDePagamento("", "");
+		b.withLocaisDePagamento("", "");
 	}
 
 }
