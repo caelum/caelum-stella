@@ -15,7 +15,7 @@ import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
  * Teste de INTEGRACAO apesar de estar no de unidade FIXME
  * 
  */
-public class BoletoTransformerTest {
+public class BoletoTransformerIntegrationTest {
 
 	private Boleto boleto;
 
