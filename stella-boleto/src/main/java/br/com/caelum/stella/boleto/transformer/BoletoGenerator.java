@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -43,16 +44,10 @@ public class BoletoGenerator {
 	 * @param arquivo
 	 */
 	public void toPDF(File arquivo) {
-		PDFBoletoWriter writer = new PDFBoletoWriter();
-
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-
-		InputStream is = transformer.transform(this.boleto);
-
+		FileOutputStream fos = null;
 		try {
-			FileOutputStream fos = new FileOutputStream(arquivo);
-			byte[] b = new byte[is.available()];
-			is.read(b);
+			fos = new FileOutputStream(arquivo);
+			byte[] b = toPDF();
 
 			fos.write(b);
 			fos.close();
@@ -65,6 +60,16 @@ public class BoletoGenerator {
 		} catch (IOException e) {
 			throw new GeracaoBoletoException(
 					"Erro na geração do boleto em PDF", e);
+		} finally {
+			tryToClose(fos);
+		}
+	}
+
+	private void tryToClose(Closeable c) {
+		try {
+			c.close();
+		} catch (IOException e) {
+			throw new GeracaoBoletoException("Erro ao fechar stream", e);
 		}
 	}
 
@@ -84,27 +89,58 @@ public class BoletoGenerator {
 	 * @param arquivo
 	 */
 	public void toPNG(File arquivo) {
-		PNGBoletoWriter writer = new PNGBoletoWriter();
-
-		BoletoTransformer transformer = new BoletoTransformer(writer);
-
-		InputStream is = transformer.transform(this.boleto);
-
+		FileOutputStream fos = null;
 		try {
-			FileOutputStream fos = new FileOutputStream(arquivo);
+			fos = new FileOutputStream(arquivo);
 
-			byte[] b = new byte[is.available()];
-			is.read(b);
+			byte[] b = toPNG();
 
 			fos.write(b);
-			fos.close();
 		} catch (FileNotFoundException e) {
 			throw new GeracaoBoletoException(
 					"Erro na geração do boleto em PNG", e);
 		} catch (IOException e) {
 			throw new GeracaoBoletoException(
 					"Erro na geração do boleto em PNG", e);
+		} finally {
+			tryToClose(fos);
 		}
 
+	}
+
+	/**
+	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
+	 */
+	public byte[] toPDF() {
+		return to(new PDFBoletoWriter());
+	}
+
+	/**
+	 * Devolve um array de bytes representando o PNG desse boleto ja gerado.
+	 */
+	public byte[] toPNG() {
+		return to(new PNGBoletoWriter());
+	}
+
+	private byte[] to(BoletoWriter writer) {
+		BoletoTransformer transformer = new BoletoTransformer(writer);
+
+		InputStream is = transformer.transform(this.boleto);
+
+		byte[] b;
+		try {
+			b = new byte[is.available()];
+			is.read(b);
+
+		} catch (NumberFormatException e) {
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PDF", e);
+		} catch (IOException e) {
+			throw new GeracaoBoletoException(
+					"Erro na geração do boleto em PDF", e);
+		} finally {
+			tryToClose(is);
+		}
+		return b;
 	}
 }
