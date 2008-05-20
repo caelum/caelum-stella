@@ -19,31 +19,35 @@ import br.com.caelum.stella.validation.InvalidValue;
  * String key = (simpleName + "." + errorName);
  * </code>
  * <p>
- * Onde simpleName é o atributo simpleName do Enum e o
- * errorName é o nome da constante enum. Além disso, a chave é convertida em letras minúsculas.
+ * Onde simpleName é o atributo simpleName do Enum e o errorName é o nome da
+ * constante enum. Além disso, a chave é convertida em letras minúsculas.
  * </p>
- * <p> Veja o exemplo:</p>
- * <p> A chave do erro representado por CPFError.INVALID_DIGITS é cpferror.invalid_digits .</p>
+ * <p>
+ * Veja o exemplo:
+ * </p>
+ * <p>
+ * A chave do erro representado por CPFError.INVALID_DIGITS é
+ * cpferror.invalid_digits .
+ * </p>
  * 
  * @author Fabio Kung
  * @author Leonardo Bessa
  * 
  */
 @SuppressWarnings("unchecked")
-public class ResourceBundleMessageProducer implements
-		MessageProducer {
-	
+public class ResourceBundleMessageProducer implements MessageProducer {
+
 	private final ResourceBundle bundle;
 
-	
 	/**
-	 * @param bundle ResourceBlunde que contém o mapa que associa erros as mensagens. 
+	 * @param bundle
+	 *            ResourceBlunde que contém o mapa que associa erros as
+	 *            mensagens.
 	 */
-	public ResourceBundleMessageProducer(ResourceBundle bundle) {
+	public ResourceBundleMessageProducer(final ResourceBundle bundle) {
 		this.bundle = bundle;
 	}
 
-	
 	/**
 	 * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
 	 */

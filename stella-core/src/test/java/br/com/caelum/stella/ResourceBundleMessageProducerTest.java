@@ -1,22 +1,22 @@
 package br.com.caelum.stella;
 
-import br.com.caelum.stella.ResourceBundleMessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.InvalidValue;
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
+import java.text.MessageFormat;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import java.text.MessageFormat;
+
+import org.junit.Test;
+
+import br.com.caelum.stella.validation.InvalidValue;
 
 /**
  * @author Fabio Kung
  */
 public class ResourceBundleMessageProducerTest {
-    enum Errors implements InvalidValue{
+    enum Errors implements InvalidValue {
         ANY, OTHER, WITH_COMPOSITE_NAME;
     }
 
@@ -24,7 +24,7 @@ public class ResourceBundleMessageProducerTest {
     public void shouldUseEnumNameLowerCasedAsKey() {
         final String errorMessage = "message for ANY error";
         ResourceBundle bundleMock = new ResourceBundle() {
-            protected Object handleGetObject(String s) {
+            protected Object handleGetObject(final String s) {
                 String errorKey = (MessageFormat.format("{0}.{1}",
                         Errors.class.getSimpleName(),
                         Errors.WITH_COMPOSITE_NAME.name()))
