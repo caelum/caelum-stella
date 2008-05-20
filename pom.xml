@@ -410,7 +410,13 @@
 
 	<reporting>
 		<plugins>
-			<plugin>
+		  <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 			</plugin>
@@ -426,6 +432,10 @@
 					<headerLocation>LICENSE.txt</headerLocation>
 				</configuration>
 			</plugin>
+		  <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>changelog-maven-plugin</artifactId>
+      </plugin>
 		</plugins>
 	</reporting>
 
