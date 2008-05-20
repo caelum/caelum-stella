@@ -22,125 +22,125 @@ import br.com.caelum.stella.boleto.GeracaoBoletoException;
  */
 public class BoletoGenerator {
 
-	private final Boleto boleto;
+    private final Boleto boleto;
 
-	public BoletoGenerator(Boleto boleto) {
-		this.boleto = boleto;
-	}
+    public BoletoGenerator(Boleto boleto) {
+        this.boleto = boleto;
+    }
 
-	/**
-	 * Gera um boleto em PDF, e grava no caminho indicado
-	 * 
-	 * @param arquivo
-	 */
-	public void toPDF(String arquivo) {
-		File file = new File(arquivo);
-		toPDF(file);
-	}
+    /**
+     * Gera um boleto em PDF, e grava no caminho indicado
+     * 
+     * @param arquivo
+     */
+    public void toPDF(String arquivo) {
+        File file = new File(arquivo);
+        toPDF(file);
+    }
 
-	/**
-	 * Gera um boleto em PDF, e grava no arquivo indicado
-	 * 
-	 * @param arquivo
-	 */
-	public void toPDF(File arquivo) {
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(arquivo);
-			byte[] b = toPDF();
+    /**
+     * Gera um boleto em PDF, e grava no arquivo indicado
+     * 
+     * @param arquivo
+     */
+    public void toPDF(File arquivo) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(arquivo);
+            byte[] b = toPDF();
 
-			fos.write(b);
-			fos.close();
-		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
-		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
-		} finally {
-			tryToClose(fos);
-		}
-	}
+            fos.write(b);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PDF", e);
+        } catch (NumberFormatException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PDF", e);
+        } catch (IOException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PDF", e);
+        } finally {
+            tryToClose(fos);
+        }
+    }
 
-	private void tryToClose(Closeable c) {
-		try {
-			c.close();
-		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro ao fechar stream", e);
-		}
-	}
+    private void tryToClose(Closeable c) {
+        try {
+            c.close();
+        } catch (IOException e) {
+            throw new GeracaoBoletoException("Erro ao fechar stream", e);
+        }
+    }
 
-	/**
-	 * Gera um boleto em PNG, e grava no caminho indicado
-	 * 
-	 * @param arquivo
-	 */
-	public void toPNG(String arquivo) {
-		File file = new File(arquivo);
-		toPNG(file);
-	}
+    /**
+     * Gera um boleto em PNG, e grava no caminho indicado
+     * 
+     * @param arquivo
+     */
+    public void toPNG(String arquivo) {
+        File file = new File(arquivo);
+        toPNG(file);
+    }
 
-	/**
-	 * Gera um boleto em PNG, e grava no arquivo indicado
-	 * 
-	 * @param arquivo
-	 */
-	public void toPNG(File arquivo) {
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(arquivo);
+    /**
+     * Gera um boleto em PNG, e grava no arquivo indicado
+     * 
+     * @param arquivo
+     */
+    public void toPNG(File arquivo) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(arquivo);
 
-			byte[] b = toPNG();
+            byte[] b = toPNG();
 
-			fos.write(b);
-		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PNG", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PNG", e);
-		} finally {
-			tryToClose(fos);
-		}
+            fos.write(b);
+        } catch (FileNotFoundException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PNG", e);
+        } catch (IOException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PNG", e);
+        } finally {
+            tryToClose(fos);
+        }
 
-	}
+    }
 
-	/**
-	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
-	 */
-	public byte[] toPDF() {
-		return to(new PDFBoletoWriter());
-	}
+    /**
+     * Devolve um array de bytes representando o PDF desse boleto ja gerado.
+     */
+    public byte[] toPDF() {
+        return to(new PDFBoletoWriter());
+    }
 
-	/**
-	 * Devolve um array de bytes representando o PNG desse boleto ja gerado.
-	 */
-	public byte[] toPNG() {
-		return to(new PNGBoletoWriter());
-	}
+    /**
+     * Devolve um array de bytes representando o PNG desse boleto ja gerado.
+     */
+    public byte[] toPNG() {
+        return to(new PNGBoletoWriter());
+    }
 
-	private byte[] to(BoletoWriter writer) {
-		BoletoTransformer transformer = new BoletoTransformer(writer);
+    private byte[] to(BoletoWriter writer) {
+        BoletoTransformer transformer = new BoletoTransformer(writer);
 
-		InputStream is = transformer.transform(this.boleto);
+        InputStream is = transformer.transform(this.boleto);
 
-		byte[] b;
-		try {
-			b = new byte[is.available()];
-			is.read(b);
+        byte[] b;
+        try {
+            b = new byte[is.available()];
+            is.read(b);
 
-		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
-		} finally {
-			tryToClose(is);
-		}
-		return b;
-	}
+        } catch (NumberFormatException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PDF", e);
+        } catch (IOException e) {
+            throw new GeracaoBoletoException(
+                    "Erro na geração do boleto em PDF", e);
+        } finally {
+            tryToClose(is);
+        }
+        return b;
+    }
 }

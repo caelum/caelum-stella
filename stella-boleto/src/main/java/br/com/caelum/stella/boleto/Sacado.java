@@ -8,164 +8,164 @@ package br.com.caelum.stella.boleto;
  * 
  */
 public class Sacado {
-	private String nome;
-	private String cpf;
-	private String endereco;
-	private String cep;
-	private String bairro;
-	private String cidade;
-	private String uf;
+    private String nome;
+    private String cpf;
+    private String endereco;
+    private String cep;
+    private String bairro;
+    private String cidade;
+    private String uf;
 
-	private Sacado() {
-	}
+    private Sacado() {
+    }
 
-	/**
-	 * Cria um novo sacado
-	 * 
-	 * @return
-	 */
-	public static Sacado newSacado() {
-		return new Sacado();
-	}
+    /**
+     * Cria um novo sacado
+     * 
+     * @return
+     */
+    public static Sacado newSacado() {
+        return new Sacado();
+    }
 
-	/**
-	 * Devolve o nome do sacado
-	 * 
-	 * @return
-	 */
-	public String getNome() {
-		return this.nome;
-	}
+    /**
+     * Devolve o nome do sacado
+     * 
+     * @return
+     */
+    public String getNome() {
+        return this.nome;
+    }
 
-	/**
-	 * Associa um nome ao sacado
-	 * 
-	 * @param nome
-	 * @return
-	 */
-	public Sacado withNome(String nome) {
-		this.nome = nome;
-		return this;
-	}
+    /**
+     * Associa um nome ao sacado
+     * 
+     * @param nome
+     * @return
+     */
+    public Sacado withNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
 
-	/**
-	 * Devolve o CPF do sacado
-	 * 
-	 * @return
-	 */
-	public String getCpf() {
-		return this.cpf;
-	}
+    /**
+     * Devolve o CPF do sacado
+     * 
+     * @return
+     */
+    public String getCpf() {
+        return this.cpf;
+    }
 
-	/**
-	 * Associa um CPF ao sacado
-	 * 
-	 * @param cpf
-	 * @return
-	 */
-	public Sacado withCpf(String cpf) {
-		this.cpf = cpf;
-		return this;
-	}
+    /**
+     * Associa um CPF ao sacado
+     * 
+     * @param cpf
+     * @return
+     */
+    public Sacado withCpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
 
-	/**
-	 * Devolve o endereço do sacado
-	 * 
-	 * @return
-	 */
-	public String getEndereco() {
-		return this.endereco;
-	}
+    /**
+     * Devolve o endereço do sacado
+     * 
+     * @return
+     */
+    public String getEndereco() {
+        return this.endereco;
+    }
 
-	/**
-	 * Associa um endereço ao sacado
-	 * 
-	 * @param endereco
-	 * @return
-	 */
-	public Sacado withEndereco(String endereco) {
-		this.endereco = endereco;
-		return this;
-	}
+    /**
+     * Associa um endereço ao sacado
+     * 
+     * @param endereco
+     * @return
+     */
+    public Sacado withEndereco(String endereco) {
+        this.endereco = endereco;
+        return this;
+    }
 
-	/**
-	 * Devolve o CEP do sacado
-	 * 
-	 * @return
-	 */
-	public String getCep() {
-		return this.cep;
-	}
+    /**
+     * Devolve o CEP do sacado
+     * 
+     * @return
+     */
+    public String getCep() {
+        return this.cep;
+    }
 
-	/**
-	 * Associa o CEP ao sacado
-	 * 
-	 * @param cep
-	 * @return
-	 */
-	public Sacado withCep(String cep) {
-		this.cep = cep;
-		return this;
-	}
+    /**
+     * Associa o CEP ao sacado
+     * 
+     * @param cep
+     * @return
+     */
+    public Sacado withCep(String cep) {
+        this.cep = cep;
+        return this;
+    }
 
-	/**
-	 * Devolve o bairro do sacado
-	 * 
-	 * @return
-	 */
-	public String getBairro() {
-		return this.bairro;
-	}
+    /**
+     * Devolve o bairro do sacado
+     * 
+     * @return
+     */
+    public String getBairro() {
+        return this.bairro;
+    }
 
-	/**
-	 * Associa o bairro ao sacado
-	 * 
-	 * @param bairro
-	 * @return
-	 */
-	public Sacado withBairro(String bairro) {
-		this.bairro = bairro;
-		return this;
-	}
+    /**
+     * Associa o bairro ao sacado
+     * 
+     * @param bairro
+     * @return
+     */
+    public Sacado withBairro(String bairro) {
+        this.bairro = bairro;
+        return this;
+    }
 
-	/**
-	 * Devolve a cidade do sacado
-	 * 
-	 * @return
-	 */
-	public String getCidade() {
-		return this.cidade;
-	}
+    /**
+     * Devolve a cidade do sacado
+     * 
+     * @return
+     */
+    public String getCidade() {
+        return this.cidade;
+    }
 
-	/**
-	 * Associa uma cidade ao sacado
-	 * 
-	 * @param cidade
-	 * @return
-	 */
-	public Sacado withCidade(String cidade) {
-		this.cidade = cidade;
-		return this;
-	}
+    /**
+     * Associa uma cidade ao sacado
+     * 
+     * @param cidade
+     * @return
+     */
+    public Sacado withCidade(String cidade) {
+        this.cidade = cidade;
+        return this;
+    }
 
-	/**
-	 * Devolve a UF do sacado
-	 * 
-	 * @return
-	 */
-	public String getUf() {
-		return this.uf;
-	}
+    /**
+     * Devolve a UF do sacado
+     * 
+     * @return
+     */
+    public String getUf() {
+        return this.uf;
+    }
 
-	/**
-	 * Associa uma UF ao sacado
-	 * 
-	 * @param uf
-	 * @return
-	 */
-	public Sacado withUf(String uf) {
-		this.uf = uf;
-		return this;
-	}
+    /**
+     * Associa uma UF ao sacado
+     * 
+     * @param uf
+     * @return
+     */
+    public Sacado withUf(String uf) {
+        this.uf = uf;
+        return this;
+    }
 
 }

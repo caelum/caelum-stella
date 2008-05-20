@@ -8,212 +8,212 @@ package br.com.caelum.stella.boleto;
  * 
  */
 public class Emissor {
-	private String agencia;
-	private String dvAgencia;
-	private String contaCorrente;
-	private String carteira;
-	private String numConvenio;
-	private String nossoNumero;
-	private String cedente;
-	private String dvContaCorrete;
+    private String agencia;
+    private String dvAgencia;
+    private String contaCorrente;
+    private String carteira;
+    private String numConvenio;
+    private String nossoNumero;
+    private String cedente;
+    private String dvContaCorrete;
 
-	private Emissor() {
-	}
+    private Emissor() {
+    }
 
-	/**
-	 * Cria novo emissor
-	 * 
-	 * @return
-	 */
-	public static Emissor newEmissor() {
-		return new Emissor();
-	}
+    /**
+     * Cria novo emissor
+     * 
+     * @return
+     */
+    public static Emissor newEmissor() {
+        return new Emissor();
+    }
 
-	/**
-	 * Devolve o número da agencia sem o digito
-	 * 
-	 */
-	public String getAgencia() {
-		return this.agencia;
-	}
+    /**
+     * Devolve o número da agencia sem o digito
+     * 
+     */
+    public String getAgencia() {
+        return this.agencia;
+    }
 
-	/**
-	 * Associa uma agencia, SEM o dígito verificador, ao emissor
-	 * 
-	 * @param agencia
-	 */
-	public Emissor withAgencia(String agencia) {
-		this.agencia = agencia;
-		return this;
-	}
+    /**
+     * Associa uma agencia, SEM o dígito verificador, ao emissor
+     * 
+     * @param agencia
+     */
+    public Emissor withAgencia(String agencia) {
+        this.agencia = agencia;
+        return this;
+    }
 
-	/**
-	 * Devolve o número da conta corrente sem o digito
-	 * 
-	 */
-	public String getContaCorrente() {
-		return this.contaCorrente;
-	}
+    /**
+     * Devolve o número da conta corrente sem o digito
+     * 
+     */
+    public String getContaCorrente() {
+        return this.contaCorrente;
+    }
 
-	/**
-	 * Associa uma conta corrente, SEM o dígito verificador, ao emissor
-	 * 
-	 * @param contaCorrente
-	 */
-	public Emissor withContaCorrente(String contaCorrente) {
-		this.contaCorrente = contaCorrente;
-		return this;
-	}
+    /**
+     * Associa uma conta corrente, SEM o dígito verificador, ao emissor
+     * 
+     * @param contaCorrente
+     */
+    public Emissor withContaCorrente(String contaCorrente) {
+        this.contaCorrente = contaCorrente;
+        return this;
+    }
 
-	/**
-	 * Devolve a carteira<br/> Valor informado pelo banco para identificação do
-	 * tipo de boleto
-	 * 
-	 */
-	public String getCarteira() {
-		return this.carteira;
-	}
+    /**
+     * Devolve a carteira<br/> Valor informado pelo banco para identificação do
+     * tipo de boleto
+     * 
+     */
+    public String getCarteira() {
+        return this.carteira;
+    }
 
-	/**
-	 * Associa uma carteira ao emissor<br/> Valor informado pelo banco para
-	 * identificação do tipo de boleto
-	 * 
-	 * @param carteira
-	 */
-	public Emissor withCarteira(String carteira) {
-		this.carteira = carteira;
-		return this;
-	}
+    /**
+     * Associa uma carteira ao emissor<br/> Valor informado pelo banco para
+     * identificação do tipo de boleto
+     * 
+     * @param carteira
+     */
+    public Emissor withCarteira(String carteira) {
+        this.carteira = carteira;
+        return this;
+    }
 
-	/**
-	 * Devolve o número do convênio<br/> Valor que identifica um emissor junto
-	 * ao seu banco para associar seus boletos<br/> Valor informado pelo banco
-	 * 
-	 */
-	public String getNumConvenio() {
-		return this.numConvenio;
-	}
+    /**
+     * Devolve o número do convênio<br/> Valor que identifica um emissor junto
+     * ao seu banco para associar seus boletos<br/> Valor informado pelo banco
+     * 
+     */
+    public String getNumConvenio() {
+        return this.numConvenio;
+    }
 
-	/**
-	 * Associa um número de convênio ao emissor<br/> Valor que identifica um
-	 * emissor junto ao seu banco para associar seus boletos<br/> Valor
-	 * informado pelo banco
-	 * 
-	 * @param numConvenio
-	 */
-	public Emissor withNumConvenio(String numConvenio) {
-		this.numConvenio = numConvenio;
-		return this;
-	}
+    /**
+     * Associa um número de convênio ao emissor<br/> Valor que identifica um
+     * emissor junto ao seu banco para associar seus boletos<br/> Valor
+     * informado pelo banco
+     * 
+     * @param numConvenio
+     */
+    public Emissor withNumConvenio(String numConvenio) {
+        this.numConvenio = numConvenio;
+        return this;
+    }
 
-	/**
-	 * Devolve o nosso número<br/> Valor que o cedente escolhe para manter
-	 * controle sobre seus boletos. Esse valor serve para o cedente identificar
-	 * quais boletos foram pagos ou não. Recomenda-se o uso de números
-	 * sequenciais, na geração de diversos boletos, para facilitar a
-	 * identificação dos boletos pagos
-	 * 
-	 */
-	public String getNossoNumero() {
-		return this.nossoNumero;
-	}
+    /**
+     * Devolve o nosso número<br/> Valor que o cedente escolhe para manter
+     * controle sobre seus boletos. Esse valor serve para o cedente identificar
+     * quais boletos foram pagos ou não. Recomenda-se o uso de números
+     * sequenciais, na geração de diversos boletos, para facilitar a
+     * identificação dos boletos pagos
+     * 
+     */
+    public String getNossoNumero() {
+        return this.nossoNumero;
+    }
 
-	/**
-	 * Associa o nosso número ao emissor<br/> Valor que o cedente escolhe para
-	 * manter controle sobre seus boletos. Esse valor serve para o cedente
-	 * identificar quais boletos foram pagos ou não. Recomenda-se o uso de
-	 * números sequenciais, na geração de diversos boletos, para facilitar a
-	 * identificação dos boletos pagos
-	 * 
-	 * @param nossoNumero
-	 */
-	public Emissor withNossoNumero(String nossoNumero) {
-		this.nossoNumero = nossoNumero;
-		return this;
-	}
+    /**
+     * Associa o nosso número ao emissor<br/> Valor que o cedente escolhe para
+     * manter controle sobre seus boletos. Esse valor serve para o cedente
+     * identificar quais boletos foram pagos ou não. Recomenda-se o uso de
+     * números sequenciais, na geração de diversos boletos, para facilitar a
+     * identificação dos boletos pagos
+     * 
+     * @param nossoNumero
+     */
+    public Emissor withNossoNumero(String nossoNumero) {
+        this.nossoNumero = nossoNumero;
+        return this;
+    }
 
-	/**
-	 * Devolve o cedente. (nome do emissor)
-	 * 
-	 */
-	public String getCedente() {
-		return this.cedente;
-	}
+    /**
+     * Devolve o cedente. (nome do emissor)
+     * 
+     */
+    public String getCedente() {
+        return this.cedente;
+    }
 
-	/**
-	 * Associa um cedente (nome) ao emissor
-	 * 
-	 * @param cedente
-	 */
-	public Emissor withCedente(String cedente) {
-		this.cedente = cedente;
-		return this;
-	}
+    /**
+     * Associa um cedente (nome) ao emissor
+     * 
+     * @param cedente
+     */
+    public Emissor withCedente(String cedente) {
+        this.cedente = cedente;
+        return this;
+    }
 
-	/**
-	 * Devolve o digito verificador (DV) da conta corrente
-	 * 
-	 * @return
-	 */
-	public String getDvContaCorrente() {
-		return this.dvContaCorrete;
-	}
+    /**
+     * Devolve o digito verificador (DV) da conta corrente
+     * 
+     * @return
+     */
+    public String getDvContaCorrente() {
+        return this.dvContaCorrete;
+    }
 
-	/**
-	 * Associa um digito verificador (DV) da conta corrente ao emissor
-	 * 
-	 * @param dv
-	 * @return
-	 */
-	public Emissor withDvContaCorrete(String dv) {
-		this.dvContaCorrete = dv;
-		return this;
-	}
+    /**
+     * Associa um digito verificador (DV) da conta corrente ao emissor
+     * 
+     * @param dv
+     * @return
+     */
+    public Emissor withDvContaCorrete(String dv) {
+        this.dvContaCorrete = dv;
+        return this;
+    }
 
-	/**
-	 * Devolve o digito verificador (DV) da agencia
-	 * 
-	 * @return
-	 */
-	public String getDvAgencia() {
-		return this.dvAgencia;
-	}
+    /**
+     * Devolve o digito verificador (DV) da agencia
+     * 
+     * @return
+     */
+    public String getDvAgencia() {
+        return this.dvAgencia;
+    }
 
-	/**
-	 * Associa um digito verificador (DV) da agencia ao emissor
-	 * 
-	 * @param dv
-	 * @return
-	 */
-	public Emissor withDvAgencia(String dv) {
-		this.dvAgencia = dv;
-		return this;
-	}
+    /**
+     * Associa um digito verificador (DV) da agencia ao emissor
+     * 
+     * @param dv
+     * @return
+     */
+    public Emissor withDvAgencia(String dv) {
+        this.dvAgencia = dv;
+        return this;
+    }
 
-	/**
-	 * Devolve a conta corrente formatada (com 8 digitos)
-	 * 
-	 * @return
-	 */
-	public String getContaCorrenteFormatado() {
-		return String.format("%08d", Integer.parseInt(this.contaCorrente));
-	}
+    /**
+     * Devolve a conta corrente formatada (com 8 digitos)
+     * 
+     * @return
+     */
+    public String getContaCorrenteFormatado() {
+        return String.format("%08d", Integer.parseInt(this.contaCorrente));
+    }
 
-	/**
-	 * Devolve o nosso número formatado (com 10 digitos)
-	 * 
-	 * @return
-	 */
-	public String getNossoNumeroFormatado() {
-		return String.format("%010d", Integer.parseInt(this.nossoNumero));
-	}
+    /**
+     * Devolve o nosso número formatado (com 10 digitos)
+     * 
+     * @return
+     */
+    public String getNossoNumeroFormatado() {
+        return String.format("%010d", Integer.parseInt(this.nossoNumero));
+    }
 
-	/**
-	 * Devolve o número do convênio formatado (com 7 digitos)
-	 * 
-	 * @return
-	 */
-	public String getNumConvenioFormatado() {
-		return String.format("%07d", Integer.parseInt(this.numConvenio));
-	}
+    /**
+     * Devolve o número do convênio formatado (com 7 digitos)
+     * 
+     * @return
+     */
+    public String getNumConvenioFormatado() {
+        return String.format("%07d", Integer.parseInt(this.numConvenio));
+    }
 }

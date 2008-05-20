@@ -25,29 +25,29 @@ import java.net.URL;
  */
 public interface Banco {
 
-	/**
-	 * Retorna o número desse banco, formatado com 3 dígitos
-	 * 
-	 * @return
-	 */
-	String getNumeroFormatado();
+    /**
+     * Retorna o número desse banco, formatado com 3 dígitos
+     * 
+     * @return
+     */
+    String getNumeroFormatado();
 
-	/**
-	 * Pega a URL com a imagem de um banco
-	 * 
-	 * @return
-	 */
-	URL getImage();
+    /**
+     * Pega a URL com a imagem de um banco
+     * 
+     * @return
+     */
+    URL getImage();
 
-	/**
-	 * Gera o código de barras para determinado boleto
-	 */
-	String geraCodigoDeBarrasPara(Boleto boleto);
+    /**
+     * Gera o código de barras para determinado boleto
+     */
+    String geraCodigoDeBarrasPara(Boleto boleto);
 
-	/**
-	 * Gera a linha digitavel para determinado boleto
-	 * 
-	 */
-	String geraLinhaDigitavelPara(Boleto boleto);
+    /**
+     * Gera a linha digitavel para determinado boleto
+     * 
+     */
+    String geraLinhaDigitavelPara(Boleto boleto);
 
 }
