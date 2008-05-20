@@ -77,7 +77,6 @@ public class BoletoTransformerTest {
 		transforma();
 	}
 
-	@Test
 	public void transforma() {
 
 		class BoletoWriterMock implements BoletoWriter {
