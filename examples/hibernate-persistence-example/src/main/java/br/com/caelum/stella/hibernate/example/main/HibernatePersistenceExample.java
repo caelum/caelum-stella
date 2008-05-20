@@ -15,7 +15,7 @@ public class HibernatePersistenceExample {
 		save(valido);
 		Modelo invalido = criaModeloInvalido();
 		save(invalido);
-		ListaModelosPersistidos();
+		listaModelosPersistidos();
 	}
 
 	private static Modelo criaModeloInvalido() {
@@ -33,7 +33,7 @@ public class HibernatePersistenceExample {
 		return modeloValido;
 	}
 
-	private static void ListaModelosPersistidos() {
+	private static void listaModelosPersistidos() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		ModeloDAO dao = new ModeloDAO(session);
 		System.out.println("Listagem de modelos persistidos:");
