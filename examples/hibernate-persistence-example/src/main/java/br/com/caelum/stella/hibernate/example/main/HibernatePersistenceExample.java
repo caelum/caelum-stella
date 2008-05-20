@@ -23,7 +23,6 @@ public class HibernatePersistenceExample {
 		modeloInvalido.setCpf("63101405078");
 		modeloInvalido.setCnpj("5");
 		return modeloInvalido;
-
 	}
 
 	private static Modelo criaModeloValido() {
