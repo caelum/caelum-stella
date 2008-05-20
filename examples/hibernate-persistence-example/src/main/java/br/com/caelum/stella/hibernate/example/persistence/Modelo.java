@@ -13,24 +13,24 @@ public class Modelo {
 	@GeneratedValue
 	private Long id;
 	@CNPJ
-	private String CNPJ;
+	private String cnpj;
 	@CPF
-	private String CPF;
-
-	public String getCNPJ() {
-		return CNPJ;
+	private String cpf;
+	
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCNPJ(String cnpj) {
-		CNPJ = cnpj;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(String cpf) {
-		CPF = cpf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Long getId() {
@@ -43,7 +43,7 @@ public class Modelo {
 	
 	@Override
 	public String toString() {
-		return "(ID:"+this.id+") CPF:" + this.CPF + " CNPJ:" + this.CNPJ;
+		return "(ID:"+this.id+") CPF:" + this.cpf + " CNPJ:" + this.cnpj;
 	}
 
 }

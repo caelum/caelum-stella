@@ -20,16 +20,16 @@ public class HibernatePersistenceExample {
 
 	private static Modelo criaModeloInvalido() {
 		Modelo modeloInvalido = new Modelo();
-		modeloInvalido.setCPF("63101405078");
-		modeloInvalido.setCNPJ("5");
+		modeloInvalido.setCpf("63101405078");
+		modeloInvalido.setCnpj("5");
 		return modeloInvalido;
 
 	}
 
 	private static Modelo criaModeloValido() {
 		Modelo modeloValido = new Modelo();
-		modeloValido.setCPF("63101405076");
-		modeloValido.setCNPJ("71693607000142");
+		modeloValido.setCpf("63101405076");
+		modeloValido.setCnpj("71693607000142");
 		return modeloValido;
 	}
 
