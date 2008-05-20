@@ -8,9 +8,9 @@ buscaremos as mensagens de erro em um arquivo.</p>
   String cnpj = "26.637.142/0001-48";
 </textarea>
 
-<p>O <code>MessageProducer</code> que instanciaremos irá buscar as mensagens em
-um arquivo. Para isso passamos o <code>ResourceBundle</code> como argumento do
-construtor.</p>
+<p>O <code>MessageProducer</code> que instanciaremos irá buscar as
+mensagens em um arquivo. Para isso passamos o <code>ResourceBundle</code>
+como argumento do construtor.</p>
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
 	ResourceBundle resourceBundle = ResourceBundle
@@ -20,7 +20,8 @@ construtor.</p>
 	CNPJValidator validator = new CNPJValidator(messageProducer,isFormatted);
 </textarea>
 
-Portanto, devemos ter o arquivo <code>StellaValidationMessages_pt_BR.properties</code>
+Portanto, devemos ter o arquivo
+<code>StellaValidationMessages_pt_BR.properties</code>
 no classpath:
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
@@ -54,7 +55,7 @@ cnpjerror.invalid_format = CNPJ inválido
 seguinte linha: <b> [CNPJ inválido : Dígitos verificadores
 incorretos]</b></p>
 
-<p> Veja abaixo código completo: </p>
+<p>Veja abaixo código completo:</p>
 
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">

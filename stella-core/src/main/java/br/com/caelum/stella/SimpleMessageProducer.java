@@ -19,8 +19,8 @@ import br.com.caelum.stella.validation.InvalidValue;
  * Veja o exemplo:
  * </p>
  * <p>
- * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/> cpferror :
- * invalid digits .
+ * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/> CPFError :
+ * INVALID DIGITS .
  * </p>
  * 
  * @author Leonardo Bessa

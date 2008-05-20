@@ -10,9 +10,7 @@
 <p>O Stella forncede uma classe que valida este documento.</p>
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
- MessageProducer producer = new SimpleMessageProducer();
- boolean isFormatted = true;
- CPFValidator validator = new CPFValidator(messageProducer,isFormatted);
+ CPFValidator validator = new CPFValidator();
 </textarea>
 
 <p>Agora, veja como é simples realizar a validação do documento.</p>
@@ -42,13 +40,13 @@ Este método <b>não lança a InvalidStateException</b>.</p>
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
 		// lógica de negócio ...
-		List<ValidationMessage> validationMessages = validator.invalidMessagesFor(cpf);
+		List&lt;ValidationMessage> validationMessages = validator.invalidMessagesFor(cpf);
 		System.out.println(validationMessages.getInvalidMessages());
 		// continuação da lógica de negócio ...
 </textarea>
 
 <p>Após a execução deste programa a saída do console será a mesma: <b>
-[cpferror : invalid check digits]</b></p>
+[CPFError : INVALID CHECK DIGITS]</b></p>
 
 <h2>Lista de todos os validadores</h2>
 Cada validador pode produzir diversos erros, com diferentes mensagens. A lista abaixo é
@@ -66,36 +64,8 @@ podem produzir.
 <li>NITValidator 
 	<ul><li>NITError.INVALID_DIGITS</li><li>NITError.INVALID_FORMAT</li><li>NITError.INVALID_CHECK_DIGITS</li></ul>
 </li>
-<li>InscricaoEstatudalDeMatoGrossoValidator 
+<li>InscricaoEstatudalDe...Validator (Para os seguintes estados: AM,MG,MT,PR,PE,RJ,RO,RR,RS,SC,SP e SE)
 	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
 </li>
-<li>InscricaoEstatudalDeMinasGeraisValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeParanaValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeRioDeJaneiroValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeRioGrandeDoSulValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeRondoniaValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeRoraimaValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeSantaCatarinaValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDeSaoPauloValidator 
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-<li>InscricaoEstatudalDoAmazonasValidator
-	<ul><li>IEError.INVALID_DIGITS</li><li>IEError.INVALID_FORMAT</li><li>IEError.INVALID_CHECK_DIGITS</li></ul>
-</li>
-</ul>
 
 </body>
