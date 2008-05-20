@@ -362,19 +362,25 @@
 		</url>
 	</scm>
 
-	<distributionManagement>
-		<downloadUrl>
-			http://sourceforge.net/project/showfiles.php?group_id=217573
-		</downloadUrl>
-		<site>
-			<id>stella.caelum.com.br</id>
-			<name>Caelum Stella Server</name>
-			<url>
-				scp://caelum.com.br/usr/java/webapps/stella.caelum.com.br/ROOT/dev
-			</url>
-		</site>
-	</distributionManagement>
-
+  <distributionManagement>
+    <downloadUrl>http://sourceforge.net/project/showfiles.php?group_id=217573</downloadUrl>
+    <site>
+      <id>stella.caelum.com.br</id>
+      <name>Caelum Stella Server</name>
+      <url>scp://caelum.com.br/usr/java/webapps/stella.caelum.com.br/ROOT/dev</url>
+    </site>
+    <repository>
+      <id>caelum-stella.sourceforge.net</id>
+      <name>Caelum Stella Maven Repository</name>
+      <url>scp://shell.sourceforge.net/home/groups/c/ca/caelum-stella/htdocs/maven</url>
+    </repository>
+    <snapshotRepository>
+      <id>caelum-stella.sourceforge.net</id>
+      <name>Caelum Stella Maven Snapshots Repository</name>
+      <url>scp://shell.sourceforge.net/home/groups/c/ca/caelum-stella/htdocs/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+    
 	<mailingLists>
 		<mailingList>
 			<name>Users list</name>
