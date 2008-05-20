@@ -1,7 +1,6 @@
 package br.com.caelum.stella.validation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
