@@ -10,8 +10,8 @@ import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 
 public class BoletoExample {
 	public static void main(String[] args) {
-		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
-				.withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
+		Datas datas = Datas.newDatas().withDocumento(1, 5, 2008)
+				.withProcessamento(1, 5, 2008).withVencimento(2, 5, 2008);
 
 		Emissor emissor = Emissor.newEmissor().withCedente("Fulano de Tal")
 				.withAgencia("2345").withDvAgencia("6").withContaCorrente(
