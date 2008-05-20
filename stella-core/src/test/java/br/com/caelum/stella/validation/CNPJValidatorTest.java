@@ -31,12 +31,12 @@ public class CNPJValidatorTest {
         });
         Validator validator = new CNPJValidator(messageProducer, false);
         try {
-        	String value = "1234567890123";
-			validator.assertValid(value);
-        	fail();
+            String value = "1234567890123";
+            validator.assertValid(value);
+            fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getInvalidMessages().size()==1);
-		}
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
         mockery.assertIsSatisfied();
     }
@@ -56,12 +56,12 @@ public class CNPJValidatorTest {
         });
         Validator validator = new CNPJValidator(messageProducer, false);
         try {
-        	String value = "123456789012345";
-			validator.assertValid(value);
-        	fail();
+            String value = "123456789012345";
+            validator.assertValid(value);
+            fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getInvalidMessages().size()==1);
-		}
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
         mockery.assertIsSatisfied();
     }
@@ -81,12 +81,12 @@ public class CNPJValidatorTest {
         });
         Validator validator = new CNPJValidator(messageProducer, false);
         try {
-        	String value = "1111111a111111";
-			validator.assertValid(value);
-        	fail();
+            String value = "1111111a111111";
+            validator.assertValid(value);
+            fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getInvalidMessages().size()==1);
-		}
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
         mockery.assertIsSatisfied();
     }
 
@@ -96,33 +96,29 @@ public class CNPJValidatorTest {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
-        mockery.checking(new Expectations() {
-            {
-
-            }
-        });
+        mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, false);
 
         try {
-        	String value = "63025530002409";
-			validator.assertValid(value);
+            String value = "63025530002409";
+            validator.assertValid(value);
         } catch (InvalidStateException e) {
-        	fail();
-		}
-        
+            fail();
+        }
+
         try {
-        	String value = "61519128000150";
-			validator.assertValid(value);
+            String value = "61519128000150";
+            validator.assertValid(value);
         } catch (InvalidStateException e) {
-        	fail();
-		}
-        
+            fail();
+        }
+
         try {
-        	String value = "68745386000102";
-			validator.assertValid(value);
+            String value = "68745386000102";
+            validator.assertValid(value);
         } catch (InvalidStateException e) {
-        	fail();
-		}
+            fail();
+        }
 
         mockery.assertIsSatisfied();
     }
@@ -133,19 +129,15 @@ public class CNPJValidatorTest {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
-        mockery.checking(new Expectations() {
-            {
-
-            }
-        });
+        mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, false);
 
         try {
-        	String value = null;
-			validator.assertValid(value);
+            String value = null;
+            validator.assertValid(value);
         } catch (InvalidStateException e) {
-        	fail();
-		}
+            fail();
+        }
         mockery.assertIsSatisfied();
     }
 
@@ -165,12 +157,12 @@ public class CNPJValidatorTest {
         Validator validator = new CNPJValidator(messageProducer, false);
         // VALID CNPJ = 742213250001-30
         try {
-        	String value = "74221325000160";
-			validator.assertValid(value);
-        	fail();
+            String value = "74221325000160";
+            validator.assertValid(value);
+            fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getInvalidMessages().size()==1);
-		}
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
         mockery.assertIsSatisfied();
     }
@@ -192,12 +184,12 @@ public class CNPJValidatorTest {
 
         // VALID CNPJ = 266371420001-58
         try {
-        	String value = "26637142000154";
-			validator.assertValid(value);
-        	fail();
+            String value = "26637142000154";
+            validator.assertValid(value);
+            fail();
         } catch (InvalidStateException e) {
-        	assertTrue(e.getInvalidMessages().size()==1);
-		}
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
         mockery.assertIsSatisfied();
     }
 
@@ -208,25 +200,21 @@ public class CNPJValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
 
-        mockery.checking(new Expectations() {
-            {
-
-            }
-        });
+        mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, true);
 
         // VALID CNPJ = 26.637.142/0001-58
         try {
-        	String value = "26.637.142/0001-58";
-			validator.assertValid(value);
+            String value = "26.637.142/0001-58";
+            validator.assertValid(value);
         } catch (InvalidStateException e) {
-        	fail();
-		}
+            fail();
+        }
         mockery.assertIsSatisfied();
     }
 
     @SuppressWarnings("unchecked")
-    @Test
+    @Test(expected = InvalidStateException.class)
     public void shouldNotValidateValidUnformattedCNPJ() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
@@ -242,13 +230,14 @@ public class CNPJValidatorTest {
 
         // VALID CNPJ = 26.637.142/0001-58
         try {
-        	String value = "26637142000158";
-			validator.assertValid(value);
-			fail();
-        } catch (InvalidStateException e) {
-		}
-
-        mockery.assertIsSatisfied();
+            String value = "26637142000158";
+            validator.assertValid(value);
+            fail();
+        } catch (RuntimeException e) {
+           throw e;
+        } finally {
+            mockery.assertIsSatisfied();
+        }
     }
 
 }

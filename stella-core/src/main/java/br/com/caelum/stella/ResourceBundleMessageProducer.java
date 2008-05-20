@@ -37,35 +37,32 @@ import br.com.caelum.stella.validation.InvalidValue;
 @SuppressWarnings("unchecked")
 public class ResourceBundleMessageProducer implements MessageProducer {
 
-	private final ResourceBundle bundle;
+    private final ResourceBundle bundle;
 
-	/**
-	 * @param bundle
-	 *            ResourceBlunde que contém o mapa que associa erros as
-	 *            mensagens.
-	 */
-	public ResourceBundleMessageProducer(final ResourceBundle bundle) {
-		this.bundle = bundle;
-	}
+    /**
+     * @param bundle
+     *                ResourceBlunde que contém o mapa que associa erros as
+     *                mensagens.
+     */
+    public ResourceBundleMessageProducer(final ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
 
-	/**
-	 * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
-	 */
-	public ValidationMessage getMessage(InvalidValue error) {
-		Locale locale = bundle.getLocale();
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
-		String simpleName = error.getClass().getSimpleName();
-		String errorName = error.name();
-		String key = (simpleName + "." + errorName);
-		String message;
-		try {
-			message = bundle.getString(key.toLowerCase(locale));
-		} catch (MissingResourceException ex) {
-			message = key.toLowerCase(locale).replaceFirst("[.]", " : ")
-					.replaceAll("_", " ");
-		}
-		return new SimpleValidationMessage(message);
-	}
+    public ValidationMessage getMessage(InvalidValue error) {
+        Locale locale = bundle.getLocale();
+        if (locale == null) {
+            locale = Locale.getDefault();
+        }
+        String simpleName = error.getClass().getSimpleName();
+        String errorName = error.name();
+        String key = (simpleName + "." + errorName);
+        String message;
+        try {
+            message = bundle.getString(key.toLowerCase(locale));
+        } catch (MissingResourceException ex) {
+            message = key.toLowerCase(locale).replaceFirst("[.]", " : ")
+                    .replaceAll("_", " ");
+        }
+        return new SimpleValidationMessage(message);
+    }
 }

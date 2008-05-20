@@ -15,10 +15,10 @@ import br.com.caelum.stella.validation.InvalidValue;
  * @author Leonardo Bessa
  */
 public interface MessageProducer {
-	/**
-	 * @param invalidValue
-	 *            valor inválido ao qual se procura a mensagem associada.
-	 * @return mensagem de validação associada ao erro.
-	 */
-	ValidationMessage getMessage(InvalidValue invalidValue);
+    /**
+     * @param invalidValue
+     *                valor inválido ao qual se procura a mensagem associada.
+     * @return mensagem de validação associada ao erro.
+     */
+    ValidationMessage getMessage(InvalidValue invalidValue);
 }

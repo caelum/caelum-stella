@@ -15,129 +15,129 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeSaoPauloValidatorTest {
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidIERural() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			
-		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
-		
-		List<ValidationMessage> errors;
-		// VALID IE = P-01100424.3/002 
-		String value = "P011004243002";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
-		
-		mockery.assertIsSatisfied();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateValidIERuralWithWrongFormat() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
-		
-		// VALID IE = P-01100424.3/002 
-		String value = "L011004243002";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-		}
-		
-		mockery.assertIsSatisfied();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidIEParaComercioIndustria() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-		mockery.checking(new Expectations(){{
-			
-		}});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,false);
-		
-		List<ValidationMessage> errors;
-		
-		String value = "110042490114";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
-		
-		mockery.assertIsSatisfied();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidFormattedIERural(){
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidIERural() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeSaoPauloValidator(
+                messageProducer, false);
 
-		mockery.checking(new Expectations() {
-			{
-				
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,true);
-		List<ValidationMessage> errors;
+        List<ValidationMessage> errors;
+        // VALID IE = P-01100424.3/002
+        String value = "P011004243002";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
 
-		// VALID IE = P-01100424.3/002 
-		String value = "P-01100424.3/002";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
-		
-		mockery.assertIsSatisfied();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidFormattedIEParaComercioIndustria(){
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+        mockery.assertIsSatisfied();
+    }
 
-		mockery.checking(new Expectations() {
-			{
-				
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeSaoPauloValidator(messageProducer,true);
-		List<ValidationMessage> errors;
+    @SuppressWarnings("unchecked")
+    @Test(expected = InvalidStateException.class)
+    public void shouldNotValidateValidIERuralWithWrongFormat() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeSaoPauloValidator(
+                messageProducer, false);
 
-		// VALID IE = 110.042.490.114
-		String value = "110.042.490.114";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
-		
-		mockery.assertIsSatisfied();
-	}
+        // VALID IE = P-01100424.3/002
+        try {
+            String value = "L011004243002";
+            validator.assertValid(value);
+            fail();
+        } catch (RuntimeException e) {
+           throw e;
+        } finally {
+            mockery.assertIsSatisfied();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidIEParaComercioIndustria() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeSaoPauloValidator(
+                messageProducer, false);
+
+        List<ValidationMessage> errors;
+
+        String value = "110042490114";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIERural() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeSaoPauloValidator(
+                messageProducer, true);
+        List<ValidationMessage> errors;
+
+        // VALID IE = P-01100424.3/002
+        String value = "P-01100424.3/002";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIEParaComercioIndustria() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeSaoPauloValidator(
+                messageProducer, true);
+        List<ValidationMessage> errors;
+
+        // VALID IE = 110.042.490.114
+        String value = "110.042.490.114";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+
+        mockery.assertIsSatisfied();
+    }
 
 }

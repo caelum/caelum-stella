@@ -15,257 +15,245 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDePernambucoNovaValidatorTest {
 
-	/*
-	 * IE validas
-	 * 
-	 * 0321418-40 032141840
-	 */
+    /*
+     * IE validas
+     * 
+     * 0321418-40 032141840
+     */
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithInvalidCharacter() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithInvalidCharacter() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
-		try {
-			validator.assertValid("032141s840");
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
+        try {
+            validator.assertValid("032141s840");
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithLessDigitsThanAllowed() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
-		try {
-			validator.assertValid("03241840");
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
+        try {
+            validator.assertValid("03241840");
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
 
-		String value = "0321418406";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        String value = "0321418406";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithCheckDigitsWithFirstCheckDigitWrong() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithCheckDigitsWithFirstCheckDigitWrong() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_CHECK_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_CHECK_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
 
-		// VALID IE = 032141840
-		String value = "032141870";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        // VALID IE = 032141840
+        String value = "032141870";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithCheckDigitsWithSecondCheckDigitWrong() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithCheckDigitsWithSecondCheckDigitWrong() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_CHECK_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_CHECK_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
 
-		// VALID IE = 032141840
-		String value = "032141841";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        // VALID IE = 032141840
+        String value = "032141841";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-		mockery.checking(new Expectations() {
-			{
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
+        List<ValidationMessage> errors;
 
-		List<ValidationMessage> errors;
+        String[] validValues = { "032141840" };
+        for (String validValue : validValues) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
 
-		String[] validValues = { "032141840" };
-		for (String validValue : validValues) {
-			try {
-				validator.assertValid(validValue);
-			} catch (InvalidStateException e) {
-				fail();
-			}
-			errors = validator.invalidMessagesFor(validValue);
-			assertTrue(errors.isEmpty());
-		}
+        mockery.assertIsSatisfied();
+    }
 
-		mockery.assertIsSatisfied();
-	}
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateNullIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, false);
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateNullIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-		mockery.checking(new Expectations() {
-			{
+        List<ValidationMessage> errors;
+        String value = null;
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, false);
+        mockery.assertIsSatisfied();
+    }
 
-		List<ValidationMessage> errors;
-		String value = null;
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, true);
+        List<ValidationMessage> errors;
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidFormattedIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+        // VALID IE = 0321418-40
+        String value = "0321418-40";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
 
-		mockery.checking(new Expectations() {
-			{
+        mockery.assertIsSatisfied();
+    }
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, true);
-		List<ValidationMessage> errors;
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateValidUnformattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		// VALID IE = 0321418-40
-		String value = "0321418-40";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_FORMAT);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
+                messageProducer, true);
 
-		mockery.assertIsSatisfied();
-	}
+        // VALID IE = 0321418-40
+        String value = "032141840";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateValidUnformattedIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_FORMAT);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDePernambucoNovaValidator(
-				messageProducer, true);
-
-		// VALID IE = 0321418-40
-		String value = "032141840";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
-
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
 }

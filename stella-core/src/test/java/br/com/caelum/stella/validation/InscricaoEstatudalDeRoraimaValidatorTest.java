@@ -15,231 +15,219 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeRoraimaValidatorTest {
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithInvalidCharacter() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithInvalidCharacter() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, false);
-		try {
-			validator.assertValid("2400175e6");
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, false);
+        try {
+            validator.assertValid("2400175e6");
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithLessDigitsThanAllowed() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, false);
-		try {
-			validator.assertValid("24007556");
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, false);
+        try {
+            validator.assertValid("24007556");
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, false);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, false);
 
-		String value = "2400175564";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        String value = "2400175564";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_CHECK_DIGITS);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, false);
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_CHECK_DIGITS);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, false);
 
-		// VALID IE = 240017556
-		String value = "240017555";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
+        // VALID IE = 240017556
+        String value = "240017555";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-		mockery.checking(new Expectations() {
-			{
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, true);
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, true);
+        List<ValidationMessage> errors;
 
-		List<ValidationMessage> errors;
+        /*
+         * 24006628-1 24001755-6 24003429-0 24001360-3 24008266-8 24006153-6
+         * 24007356-2 24005467-4 24004145-5 24001340-7
+         * 
+         */
 
-		/*
-		 * 24006628-1 24001755-6 24003429-0 24001360-3 24008266-8 24006153-6
-		 * 24007356-2 24005467-4 24004145-5 24001340-7
-		 * 
-		 */
+        String[] validValues = { "24006628-1", "24001755-6", "24003429-0",
+                "24001360-3", "24008266-8", "24006153-6", "24007356-2",
+                "24005467-4", "24004145-5", "24001340-7" };
+        for (String validValue : validValues) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
 
-		String[] validValues = { "24006628-1", "24001755-6", "24003429-0",
-				"24001360-3", "24008266-8", "24006153-6", "24007356-2",
-				"24005467-4", "24004145-5", "24001340-7" };
-		for (String validValue : validValues) {
-			try {
-				validator.assertValid(validValue);
-			} catch (InvalidStateException e) {
-				fail();
-			}
-			errors = validator.invalidMessagesFor(validValue);
-			assertTrue(errors.isEmpty());
-		}
+        mockery.assertIsSatisfied();
+    }
 
-		mockery.assertIsSatisfied();
-	}
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateNullIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, false);
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateNullIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-		mockery.checking(new Expectations() {
-			{
+        List<ValidationMessage> errors;
+        String value = null;
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, false);
+        mockery.assertIsSatisfied();
+    }
 
-		List<ValidationMessage> errors;
-		String value = null;
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		mockery.assertIsSatisfied();
-	}
+        mockery.checking(new Expectations());
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, true);
+        List<ValidationMessage> errors;
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldValidateValidFormattedIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
+        // VALID IE = 24001755-6
+        String value = "24001755-6";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
 
-		mockery.checking(new Expectations() {
-			{
+        mockery.assertIsSatisfied();
+    }
 
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, true);
-		List<ValidationMessage> errors;
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateValidUnformattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
 
-		// VALID IE = 24001755-6
-		String value = "24001755-6";
-		try {
-			validator.assertValid(value);
-		} catch (InvalidStateException e) {
-			fail();
-		}
-		errors = validator.invalidMessagesFor(value);
-		assertTrue(errors.isEmpty());
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_FORMAT);
+            }
+        });
+        Validator validator = new InscricaoEstatudalDeRoraimaValidator(
+                messageProducer, true);
 
-		mockery.assertIsSatisfied();
-	}
+        // VALID IE = 24001755-6
+        String value = "24001755+6";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void shouldNotValidateValidUnformattedIE() {
-		Mockery mockery = new Mockery();
-		final MessageProducer messageProducer = mockery
-				.mock(MessageProducer.class);
-
-		mockery.checking(new Expectations() {
-			{
-				exactly(1).of(messageProducer).getMessage(
-						IEError.INVALID_FORMAT);
-			}
-		});
-		Validator validator = new InscricaoEstatudalDeRoraimaValidator(
-				messageProducer, true);
-
-		// VALID IE = 24001755-6
-		String value = "24001755+6";
-		try {
-			validator.assertValid(value);
-			fail();
-		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
-		}
-
-		mockery.assertIsSatisfied();
-	}
+        mockery.assertIsSatisfied();
+    }
 
 }

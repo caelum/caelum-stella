@@ -29,15 +29,15 @@ import br.com.caelum.stella.validation.InvalidValue;
 @SuppressWarnings("unchecked")
 public class SimpleMessageProducer implements MessageProducer {
 
-	/**
-	 * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
-	 */
-	public ValidationMessage getMessage(InvalidValue error) {
-		String simpleName = error.getClass().getSimpleName();
-		String errorName = error.name();
-		String key = (simpleName + "." + errorName);
-		String message;
-		message = key.replaceFirst("[.]", " : ").replaceAll("_", " ");
-		return new SimpleValidationMessage(message);
-	}
+    /**
+     * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
+     */
+    public ValidationMessage getMessage(InvalidValue error) {
+        String simpleName = error.getClass().getSimpleName();
+        String errorName = error.name();
+        String key = (simpleName + "." + errorName);
+        String message;
+        message = key.replaceFirst("[.]", " : ").replaceAll("_", " ");
+        return new SimpleValidationMessage(message);
+    }
 }
