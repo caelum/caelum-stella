@@ -60,6 +60,16 @@ public class CPFValidator extends AbstractValidator<String> {
 
     private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
+    public CPFValidator() {
+        this(true);
+    }
+
+    public CPFValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+        this.isIgnoringRepeatedDigits = true;
+    }
+
     /**
      * <p>
      * Construtor do Validador de CPF.

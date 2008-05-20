@@ -16,6 +16,23 @@ import br.com.caelum.stella.validation.error.CPFError;
  * @author Leonardo Bessa
  */
 public class CPFValidatorTest {
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        new CPFValidator().assertValid("111.111.111-11");
+        
+        try {
+            new CPFValidator().assertValid("111.111.111-12");
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "CPFError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     @Test

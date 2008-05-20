@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
 abstract class AbstractValidator<T> implements Validator<T> {
     private final MessageProducer messageProducer;
+    
+    public AbstractValidator() {
+        this.messageProducer = new SimpleMessageProducer();
+    }
 
     public AbstractValidator(MessageProducer messageProducer) {
         this.messageProducer = messageProducer;
