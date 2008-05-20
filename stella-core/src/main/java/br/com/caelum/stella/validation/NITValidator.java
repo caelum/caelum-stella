@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.NITError;
 
 /**
@@ -53,6 +54,23 @@ public class NITValidator extends AbstractValidator<String> {
             MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
+
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public NITValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     */
+    public NITValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
 
     /**
      * <p>

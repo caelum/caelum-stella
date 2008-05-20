@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeSergipeValidator extends
@@ -34,6 +35,26 @@ public class InscricaoEstatudalDeSergipeValidator extends
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{8})(\\d{1})");
 
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public InscricaoEstatudalDeSergipeValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
+     */
+    public InscricaoEstatudalDeSergipeValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
+    
     public InscricaoEstatudalDeSergipeValidator(
             MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);

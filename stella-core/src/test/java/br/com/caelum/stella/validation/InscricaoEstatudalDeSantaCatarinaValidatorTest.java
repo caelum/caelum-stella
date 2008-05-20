@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,8 +16,30 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeSantaCatarinaValidatorTest {
 
-    // Exemplo: inscrição 251.040.852
-    // Exemplo: inscrição 251040852
+    private final String validString = "251.040.852";
+    private final String wrongCheckDigitString = "251.040.858";
+    
+    private Validator<String> newValidator(){
+        return new InscricaoEstatudalDeSantaCatarinaValidator();
+    }
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        newValidator().assertValid(validString);
+        
+        try {
+            newValidator().assertValid(wrongCheckDigitString);
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "IEError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {

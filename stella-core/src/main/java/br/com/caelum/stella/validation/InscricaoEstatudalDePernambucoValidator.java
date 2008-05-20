@@ -3,6 +3,7 @@ package br.com.caelum.stella.validation;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
 public class InscricaoEstatudalDePernambucoValidator implements
@@ -11,6 +12,25 @@ public class InscricaoEstatudalDePernambucoValidator implements
     private final InscricaoEstatudalDePernambucoAntigaValidator antigaValidator;
     private final InscricaoEstatudalDePernambucoNovaValidator novaValidator;
     private final AbstractValidator<String> abstractValidator;
+    
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public InscricaoEstatudalDePernambucoValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
+     */
+    public InscricaoEstatudalDePernambucoValidator(boolean isFormatted) {
+        this(new SimpleMessageProducer(),isFormatted);
+    }
 
     public InscricaoEstatudalDePernambucoValidator(
             MessageProducer messageProducer, boolean isFormatted) {

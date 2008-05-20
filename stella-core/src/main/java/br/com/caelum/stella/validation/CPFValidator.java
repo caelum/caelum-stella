@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.CPFError;
 
 /**
@@ -60,10 +61,19 @@ public class CPFValidator extends AbstractValidator<String> {
 
     private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
+    /**
+     * Construtor padrão de validador de CPF. Este considera, por padrão, que as
+     * cadeias estão formatadas e utiliza um {@linkplain SimpleMessageProducer}
+     * para geração de mensagens.
+     */
     public CPFValidator() {
         this(true);
     }
 
+    /**
+     * Construtor de validador de CPF. O validador utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
     public CPFValidator(boolean isFormatted) {
         super();
         this.isFormatted = isFormatted;

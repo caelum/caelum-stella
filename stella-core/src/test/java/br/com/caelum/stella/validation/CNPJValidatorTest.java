@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,6 +16,26 @@ import br.com.caelum.stella.validation.error.CNPJError;
  * @author Fabio Kung
  */
 public class CNPJValidatorTest {
+    
+    private final String validString = "26.637.142/0001-58";
+    private final String firstCheckDigitWrong = "26.637.142/0001-68";
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        new CNPJValidator().assertValid(validString);
+        
+        try {
+            new CNPJValidator().assertValid(firstCheckDigitWrong);
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "CNPJError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     @Test
@@ -203,9 +224,8 @@ public class CNPJValidatorTest {
         mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, true);
 
-        // VALID CNPJ = 26.637.142/0001-58
         try {
-            String value = "26.637.142/0001-58";
+            String value = validString;
             validator.assertValid(value);
         } catch (InvalidStateException e) {
             fail();

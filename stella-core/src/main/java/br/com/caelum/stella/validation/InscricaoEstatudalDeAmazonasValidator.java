@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class InscricaoEstatudalDoAmazonasValidator extends
+public class InscricaoEstatudalDeAmazonasValidator extends
         AbstractValidator<String> {
 
     private static final int MOD = 11;
@@ -33,7 +34,27 @@ public class InscricaoEstatudalDoAmazonasValidator extends
     public static final Pattern UNFORMATED = Pattern
             .compile("([0][47])(\\d{3})(\\d{3})(\\d{1})");
 
-    public InscricaoEstatudalDoAmazonasValidator(
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public InscricaoEstatudalDeAmazonasValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
+     */
+    public InscricaoEstatudalDeAmazonasValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
+    
+    public InscricaoEstatudalDeAmazonasValidator(
             MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;

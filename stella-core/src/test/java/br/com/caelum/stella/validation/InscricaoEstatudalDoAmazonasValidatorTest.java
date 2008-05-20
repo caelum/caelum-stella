@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,7 +16,29 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDoAmazonasValidatorTest {
 
-    // 99.999.999-9
+    private final String validString = "04.193.980-8";
+    private final String wrongCheckDigitString = "04.345.678-9";
+    
+    private Validator<String> newValidator(){
+        return new InscricaoEstatudalDeAmazonasValidator();
+    }
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        newValidator().assertValid(validString);
+        
+        try {
+            newValidator().assertValid(wrongCheckDigitString);
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "IEError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     @Test
@@ -30,7 +53,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
         try {
             validator.assertValid("a23456789");
@@ -55,7 +78,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
         try {
             validator.assertValid("23456789");
@@ -80,7 +103,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
 
         String value = "1234567890";
@@ -107,7 +130,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
 
         // VALID IE = ???
@@ -129,7 +152,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
 
         List<ValidationMessage> errors;
@@ -155,7 +178,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, false);
 
         List<ValidationMessage> errors;
@@ -179,7 +202,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, true);
         List<ValidationMessage> errors;
 
@@ -209,7 +232,7 @@ public class InscricaoEstatudalDoAmazonasValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new InscricaoEstatudalDoAmazonasValidator(
+        Validator validator = new InscricaoEstatudalDeAmazonasValidator(
                 messageProducer, true);
 
         // VALID IE = ???

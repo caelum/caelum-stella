@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeRioDeJaneiroValidator extends
@@ -32,6 +33,26 @@ public class InscricaoEstatudalDeRioDeJaneiroValidator extends
             .compile("([1789]\\d{1})[.](\\d{3})[.](\\d{3})");
     public static final Pattern UNFORMATED = Pattern
             .compile("([1789]\\d{1})(\\d{3})(\\d{3})");
+    
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public InscricaoEstatudalDeRioDeJaneiroValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
+     */
+    public InscricaoEstatudalDeRioDeJaneiroValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
 
     public InscricaoEstatudalDeRioDeJaneiroValidator(
             MessageProducer messageProducer, boolean isFormatted) {

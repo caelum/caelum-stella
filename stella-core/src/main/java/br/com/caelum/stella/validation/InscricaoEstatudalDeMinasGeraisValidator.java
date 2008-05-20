@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeMinasGeraisValidator extends
@@ -50,6 +51,26 @@ public class InscricaoEstatudalDeMinasGeraisValidator extends
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{3})(\\d{3})(\\d{3})(\\d{4})");
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3$4";
+
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public InscricaoEstatudalDeMinasGeraisValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
+     */
+    public InscricaoEstatudalDeMinasGeraisValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
 
     public InscricaoEstatudalDeMinasGeraisValidator(
             MessageProducer messageProducer, boolean isFormatted) {

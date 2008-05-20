@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.CNPJConstraints.Rotina;
 import br.com.caelum.stella.validation.error.CNPJError;
 
@@ -40,6 +41,38 @@ public class CNPJValidator extends AbstractValidator<String> {
 
     private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
 
+    /**
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public CNPJValidator() {
+        this(true);
+    }
+
+    /**
+     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+     * mensagens.
+     * @param isFormatted
+     *                considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd"
+     *                onde "d" é um dígito decimal.
+     */
+    public CNPJValidator(boolean isFormatted) {
+        super();
+        this.isFormatted = isFormatted;
+    }
+
+    /**
+     * <p>
+     * Construtor do Validador de CNPJ.
+     * </p>
+     * <p>
+     * 
+     * @param messageProducer
+     *                produtor de mensagem de erro.
+     * @param isFormatted
+     *                considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd"
+     *                onde "d" é um dígito decimal.
+     */
     public CNPJValidator(MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;

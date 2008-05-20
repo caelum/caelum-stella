@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -23,6 +24,31 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
      * 00000001721461 00000001721453 00000001721411 00000001721313
      * 00000001721445 00000001721437
      */
+    
+    private final String validString = "101.62521-3";
+    private final String wrongCheckDigitString = "101.62521-8";
+    
+    private Validator<String> newValidator(){
+        return new InscricaoEstatudalDeRondoniaValidator();
+    }
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        newValidator().assertValid(validString);
+        
+        try {
+            newValidator().assertValid(wrongCheckDigitString);
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "IEError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
@@ -33,7 +59,7 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new InscricaoEstatudalDeRondoniaValidator(
@@ -58,7 +84,7 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new InscricaoEstatudalDeRondoniaValidator(
@@ -83,7 +109,7 @@ public class InscricaoEstatudalDeRondoniaValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new InscricaoEstatudalDeRondoniaValidator(
