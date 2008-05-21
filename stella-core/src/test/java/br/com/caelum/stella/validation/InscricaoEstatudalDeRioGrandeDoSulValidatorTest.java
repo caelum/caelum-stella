@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,8 +16,29 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeRioGrandeDoSulValidatorTest {
 
-    // validUnforamtedIE = "2243658792";
-    // validFormatedIE = "224/3658792";
+    private final String validString = "224/3658792";
+    private final String wrongCheckDigitString = "224/3658793";
+    
+    private Validator<String> newValidator(){
+        return new InscricaoEstatudalDeRioGrandeDoSulValidator();
+    }
+    
+    @Test
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+        newValidator().assertValid(validString);
+        
+        try {
+            newValidator().assertValid(wrongCheckDigitString);
+        } catch (RuntimeException e) {
+            if (e instanceof InvalidStateException) {
+                InvalidStateException invalidStateException = (InvalidStateException) e;
+                String expected = "IEError : INVALID CHECK DIGITS";
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+            } else {
+                fail();
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     @Test

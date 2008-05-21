@@ -24,7 +24,7 @@
     // uma representação válida par CNPJ, não nula.
     @CNPJ
     @NotNull
-    public String getCNPJ() {
+    public String getCnpj() {
         return cnpj;
     }
         
@@ -44,7 +44,7 @@
         
     @NotNull 
     @CPF    
-    protected String getCPF() { ... };
+    protected String getCpf() { ... };
     ...
 }
 </textarea>     
@@ -58,14 +58,14 @@
 public interface EmpresaPrivada {
 
     @NIT
-    String getPIS();
+    String getPis();
     ...
 }
 
 public class Acme implements EmpresaPrivada {
 
     
-    public String getPIS(){...}
+    public String getPis(){...}
     ...
 }
 </textarea>          
