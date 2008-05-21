@@ -9,7 +9,7 @@ import br.com.caelum.stella.validation.InvalidValue;
 /**
  * <p>
  * ResourceBlundeMessageProducer é responsável pela geração de mensagens de
- * erro. Estas mensagens são procuradas em um ResourceBlundle, através de uma
+ * erro. Estas mensagens são procuradas em um ResourceBundle, através de uma
  * chave associada a cada erro.
  * </p>
  * <p>
@@ -34,7 +34,6 @@ import br.com.caelum.stella.validation.InvalidValue;
  * @author Leonardo Bessa
  * 
  */
-@SuppressWarnings("unchecked")
 public class ResourceBundleMessageProducer implements MessageProducer {
 
     private final ResourceBundle bundle;
