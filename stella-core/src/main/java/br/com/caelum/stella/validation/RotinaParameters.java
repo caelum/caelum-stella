@@ -11,7 +11,6 @@ class RotinaParameters {
 
     public RotinaParameters(DigitoVerificadorInfo digitoVerificadorInfo,
             Integer[] numeros, Integer result) {
-        super();
         this.digitoVerificadorInfo = digitoVerificadorInfo;
         this.numeros = numeros;
         this.result = result;
