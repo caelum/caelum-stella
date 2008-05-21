@@ -10,7 +10,7 @@ import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class InscricaoEstatudalDeMinasGeraisValidator extends
-        AbstractValidator<String> {
+        BaseValidator<String> {
 
     private static final int DVX_MOD = 10;
 

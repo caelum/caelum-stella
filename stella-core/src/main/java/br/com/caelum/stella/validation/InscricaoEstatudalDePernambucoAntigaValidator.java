@@ -8,7 +8,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 class InscricaoEstatudalDePernambucoAntigaValidator extends
-        AbstractValidator<String> {
+        BaseValidator<String> {
 
     // Exemplo 18.1.001.0000004-9
 

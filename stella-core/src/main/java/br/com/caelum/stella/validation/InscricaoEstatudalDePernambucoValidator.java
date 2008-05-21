@@ -1,17 +1,16 @@
 package br.com.caelum.stella.validation;
 
-import java.util.List;
-
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
-public class InscricaoEstatudalDePernambucoValidator implements
-        Validator<String> {
+import java.util.List;
+
+public class InscricaoEstatudalDePernambucoValidator implements Validator<String> {
 
     private final InscricaoEstatudalDePernambucoAntigaValidator antigaValidator;
     private final InscricaoEstatudalDePernambucoNovaValidator novaValidator;
-    private final AbstractValidator<String> abstractValidator;
+    private final BaseValidator<String> baseValidator;
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -24,9 +23,8 @@ public class InscricaoEstatudalDePernambucoValidator implements
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
      * mensagens.
-     * 
-     * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *
+     * @param isFormatted considerar cadeia formatada quando <code>true</code>
      */
     public InscricaoEstatudalDePernambucoValidator(boolean isFormatted) {
         this(new SimpleMessageProducer(), isFormatted);
@@ -39,7 +37,7 @@ public class InscricaoEstatudalDePernambucoValidator implements
         novaValidator = new InscricaoEstatudalDePernambucoNovaValidator(null,
                 isFormatted);
         final boolean finalIsFormatted = isFormatted;
-        this.abstractValidator = new AbstractValidator<String>(messageProducer) {
+        this.baseValidator = new BaseValidator<String>(messageProducer) {
 
             @Override
             protected List<InvalidValue> getInvalidValues(String value) {
@@ -66,11 +64,11 @@ public class InscricaoEstatudalDePernambucoValidator implements
     }
 
     public void assertValid(String value) {
-        abstractValidator.assertValid(value);
+        baseValidator.assertValid(value);
     }
 
     public List<ValidationMessage> invalidMessagesFor(String value) {
-        return abstractValidator.invalidMessagesFor(value);
+        return baseValidator.invalidMessagesFor(value);
     }
 
 }

@@ -10,7 +10,7 @@ public class InscricaoEstatudalDeSaoPauloValidator implements Validator<String> 
 
     private final InscricaoEstatudalDeSaoPauloParaComercioIndustriaValidator comercioIndustriaValidator;
     private final InscricaoEstatudalDeSaoPauloParaProdutorRuralValidator produtorRuralValidator;
-    private final AbstractValidator<String> abstractValidator;
+    private final BaseValidator<String> baseValidator;
     
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -37,7 +37,7 @@ public class InscricaoEstatudalDeSaoPauloValidator implements Validator<String> 
                 null, isFormatted);
         produtorRuralValidator = new InscricaoEstatudalDeSaoPauloParaProdutorRuralValidator(
                 null, isFormatted);
-        this.abstractValidator = new AbstractValidator<String>(messageProducer) {
+        this.baseValidator = new BaseValidator<String>(messageProducer) {
 
             @Override
             protected List<InvalidValue> getInvalidValues(String value) {
@@ -54,11 +54,11 @@ public class InscricaoEstatudalDeSaoPauloValidator implements Validator<String> 
     }
 
     public void assertValid(String value) {
-        abstractValidator.assertValid(value);
+        baseValidator.assertValid(value);
     }
 
     public List<ValidationMessage> invalidMessagesFor(String value) {
-        return abstractValidator.invalidMessagesFor(value);
+        return baseValidator.invalidMessagesFor(value);
     }
 
 }

@@ -16,7 +16,7 @@ import br.com.caelum.stella.validation.error.CPFError;
  * 
  * @author Leonardo Bessa
  */
-public class CPFValidator extends AbstractValidator<String> {
+public class CPFValidator extends BaseValidator<String> {
     private static final int MOD = 11;
 
     private final boolean isFormatted;

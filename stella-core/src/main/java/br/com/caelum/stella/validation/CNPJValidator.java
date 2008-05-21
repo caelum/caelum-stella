@@ -14,7 +14,7 @@ import br.com.caelum.stella.validation.error.CNPJError;
 /**
  * @author Leonardo Bessa
  */
-public class CNPJValidator extends AbstractValidator<String> {
+public class CNPJValidator extends BaseValidator<String> {
     private final boolean isFormatted;
 
     private static final int MOD = 11;

@@ -8,7 +8,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 class InscricaoEstatudalDeSaoPauloParaComercioIndustriaValidator extends
-        AbstractValidator<String> {
+        BaseValidator<String> {
 
     private static final int MOD = 11;
 

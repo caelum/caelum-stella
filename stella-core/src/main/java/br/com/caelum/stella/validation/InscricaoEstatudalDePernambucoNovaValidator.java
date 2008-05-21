@@ -9,7 +9,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.validation.error.IEError;
 
 class InscricaoEstatudalDePernambucoNovaValidator extends
-        AbstractValidator<String> {
+        BaseValidator<String> {
 
     private static final int DVX_MOD = 11;
 
