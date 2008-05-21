@@ -1,7 +1,8 @@
-package br.com.caelum.stella.validation;
+package br.com.caelum.stella.format;
 
-import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_FORMATED;
-import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_UNFORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
+import br.com.caelum.stella.format.Formatter;
 
 import java.util.regex.Matcher;
 

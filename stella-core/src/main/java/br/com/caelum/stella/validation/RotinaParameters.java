@@ -4,7 +4,7 @@ package br.com.caelum.stella.validation;
  * @author Leonardo Bessa
  */
 
-class RotinaParameters {
+public class RotinaParameters {
     private final DigitoVerificadorInfo digitoVerificadorInfo;
     private final Integer[] numeros;
     private Integer result;

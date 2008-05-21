@@ -1,13 +1,12 @@
-package br.com.caelum.stella.validation;
+package br.com.caelum.stella.format;
 
-import static br.com.caelum.stella.validation.NITConstraints.NIT_FORMATED;
-import static br.com.caelum.stella.validation.NITConstraints.NIT_UNFORMATED;
+import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
+import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
 
 import java.util.regex.Matcher;
 
 /**
  * @author Leonardo Bessa
- * 
  */
 public class NITFormatter implements Formatter {
 

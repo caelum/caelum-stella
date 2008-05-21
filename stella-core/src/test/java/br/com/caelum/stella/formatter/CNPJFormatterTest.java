@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.stella.validation.CNPJFormatter;
-import br.com.caelum.stella.validation.Formatter;
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.format.Formatter;
 
 public class CNPJFormatterTest {
 

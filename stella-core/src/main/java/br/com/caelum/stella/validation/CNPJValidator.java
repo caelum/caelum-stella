@@ -1,14 +1,15 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_FORMATED;
-import static br.com.caelum.stella.validation.CNPJConstraints.CNPJ_UNFORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.CNPJConstraints.Rotina;
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
 import br.com.caelum.stella.validation.error.CNPJError;
 
 /**
