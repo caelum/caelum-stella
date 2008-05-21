@@ -166,7 +166,7 @@ public class CPFValidator extends BaseValidator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.DVisValid(value)) && (DV2_CHECKER.DVisValid(value));
+        return (DV1_CHECKER.isDVValid(value)) && (DV2_CHECKER.isDVValid(value));
     }
 
     private boolean hasAllRepeatedDigits(String cpf) {

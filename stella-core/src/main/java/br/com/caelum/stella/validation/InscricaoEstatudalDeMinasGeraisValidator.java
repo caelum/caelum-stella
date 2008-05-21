@@ -115,8 +115,8 @@ public class InscricaoEstatudalDeMinasGeraisValidator extends
         if (matcher.matches()) {
             testedValue = matcher.replaceAll(REPLACEMENT);
         }
-        boolean DVXisValid = DVX_CHECKER.DVisValid(testedValue);
-        boolean DVYisValid = DVY_CHECKER.DVisValid(testedValue);
+        boolean DVXisValid = DVX_CHECKER.isDVValid(testedValue);
+        boolean DVYisValid = DVY_CHECKER.isDVValid(testedValue);
         return (DVXisValid) && (DVYisValid);
     }
 

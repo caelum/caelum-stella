@@ -5,13 +5,13 @@ package br.com.caelum.stella.validation;
  */
 class ValidadorDeDV {
 
-    private DigitoVerificadorInfo info;
+    private final DigitoVerificadorInfo info;
 
     public ValidadorDeDV(DigitoVerificadorInfo info) {
         this.info = info;
     }
 
-    public boolean DVisValid(String digitos) {
+    public boolean isDVValid(String digitos) {
         boolean isValid = false;
 
         Integer dvCandidate = Integer.parseInt(digitos.substring(info

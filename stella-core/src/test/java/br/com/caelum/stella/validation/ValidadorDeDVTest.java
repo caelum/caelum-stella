@@ -18,7 +18,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00000080336012");
+        boolean dvIsValid = verificador.isDVValid("00000080336012");
         assertTrue(dvIsValid);
     }
 
@@ -33,7 +33,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00000080336013");
+        boolean dvIsValid = verificador.isDVValid("00000080336013");
         assertFalse(dvIsValid);
     }
 
@@ -48,7 +48,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00000084920045");
+        boolean dvIsValid = verificador.isDVValid("00000084920045");
         assertTrue(dvIsValid);
     }
 
@@ -63,7 +63,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00000084920048");
+        boolean dvIsValid = verificador.isDVValid("00000084920048");
         assertFalse(dvIsValid);
     }
 
@@ -78,7 +78,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00417032057114");
+        boolean dvIsValid = verificador.isDVValid("00417032057114");
         assertTrue(dvIsValid);
     }
 
@@ -93,7 +93,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00417032057114");
+        boolean dvIsValid = verificador.isDVValid("00417032057114");
         assertTrue(dvIsValid);
     }
 
@@ -108,7 +108,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00417032050114");
+        boolean dvIsValid = verificador.isDVValid("00417032050114");
         assertFalse(dvIsValid);
     }
 
@@ -123,7 +123,7 @@ public class ValidadorDeDVTest {
         DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
                 mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
-        boolean dvIsValid = verificador.DVisValid("00417032057116");
+        boolean dvIsValid = verificador.isDVValid("00417032057116");
         assertFalse(dvIsValid);
     }
 

@@ -94,7 +94,7 @@ public class InscricaoEstatudalDeSergipeValidator extends
 
     private boolean hasValidCheckDigits(String value) {
         String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return DVX_CHECKER.DVisValid(testedValue);
+        return DVX_CHECKER.isDVValid(testedValue);
     }
 
 }

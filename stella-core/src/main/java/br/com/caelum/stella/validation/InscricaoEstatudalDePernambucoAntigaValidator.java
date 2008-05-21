@@ -79,7 +79,7 @@ class InscricaoEstatudalDePernambucoAntigaValidator extends
 
     private boolean hasValidCheckDigits(String value) {
         String testedValue = value;
-        return DVX_CHECKER.DVisValid(testedValue);
+        return DVX_CHECKER.isDVValid(testedValue);
     }
 
 }
