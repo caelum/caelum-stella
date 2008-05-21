@@ -23,7 +23,7 @@ import br.com.caelum.stella.validation.error.NITError;
  * 
  * @author Leonardo Bessa
  */
-public class NITValidator extends AbstractValidator<String> {
+public class NITValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -120,6 +120,6 @@ public class NITValidator extends AbstractValidator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.DVisValid(value));
+        return (DV1_CHECKER.isDVValid(value));
     }
 }
