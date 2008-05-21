@@ -12,7 +12,7 @@ public class InscricaoEstatudalDePernambucoValidator implements
     private final InscricaoEstatudalDePernambucoAntigaValidator antigaValidator;
     private final InscricaoEstatudalDePernambucoNovaValidator novaValidator;
     private final AbstractValidator<String> abstractValidator;
-    
+
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
@@ -29,7 +29,7 @@ public class InscricaoEstatudalDePernambucoValidator implements
      *                considerar cadeia formatada quando <code>true</code>
      */
     public InscricaoEstatudalDePernambucoValidator(boolean isFormatted) {
-        this(new SimpleMessageProducer(),isFormatted);
+        this(new SimpleMessageProducer(), isFormatted);
     }
 
     public InscricaoEstatudalDePernambucoValidator(

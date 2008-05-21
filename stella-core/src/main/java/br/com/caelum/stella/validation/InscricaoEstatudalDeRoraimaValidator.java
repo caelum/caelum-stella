@@ -19,11 +19,11 @@ public class InscricaoEstatudalDeRoraimaValidator extends
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P5;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
+    private static final RotinaDeDigitoVerificador[] ROTINAS = {
             IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
 
     private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+            0, ROTINAS, MOD, DVX_MULTIPLIERS, DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
