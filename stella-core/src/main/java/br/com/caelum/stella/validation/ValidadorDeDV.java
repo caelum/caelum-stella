@@ -12,30 +12,20 @@ class ValidadorDeDV {
     }
 
     public boolean isDVValid(String digitos) {
-        boolean isValid = false;
-
-        Integer dvCandidate = Integer.parseInt(digitos.substring(info
-                .getPosicaoDoDv() - 1, info.getPosicaoDoDv()));
-        Integer dv = generateDV(digitos);
-        if (dv.equals(dvCandidate)) {
-            isValid = true;
-        }
-        return isValid;
-
+        Integer dvCandidate = Integer.parseInt(digitos.substring(info.getPosicaoDoDv() - 1, info.getPosicaoDoDv()));
+        return this.generateDV(digitos).equals(dvCandidate);
     }
 
     private Integer generateDV(String digitos) {
         Integer[] intDigits = extractIntegerDigits(digitos);
         Integer innerProduct = innerProduct(info.getPesos(), intDigits);
         Integer result = innerProduct;
-        RotinaParameters parameters = new RotinaParameters(info, intDigits,
-                innerProduct);
+        RotinaParameters parameters = new RotinaParameters(info, intDigits, innerProduct);
         for (RotinaDeDigitoVerificador rotina : info.getRotinas()) {
             result = rotina.transform(parameters);
             parameters.setResult(result);
         }
-        Integer dv = result;
-        return dv;
+        return result;
     }
 
     private Integer[] extractIntegerDigits(String digitos) {
