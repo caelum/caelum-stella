@@ -10,15 +10,12 @@ import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.error.IEError;
 import br.com.caelum.stella.validation.*;
 
-public class IEMatoGrossoValidator extends
-        BaseValidator<String> {
+public class IEMatoGrossoValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
-    // TAMANHO = 9;
-    private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
+    private static final int DVX_POSITION = 3+11;
 
-    private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -32,9 +29,9 @@ public class IEMatoGrossoValidator extends
     private final boolean isFormatted;
 
     public static final Pattern FORMATED = Pattern
-            .compile("(\\d{2})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+            .compile("(\\d{10})[-](\\d{1})");
     public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{2})(\\d{3})(\\d{3})(\\d{1})");
+            .compile("(\\d{10})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -56,8 +53,8 @@ public class IEMatoGrossoValidator extends
         this.isFormatted = isFormatted;
     }
 
-    public IEMatoGrossoValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IEMatoGrossoValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -94,7 +91,7 @@ public class IEMatoGrossoValidator extends
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value) ;
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

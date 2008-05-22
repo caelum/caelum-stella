@@ -1,8 +1,10 @@
 package br.com.caelum.stella.constraint;
 
+import br.com.caelum.stella.format.LeftSideZerosFormatter;
+import br.com.caelum.stella.validation.DigitoVerificadorInfo;
+import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.RotinaParameters;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 
 /**
  * Documentação que pode ser consultada:
@@ -12,6 +14,7 @@ import br.com.caelum.stella.validation.DigitoVerificadorInfo;
  */
 public class IEConstraints {
 
+    public static final Formatter PRE_VALIDATION_FORMATTER = new LeftSideZerosFormatter(14);
     public static final Integer[] P1 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2, 0};
     public static final Integer[] P2 = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2, 0, 0};
     public static final Integer[] P3 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 0, 2};

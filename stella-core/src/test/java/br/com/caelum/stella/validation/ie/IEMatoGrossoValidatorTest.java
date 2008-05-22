@@ -20,18 +20,18 @@ import br.com.caelum.stella.validation.InvalidStateException;
 public class IEMatoGrossoValidatorTest {
 
     /*
-     * IE validas 13.193.686-7 13.053.551-6 13.056.071-5 13.076.269-5
-     * 13.015.257-9 13.125.061-2 13.146.383-7 13.151.173-4 13.198.869-7
-     * 13.198.868-9 13.191.575-4 13.178.718-7 13.191.879-6 13.197.541-2
-     * 13.197.542-0 13.197.556-0 13.198.333-4 13.198.870-0 13.198.872-7
-     * 13.205.160-5 13.199.075-6 13.199.463-8 13.198.871-9 13.199.464-6
-     * 13.210.743-0 13.211.337-6 13.210.747-3 13.236.559-6 13.236.558-8
-     * 13.241.890-8 13.246.644-9 13.256.554-4 13.284.135-5 13.286.376-6
-     * 13.286.372-3
+     * IE validas 0013193686-7 0013053551-6 0013056071-5 0013076269-5
+     * 0013015257-9 0013125061-2 0013146383-7 0013151173-4 0013198869-7
+     * 0013198868-9 0013191575-4 0013178718-7 0013191879-6 0013197541-2
+     * 0013197542-0 0013197556-0 0013198333-4 0013198870-0 0013198872-7
+     * 0013205160-5 0013199075-6 0013199463-8 0013198871-9 0013199464-6
+     * 0013210743-0 0013211337-6 0013210747-3 0013236559-6 0013236558-8
+     * 0013241890-8 0013246644-9 0013256554-4 0013284135-5 0013286376-6
+     * 0013286372-3
      */
     
-    private final String validString = "13.199.075-6";
-    private final String wrongCheckDigitString = "13.199.075-6";
+    private final String validString = "0013199075-6";
+    private final String wrongCheckDigitString = "0013199075-6";
     
     private Validator<String> newValidator(){
         return new IEMatoGrossoValidator();
@@ -70,7 +70,7 @@ public class IEMatoGrossoValidatorTest {
         Validator validator = new IEMatoGrossoValidator(
                 messageProducer, false);
         try {
-            validator.assertValid("132-02758");
+            validator.assertValid("00131990a56");
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -95,7 +95,7 @@ public class IEMatoGrossoValidatorTest {
         Validator validator = new IEMatoGrossoValidator(
                 messageProducer, false);
         try {
-            validator.assertValid("32002758");
+            validator.assertValid("0013199076");
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -120,7 +120,7 @@ public class IEMatoGrossoValidatorTest {
         Validator validator = new IEMatoGrossoValidator(
                 messageProducer, false);
 
-        String value = "0132002758";
+        String value = "001319907568";
         try {
             validator.assertValid(value);
             fail();
@@ -147,8 +147,8 @@ public class IEMatoGrossoValidatorTest {
         Validator validator = new IEMatoGrossoValidator(
                 messageProducer, false);
 
-        // VALID IE = ???
-        String value = "132002758";
+        // VALID IE = "0013199075-6"
+        String value = "00131990755";
         try {
             validator.assertValid(value);
             fail();
@@ -171,15 +171,15 @@ public class IEMatoGrossoValidatorTest {
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { "131936867", "131936867", "130535516",
-                "130560715", "130762695", "130152579", "131250612",
-                "131463837", "131511734", "131988697", "131988689",
-                "131915754", "131787187", "131918796", "131975412",
-                "131975420", "131975560", "131983334", "131988700",
-                "131988727", "132051605", "131990756", "131994638",
-                "131988719", "131994646", "132107430", "132113376",
-                "132107473", "132365596", "132365588", "132418908",
-                "132466449", "132565544", "132841355", "132863766", "132863723" };
+        String[] validValues = { "00131936867", "00131936867", "00130535516",
+                "00130560715", "00130762695", "00130152579", "00131250612",
+                "00131463837", "00131511734", "00131988697", "00131988689",
+                "00131915754", "00131787187", "00131918796", "00131975412",
+                "00131975420", "00131975560", "00131983334", "00131988700",
+                "00131988727", "00132051605", "00131990756", "00131994638",
+                "00131988719", "00131994646", "00132107430", "00132113376",
+                "00132107473", "00132365596", "00132365588", "00132418908",
+                "00132466449", "00132565544", "00132841355", "00132863766", "00132863723" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -228,8 +228,8 @@ public class IEMatoGrossoValidatorTest {
                 messageProducer, true);
         List<ValidationMessage> errors;
 
-        // VALID IE = 13.193.686-7
-        String value = "13.193.686-7";
+        // VALID IE = 0013193686-7
+        String value = "0013193686-7";
         try {
             validator.assertValid(value);
         } catch (InvalidStateException e) {
@@ -258,7 +258,7 @@ public class IEMatoGrossoValidatorTest {
                 messageProducer, true);
 
         // VALID IE = 13.193.686-7
-        String value = "13+193.686-7";
+        String value = "0013193686+7";
         try {
             validator.assertValid(value);
             fail();
