@@ -27,27 +27,38 @@ public class IEMatoGrossoValidatorTest {
      * 0013205160-5 0013199075-6 0013199463-8 0013198871-9 0013199464-6
      * 0013210743-0 0013211337-6 0013210747-3 0013236559-6 0013236558-8
      * 0013241890-8 0013246644-9 0013256554-4 0013284135-5 0013286376-6
-     * 0013286372-3
+     * 0013286372-3 "133357406", "133296598", "133252388", "133217795",
+     * "133166317", "133159868", "133142531", "133118649", "133070255",
+     * "133069737", "133048306", "133034860", "132941201", "132907224",
+     * "132839245", "132814145", "132779277", "132656922", "132631946",
+     * "132624354", "132602741", "132498766", "132470985", "132411598",
+     * "132275864", "1303656300", "1302342000", "1301815443", "1301815419",
+     * "1301815370", "1301815354", "1301815346", "1301815338", "1301815320",
+     * "1301815311", "1301815303", "1301815290", "1301815281", "1301815273",
+     * "1301815265", "1301815257", "1301815249", "1301815230", "1301815222",
+     * "1301815214", "1301815206", "1301815192", "1301815184", "1301815176",
+     * "1301815168"
      */
-    
+
     private final String validString = "0013199075-6";
     private final String wrongCheckDigitString = "0013199075-6";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IEMatoGrossoValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -67,8 +78,7 @@ public class IEMatoGrossoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
         try {
             validator.assertValid("00131990a56");
             fail();
@@ -92,10 +102,9 @@ public class IEMatoGrossoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
         try {
-            validator.assertValid("0013199076");
+            validator.assertValid("1234567");
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -117,10 +126,9 @@ public class IEMatoGrossoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
 
-        String value = "001319907568";
+        String value = "123456789012345";
         try {
             validator.assertValid(value);
             fail();
@@ -144,8 +152,7 @@ public class IEMatoGrossoValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
 
         // VALID IE = "0013199075-6"
         String value = "00131990755";
@@ -166,8 +173,7 @@ public class IEMatoGrossoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -179,7 +185,20 @@ public class IEMatoGrossoValidatorTest {
                 "00131988727", "00132051605", "00131990756", "00131994638",
                 "00131988719", "00131994646", "00132107430", "00132113376",
                 "00132107473", "00132365596", "00132365588", "00132418908",
-                "00132466449", "00132565544", "00132841355", "00132863766", "00132863723" };
+                "00132466449", "00132565544", "00132841355", "00132863766",
+                "00132863723", "133357406", "133296598", "133252388",
+                "133217795", "133166317", "133159868", "133142531",
+                "133118649", "133070255", "133069737", "133048306",
+                "133034860", "132941201", "132907224", "132839245",
+                "132814145", "132779277", "132656922", "132631946",
+                "132624354", "132602741", "132498766", "132470985",
+                "132411598", "132275864", "1303656300", "1302342000",
+                "1301815443", "1301815419", "1301815370", "1301815354",
+                "1301815346", "1301815338", "1301815320", "1301815311",
+                "1301815303", "1301815290", "1301815281", "1301815273",
+                "1301815265", "1301815257", "1301815249", "1301815230",
+                "1301815222", "1301815214", "1301815206", "1301815192",
+                "1301815184", "1301815176", "1301815168" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -200,8 +219,7 @@ public class IEMatoGrossoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -224,8 +242,7 @@ public class IEMatoGrossoValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, true);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 0013193686-7
@@ -254,8 +271,7 @@ public class IEMatoGrossoValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, true);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, true);
 
         // VALID IE = 13.193.686-7
         String value = "0013193686+7";

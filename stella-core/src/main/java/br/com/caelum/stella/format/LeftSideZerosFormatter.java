@@ -26,8 +26,15 @@ public class LeftSideZerosFormatter implements Formatter {
     }
 
     public String format(String value) {
-        Integer integer = Integer.valueOf(value);
-        String formated = String.format("%1$0" + formatedLength + "d", integer);
+        boolean matches = value.matches("\\d{0," + formatedLength + "}");
+        if (!matches) {
+            throw new IllegalArgumentException("Argument value must have only "
+                    + formatedLength + " digits at most.");
+        }
+        String formated = value;
+        while (formated.length() < formatedLength) {
+            formated = "0" + formated;
+        }
         return formated;
     }
 

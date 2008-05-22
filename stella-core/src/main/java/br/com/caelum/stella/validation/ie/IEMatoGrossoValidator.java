@@ -29,9 +29,9 @@ public class IEMatoGrossoValidator extends BaseValidator<String> {
     private final boolean isFormatted;
 
     public static final Pattern FORMATED = Pattern
-            .compile("(\\d{10})[-](\\d{1})");
+            .compile("(\\d{8,10})[-](\\d{1})");
     public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{10})(\\d{1})");
+            .compile("(\\d{8,10})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
