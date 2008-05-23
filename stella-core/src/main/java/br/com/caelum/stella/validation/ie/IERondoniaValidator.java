@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.error.IEError;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.InvalidValue;
+import br.com.caelum.stella.validation.error.IEError;
 
 public class IERondoniaValidator extends
         BaseValidator<String> {

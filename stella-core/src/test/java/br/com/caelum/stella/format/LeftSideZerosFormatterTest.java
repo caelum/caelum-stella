@@ -1,6 +1,6 @@
 package br.com.caelum.stella.format;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

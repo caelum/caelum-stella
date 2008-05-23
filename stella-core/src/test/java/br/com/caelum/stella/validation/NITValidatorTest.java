@@ -1,6 +1,7 @@
 package br.com.caelum.stella.validation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 

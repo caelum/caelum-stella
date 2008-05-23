@@ -8,8 +8,8 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
+import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.validation.error.CNPJError;
 
 /**

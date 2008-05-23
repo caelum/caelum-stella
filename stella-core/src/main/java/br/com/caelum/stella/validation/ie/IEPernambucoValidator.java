@@ -1,11 +1,11 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.util.List;
+
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.InvalidValue;
-
-import java.util.List;
 
 public class IEPernambucoValidator extends BaseValidator<String> {
 
