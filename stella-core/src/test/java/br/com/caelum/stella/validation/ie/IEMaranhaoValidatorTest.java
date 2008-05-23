@@ -16,22 +16,21 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEEspiritoSantoValidatorTest {
+public class IEMaranhaoValidatorTest {
 
     /*
      * Formato: 8 dígitos (empresa)+1 dígito verificador
      * 
-     * Exemplo: 082.223.54-8
+     * Exemplo:
      */
 
-    private static final String wrongCheckDigitUnformattedString = "082223540";
-    private static final String validUnformattedString = "082223548";
-    private static final String validFormattedString = "082.223.54-8";
-    private String[] validUnformattedValues = new String[] {
-            validUnformattedString, "082260664", "081877455" };
+    private static final String wrongCheckDigitUnformattedString = "120000386";
+    private static final String validUnformattedString = "120000385";
+    private static final String validFormattedString = "12.000.038-5";
+    private static final String[] validValues = { validFormattedString };
 
     private Validator<String> newValidator() {
-        return new IEEspiritoSantoValidator();
+        return new IEMaranhaoValidator();
     }
 
     @Test
@@ -65,8 +64,7 @@ public class IEEspiritoSantoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, false);
         try {
             validator
                     .assertValid(validUnformattedString.replaceFirst(".", "&"));
@@ -91,8 +89,7 @@ public class IEEspiritoSantoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -116,8 +113,7 @@ public class IEEspiritoSantoValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -132,7 +128,7 @@ public class IEEspiritoSantoValidatorTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldNotValidateIECheckDigitsWithCheckDigitWrong() {
+    public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
@@ -143,8 +139,7 @@ public class IEEspiritoSantoValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -164,12 +159,35 @@ public class IEEspiritoSantoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
-        for (String validValue : validUnformattedValues) {
+        for (String validValue : validValues) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEMaranhaoValidator(messageProducer, true);
+
+        List<ValidationMessage> errors;
+
+        String[] validValues = { validFormattedString };
+        for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -188,8 +206,7 @@ public class IEEspiritoSantoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEMaranhaoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -206,29 +223,6 @@ public class IEEspiritoSantoValidatorTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldValidateValidFormattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                true);
-        List<ValidationMessage> errors;
-
-        String value = validFormattedString;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
@@ -240,8 +234,7 @@ public class IEEspiritoSantoValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                true);
+        Validator validator = new IEMaranhaoValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {
