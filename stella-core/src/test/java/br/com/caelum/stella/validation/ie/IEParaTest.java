@@ -16,18 +16,18 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEPiauiTest {
+public class IEParaTest {
 
     /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 19.301.656-7
+     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
      */
 
-    private static final String wrongCheckDigitUnformattedString = "193016560";
-    private static final String validUnformattedString = "193016567";
-    private static final String validFormattedString = "19.301.656-7";
+    private static final String wrongCheckDigitUnformattedString = "159999999";
+    private static final String validUnformattedString = "159999995";
+    private static final String validFormattedString = "15.999.999-5";
 
     private Validator<String> newValidator() {
-        return new IEPiauiValidator();
+        return new IEParaValidator();
     }
 
     @Test
@@ -61,9 +61,10 @@ public class IEPiauiTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator
+                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -85,7 +86,7 @@ public class IEPiauiTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -109,7 +110,7 @@ public class IEPiauiTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -124,7 +125,7 @@ public class IEPiauiTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldNotValidateIECheckDigitsWithCheckDigitWrong() {
+    public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
@@ -135,7 +136,7 @@ public class IEPiauiTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -155,19 +156,46 @@ public class IEPiauiTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
-        String validValue = validUnformattedString;
-        try {
-            validator.assertValid(validValue);
-        } catch (InvalidStateException e) {
-            fail();
+        String[] validValues = { validUnformattedString, "152298517",
+                "151330816", "151437726", "151918090", "151330816",
+                "151055610", "150695101", "150029349", "151330417" };
+        for (String validValue : validValues) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
         }
-        errors = validator.invalidMessagesFor(validValue);
-        assertTrue(errors.isEmpty());
+        mockery.assertIsSatisfied();
+    }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateValidFormattedIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEParaValidator(messageProducer, true);
+
+        List<ValidationMessage> errors;
+
+        String[] validValues = { validFormattedString };
+        for (String validValue : validValues) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
         mockery.assertIsSatisfied();
     }
 
@@ -178,7 +206,7 @@ public class IEPiauiTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPiauiValidator(messageProducer, false);
+        Validator validator = new IEParaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -195,28 +223,6 @@ public class IEPiauiTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldValidateValidFormattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IEPiauiValidator(messageProducer, true);
-        List<ValidationMessage> errors;
-
-        String value = validFormattedString;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
@@ -228,7 +234,7 @@ public class IEPiauiTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEPiauiValidator(messageProducer, true);
+        Validator validator = new IEParaValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {
