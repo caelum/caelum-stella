@@ -16,30 +16,18 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEAlagoasTest {
+public class IEDistritoFederalValidatorTest {
 
     /*
-     * FORMAÇÃO: 24XNNNNND, sendo:
-     * 
-     * 24 – Código do Estado
-     * 
-     * X – Tipo de empresa (0-Normal, 3-Produtor Rural,5-Substituta, 7-
-     * Micro-Empresa Ambulante, 8-Micro-Empresa)
-     * 
-     * NNNNN – Número da empresa
-     * 
-     * D – Dígito de verificação calculado pelo Módulo11,pêsos 2 à 9 da direita
-     * para a esquerda, exceto D
-     * 
-     * Exemplo: 2 4 0 0 0 0 0 4 8
+     * Formato: 07.408.738/002-50
      */
-
-    private static final String wrongCheckDigitUnformattedString = "240000040";
-    private static final String validUnformattedString = "240000048";
-    private static final String validFormattedString = "24.000.004-8";
+    private static final String wrongSecondCheckDigitUnformattedString = "0740873800251";
+    private static final String wrongFirstCheckDigitUnformattedString = "0740873800240";
+    private static final String validUnformattedString = "0740873800250";
+    private static final String validFormattedString = "07.408.738/002-50";
 
     private Validator<String> newValidator() {
-        return new IEAlagoasValidator();
+        return new IEDistritoFederalValidator();
     }
 
     @Test
@@ -73,7 +61,8 @@ public class IEAlagoasTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
         try {
             validator
                     .assertValid(validUnformattedString.replaceFirst(".", "&"));
@@ -98,7 +87,8 @@ public class IEAlagoasTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -122,9 +112,10 @@ public class IEAlagoasTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
 
-        String value = validUnformattedString + "0";
+        String value = validUnformattedString + "5";
         try {
             validator.assertValid(value);
             fail();
@@ -137,7 +128,7 @@ public class IEAlagoasTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldNotValidateIEWithNineDigitsAndCheckDigitsWithCheckDigitWrong() {
+    public void shouldNotValidateIEWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
@@ -148,9 +139,37 @@ public class IEAlagoasTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
 
-        String value = wrongCheckDigitUnformattedString;
+        String value = wrongFirstCheckDigitUnformattedString;
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
+
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldNotValidateIEWithSecondCheckDigitWrong() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+
+        mockery.checking(new Expectations() {
+            {
+                exactly(1).of(messageProducer).getMessage(
+                        IEError.INVALID_CHECK_DIGITS);
+            }
+        });
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
+
+        String value = wrongSecondCheckDigitUnformattedString;
         try {
             validator.assertValid(value);
             fail();
@@ -168,41 +187,14 @@ public class IEAlagoasTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
 
-        String validValue = validUnformattedString;
-        try {
-            validator.assertValid(validValue);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(validValue);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateMultipleValidIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IEAlagoasValidator(messageProducer, true);
-
-        List<ValidationMessage> errors;
-
-        String[] validValues = { "24.076.739-0", "24.103.644-5",
-                "24.089.826-5", "24.099.991-6", "24.067.173-2", "24.102.358-0",
-                "24.079.990-9", "24.089.451-0", "24.080.152-0", "24.092.497-5",
-                "24.095.056-9", "24.099.899-5", "24.104.510-0", "24.069.666-2",
-                "24.088.932-0", "24.097.262-7", "24.086.162-0", "24.097.871-4",
-                "24.085.016-5", "24.073.874-8", "24.071.760-0", "24.065.706-3",
-                "24.054.337-8", "24.102.324-6", "24.105.106-1", "24.104.536-3",
-                "24.086.313-5", "24.089.826-5" };
+        String[] validValues = { validUnformattedString, "0734362300177",
+                "0745153000168", "0738963400101", "0733680200160",
+                "0734677900146" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -212,7 +204,6 @@ public class IEAlagoasTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-
         mockery.assertIsSatisfied();
     }
 
@@ -223,7 +214,8 @@ public class IEAlagoasTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEAlagoasValidator(messageProducer, false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -246,7 +238,8 @@ public class IEAlagoasTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEAlagoasValidator(messageProducer, true);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                true);
         List<ValidationMessage> errors;
 
         String value = validFormattedString;
@@ -273,7 +266,8 @@ public class IEAlagoasTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEAlagoasValidator(messageProducer, true);
+        Validator validator = new IEDistritoFederalValidator(messageProducer,
+                true);
 
         String value = validFormattedString.replace('.', ':');
         try {

@@ -16,20 +16,18 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IECearaTest {
+public class IEPiauiValidatorTest {
 
     /*
-     * Formato: 8 dígitos+1 dígito verificador
-     * 
-     * Exemplo: CGF número 06.000.001-5 Exemplo Formatado: 06.998.161-2
+     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 19.301.656-7
      */
 
-    private static final String wrongCheckDigitUnformattedString = "060000010";
-    private static final String validUnformattedString = "060000015";
-    private static final String validFormattedString = "06.000.001-5";
+    private static final String wrongCheckDigitUnformattedString = "193016560";
+    private static final String validUnformattedString = "193016567";
+    private static final String validFormattedString = "19.301.656-7";
 
     private Validator<String> newValidator() {
-        return new IECearaValidator();
+        return new IEPiauiValidator();
     }
 
     @Test
@@ -63,10 +61,9 @@ public class IECearaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -88,7 +85,7 @@ public class IECearaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -112,9 +109,9 @@ public class IECearaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
 
-        String value = validUnformattedString + "0";
+        String value = validUnformattedString + "5";
         try {
             validator.assertValid(value);
             fail();
@@ -127,7 +124,7 @@ public class IECearaTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldNotValidateIEWithNineDigitsAndCheckDigitsWithCheckDigitWrong() {
+    public void shouldNotValidateIECheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
@@ -138,7 +135,7 @@ public class IECearaTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -158,7 +155,7 @@ public class IECearaTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -176,37 +173,12 @@ public class IECearaTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldValidateMultipleValidIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IECearaValidator(messageProducer, true);
-
-        List<ValidationMessage> errors;
-
-        String[] validValues = { "06.998.161-2", "06.864.509-0", "06.031.909-7" };
-        for (String validValue : validValues) {
-            try {
-                validator.assertValid(validValue);
-            } catch (InvalidStateException e) {
-                fail();
-            }
-            errors = validator.invalidMessagesFor(validValue);
-            assertTrue(errors.isEmpty());
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IECearaValidator(messageProducer, false);
+        Validator validator = new IEPiauiValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -229,7 +201,7 @@ public class IECearaTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IECearaValidator(messageProducer, true);
+        Validator validator = new IEPiauiValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         String value = validFormattedString;
@@ -256,7 +228,7 @@ public class IECearaTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IECearaValidator(messageProducer, true);
+        Validator validator = new IEPiauiValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {

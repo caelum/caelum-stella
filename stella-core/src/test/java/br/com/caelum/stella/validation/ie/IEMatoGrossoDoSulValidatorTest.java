@@ -16,18 +16,20 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEParaTest {
+public class IEMatoGrossoDoSulValidatorTest {
 
     /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
+     * Formato: 8 dígitos (empresa)+1 dígito verificador
+     * 
+     * Exemplo: 28.303.759-8
      */
 
-    private static final String wrongCheckDigitUnformattedString = "159999999";
-    private static final String validUnformattedString = "159999995";
-    private static final String validFormattedString = "15.999.999-5";
+    private static final String wrongCheckDigitUnformattedString = "283037591";
+    private static final String validUnformattedString = "283037598";
+    private static final String validFormattedString = "28.303.759-8";
 
     private Validator<String> newValidator() {
-        return new IEParaValidator();
+        return new IEMatoGrossoDoSulValidator();
     }
 
     @Test
@@ -61,7 +63,8 @@ public class IEParaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                false);
         try {
             validator
                     .assertValid(validUnformattedString.replaceFirst(".", "&"));
@@ -86,7 +89,8 @@ public class IEParaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -110,7 +114,8 @@ public class IEParaTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                false);
 
         String value = validUnformattedString + "5";
         try {
@@ -136,7 +141,8 @@ public class IEParaTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -156,13 +162,15 @@ public class IEParaTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                true);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { validUnformattedString, "152298517",
-                "151330816", "151437726", "151918090", "151330816",
-                "151055610", "150695101", "150029349", "151330417" };
+        String[] validValues = { validFormattedString, "28.322.235-2",
+                "28.301.273-0", "28.288.890-0", "28.226.590-2", "28.296.665-0",
+                "28.303.740-7", "28.306.701-2", "28.071.810-1", "28.311.591-2",
+                "28.098.983-0", "28.316.487-5" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -182,7 +190,8 @@ public class IEParaTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEParaValidator(messageProducer, true);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                true);
 
         List<ValidationMessage> errors;
 
@@ -206,7 +215,8 @@ public class IEParaTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEParaValidator(messageProducer, false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -234,7 +244,8 @@ public class IEParaTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEParaValidator(messageProducer, true);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
+                true);
 
         String value = validFormattedString.replace('.', ':');
         try {

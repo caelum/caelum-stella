@@ -16,7 +16,7 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IERioGrandeDoNorteTest {
+public class IERioGrandeDoNorteValidatorTest {
 
     /*
      * IE validas 20.040.040-1(9 dígitos) ou 20.0.040.040-0(10 dígitos)

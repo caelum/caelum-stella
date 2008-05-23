@@ -16,7 +16,7 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEParaibaTest {
+public class IEParaibaValidatorTest {
 
     /*
      * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 16.000.001-7
