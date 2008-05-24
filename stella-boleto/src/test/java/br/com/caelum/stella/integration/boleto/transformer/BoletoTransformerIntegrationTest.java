@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.pdfbox.pdmodel.PDDocument;
@@ -94,5 +95,20 @@ public class BoletoTransformerIntegrationTest {
     @Test
     public void testPNGWriteGeneration() {
         assertTrue(new File("arquivo.png").exists());
+    }
+    
+    @AfterClass
+    @BeforeClass
+    public static void apagaArquivosGerados(){
+        final File pngFile = new File("arquivo.png");
+        final File pdfFile = new File("arquivo.pdf");
+        apagaArquivoSeExistir(pngFile);
+        apagaArquivoSeExistir(pdfFile);
+    }
+
+    private static void apagaArquivoSeExistir(final File pngFile) {
+        if (pngFile.exists()){
+            (pngFile).delete();
+        }
     }
 }
