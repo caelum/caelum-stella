@@ -2,42 +2,51 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.CriacaoBoletoException;
 
 /**
- * Gera dados de um boleto relativos ao Banco do Brasil.
+ * Gera dados de um boleto relativos ao Banco Bradesco.
  * 
  * @see <a
  *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
  * 
- * @author Cauê Guerra
- * @author Paulo Silveira
+ * @see <a
+ *      href="http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf">MANUAL
+ *      DO BLOQUETO DE COBRANÇA</a>
+ * 
+ * @author Leonardo Bessa
  * 
  */
-public class BancoDoBrasil implements Banco {
+public class Bradesco implements Banco {
 
-    private static final String NUMERO_BB = "001";
+    private static final String NUMERO_BANCO_BRADESCO = "237";
 
     private final DVGenerator dvGenerator = new DVGenerator();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
+
         StringBuilder codigoDeBarras = new StringBuilder();
         codigoDeBarras.append(getNumeroFormatado());
         codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
-        // Digito Verificador sera inserido aqui.
-        
-        codigoDeBarras.append(String.valueOf(boleto.getFatorVencimento()));
-        codigoDeBarras.append(boleto.getValorFormatado());
-
         // CAMPO LIVRE
-        codigoDeBarras.append("000000");
-        codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
-        codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
-        codigoDeBarras.append(boleto.getEmissor().getCarteira());
-
+        codigoDeBarras.append(String.format("%04d",boleto.getFatorVencimento()));
+        codigoDeBarras.append(boleto.getValorFormatado());
+        codigoDeBarras.append(String.format("%04d",Integer.parseInt(boleto.getEmissor().getAgencia())));
+        codigoDeBarras.append(String.format("%02d",Integer.parseInt(boleto.getEmissor().getCarteira())));
+        codigoDeBarras.append(String.format("%011d",Integer.parseInt(boleto.getEmissor().getNossoNumero())));
+        codigoDeBarras.append(String.format("%07d",Integer.parseInt(boleto.getEmissor().getContaCorrente())));
+        codigoDeBarras.append("0");
+        
         codigoDeBarras.insert(4, this.dvGenerator
                 .geraDVCodigoDeBarras(codigoDeBarras.toString()));
+        
+        String result = codigoDeBarras.toString();
+        
+        if (result.length()!=44){
+            throw new CriacaoBoletoException("Erro na geração do código de barras.");
+        }
 
-        return codigoDeBarras.toString();
+        return result;
     }
 
     public String geraLinhaDigitavelPara(Boleto boleto) {
@@ -86,7 +95,7 @@ public class BancoDoBrasil implements Banco {
     }
 
     public String getNumeroFormatado() {
-        return NUMERO_BB;
+        return NUMERO_BANCO_BRADESCO;
     }
 
     public java.net.URL getImage() {

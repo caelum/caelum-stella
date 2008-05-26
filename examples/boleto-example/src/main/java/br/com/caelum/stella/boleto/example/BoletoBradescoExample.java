@@ -5,10 +5,10 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
+import br.com.caelum.stella.boleto.bancos.Bradesco;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 
-public class BoletoExample {
+public class BoletoBradescoExample {
 	public static void main(String[] args) {
 		Datas datas = Datas.newDatas().withDocumento(1, 5, 2008)
 				.withProcessamento(1, 5, 2008).withVencimento(2, 5, 2008);
@@ -23,7 +23,7 @@ public class BoletoExample {
 				.withBairro("Bairro Teste").withCep("01234-111").withCidade(
 						"São Paulo").withUf("SP");
 
-		Banco banco = new BancoDoBrasil();
+		Banco banco = new Bradesco();
 
 		Boleto boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
 				.withDescricoes("descricao 1", "descricao 2", "descricao 3",
@@ -37,10 +37,10 @@ public class BoletoExample {
 		BoletoGenerator gerador = new BoletoGenerator(boleto);
 
 		// Para gerar um boleto em PDF
-		gerador.toPDF("teste.pdf");
+		gerador.toPDF("BoletoBradesco.pdf");
 
 		// Para gerar um boleto em PNG
-		gerador.toPNG("teste.png");
+		gerador.toPNG("BoletoBradesco.png");
 
 		// Para gerar um array de bytes a partir de um PDF
 		byte[] bPDF = gerador.toPDF();

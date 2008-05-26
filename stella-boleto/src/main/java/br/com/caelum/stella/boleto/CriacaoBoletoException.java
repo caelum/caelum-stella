@@ -16,4 +16,8 @@ public class CriacaoBoletoException extends BoletoException {
         super(e);
     }
 
+    public CriacaoBoletoException(String message) {
+        super(message);
+    }
+
 }

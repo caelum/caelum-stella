@@ -196,7 +196,7 @@ public class Emissor {
      * @return
      */
     public String getContaCorrenteFormatado() {
-        return String.format("%08d", Integer.parseInt(this.contaCorrente));
+        return String.format("%07d", Integer.parseInt(this.contaCorrente));
     }
 
     /**

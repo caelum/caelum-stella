@@ -17,4 +17,8 @@ public class BoletoException extends RuntimeException {
     public BoletoException(Exception e) {
         super(e);
     }
+
+    public BoletoException(String message) {
+        super(message);
+    }
 }
