@@ -13,6 +13,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
@@ -26,7 +27,7 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira
- * 
+ * @author Leonardo Bessa
  */
 public class PDFBoletoWriter implements BoletoWriter {
 
@@ -42,9 +43,9 @@ public class PDFBoletoWriter implements BoletoWriter {
     private final PdfContentByte contentByte;
     private final int scale = 1;
 
-    public PDFBoletoWriter(double width, double height) {
+    public PDFBoletoWriter(Rectangle rectangle) {
         this.bytes = new ByteArrayOutputStream();
-        this.document = new Document();
+        this.document = new Document(rectangle);
 
         try {
             this.writer = PdfWriter.getInstance(this.document, this.bytes);
@@ -66,7 +67,7 @@ public class PDFBoletoWriter implements BoletoWriter {
     }
 
     public PDFBoletoWriter() {
-        this(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+        this(PageSize.A4);
     }
 
     public InputStream toInputStream() {
@@ -90,7 +91,8 @@ public class PDFBoletoWriter implements BoletoWriter {
         this.contentByte.beginText();
 
         this.contentByte.setFontAndSize(font, size);
-        this.contentByte.setTextMatrix(x, y);
+        final float leftMargin = this.document.leftMargin();
+        this.contentByte.setTextMatrix(leftMargin+x, y);
         this.contentByte.showText(text);
 
         this.contentByte.endText();
@@ -113,7 +115,8 @@ public class PDFBoletoWriter implements BoletoWriter {
             PdfTemplate template = this.contentByte.createTemplate(image
                     .getWidth(), image.getHeight());
             template.addImage(pdfImage);
-            this.contentByte.addTemplate(template, x, y);
+            final float leftMargin = this.document.leftMargin();
+            this.contentByte.addTemplate(template,leftMargin + x, y);
         } catch (BadElementException e) {
             throw new GeracaoBoletoException(e);
         } catch (DocumentException e) {
