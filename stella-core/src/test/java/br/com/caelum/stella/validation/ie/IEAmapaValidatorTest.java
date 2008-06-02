@@ -16,35 +16,23 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IETocantinsValidatorTest {
+public class IEAmapaValidatorTest {
 
-    /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador
-     * 
-     * Exemplo valido: 29.040.636-6 29.040.634-0 29.385.524-2 29.032.038-0
-     * 
-     * Exemplo antigo valido : 29010227836
-     */
+    private static final String wrongCheckDigitUnformattedString = "030123450";
+    private static final String validUnformattedString = "030123459";
+    private static final String validFormattedString = "03.012.345-9";
+    private static final String[] validValues = { validFormattedString };
 
-    private static final String wrongCheckDigitUnformattedNewString = "290406360";
-    private static final String validUnformattedNewString = "290406366";
-    private static final String validFormattedNewString = "29.040.636-6";
-
-    private static final String wrongCheckDigitUnformattedOldIEString = "29010227838";
-    private static final String validFormattedOldString = "29.01.022.783-6";
-    
-    private static final String[] validValues = { validFormattedNewString, validFormattedOldString};
-    
     private Validator<String> newValidator() {
-        return new IETocantinsValidator();
+        return new IEAmapaValidator();
     }
 
     @Test
     public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        newValidator().assertValid(validFormattedNewString);
+        newValidator().assertValid(validFormattedString);
 
         try {
-            newValidator().assertValid(validFormattedNewString);
+            newValidator().assertValid(validFormattedString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
@@ -70,10 +58,10 @@ public class IETocantinsValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsValidator(messageProducer, false);
+        Validator validator = new IEAmapaValidator(messageProducer, false);
         try {
             validator
-                    .assertValid(validUnformattedNewString.replaceFirst(".", "&"));
+                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -95,9 +83,9 @@ public class IETocantinsValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsValidator(messageProducer, false);
+        Validator validator = new IEAmapaValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedNewString.replaceFirst(".", ""));
+            validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -119,9 +107,9 @@ public class IETocantinsValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsValidator(messageProducer, false);
+        Validator validator = new IEAmapaValidator(messageProducer, false);
 
-        String value = validUnformattedNewString + "5";
+        String value = validUnformattedString + "5";
         try {
             validator.assertValid(value);
             fail();
@@ -145,35 +133,9 @@ public class IETocantinsValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IETocantinsValidator(messageProducer, false);
+        Validator validator = new IEAmapaValidator(messageProducer, false);
 
-        String value = wrongCheckDigitUnformattedNewString;
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-    
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateOldIEsWithCheckDigitWrong() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
-            }
-        });
-        Validator validator = new IETocantinsValidator(messageProducer, false);
-
-        String value = wrongCheckDigitUnformattedOldIEString;
+        String value = wrongCheckDigitUnformattedString;
         try {
             validator.assertValid(value);
             fail();
@@ -191,7 +153,7 @@ public class IETocantinsValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsValidator(messageProducer, true);
+        Validator validator = new IEAmapaValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
@@ -206,43 +168,19 @@ public class IETocantinsValidatorTest {
         }
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
-    public void shouldValidateValidFormattedNovaIE() {
+    public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsValidator(messageProducer, true);
+        Validator validator = new IEAmapaValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { validFormattedNewString };
-        for (String validValue : validValues) {
-            try {
-                validator.assertValid(validValue);
-            } catch (InvalidStateException e) {
-                fail();
-            }
-            errors = validator.invalidMessagesFor(validValue);
-            assertTrue(errors.isEmpty());
-        }
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedAntigaIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IETocantinsValidator(messageProducer, true);
-
-        List<ValidationMessage> errors;
-
-        String[] validValues = { validFormattedOldString };
+        String[] validValues = { validFormattedString };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -262,7 +200,7 @@ public class IETocantinsValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsValidator(messageProducer, false);
+        Validator validator = new IEAmapaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -290,9 +228,9 @@ public class IETocantinsValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IETocantinsValidator(messageProducer, true);
+        Validator validator = new IEAmapaValidator(messageProducer, true);
 
-        String value = validFormattedNewString.replace('.', ':');
+        String value = validFormattedString.replace('.', ':');
         try {
             validator.assertValid(value);
             fail();
