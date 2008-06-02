@@ -35,10 +35,10 @@ public class IEGoiasValidator extends BaseValidator<String> {
 	private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
 	private static final RotinaDeDigitoVerificador[] rotinas = {
-			IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+			IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE_GOIAS };
 
 	private static final DigitoVerificadorInfo DVX_INFO_FATOR1 = new DigitoVerificadorInfo(
-			0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+			1, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
 
 	private static final DigitoVerificadorInfo DVX_INFO_FATOR0 = new DigitoVerificadorInfo(
 			0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
@@ -163,7 +163,7 @@ public class IEGoiasValidator extends BaseValidator<String> {
 			String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
 					.format(value);
 			ValidadorDeDV validadorDeDV = null;
-			if (101031050 <= ie && ie <= 101199979) {
+			if (101031051 <= ie && ie <= 101199979) {
 				validadorDeDV = DVX_CHECKER_FATOR1;
 			} else {
 				validadorDeDV = DVX_CHECKER_FATOR0;

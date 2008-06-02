@@ -57,7 +57,7 @@ public class IEGoiasValidatorTest {
     private static final String wrongCheckDigitUnformattedString = "109876542";
     private static final String validUnformattedString = "109876547";
     private static final String validFormattedString = "10.987.654-7";
-    private static final String[] validValues = { validFormattedString };
+    private static final String[] validValues = { validFormattedString , "10.103.119-1"};
 
     private Validator<String> newValidator() {
         return new IEGoiasValidator();
@@ -322,6 +322,102 @@ public class IEGoiasValidatorTest {
             assertTrue(e.getInvalidMessages().size() == 1);
         }
 
+        mockery.assertIsSatisfied();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Test
+    public void shouldValidateLowerBoundary(){
+    	Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEGoiasValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+
+        for (String validValue : new String []{"101031051"}) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
+        
+        mockery.assertIsSatisfied();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Test
+    public void shouldValidateUpperBoundary(){
+    	Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEGoiasValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+
+        for (String validValue : new String []{"101199971"}) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
+        
+        mockery.assertIsSatisfied();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Test
+    public void shouldValidateValuesThatAreLesserThan101031050(){
+    	Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEGoiasValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+
+        for (String validValue : new String []{"101031041","101030860"}) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
+        
+        mockery.assertIsSatisfied();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Test
+    public void shouldValidateValuesThatAreGreaterThan101199979(){
+    	Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEGoiasValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+
+        for (String validValue : new String []{"101199988"}) {
+            try {
+                validator.assertValid(validValue);
+            } catch (InvalidStateException e) {
+                fail();
+            }
+            errors = validator.invalidMessagesFor(validValue);
+            assertTrue(errors.isEmpty());
+        }
+        
         mockery.assertIsSatisfied();
     }
 
