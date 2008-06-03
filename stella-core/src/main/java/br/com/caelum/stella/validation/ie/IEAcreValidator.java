@@ -13,7 +13,18 @@ import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
-
+/**
+ * <p>
+ * Documentação de referência:
+ * </p>
+ * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
+ * Fazenda do Estado de São Paulo</a> <a
+ * href="http://www.sintegra.gov.br/Cad_Estados/cad_AC.html">SINTEGRA - ROTEIRO
+ * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
+ * 
+ * @author Leonardo Bessa
+ * 
+ */
 public class IEAcreValidator extends BaseValidator<String> {
 
 	private static final int MOD = 11;
@@ -35,15 +46,17 @@ public class IEAcreValidator extends BaseValidator<String> {
 	private final boolean isFormatted;
 
 	/*
-	 * Formato: 11 dígitos+2 dígitos verificadores
+	 * FORMAÇÃO: 01.NNN.NNN/TTT-DD, sendo:
 	 * 
-	 * Os primeiros dois dígitos são sempre 01
+	 * 01 - Código do Estado (Número permanente)
 	 * 
-	 * Exemplo: Inscrição Estadual 01.004.823/001-12
+	 * NNN.NNN - Número da empresa
 	 * 
-	 * 01.004.141/001-46
+	 * TTT - Qualificação da empresa para o estado (001 - Matriz; 002 - Filial
+	 * 1; 003 - Filial 2; ...)
 	 * 
-	 * 01.001.349/001-77
+	 * DD - Dígitos de verificação calculado pelo Módulo 11, pêsos 2 à 9 da
+	 * direita para a esquerda, por exemplo:
 	 * 
 	 */
 	public static final Pattern FORMATED = Pattern
