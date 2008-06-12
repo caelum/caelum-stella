@@ -33,7 +33,7 @@ public class BoletoTransformerIntegrationTest {
                 .withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
         Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
-                "1824").withDvAgencia("4").withContaCorrente("76000")
+                "1824").withDvAgencia("4").withContaCorrente(76000)
                 .withNumConvenio("1207113").withDvContaCorrete("5")
                 .withCarteira("18").withNossoNumero("9000206");
 
@@ -96,10 +96,10 @@ public class BoletoTransformerIntegrationTest {
     public void testPNGWriteGeneration() {
         assertTrue(new File("arquivo.png").exists());
     }
-    
+
     @AfterClass
     @BeforeClass
-    public static void apagaArquivosGerados(){
+    public static void apagaArquivosGerados() {
         final File pngFile = new File("arquivo.png");
         final File pdfFile = new File("arquivo.pdf");
         apagaArquivoSeExistir(pngFile);
@@ -107,8 +107,7 @@ public class BoletoTransformerIntegrationTest {
     }
 
     private static void apagaArquivoSeExistir(final File pngFile) {
-        if (pngFile.exists()){
+        if (pngFile.exists())
             (pngFile).delete();
-        }
     }
 }

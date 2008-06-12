@@ -24,8 +24,8 @@ public class BradescoTest {
         Datas datas = Datas.newDatas().withDocumento(31, 5, 2006)
                 .withProcessamento(31, 5, 2006).withVencimento(10, 6, 2006);
 
-        Emissor emissor = Emissor.newEmissor().withCedente("Leonardo Bessa").withAgencia(
-                "2949").withDvAgencia("1").withContaCorrente("0006580")
+        Emissor emissor = Emissor.newEmissor().withCedente("Leonardo Bessa")
+                .withAgencia("2949").withDvAgencia("1").withContaCorrente(6580)
                 .withNumConvenio("1207113").withDvContaCorrete("3")
                 .withCarteira("06").withNossoNumero("00000000003");
 
@@ -43,8 +43,8 @@ public class BradescoTest {
         this.banco = new Bradesco();
         this.boleto = this.boleto.withBanco(this.banco);
 
-        assertEquals("23792.94909  60000.000004  03000.658009  6  31680000000100"
-                ,
+        assertEquals(
+                "23792.94909  60000.000004  03000.658009  6  31680000000100",
                 this.banco.geraLinhaDigitavelPara(this.boleto));
     }
 

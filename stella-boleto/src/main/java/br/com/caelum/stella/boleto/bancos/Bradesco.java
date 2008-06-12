@@ -29,22 +29,27 @@ public class Bradesco implements Banco {
         codigoDeBarras.append(getNumeroFormatado());
         codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
         // CAMPO LIVRE
-        codigoDeBarras.append(String.format("%04d",boleto.getFatorVencimento()));
+        codigoDeBarras.append(String
+                .format("%04d", boleto.getFatorVencimento()));
         codigoDeBarras.append(boleto.getValorFormatado());
-        codigoDeBarras.append(String.format("%04d",Integer.parseInt(boleto.getEmissor().getAgencia())));
-        codigoDeBarras.append(String.format("%02d",Integer.parseInt(boleto.getEmissor().getCarteira())));
-        codigoDeBarras.append(String.format("%011d",Integer.parseInt(boleto.getEmissor().getNossoNumero())));
-        codigoDeBarras.append(String.format("%07d",Integer.parseInt(boleto.getEmissor().getContaCorrente())));
+        codigoDeBarras.append(String.format("%04d", Integer.parseInt(boleto
+                .getEmissor().getAgencia())));
+        codigoDeBarras.append(String.format("%02d", Integer.parseInt(boleto
+                .getEmissor().getCarteira())));
+        codigoDeBarras.append(String.format("%011d", Integer.parseInt(boleto
+                .getEmissor().getNossoNumero())));
+        codigoDeBarras.append(String.format("%07d", boleto.getEmissor()
+                .getContaCorrente()));
         codigoDeBarras.append("0");
-        
+
         codigoDeBarras.insert(4, this.dvGenerator
                 .geraDVCodigoDeBarras(codigoDeBarras.toString()));
-        
+
         String result = codigoDeBarras.toString();
-        
-        if (result.length()!=44){
-            throw new CriacaoBoletoException("Erro na geração do código de barras.");
-        }
+
+        if (result.length() != 44)
+            throw new CriacaoBoletoException(
+                    "Erro na geração do código de barras.");
 
         return result;
     }

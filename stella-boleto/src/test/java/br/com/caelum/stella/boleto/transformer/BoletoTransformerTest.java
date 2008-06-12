@@ -29,7 +29,7 @@ public class BoletoTransformerTest {
                 .withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
         this.emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
-                "1824").withDvAgencia("4").withContaCorrente("76000")
+                "1824").withDvAgencia("4").withContaCorrente(76000)
                 .withNumConvenio("1207113").withDvContaCorrete("5")
                 .withCarteira("18").withNossoNumero("9000206");
 

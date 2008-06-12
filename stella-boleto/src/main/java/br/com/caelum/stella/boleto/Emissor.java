@@ -10,7 +10,7 @@ package br.com.caelum.stella.boleto;
 public class Emissor {
     private String agencia;
     private String dvAgencia;
-    private String contaCorrente;
+    private int contaCorrente;
     private String carteira;
     private String numConvenio;
     private String nossoNumero;
@@ -51,7 +51,7 @@ public class Emissor {
      * Devolve o número da conta corrente sem o digito
      * 
      */
-    public String getContaCorrente() {
+    public int getContaCorrente() {
         return this.contaCorrente;
     }
 
@@ -60,7 +60,7 @@ public class Emissor {
      * 
      * @param contaCorrente
      */
-    public Emissor withContaCorrente(String contaCorrente) {
+    public Emissor withContaCorrente(int contaCorrente) {
         this.contaCorrente = contaCorrente;
         return this;
     }
@@ -196,7 +196,7 @@ public class Emissor {
      * @return
      */
     public String getContaCorrenteFormatado() {
-        return String.format("%08d", Integer.parseInt(this.contaCorrente));
+        return String.format("%08d", this.contaCorrente);
     }
 
     /**
