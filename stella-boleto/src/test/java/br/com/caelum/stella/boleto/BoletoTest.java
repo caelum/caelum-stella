@@ -10,7 +10,7 @@ import org.junit.Test;
 public class BoletoTest {
 
     @Test
-    public void testNewBoletoSeTemDefaultsCorretos() {
+    public void novoBoletoDeveTerAlgunsValoresPadrao() {
         Boleto b = Boleto.newBoleto();
         assertEquals("R$", b.getEspecieMoeda());
         assertEquals(9, b.getCodEspecieMoeda());
@@ -19,7 +19,7 @@ public class BoletoTest {
     }
 
     @Test
-    public void testGetFatorVencimentoParaDataDaManha() {
+    public void regraDoFatorVencimentoParaDataDaManha() {
         Boleto b = Boleto.newBoleto();
 
         Calendar data = Calendar.getInstance();
@@ -35,7 +35,7 @@ public class BoletoTest {
     }
 
     @Test
-    public void testGetFatorVencimentoParaDataDaNoite() {
+    public void regraDoFatorVencimentoParaDataDaNoite() {
         Boleto b = Boleto.newBoleto();
 
         Calendar data = Calendar.getInstance();
@@ -51,7 +51,7 @@ public class BoletoTest {
     }
 
     @Test
-    public void testGetFatorVencimentoParaDataDaExtremaNoite() {
+    public void regraDoFatorVencimentoParaDataDaExtremaNoite() {
         Boleto b = Boleto.newBoleto();
 
         Calendar data = Calendar.getInstance();
@@ -70,7 +70,7 @@ public class BoletoTest {
     }
 
     @Test
-    public void testGetFatorVencimentoParaDataDoExtremaManha() {
+    public void regraDoFatorVencimentoParaDataDoExtremaManha() {
         Boleto b = Boleto.newBoleto();
 
         Calendar data = Calendar.getInstance();
@@ -89,74 +89,81 @@ public class BoletoTest {
     }
 
     @Test
-    public void testGetValorFormatadoPorString() {
+    public void valorFormatadoPorStringDeveTerDezDigitos() {
         Boleto b = Boleto.newBoleto();
         b.withValorBoleto("3.00");
-        assertEquals("0000000300", b.getValorFormatado());
+        String valorFormatado = b.getValorFormatado();
+        assertEquals(10, valorFormatado.length());
+        assertEquals("0000000300", valorFormatado);
     }
 
     @Test
-    public void testGetValorFormatadoPorStringSemPontos() {
+    public void valorFormatadoPorStringSemPontos() {
         Boleto b = Boleto.newBoleto();
         b.withValorBoleto("300");
         assertEquals("0000030000", b.getValorFormatado());
     }
 
     @Test
-    public void testGetValorFormatadoPorDouble() {
+    public void valorFormatadoPorDouble() {
         Boleto b = Boleto.newBoleto();
         b.withValorBoleto(3d);
         assertEquals("0000000300", b.getValorFormatado());
     }
 
     @Test
-    public void testGetValorFormatadoPorBigDecimal() {
+    public void valorFormatadoPorBigDecimal() {
         Boleto b = Boleto.newBoleto();
         b.withValorBoleto(new BigDecimal(3));
         assertEquals("0000000300", b.getValorFormatado());
     }
 
     @Test
-    public void testGetNoDocumentoFormatado() {
+    public void numeroDoDocumentoFormatadoDeveTerQuatroDigitos() {
         Boleto b = Boleto.newBoleto();
         b.withNoDocumento("232");
-        assertEquals("0232", b.getNoDocumentoFormatado());
+        String numeroFormatado = b.getNoDocumentoFormatado();
+        assertEquals(4, numeroFormatado.length());
+        assertEquals("0232", numeroFormatado);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testBoletoComMaisDe5Instrucoes() {
+    public void boletoNaoDeveAceitarMaisDeCincoInstrucoes() {
         Boleto b = Boleto.newBoleto();
         b.withInstrucoes("", "", "", "", "", "");
     }
 
     @Test
-    public void testBoletoCom5Instrucoes() {
+    public void boletoDeveAceitarNoMaximoCincoInstrucoes() {
         Boleto b = Boleto.newBoleto();
         b.withInstrucoes("", "", "", "", "");
+        assertEquals(5, b.getInstrucoes().size());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testBoletoComMaisDe5Descricoes() {
+    public void boletoNaoDeveAceitarMaisDeCincoDescricoes() {
         Boleto b = Boleto.newBoleto();
         b.withDescricoes("", "", "", "", "", "");
     }
 
     @Test
-    public void testBoletoCom5Descricoes() {
+    public void boletoDeveAceitarNoMaximoCincoDescricoes() {
         Boleto b = Boleto.newBoleto();
         b.withDescricoes("", "", "", "", "");
+        assertEquals(5, b.getDescricoes().size());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testBoletoComMaisDe2Locais() {
+    public void boletoNaoDeveAceitarMaisDeDoisLocais() {
         Boleto b = Boleto.newBoleto();
         b.withLocaisDePagamento("", "", "");
     }
 
     @Test
-    public void testBoletoCom2Locais() {
+    public void boletoDeveAceitarNoMaximoDoisLocais() {
         Boleto b = Boleto.newBoleto();
         b.withLocaisDePagamento("", "");
+        assertEquals(2, b.getLocaisDePagamento().size());
     }
 
 }
