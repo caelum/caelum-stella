@@ -2,6 +2,7 @@ package br.com.caelum.stella.faces.validation;
 
 import org.jmock.Mockery;
 import org.jmock.Expectations;
+import org.jmock.lib.legacy.ClassImposteriser;
 
 import javax.faces.context.FacesContext;
 import javax.faces.application.Application;
@@ -16,6 +17,7 @@ public class FacesContextMocker {
 
     public FacesContextMocker(Mockery mockery) {
         this.mockery = mockery;
+        mockery.setImposteriser(ClassImposteriser.INSTANCE);
     }
 
     public void mockMessageBundle(final FacesContext context, final String bundleName,

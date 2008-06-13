@@ -1,7 +1,6 @@
 package br.com.caelum.stella.faces.validation;
 
 import org.jmock.Mockery;
-import org.jmock.lib.legacy.ClassImposteriser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
@@ -28,7 +27,6 @@ public class StellaNITValidatorTest {
     @Before
     public void init() {
         mockery = new Mockery();
-        mockery.setImposteriser(ClassImposteriser.INSTANCE);
         facesContextMocker = new FacesContextMocker(mockery);
         this.validator = new StellaNITValidator();
     }

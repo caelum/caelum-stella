@@ -1,22 +1,16 @@
 package br.com.caelum.stella.faces.validation;
 
+import org.jmock.Mockery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
-import java.util.Locale;
-
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import java.util.Locale;
 
 /**
  * StellaCPFValidator integration tests
@@ -26,61 +20,60 @@ import org.junit.Test;
  */
 public class StellaCNPJValidatorTest {
 
-	private Mockery mockery;
+    private Mockery mockery;
     private FacesContextMocker facesContextMocker;
     private StellaCNPJValidator validator;
 
     @Before
-	public void init() {
-		mockery = new Mockery();
-		mockery.setImposteriser(ClassImposteriser.INSTANCE);
+    public void init() {
+        mockery = new Mockery();
         facesContextMocker = new FacesContextMocker(mockery);
-		this.validator = new StellaCNPJValidator();
-	}
+        this.validator = new StellaCNPJValidator();
+    }
 
-	@Test
-	public void shouldNotThrowValidatorExceptionForValidCNPJ() throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
-		facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+    @Test
+    public void shouldNotThrowValidatorExceptionForValidCNPJ() throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
 
-		validator.validate(context, component, "18358139000177");
-		mockery.assertIsSatisfied();
-	}
+        validator.validate(context, component, "18358139000177");
+        mockery.assertIsSatisfied();
+    }
 
-	@Test
-	public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCNPJAndPtBRLocale()
-			throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
-		facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
+    @Test
+    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCNPJAndPtBRLocale()
+            throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
 
-		try {
-			validator.validate(context, component, "183581390001760");
-			fail();
-		} catch (ValidatorException e) {
-			// it should throw exception for invalid CNPJ
-			FacesMessage message = e.getFacesMessage();
-			assertEquals("CNPJ Invalido", message.getSummary());
-			mockery.assertIsSatisfied();
-		}
-	}
+        try {
+            validator.validate(context, component, "183581390001760");
+            fail();
+        } catch (ValidatorException e) {
+            // it should throw exception for invalid CNPJ
+            FacesMessage message = e.getFacesMessage();
+            assertEquals("CNPJ Invalido", message.getSummary());
+            mockery.assertIsSatisfied();
+        }
+    }
 
-	@Test
-	public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCNPJAndEnUSLocale()
-			throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
+    @Test
+    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCNPJAndEnUSLocale()
+            throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
         facesContextMocker.mockMessageBundle(context, "messages", new Locale("en"));
 
-		try {
-			validator.validate(context, component, "088322120001480");
-			fail();
-		} catch (ValidatorException e) {
-			// it should throw exception for invalid CNPJ
-			FacesMessage message = e.getFacesMessage();
-			assertEquals("Invalid CNPJ", message.getSummary());
-			mockery.assertIsSatisfied();
-		}
-	}
+        try {
+            validator.validate(context, component, "088322120001480");
+            fail();
+        } catch (ValidatorException e) {
+            // it should throw exception for invalid CNPJ
+            FacesMessage message = e.getFacesMessage();
+            assertEquals("Invalid CNPJ", message.getSummary());
+            mockery.assertIsSatisfied();
+        }
+    }
 }
