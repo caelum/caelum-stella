@@ -16,7 +16,7 @@ import br.com.caelum.stella.validation.InvalidValue;
  * A chave de um erro é composta do seguinte modo:
  * </p>
  * <code>
- * String key = (simpleName + "." + errorName);
+ * String key = simpleName + "." + errorName;
  * </code>
  * <p>
  * Onde simpleName é o atributo simpleName do Enum e o errorName é o nome da
@@ -52,16 +52,40 @@ public class ResourceBundleMessageProducer implements MessageProducer {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        String simpleName = error.getClass().getSimpleName();
-        String errorName = error.name();
-        String key = (simpleName + "." + errorName);
+        String key = messageKeyFor(locale, error.getClass(), error);
         String message;
         try {
-            message = bundle.getString(key.toLowerCase(locale));
+            message = bundle.getString(key);
         } catch (MissingResourceException ex) {
-            message = key.toLowerCase(locale).replaceFirst("[.]", " : ")
+            message = key.replaceFirst("[.]", " : ")
                     .replaceAll("_", " ");
         }
         return new SimpleValidationMessage(message);
+    }
+
+    /**
+     * A chave padrao é gerada com base no nome da classe do erro e do nome do erro,
+     * sempre minúscula.
+     *
+     * <p>
+     * Ex.:
+     * <ul>
+     * <li>classe do erro: CPFError</li>
+     * <li>nome do erro: INVALID_DIGITS</li>
+     * </ul>
+     *
+     * Chave gerada: <b>cpferror.invalid_digits</b>.
+     * </p>
+     *
+     * @param locale a ser usado na conversão para minúsculo
+     * @param errorClass
+     * @param error
+     * @return chave que representa o erro a ser usada para recuperar sua mensagem associada
+     */
+    public String messageKeyFor(Locale locale, Class<? extends InvalidValue> errorClass, InvalidValue error) {
+        String simpleName = errorClass.getSimpleName();
+        String errorName = error.name();
+        String key = simpleName + "." + errorName;
+        return key.toLowerCase(locale);
     }
 }
