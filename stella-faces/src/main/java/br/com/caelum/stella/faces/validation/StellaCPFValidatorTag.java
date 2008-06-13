@@ -9,7 +9,7 @@ import javax.servlet.jsp.JspException;
 
 /**
  * Associa um TLD (Descritor de Biblioteca de Tag) a um validador de CPF
- * (StellaCPFValidator).
+ * (@link{StellaCPFValidator}).
  * 
  * @author Caires V.
  * @author Leonardo Bessa
