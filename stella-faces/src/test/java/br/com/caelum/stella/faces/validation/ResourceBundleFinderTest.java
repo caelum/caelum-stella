@@ -37,11 +37,11 @@ public class ResourceBundleFinderTest {
     }
 
     @Test
-    public void deveRetornarMessageBundleDoStellaCasoNaoExistaNoFacesConfig() throws UnsupportedEncodingException {
+    public void deveRetornarMessageBundleDoStellaCasoNaoExistaNoFacesConfig() {
         FacesContext ctx = mockery.mock(FacesContext.class);
         mocker.mockMessageBundle(ctx, null, new Locale("pt", "BR"));
         ResourceBundle stellaMessages = resourceBundleFinder.getForCurrentLocale(ctx);
         String invalidCPFMessage = stellaMessages.getString("cpferror.invalid_check_digits");
-        assertEquals("CPF com digito(s) verificador(es) inválido(s)", new String(invalidCPFMessage.getBytes("UTF-8")));
+        assertEquals("CPF com digito(s) verificador(es) inválido(s)", invalidCPFMessage);
     }
 }
