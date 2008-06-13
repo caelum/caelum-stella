@@ -22,16 +22,19 @@ import org.junit.Test;
  * StellaCPFValidator integration tests
  *
  * @author Leonardo Bessa
+ * @author Fabio Kung
  */
 public class StellaCNPJValidatorTest {
 
 	private Mockery mockery;
-	private StellaCNPJValidator validator;
+    private FacesContextMocker facesContextMocker;
+    private StellaCNPJValidator validator;
 
-	@Before
+    @Before
 	public void init() {
 		mockery = new Mockery();
 		mockery.setImposteriser(ClassImposteriser.INSTANCE);
+        facesContextMocker = new FacesContextMocker(mockery);
 		this.validator = new StellaCNPJValidator();
 	}
 
@@ -39,7 +42,7 @@ public class StellaCNPJValidatorTest {
 	public void shouldNotThrowValidatorExceptionForValidCNPJ() throws Exception {
 		final FacesContext context = mockery.mock(FacesContext.class);
 		final UIComponent component = mockery.mock(UIComponent.class);
-		mockFacesContext(context, "messages", Locale.getDefault());
+		facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
 
 		validator.validate(context, component, "18358139000177");
 		mockery.assertIsSatisfied();
@@ -50,7 +53,7 @@ public class StellaCNPJValidatorTest {
 			throws Exception {
 		final FacesContext context = mockery.mock(FacesContext.class);
 		final UIComponent component = mockery.mock(UIComponent.class);
-		mockFacesContext(context, "messages", new Locale("pt", "BR"));
+		facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
 
 		try {
 			validator.validate(context, component, "183581390001760");
@@ -68,7 +71,7 @@ public class StellaCNPJValidatorTest {
 			throws Exception {
 		final FacesContext context = mockery.mock(FacesContext.class);
 		final UIComponent component = mockery.mock(UIComponent.class);
-		mockFacesContext(context, "messages", new Locale("en"));
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("en"));
 
 		try {
 			validator.validate(context, component, "088322120001480");
@@ -80,26 +83,4 @@ public class StellaCNPJValidatorTest {
 			mockery.assertIsSatisfied();
 		}
 	}
-
-	private void mockFacesContext(final FacesContext context,
-			final String bundleName, final Locale locale) {
-		mockery.checking(new Expectations() {
-			{
-				Application application = mockery.mock(Application.class);
-				allowing(context).getApplication();
-				will(returnValue(application));
-
-				allowing(application).getMessageBundle();
-				will(returnValue(bundleName));
-
-				UIViewRoot viewRoot = mockery.mock(UIViewRoot.class);
-				allowing(context).getViewRoot();
-				will(returnValue(viewRoot));
-
-				allowing(viewRoot).getLocale();
-				will(returnValue(locale));
-			}
-		});
-	}
-
 }

@@ -1,22 +1,17 @@
 package br.com.caelum.stella.faces.validation;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.util.Locale;
-
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-
-import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import java.util.Locale;
 
 /**
  * StellaCPFValidator integration tests
@@ -27,11 +22,13 @@ public class StellaCPFValidatorTest {
 
     private Mockery mockery;
     private StellaCPFValidator validator;
+    private FacesContextMocker facesContextMocker;
 
     @Before
     public void init() {
         mockery = new Mockery();
         mockery.setImposteriser(ClassImposteriser.INSTANCE);
+        facesContextMocker = new FacesContextMocker(mockery);
         this.validator = new StellaCPFValidator();
     }
 
@@ -39,7 +36,7 @@ public class StellaCPFValidatorTest {
     public void shouldNotThrowValidatorExceptionForValidCPF() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
-        mockFacesContext(context, "messages", Locale.getDefault());
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
 
         validator.validate(context, component, "75885366160");
         mockery.assertIsSatisfied();
@@ -49,7 +46,7 @@ public class StellaCPFValidatorTest {
     public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCpfAndPtBRLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
-        mockFacesContext(context, "messages", new Locale("pt", "BR"));
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
 
         try {
             validator.validate(context, component, "1234567765");
@@ -67,7 +64,7 @@ public class StellaCPFValidatorTest {
     public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCpfAndEnUSLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
-        mockFacesContext(context, "messages", new Locale("en"));
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("en"));
 
         try {
             validator.validate(context, component, "1234567765");
@@ -79,25 +76,4 @@ public class StellaCPFValidatorTest {
             mockery.assertIsSatisfied();
         }
     }
-
-    private void mockFacesContext(final FacesContext context, final String bundleName, final Locale locale) {
-        mockery.checking(new Expectations() {
-            {
-                Application application = mockery.mock(Application.class);
-                allowing(context).getApplication();
-                will(returnValue(application));
-
-                allowing(application).getMessageBundle();
-                will(returnValue(bundleName));
-
-                UIViewRoot viewRoot = mockery.mock(UIViewRoot.class);
-                allowing(context).getViewRoot();
-                will(returnValue(viewRoot));
-
-                allowing(viewRoot).getLocale();
-                will(returnValue(locale));
-            }
-        });
-    }
-
 }
