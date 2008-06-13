@@ -25,16 +25,21 @@ import java.util.ResourceBundle;
 public class ResourceBundleFinder {
     private static ResourceBundle STELLA_MESSAGES;
 
+    /**
+     * Encontra o ResourceBundle para o Locale da &aacute;rvore de componentes
+     * (UIViewRoot) atual.
+     *
+     * @param facesContext
+     * @return
+     */
     public ResourceBundle getForCurrentLocale(FacesContext facesContext) {
         Application application = facesContext.getApplication();
         String bundleName = application.getMessageBundle();
+        if (bundleName == null) {
+            return defaultStellaBundle();
+        }
         Locale locale = facesContext.getViewRoot().getLocale();
         ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale);
-
-        if (bundle == null) {
-            bundle = defaultStellaBundle();
-        }
-
         return bundle;
     }
 
