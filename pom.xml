@@ -28,6 +28,7 @@
     <module>examples/boleto-example</module>
     <module>examples/core-example</module>
     <module>examples/faces-example</module>
+    <module>examples/myfaces-example</module>
     <module>examples/vraptor-validator-example</module>
     <module>examples/hibernate-persistence-example</module>
     <module>examples/hibernate-seam-example</module>

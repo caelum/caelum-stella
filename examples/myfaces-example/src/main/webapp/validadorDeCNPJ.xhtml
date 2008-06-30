@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:stella="http://stella.caelum.com.br/faces">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Validando CNPJ usando o Componente do Stella Faces</title>
+</head>
+<body>
+<h1>Validando CNPJ usando o Componente do Stella Faces</h1>
+<h2>Versão com Facelets</h2>
+<h:form>
+  <h:panelGrid>
+    <h:outputLabel for="CNPJ" value="CNPJ sem formatacao:"/>
+    <h:inputText id="CNPJ" value="#{UsuarioBean.cnpj}">
+      <stella:validateCNPJ/>
+    </h:inputText>
+    <h:message for="CNPJ"/>
+
+    <h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:"/>
+    <h:inputText id="CNPJFormatado" value="#{UsuarioBean.cnpjFormatado}">
+      <stella:validateCNPJ formatted="true"/>
+    </h:inputText>
+    <h:message for="CNPJFormatado"/>
+  </h:panelGrid>
+
+  <h:commandButton value="Enviar"/>
+  <h:messages/>
+</h:form>
+</body>
+</html>

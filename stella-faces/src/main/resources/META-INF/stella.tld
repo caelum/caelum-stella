@@ -19,7 +19,7 @@
 			br.com.caelum.stella.faces.validation.StellaCPFValidatorTag
 		</tag-class>
 
-		<body-content>emtpy</body-content>
+		<body-content>empty</body-content>
 
 		<attribute>
 			<name>formatted</name>
@@ -43,7 +43,7 @@
 			br.com.caelum.stella.faces.validation.StellaCNPJValidatorTag
 		</tag-class>
 
-		<body-content>emtpy</body-content>
+		<body-content>empty</body-content>
 
 		<attribute>
 			<name>formatted</name>
@@ -69,7 +69,7 @@
 			br.com.caelum.stella.faces.validation.StellaNITValidatorTag
 		</tag-class>
 
-		<body-content>emtpy</body-content>
+		<body-content>empty</body-content>
 
 		<attribute>
 			<name>formatted</name>
