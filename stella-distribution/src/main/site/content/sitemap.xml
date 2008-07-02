@@ -4,7 +4,7 @@
 		<page>index.html</page>
 		<page>roadmap.html</page>
 		<page>release-notes.html</page>
-    <link title="Issue Tracking (Bugs)">jira/</link>
+    <link title="Issue Tracking (Bugs)">http://jira.caelum.com.br</link>
     <link title="Página Técnica (Maven)">dev/index.html</link>
     <link title="Download">http://sourceforge.net/project/showfiles.php?group_id=217573</link>
   </section>
