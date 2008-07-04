@@ -2,12 +2,14 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.CriacaoBoletoException;
 
 /**
  * Gera dados de um boleto relativos ao Banco do Brasil.
  * 
- * @see <a
- *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
+ * @see <a *
+ *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
+ *      * .com.br/boleto-setup.html< /a>
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira
@@ -15,84 +17,91 @@ import br.com.caelum.stella.boleto.Boleto;
  */
 public class BancoDoBrasil implements Banco {
 
-    private static final String NUMERO_BB = "001";
+	private static final String NUMERO_BB = "001";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+	private final DVGenerator dvGenerator = new DVGenerator();
 
-    public String geraCodigoDeBarrasPara(Boleto boleto) {
-        StringBuilder codigoDeBarras = new StringBuilder();
-        codigoDeBarras.append(getNumeroFormatado());
-        codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
-        // Digito Verificador sera inserido aqui.
-        
-        codigoDeBarras.append(String.valueOf(boleto.getFatorVencimento()));
-        codigoDeBarras.append(boleto.getValorFormatado());
+	public String geraCodigoDeBarrasPara(Boleto boleto) {
+		StringBuilder codigoDeBarras = new StringBuilder();
+		codigoDeBarras.append(getNumeroFormatado());
+		codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		// Digito Verificador sera inserido aqui.
 
-        // CAMPO LIVRE
-        codigoDeBarras.append("000000");
-        codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
-        codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
-        codigoDeBarras.append(boleto.getEmissor().getCarteira());
+		codigoDeBarras.append(boleto.getFatorVencimento());
+		codigoDeBarras.append(boleto.getValorFormatado());
 
-        codigoDeBarras.insert(4, this.dvGenerator
-                .geraDVCodigoDeBarras(codigoDeBarras.toString()));
+		// CAMPO LIVRE
+		codigoDeBarras.append("000000");
+		codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
+		codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
+		codigoDeBarras.append(boleto.getEmissor().getCarteira());
 
-        return codigoDeBarras.toString();
-    }
+		codigoDeBarras.insert(4, dvGenerator
+				.geraDVCodigoDeBarras(codigoDeBarras.toString()));
 
-    public String geraLinhaDigitavelPara(Boleto boleto) {
-        String codigoDeBarras = geraCodigoDeBarrasPara(boleto);
+		String result = codigoDeBarras.toString();
 
-        StringBuilder bloco1 = new StringBuilder();
-        bloco1.append(getNumeroFormatado());
-        bloco1.append(String.valueOf(boleto.getCodEspecieMoeda()));
-        bloco1.append(codigoDeBarras.substring(19, 24));
-        bloco1.append(this.dvGenerator.geraDVLinhaDigitavel(bloco1.toString()));
+		if (result.length() != 44) {
+			throw new CriacaoBoletoException(
+					"Erro na geração do código de barras.");
+		}
 
-        StringBuilder bloco2 = new StringBuilder();
-        bloco2.append(codigoDeBarras.substring(24, 34));
-        bloco2.append(this.dvGenerator.geraDVLinhaDigitavel(bloco2.toString()));
+		return result;
+	}
 
-        StringBuilder bloco3 = new StringBuilder();
-        bloco3.append(codigoDeBarras.substring(34, 44));
-        bloco3.append(this.dvGenerator.geraDVLinhaDigitavel(bloco3.toString()));
+	public String geraLinhaDigitavelPara(Boleto boleto) {
+		String codigoDeBarras = geraCodigoDeBarrasPara(boleto);
 
-        StringBuilder bloco4 = new StringBuilder();
-        bloco4.append(codigoDeBarras.charAt(4));
-        bloco4.append(codigoDeBarras.substring(5, 9));
-        bloco4.append(boleto.getValorFormatado());
+		StringBuilder bloco1 = new StringBuilder();
+		bloco1.append(getNumeroFormatado());
+		bloco1.append(String.valueOf(boleto.getCodEspecieMoeda()));
+		bloco1.append(codigoDeBarras.substring(19, 24));
+		bloco1.append(dvGenerator.geraDVLinhaDigitavel(bloco1.toString()));
 
-        StringBuilder linhaDigitavel = new StringBuilder();
-        linhaDigitavel.append(bloco1);
-        linhaDigitavel.append(bloco2);
-        linhaDigitavel.append(bloco3);
-        linhaDigitavel.append(bloco4);
+		StringBuilder bloco2 = new StringBuilder();
+		bloco2.append(codigoDeBarras.substring(24, 34));
+		bloco2.append(dvGenerator.geraDVLinhaDigitavel(bloco2.toString()));
 
-        linhaDigitavel = linhaDigitavelFormater(linhaDigitavel);
+		StringBuilder bloco3 = new StringBuilder();
+		bloco3.append(codigoDeBarras.substring(34, 44));
+		bloco3.append(dvGenerator.geraDVLinhaDigitavel(bloco3.toString()));
 
-        return linhaDigitavel.toString();
-    }
+		StringBuilder bloco4 = new StringBuilder();
+		bloco4.append(codigoDeBarras.charAt(4));
+		bloco4.append(codigoDeBarras.substring(5, 9));
+		bloco4.append(boleto.getValorFormatado());
 
-    private StringBuilder linhaDigitavelFormater(StringBuilder linhaDigitavel) {
-        linhaDigitavel.insert(5, '.');
-        linhaDigitavel.insert(11, "  ");
-        linhaDigitavel.insert(18, '.');
-        linhaDigitavel.insert(25, "  ");
-        linhaDigitavel.insert(32, '.');
-        linhaDigitavel.insert(39, "  ");
-        linhaDigitavel.insert(42, "  ");
+		StringBuilder linhaDigitavel = new StringBuilder();
+		linhaDigitavel.append(bloco1);
+		linhaDigitavel.append(bloco2);
+		linhaDigitavel.append(bloco3);
+		linhaDigitavel.append(bloco4);
 
-        return linhaDigitavel;
-    }
+		linhaDigitavel = linhaDigitavelFormater(linhaDigitavel);
 
-    public String getNumeroFormatado() {
-        return NUMERO_BB;
-    }
+		return linhaDigitavel.toString();
+	}
 
-    public java.net.URL getImage() {
-        return getClass().getResource(
-                String.format("/br/com/caelum/stella/boleto/img/%s.png",
-                        getNumeroFormatado()));
-    }
+	private StringBuilder linhaDigitavelFormater(StringBuilder linhaDigitavel) {
+		linhaDigitavel.insert(5, '.');
+		linhaDigitavel.insert(11, "  ");
+		linhaDigitavel.insert(18, '.');
+		linhaDigitavel.insert(25, "  ");
+		linhaDigitavel.insert(32, '.');
+		linhaDigitavel.insert(39, "  ");
+		linhaDigitavel.insert(42, "  ");
+
+		return linhaDigitavel;
+	}
+
+	public String getNumeroFormatado() {
+		return NUMERO_BB;
+	}
+
+	public java.net.URL getImage() {
+		return getClass().getResource(
+				String.format("/br/com/caelum/stella/boleto/img/%s.png",
+						getNumeroFormatado()));
+	}
 
 }
