@@ -8,7 +8,7 @@ package br.com.caelum.stella.boleto;
  * 
  */
 public class Emissor {
-	private String agencia;
+	private int agencia;
 	private String dvAgencia;
 	private int contaCorrente;
 	private String carteira;
@@ -33,7 +33,7 @@ public class Emissor {
 	 * Devolve o número da agencia sem o digito
 	 * 
 	 */
-	public String getAgencia() {
+	public int getAgencia() {
 		return agencia;
 	}
 
@@ -42,7 +42,7 @@ public class Emissor {
 	 * 
 	 * @param agencia
 	 */
-	public Emissor withAgencia(String agencia) {
+	public Emissor withAgencia(int agencia) {
 		this.agencia = agencia;
 		return this;
 	}
@@ -197,6 +197,15 @@ public class Emissor {
 	 */
 	public String getContaCorrenteFormatado() {
 		return String.format("%07d", contaCorrente);
+	}
+
+	/**
+	 * Devolve a agencia formatada (com 4 digitos)
+	 * 
+	 * @return
+	 */
+	public String getAgenciaFormatado() {
+		return String.format("%04d", agencia);
 	}
 
 	/**

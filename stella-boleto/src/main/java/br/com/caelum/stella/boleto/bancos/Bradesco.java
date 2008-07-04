@@ -32,8 +32,7 @@ public class Bradesco implements Banco {
 		// CAMPO LIVRE
 		codigoDeBarras.append(boleto.getFatorVencimento());
 		codigoDeBarras.append(boleto.getValorFormatado());
-		codigoDeBarras.append(String.format("%04d", Integer.parseInt(boleto
-				.getEmissor().getAgencia())));
+		codigoDeBarras.append(boleto.getEmissor().getAgenciaFormatado());
 		codigoDeBarras.append(String.format("%02d", Integer.parseInt(boleto
 				.getEmissor().getCarteira())));
 		codigoDeBarras.append(String.format("%011d", Integer.parseInt(boleto
