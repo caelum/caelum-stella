@@ -1,4 +1,4 @@
-package util;
+package br.com.caelum.stella.hibernate.example.util;
 
 
 import org.hibernate.SessionFactory;
