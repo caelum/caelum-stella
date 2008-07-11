@@ -48,7 +48,7 @@ public class BoletoTransformer {
     private final BoletoWriter writer;
 
     public BoletoTransformer(BoletoWriter writer) {
-	this.writer = writer;
+        this.writer = writer;
     }
 
     /**
@@ -57,139 +57,148 @@ public class BoletoTransformer {
      * @param boleto
      * 
      */
-    public InputStream transform(Boleto boleto) {
+    public InputStream transform(Boleto... boletos) {
 
-	NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
-		"#,##0.00"));
+        NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
+                "#,##0.00"));
 
-	// gera template com o fundo do boleto
-	URL imagemTitulo = BoletoTransformer.class
-		.getResource("/br/com/caelum/stella/boleto/img/template.png");
+        // gera template com o fundo do boleto
+        URL imagemTitulo = BoletoTransformer.class
+                .getResource("/br/com/caelum/stella/boleto/img/template.png");
 
-	try {
-	    writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f, 385.109f);
-	    writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
-		    .getImage()), 100, 23);
-	} catch (IOException e) {
-	    throw new GeracaoBoletoException(
-		    "Erro na leitura das imagens do boleto", e);
-	}
+        boolean firstPage = true;
+        for (Boleto boleto : boletos) {
+            if (!firstPage){
+                writer.newPage();
+            }
+            try {
+                writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f,
+                        385.109f);
+                writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()
+                        .getImage()), 100, 23);
+            } catch (IOException e) {
+                throw new GeracaoBoletoException(
+                        "Erro na leitura das imagens do boleto", e);
+            }
 
-	for (int i = 0; i < boleto.getDescricoes().size(); i++) {
-	    writer.writeBold(5, 805 - 70 - i * 15, boleto.getDescricoes()
-		    .get(i));
-	}
+            for (int i = 0; i < boleto.getDescricoes().size(); i++) {
+                writer.writeBold(5, 805 - 70 - i * 15, boleto.getDescricoes()
+                        .get(i));
+            }
 
-	writer.write(50, LINHA1, boleto.getEmissor().getCedente());
+            writer.write(50, LINHA1, boleto.getEmissor().getCedente());
 
-	writer.write(5, LINHA2, boleto.getSacado().getNome());
+            writer.write(5, LINHA2, boleto.getSacado().getNome());
 
-	writer
-		.write(230, LINHA2, formatDate(boleto.getDatas()
-			.getVencimento()));
+            writer.write(230, LINHA2, formatDate(boleto.getDatas()
+                    .getVencimento()));
 
-	try {
-	    writer.write(400, LINHA2, formatter.valueToString(boleto
-		    .getValorBoleto().doubleValue()));
-	} catch (NumberFormatException e) {
-	    throw new CriacaoBoletoException(
-		    "Erro na formatação do valor do boleto", e);
-	} catch (ParseException e) {
-	    throw new CriacaoBoletoException(
-		    "Erro na formatação do valor do boleto", e);
-	}
+            try {
+                writer.write(400, LINHA2, formatter.valueToString(boleto
+                        .getValorBoleto().doubleValue()));
+            } catch (NumberFormatException e) {
+                throw new CriacaoBoletoException(
+                        "Erro na formatação do valor do boleto", e);
+            } catch (ParseException e) {
+                throw new CriacaoBoletoException(
+                        "Erro na formatação do valor do boleto", e);
+            }
 
-	writer.write(5, LINHA3, boleto.getEmissor().getAgenciaFormatado() + "-"
-		+ boleto.getEmissor().getDvAgencia() + " / "
-		+ boleto.getEmissor().getContaCorrenteFormatado() + "-"
-		+ boleto.getEmissor().getDvContaCorrente());
+            writer.write(5, LINHA3, boleto.getEmissor().getAgenciaFormatado()
+                    + "-" + boleto.getEmissor().getDvAgencia() + " / "
+                    + boleto.getEmissor().getContaCorrenteFormatado() + "-"
+                    + boleto.getEmissor().getDvContaCorrente());
 
-	writer
-		.write(146, LINHA3, boleto.getEmissor()
-			.getNossoNumeroFormatado());
+            writer.write(146, LINHA3, boleto.getEmissor()
+                    .getNossoNumeroFormatado());
 
-	writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatado());
+            writer.writeBold(125, LINHA4, boleto.getBanco()
+                    .getNumeroFormatado());
 
-	writer.writeBold(175, LINHA4, boleto.getBanco().geraLinhaDigitavelPara(
-		boleto));
+            writer.writeBold(175, LINHA4, boleto.getBanco()
+                    .geraLinhaDigitavelPara(boleto));
 
-	for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
-	    writer.write(5, LINHA5 - (i - 1) * 10, boleto
-		    .getLocaisDePagamento().get(i));
-	}
+            for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
+                writer.write(5, LINHA5 - (i - 1) * 10, boleto
+                        .getLocaisDePagamento().get(i));
+            }
 
-	writer
-		.write(425, LINHA5, formatDate(boleto.getDatas()
-			.getVencimento()));
+            writer.write(425, LINHA5, formatDate(boleto.getDatas()
+                    .getVencimento()));
 
-	writer.write(5, LINHA6, boleto.getEmissor().getCedente());
+            writer.write(5, LINHA6, boleto.getEmissor().getCedente());
 
-	writer.write(420, LINHA6, boleto.getEmissor().getAgenciaFormatado()
-		+ " - " + boleto.getEmissor().getDvAgencia() + " / "
-		+ boleto.getEmissor().getContaCorrenteFormatado() + "-"
-		+ boleto.getEmissor().getDvContaCorrente());
+            writer.write(420, LINHA6, boleto.getEmissor().getAgenciaFormatado()
+                    + " - " + boleto.getEmissor().getDvAgencia() + " / "
+                    + boleto.getEmissor().getContaCorrenteFormatado() + "-"
+                    + boleto.getEmissor().getDvContaCorrente());
 
-	writer.write(5, LINHA7, formatDate(boleto.getDatas().getDocumento()));
+            writer.write(5, LINHA7,
+                    formatDate(boleto.getDatas().getDocumento()));
 
-	writer.write(70, LINHA7, !boleto.getNoDocumento().equals("") ? boleto
-		.getNoDocumentoFormatado() : boleto.getEmissor()
-		.getNossoNumeroFormatado());
+            writer.write(70, LINHA7,
+                    !boleto.getNoDocumento().equals("") ? boleto
+                            .getNoDocumentoFormatado() : boleto.getEmissor()
+                            .getNossoNumeroFormatado());
 
-	writer.write(180, LINHA7, boleto.getEspecieDocumento());
+            writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
-	writer.write(250, LINHA7, boleto.getAceite() ? "S" : "N");
+            writer.write(250, LINHA7, boleto.getAceite() ? "S" : "N");
 
-	writer.write(300, LINHA7, formatDate(boleto.getDatas()
-		.getProcessamento()));
+            writer.write(300, LINHA7, formatDate(boleto.getDatas()
+                    .getProcessamento()));
 
-	writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / "
-		+ boleto.getEmissor().getNossoNumeroFormatado());
+            writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / "
+                    + boleto.getEmissor().getNossoNumeroFormatado());
 
-	writer.write(122, LINHA8, boleto.getEmissor().getCarteiraFormatado());
+            writer.write(122, LINHA8, boleto.getEmissor()
+                    .getCarteiraFormatado());
 
-	writer.write(190, LINHA8, boleto.getEspecieMoeda());
+            writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
-	try {
-	    writer.write(430, LINHA8, formatter.valueToString(boleto
-		    .getValorBoleto().doubleValue()));
-	} catch (NumberFormatException e) {
-	    throw new CriacaoBoletoException(
-		    "Erro na formatação do valor do boleto", e);
-	} catch (ParseException e) {
-	    throw new CriacaoBoletoException(
-		    "Erro na formatação do valor do boleto", e);
-	}
+            try {
+                writer.write(430, LINHA8, formatter.valueToString(boleto
+                        .getValorBoleto().doubleValue()));
+            } catch (NumberFormatException e) {
+                throw new CriacaoBoletoException(
+                        "Erro na formatação do valor do boleto", e);
+            } catch (ParseException e) {
+                throw new CriacaoBoletoException(
+                        "Erro na formatação do valor do boleto", e);
+            }
 
-	for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-	    writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
-	}
+            for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
+                writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
+            }
 
-	writer.write(5, LINHA10, boleto.getEmissor().getCedente());
+            writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 
-	writer.write(100, LINHA11, boleto.getSacado().getNome() + " "
-		+ boleto.getSacado().getCpf());
+            writer.write(100, LINHA11, boleto.getSacado().getNome() + " "
+                    + boleto.getSacado().getCpf());
 
-	writer.write(100, LINHA12, boleto.getSacado().getEndereco());
+            writer.write(100, LINHA12, boleto.getSacado().getEndereco());
 
-	writer.write(100, LINHA13, boleto.getSacado().getCep() + " "
-		+ boleto.getSacado().getBairro() + " - "
-		+ boleto.getSacado().getCidade() + " "
-		+ boleto.getSacado().getUf());
+            writer.write(100, LINHA13, boleto.getSacado().getCep() + " "
+                    + boleto.getSacado().getBairro() + " - "
+                    + boleto.getSacado().getCidade() + " "
+                    + boleto.getSacado().getUf());
 
-	Image imagemDoCodigoDeBarras = BarcodeGenerator
-		.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
-			boleto));
+            Image imagemDoCodigoDeBarras = BarcodeGenerator
+                    .generateBarcodeFor(boleto.getBanco()
+                            .geraCodigoDeBarrasPara(boleto));
 
-	try {
-	    writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras,
-		    BufferedImage.TYPE_INT_ARGB), imagemDoCodigoDeBarras
-		    .getWidth(null), imagemDoCodigoDeBarras.getHeight(null));
-	} catch (IOException e) {
-	    throw new CriacaoBoletoException(
-		    "Erro na geração do código de barras", e);
-	}
-
-	return writer.toInputStream();
+            try {
+                writer.writeImage(40, 10, toBufferedImage(
+                        imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
+                        imagemDoCodigoDeBarras.getWidth(null),
+                        imagemDoCodigoDeBarras.getHeight(null));
+            } catch (IOException e) {
+                throw new CriacaoBoletoException(
+                        "Erro na geração do código de barras", e);
+            }
+            firstPage = false;
+        }
+        return writer.toInputStream();
     }
 
     /**
@@ -199,13 +208,13 @@ public class BoletoTransformer {
      * @param type
      */
     private BufferedImage toBufferedImage(Image image, int type) {
-	int w = image.getWidth(null);
-	int h = image.getHeight(null);
-	BufferedImage result = new BufferedImage(w, h, type);
-	Graphics2D g = result.createGraphics();
-	g.drawImage(image, 0, 0, null);
-	g.dispose();
-	return result;
+        int w = image.getWidth(null);
+        int h = image.getHeight(null);
+        BufferedImage result = new BufferedImage(w, h, type);
+        Graphics2D g = result.createGraphics();
+        g.drawImage(image, 0, 0, null);
+        g.dispose();
+        return result;
     }
 
     /**
@@ -216,7 +225,7 @@ public class BoletoTransformer {
      * @throws IOException
      */
     private BufferedImage imageFor(URL file) throws IOException {
-	return ImageIO.read(file);
+        return ImageIO.read(file);
     }
 
     /**
@@ -226,6 +235,6 @@ public class BoletoTransformer {
      * @return
      */
     private String formatDate(Calendar date) {
-	return String.format("%1$td/%1$tm/%1$tY", date);
+        return String.format("%1$td/%1$tm/%1$tY", date);
     }
 }

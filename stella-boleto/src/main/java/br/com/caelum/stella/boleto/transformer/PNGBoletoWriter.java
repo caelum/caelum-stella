@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.NotSerializableException;
 
 import javax.imageio.ImageIO;
 
@@ -115,5 +116,9 @@ public class PNGBoletoWriter implements BoletoWriter {
     private float scaleY(float y) {
         y = this.PNGimage.getHeight() - y;
         return y * 4.16f - 6005;
+    }
+
+    public boolean newPage() {
+        throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
     }
 }

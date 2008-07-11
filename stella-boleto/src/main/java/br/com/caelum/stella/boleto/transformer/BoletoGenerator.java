@@ -22,10 +22,10 @@ import br.com.caelum.stella.boleto.GeracaoBoletoException;
  */
 public class BoletoGenerator {
 
-    private final Boleto boleto;
+    private final Boleto[] boletos;
 
-    public BoletoGenerator(Boleto boleto) {
-        this.boleto = boleto;
+    public BoletoGenerator(Boleto ... boletos) {
+        this.boletos = boletos;
     }
 
     /**
@@ -125,7 +125,7 @@ public class BoletoGenerator {
     private byte[] to(BoletoWriter writer) {
         BoletoTransformer transformer = new BoletoTransformer(writer);
 
-        InputStream is = transformer.transform(this.boleto);
+        InputStream is = transformer.transform(this.boletos);
 
         byte[] b;
         try {

@@ -43,4 +43,11 @@ public interface BoletoWriter {
      * @return
      */
     InputStream toInputStream();
+
+    /**
+     * Cria uma nova pagina no documento de saida.
+     * 
+     * @return <code>true</code> se uma nova pagina foi criada
+     */
+    public boolean newPage();
 }

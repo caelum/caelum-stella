@@ -46,7 +46,7 @@ public class PDFBoletoWriter implements BoletoWriter {
     public PDFBoletoWriter(Rectangle rectangle) {
         this.bytes = new ByteArrayOutputStream();
         this.document = new Document(rectangle);
-
+        
         try {
             this.writer = PdfWriter.getInstance(this.document, this.bytes);
 
@@ -122,6 +122,10 @@ public class PDFBoletoWriter implements BoletoWriter {
         } catch (DocumentException e) {
             throw new GeracaoBoletoException(e);
         }
+    }
+
+    public boolean newPage() {
+        return document.newPage();
     }
 
 }
