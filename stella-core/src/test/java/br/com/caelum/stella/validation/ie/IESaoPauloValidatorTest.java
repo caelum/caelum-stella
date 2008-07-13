@@ -17,25 +17,27 @@ import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class IESaoPauloValidatorTest {
-    
+
     private final String validString = "P-01100424.3/002";
+
     private final String wrongCheckDigitString = "P-01100424.0/002";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IESaoPauloValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -49,8 +51,7 @@ public class IESaoPauloValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         // VALID IE = P-01100424.3/002
@@ -78,8 +79,7 @@ public class IESaoPauloValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloValidator(messageProducer, false);
 
         // VALID IE = P-01100424.3/002
         try {
@@ -87,7 +87,7 @@ public class IESaoPauloValidatorTest {
             validator.assertValid(value);
             fail();
         } catch (RuntimeException e) {
-           throw e;
+            throw e;
         } finally {
             mockery.assertIsSatisfied();
         }
@@ -100,8 +100,7 @@ public class IESaoPauloValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -125,8 +124,7 @@ public class IESaoPauloValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = P-01100424.3/002
@@ -150,8 +148,7 @@ public class IESaoPauloValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 110.042.490.114
