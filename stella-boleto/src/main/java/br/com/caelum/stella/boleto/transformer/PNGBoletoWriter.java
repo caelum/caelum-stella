@@ -30,13 +30,17 @@ import com.lowagie.text.pdf.BaseFont;
 public class PNGBoletoWriter implements BoletoWriter {
 
     private static final int NORMAL_SIZE = 36;
+
     private static final int BIG_SIZE = 45;
 
     private final Font fonteSimples;
+
     private final Font fonteBold;
 
     private final BufferedImage PNGimage;
+
     private InputStream stream;
+
     private final Graphics2D graphics;
 
     public PNGBoletoWriter() {
@@ -119,6 +123,7 @@ public class PNGBoletoWriter implements BoletoWriter {
     }
 
     public boolean newPage() {
-        throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
+        throw new IllegalStateException(
+                "Nao é possivel criar uma nova pagina em um arquivo png.");
     }
 }

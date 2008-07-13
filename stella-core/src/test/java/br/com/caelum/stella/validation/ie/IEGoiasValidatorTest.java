@@ -18,46 +18,50 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class IEGoiasValidatorTest {
 
-	/*
-	 * Formato da Inscrição: AB.CDE.FGH-I 8 dígitos (ABCDEFGH)+1 dígito
-	 * verificador (I); onde AB pode ser igual a 10 ou 11 ou 15.
-	 * 
-	 * CCE de Exemplo: 10.987.654-7
-	 * 
-	 * -Atribui-se um peso a cada dígito do CCE seguindo a ordem abaixo:
-	 * 
-	 * CCE= 1 0 9 8 7 6 5 4
-	 * 
-	 * PESOS= 9 8 7 6 5 4 3 2
-	 * 
-	 * 
-	 * Cálculo:
-	 * 
-	 * (9x1)+(8x0)+(7x9)+(6x8)+(5x7)+(4x6)+(3x5)+(2x4)= 202
-	 * 
-	 * Divide-se 202 por 11= 18 e sobra 4 (resto)
-	 * 
-	 * Quando a inscrição for 11094402 o dígito verificador pode ser zero (0) e
-	 * pode ser um (1);
-	 * 
-	 * Quando o resto da divisão for zero (0), o dígito verificador será zero
-	 * (0);
-	 * 
-	 * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a
-	 * 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
-	 * 
-	 * Quando o resto da divisão for um (1), e a inscrição estiver fora do
-	 * intervalo citado acima, o dígito verificador será zero (0);
-	 * 
-	 * Quando o resto for diferente de um (1) ou zero (0), o dígito verificador
-	 * será onze (11) menos o resto. No exemplo acima onze (11) menos quatro (4)
-	 * é igual a sete (7) que é o dígito verificador da Inscrição 10.987.654-7
-	 */
+    /*
+     * Formato da Inscrição: AB.CDE.FGH-I 8 dígitos (ABCDEFGH)+1 dígito
+     * verificador (I); onde AB pode ser igual a 10 ou 11 ou 15.
+     * 
+     * CCE de Exemplo: 10.987.654-7
+     * 
+     * -Atribui-se um peso a cada dígito do CCE seguindo a ordem abaixo:
+     * 
+     * CCE= 1 0 9 8 7 6 5 4
+     * 
+     * PESOS= 9 8 7 6 5 4 3 2
+     * 
+     * 
+     * Cálculo:
+     * 
+     * (9x1)+(8x0)+(7x9)+(6x8)+(5x7)+(4x6)+(3x5)+(2x4)= 202
+     * 
+     * Divide-se 202 por 11= 18 e sobra 4 (resto)
+     * 
+     * Quando a inscrição for 11094402 o dígito verificador pode ser zero (0) e
+     * pode ser um (1);
+     * 
+     * Quando o resto da divisão for zero (0), o dígito verificador será zero
+     * (0);
+     * 
+     * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a
+     * 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
+     * 
+     * Quando o resto da divisão for um (1), e a inscrição estiver fora do
+     * intervalo citado acima, o dígito verificador será zero (0);
+     * 
+     * Quando o resto for diferente de um (1) ou zero (0), o dígito verificador
+     * será onze (11) menos o resto. No exemplo acima onze (11) menos quatro (4)
+     * é igual a sete (7) que é o dígito verificador da Inscrição 10.987.654-7
+     */
 
     private static final String wrongCheckDigitUnformattedString = "109876542";
+
     private static final String validUnformattedString = "109876547";
+
     private static final String validFormattedString = "10.987.654-7";
-    private static final String[] validValues = { validFormattedString , "10.103.119-1"};
+
+    private static final String[] validValues = { validFormattedString,
+            "10.103.119-1" };
 
     private Validator<String> newValidator() {
         return new IEGoiasValidator();
@@ -204,7 +208,7 @@ public class IEGoiasValidatorTest {
         }
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateMagicNumberValidUnformattedIE() {
@@ -216,7 +220,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"110944020","110944021"}) {
+        for (String validValue : new String[] { "110944020", "110944021" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -225,10 +229,10 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateMagicNumberValidFormattedIE() {
@@ -240,7 +244,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"11.094.402-0","11.094.402-1"}) {
+        for (String validValue : new String[] { "11.094.402-0", "11.094.402-1" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -249,7 +253,7 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
 
@@ -324,11 +328,11 @@ public class IEGoiasValidatorTest {
 
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
-	@Test
-    public void shouldValidateLowerBoundary(){
-    	Mockery mockery = new Mockery();
+    @Test
+    public void shouldValidateLowerBoundary() {
+        Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
@@ -336,7 +340,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"101031051"}) {
+        for (String validValue : new String[] { "101031051" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -345,14 +349,14 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
-	@Test
-    public void shouldValidateUpperBoundary(){
-    	Mockery mockery = new Mockery();
+    @Test
+    public void shouldValidateUpperBoundary() {
+        Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
@@ -360,7 +364,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"101199971"}) {
+        for (String validValue : new String[] { "101199971" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -369,14 +373,14 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
-	@Test
-    public void shouldValidateValuesThatAreLesserThan101031050(){
-    	Mockery mockery = new Mockery();
+    @Test
+    public void shouldValidateValuesThatAreLesserThan101031050() {
+        Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
@@ -384,7 +388,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"101031041","101030860"}) {
+        for (String validValue : new String[] { "101031041", "101030860" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -393,14 +397,14 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
-	@Test
-    public void shouldValidateValuesThatAreGreaterThan101199979(){
-    	Mockery mockery = new Mockery();
+    @Test
+    public void shouldValidateValuesThatAreGreaterThan101199979() {
+        Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
@@ -408,7 +412,7 @@ public class IEGoiasValidatorTest {
 
         List<ValidationMessage> errors;
 
-        for (String validValue : new String []{"101199988"}) {
+        for (String validValue : new String[] { "101199988" }) {
             try {
                 validator.assertValid(validValue);
             } catch (InvalidStateException e) {
@@ -417,7 +421,7 @@ public class IEGoiasValidatorTest {
             errors = validator.invalidMessagesFor(validValue);
             assertTrue(errors.isEmpty());
         }
-        
+
         mockery.assertIsSatisfied();
     }
 

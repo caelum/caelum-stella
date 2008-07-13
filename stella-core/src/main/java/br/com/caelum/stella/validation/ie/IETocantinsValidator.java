@@ -16,7 +16,7 @@ public class IETocantinsValidator implements Validator<String> {
     private final IETocantinsNovaValidator novaValidator;
     private final BaseValidator<String> baseValidator;
     private final boolean isFormatted;
-    
+
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
@@ -33,22 +33,20 @@ public class IETocantinsValidator implements Validator<String> {
      *                considerar cadeia formatada quando <code>true</code>
      */
     public IETocantinsValidator(boolean isFormatted) {
-        this(new SimpleMessageProducer(),isFormatted);
+        this(new SimpleMessageProducer(), isFormatted);
     }
 
-    public IETocantinsValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IETocantinsValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         this.isFormatted = isFormatted;
-        antigaValidator = new IETocantinsAntigaValidator(
-                null, isFormatted);
-        novaValidator = new IETocantinsNovaValidator(
-                null, isFormatted);
+        antigaValidator = new IETocantinsAntigaValidator(null, isFormatted);
+        novaValidator = new IETocantinsNovaValidator(null, isFormatted);
         this.baseValidator = new BaseValidator<String>(messageProducer) {
 
             @Override
             protected List<InvalidValue> getInvalidValues(String value) {
                 List<InvalidValue> result = null;
-                if (value!=null) {
+                if (value != null) {
                     if (IETocantinsValidator.this.isFormatted) {
                         if (IETocantinsAntigaValidator.FORMATED.matcher(value)
                                 .matches()) {
@@ -64,7 +62,7 @@ public class IETocantinsValidator implements Validator<String> {
                             result = novaValidator.getInvalidValues(value);
                         }
                     }
-                } else { 
+                } else {
                     result = new ArrayList<InvalidValue>();
                 }
                 return result;

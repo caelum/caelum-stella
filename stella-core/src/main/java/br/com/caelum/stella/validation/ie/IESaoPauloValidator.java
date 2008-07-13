@@ -14,7 +14,7 @@ public class IESaoPauloValidator implements Validator<String> {
     private final IESaoPauloComercioIndustriaValidator comercioIndustriaValidator;
     private final IESaoPauloProdutorRuralValidator produtorRuralValidator;
     private final BaseValidator<String> baseValidator;
-    
+
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
@@ -31,15 +31,15 @@ public class IESaoPauloValidator implements Validator<String> {
      *                considerar cadeia formatada quando <code>true</code>
      */
     public IESaoPauloValidator(boolean isFormatted) {
-        this(new SimpleMessageProducer(),isFormatted);
+        this(new SimpleMessageProducer(), isFormatted);
     }
 
-    public IESaoPauloValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IESaoPauloValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         comercioIndustriaValidator = new IESaoPauloComercioIndustriaValidator(
                 null, isFormatted);
-        produtorRuralValidator = new IESaoPauloProdutorRuralValidator(
-                null, isFormatted);
+        produtorRuralValidator = new IESaoPauloProdutorRuralValidator(null,
+                isFormatted);
         this.baseValidator = new BaseValidator<String>(messageProducer) {
 
             @Override

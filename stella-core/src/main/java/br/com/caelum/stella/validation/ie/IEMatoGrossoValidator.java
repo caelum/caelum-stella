@@ -18,7 +18,7 @@ public class IEMatoGrossoValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
-    private static final int DVX_POSITION = 3+11;
+    private static final int DVX_POSITION = 3 + 11;
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
@@ -95,7 +95,8 @@ public class IEMatoGrossoValidator extends BaseValidator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value) ;
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
+                .format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

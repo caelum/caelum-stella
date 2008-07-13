@@ -7,25 +7,24 @@ package br.com.caelum.stella.inwords;
  */
 public class FormatoDeInteiro implements FormatoDeExtenso {
 
-	public String getDecimais() {
-		return "milésimos";
-	}
+    public String getDecimais() {
+        return "milésimos";
+    }
 
-	public String getDecimal() {
-		return "milésimo";
-	}
+    public String getDecimal() {
+        return "milésimo";
+    }
 
-	public String getUnidade() {
-		return "inteiro";
-	}
+    public String getUnidade() {
+        return "inteiro";
+    }
 
-	public String getUnidades() {
-		return "inteiros";
-	}
+    public String getUnidades() {
+        return "inteiros";
+    }
 
-	public int getCasasDecimais() {
-		return 3;
-	}
+    public int getCasasDecimais() {
+        return 3;
+    }
 
 }
-

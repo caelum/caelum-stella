@@ -32,21 +32,29 @@ import com.lowagie.text.pdf.PdfWriter;
 public class PDFBoletoWriter implements BoletoWriter {
 
     private static final int NORMAL_SIZE = 8;
+
     private static final int BIG_SIZE = 10;
 
     private InputStream stream;
+
     private final ByteArrayOutputStream bytes;
+
     private final Document document;
+
     private PdfWriter writer;
+
     private BaseFont fonteSimples;
+
     private BaseFont fonteBold;
+
     private final PdfContentByte contentByte;
+
     private final int scale = 1;
 
     public PDFBoletoWriter(Rectangle rectangle) {
         this.bytes = new ByteArrayOutputStream();
         this.document = new Document(rectangle);
-        
+
         try {
             this.writer = PdfWriter.getInstance(this.document, this.bytes);
 
@@ -92,7 +100,7 @@ public class PDFBoletoWriter implements BoletoWriter {
 
         this.contentByte.setFontAndSize(font, size);
         final float leftMargin = this.document.leftMargin();
-        this.contentByte.setTextMatrix(leftMargin+x, y);
+        this.contentByte.setTextMatrix(leftMargin + x, y);
         this.contentByte.showText(text);
 
         this.contentByte.endText();
@@ -116,7 +124,7 @@ public class PDFBoletoWriter implements BoletoWriter {
                     .getWidth(), image.getHeight());
             template.addImage(pdfImage);
             final float leftMargin = this.document.leftMargin();
-            this.contentByte.addTemplate(template,leftMargin + x, y);
+            this.contentByte.addTemplate(template, leftMargin + x, y);
         } catch (BadElementException e) {
             throw new GeracaoBoletoException(e);
         } catch (DocumentException e) {

@@ -7,14 +7,14 @@ package br.com.caelum.stella.inwords;
  */
 public interface FormatoDeExtenso {
 
-	String getUnidade();
+    String getUnidade();
 
-	String getUnidades();
+    String getUnidades();
 
-	String getDecimal();
+    String getDecimal();
 
-	String getDecimais();
+    String getDecimais();
 
-	int getCasasDecimais();
+    int getCasasDecimais();
 
 }

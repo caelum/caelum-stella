@@ -24,7 +24,7 @@ public class BoletoGenerator {
 
     private final Boleto[] boletos;
 
-    public BoletoGenerator(Boleto ... boletos) {
+    public BoletoGenerator(Boleto... boletos) {
         this.boletos = boletos;
     }
 

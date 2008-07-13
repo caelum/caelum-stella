@@ -15,7 +15,8 @@ public class BoletosToPdfExample {
      * @param args
      */
     public static void main(String[] args) {
-        BoletoGenerator gerador = new BoletoGenerator(getBoletoBancoDoBrasil(),getBoletoBradesco(),getBoletoBancoDoBrasil());
+        BoletoGenerator gerador = new BoletoGenerator(getBoletoBancoDoBrasil(),
+                getBoletoBradesco(), getBoletoBancoDoBrasil());
 
         // Para gerar um boleto em PDF
         gerador.toPDF("Boletos.pdf");

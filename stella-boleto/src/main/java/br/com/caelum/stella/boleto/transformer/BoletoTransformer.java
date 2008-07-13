@@ -28,21 +28,35 @@ import br.com.caelum.stella.boleto.GeracaoBoletoException;
 public class BoletoTransformer {
 
     public static final float IMAGEM_BOLETO_WIDTH = 2144;
+
     public static final float IMAGEM_BOLETO_HEIGHT = 1604;
+
     public static final double BOLETO_TEMPLATE_SCALE = 1 / 2d;
 
     private static final float LINHA1 = 434;
+
     private static final float LINHA2 = 412;
+
     private static final float LINHA3 = 391;
+
     private static final float LINHA4 = 319;
+
     private static final float LINHA5 = 291;
+
     private static final float LINHA6 = 271;
+
     private static final float LINHA7 = 250;
+
     private static final float LINHA8 = 227;
+
     private static final float LINHA9 = 205;
+
     private static final float LINHA10 = 132;
+
     private static final float LINHA11 = 97;
+
     private static final float LINHA12 = 87;
+
     private static final float LINHA13 = 77;
 
     private final BoletoWriter writer;
@@ -68,7 +82,7 @@ public class BoletoTransformer {
 
         boolean firstPage = true;
         for (Boleto boleto : boletos) {
-            if (!firstPage){
+            if (!firstPage) {
                 writer.newPage();
             }
             try {
