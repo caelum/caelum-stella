@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.ConsistentValidator;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.BaseValidator;
@@ -13,7 +14,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IESaoPauloProdutorRuralValidator extends BaseValidator<String> {
+class IESaoPauloProdutorRuralValidator extends BaseValidator<String> implements ConsistentValidator<String>{
 
     private static final int MOD = 11;
 
@@ -80,6 +81,17 @@ class IESaoPauloProdutorRuralValidator extends BaseValidator<String> {
     private boolean hasValidCheckDigits(String value) {
         String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
         return (DVX_CHECKER.isDVValid(testedValue));
+    }
+    
+    public boolean patternMatches(String value) {
+        boolean result;
+        if (isFormatted){
+            result = FORMATED.matcher(value).matches();
+        }
+        else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
     }
 
 }

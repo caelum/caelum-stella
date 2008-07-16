@@ -35,4 +35,5 @@ public interface Validator<T> {
      * @return as mensagens de de validação relativas ao paremetro object
      */
     List<ValidationMessage> invalidMessagesFor(T object);
+
 }
