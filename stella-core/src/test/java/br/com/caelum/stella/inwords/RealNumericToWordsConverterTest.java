@@ -137,5 +137,19 @@ public class RealNumericToWordsConverterTest {
         double twoHundred = 0.229;
         converter.toWords(twoHundred);
     }
+    
+    @Test()
+    public void shouldTransformAThousandAndOne() {
+        double number = 1001;
+        String words = converter.toWords(number);
+        assertEquals("mil e um reais", words);
+    }
+    
+    @Test()
+    public void shouldTransformAMillionAndOne() {
+        double number = 1000001;
+        String words = converter.toWords(number);
+        assertEquals("um milhão e um reais", words);
+    }
 
 }
