@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import org.hibernate.validator.Validator;
 
 import br.com.caelum.stella.type.Estado;
-import br.com.caelum.stella.validation.ie.IEValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
@@ -16,7 +15,7 @@ import br.com.caelum.stella.validation.ie.IEValidator;
  */
 public class StellaIEValidator implements Validator<IE> {
 
-    private IEValidator stellaValidator;
+    private br.com.caelum.stella.validation.Validator<String> stellaValidator;
 
     private IE ie;
 
@@ -42,8 +41,7 @@ public class StellaIEValidator implements Validator<IE> {
                 } else {
                     try {
                         final Estado estado = Estado.valueOf(estadoValue);
-                        stellaValidator = new IEValidator(estado,
-                                annotationMessageProducer, ie.formatted());
+                        stellaValidator = estado.getIEValidator(annotationMessageProducer,ie.formatted());
                     } catch (IllegalArgumentException e) {
                         return false;
                     }
