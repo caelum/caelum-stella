@@ -15,8 +15,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IERioGrandeDoSulValidator extends
-        BaseValidator<String> {
+public class IERioGrandeDoSulValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -24,6 +23,7 @@ public class IERioGrandeDoSulValidator extends
     private static final String MISSING_LEFT_SIDE_ZEROS = "0000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 10;
+
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -38,9 +38,10 @@ public class IERioGrandeDoSulValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("([0-4]\\d{2})[/](\\d{6})(\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([0-4]\\d{2})(\\d{6})(\\d{1})");
-    
+
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
@@ -61,8 +62,8 @@ public class IERioGrandeDoSulValidator extends
         this.isFormatted = isFormatted;
     }
 
-    public IERioGrandeDoSulValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IERioGrandeDoSulValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

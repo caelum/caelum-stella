@@ -51,6 +51,7 @@ public class IEParaValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("(15)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(15)(\\d{6})(\\d{1})");
 

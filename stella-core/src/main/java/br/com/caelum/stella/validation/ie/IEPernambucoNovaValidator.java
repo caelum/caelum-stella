@@ -14,8 +14,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IEPernambucoNovaValidator extends
-        BaseValidator<String> {
+class IEPernambucoNovaValidator extends BaseValidator<String> {
 
     private static final int DVX_MOD = 11;
 
@@ -53,12 +52,14 @@ class IEPernambucoNovaValidator extends
     // 0321418-40
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{7})[-](\\d{2})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{7})(\\d{2})");
+
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2";
 
-    public IEPernambucoNovaValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IEPernambucoNovaValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

@@ -13,8 +13,11 @@ import br.com.caelum.stella.validation.Validator;
 public class IETocantinsValidator implements Validator<String> {
 
     private final IETocantinsAntigaValidator antigaValidator;
+
     private final IETocantinsNovaValidator novaValidator;
+
     private final BaseValidator<String> baseValidator;
+
     private final boolean isFormatted;
 
     /**

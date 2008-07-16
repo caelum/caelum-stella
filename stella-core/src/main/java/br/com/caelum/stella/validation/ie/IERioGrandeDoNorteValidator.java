@@ -53,6 +53,7 @@ public class IERioGrandeDoNorteValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("([2][0])[.](\\d[.])?(\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([2][0])(\\d{6,7})(\\d{1})");
 

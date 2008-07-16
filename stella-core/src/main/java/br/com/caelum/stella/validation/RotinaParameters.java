@@ -6,7 +6,9 @@ package br.com.caelum.stella.validation;
 
 public class RotinaParameters {
     private final DigitoVerificadorInfo digitoVerificadorInfo;
+
     private final Integer[] numeros;
+
     private Integer result;
 
     public RotinaParameters(DigitoVerificadorInfo digitoVerificadorInfo,

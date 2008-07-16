@@ -52,6 +52,7 @@ public class IEEspiritoSantoValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("([0][08]\\d)[.](\\d{3})[.](\\d{2})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([0][08]\\d)(\\d{3})(\\d{2})(\\d{1})");
 

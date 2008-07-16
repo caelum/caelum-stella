@@ -22,15 +22,23 @@ public class IERoraimaValidator extends BaseValidator<String> {
     private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P5;
-    private static final RotinaDeDigitoVerificador[] ROTINAS = {IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE};
-    private static final DigitoVerificadorInfo DVX_INFO =
-            new DigitoVerificadorInfo(0, ROTINAS, MOD, DVX_MULTIPLIERS, DVX_POSITION);
 
-    public static final Pattern FORMATED = Pattern.compile("([2][4])(\\d{6})[-](\\d{1})");
-    public static final Pattern UNFORMATED = Pattern.compile("([2][4])(\\d{6})(\\d{1})");
+    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P5;
+
+    private static final RotinaDeDigitoVerificador[] ROTINAS = {
+            IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
+            0, ROTINAS, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+
+    public static final Pattern FORMATED = Pattern
+            .compile("([2][4])(\\d{6})[-](\\d{1})");
+
+    public static final Pattern UNFORMATED = Pattern
+            .compile("([2][4])(\\d{6})(\\d{1})");
 
     private final ValidadorDeDV validadorDeDV = new ValidadorDeDV(DVX_INFO);
+
     private final boolean formatted;
 
     /**

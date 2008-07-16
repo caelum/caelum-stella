@@ -12,7 +12,9 @@ import br.com.caelum.stella.validation.Validator;
 public class IESaoPauloValidator implements Validator<String> {
 
     private final IESaoPauloComercioIndustriaValidator comercioIndustriaValidator;
+
     private final IESaoPauloProdutorRuralValidator produtorRuralValidator;
+
     private final BaseValidator<String> baseValidator;
 
     /**

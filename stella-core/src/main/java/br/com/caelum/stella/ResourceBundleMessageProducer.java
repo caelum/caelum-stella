@@ -84,7 +84,7 @@ public class ResourceBundleMessageProducer implements MessageProducer {
      *         mensagem associada
      */
     public String messageKeyFor(Locale locale,
-            Class< ? extends InvalidValue> errorClass, InvalidValue error) {
+            Class<? extends InvalidValue> errorClass, InvalidValue error) {
         String simpleName = errorClass.getSimpleName();
         String errorName = error.name();
         String key = simpleName + "." + errorName;

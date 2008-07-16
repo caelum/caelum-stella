@@ -13,8 +13,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IERondoniaCasoUmValidator extends
-        BaseValidator<String> {
+class IERondoniaCasoUmValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -22,6 +21,7 @@ class IERondoniaCasoUmValidator extends
     private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
+
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P4;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -36,11 +36,12 @@ class IERondoniaCasoUmValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("([1-9]\\d{2})[.](\\d{5})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([1-9]\\d{2})(\\d{5})(\\d{1})");
 
-    public IERondoniaCasoUmValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IERondoniaCasoUmValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

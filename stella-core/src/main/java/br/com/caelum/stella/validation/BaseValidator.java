@@ -10,7 +10,7 @@ import br.com.caelum.stella.ValidationMessage;
 // TODO refactor to composition + strategy
 public abstract class BaseValidator<T> implements Validator<T> {
     private final MessageProducer messageProducer;
-    
+
     public BaseValidator() {
         this.messageProducer = new SimpleMessageProducer();
     }

@@ -14,8 +14,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEAmazonasValidator extends
-        BaseValidator<String> {
+public class IEAmazonasValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -23,6 +22,7 @@ public class IEAmazonasValidator extends
     private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
+
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -37,6 +37,7 @@ public class IEAmazonasValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("([0][47])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([0][47])(\\d{3})(\\d{3})(\\d{1})");
 
@@ -59,9 +60,9 @@ public class IEAmazonasValidator extends
         super();
         this.isFormatted = isFormatted;
     }
-    
-    public IEAmazonasValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+
+    public IEAmazonasValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

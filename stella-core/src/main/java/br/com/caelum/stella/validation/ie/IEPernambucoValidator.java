@@ -10,7 +10,9 @@ import br.com.caelum.stella.validation.InvalidValue;
 public class IEPernambucoValidator extends BaseValidator<String> {
 
     private final IEPernambucoAntigaValidator antigaValidator;
+
     private final IEPernambucoNovaValidator novaValidator;
+
     private final boolean formatted;
 
     /**
@@ -31,11 +33,14 @@ public class IEPernambucoValidator extends BaseValidator<String> {
         this(new SimpleMessageProducer(), formatted);
     }
 
-    public IEPernambucoValidator(MessageProducer messageProducer, boolean formatted) {
+    public IEPernambucoValidator(MessageProducer messageProducer,
+            boolean formatted) {
         super(messageProducer);
         this.formatted = formatted;
-        antigaValidator = new IEPernambucoAntigaValidator(messageProducer, formatted);
-        novaValidator = new IEPernambucoNovaValidator(messageProducer, formatted);
+        antigaValidator = new IEPernambucoAntigaValidator(messageProducer,
+                formatted);
+        novaValidator = new IEPernambucoNovaValidator(messageProducer,
+                formatted);
     }
 
     protected List<InvalidValue> getInvalidValues(String value) {

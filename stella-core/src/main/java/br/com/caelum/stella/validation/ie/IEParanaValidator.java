@@ -15,8 +15,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEParanaValidator extends
-        BaseValidator<String> {
+public class IEParanaValidator extends BaseValidator<String> {
 
     private static final int DVX_MOD = 11;
 
@@ -53,10 +52,12 @@ public class IEParanaValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{3})[.](\\d{5})[-](\\d{2})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{3})(\\d{5})(\\d{2})");
+
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3";
-    
+
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.

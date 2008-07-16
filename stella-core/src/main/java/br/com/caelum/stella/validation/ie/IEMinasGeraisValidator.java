@@ -15,8 +15,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IEMinasGeraisValidator extends
-        BaseValidator<String> {
+public class IEMinasGeraisValidator extends BaseValidator<String> {
 
     private static final int DVX_MOD = 10;
 
@@ -54,8 +53,10 @@ public class IEMinasGeraisValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{3})[.](\\d{3})[.](\\d{3})[/](\\d{4})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{3})(\\d{3})(\\d{3})(\\d{4})");
+
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3$4";
 
     /**
@@ -78,8 +79,8 @@ public class IEMinasGeraisValidator extends
         this.isFormatted = isFormatted;
     }
 
-    public IEMinasGeraisValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IEMinasGeraisValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

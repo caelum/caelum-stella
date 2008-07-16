@@ -53,6 +53,7 @@ public class IECearaValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("([0]\\d{1})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([0]\\d{1})(\\d{3})(\\d{3})(\\d{1})");
 

@@ -14,8 +14,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IESergipeValidator extends
-        BaseValidator<String> {
+public class IESergipeValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -23,6 +22,7 @@ public class IESergipeValidator extends
     private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
+
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P11;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -38,6 +38,7 @@ public class IESergipeValidator extends
     // 27123456-3
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{8})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{8})(\\d{1})");
 
@@ -60,9 +61,9 @@ public class IESergipeValidator extends
         super();
         this.isFormatted = isFormatted;
     }
-    
-    public IESergipeValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+
+    public IESergipeValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

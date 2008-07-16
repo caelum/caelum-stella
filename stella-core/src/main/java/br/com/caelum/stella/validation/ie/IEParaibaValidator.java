@@ -51,6 +51,7 @@ public class IEParaibaValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("(16)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(16)(\\d{3})(\\d{3})(\\d{1})");
 

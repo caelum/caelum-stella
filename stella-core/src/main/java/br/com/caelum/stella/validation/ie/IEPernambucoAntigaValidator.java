@@ -13,8 +13,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IEPernambucoAntigaValidator extends
-        BaseValidator<String> {
+class IEPernambucoAntigaValidator extends BaseValidator<String> {
 
     // Exemplo 18.1.001.0000004-9
 
@@ -26,9 +25,11 @@ class IEPernambucoAntigaValidator extends
 
     // DVX
     private static final int MOD = 11;
+
     private static final int FATOR = 1;
 
     private static final int DVX_POSITION = 14;
+
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P7;
 
     private static final RotinaDeDigitoVerificador[] rotinas = {
@@ -43,11 +44,12 @@ class IEPernambucoAntigaValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("([1][8])[.]([1-9])[.](\\d{3})[.](\\d{7})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([1][8])([1-9])(\\d{3})(\\d{7})(\\d{1})");
 
-    public IEPernambucoAntigaValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IEPernambucoAntigaValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
         this.isFormatted = isFormatted;
     }

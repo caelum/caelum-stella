@@ -9,11 +9,12 @@ import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IERondoniaValidator extends
-        BaseValidator<String> {
+public class IERondoniaValidator extends BaseValidator<String> {
 
     private final IERondoniaCasoUmValidator casoUm;
+
     private final IERondoniaCasoDoisValidator casoDois;
+
     private boolean isFormatted;
 
     /**
@@ -35,13 +36,11 @@ public class IERondoniaValidator extends
         this(new SimpleMessageProducer(), isFormatted);
     }
 
-    public IERondoniaValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IERondoniaValidator(MessageProducer messageProducer,
+            boolean isFormatted) {
         super(messageProducer);
-        casoUm = new IERondoniaCasoUmValidator(messageProducer,
-                isFormatted);
-        casoDois = new IERondoniaCasoDoisValidator(messageProducer,
-                isFormatted);
+        casoUm = new IERondoniaCasoUmValidator(messageProducer, isFormatted);
+        casoDois = new IERondoniaCasoDoisValidator(messageProducer, isFormatted);
         this.isFormatted = isFormatted;
     }
 
@@ -49,8 +48,8 @@ public class IERondoniaValidator extends
     @Override
     protected List<InvalidValue> getInvalidValues(String ie) {
         List<InvalidValue> result = null;
-        
-        if (ie==null) {
+
+        if (ie == null) {
             result = new ArrayList<InvalidValue>();
         } else {
             if (isFormatted) {

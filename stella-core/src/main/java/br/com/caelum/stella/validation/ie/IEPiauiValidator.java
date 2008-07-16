@@ -51,6 +51,7 @@ public class IEPiauiValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{2})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{8})(\\d{1})");
 

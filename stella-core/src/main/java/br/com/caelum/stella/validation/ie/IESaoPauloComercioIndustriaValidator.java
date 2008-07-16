@@ -13,8 +13,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IESaoPauloComercioIndustriaValidator extends
-        BaseValidator<String> {
+class IESaoPauloComercioIndustriaValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -46,6 +45,7 @@ class IESaoPauloComercioIndustriaValidator extends
 
     public static final Pattern FORMATED = Pattern
             .compile("(\\d{3})[.](\\d{3})[.](\\d{3})[.](\\d{3})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("(\\d{3})(\\d{3})(\\d{3})(\\d{3})");
 
