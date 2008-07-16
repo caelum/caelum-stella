@@ -63,6 +63,7 @@ public class IEAlagoasValidator extends BaseValidator<String> {
 
     public static final Pattern FORMATED = Pattern
             .compile("([2][4])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+
     public static final Pattern UNFORMATED = Pattern
             .compile("([2][4])(\\d{3})(\\d{3})(\\d{1})");
 

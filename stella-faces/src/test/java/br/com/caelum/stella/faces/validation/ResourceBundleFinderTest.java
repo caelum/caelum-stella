@@ -1,16 +1,15 @@
 package br.com.caelum.stella.faces.validation;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Assert;
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
-import org.jmock.Mockery;
 
-import javax.faces.context.FacesContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.io.UnsupportedEncodingException;
+
+import javax.faces.context.FacesContext;
+
+import org.jmock.Mockery;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author Fabio Kung

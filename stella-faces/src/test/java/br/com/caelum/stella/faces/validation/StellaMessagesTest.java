@@ -16,9 +16,12 @@ import java.util.ResourceBundle;
  * @author Fabio Kung
  */
 public class StellaMessagesTest {
+    @SuppressWarnings("unchecked")
     private static final Class[] ERROR_CLASSES = {CNPJError.class, CPFError.class, IEError.class, NITError.class};
 
+    
     @Test
+    @SuppressWarnings("unchecked")
     public void deveConterMensagensPadraoParaTodosOsErrosPossiveis() throws Exception {
         Locale locale = new Locale("pt", "BR");
         ResourceBundle messages = ResourceBundle.getBundle("StellaMessages", locale);
