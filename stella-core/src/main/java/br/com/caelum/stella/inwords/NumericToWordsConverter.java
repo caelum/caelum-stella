@@ -2,12 +2,14 @@ package br.com.caelum.stella.inwords;
 
 import java.text.DecimalFormat;
 
+import br.com.caelum.stella.format.Formatter;
+
 /**
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
  * 
  */
-public class NumericToWordsConverter {
+public class NumericToWordsConverter implements Formatter {
 
     private final FormatoDeExtenso formato;
 
@@ -37,10 +39,6 @@ public class NumericToWordsConverter {
         return (isFirstGroup ? getAndSeparator() : this.getString("sep.mil"));
     }
 
-    private String getNumberInWords(int power, int algarism) {
-        return this.getString(power + "." + algarism);
-    }
-
     private String getThousandSuffixInWords(int thousandPower,
             boolean isUnitary, boolean isFraction) {
         return (thousandPower == 0 ? this.getUnit(isUnitary, isFraction) : this
@@ -48,35 +46,41 @@ public class NumericToWordsConverter {
                         + (isUnitary ? '1' : '2')));
     }
 
-    private String getThousandBlockInWords(int number) {
-        String result;
-        if (number == 0) {
-            result = this.getNumberInWords(0, 0);
-        } else if (number == 100) {
-            result = this.getNumberInWords(2, 0);
-        } else {
-            result = "";
-            int power = 0;
-            int algarism = 0;
-            int actualValue = number;
-            for (int i = 0; i < 3; i++) {
-                // testa se são numeros de 11 a 19
-                if ((i == 1) && ((actualValue % 10) == 1) && (algarism != 0)) {
-                    power = 3;
-                    result = "";
-                } else {
-                    power = i;
-                    algarism = (actualValue % 10);
-                }
-                if (algarism != 0) {
-                    if (!"".equals(result)) {
-                        result = this.getAndSeparator() + result;
-                    }
-                    result = this.getNumberInWords(power, algarism) + result;
-                }
-                actualValue /= 10;
-            }
+    private String getThousandBlockInWords(String number) {
+        if (number.length() > 3) {
+            throw new IllegalArgumentException(
+                    "O número está fora do intervalo pemitido [0,999].");
         }
+        String result;
+        int value = Integer.parseInt(number);
+        if (value <= 20) {
+            result = Messages.getString("Extenso." + number);
+        } else if (value <= 99) {
+            int d = value / 10;
+            int u = value % 10;
+            String dezena = Messages.getString("Extenso." + d * 10);
+            if (u == 0) {
+                result = dezena;
+            } else {
+                String unidade = Messages.getString("Extenso." + u);
+                result = dezena + getAndSeparator() + unidade;
+            }
+        } else if (value == 100) {
+            result = Messages.getString("Extenso.100");
+        } else {
+            int c = (value / 100) * 100;
+            String centena = (c == 100) ? Messages.getString("Extenso.100+?")
+                    : Messages.getString("Extenso." + c);
+            int resto = value % 100;
+            if (resto == 0) {
+                result = centena;
+            } else {
+                result = centena + getAndSeparator()
+                        + getThousandBlockInWords("" + resto);
+            }
+
+        }
+
         return result;
     }
 
@@ -91,7 +95,7 @@ public class NumericToWordsConverter {
                     thousandGroup == 1, isFraction);
         }
         if ((thousandPower != 1) || (thousandGroup != 1)) {
-            result = (this.getThousandBlockInWords(thousandGroup) + " " + result)
+            result = (this.getThousandBlockInWords(""+thousandGroup) + " " + result)
                     .trim();
         }
         return result;
@@ -100,7 +104,7 @@ public class NumericToWordsConverter {
     private String getFullLongNumberInWords(long number, boolean isFraction) {
         String result;
         if (number == 0) {
-            result = this.getThousandBlockInWords(0);
+            result = this.getThousandBlockInWords("0");
         } else {
             result = "";
             boolean isFirstThousandGroup = true;
@@ -135,16 +139,16 @@ public class NumericToWordsConverter {
 
     private void validateArguments() {
         if ((formato.getUnidade() == null) || (formato.getUnidades() == null)) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.getUnidade().nulo"));
+            throw new IllegalArgumentException(
+                    "Retorno de getUnidade() não pode ser nulo");
         } else if ((formato.getDecimal() == null)
                 || (formato.getDecimais() == null)) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.getDecimal().nulo"));
+            throw new IllegalArgumentException(
+                    "Retorno de getDecimal() não pode ser nulo");
         } else if ((formato.getCasasDecimais() < 0)
                 || (formato.getCasasDecimais() > 6)) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.getCasasDecimais().invalido"));
+            throw new IllegalArgumentException(
+                    "Retorno de getCasasDecimais() inválido");
         }
     }
 
@@ -157,12 +161,10 @@ public class NumericToWordsConverter {
 
     private void validateDouble(double number) {
         if (number < 0) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.numero.negativo"));
+            throw new IllegalArgumentException("Número negativo não permitido");
         }
         if (number > Long.MAX_VALUE) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.numero.maior.que.long"));
+            throw new IllegalArgumentException("Número maior que o permitido");
         }
     }
 
@@ -175,8 +177,8 @@ public class NumericToWordsConverter {
     public String toWords(long inteiro, long fracionado) {
         if (Long.valueOf(fracionado).toString().length() > formato
                 .getCasasDecimais()) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.numero.casas.excedido"));
+            throw new IllegalArgumentException(
+                    "Quantidade de algarismos significativos excede o permitido.");
         }
         String result = "";
         if (inteiro != 0 || fracionado == 0) {
@@ -211,8 +213,8 @@ public class NumericToWordsConverter {
         // verifica se parte Inteira + parte Fracionada tem mais algarismos
         // significativos que o permitido
         if (parts[0].length() + parts[1].length() > 15) {
-            throw new IllegalArgumentException(this
-                    .getString("erro.numero.muito.grande"));
+            throw new IllegalArgumentException(
+                    "O numero excede a quantidade de casas decimais permitidas para o formato especificado");
         }
 
         // formata o fracionado com o numero de casas decimais especificas
@@ -222,6 +224,14 @@ public class NumericToWordsConverter {
 
         // retorna o extenso passando os parametros: parte inteira e fracionada
         return this.toWords(Long.parseLong(parts[0]), Long.parseLong(parts[1]));
+    }
+
+    public String format(String value) {
+        return null;
+    }
+
+    public String unformat(String value) {
+        return null;
     }
 
 }

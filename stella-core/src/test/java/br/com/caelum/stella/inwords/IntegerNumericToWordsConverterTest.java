@@ -32,7 +32,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransform2InWords() {
         double two = 2;
         String actual = converter.toWords(two);
-        ;
         assertEquals("dois inteiros", actual);
     }
 
@@ -40,7 +39,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransform14InWords() {
         double fourteen = 14;
         String actual = converter.toWords(fourteen);
-        ;
         assertEquals("quatorze inteiros", actual);
     }
 
@@ -48,7 +46,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransform53InWordsUsingAnd() {
         double fiftyThree = 53;
         String actual = converter.toWords(fiftyThree);
-        ;
         assertEquals("cinquenta e três inteiros", actual);
     }
 
@@ -56,7 +53,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformOneHundredInWords() {
         double oneHundred = 100;
         String actual = converter.toWords(oneHundred);
-        ;
         assertEquals("cem inteiros", actual);
     }
 
@@ -71,7 +67,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformTwoHundredInWords() {
         double twoHundred = 200;
         String actual = converter.toWords(twoHundred);
-        ;
         assertEquals("duzentos inteiros", actual);
     }
 
@@ -79,7 +74,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformThousandInWords() {
         double thousand = 1000;
         String actual = converter.toWords(thousand);
-        ;
         assertEquals("mil inteiros", actual);
     }
 
@@ -87,7 +81,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformThousandInWordsUsingAnd() {
         double thousand = 1031;
         String actual = converter.toWords(thousand);
-        ;
         assertEquals("mil e trinta e um inteiros", actual);
     }
 
@@ -95,7 +88,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformAMillionIntoNumberInWords() {
         double oneMillion = 1000000;
         String actual = converter.toWords(oneMillion);
-        ;
         assertEquals("um milhão de inteiros", actual);
     }
 
@@ -103,7 +95,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformAMillionIntoNumberInWordsUsingAnd() {
         double twoHundred = 1000150.99;
         String actual = converter.toWords(twoHundred);
-        ;
         assertEquals(
                 "um milhão e cento e cinquenta inteiros e novecentos e noventa milésimos",
                 actual);
@@ -113,7 +104,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformAMillionAndThousandIntoNumberInWordsUsingAnd() {
         double twoHundred = 1023850;
         String actual = converter.toWords(twoHundred);
-        ;
         assertEquals(
                 "um milhão, vinte e três mil e oitocentos e cinquenta inteiros",
                 actual);
@@ -123,7 +113,6 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformANumberInWordsUsingFraction() {
         double twoHundred = 0.222;
         String actual = converter.toWords(twoHundred);
-        ;
         assertEquals("duzentos e vinte e dois milésimos", actual);
     }
 
