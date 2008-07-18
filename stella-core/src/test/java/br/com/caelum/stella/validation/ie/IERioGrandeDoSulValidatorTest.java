@@ -19,23 +19,25 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IERioGrandeDoSulValidatorTest {
 
     private final String validString = "224/3658792";
+
     private final String wrongCheckDigitString = "224/3658793";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IERioGrandeDoSulValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
         try {
             validator.assertValid("1234-67890");
             fail();
@@ -80,8 +82,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
         try {
             validator.assertValid("123456789");
             fail();
@@ -105,8 +107,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         String value = "12345678901";
         try {
@@ -132,8 +134,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         // VALID IE = 224/3658792
         String value = "2243658793";
@@ -160,8 +162,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_MUNICIPALITY);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         // VALID IE = 224/3658792
         String value = "4683658797";
@@ -188,8 +190,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_MUNICIPALITY);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         // VALID IE = 224/3658792
         String value = "0003658791";
@@ -210,8 +212,8 @@ public class IERioGrandeDoSulValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
 
@@ -235,8 +237,8 @@ public class IERioGrandeDoSulValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, false);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -259,8 +261,8 @@ public class IERioGrandeDoSulValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, true);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                true);
         List<ValidationMessage> errors;
 
         // VALID IE = 224/3658792
@@ -289,8 +291,8 @@ public class IERioGrandeDoSulValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERioGrandeDoSulValidator(
-                messageProducer, true);
+        Validator validator = new IERioGrandeDoSulValidator(messageProducer,
+                true);
 
         // VALID IE = 224/3658792
         String value = "224*3658792";

@@ -42,6 +42,10 @@ public class BaseValidatorTest {
                 return invalidValues;
             }
 
+            public boolean isEligible(Object object) {
+                return false;
+            }
+
         };
         List<ValidationMessage> messages0 = validator.invalidMessagesFor(any);
         List<ValidationMessage> messages1 = new ArrayList<ValidationMessage>();
@@ -78,6 +82,10 @@ public class BaseValidatorTest {
                 return invalidValues;
             }
 
+            public boolean isEligible(Object object) {
+                return false;
+            }
+
         };
         try {
             validator.assertValid(any);
@@ -110,6 +118,10 @@ public class BaseValidatorTest {
                 assertEquals(value, any);
                 ArrayList<InvalidValue> empty = new ArrayList<InvalidValue>();
                 return empty;
+            }
+
+            public boolean isEligible(Object object) {
+                return false;
             }
 
         };

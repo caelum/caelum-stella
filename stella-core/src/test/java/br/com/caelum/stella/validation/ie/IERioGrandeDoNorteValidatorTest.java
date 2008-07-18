@@ -23,10 +23,15 @@ public class IERioGrandeDoNorteValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedStringWithNineDigits = "200400400";
+
     private static final String wrongCheckDigitUnformattedStringWithTenDigits = "2000400403";
+
     private static final String validUnformattedStringWithNineDigits = "200400401";
-    private static final String validUnformattedStringWithTenDigits  = "2000400400";
-    private static final String validFormattedStringWithNineDigits =  "20.040.040-1";
+
+    private static final String validUnformattedStringWithTenDigits = "2000400400";
+
+    private static final String validFormattedStringWithNineDigits = "20.040.040-1";
+
     private static final String validFormattedStringWithTenDigits = "20.0.040.040-0";
 
     private Validator<String> newValidator() {

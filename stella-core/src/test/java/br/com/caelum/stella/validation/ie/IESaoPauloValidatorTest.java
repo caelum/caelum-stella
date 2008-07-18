@@ -76,7 +76,7 @@ public class IESaoPauloValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IESaoPauloValidator(messageProducer, false);
@@ -153,6 +153,28 @@ public class IESaoPauloValidatorTest {
 
         // VALID IE = 110.042.490.114
         String value = "110.042.490.114";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateNullIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IESaoPauloValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+        String value = null;
         try {
             validator.assertValid(value);
         } catch (InvalidStateException e) {

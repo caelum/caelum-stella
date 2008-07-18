@@ -22,8 +22,11 @@ public class IEDistritoFederalValidatorTest {
      * Formato: 07.408.738/002-50
      */
     private static final String wrongSecondCheckDigitUnformattedString = "0740873800251";
+
     private static final String wrongFirstCheckDigitUnformattedString = "0740873800240";
+
     private static final String validUnformattedString = "0740873800250";
+
     private static final String validFormattedString = "07.408.738/002-50";
 
     private Validator<String> newValidator() {

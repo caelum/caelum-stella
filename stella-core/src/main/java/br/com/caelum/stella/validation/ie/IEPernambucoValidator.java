@@ -1,19 +1,18 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.BaseValidator;
-import br.com.caelum.stella.validation.InvalidValue;
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.LogicOrComposedValidator;
+import br.com.caelum.stella.validation.Validator;
+import br.com.caelum.stella.validation.error.IEError;
 
-public class IEPernambucoValidator extends BaseValidator<String> {
+public class IEPernambucoValidator implements Validator<String> {
 
-    private final IEPernambucoAntigaValidator antigaValidator;
-
-    private final IEPernambucoNovaValidator novaValidator;
-
-    private final boolean formatted;
+    private final LogicOrComposedValidator<String> baseValidator;
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -26,39 +25,41 @@ public class IEPernambucoValidator extends BaseValidator<String> {
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
      * mensagens.
-     *
-     * @param formatted considerar cadeia formatada quando <code>true</code>
+     * 
+     * @param isFormatted
+     *                considerar cadeia formatada quando <code>true</code>
      */
-    public IEPernambucoValidator(boolean formatted) {
-        this(new SimpleMessageProducer(), formatted);
+    public IEPernambucoValidator(boolean isFormatted) {
+        this(new SimpleMessageProducer(), isFormatted);
     }
 
     public IEPernambucoValidator(MessageProducer messageProducer,
-            boolean formatted) {
-        super(messageProducer);
-        this.formatted = formatted;
-        antigaValidator = new IEPernambucoAntigaValidator(messageProducer,
-                formatted);
-        novaValidator = new IEPernambucoNovaValidator(messageProducer,
-                formatted);
+            boolean isFormatted) {
+        Class[] validatorClasses = { IEPernambucoNovaValidator.class,
+                IEPernambucoAntigaValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(
+                messageProducer, isFormatted, validatorClasses);
+        this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 
-    protected List<InvalidValue> getInvalidValues(String value) {
-        List<InvalidValue> result = null;
-        // FIXME usar mais polimorfismo
-        if (this.formatted) {
-            if (IEPernambucoAntigaValidator.FORMATED.matcher(value).matches()) {
-                result = antigaValidator.getInvalidValues(value);
-            } else {
-                result = novaValidator.getInvalidValues(value);
-            }
+    public void assertValid(String value) {
+        if (value != null) {
+            baseValidator.assertValid(value);
+        }
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String value) {
+        List<ValidationMessage> result;
+        if (value != null) {
+            result = baseValidator.invalidMessagesFor(value);
         } else {
-            if (IEPernambucoAntigaValidator.UNFORMATED.matcher(value).matches()) {
-                result = antigaValidator.getInvalidValues(value);
-            } else {
-                result = novaValidator.getInvalidValues(value);
-            }
+            result = new ArrayList<ValidationMessage>();
         }
         return result;
     }
+
+    public boolean isEligible(String object) {
+        return baseValidator.isEligible(object);
+    }
+
 }

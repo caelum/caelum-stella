@@ -1,13 +1,14 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.caelum.stella.ConsistentValidator;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.LogicOrComposedValidator;
 import br.com.caelum.stella.validation.Validator;
+import br.com.caelum.stella.validation.error.IEError;
 
 public class IESaoPauloValidator implements Validator<String> {
 
@@ -34,19 +35,32 @@ public class IESaoPauloValidator implements Validator<String> {
 
     public IESaoPauloValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        ConsistentValidator<String> comercioIndustriaValidator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, isFormatted);
-        ConsistentValidator<String> produtorRuralValidator = new IESaoPauloProdutorRuralValidator(messageProducer,
-                isFormatted);
-        this.baseValidator = new LogicOrComposedValidator<String>(comercioIndustriaValidator,produtorRuralValidator);
+        Class[] validatorClasses = {
+                IESaoPauloComercioIndustriaValidator.class,
+                IESaoPauloProdutorRuralValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(
+                messageProducer, isFormatted, validatorClasses);
+        this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 
     public void assertValid(String value) {
-        baseValidator.assertValid(value);
+        if (value != null) {
+            baseValidator.assertValid(value);
+        }
     }
 
     public List<ValidationMessage> invalidMessagesFor(String value) {
-        return baseValidator.invalidMessagesFor(value);
+        List<ValidationMessage> result;
+        if (value != null) {
+            result = baseValidator.invalidMessagesFor(value);
+        } else {
+            result = new ArrayList<ValidationMessage>();
+        }
+        return result;
+    }
+
+    public boolean isEligible(String object) {
+        return baseValidator.isEligible(object);
     }
 
 }

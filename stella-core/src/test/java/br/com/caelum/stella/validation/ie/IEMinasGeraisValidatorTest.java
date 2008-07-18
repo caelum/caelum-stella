@@ -19,23 +19,25 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IEMinasGeraisValidatorTest {
 
     private final String validString = "062.307.904/0081";
+
     private final String wrongCheckDigitString = "062.307.904/0045";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IEMinasGeraisValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
         try {
             validator.assertValid("0623079*40081");
             fail();
@@ -80,8 +81,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
         try {
             validator.assertValid("623079040081");
             fail();
@@ -105,8 +105,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
 
         String value = "06230790400814";
         try {
@@ -132,8 +131,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
 
         // VALID IE = 0623079040081
         String value = "0623079040071";
@@ -160,8 +158,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
 
         // VALID IE = 0623079040081
         String value = "0623079040085";
@@ -182,8 +179,7 @@ public class IEMinasGeraisValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -206,8 +202,7 @@ public class IEMinasGeraisValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, false);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -230,8 +225,7 @@ public class IEMinasGeraisValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, true);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 062.307.904/0081
@@ -260,8 +254,7 @@ public class IEMinasGeraisValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEMinasGeraisValidator(
-                messageProducer, true);
+        Validator validator = new IEMinasGeraisValidator(messageProducer, true);
 
         // VALID IE = 062.307.904/0081
         String value = "062.307.904\0081";

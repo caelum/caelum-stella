@@ -126,4 +126,14 @@ public class IEParanaValidator extends BaseValidator<String> {
         return (DVXisValid) && (DVYisValid);
     }
 
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = FORMATED.matcher(value).matches();
+        } else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
+    }
+
 }

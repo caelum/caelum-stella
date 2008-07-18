@@ -23,7 +23,9 @@ public class IEPiauiValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "193016560";
+
     private static final String validUnformattedString = "193016567";
+
     private static final String validFormattedString = "19.301.656-7";
 
     private Validator<String> newValidator() {
@@ -63,7 +65,8 @@ public class IEPiauiValidatorTest {
         });
         Validator validator = new IEPiauiValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator
+                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);

@@ -16,25 +16,27 @@ import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 
 public class IEPernambucoValidatorTest {
-    
+
     private final String validString = "18.1.001.0000004-9";
+
     private final String wrongCheckDigitString = "18.1.001.0000004-3";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IEPernambucoValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -48,8 +50,7 @@ public class IEPernambucoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         // VALID IE = 18100100000049
@@ -72,8 +73,7 @@ public class IEPernambucoValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -97,8 +97,7 @@ public class IEPernambucoValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 18.1.001.0000004-9
@@ -122,12 +121,33 @@ public class IEPernambucoValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 0321418-40
         String value = "0321418-40";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+
+        mockery.assertIsSatisfied();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldValidateNullIE() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery
+                .mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        Validator validator = new IEPernambucoValidator(messageProducer, false);
+
+        List<ValidationMessage> errors;
+        String value = null;
         try {
             validator.assertValid(value);
         } catch (InvalidStateException e) {

@@ -26,31 +26,33 @@ public class IERondoniaValidatorTest {
      * 00000001721461 00000001721453 00000001721411 00000001721313
      * 00000001721445 00000001721437
      */
-    
+
     private final String validString = "101.62521-3";
+
     private final String wrongCheckDigitString = "101.62521-8";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IERondoniaValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
@@ -64,8 +66,7 @@ public class IERondoniaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
         try {
             validator.assertValid("172j518");
             fail();
@@ -89,8 +90,7 @@ public class IERondoniaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
         try {
             validator.assertValid("172151");
             fail();
@@ -114,8 +114,7 @@ public class IERondoniaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
 
         String value = "17215184";
         try {
@@ -141,8 +140,7 @@ public class IERondoniaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
 
         // VALID IE = 00000001721593
         String value = "00000001721597";
@@ -163,8 +161,7 @@ public class IERondoniaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -200,8 +197,7 @@ public class IERondoniaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(
-                messageProducer, false);
+        Validator validator = new IERondoniaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -224,8 +220,7 @@ public class IERondoniaValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(
-                messageProducer, true);
+        Validator validator = new IERondoniaValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 101.62521-3
@@ -254,8 +249,7 @@ public class IERondoniaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERondoniaValidator(
-                messageProducer, true);
+        Validator validator = new IERondoniaValidator(messageProducer, true);
 
         // VALID IE = 101.62521-3
         String value = "101.62521*3";

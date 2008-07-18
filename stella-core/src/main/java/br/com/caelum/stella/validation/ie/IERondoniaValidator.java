@@ -5,17 +5,14 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.BaseValidator;
-import br.com.caelum.stella.validation.InvalidValue;
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.LogicOrComposedValidator;
+import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IERondoniaValidator extends BaseValidator<String> {
+public class IERondoniaValidator implements Validator<String> {
 
-    private final IERondoniaCasoUmValidator casoUm;
-
-    private final IERondoniaCasoDoisValidator casoDois;
-
-    private boolean isFormatted;
+    private final LogicOrComposedValidator<String> baseValidator;
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -38,39 +35,31 @@ public class IERondoniaValidator extends BaseValidator<String> {
 
     public IERondoniaValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        super(messageProducer);
-        casoUm = new IERondoniaCasoUmValidator(messageProducer, isFormatted);
-        casoDois = new IERondoniaCasoDoisValidator(messageProducer, isFormatted);
-        this.isFormatted = isFormatted;
+        Class[] validatorClasses = { IERondoniaCasoUmValidator.class,
+                IERondoniaCasoDoisValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(
+                messageProducer, isFormatted, validatorClasses);
+        this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 
-    @SuppressWarnings("static-access")
-    @Override
-    protected List<InvalidValue> getInvalidValues(String ie) {
-        List<InvalidValue> result = null;
+    public void assertValid(String value) {
+        if (value != null) {
+            baseValidator.assertValid(value);
+        }
+    }
 
-        if (ie == null) {
-            result = new ArrayList<InvalidValue>();
+    public List<ValidationMessage> invalidMessagesFor(String value) {
+        List<ValidationMessage> result;
+        if (value != null) {
+            result = baseValidator.invalidMessagesFor(value);
         } else {
-            if (isFormatted) {
-                if (casoDois.FORMATED.matcher(ie).matches()) {
-                    result = casoDois.getInvalidValues(ie);
-                } else if (casoUm.FORMATED.matcher(ie).matches()) {
-                    result = casoUm.getInvalidValues(ie);
-                }
-            } else {
-                if (casoUm.UNFORMATED.matcher(ie).matches()) {
-                    result = casoUm.getInvalidValues(ie);
-                } else if (casoDois.UNFORMATED.matcher(ie).matches()) {
-                    result = casoDois.getInvalidValues(ie);
-                }
-            }
-            if (result == null) {
-                result = new ArrayList<InvalidValue>();
-                result.add(IEError.INVALID_FORMAT);
-            }
+            result = new ArrayList<ValidationMessage>();
         }
         return result;
+    }
+
+    public boolean isEligible(String object) {
+        return baseValidator.isEligible(object);
     }
 
 }

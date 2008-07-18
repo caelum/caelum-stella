@@ -150,4 +150,14 @@ public class IEBahiaValidator extends BaseValidator<String> {
         return result;
     }
 
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = FORMATED.matcher(value).matches();
+        } else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
+    }
+
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import br.com.caelum.stella.ConsistentValidator;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.BaseValidator;
@@ -14,7 +13,7 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IESaoPauloComercioIndustriaValidator extends BaseValidator<String> implements ConsistentValidator<String> {
+class IESaoPauloComercioIndustriaValidator extends BaseValidator<String> {
 
     private static final int MOD = 11;
 
@@ -93,12 +92,11 @@ class IESaoPauloComercioIndustriaValidator extends BaseValidator<String> impleme
                 && (DVY_CHECKER.isDVValid(testedValue));
     }
 
-    public boolean patternMatches(String value) {
+    public boolean isEligible(String value) {
         boolean result;
-        if (isFormatted){
+        if (isFormatted) {
             result = FORMATED.matcher(value).matches();
-        }
-        else {
+        } else {
             result = UNFORMATED.matcher(value).matches();
         }
         return result;

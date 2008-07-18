@@ -19,23 +19,25 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IESergipeValidatorTest {
 
     private final String validString = "27123456-3";
+
     private final String wrongCheckDigitString = "27123456-4";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IESergipeValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,7 @@ public class IESergipeValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
         try {
             validator.assertValid("27123456a3");
             fail();
@@ -80,8 +81,7 @@ public class IESergipeValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
         try {
             validator.assertValid("27123453");
             fail();
@@ -105,8 +105,7 @@ public class IESergipeValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
 
         String value = "2712345638";
         try {
@@ -132,8 +131,7 @@ public class IESergipeValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
 
         // VALID IE = 27123456-3
         String value = "271234562";
@@ -154,8 +152,7 @@ public class IESergipeValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -178,8 +175,7 @@ public class IESergipeValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESergipeValidator(
-                messageProducer, false);
+        Validator validator = new IESergipeValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -202,8 +198,7 @@ public class IESergipeValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESergipeValidator(
-                messageProducer, true);
+        Validator validator = new IESergipeValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 27123456-3
@@ -232,8 +227,7 @@ public class IESergipeValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IESergipeValidator(
-                messageProducer, true);
+        Validator validator = new IESergipeValidator(messageProducer, true);
 
         // VALID IE = 27123456-3
         String value = "2712345-63";

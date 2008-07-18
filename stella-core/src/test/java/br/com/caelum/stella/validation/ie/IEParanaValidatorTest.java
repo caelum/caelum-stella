@@ -19,23 +19,25 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IEParanaValidatorTest {
 
     private final String validString = "123.45678-50";
+
     private final String wrongCheckDigitString = "123.45678-59";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IEParanaValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
         try {
             validator.assertValid("123456*850");
             fail();
@@ -80,8 +81,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
         try {
             validator.assertValid("123456785");
             fail();
@@ -105,8 +105,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
 
         String value = "12345678502";
         try {
@@ -132,8 +131,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
 
         // VALID IE = 1234567850
         String value = "1234567860";
@@ -160,8 +158,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
 
         // VALID IE = 1234567850
         String value = "1234567857";
@@ -182,8 +179,7 @@ public class IEParanaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -210,8 +206,7 @@ public class IEParanaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEParanaValidator(
-                messageProducer, false);
+        Validator validator = new IEParanaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -234,8 +229,7 @@ public class IEParanaValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEParanaValidator(
-                messageProducer, true);
+        Validator validator = new IEParanaValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 123.45678-50
@@ -264,8 +258,7 @@ public class IEParanaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEParanaValidator(
-                messageProducer, true);
+        Validator validator = new IEParanaValidator(messageProducer, true);
 
         // VALID IE = 123.45678-50
         String value = "123.45678/50";

@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
 import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
 import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
 
@@ -177,6 +178,16 @@ public class CPFValidator extends BaseValidator<String> {
             }
         }
         return true;
+    }
+
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = CPF_FORMATED.matcher(value).matches();
+        } else {
+            result = CPF_FORMATED.matcher(value).matches();
+        }
+        return result;
     }
 
 }

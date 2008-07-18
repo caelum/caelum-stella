@@ -19,8 +19,11 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IEAmapaValidatorTest {
 
     private static final String wrongCheckDigitUnformattedString = "030123450";
+
     private static final String validUnformattedString = "030123459";
+
     private static final String validFormattedString = "03.012.345-9";
+
     private static final String[] validValues = { validFormattedString };
 
     private Validator<String> newValidator() {

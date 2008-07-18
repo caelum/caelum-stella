@@ -25,7 +25,9 @@ public class IECearaValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "060000010";
+
     private static final String validUnformattedString = "060000015";
+
     private static final String validFormattedString = "06.000.001-5";
 
     private Validator<String> newValidator() {

@@ -24,7 +24,7 @@ import br.com.caelum.stella.ValidationMessage;
 public interface Validator<T> {
     /**
      * @param object
-     *                objeto que se desejar validar
+     *                objeto que se deseja validar
      * @throws {@link InvalidStateException}
      *                 se o parametro não for válido, contendo a lista de
      *                 ValidationMessage
@@ -35,5 +35,11 @@ public interface Validator<T> {
      * @return as mensagens de de validação relativas ao paremetro object
      */
     List<ValidationMessage> invalidMessagesFor(T object);
+
+    /**
+     * @param object objeto que se deseja avaliar
+     * @return <code>true</code> se o objeto é elegível para a validação por este validador, e <code>false</code> caso contrário
+     */
+    boolean isEligible(T object);
 
 }

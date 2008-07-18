@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
 import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
 import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
 
@@ -122,5 +123,15 @@ public class NITValidator extends BaseValidator<String> {
 
     private boolean hasValidCheckDigits(String value) {
         return (DV1_CHECKER.isDVValid(value));
+    }
+
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = NIT_FORMATED.matcher(value).matches();
+        } else {
+            result = NIT_FORMATED.matcher(value).matches();
+        }
+        return result;
     }
 }

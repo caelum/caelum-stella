@@ -23,7 +23,9 @@ public class IEParaValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "159999999";
+
     private static final String validUnformattedString = "159999995";
+
     private static final String validFormattedString = "15.999.999-5";
 
     private Validator<String> newValidator() {

@@ -23,7 +23,9 @@ public class IEParaibaValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "160000018";
+
     private static final String validUnformattedString = "160000017";
+
     private static final String validFormattedString = "16.000.001-7";
 
     private Validator<String> newValidator() {

@@ -25,7 +25,9 @@ public class IEMatoGrossoDoSulValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "283037591";
+
     private static final String validUnformattedString = "283037598";
+
     private static final String validFormattedString = "28.303.759-8";
 
     private Validator<String> newValidator() {

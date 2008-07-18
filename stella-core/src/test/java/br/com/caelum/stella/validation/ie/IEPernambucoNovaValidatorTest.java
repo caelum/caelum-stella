@@ -36,8 +36,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
         try {
             validator.assertValid("032141s840");
             fail();
@@ -61,8 +61,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
         try {
             validator.assertValid("03241840");
             fail();
@@ -86,8 +86,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
 
         String value = "0321418406";
         try {
@@ -113,8 +113,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
 
         // VALID IE = 032141840
         String value = "032141870";
@@ -141,8 +141,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
 
         // VALID IE = 032141840
         String value = "032141841";
@@ -163,8 +163,8 @@ public class IEPernambucoNovaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
 
@@ -189,8 +189,8 @@ public class IEPernambucoNovaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -213,8 +213,8 @@ public class IEPernambucoNovaValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                true);
         List<ValidationMessage> errors;
 
         // VALID IE = 0321418-40
@@ -243,8 +243,8 @@ public class IEPernambucoNovaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer,
+                true);
 
         // VALID IE = 0321418-40
         String value = "032141840";

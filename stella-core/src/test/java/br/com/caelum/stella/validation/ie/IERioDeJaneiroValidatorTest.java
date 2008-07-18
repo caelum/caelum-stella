@@ -17,25 +17,27 @@ import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class IERioDeJaneiroValidatorTest {
-    
+
     private final String validString = "78.045.302";
+
     private final String wrongCheckDigitString = "78.045.304";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IERioDeJaneiroValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,8 @@ public class IERioDeJaneiroValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
         try {
             validator.assertValid("7a045302");
             fail();
@@ -80,8 +82,8 @@ public class IERioDeJaneiroValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
         try {
             validator.assertValid("1234567");
             fail();
@@ -105,8 +107,8 @@ public class IERioDeJaneiroValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
 
         String value = "123456789";
         try {
@@ -132,8 +134,8 @@ public class IERioDeJaneiroValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
 
         // VALID IE = 78.045.302
         String value = "78045303";
@@ -154,8 +156,8 @@ public class IERioDeJaneiroValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
 
@@ -178,8 +180,8 @@ public class IERioDeJaneiroValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, false);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -202,8 +204,7 @@ public class IERioDeJaneiroValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, true);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 78.045.302
@@ -232,8 +233,7 @@ public class IERioDeJaneiroValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IERioDeJaneiroValidator(
-                messageProducer, true);
+        Validator validator = new IERioDeJaneiroValidator(messageProducer, true);
 
         // VALID IE = 78.045.302
         String value = "78.045*X302";

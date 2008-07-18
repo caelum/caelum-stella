@@ -35,7 +35,9 @@ public class IEAlagoasValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "240000040";
+
     private static final String validUnformattedString = "240000048";
+
     private static final String validFormattedString = "24.000.004-8";
 
     private Validator<String> newValidator() {

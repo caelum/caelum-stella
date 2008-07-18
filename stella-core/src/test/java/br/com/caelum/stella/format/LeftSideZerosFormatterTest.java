@@ -12,7 +12,7 @@ public class LeftSideZerosFormatterTest {
         String actual = formatter.format("1234567890");
         assertEquals("00001234567890", actual);
     }
-    
+
     @Test
     public void testUnformat() {
         Formatter formatter = new LeftSideZerosFormatter(14);

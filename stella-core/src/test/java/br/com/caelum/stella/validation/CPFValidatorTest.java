@@ -18,21 +18,23 @@ import br.com.caelum.stella.validation.error.CPFError;
  * @author Leonardo Bessa
  */
 public class CPFValidatorTest {
-    
+
     private final String validString = "248.438.034-80";
+
     private final String firstCheckDigitWrong = "248.438.034-70";
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         new CPFValidator().assertValid(validString);
-        
+
         try {
             new CPFValidator().assertValid(firstCheckDigitWrong);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "CPFError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }

@@ -25,8 +25,11 @@ public class IETocantinsAntigaValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "29010227830";
+
     private static final String validUnformattedString = "29010227836";
+
     private static final String validFormattedString = "29.01.022.783-6";
+
     private static final String[] validValues = { validFormattedString };
 
     private Validator<String> newValidator() {
@@ -64,7 +67,8 @@ public class IETocantinsAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, false);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                false);
         try {
             validator
                     .assertValid(validUnformattedString.replaceFirst(".", "&"));
@@ -89,7 +93,8 @@ public class IETocantinsAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, false);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -113,7 +118,8 @@ public class IETocantinsAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, false);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                false);
 
         String value = validUnformattedString + "5";
         try {
@@ -139,7 +145,8 @@ public class IETocantinsAntigaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, false);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -159,7 +166,8 @@ public class IETocantinsAntigaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, true);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                true);
 
         List<ValidationMessage> errors;
 
@@ -182,7 +190,8 @@ public class IETocantinsAntigaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, true);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                true);
 
         List<ValidationMessage> errors;
 
@@ -206,7 +215,8 @@ public class IETocantinsAntigaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, false);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -234,7 +244,8 @@ public class IETocantinsAntigaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IETocantinsAntigaValidator(messageProducer, true);
+        Validator validator = new IETocantinsAntigaValidator(messageProducer,
+                true);
 
         String value = validFormattedString.replace('.', ':');
         try {

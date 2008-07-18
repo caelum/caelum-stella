@@ -25,8 +25,11 @@ public class IEEspiritoSantoValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "082223540";
+
     private static final String validUnformattedString = "082223548";
+
     private static final String validFormattedString = "082.223.54-8";
+
     private String[] validUnformattedValues = new String[] {
             validUnformattedString, "082260664", "081877455" };
 

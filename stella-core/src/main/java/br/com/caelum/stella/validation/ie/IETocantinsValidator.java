@@ -6,19 +6,13 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.BaseValidator;
-import br.com.caelum.stella.validation.InvalidValue;
+import br.com.caelum.stella.validation.LogicOrComposedValidator;
 import br.com.caelum.stella.validation.Validator;
+import br.com.caelum.stella.validation.error.IEError;
 
 public class IETocantinsValidator implements Validator<String> {
 
-    private final IETocantinsAntigaValidator antigaValidator;
-
-    private final IETocantinsNovaValidator novaValidator;
-
-    private final BaseValidator<String> baseValidator;
-
-    private final boolean isFormatted;
+    private final LogicOrComposedValidator<String> baseValidator;
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -41,45 +35,31 @@ public class IETocantinsValidator implements Validator<String> {
 
     public IETocantinsValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        this.isFormatted = isFormatted;
-        antigaValidator = new IETocantinsAntigaValidator(null, isFormatted);
-        novaValidator = new IETocantinsNovaValidator(null, isFormatted);
-        this.baseValidator = new BaseValidator<String>(messageProducer) {
-
-            @Override
-            protected List<InvalidValue> getInvalidValues(String value) {
-                List<InvalidValue> result = null;
-                if (value != null) {
-                    if (IETocantinsValidator.this.isFormatted) {
-                        if (IETocantinsAntigaValidator.FORMATED.matcher(value)
-                                .matches()) {
-                            result = antigaValidator.getInvalidValues(value);
-                        } else {
-                            result = novaValidator.getInvalidValues(value);
-                        }
-                    } else {
-                        if (IETocantinsAntigaValidator.UNFORMATED
-                                .matcher(value).matches()) {
-                            result = antigaValidator.getInvalidValues(value);
-                        } else {
-                            result = novaValidator.getInvalidValues(value);
-                        }
-                    }
-                } else {
-                    result = new ArrayList<InvalidValue>();
-                }
-                return result;
-            }
-
-        };
+        Class[] validatorClasses = { IETocantinsNovaValidator.class,
+                IETocantinsAntigaValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(
+                messageProducer, isFormatted, validatorClasses);
+        this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 
     public void assertValid(String value) {
-        baseValidator.assertValid(value);
+        if (value != null) {
+            baseValidator.assertValid(value);
+        }
     }
 
     public List<ValidationMessage> invalidMessagesFor(String value) {
-        return baseValidator.invalidMessagesFor(value);
+        List<ValidationMessage> result;
+        if (value != null) {
+            result = baseValidator.invalidMessagesFor(value);
+        } else {
+            result = new ArrayList<ValidationMessage>();
+        }
+        return result;
+    }
+
+    public boolean isEligible(String object) {
+        return baseValidator.isEligible(object);
     }
 
 }

@@ -25,8 +25,11 @@ public class IEMaranhaoValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedString = "120000386";
+
     private static final String validUnformattedString = "120000385";
+
     private static final String validFormattedString = "12.000.038-5";
+
     private static final String[] validValues = { validFormattedString };
 
     private Validator<String> newValidator() {

@@ -19,29 +19,31 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IESantaCatarinaValidatorTest {
 
     private final String validString = "251.040.852";
+
     private final String wrongCheckDigitString = "251.040.858";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IESantaCatarinaValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
@@ -55,8 +57,8 @@ public class IESantaCatarinaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
         try {
             validator.assertValid("25)040852");
             fail();
@@ -80,8 +82,8 @@ public class IESantaCatarinaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
         try {
             validator.assertValid("25140852");
             fail();
@@ -105,8 +107,8 @@ public class IESantaCatarinaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
 
         String value = "2510405852";
         try {
@@ -132,8 +134,8 @@ public class IESantaCatarinaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
 
         // VALID IE = 251040852
         String value = "251040859";
@@ -154,8 +156,8 @@ public class IESantaCatarinaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         // VALID IE = 251040852
@@ -178,8 +180,8 @@ public class IESantaCatarinaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, false);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -202,8 +204,8 @@ public class IESantaCatarinaValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, true);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                true);
         List<ValidationMessage> errors;
 
         // VALID IE = 251.040.852
@@ -232,8 +234,8 @@ public class IESantaCatarinaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IESantaCatarinaValidator(
-                messageProducer, true);
+        Validator validator = new IESantaCatarinaValidator(messageProducer,
+                true);
 
         // VALID IE = 251.040.852
         String value = "251.04085.2";

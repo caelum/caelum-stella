@@ -39,7 +39,7 @@ public class IERoraimaValidator extends BaseValidator<String> {
 
     private final ValidadorDeDV validadorDeDV = new ValidadorDeDV(DVX_INFO);
 
-    private final boolean formatted;
+    private final boolean isFormatted;
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -56,12 +56,12 @@ public class IERoraimaValidator extends BaseValidator<String> {
      * @param formatted considerar cadeia formatada quando <code>true</code>
      */
     public IERoraimaValidator(boolean formatted) {
-        this.formatted = formatted;
+        this.isFormatted = formatted;
     }
 
     public IERoraimaValidator(MessageProducer messageProducer, boolean formatted) {
         super(messageProducer);
-        this.formatted = formatted;
+        this.isFormatted = formatted;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class IERoraimaValidator extends BaseValidator<String> {
 
     private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
         String unformatedIE = null;
-        if (formatted) {
+        if (isFormatted) {
             if (!(FORMATED.matcher(ie).matches())) {
                 errors.add(IEError.INVALID_FORMAT);
             }
@@ -98,6 +98,16 @@ public class IERoraimaValidator extends BaseValidator<String> {
     private boolean hasValidCheckDigits(String value) {
         String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
         return this.validadorDeDV.isDVValid(testedValue);
+    }
+
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = FORMATED.matcher(value).matches();
+        } else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
     }
 
 }

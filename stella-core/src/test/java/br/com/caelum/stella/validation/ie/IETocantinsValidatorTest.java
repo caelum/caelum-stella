@@ -27,14 +27,18 @@ public class IETocantinsValidatorTest {
      */
 
     private static final String wrongCheckDigitUnformattedNewString = "290406360";
+
     private static final String validUnformattedNewString = "290406366";
+
     private static final String validFormattedNewString = "29.040.636-6";
 
     private static final String wrongCheckDigitUnformattedOldIEString = "29010227838";
+
     private static final String validFormattedOldString = "29.01.022.783-6";
-    
-    private static final String[] validValues = { validFormattedNewString, validFormattedOldString};
-    
+
+    private static final String[] validValues = { validFormattedNewString,
+            validFormattedOldString };
+
     private Validator<String> newValidator() {
         return new IETocantinsValidator();
     }
@@ -67,13 +71,13 @@ public class IETocantinsValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IETocantinsValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedNewString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedNewString.replaceFirst(".",
+                    "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -92,12 +96,13 @@ public class IETocantinsValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IETocantinsValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedNewString.replaceFirst(".", ""));
+            validator.assertValid(validUnformattedNewString.replaceFirst(".",
+                    ""));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -116,7 +121,7 @@ public class IETocantinsValidatorTest {
         mockery.checking(new Expectations() {
             {
                 exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                        IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IETocantinsValidator(messageProducer, false);
@@ -157,7 +162,7 @@ public class IETocantinsValidatorTest {
 
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateOldIEsWithCheckDigitWrong() {
@@ -206,7 +211,7 @@ public class IETocantinsValidatorTest {
         }
         mockery.assertIsSatisfied();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateValidFormattedNovaIE() {

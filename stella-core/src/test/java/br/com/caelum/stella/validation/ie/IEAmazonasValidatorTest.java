@@ -19,23 +19,25 @@ import br.com.caelum.stella.validation.error.IEError;
 public class IEAmazonasValidatorTest {
 
     private final String validString = "04.193.980-8";
+
     private final String wrongCheckDigitString = "04.345.678-9";
-    
-    private Validator<String> newValidator(){
+
+    private Validator<String> newValidator() {
         return new IEAmazonasValidator();
     }
-    
+
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted(){
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         newValidator().assertValid(validString);
-        
+
         try {
             newValidator().assertValid(wrongCheckDigitString);
         } catch (RuntimeException e) {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException
+                        .getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,8 +57,7 @@ public class IEAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
         try {
             validator.assertValid("a23456789");
             fail();
@@ -80,8 +81,7 @@ public class IEAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
         try {
             validator.assertValid("23456789");
             fail();
@@ -105,8 +105,7 @@ public class IEAmazonasValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
 
         String value = "1234567890";
         try {
@@ -132,8 +131,7 @@ public class IEAmazonasValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
 
         // VALID IE = ???
         String value = "043456789";
@@ -154,8 +152,7 @@ public class IEAmazonasValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -180,8 +177,7 @@ public class IEAmazonasValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, false);
+        Validator validator = new IEAmazonasValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -204,8 +200,7 @@ public class IEAmazonasValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, true);
+        Validator validator = new IEAmazonasValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = ??
@@ -234,8 +229,7 @@ public class IEAmazonasValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEAmazonasValidator(
-                messageProducer, true);
+        Validator validator = new IEAmazonasValidator(messageProducer, true);
 
         // VALID IE = ???
         String value = "04^345.678-9";

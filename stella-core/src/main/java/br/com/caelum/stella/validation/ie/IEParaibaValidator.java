@@ -118,4 +118,14 @@ public class IEParaibaValidator extends BaseValidator<String> {
         return DVX_CHECKER.isDVValid(testedValue);
     }
 
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = FORMATED.matcher(value).matches();
+        } else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
+    }
+
 }

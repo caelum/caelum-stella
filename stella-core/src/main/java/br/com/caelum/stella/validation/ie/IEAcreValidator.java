@@ -1,5 +1,7 @@
 package br.com.caelum.stella.validation.ie;
 
+import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -133,6 +135,16 @@ public class IEAcreValidator extends BaseValidator<String> {
                 .format(value);
         return DVX_CHECKER.isDVValid(testedValue)
                 && DVY_CHECKER.isDVValid(testedValue);
+    }
+
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = FORMATED.matcher(value).matches();
+        } else {
+            result = UNFORMATED.matcher(value).matches();
+        }
+        return result;
     }
 
 }

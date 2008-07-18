@@ -40,6 +40,7 @@ public class IEMatoGrossoValidatorTest {
      */
 
     private final String validString = "0013199075-6";
+
     private final String wrongCheckDigitString = "0013199075-6";
 
     private Validator<String> newValidator() {

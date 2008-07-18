@@ -34,8 +34,7 @@ public class NumericToWordsConverter {
     }
 
     private String getThousandSeparator(boolean isFirstGroup) {
-        return (isFirstGroup ? getAndSeparator() : this
-                .getString("sep.mil"));
+        return (isFirstGroup ? getAndSeparator() : this.getString("sep.mil"));
     }
 
     private String getNumberInWords(int power, int algarism) {
@@ -123,8 +122,8 @@ public class NumericToWordsConverter {
                         }
                     }
                     result = this.getThousandBlockWithSuffixInWords(
-                            thousandGroup, thousandPower, currentWorkingValue == 1,
-                            isFraction)
+                            thousandGroup, thousandPower,
+                            currentWorkingValue == 1, isFraction)
                             + result;
                 }
                 thousandPower++;

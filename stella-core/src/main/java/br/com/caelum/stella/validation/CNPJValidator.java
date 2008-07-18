@@ -113,4 +113,14 @@ public class CNPJValidator extends BaseValidator<String> {
         return (DV1_CHECKER.isDVValid(value)) && (DV2_CHECKER.isDVValid(value));
     }
 
+    public boolean isEligible(String value) {
+        boolean result;
+        if (isFormatted) {
+            result = CNPJ_FORMATED.matcher(value).matches();
+        } else {
+            result = CNPJ_FORMATED.matcher(value).matches();
+        }
+        return result;
+    }
+
 }

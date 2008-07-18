@@ -36,8 +36,7 @@ public class IEPernambucoAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoValidator(
-                messageProducer, false);
+        Validator validator = new IEMatoGrossoValidator(messageProducer, false);
         try {
             validator.assertValid("181001a0000049");
             fail();
@@ -61,8 +60,8 @@ public class IEPernambucoAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                false);
         try {
             validator.assertValid("1810010000049");
             fail();
@@ -86,8 +85,8 @@ public class IEPernambucoAntigaValidatorTest {
                         IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                false);
 
         String value = "181001000000495";
         try {
@@ -113,8 +112,8 @@ public class IEPernambucoAntigaValidatorTest {
                         IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                false);
 
         // VALID IE = 18100100000049
         String value = "18100100000048";
@@ -135,8 +134,8 @@ public class IEPernambucoAntigaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
 
@@ -161,8 +160,8 @@ public class IEPernambucoAntigaValidatorTest {
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, false);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -185,8 +184,8 @@ public class IEPernambucoAntigaValidatorTest {
                 .mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                true);
         List<ValidationMessage> errors;
 
         // VALID IE = 18.1.001.0000004-9
@@ -215,8 +214,8 @@ public class IEPernambucoAntigaValidatorTest {
                         IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEPernambucoAntigaValidator(
-                messageProducer, true);
+        Validator validator = new IEPernambucoAntigaValidator(messageProducer,
+                true);
 
         // VALID IE = 18.1.001.0000004-9
         String value = "18.1.001x0000004-9";
