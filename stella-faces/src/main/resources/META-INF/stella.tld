@@ -9,6 +9,45 @@
 		brasileiros.
 	</description>
 
+
+	<tag>
+		<name>validateIE</name>
+		<description>
+			Valida campo considerando que este representa uma Inscrição
+			Estadual.
+		</description>
+
+		<tag-class>
+			br.com.caelum.stella.faces.validation.StellaIEValidatorTag
+		</tag-class>
+
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>formatted</name>
+			<description>
+				O campo está formatado com caracteres não numéricos
+				(pontos, barras e traços)?
+			</description>
+			<deferred-value>
+				<type>java.lang.Boolean</type>
+			</deferred-value>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>estado</name>
+			<description>
+				As siglas do estado ao qual o documento pertence.
+				Exemplo: SP (para o Estado de São Paulo)
+			</description>
+			<deferred-value>
+				<type>java.lang.String</type>
+			</deferred-value>
+			<required>true</required>
+		</attribute>
+	</tag>
+
 	<tag>
 		<name>validateCPF</name>
 		<description>
