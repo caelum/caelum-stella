@@ -21,8 +21,14 @@
 <h2>Validadores de NIT</h2>
 <ul>
   <li><a href="faces/validadorDeNIT.jsp">[JSP] Validador de NIT</a></li>
-  <li><a href="faces/validadorDe.xhtml">[Facelets] Validador de NIT</a></li>
+  <li><a href="faces/validadorDeNIT.xhtml">[Facelets] Validador de NIT</a></li>
   <li><a href="faces/StellaNITValidator.jsp">Validador de NIT pelo ID</a></li>
+</ul>
+<h2>Validadores de IE</h2>
+<ul>
+  <li><a href="faces/validadorDeIE.jsp">[JSP] Validador de IE</a></li>
+  <li><a href="faces/validadorDeIE.xhtml">[Facelets] Validador de IE</a></li>
+  <li><a href="faces/StellaIEValidator.jsp">Validador de IE pelo ID</a></li>
 </ul>
 
 </body>

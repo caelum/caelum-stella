@@ -21,6 +21,9 @@ public class StellaIEValidatorTag extends ValidatorELTag {
 	@Override
 	protected Validator createValidator() throws JspException {
 		StellaIEValidator validator = new StellaIEValidator();
+		if (estado!=null){
+		    validator.setEstado(Estado.valueOf(estado));
+		}
 		validator.setFormatted(formatted);
 		return validator;
 	}
@@ -38,7 +41,6 @@ public class StellaIEValidatorTag extends ValidatorELTag {
 	public void release() {
 		super.release();
 		this.formatted = false;
-		this.estado = null;
 	}
 
 }
