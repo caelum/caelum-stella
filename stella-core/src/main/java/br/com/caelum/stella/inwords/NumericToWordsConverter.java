@@ -42,8 +42,8 @@ public class NumericToWordsConverter implements Formatter {
     private String getThousandSuffixInWords(int thousandPower,
             boolean isUnitary, boolean isFraction) {
         return (thousandPower == 0 ? this.getUnit(isUnitary, isFraction) : this
-                .getString("mil." + thousandPower + "."
-                        + (isUnitary ? '1' : '2')));
+                .getString("1e" + 3 * thousandPower + "."
+                        + (isUnitary ? "singular" : "plural")));
     }
 
     private String getThousandBlockInWords(String number) {
@@ -78,9 +78,7 @@ public class NumericToWordsConverter implements Formatter {
                 result = centena + getAndSeparator()
                         + getThousandBlockInWords("" + resto);
             }
-
         }
-
         return result;
     }
 
@@ -95,7 +93,7 @@ public class NumericToWordsConverter implements Formatter {
                     thousandGroup == 1, isFraction);
         }
         if ((thousandPower != 1) || (thousandGroup != 1)) {
-            result = (this.getThousandBlockInWords(""+thousandGroup) + " " + result)
+            result = (this.getThousandBlockInWords("" + thousandGroup) + " " + result)
                     .trim();
         }
         return result;
@@ -174,7 +172,7 @@ public class NumericToWordsConverter implements Formatter {
         return this.getFullLongNumberInWords(numero, false);
     }
 
-    public String toWords(long inteiro, long fracionado) {
+    private String toWords(long inteiro, long fracionado) {
         if (Long.valueOf(fracionado).toString().length() > formato
                 .getCasasDecimais()) {
             throw new IllegalArgumentException(
@@ -194,7 +192,7 @@ public class NumericToWordsConverter implements Formatter {
         return result;
     }
 
-    public String toWords(double number) {
+    public String format(double number) {
 
         // valida se o numero é maior que long
         this.validateDouble(number);
@@ -227,7 +225,7 @@ public class NumericToWordsConverter implements Formatter {
     }
 
     public String format(String value) {
-        return null;
+        return format(Double.parseDouble(value));
     }
 
     public String unformat(String value) {

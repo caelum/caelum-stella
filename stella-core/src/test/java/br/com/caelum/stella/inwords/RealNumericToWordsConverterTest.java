@@ -17,21 +17,21 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransform0InWords() {
         double zero = 0;
-        String actual = converter.toWords(zero);
+        String actual = converter.format(zero);
         assertEquals("zero", actual);
     }
 
     @Test
     public void shouldTransform1InWords() {
         double one = 1;
-        String actual = converter.toWords(one);
+        String actual = converter.format(one);
         assertEquals("um real", actual);
     }
 
     @Test
     public void shouldTransform2InWords() {
         double two = 2;
-        String actual = converter.toWords(two);
+        String actual = converter.format(two);
         ;
         assertEquals("dois reais", actual);
     }
@@ -39,7 +39,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransform14InWords() {
         double fourteen = 14;
-        String actual = converter.toWords(fourteen);
+        String actual = converter.format(fourteen);
         ;
         assertEquals("quatorze reais", actual);
     }
@@ -47,7 +47,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransform53InWordsUsingAnd() {
         double fiftyThree = 53;
-        String actual = converter.toWords(fiftyThree);
+        String actual = converter.format(fiftyThree);
         ;
         assertEquals("cinquenta e três reais", actual);
     }
@@ -55,7 +55,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformOneHundredInWords() {
         double oneHundred = 100;
-        String actual = converter.toWords(oneHundred);
+        String actual = converter.format(oneHundred);
         ;
         assertEquals("cem reais", actual);
     }
@@ -63,14 +63,14 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformOneHundredInWordsUsingAnd() {
         double oneHundredAndNine = 109;
-        String actual = converter.toWords(oneHundredAndNine);
+        String actual = converter.format(oneHundredAndNine);
         assertEquals("cento e nove reais", actual);
     }
 
     @Test
     public void shouldTransformTwoHundredInWords() {
         double twoHundred = 200;
-        String actual = converter.toWords(twoHundred);
+        String actual = converter.format(twoHundred);
         ;
         assertEquals("duzentos reais", actual);
     }
@@ -78,7 +78,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformThousandInWords() {
         double thousand = 1000;
-        String actual = converter.toWords(thousand);
+        String actual = converter.format(thousand);
         ;
         assertEquals("mil reais", actual);
     }
@@ -86,7 +86,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformThousandInWordsUsingAnd() {
         double thousand = 1031;
-        String actual = converter.toWords(thousand);
+        String actual = converter.format(thousand);
         ;
         assertEquals("mil e trinta e um reais", actual);
     }
@@ -94,7 +94,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformAMillionIntoNumberInWords() {
         double oneMillion = 1000000;
-        String actual = converter.toWords(oneMillion);
+        String actual = converter.format(oneMillion);
         ;
         assertEquals("um milhão de reais", actual);
     }
@@ -102,7 +102,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformAMillionIntoNumberInWordsUsingAnd() {
         double twoHundred = 1000150.99;
-        String actual = converter.toWords(twoHundred);
+        String actual = converter.format(twoHundred);
         assertEquals(
                 "um milhão e cento e cinquenta reais e noventa e nove centavos",
                 actual);
@@ -111,7 +111,7 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformAMillionAndThousandIntoNumberInWordsUsingAnd() {
         double twoHundred = 1023850;
-        String actual = converter.toWords(twoHundred);
+        String actual = converter.format(twoHundred);
         ;
         assertEquals(
                 "um milhão, vinte e três mil e oitocentos e cinquenta reais",
@@ -121,34 +121,34 @@ public class RealNumericToWordsConverterTest {
     @Test
     public void shouldTransformANumberInWordsUsingFraction() {
         double twoHundred = 0.22;
-        String actual = converter.toWords(twoHundred);
+        String actual = converter.format(twoHundred);
         assertEquals("vinte e dois centavos", actual);
     }
 
     @Test
     public void shouldTransformOneDecimalWords() {
         double oneDecimal = 0.1;
-        String actual = converter.toWords(oneDecimal);
+        String actual = converter.format(oneDecimal);
         assertEquals("dez centavos", actual);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldTruncAndTransformANumberInWordsUsingFraction() {
         double twoHundred = 0.229;
-        converter.toWords(twoHundred);
+        converter.format(twoHundred);
     }
 
     @Test()
     public void shouldTransformAThousandAndOne() {
         double number = 1001;
-        String words = converter.toWords(number);
+        String words = converter.format(number);
         assertEquals("mil e um reais", words);
     }
 
     @Test()
     public void shouldTransformAMillionAndOne() {
         double number = 1000001;
-        String words = converter.toWords(number);
+        String words = converter.format(number);
         assertEquals("um milhão e um reais", words);
     }
 
