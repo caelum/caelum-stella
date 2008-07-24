@@ -35,7 +35,8 @@ public class BancoDoBrasil implements Banco {
 	codigoDeBarras.append("000000");
 	codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
 	codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
-	codigoDeBarras.append(boleto.getEmissor().getCarteiraFormatado());
+	codigoDeBarras
+		.append(getCarteiraDoEmissorFormatado(boleto.getEmissor()));
 
 	codigoDeBarras.insert(4, dvGenerator
 		.geraDVCodigoDeBarras(codigoDeBarras.toString()));
@@ -107,6 +108,10 @@ public class BancoDoBrasil implements Banco {
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 	return String.format("%08d", emissor.getContaCorrente());
+    }
+
+    public String getCarteiraDoEmissorFormatado(Emissor emissor) {
+	return String.format("%02d", emissor.getCarteira());
     }
 
 }

@@ -157,8 +157,8 @@ public class BoletoTransformer {
 	    writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / "
 		    + boleto.getEmissor().getNossoNumeroFormatado());
 
-	    writer.write(122, LINHA8, boleto.getEmissor()
-		    .getCarteiraFormatado());
+	    writer.write(122, LINHA8, boleto.getBanco()
+		    .getCarteiraDoEmissorFormatado(boleto.getEmissor()));
 
 	    writer.write(190, LINHA8, boleto.getEspecieMoeda());
 

@@ -200,15 +200,6 @@ public class Emissor {
     }
 
     /**
-     * Devolve a carteira formatada (com 2 digitos)
-     * 
-     * @return
-     */
-    public String getCarteiraFormatado() {
-	return String.format("%02d", carteira);
-    }
-
-    /**
      * Devolve o nosso número formatado (com 10 digitos)
      * 
      * @return

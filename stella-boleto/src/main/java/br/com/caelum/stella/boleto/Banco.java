@@ -52,4 +52,6 @@ public interface Banco {
 
     String getContaCorrenteDoEmissorFormatado(Emissor emissor);
 
+    String getCarteiraDoEmissorFormatado(Emissor emissor);
+
 }

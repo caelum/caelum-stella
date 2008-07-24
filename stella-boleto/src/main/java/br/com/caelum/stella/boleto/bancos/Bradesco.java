@@ -36,7 +36,8 @@ public class Bradesco implements Banco {
 
 	// CAMPO LIVRE
 	codigoDeBarras.append(boleto.getEmissor().getAgenciaFormatado());
-	codigoDeBarras.append(boleto.getEmissor().getCarteiraFormatado());
+	codigoDeBarras
+		.append(getCarteiraDoEmissorFormatado(boleto.getEmissor()));
 	codigoDeBarras.append(String.format("%011d", Integer.parseInt(boleto
 		.getEmissor().getNossoNumero())));
 	codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(boleto
@@ -113,6 +114,10 @@ public class Bradesco implements Banco {
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 	return String.format("%07d", emissor.getContaCorrente());
+    }
+
+    public String getCarteiraDoEmissorFormatado(Emissor emissor) {
+	return String.format("%02d", emissor.getCarteira());
     }
 
 }
