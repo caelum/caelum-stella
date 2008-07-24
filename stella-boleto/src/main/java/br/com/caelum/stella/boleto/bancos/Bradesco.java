@@ -34,14 +34,13 @@ public class Bradesco implements Banco {
 	codigoDeBarras.append(boleto.getFatorVencimento());
 	codigoDeBarras.append(boleto.getValorFormatado());
 
+	Emissor emissor = boleto.getEmissor();
+
 	// CAMPO LIVRE
-	codigoDeBarras.append(boleto.getEmissor().getAgenciaFormatado());
-	codigoDeBarras
-		.append(getCarteiraDoEmissorFormatado(boleto.getEmissor()));
-	codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(boleto
-		.getEmissor()));
-	codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(boleto
-		.getEmissor()));
+	codigoDeBarras.append(emissor.getAgenciaFormatado());
+	codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
+	codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
+	codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
 	codigoDeBarras.append("0");
 
 	codigoDeBarras.insert(4, dvGenerator
