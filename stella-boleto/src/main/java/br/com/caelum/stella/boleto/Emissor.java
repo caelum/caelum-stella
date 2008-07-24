@@ -12,8 +12,8 @@ public class Emissor {
     private String dvAgencia;
     private int contaCorrente;
     private int carteira;
-    private String numConvenio;
-    private String nossoNumero;
+    private int numConvenio;
+    private int nossoNumero;
     private String cedente;
     private String dvContaCorrete;
 
@@ -90,7 +90,7 @@ public class Emissor {
      * ao seu banco para associar seus boletos<br/> Valor informado pelo banco
      * 
      */
-    public String getNumConvenio() {
+    public int getNumConvenio() {
 	return numConvenio;
     }
 
@@ -101,7 +101,7 @@ public class Emissor {
      * 
      * @param numConvenio
      */
-    public Emissor withNumConvenio(String numConvenio) {
+    public Emissor withNumConvenio(int numConvenio) {
 	this.numConvenio = numConvenio;
 	return this;
     }
@@ -114,7 +114,7 @@ public class Emissor {
      * identificação dos boletos pagos
      * 
      */
-    public String getNossoNumero() {
+    public int getNossoNumero() {
 	return nossoNumero;
     }
 
@@ -127,7 +127,7 @@ public class Emissor {
      * 
      * @param nossoNumero
      */
-    public Emissor withNossoNumero(String nossoNumero) {
+    public Emissor withNossoNumero(int nossoNumero) {
 	this.nossoNumero = nossoNumero;
 	return this;
     }
@@ -197,23 +197,5 @@ public class Emissor {
      */
     public String getAgenciaFormatado() {
 	return String.format("%04d", agencia);
-    }
-
-    /**
-     * Devolve o nosso número formatado (com 10 digitos)
-     * 
-     * @return
-     */
-    public String getNossoNumeroFormatado() {
-	return String.format("%010d", Integer.parseInt(nossoNumero));
-    }
-
-    /**
-     * Devolve o número do convênio formatado (com 7 digitos)
-     * 
-     * @return
-     */
-    public String getNumConvenioFormatado() {
-	return String.format("%07d", Integer.parseInt(numConvenio));
     }
 }

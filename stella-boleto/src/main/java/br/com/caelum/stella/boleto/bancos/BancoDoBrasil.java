@@ -31,12 +31,34 @@ public class BancoDoBrasil implements Banco {
 	codigoDeBarras.append(boleto.getFatorVencimento());
 	codigoDeBarras.append(boleto.getValorFormatado());
 
+	Emissor emissor = boleto.getEmissor();
 	// CAMPO LIVRE
-	codigoDeBarras.append("000000");
-	codigoDeBarras.append(boleto.getEmissor().getNumConvenioFormatado());
-	codigoDeBarras.append(boleto.getEmissor().getNossoNumeroFormatado());
-	codigoDeBarras
-		.append(getCarteiraDoEmissorFormatado(boleto.getEmissor()));
+	if (emissor.getNumConvenio() < 1000000) {
+	    if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
+		codigoDeBarras
+			.append(getNumConvenioDoEmissorFormatado(emissor));
+		codigoDeBarras
+			.append(getNossoNumeroDoEmissorFormatado(emissor));
+		codigoDeBarras.append("21");
+	    } else {
+		codigoDeBarras
+			.append(getNossoNumeroDoEmissorFormatado(emissor));
+		codigoDeBarras.append(emissor.getAgenciaFormatado());
+		codigoDeBarras.append(emissor.getCedente());
+		codigoDeBarras.append(boleto.getBanco()
+			.getCarteiraDoEmissorFormatado(emissor));
+	    }
+	} else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
+	    codigoDeBarras.append("000000");
+	    codigoDeBarras.append(getNumConvenioDoEmissorFormatado(emissor));
+	    codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor)
+		    .substring(7));
+	    codigoDeBarras.append(boleto.getBanco()
+		    .getCarteiraDoEmissorFormatado(emissor));
+	} else {
+	    throw new CriacaoBoletoException(
+		    "Erro na geração do código de barras.");
+	}
 
 	codigoDeBarras.insert(4, dvGenerator
 		.geraDVCodigoDeBarras(codigoDeBarras.toString()));
@@ -106,12 +128,28 @@ public class BancoDoBrasil implements Banco {
 			getNumeroFormatado()));
     }
 
+    public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
+	if (emissor.getNumConvenio() < 1000000) {
+	    return String.format("%06d", emissor.getNumConvenio());
+	} else {
+	    return String.format("%07d", emissor.getNumConvenio());
+	}
+    }
+
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 	return String.format("%08d", emissor.getContaCorrente());
     }
 
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {
 	return String.format("%02d", emissor.getCarteira());
+    }
+
+    public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
+	if (emissor.getCarteira() == 18) {
+	    return String.format("%017d", emissor.getNossoNumero());
+	} else {
+	    return String.format("%011d", emissor.getNossoNumero());
+	}
     }
 
 }

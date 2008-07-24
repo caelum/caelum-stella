@@ -27,8 +27,8 @@ public class BancoDoBrasilTest {
 
 	emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824)
 		.withDvAgencia("4").withContaCorrente(76000).withNumConvenio(
-			"1207113").withDvContaCorrete("5").withCarteira(18)
-		.withNossoNumero("0009000206");
+			1207113).withDvContaCorrete("5").withCarteira(18)
+		.withNossoNumero(9000206);
 
 	Sacado sacado = Sacado.newSacado().withNome("Fulano");
 
@@ -37,6 +37,43 @@ public class BancoDoBrasilTest {
 	boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
 		.withSacado(sacado).withValorBoleto("40.00").withNoDocumento(
 			"4323");
+    }
+
+    @Test
+    public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
+	Emissor emissor = Emissor.newEmissor().withNumConvenio(1234);
+	String numeroFormatado = banco
+		.getNumConvenioDoEmissorFormatado(emissor);
+	assertEquals(6, numeroFormatado.length());
+	assertEquals("001234", numeroFormatado);
+    }
+
+    @Test
+    public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
+	Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206)
+		.withCarteira(11);
+	String numeroFormatado = banco
+		.getNossoNumeroDoEmissorFormatado(emissor);
+	assertEquals(11, numeroFormatado.length());
+	assertEquals("00009000206", numeroFormatado);
+    }
+
+    @Test
+    public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
+	Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206)
+		.withCarteira(18);
+	String numeroFormatado = banco
+		.getNossoNumeroDoEmissorFormatado(emissor);
+	assertEquals(17, numeroFormatado.length());
+	assertEquals("00000000009000206", numeroFormatado);
+    }
+
+    @Test
+    public void carteiraFormatadoDeveTerDoisDigitos() {
+	Emissor emissor = Emissor.newEmissor().withCarteira(1);
+	String numeroFormatado = banco.getCarteiraDoEmissorFormatado(emissor);
+	assertEquals(2, numeroFormatado.length());
+	assertEquals("01", numeroFormatado);
     }
 
     @Test

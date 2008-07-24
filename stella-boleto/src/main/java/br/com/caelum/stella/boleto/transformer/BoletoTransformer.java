@@ -112,8 +112,8 @@ public class BoletoTransformer {
 			    boleto.getEmissor()) + "-"
 		    + boleto.getEmissor().getDvContaCorrente());
 
-	    writer.write(146, LINHA3, boleto.getEmissor()
-		    .getNossoNumeroFormatado());
+	    writer.write(146, LINHA3, boleto.getBanco()
+		    .getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 
 	    writer.writeBold(125, LINHA4, boleto.getBanco()
 		    .getNumeroFormatado());
@@ -144,8 +144,9 @@ public class BoletoTransformer {
 
 	    writer.write(70, LINHA7,
 		    !boleto.getNoDocumento().equals("") ? boleto
-			    .getNoDocumentoFormatado() : boleto.getEmissor()
-			    .getNossoNumeroFormatado());
+			    .getNoDocumentoFormatado() : boleto.getBanco()
+			    .getNossoNumeroDoEmissorFormatado(
+				    boleto.getEmissor()));
 
 	    writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
@@ -154,8 +155,10 @@ public class BoletoTransformer {
 	    writer.write(300, LINHA7, formatDate(boleto.getDatas()
 		    .getProcessamento()));
 
-	    writer.write(410, LINHA7, boleto.getEmissor().getCarteira() + " / "
-		    + boleto.getEmissor().getNossoNumeroFormatado());
+	    writer.write(410, LINHA7, boleto.getEmissor().getCarteira()
+		    + " / "
+		    + boleto.getBanco().getNossoNumeroDoEmissorFormatado(
+			    boleto.getEmissor()));
 
 	    writer.write(122, LINHA8, boleto.getBanco()
 		    .getCarteiraDoEmissorFormatado(boleto.getEmissor()));
