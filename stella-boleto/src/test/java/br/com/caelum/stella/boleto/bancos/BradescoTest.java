@@ -1,6 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
@@ -18,13 +18,14 @@ public class BradescoTest {
 
     private Boleto boleto;
     private Banco banco;
+    private Emissor emissor;
 
     @Before
     public void setUp() {
 	Datas datas = Datas.newDatas().withDocumento(31, 5, 2006)
 		.withProcessamento(31, 5, 2006).withVencimento(10, 6, 2006);
 
-	Emissor emissor = Emissor.newEmissor().withCedente("Leonardo Bessa")
+	emissor = Emissor.newEmissor().withCedente("Leonardo Bessa")
 		.withAgencia(2949).withDvAgencia("1").withContaCorrente(6580)
 		.withNumConvenio("1207113").withDvContaCorrete("3")
 		.withCarteira(6).withNossoNumero("00000000003");
@@ -36,6 +37,14 @@ public class BradescoTest {
 	boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
 		.withSacado(sacado).withValorBoleto("1.00").withNoDocumento(
 			"4323");
+    }
+
+    @Test
+    public void contaCorrenteFormatadaDeveTerSeteDigitos() {
+	String numeroFormatado = banco
+		.getContaCorrenteDoEmissorFormatado(emissor);
+	assertEquals(7, numeroFormatado.length());
+	assertEquals("0006580", numeroFormatado);
     }
 
     @Test

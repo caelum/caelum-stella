@@ -50,4 +50,6 @@ public interface Banco {
      */
     String geraLinhaDigitavelPara(Boleto boleto);
 
+    String getContaCorrenteDoEmissorFormatado(Emissor emissor);
+
 }

@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.Emissor;
 
 /**
  * Gera dados de um boleto relativos ao Banco Bradesco.
@@ -28,15 +29,18 @@ public class Bradesco implements Banco {
 	StringBuilder codigoDeBarras = new StringBuilder();
 	codigoDeBarras.append(getNumeroFormatado());
 	codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
+	// Digito Verificador sera inserido aqui.
 
-	// CAMPO LIVRE
 	codigoDeBarras.append(boleto.getFatorVencimento());
 	codigoDeBarras.append(boleto.getValorFormatado());
+
+	// CAMPO LIVRE
 	codigoDeBarras.append(boleto.getEmissor().getAgenciaFormatado());
 	codigoDeBarras.append(boleto.getEmissor().getCarteiraFormatado());
 	codigoDeBarras.append(String.format("%011d", Integer.parseInt(boleto
 		.getEmissor().getNossoNumero())));
-	codigoDeBarras.append(boleto.getEmissor().getContaCorrenteFormatado());
+	codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(boleto
+		.getEmissor()));
 	codigoDeBarras.append("0");
 
 	codigoDeBarras.insert(4, dvGenerator
@@ -105,6 +109,10 @@ public class Bradesco implements Banco {
 	return getClass().getResource(
 		String.format("/br/com/caelum/stella/boleto/img/%s.png",
 			getNumeroFormatado()));
+    }
+
+    public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
+	return String.format("%07d", emissor.getContaCorrente());
     }
 
 }

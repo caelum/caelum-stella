@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.Emissor;
 
 /**
  * Gera dados de um boleto relativos ao Banco do Brasil.
@@ -102,6 +103,10 @@ public class BancoDoBrasil implements Banco {
 	return getClass().getResource(
 		String.format("/br/com/caelum/stella/boleto/img/%s.png",
 			getNumeroFormatado()));
+    }
+
+    public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
+	return String.format("%08d", emissor.getContaCorrente());
     }
 
 }

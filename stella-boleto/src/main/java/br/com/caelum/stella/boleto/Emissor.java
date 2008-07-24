@@ -191,15 +191,6 @@ public class Emissor {
     }
 
     /**
-     * Devolve a conta corrente formatada (com 7 digitos)
-     * 
-     * @return
-     */
-    public String getContaCorrenteFormatado() {
-	return String.format("%07d", contaCorrente);
-    }
-
-    /**
      * Devolve a agencia formatada (com 4 digitos)
      * 
      * @return

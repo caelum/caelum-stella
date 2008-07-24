@@ -1,6 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
@@ -18,16 +18,17 @@ public class BancoDoBrasilTest {
 
     private Boleto boleto;
     private Banco banco;
+    private Emissor emissor;
 
     @Before
     public void setUp() {
 	Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
 		.withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
-	Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
-		1824).withDvAgencia("4").withContaCorrente(76000)
-		.withNumConvenio("1207113").withDvContaCorrete("5")
-		.withCarteira(18).withNossoNumero("0009000206");
+	emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824)
+		.withDvAgencia("4").withContaCorrente(76000).withNumConvenio(
+			"1207113").withDvContaCorrete("5").withCarteira(18)
+		.withNossoNumero("0009000206");
 
 	Sacado sacado = Sacado.newSacado().withNome("Fulano");
 
@@ -36,6 +37,14 @@ public class BancoDoBrasilTest {
 	boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
 		.withSacado(sacado).withValorBoleto("40.00").withNoDocumento(
 			"4323");
+    }
+
+    @Test
+    public void contaCorrenteFormatadaDeveTerOitoDigitos() {
+	String numeroFormatado = banco
+		.getContaCorrenteDoEmissorFormatado(emissor);
+	assertEquals(8, numeroFormatado.length());
+	assertEquals("00076000", numeroFormatado);
     }
 
     @Test
