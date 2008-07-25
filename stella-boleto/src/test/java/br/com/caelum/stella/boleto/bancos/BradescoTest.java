@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
@@ -17,7 +16,7 @@ import br.com.caelum.stella.boleto.Sacado;
 public class BradescoTest {
 
     private Boleto boleto;
-    private Banco banco;
+    private Bradesco banco;
     private Emissor emissor;
 
     @Before
