@@ -1,0 +1,97 @@
+#!/usr/bin/env ruby
+
+config = File.dirname(__FILE__) + "/../config/javascript_test_autotest.yml"
+unless File.exists?(config)
+  puts <<-EOS
+Edit config/javascript_test_autotest.yml for the browser(s) to use for autotesting.
+See config/javascript_test_autotest.yml.sample for examples.
+EOS
+  exit
+end
+
+##
+# Originally by Mike Clark.
+#
+# From http://www.pragmaticautomation.com/cgi-bin/pragauto.cgi/Monitor/StakingOutFileChanges.rdoc
+#
+# Runs a user-defined command when files are modified.
+#
+# Like autotest, but more customizable. This is useful when you want to do
+# something other than run tests. For example, generate a PDF book, run
+# a single test, or run a legacy Test::Unit suite in an app that also
+# has an rSpec suite.
+#
+# Can use Ruby's Dir[] to get file glob. Quote your args to take advantage of this.
+#
+#  rstakeout 'rake test:recent' **/*.rb
+#  => Only watches Ruby files one directory down (no quotes)
+#
+#  rstakeout 'rake test:recent' '**/*.rb'
+#  => Watches all Ruby files in all directories and subdirectories
+#
+# Modified (with permission) by Geoffrey Grosenbach to call growlnotify for
+# rspec and Test::Unit output.
+#
+# See the PeepCode screencast on rSpec or other blog articles for instructions on
+# setting up growlnotify.
+
+def growl(title, msg, img, pri=0, sticky="")
+  system "growlnotify -n autotest --image ~/.autotest_images/#{img} -p #{pri} -m #{msg.inspect} #{title} #{sticky}"
+end
+
+def self.growl_fail(output)
+  growl "FAIL", "#{output}", "fail.png", 2
+end
+
+def self.growl_pass(output)
+  growl "Pass", "#{output}", "pass.png"
+end
+
+command = ARGV.shift
+files = {}
+
+ARGV.each do |arg|
+  Dir[arg].each { |file|
+    files[file] = File.mtime(file)
+  }
+end
+
+puts "Watching #{files.keys.join(', ')}\n\nFiles: #{files.keys.length}"
+
+trap('INT') do
+  puts "\nQuitting..."
+  exit
+end
+
+
+loop do
+
+  sleep 1
+
+  changed_file, last_changed = files.find { |file, last_changed|
+    File.mtime(file) > last_changed
+  }
+
+  if changed_file
+    files[changed_file] = File.mtime(changed_file)
+    puts "=> #{changed_file} changed, running #{command}"
+    results = `#{command}`
+    puts results
+
+    if results.include? 'tests'
+      output = results.slice(/(\d+)\s+tests?,\s*(\d+)\s+assertions?,\s*(\d+)\s+failures?(,\s*(\d+)\s+errors)?/)
+      if output
+        $~[3].to_i + $~[5].to_i > 0 ? growl_fail(output) : growl_pass(output)
+      end
+    else
+      output = results.slice(/(\d+)\s+examples?,\s*(\d+)\s+failures?(,\s*(\d+)\s+not implemented)?/)
+      if output
+        $~[2].to_i > 0 ? growl_fail(output) : growl_pass(output)
+      end
+    end
+    # TODO Generic growl notification for other actions
+
+    puts "=> done"
+  end
+
+end

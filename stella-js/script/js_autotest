@@ -1,0 +1,1 @@
+script/rstakeout "rake test:recent:javascript" test/unit/*_test.html src/*.js

@@ -1,0 +1,15 @@
+# This file has been copied here by the javascript_test_autotest plugin.
+# Comment/uncomment the browsers you wish to autotest with.
+# Same schema as per selenium-on-rails plugin, which is nice.
+browsers:
+  # Windows
+  # firefox: 'c:\Program Files\Mozilla Firefox\firefox.exe'
+  # ie: 'c:\Program Files\Internet Explorer\iexplore.exe'
+
+  # Mac OS X
+  # firefox: '/Applications/Firefox.app/Contents/MacOS/firefox-bin'
+  safari: '/Applications/Safari.app/Contents/MacOS/Safari'
+
+  # Unix
+  # ?
+  # ?
