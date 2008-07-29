@@ -9,5 +9,5 @@ Example:
 More information:
     http://stella.caelum.com.br
     
-Author:
+Authors:
     Fabio Kung, fabio.kung@caelum.com.br
