@@ -60,7 +60,7 @@ public class Emissor {
      * 
      * @param contaCorrente
      */
-    public Emissor withContaCorrente(int contaCorrente) {
+    public Emissor withContaCorrente(long contaCorrente) {
 	this.contaCorrente = contaCorrente;
 	return this;
     }
@@ -101,7 +101,7 @@ public class Emissor {
      * 
      * @param numConvenio
      */
-    public Emissor withNumConvenio(int numConvenio) {
+    public Emissor withNumConvenio(long numConvenio) {
 	this.numConvenio = numConvenio;
 	return this;
     }
@@ -127,7 +127,7 @@ public class Emissor {
      * 
      * @param nossoNumero
      */
-    public Emissor withNossoNumero(int nossoNumero) {
+    public Emissor withNossoNumero(long nossoNumero) {
 	this.nossoNumero = nossoNumero;
 	return this;
     }
