@@ -37,6 +37,7 @@ end
 
 def growl(title, msg, img, pri=0, sticky="")
   system "growlnotify -n autotest --image ~/.autotest_images/#{img} -p #{pri} -m #{msg.inspect} #{title} #{sticky}"
+  # system "osascript ~/Scripts/growlnotify.scpt '#{title}' '#{msg.inspect}' '~/.autotest_images/#{img}'"
 end
 
 def self.growl_fail(output)
