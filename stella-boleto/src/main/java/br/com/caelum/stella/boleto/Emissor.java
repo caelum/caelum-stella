@@ -10,10 +10,10 @@ package br.com.caelum.stella.boleto;
 public class Emissor {
     private int agencia;
     private String dvAgencia;
-    private int contaCorrente;
+    private long contaCorrente;
     private int carteira;
-    private int numConvenio;
-    private int nossoNumero;
+    private long numConvenio;
+    private long nossoNumero;
     private String cedente;
     private String dvContaCorrete;
 
@@ -51,7 +51,7 @@ public class Emissor {
      * Devolve o número da conta corrente sem o digito
      * 
      */
-    public int getContaCorrente() {
+    public long getContaCorrente() {
 	return contaCorrente;
     }
 
@@ -90,7 +90,7 @@ public class Emissor {
      * ao seu banco para associar seus boletos<br/> Valor informado pelo banco
      * 
      */
-    public int getNumConvenio() {
+    public long getNumConvenio() {
 	return numConvenio;
     }
 
@@ -114,7 +114,7 @@ public class Emissor {
      * identificação dos boletos pagos
      * 
      */
-    public int getNossoNumero() {
+    public long getNossoNumero() {
 	return nossoNumero;
     }
 
