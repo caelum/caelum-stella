@@ -5,7 +5,7 @@
   <parent>
     <groupId>br.com.caelum.stella</groupId>
     <artifactId>caelum-stella</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
   </parent>
   <artifactId>stella-distribution</artifactId>
   <packaging>pom</packaging>
