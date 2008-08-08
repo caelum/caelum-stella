@@ -18,13 +18,14 @@
 		<h:panelGrid>
 			<h:outputLabel value="NIT sem formatacao:" for="NIT" />
 			<h:inputText id="NIT" value="#{UsuarioBean.nit}">
-				<stella:validateNIT/>
+				<stella:validateNIT />
 			</h:inputText>
 			<h:message for="NIT" />
 
+
 			<h:outputLabel value="NIT com formatacao:" for="NITFormatado" />
 			<h:inputText id="NITFormatado" value="#{UsuarioBean.nitFormatado}">
-				<stella:validateNIT formatted="true" />
+			  <stella:validateNIT formatted="true" />
 			</h:inputText>
 			<h:message for="NITFormatado" />
 		</h:panelGrid>

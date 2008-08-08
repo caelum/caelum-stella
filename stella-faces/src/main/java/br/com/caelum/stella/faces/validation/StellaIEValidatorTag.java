@@ -7,12 +7,10 @@ import javax.faces.validator.Validator;
 import javax.faces.webapp.ValidatorELTag;
 import javax.servlet.jsp.JspException;
 
-import br.com.caelum.stella.type.Estado;
-
 @SuppressWarnings("serial")
 public class StellaIEValidatorTag extends ValidatorELTag {
 	private boolean formatted;
-	private String estado;
+	private String estadoComponentId;
 
 	public StellaIEValidatorTag() {
 		super.setId(StellaIEValidator.VALIDATOR_ID);
@@ -21,8 +19,8 @@ public class StellaIEValidatorTag extends ValidatorELTag {
 	@Override
 	protected Validator createValidator() throws JspException {
 		StellaIEValidator validator = new StellaIEValidator();
-		if (estado!=null){
-		    validator.setEstado(Estado.valueOf(estado));
+		if (estadoComponentId!=null){
+		    validator.setEstadoComponentId(estadoComponentId);
 		}
 		validator.setFormatted(formatted);
 		return validator;
@@ -33,9 +31,9 @@ public class StellaIEValidatorTag extends ValidatorELTag {
 		this.formatted = (Boolean) formatted.getValue(elContext);
 	}
 	
-	public void setEstado(ValueExpression estado) {
+	public void setEstadoId(ValueExpression estadoId) {
             ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-            this.estado = (String) estado.getValue(elContext);
+            this.estadoComponentId = (String) estadoId.getValue(elContext);
     }
 
 	public void release() {

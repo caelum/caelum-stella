@@ -36,7 +36,7 @@
 		</attribute>
 
 		<attribute>
-			<name>estado</name>
+			<name>estadoId</name>
 			<description>
 				As siglas do estado ao qual o documento pertence.
 				Exemplo: SP (para o Estado de São Paulo)

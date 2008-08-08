@@ -16,15 +16,26 @@
 	<h:form id="formulario">
 
 		<h:panelGrid>
+			
+			<h:outputText value="Selecione um estado:" />
+			<h:selectOneMenu id="estado" >
+				<f:selectItem itemValue="" itemLabel="" />
+				<f:selectItem itemValue="SP" itemLabel="SP" />
+				<f:selectItem itemValue="RJ" itemLabel="RJ" />
+				<f:selectItem itemValue="MG" itemLabel="MG" />
+				<f:selectItem itemValue="RS" itemLabel="RS" />
+				<f:selectItem itemValue="SC" itemLabel="SC" />
+			</h:selectOneMenu>
+			
 			<h:outputLabel value="IE sem formatacao:" for="ie" />
 			<h:inputText id="ie" value="#{UsuarioBean.ie}">
-				<stella:validateIE estado="SP"/>
+				<stella:validateIE estadoId="formulario:estado" formatted="false" />
 			</h:inputText>
 			<h:message for="ie" />
 
 			<h:outputLabel value="IE com formatacao:" for="ieFormatado" />
 			<h:inputText id="ieFormatado" value="#{UsuarioBean.ieFormatado}">
-				<stella:validateIE formatted="true" estado="SP"/>
+				<stella:validateIE estadoId="formulario:estado" formatted="true" />
 			</h:inputText>
 			<h:message for="ieFormatado" />
 		</h:panelGrid>
