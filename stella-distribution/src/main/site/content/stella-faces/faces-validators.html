@@ -6,7 +6,46 @@
 		<li>validateCPF : Valida CPF</li>
 		<li>validateCNPJ : Valida CNPJ</li>
 		<li>validateNIT : Valida PIS/PASEP/SUS</li>
-		<li>validateIE_SP : Valida Inscrição Estadual de São Paulo</li>
+		<li>validateIE : Valida Inscrição Estadual</li>
 	</ul>
+<h2>Exemplo de uso para Validação de Inscrição Estadual</h2>
+<textarea class="html" name="code" readonly="readonly">
+&lt;%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%&gt;
+&lt;%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%&gt;
+&lt;%@ taglib uri="http://stella.caelum.com.br/faces" prefix="stella"%&gt;
+
+&lt;html&gt;
+
+&lt;f:view&gt;
+	&lt;h:form id="formulario"&gt;
+
+		&lt;h:panelGrid&gt;
+			
+			&lt;h:outputText value="Selecione um estado:" /&gt;
+			&lt;h:selectOneMenu id="estado" &gt;
+				&lt;f:selectItem itemValue="" itemLabel="" /&gt;
+				&lt;f:selectItem itemValue="SP" itemLabel="SP" /&gt;
+				&lt;f:selectItem itemValue="RJ" itemLabel="RJ" /&gt;
+				&lt;f:selectItem itemValue="MG" itemLabel="MG" /&gt;
+				&lt;f:selectItem itemValue="RS" itemLabel="RS" /&gt;
+				&lt;f:selectItem itemValue="SC" itemLabel="SC" /&gt;
+			&lt;/h:selectOneMenu&gt;
+			
+			&lt;h:outputLabel value="IE com formatacao:" for="ieFormatado" /&gt;
+			&lt;h:inputText id="ieFormatado" value="#{UsuarioBean.ieFormatado}"&gt;
+				&lt;stella:validateIE estadoId="formulario:estado" formatted="true" /&gt;
+			&lt;/h:inputText&gt;
+			&lt;h:message for="ieFormatado" /&gt;
+		&lt;/h:panelGrid&gt;
+
+		&lt;h:commandButton value="Enviar" /&gt;
+		&lt;h:messages /&gt;
+	&lt;/h:form&gt;
+	
+&lt;/f:view&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+
 
 </body>
