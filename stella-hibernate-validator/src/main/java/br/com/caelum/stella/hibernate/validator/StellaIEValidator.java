@@ -66,7 +66,7 @@ public class StellaIEValidator implements Validator<IE> {
             IllegalAccessException, InvocationTargetException {
         Method getEstadoMethod = obj.getClass().getMethod(
                 camelCaseGetFieldName(ie.estadoField()));
-        String estadoValue = (String) getEstadoMethod.invoke(obj);
+        String estadoValue = getEstadoMethod.invoke(obj).toString();
         return estadoValue;
     }
 
@@ -74,7 +74,7 @@ public class StellaIEValidator implements Validator<IE> {
             IllegalAccessException, InvocationTargetException {
         Method getIeMethod = obj.getClass().getMethod(
                 camelCaseGetFieldName(ie.ieField()));
-        String ieValue = (String) getIeMethod.invoke(obj);
+        String ieValue = getIeMethod.invoke(obj).toString();
         return ieValue;
     }
 

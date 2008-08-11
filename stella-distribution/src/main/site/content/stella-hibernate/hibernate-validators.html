@@ -6,6 +6,54 @@
 	<li>Validador: @CPF</li>
 	<li>Validador: @CNPJ</li>
 	<li>Validador: @NIT (PIS/PASEP/SUS)</li>
+	<li>Validador: @IE (Inscrição Estadual)</li>
 </ul>
 
+<h2>Exemplo de validação de IE</h2>
+<textarea class="java" name="code" readonly="readonly">
+    @IE
+    public class PrestadoraDeServicos {
+        
+        private String ie;
+
+        private String estado;
+
+        public PrestadoraDeServicos(String ie, String estado) {
+            this.ie = ie;
+            this.estado = estado;
+        }
+
+        public String getIe() {
+            return ie;
+        }
+
+        public String getEstado() {
+            return estado;
+        }
+    }
+</textarea>
+Por padrão o validador busca os dados através dos métodos getIe() e getEstado().
+Opcionalmente, podemos redefinir as propriedades através da anotação.
+<textarea class="java" name="code" readonly="readonly">
+@IE(ieField="inscricaoEstadual" , estadoField="estadoDaInscricaoEstadual")
+public class PrestadoraDeServicos {
+        
+        private String ie;
+
+        private String estado;
+
+        public PrestadoraDeServicos(String ie, String estado) {
+            this.ie = ie;
+            this.estado = estado;
+        }
+
+        public String getInscricaoEstadual() {
+            return ie;
+        }
+
+        public String getEstadoDaInscricaoEstadual() {
+            return estado;
+        }
+    }
+</textarea>
 </body>
