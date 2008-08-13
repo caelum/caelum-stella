@@ -91,6 +91,20 @@ public class Teste {
 }
 </textarea>
 
+<h2>Gerando um Documento PDF com varios Boletos</h2>
+
+<textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
+		Boleto[] boletos = {boletoDeJaneiro,boletoDeFevereiro,boletoDeMarco};
+		BoletoGenerator gerador = new BoletoGenerator(boletos);
+		gerador.toPDF("boletos.pdf");
+</textarea>
+
+De forma análoga, podemos também utilizar o recurso de <i>var args</i>.
+<textarea rows="10" cols="65" class="java" name="code" readonly="readonly">
+		new BoletoGenerator(boletoDeJaneiro,boletoDeFevereiro,boletoDeMarco).toPDF("boletos.pdf");
+</textarea>
+
+
 <h2>Termos Relevantes</h2>
 <ul>
 	<li>Aceite: diz se o banco deve aceitar o boleto após a data de vencimento. Padrão: 'N'</li>
