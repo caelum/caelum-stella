@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
- *
+ * 
  */
 public class IntegerNumericToWordsConverterTest {
 
@@ -108,14 +108,12 @@ public class IntegerNumericToWordsConverterTest {
                 "um milhão, vinte e três mil e oitocentos e cinquenta inteiros",
                 actual);
     }
-    
+
     @Test
     public void shouldTransformTwoMillionUsingPlural() {
         double twoHundred = 2e6;
         String actual = converter.toWords(twoHundred);
-        assertEquals(
-                "dois milhões de inteiros",
-                actual);
+        assertEquals("dois milhões de inteiros", actual);
     }
 
     @Test

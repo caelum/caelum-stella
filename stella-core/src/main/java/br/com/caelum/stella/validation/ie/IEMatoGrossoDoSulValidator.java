@@ -45,8 +45,7 @@ public class IEMatoGrossoDoSulValidator extends BaseValidator<String> {
     private final boolean isFormatted;
 
     /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador 
-     * Exemplo: 28.303.759-8
+     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 28.303.759-8
      */
 
     public static final Pattern FORMATED = Pattern
@@ -68,7 +67,7 @@ public class IEMatoGrossoDoSulValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IEMatoGrossoDoSulValidator(boolean isFormatted) {
         super();

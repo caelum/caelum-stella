@@ -52,8 +52,9 @@ public class IERoraimaValidator extends BaseValidator<String> {
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
      * mensagens.
-     *
-     * @param formatted considerar cadeia formatada quando <code>true</code>
+     * 
+     * @param formatted
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IERoraimaValidator(boolean formatted) {
         this.isFormatted = formatted;

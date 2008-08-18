@@ -54,7 +54,7 @@ public class IESantaCatarinaValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IESantaCatarinaValidator(boolean isFormatted) {
         super();

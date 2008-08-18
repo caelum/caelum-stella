@@ -40,8 +40,8 @@ public class ResourceBundleMessageProducer implements MessageProducer {
 
     /**
      * @param bundle
-     *                ResourceBlunde que contém o mapa que associa erros as
-     *                mensagens.
+     *            ResourceBlunde que contém o mapa que associa erros as
+     *            mensagens.
      */
     public ResourceBundleMessageProducer(final ResourceBundle bundle) {
         this.bundle = bundle;
@@ -77,7 +77,7 @@ public class ResourceBundleMessageProducer implements MessageProducer {
      * </p>
      * 
      * @param locale
-     *                a ser usado na conversão para minúsculo
+     *            a ser usado na conversão para minúsculo
      * @param errorClass
      * @param error
      * @return chave que representa o erro a ser usada para recuperar sua

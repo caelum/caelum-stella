@@ -45,8 +45,7 @@ public class IEMaranhaoValidator extends BaseValidator<String> {
     private final boolean isFormatted;
 
     /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador 
-     * Exemplo: 
+     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo:
      */
 
     public static final Pattern FORMATED = Pattern
@@ -68,7 +67,7 @@ public class IEMaranhaoValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IEMaranhaoValidator(boolean isFormatted) {
         super();

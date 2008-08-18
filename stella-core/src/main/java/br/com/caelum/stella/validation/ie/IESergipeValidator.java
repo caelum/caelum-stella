@@ -55,7 +55,7 @@ public class IESergipeValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IESergipeValidator(boolean isFormatted) {
         super();

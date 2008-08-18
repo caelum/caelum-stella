@@ -53,9 +53,10 @@ public class CNPJValidator extends BaseValidator<String> {
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
      * mensagens.
+     * 
      * @param isFormatted
-     *                considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd"
-     *                onde "d" é um dígito decimal.
+     *            considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd" onde
+     *            "d" é um dígito decimal.
      */
     public CNPJValidator(boolean isFormatted) {
         super();
@@ -69,10 +70,10 @@ public class CNPJValidator extends BaseValidator<String> {
      * <p>
      * 
      * @param messageProducer
-     *                produtor de mensagem de erro.
+     *            produtor de mensagem de erro.
      * @param isFormatted
-     *                considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd"
-     *                onde "d" é um dígito decimal.
+     *            considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd" onde
+     *            "d" é um dígito decimal.
      */
     public CNPJValidator(MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);

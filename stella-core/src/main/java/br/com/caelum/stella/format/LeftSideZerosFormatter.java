@@ -17,8 +17,8 @@ public class LeftSideZerosFormatter implements Formatter {
 
     /**
      * @param formatedLength
-     *                tamanaho da cadeia a ser retornada quando se chama o
-     *                metodo {@link #format(String)}
+     *            tamanaho da cadeia a ser retornada quando se chama o metodo
+     *            {@link #format(String)}
      */
     public LeftSideZerosFormatter(int formatedLength) {
         super();

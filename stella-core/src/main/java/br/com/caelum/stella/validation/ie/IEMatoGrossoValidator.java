@@ -51,7 +51,7 @@ public class IEMatoGrossoValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IEMatoGrossoValidator(boolean isFormatted) {
         super();

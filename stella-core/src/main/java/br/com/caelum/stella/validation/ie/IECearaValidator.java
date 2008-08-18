@@ -47,8 +47,7 @@ public class IECearaValidator extends BaseValidator<String> {
     /*
      * Formato: 8 dígitos+1 dígito verificador
      * 
-     * Exemplo: CGF número 06000001-5
-     * Exemplo Formatado: 06.998.161-2
+     * Exemplo: CGF número 06000001-5 Exemplo Formatado: 06.998.161-2
      */
 
     public static final Pattern FORMATED = Pattern
@@ -70,7 +69,7 @@ public class IECearaValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IECearaValidator(boolean isFormatted) {
         super();

@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Victor Santos
- *
+ * 
  */
 public final class Messages {
     private static final String BUNDLE_NAME = "br.com.caelum.stella.inwords.messages"; //$NON-NLS-1$

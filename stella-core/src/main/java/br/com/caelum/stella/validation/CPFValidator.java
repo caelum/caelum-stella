@@ -95,10 +95,10 @@ public class CPFValidator extends BaseValidator<String> {
      * </p>
      * 
      * @param messageProducer
-     *                produtor de mensagem de erro.
+     *            produtor de mensagem de erro.
      * @param isFormatted
-     *                considera cadeia no formato de CPF: "ddd.ddd.ddd-dd" onde
-     *                "d" é um dígito decimal.
+     *            considera cadeia no formato de CPF: "ddd.ddd.ddd-dd" onde "d"
+     *            é um dígito decimal.
      */
     public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);
@@ -108,13 +108,13 @@ public class CPFValidator extends BaseValidator<String> {
 
     /**
      * @param messageProducer
-     *                produtor de mensagem de erro.
+     *            produtor de mensagem de erro.
      * @param isFormatted
-     *                condição para considerar cadeia no formato de CPF:
-     *                "ddd.ddd.ddd-dd" onde "d" é um dígito decimal.
+     *            condição para considerar cadeia no formato de CPF:
+     *            "ddd.ddd.ddd-dd" onde "d" é um dígito decimal.
      * @param isIgnoringRepeatedDigits
-     *                condição para ignorar cadeias de CPF com todos os dígitos
-     *                repetidos.
+     *            condição para ignorar cadeias de CPF com todos os dígitos
+     *            repetidos.
      */
     public CPFValidator(MessageProducer messageProducer, boolean isFormatted,
             boolean isIgnoringRepeatedDigits) {

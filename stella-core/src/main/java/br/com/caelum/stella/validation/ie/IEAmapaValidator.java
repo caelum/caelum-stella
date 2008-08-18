@@ -135,7 +135,7 @@ public class IEAmapaValidator extends BaseValidator<String> {
          * 
          * De 03017001X a 03019022X => CASO 2
          * 
-         * De 03019023X em diante  => CASO 3
+         * De 03019023X em diante => CASO 3
          */
         String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
                 .format(value);

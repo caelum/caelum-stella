@@ -3,7 +3,7 @@ package br.com.caelum.stella.inwords;
 /**
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
- *
+ * 
  */
 public class FormatoDeReal implements FormatoDeExtenso {
 

@@ -16,7 +16,7 @@ public interface Formatter {
      * </p>
      * 
      * @param value
-     *                cadeia sem formatado
+     *            cadeia sem formatado
      * @return cadeia formatada
      */
     public abstract String format(String value);
@@ -29,7 +29,7 @@ public interface Formatter {
      * </p>
      * 
      * @param cadeia
-     *                formatada
+     *            formatada
      * @return cadeia sem formato
      */
     public abstract String unformat(String value);

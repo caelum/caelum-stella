@@ -76,9 +76,9 @@ public class IEAcreValidator extends BaseValidator<String> {
             .compile("(01)(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
 
     /**
-    * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
-    * {@linkplain SimpleMessageProducer} para geração de mensagens.
-    */
+     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
     public IEAcreValidator() {
         this(true);
     }
@@ -88,7 +88,7 @@ public class IEAcreValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IEAcreValidator(boolean isFormatted) {
         this.isFormatted = isFormatted;

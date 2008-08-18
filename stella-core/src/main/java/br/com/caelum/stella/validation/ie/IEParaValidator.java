@@ -45,8 +45,7 @@ public class IEParaValidator extends BaseValidator<String> {
     private final boolean isFormatted;
 
     /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador
-     * Exemplo: 15.999.999-5
+     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
      */
 
     public static final Pattern FORMATED = Pattern
@@ -68,7 +67,7 @@ public class IEParaValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IEParaValidator(boolean isFormatted) {
         super();

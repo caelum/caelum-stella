@@ -70,7 +70,7 @@ public class IERioGrandeDoNorteValidator extends BaseValidator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IERioGrandeDoNorteValidator(boolean isFormatted) {
         super();

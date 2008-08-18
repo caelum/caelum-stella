@@ -27,7 +27,7 @@ public class IESaoPauloValidator implements Validator<String> {
      * mensagens.
      * 
      * @param isFormatted
-     *                considerar cadeia formatada quando <code>true</code>
+     *            considerar cadeia formatada quando <code>true</code>
      */
     public IESaoPauloValidator(boolean isFormatted) {
         this(new SimpleMessageProducer(), isFormatted);

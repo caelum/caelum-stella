@@ -80,10 +80,10 @@ public class NITValidator extends BaseValidator<String> {
      * </p>
      * 
      * @param messageProducer
-     *                produtor de mensagem de erro.
+     *            produtor de mensagem de erro.
      * @param isFormatted
-     *                considera cadeia no formato de NIT: "ddd.ddddd.dd-d" onde
-     *                "d" é um dígito decimal.
+     *            considera cadeia no formato de NIT: "ddd.ddddd.dd-d" onde "d"
+     *            é um dígito decimal.
      */
     public NITValidator(MessageProducer messageProducer, boolean isFormatted) {
         super(messageProducer);
