@@ -15,8 +15,24 @@ public class NumericToWordsConverter {
         this.formato = formato;
     }
 
-    public String toWords(long numero) {
-        return toWords((double) numero);
+    public String toWords(long number) {
+        StringBuffer result = new StringBuffer();
+        if (number == 0) {
+            result.append(getNumber(0));
+        } else {
+            DecimalFormat formatter = new DecimalFormat("###,###");
+            String formattedInt = formatter.format(number);
+            String[] ints = formattedInt.split("[,]");
+            ThousandBlock[] blocks = new ThousandBlock[ints.length];
+            for (int i = 0; i < blocks.length; i++) {
+                String block = ints[i];
+                blocks[i] = new ThousandBlock(block);
+            }
+
+            appendIntegers(result, blocks);
+            appendIntegersUnits(number, result, blocks);
+        }
+        return result.toString();
     }
 
     public String toWords(double number) {
@@ -25,23 +41,17 @@ public class NumericToWordsConverter {
             result.append(getNumber(0));
         } else {
 
-            final StringBuffer pattern = new StringBuffer();
-            pattern.append("###,000.");
-            for (int i = 1; i <= formato.getCasasDecimais(); i++) {
-                pattern.append("0");
-            }
-            DecimalFormat decimalFormat = new DecimalFormat(pattern.toString());
-            String formatted = decimalFormat.format(number);
-            String[] parts = formatted.split("[.]");
+            String[] parts = split(number);
             String formattedInt = parts[0];
-            String formattedMod = parts[1];
             String[] ints = formattedInt.split("[,]");
             ThousandBlock[] blocks = new ThousandBlock[ints.length];
             for (int i = 0; i < blocks.length; i++) {
                 String block = ints[i];
                 blocks[i] = new ThousandBlock(block);
             }
+            String formattedMod = parts[1];
             ThousandBlock modBlock = new ThousandBlock(formattedMod);
+
             boolean hasMod = !modBlock.isZero();
             boolean hasInteger = (blocks.length > 1)
                     || (!blocks[blocks.length - 1].isZero());
@@ -55,22 +65,38 @@ public class NumericToWordsConverter {
             }
             if (hasMod) {
                 appendIntegers(result, modBlock);
-                result.append(" ");
-                if (modBlock.isUnitary()) {
-                    result.append(formato.getDecimal());
-                } else {
-                    result.append(formato.getDecimais());
-                }
+                appendDecimalUnits(result, modBlock);
             }
         }
         return result.toString();
+    }
+
+    private void appendDecimalUnits(StringBuffer result, ThousandBlock modBlock) {
+        result.append(" ");
+        if (modBlock.isUnitary()) {
+            result.append(formato.getDecimal());
+        } else {
+            result.append(formato.getDecimais());
+        }
+    }
+
+    private String[] split(double number) {
+        final StringBuffer pattern = new StringBuffer();
+        pattern.append("###,000.");
+        for (int i = 1; i <= formato.getCasasDecimais(); i++) {
+            pattern.append("0");
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(pattern.toString());
+        String formatted = decimalFormat.format(number);
+        String[] parts = formatted.split("[.]");
+        return parts;
     }
 
     private void appendIntegersUnits(double number, StringBuffer result,
             ThousandBlock[] blocks) {
         if (blocks.length != 1 || !blocks[0].isZero()) {
             result.append(" ");
-            if (number >= 2) {
+            if (number > 1) {
                 int length = blocks.length;
                 if (length > 2 && blocks[length - 1].isZero()
                         && blocks[length - 2].isZero()) {
@@ -144,15 +170,7 @@ public class NumericToWordsConverter {
             if (numberValue <= 20) {
                 result = NumericToWordsConverter.this.getNumber(numberValue);
             } else if (numberValue <= 99) {
-                int d = numberValue / 10;
-                int u = numberValue % 10;
-                String dezena = NumericToWordsConverter.this.getNumber(d * 10);
-                if (u == 0) {
-                    result = dezena;
-                } else {
-                    String unidade = NumericToWordsConverter.this.getNumber(u);
-                    result = dezena + getAndSeparator() + unidade;
-                }
+                result = getNumberUnder100(numberValue);
             } else if (numberValue == 100) {
                 result = NumericToWordsConverter.this.getNumber(100);
             } else {
@@ -168,7 +186,25 @@ public class NumericToWordsConverter {
                     result = centena;
                 } else {
                     result = centena + getAndSeparator()
-                            + getThousandBlockInWords("" + resto);
+                            + getNumberUnder100(resto);
+                }
+            }
+            return result;
+        }
+
+        private String getNumberUnder100(int number) {
+            String result = null;
+            if (number <= 20) {
+                result = getNumber(number);
+            } else if (number <= 99) {
+                int d = number / 10;
+                int u = number % 10;
+                String dezena = getNumber(d * 10);
+                if (u == 0) {
+                    result = dezena;
+                } else {
+                    String unidade = getNumber(u);
+                    result = dezena + getAndSeparator() + unidade;
                 }
             }
             return result;
@@ -189,42 +225,8 @@ public class NumericToWordsConverter {
     }
 
     private String getNumber(int number) {
-        DecimalFormat formater = new DecimalFormat();
-        formater.applyPattern("000");
+        DecimalFormat formater = new DecimalFormat("000");
         String formatted = formater.format(number);
         return Messages.getString("Extenso." + formatted);
-    }
-
-    private String getThousandBlockInWords(String number) {
-
-        String result;
-        int value = Integer.parseInt(number);
-        if (value <= 20) {
-            result = this.getNumber(value);
-        } else if (value <= 99) {
-            int d = value / 10;
-            int u = value % 10;
-            String dezena = this.getNumber(d * 10);
-            if (u == 0) {
-                result = dezena;
-            } else {
-                String unidade = this.getNumber(u);
-                result = dezena + getAndSeparator() + unidade;
-            }
-        } else if (value == 100) {
-            result = this.getNumber(100);
-        } else {
-            int c = (value / 100) * 100;
-            String centena = (c == 100) ? this.getString("100+?") : this
-                    .getNumber(c);
-            int resto = value % 100;
-            if (resto == 0) {
-                result = centena;
-            } else {
-                result = centena + getAndSeparator()
-                        + getThousandBlockInWords("" + resto);
-            }
-        }
-        return result;
     }
 }
