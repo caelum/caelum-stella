@@ -17,18 +17,9 @@
   <h:form id="formulario">
 
     <h:panelGrid>
-      <h:messages/>
 
       <h:outputText value="Selecione um estado:"/>
-      
-      <!--
-        O valueChangeListener precisa ser immediate="true", para que o valor do estado seja preenchido no componente
-        validador, antes da validação ocorrer.
-
-        Caso o componente não tenha immediate="true", o valor do estado será preenchido no componente validador apenas
-        depois da validação ter ocorrido.
-      -->
-      <h:selectOneMenu id="estado" valueChangeListener="#{EmpresaBean.atualizaEstadoNoValidador}" immediate="true">
+      <h:selectOneMenu id="estado">
         <f:selectItem itemValue="" itemLabel=""/>
         <f:selectItem itemValue="SP" itemLabel="SP"/>
         <f:selectItem itemValue="RJ" itemLabel="RJ"/>
@@ -39,12 +30,20 @@
 
       <h:outputLabel value="IE sem formatacao:" for="ie"/>
       <h:inputText id="ie" value="#{EmpresaBean.ie}">
-        <stella:validateIE formatted="false" binding="#{EmpresaBean.ieValidator}" />
+        <stella:validateIE estadoComponentId="formulario:estado" formatted="false"/>
       </h:inputText>
+      <h:message for="ie"/>
+
+      <h:outputLabel value="IE com formatacao:" for="ieFormatado"/>
+      <h:inputText id="ieFormatado" value="#{EmpresaBean.ieFormatado}">
+        <stella:validateIE estadoComponentId="formulario:estado" formatted="true"/>
+      </h:inputText>
+      <h:message for="ieFormatado"/>
 
     </h:panelGrid>
 
     <h:commandButton value="Enviar"/>
+    <h:messages/>
   </h:form>
 
   <jsp:include page="/exemplos-IE.jsp" />

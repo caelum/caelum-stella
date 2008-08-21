@@ -16,6 +16,7 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.After;
 
 /**
  * StellaIEValidator integration tests
@@ -29,20 +30,34 @@ public class StellaIEValidatorTest {
 	private FacesContextMocker facesContextMocker;
 
 	@Before
-	public void iIE() {
+	public void init() {
 		mockery = new Mockery();
 		facesContextMocker = new FacesContextMocker(mockery);
 		this.validator = new StellaIEValidator();
 	}
 
-	@Test
+    @After
+    public void end() {
+        mockery.assertIsSatisfied();
+    }
+
+    @Test
+    public void shouldIgnoreComponentIdWhenEstadoIsFilled() {
+        // estado tem prioridade sobre o estadoComponentId
+        FacesContext context = mockery.mock(FacesContext.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+        UIComponent component = mockery.mock(UIComponent.class);
+        validator.setEstado("SP");
+        validator.validate(context, component, "P011004243002");
+    }
+
+    @Test
 	public void shouldNotThrowValidatorExceptionForValidIE() throws Exception {
 		final FacesContext context = mockery.mock(FacesContext.class);
 		final UIComponent component = mockery.mock(UIComponent.class);
 		final UIInput valueHolder = mockery.mock(UIInput.class);
 		final String estadoComponentId = "form:estado";
-		facesContextMocker.mockMessageBundle(context, "messages", Locale
-				.getDefault());
+		facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
 		mockery.checking(new Expectations() {
 			{
 				one(context.getViewRoot()).findComponent(estadoComponentId);
@@ -53,7 +68,6 @@ public class StellaIEValidatorTest {
 		});
 		validator.setEstadoComponentId(estadoComponentId);
 		validator.validate(context, component, "P011004243002");
-		mockery.assertIsSatisfied();
 	}
 
 	@Test
@@ -81,7 +95,6 @@ public class StellaIEValidatorTest {
 			// it should throw exception for invalid IE
 			FacesMessage message = e.getFacesMessage();
 			assertEquals("IE Invalido", message.getSummary());
-			mockery.assertIsSatisfied();
 		}
 	}
 
@@ -110,7 +123,6 @@ public class StellaIEValidatorTest {
 			// it should throw exception for invalid IE
 			FacesMessage message = e.getFacesMessage();
 			assertEquals("Invalid IE", message.getSummary());
-			mockery.assertIsSatisfied();
 		}
 	}
 

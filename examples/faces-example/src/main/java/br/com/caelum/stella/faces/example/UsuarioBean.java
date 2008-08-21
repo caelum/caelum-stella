@@ -1,5 +1,9 @@
 package br.com.caelum.stella.faces.example;
 
+import br.com.caelum.stella.faces.validation.StellaIEValidator;
+
+import javax.faces.event.ValueChangeEvent;
+
 /**
  * Managed bean que recebe o cpf do formulario
  *
@@ -19,10 +23,6 @@ public class UsuarioBean {
     private String nit;
 
     private String nitFormatado;
-
-    private String ie;
-
-    private String ieFormatado;
 
     public String getCpf() {
         return cpf;
@@ -70,22 +70,6 @@ public class UsuarioBean {
 
     public void setNitFormatado(String nitFormatado) {
         this.nitFormatado = nitFormatado;
-    }
-
-    public String getIeFormatado() {
-        return ieFormatado;
-    }
-
-    public void setIeFormatado(String ieFormatado) {
-        this.ieFormatado = ieFormatado;
-    }
-
-    public String getIe() {
-        return ie;
-    }
-
-    public void setIe(String ie) {
-        this.ie = ie;
     }
 
 }

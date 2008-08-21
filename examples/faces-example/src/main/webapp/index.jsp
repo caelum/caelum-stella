@@ -27,8 +27,9 @@
 <h2>Validadores de IE</h2>
 <ul>
   <li><a href="faces/validadorDeIE.jsp">[JSP] Validador de IE</a></li>
-  <li><a href="faces/validadorDeIE.xhtml">[Facelets] Validador de IE</a></li>
-  <li><a href="faces/StellaIEValidator.jsp">Validador de IE pelo ID</a></li>
+  <li><a href="faces/validadorDeIEUsandoId.jsp">
+    [JSP] Validador de IE usando id do componente que guarda o estado
+  </a></li>
 </ul>
 
 </body>
