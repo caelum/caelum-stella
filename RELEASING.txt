@@ -16,6 +16,8 @@ configure a senha para o servidor da Caelum no seu ~/.m2/settings.xml:
   </servers>
 </settings>
 
+SITE TECNICO (gerado pelo MAVEN)
+================================
 mvn site:site
 mvn site:deploy
 
@@ -30,3 +32,4 @@ SINCRONIZANDO SERVIDOR MAVEN
 ============================
 mvn deploy
 (demora alguns dias para refletir)
+(caso a versao nos pom.xml estiver como -SNAPSHOT, o release será feito no snapshot-repository)
