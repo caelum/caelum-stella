@@ -80,7 +80,7 @@ public class RealNumericToWordsConverterTest {
         double thousand = 1000;
         String actual = converter.toWords(thousand);
         ;
-        assertEquals("mil reais", actual);
+        assertEquals("um mil reais", actual);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class RealNumericToWordsConverterTest {
         double thousand = 1031;
         String actual = converter.toWords(thousand);
         ;
-        assertEquals("mil e trinta e um reais", actual);
+        assertEquals("um mil e trinta e um reais", actual);
     }
 
     @Test
@@ -132,17 +132,18 @@ public class RealNumericToWordsConverterTest {
         assertEquals("dez centavos", actual);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldTruncAndTransformANumberInWordsUsingFraction() {
+    @Test
+    public void shouldRoundAndTransformANumberInWordsUsingFraction() {
         double twoHundred = 0.229;
-        converter.toWords(twoHundred);
+        String words = converter.toWords(twoHundred);
+        assertEquals("vinte e três centavos", words);
     }
 
     @Test
     public void shouldTransformAThousandAndOne() {
         double number = 1001;
         String words = converter.toWords(number);
-        assertEquals("mil e um reais", words);
+        assertEquals("um mil e um reais", words);
     }
 
     @Test
@@ -178,18 +179,6 @@ public class RealNumericToWordsConverterTest {
         double number = 1e18;
         String words = converter.toWords(number);
         assertEquals("um quintilhão de reais", words);
-    }
-
-    @Test
-    public void shouldTransform999999999999999999L() {
-        long number = 999999999999999999L;
-        String words = converter.toWords(number);
-        assertEquals("novecentos e noventa e nove quatrilhões, "
-                + "novecentos e noventa e nove trilhões, "
-                + "novecentos e noventa e nove bilhões, "
-                + "novecentos e noventa e nove milhões, "
-                + "novecentos e noventa e nove mil e "
-                + "novecentos e noventa e nove reais", words);
     }
 
 }

@@ -74,14 +74,14 @@ public class IntegerNumericToWordsConverterTest {
     public void shouldTransformThousandInWords() {
         double thousand = 1000;
         String actual = converter.toWords(thousand);
-        assertEquals("mil inteiros", actual);
+        assertEquals("um mil inteiros", actual);
     }
 
     @Test
     public void shouldTransformThousandInWordsUsingAnd() {
         double thousand = 1031;
         String actual = converter.toWords(thousand);
-        assertEquals("mil e trinta e um inteiros", actual);
+        assertEquals("um mil e trinta e um inteiros", actual);
     }
 
     @Test

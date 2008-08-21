@@ -16,58 +16,183 @@ public class NumericToWordsConverter {
     }
 
     public String toWords(long numero) {
-        return this.getFullLongNumberInWords(numero, false);
+        return toWords((double) numero);
     }
 
     public String toWords(double number) {
+        StringBuffer result = new StringBuffer();
+        if (number == 0) {
+            result.append(getNumber(0));
+        } else {
 
-        // formata o numero no padrao: 0.0###### e o separa em duas partes
-        DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.applyPattern("0.0######");
-        char decimalSeparator = decimalFormat.getDecimalFormatSymbols()
-                .getDecimalSeparator();
-        String[] parts = (decimalFormat.format(number)).split("["
-                + decimalSeparator + "]");
+            final StringBuffer pattern = new StringBuffer();
+            pattern.append("###,000.");
+            for (int i = 1; i <= formato.getCasasDecimais(); i++) {
+                pattern.append("0");
+            }
+            DecimalFormat decimalFormat = new DecimalFormat(pattern.toString());
+            String formatted = decimalFormat.format(number);
+            String[] parts = formatted.split("[.]");
+            String formattedInt = parts[0];
+            String formattedMod = parts[1];
+            String[] ints = formattedInt.split("[,]");
+            ThousandBlock[] blocks = new ThousandBlock[ints.length];
+            for (int i = 0; i < blocks.length; i++) {
+                String block = ints[i];
+                blocks[i] = new ThousandBlock(block);
+            }
+            ThousandBlock modBlock = new ThousandBlock(formattedMod);
+            boolean hasMod = !modBlock.isZero();
+            boolean hasInteger = (blocks.length > 1)
+                    || (!blocks[blocks.length - 1].isZero());
 
-        // se a parte fracionada for "0" altera para ""
-        parts[1] = (parts[1].equals("0") ? "" : parts[1]);
+            if (hasInteger) {
+                appendIntegers(result, blocks);
+                appendIntegersUnits(number, result, blocks);
+            }
+            if (hasInteger && hasMod) {
+                result.append(getAndSeparator());
+            }
+            if (hasMod) {
+                appendIntegers(result, modBlock);
+                result.append(" ");
+                if (modBlock.isUnitary()) {
+                    result.append(formato.getDecimal());
+                } else {
+                    result.append(formato.getDecimais());
+                }
+            }
+        }
+        return result.toString();
+    }
 
-        // formata o fracionado com o numero de casas decimais especificas
-        for (int i = parts[1].length(); i < formato.getCasasDecimais(); i++) {
-            parts[1] += "0";
+    private void appendIntegersUnits(double number, StringBuffer result,
+            ThousandBlock[] blocks) {
+        if (blocks.length != 1 || !blocks[0].isZero()) {
+            result.append(" ");
+            if (number >= 2) {
+                int length = blocks.length;
+                if (length > 2 && blocks[length - 1].isZero()
+                        && blocks[length - 2].isZero()) {
+                    result.append("de ");
+                }
+                result.append(formato.getUnidades());
+            } else {
+                result.append(formato.getUnidade());
+            }
+        }
+    }
+
+    private void appendIntegers(StringBuffer result, ThousandBlock... blocks) {
+        boolean hasStarted = false;
+        for (int i = 0; i < blocks.length; i++) {
+            ThousandBlock thousandBlock = blocks[i];
+            if (!(hasStarted && thousandBlock.isZero())) {
+                int thousandPower = (blocks.length - i - 1);
+                if (hasStarted) {
+                    if (thousandBlock.isUnitary()) {
+                        result.append(getAndSeparator());
+                    } else {
+                        if (thousandPower < 1) {
+                            result.append(getAndSeparator());
+                        } else {
+                            result.append(getThousandSeparator());
+                        }
+                    }
+                }
+
+                result.append(thousandBlock.toWords());
+
+                if (thousandPower > 0) {
+                    result.append(" ");
+                    result.append(this.getString("1e"
+                            + 3
+                            * thousandPower
+                            + "."
+                            + (thousandBlock.isUnitary() ? "singular"
+                                    : "plural")));
+                }
+                hasStarted = true;
+            }
+        }
+    }
+
+    private final class ThousandBlock {
+
+        private int numberValue;
+
+        public ThousandBlock(String number) {
+            super();
+            if (number.length() > 3) {
+                throw new IllegalArgumentException(
+                        "ThousandBlock deve conter numeros"
+                                + " de no maximo 3 digitos.");
+            }
+            this.numberValue = Integer.parseInt(number);
         }
 
-        // retorna o extenso passando os parametros: parte inteira e fracionada
-        return this.toWords(Long.parseLong(parts[0]), Long.parseLong(parts[1]));
+        public boolean isZero() {
+            return numberValue == 0;
+        }
+
+        public boolean isUnitary() {
+            return numberValue == 1;
+        }
+
+        public String toWords() {
+            String result;
+            if (numberValue <= 20) {
+                result = NumericToWordsConverter.this.getNumber(numberValue);
+            } else if (numberValue <= 99) {
+                int d = numberValue / 10;
+                int u = numberValue % 10;
+                String dezena = NumericToWordsConverter.this.getNumber(d * 10);
+                if (u == 0) {
+                    result = dezena;
+                } else {
+                    String unidade = NumericToWordsConverter.this.getNumber(u);
+                    result = dezena + getAndSeparator() + unidade;
+                }
+            } else if (numberValue == 100) {
+                result = NumericToWordsConverter.this.getNumber(100);
+            } else {
+                int c = (numberValue / 100) * 100;
+                String centena;
+                if (c == 100) {
+                    centena = NumericToWordsConverter.this.getString("100+?");
+                } else {
+                    centena = NumericToWordsConverter.this.getNumber(c);
+                }
+                int resto = numberValue % 100;
+                if (resto == 0) {
+                    result = centena;
+                } else {
+                    result = centena + getAndSeparator()
+                            + getThousandBlockInWords("" + resto);
+                }
+            }
+            return result;
+        }
+
+    }
+
+    private String getThousandSeparator() {
+        return getString("sep.mil");
+    }
+
+    private String getAndSeparator() {
+        return getString("sep");
     }
 
     private String getString(String paramMessage) {
         return Messages.getString("Extenso." + paramMessage);
     }
 
-    private String getUnit(boolean isUnitary, boolean isFraction) {
-        String result;
-        if (isFraction) {
-            result = (isUnitary ? formato.getDecimal() : formato.getDecimais());
-        } else {
-            result = (isUnitary ? formato.getUnidade() : formato.getUnidades());
-        }
-        return result;
-    }
-
-    private String getAndSeparator() {
-        return this.getString("sep");
-    }
-
-    private String getThousandSeparator(boolean isFirstGroup) {
-        return (isFirstGroup ? getAndSeparator() : this.getString("sep.mil"));
-    }
-
-    private String getThousandSuffixInWords(int thousandPower,
-            boolean isUnitary, boolean isFraction) {
-        return (thousandPower == 0 ? this.getUnit(isUnitary, isFraction) : this
-                .getString("1e" + 3 * thousandPower + "."
-                        + (isUnitary ? "singular" : "plural")));
+    private String getNumber(int number) {
+        DecimalFormat formater = new DecimalFormat();
+        formater.applyPattern("000");
+        String formatted = formater.format(number);
+        return Messages.getString("Extenso." + formatted);
     }
 
     private String getThousandBlockInWords(String number) {
@@ -75,23 +200,23 @@ public class NumericToWordsConverter {
         String result;
         int value = Integer.parseInt(number);
         if (value <= 20) {
-            result = Messages.getString("Extenso." + number);
+            result = this.getNumber(value);
         } else if (value <= 99) {
             int d = value / 10;
             int u = value % 10;
-            String dezena = Messages.getString("Extenso." + d * 10);
+            String dezena = this.getNumber(d * 10);
             if (u == 0) {
                 result = dezena;
             } else {
-                String unidade = Messages.getString("Extenso." + u);
+                String unidade = this.getNumber(u);
                 result = dezena + getAndSeparator() + unidade;
             }
         } else if (value == 100) {
-            result = Messages.getString("Extenso.100");
+            result = this.getNumber(100);
         } else {
             int c = (value / 100) * 100;
-            String centena = (c == 100) ? Messages.getString("Extenso.100+?")
-                    : Messages.getString("Extenso." + c);
+            String centena = (c == 100) ? this.getString("100+?") : this
+                    .getNumber(c);
             int resto = value % 100;
             if (resto == 0) {
                 result = centena;
@@ -102,77 +227,4 @@ public class NumericToWordsConverter {
         }
         return result;
     }
-
-    private String getThousandBlockWithSuffixInWords(int thousandGroup,
-            int thousandPower, boolean isUnitary, boolean isFraction) {
-        String result;
-        if (thousandPower == 0) {
-            result = this.getThousandSuffixInWords(thousandPower, isUnitary,
-                    isFraction);
-        } else {
-            result = this.getThousandSuffixInWords(thousandPower,
-                    thousandGroup == 1, isFraction);
-        }
-        if ((thousandPower != 1) || (thousandGroup != 1)) {
-            result = (this.getThousandBlockInWords("" + thousandGroup) + " " + result)
-                    .trim();
-        }
-        return result;
-    }
-
-    private String getFullLongNumberInWords(long number, boolean isFraction) {
-        String result;
-        if (number == 0) {
-            result = this.getThousandBlockInWords("0");
-        } else {
-            result = "";
-            boolean isFirstThousandGroup = true;
-            int thousandPower = 0;
-            long currentWorkingValue = number;
-            while (currentWorkingValue > 0) {
-                int thousandGroup = (int) (currentWorkingValue % 1000);
-                if ((thousandGroup != 0)) {
-                    if (!result.equals("")) {
-                        result = this
-                                .getThousandSeparator(isFirstThousandGroup)
-                                + result;
-                        isFirstThousandGroup = false;
-                    }
-                    if (result.equals("") && !formato.getUnidade().equals("")) {
-                        if (thousandPower > 0) {
-                            result = (thousandPower == 1 ? " " : " de ")
-                                    + this.getUnit(false, isFraction);
-                        }
-                    }
-                    result = this.getThousandBlockWithSuffixInWords(
-                            thousandGroup, thousandPower,
-                            currentWorkingValue == 1, isFraction)
-                            + result;
-                }
-                thousandPower++;
-                currentWorkingValue /= 1000;
-            }
-        }
-        return result;
-    }
-
-    private String toWords(long inteiro, long fracionado) {
-        if (Long.valueOf(fracionado).toString().length() > formato
-                .getCasasDecimais()) {
-            throw new IllegalArgumentException(
-                    "Quantidade de algarismos significativos excede o permitido.");
-        }
-        String result = "";
-        if (inteiro != 0 || fracionado == 0) {
-            result = this.toWords(inteiro);
-        }
-        if (inteiro != 0 && fracionado != 0) {
-            result += getAndSeparator();
-        }
-        if (fracionado != 0) {
-            result += this.getFullLongNumberInWords(fracionado, true);
-        }
-        return result;
-    }
-
 }
