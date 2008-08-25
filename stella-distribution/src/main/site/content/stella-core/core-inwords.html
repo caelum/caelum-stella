@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Rotina de extenso</title>
+</head>
+<body>
+<h2>Transformando Algarismos em Palavras</h2>
+
+<p>Veja abaixo como utilizar a rotina de extenso do Caelum Stella.</p>
+
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+	NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeInteiro());
+	double numero = 1000150.99;
+    String extenso = converter.toWords(numero);
+    System.out.println(extenso);
+</textarea>
+Saída no Console: <b>um milhão e cento e cinquenta inteiros e novecentos e noventa
+milésimos</b>
+<br />
+<h2>Utilizando o Formato De Real</h2>
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+	NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeReal());
+	double numero = 1000150.99;
+    String extenso = converter.toWords(numero);
+    System.out.println(extenso);
+</textarea>
+Saída no Console: <b>um milhão e cento e cinquenta reais e noventa e nove centavos</b>
+</body>
+</html>

@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class IntegerNumericToWordsConverterTest {
 
-    NumericToWordsConverter converter = new NumericToWordsConverter(
+    private final NumericToWordsConverter converter = new NumericToWordsConverter(
             new FormatoDeInteiro());
 
     @Test
