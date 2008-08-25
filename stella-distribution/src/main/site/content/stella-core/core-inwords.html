@@ -12,10 +12,11 @@
 
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
-	NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeInteiro());
-	double numero = 1000150.99;
-    String extenso = converter.toWords(numero);
-    System.out.println(extenso);
+NumericToWordsConverter converter;
+converter = new NumericToWordsConverter(new FormatoDeInteiro());
+double numero = 1000150.99;
+String extenso = converter.toWords(numero);
+System.out.println(extenso);
 </textarea>
 Saída no Console: <b>um milhão e cento e cinquenta inteiros e novecentos e noventa
 milésimos</b>
@@ -24,10 +25,11 @@ milésimos</b>
 
 <textarea rows="10" cols="65" class="java" name="code"
 	readonly="readonly">
-	NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeReal());
-	double numero = 1000150.99;
-    String extenso = converter.toWords(numero);
-    System.out.println(extenso);
+NumericToWordsConverter converter;
+converter = new NumericToWordsConverter(new FormatoDeReal());
+double numero = 1000150.99;
+String extenso = converter.toWords(numero);
+System.out.println(extenso);
 </textarea>
 Saída no Console: <b>um milhão e cento e cinquenta reais e noventa e nove centavos</b>
 </body>
