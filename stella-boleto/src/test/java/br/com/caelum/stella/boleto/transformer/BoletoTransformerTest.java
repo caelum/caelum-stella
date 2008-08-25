@@ -54,6 +54,36 @@ public class BoletoTransformerTest {
 		.withNoDocumento("4323").withInstrucoes(instrucoes)
 		.withLocaisDePagamento(locaisDePagamento);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testMinimumDateForVencimento() throws IOException {
+    	banco = new BancoDoBrasil();
+    	Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+		.withProcessamento(4, 5, 2008).withVencimento(31, 12, 1979);
+    	boleto.withDatas(datas);
+    	boleto = boleto.withBanco(banco);
+    	transforma();
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testMinimumDateForDocumento() throws IOException {
+    	banco = new BancoDoBrasil();
+    	Datas datas = Datas.newDatas().withDocumento(31, 12, 1979)
+		.withProcessamento(4, 5, 2008).withVencimento(25, 8, 2008);
+    	boleto.withDatas(datas);
+    	boleto = boleto.withBanco(banco);
+    	transforma();
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testMinimumDateForProcessamento() throws IOException {
+    	banco = new BancoDoBrasil();
+    	Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+		.withProcessamento(31, 12, 1979).withVencimento(25, 8, 2008);
+    	boleto.withDatas(datas);
+    	boleto = boleto.withBanco(banco);
+    	transforma();
+    }
 
     @Test(expected = NullPointerException.class)
     public void testCriacaoDeBoletoSemDescricoes() {

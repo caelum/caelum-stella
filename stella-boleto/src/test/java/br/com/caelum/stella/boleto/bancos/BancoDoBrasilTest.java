@@ -194,4 +194,5 @@ public class BancoDoBrasilTest {
     public void testGetImage() throws IOException {
 	assertNotNull(banco.getImage());
     }
+    
 }
