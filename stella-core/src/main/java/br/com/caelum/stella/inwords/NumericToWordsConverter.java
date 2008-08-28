@@ -1,6 +1,7 @@
 package br.com.caelum.stella.inwords;
 
 import java.text.DecimalFormat;
+import java.util.MissingResourceException;
 
 /**
  * @author Victor dos Santos Pereira
@@ -16,59 +17,77 @@ public class NumericToWordsConverter {
     }
 
     public String toWords(long number) {
-        StringBuffer result = new StringBuffer();
-        if (number == 0) {
-            result.append(getNumber(0));
-        } else {
-            DecimalFormat formatter = new DecimalFormat("###,###");
-            String formattedInt = formatter.format(number);
-            String[] ints = formattedInt.split("[,]");
-            ThousandBlock[] blocks = new ThousandBlock[ints.length];
-            for (int i = 0; i < blocks.length; i++) {
-                String block = ints[i];
-                blocks[i] = new ThousandBlock(block);
+        try {
+            if (number < 0) {
+                throw new IllegalArgumentException(
+                        "Não é possível transforma número negativos.");
             }
+            StringBuffer result = new StringBuffer();
+            if (number == 0) {
+                result.append(getNumber(0));
+            } else {
+                DecimalFormat formatter = new DecimalFormat("###,###");
+                String formattedInt = formatter.format(number);
+                String[] ints = formattedInt.split("[,]");
+                ThousandBlock[] blocks = new ThousandBlock[ints.length];
+                for (int i = 0; i < blocks.length; i++) {
+                    String block = ints[i];
+                    blocks[i] = new ThousandBlock(block);
+                }
 
-            appendIntegers(result, blocks);
-            appendIntegersUnits(number, result, blocks);
-        }
-        return result.toString();
-    }
-
-    public String toWords(double number) {
-        StringBuffer result = new StringBuffer();
-        if (number == 0) {
-            result.append(getNumber(0));
-        } else {
-
-            String[] parts = split(number);
-            String formattedInt = parts[0];
-            String[] ints = formattedInt.split("[,]");
-            ThousandBlock[] blocks = new ThousandBlock[ints.length];
-            for (int i = 0; i < blocks.length; i++) {
-                String block = ints[i];
-                blocks[i] = new ThousandBlock(block);
-            }
-            String formattedMod = parts[1];
-            ThousandBlock modBlock = new ThousandBlock(formattedMod);
-
-            boolean hasMod = !modBlock.isZero();
-            boolean hasInteger = (blocks.length > 1)
-                    || (!blocks[blocks.length - 1].isZero());
-
-            if (hasInteger) {
                 appendIntegers(result, blocks);
                 appendIntegersUnits(number, result, blocks);
             }
-            if (hasInteger && hasMod) {
-                result.append(getAndSeparator());
-            }
-            if (hasMod) {
-                appendIntegers(result, modBlock);
-                appendDecimalUnits(result, modBlock);
-            }
+            return result.toString();
+        } catch (MissingResourceException e) {
+            throw new IllegalArgumentException(
+                    "Número muito grande para ser transformado em extenso.");
         }
-        return result.toString();
+    }
+
+    public String toWords(double number) {
+        try {
+            if (number < 0) {
+                throw new IllegalArgumentException(
+                        "Não é possível transforma número negativos.");
+            }
+            StringBuffer result = new StringBuffer();
+            if (number == 0) {
+                result.append(getNumber(0));
+            } else {
+
+                String[] parts = split(number);
+                String formattedInt = parts[0];
+                String[] ints = formattedInt.split("[,]");
+                ThousandBlock[] blocks = new ThousandBlock[ints.length];
+                for (int i = 0; i < blocks.length; i++) {
+                    String block = ints[i];
+                    blocks[i] = new ThousandBlock(block);
+                }
+                String formattedMod = parts[1];
+                ThousandBlock modBlock = new ThousandBlock(formattedMod);
+
+                boolean hasMod = !modBlock.isZero();
+                boolean hasInteger = (blocks.length > 1)
+                        || (!blocks[blocks.length - 1].isZero());
+
+                if (hasInteger) {
+                    appendIntegers(result, blocks);
+                    appendIntegersUnits(number, result, blocks);
+                }
+                if (hasInteger && hasMod) {
+                    result.append(getAndSeparator());
+                }
+                if (hasMod) {
+                    appendIntegers(result, modBlock);
+                    appendDecimalUnits(result, modBlock);
+                }
+            }
+            return result.toString();
+        } catch (MissingResourceException e) {
+            throw new IllegalArgumentException(
+                    "Número muito grande para ser transformado em extenso.");
+        }
     }
 
     private void appendDecimalUnits(StringBuffer result, ThousandBlock modBlock) {

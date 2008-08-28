@@ -14,6 +14,35 @@ public class IntegerNumericToWordsConverterTest {
     private final NumericToWordsConverter converter = new NumericToWordsConverter(
             new FormatoDeInteiro());
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldTransformNegativeLong() {
+        long negative = -1;
+        converter.toWords(negative);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotTransformNegativeDouble() {
+        double negative = -1;
+        converter.toWords(negative);
+    }
+
+    @Test
+    public void shouldTransformMaxLong() {
+        long max = Long.MAX_VALUE;
+        String actual = converter.toWords(max);
+        assertEquals(
+                "nove quintilhões, duzentos e vinte e três quatrilhões,"
+                        + " trezentos e setenta e dois trilhões, trinta e seis bilhões,"
+                        + " oitocentos e cinquenta e quatro milhões, setecentos e setenta"
+                        + " e cinco mil e oitocentos e sete inteiros", actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotTransformAMissingResource() {
+        double max = Double.MAX_VALUE;
+        converter.toWords(max);
+    }
+
     @Test
     public void shouldTransform0InWords() {
         double zero = 0;

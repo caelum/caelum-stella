@@ -14,13 +14,25 @@ public class RealNumericToWordsConverterTest {
     private NumericToWordsConverter converter = new NumericToWordsConverter(
             new FormatoDeReal());
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldTransformNegativeLong() {
+        long negative = -1;
+        converter.toWords(negative);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldNotTransformNegativeDouble() {
+        double negative = -1;
+        converter.toWords(negative);
+    }
+
     @Test
     public void shouldTransform0InWords() {
         double zero = 0;
         String actual = converter.toWords(zero);
         assertEquals("zero", actual);
     }
-    
+
     @Test
     public void shouldTransformLongZeroInWords() {
         long zero = 0;
@@ -34,7 +46,7 @@ public class RealNumericToWordsConverterTest {
         String actual = converter.toWords(one);
         assertEquals("um real", actual);
     }
-    
+
     @Test
     public void shouldTransformLongOneInWords() {
         long one = 1;
@@ -55,7 +67,7 @@ public class RealNumericToWordsConverterTest {
         String actual = converter.toWords(fourteen);
         assertEquals("quatorze reais", actual);
     }
-    
+
     @Test
     public void shouldTransformLong15InWords() {
         long fifteen = 15;
