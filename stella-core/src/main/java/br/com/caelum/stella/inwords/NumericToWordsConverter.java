@@ -1,6 +1,7 @@
 package br.com.caelum.stella.inwords;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.MissingResourceException;
 
 /**
@@ -26,7 +27,10 @@ public class NumericToWordsConverter {
             if (number == 0) {
                 result.append(getNumber(0));
             } else {
-                DecimalFormat formatter = new DecimalFormat("###,###");
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setGroupingSeparator(',');
+                symbols.setDecimalSeparator('.');
+                DecimalFormat formatter = new DecimalFormat("###,###", symbols);
                 String formattedInt = formatter.format(number);
                 String[] ints = formattedInt.split("[,]");
                 ThousandBlock[] blocks = new ThousandBlock[ints.length];
@@ -105,7 +109,11 @@ public class NumericToWordsConverter {
         for (int i = 1; i <= formato.getCasasDecimais(); i++) {
             pattern.append("0");
         }
-        DecimalFormat decimalFormat = new DecimalFormat(pattern.toString());
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(',');
+        symbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat(pattern.toString(),
+                symbols);
         String formatted = decimalFormat.format(number);
         String[] parts = formatted.split("[.]");
         return parts;

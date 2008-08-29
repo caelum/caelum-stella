@@ -2,6 +2,9 @@ package br.com.caelum.stella.inwords;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Locale;
+
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -9,10 +12,15 @@ import org.junit.Test;
  * @author Leonardo Bessa
  * 
  */
-public class IntegerNumericToWordsConverterTest {
+public class IntegerNumericToWordsConverterPT_BR_Test {
 
     private final NumericToWordsConverter converter = new NumericToWordsConverter(
             new FormatoDeInteiro());
+
+    @Before
+    public void setLocale() {
+        Locale.setDefault(new Locale("PT", "br"));
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldTransformNegativeLong() {
