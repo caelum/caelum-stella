@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Locale;
 
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -17,9 +18,17 @@ public class IntegerNumericToWordsConverterPT_BR_Test {
     private final NumericToWordsConverter converter = new NumericToWordsConverter(
             new FormatoDeInteiro());
 
-    @Before
-    public void setLocale() {
+    private static Locale defaultLocale;
+
+    @BeforeClass
+    public static void setPT_BR_Locale() {
+        defaultLocale = Locale.getDefault();
         Locale.setDefault(new Locale("PT", "br"));
+    }
+
+    @AfterClass
+    public static void setDefaultLocale() {
+        Locale.setDefault(defaultLocale);
     }
 
     @Test(expected = IllegalArgumentException.class)

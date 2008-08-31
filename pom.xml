@@ -18,7 +18,7 @@
     <name>Caelum</name>
     <url>http://www.caelum.com.br</url>
   </organization>
-
+  
   <modules>
     <module>stella-core</module>
     <module>stella-hibernate-validator</module>
@@ -131,6 +131,7 @@
             <printSummary>true</printSummary>
             <useFile>true</useFile>
             <skip>true</skip>
+            <argLine>-Duser.language=pt -Duser.country=BR</argLine>
             <systemProperties>
               <property>
                 <name>java.awt.headless</name>
