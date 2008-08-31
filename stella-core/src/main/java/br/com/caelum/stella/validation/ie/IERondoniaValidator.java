@@ -33,6 +33,7 @@ public class IERondoniaValidator implements Validator<String> {
         this(new SimpleMessageProducer(), isFormatted);
     }
 
+    @SuppressWarnings("unchecked")
     public IERondoniaValidator(MessageProducer messageProducer,
             boolean isFormatted) {
         Class[] validatorClasses = { IERondoniaCasoUmValidator.class,

@@ -33,6 +33,7 @@ public class IETocantinsValidator implements Validator<String> {
         this(new SimpleMessageProducer(), isFormatted);
     }
 
+    @SuppressWarnings("unchecked")
     public IETocantinsValidator(MessageProducer messageProducer,
             boolean isFormatted) {
         Class[] validatorClasses = { IETocantinsNovaValidator.class,

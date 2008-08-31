@@ -33,6 +33,7 @@ public class IESaoPauloValidator implements Validator<String> {
         this(new SimpleMessageProducer(), isFormatted);
     }
 
+    @SuppressWarnings("unchecked")
     public IESaoPauloValidator(MessageProducer messageProducer,
             boolean isFormatted) {
         Class[] validatorClasses = {

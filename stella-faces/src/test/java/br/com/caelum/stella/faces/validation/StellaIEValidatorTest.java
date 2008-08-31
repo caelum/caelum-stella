@@ -8,15 +8,14 @@ import java.util.Locale;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.After;
 
 /**
  * StellaIEValidator integration tests

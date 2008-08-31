@@ -1,6 +1,5 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
 import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
 import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
 

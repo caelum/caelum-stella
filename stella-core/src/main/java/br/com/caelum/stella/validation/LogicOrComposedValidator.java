@@ -21,6 +21,7 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
         }
     };
 
+    @SuppressWarnings("unchecked")
     public LogicOrComposedValidator(MessageProducer messageProducer,
             boolean isFormatted, Class<Validator<T>>... validatorClasses) {
         this.messageProducer = messageProducer;

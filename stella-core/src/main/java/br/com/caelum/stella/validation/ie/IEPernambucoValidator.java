@@ -33,6 +33,7 @@ public class IEPernambucoValidator implements Validator<String> {
         this(new SimpleMessageProducer(), isFormatted);
     }
 
+    @SuppressWarnings("unchecked")
     public IEPernambucoValidator(MessageProducer messageProducer,
             boolean isFormatted) {
         Class[] validatorClasses = { IEPernambucoNovaValidator.class,

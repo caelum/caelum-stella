@@ -1,7 +1,5 @@
 package br.com.caelum.stella.validation.ie;
 
-import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
