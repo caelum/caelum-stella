@@ -4,58 +4,40 @@
 <title>Funcionalidades Implementadas</title>
 </head>
 <body>
-<h2>Funcionalidades Implementadas (Release Notes)</h2>
 
-<p>Esta lista contém as funcionalidades implementadas no Caelum Stella.</p>
+<h1>Release Notes - Caelum Stella - Version 1.1</h1>
 
-<h2>Core</h2>
+<h2>Bug</h2>
 <ul>
-	<li>Validador: CPF</li>
-	<li>Validador: CNPJ</li>
-	<li>Validador: NIT (PIS/PASEP/SUS)</li>
-	<li>Validador: Incrição Estadual (Para todos os estados)</li>
-	<li>Formatador: CPF</li>
-	<li>Formatador: CNPJ</li>
-	<li>Formatador: NIT (PIS/PASEP/SUS)</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-34'>STELLA-34</a>]
+	- Prover arquivo de mensagens padr&#xE3;o caso n&#xE3;o haja nenhum
+	definido pelo usu&#xE1;rio.</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-53'>STELLA-53</a>]
+	- Testes falham quando locale est&#xE1; em PT_BR</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-54'>STELLA-54</a>]
+	- Exception ocorre quando as datas do Boleto s&#xE3;o muito antigas</li>
 </ul>
 
-<h2>Stella Faces</h2>
+<h2>Improvement</h2>
 <ul>
-	<li>Tags de validação</li>
-	<ul>
-		<li>validateCPF</li>
-		<li>validateCNPJ</li>
-		<li>validateNIT</li>
-		<li>validateIE</li>
-	</ul>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-14'>STELLA-14</a>]
+	- Test coverage para 70%</li>
 </ul>
 
-<h2>Stella Hibernate Validator</h2>
+<h2>New Feature</h2>
 <ul>
-	<li>Validador: @CPF</li>
-	<li>Validador: @CNPJ</li>
-	<li>Validador: @NIT (PIS/PASEP/SUS)</li>
-	<li>Validador: @IE</li>
-</ul>
-
-<h2>Stella Boleto</h2>
-<ul>
-	<li>Bancos</li>
-	<ul>
-		<li>Banco do Brasil</li>
-	</ul>
-	<li>Exportação</li>
-	<ul>
-		<li>PDF</li>
-		<li>PNG - exportação gera um PNG grande. Necessário imprimir com Best to Fit, ou inserir em
-		algum processador de texto</li>
-	</ul>
-</ul>
-
-<h2>Integração com Frameworks</h2>
-<ul>
-  <li>Exemplo e documentação para uso com JBoss Seam + Hibernate Validator</li>
-  <li>Exemplo de uso com VRaptor</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-4'>STELLA-4</a>]
+	- Validadores para Inscri&#xE7;&#xE3;o Estadual de todos os Estados</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-15'>STELLA-15</a>]
+	- Boletos do Bradesco</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-47'>STELLA-47</a>]
+	- V&#xE1;rios Boletos em um mesmo arquivo PDF</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-49'>STELLA-49</a>]
+	- Rotina de Extenso para Inteiros e para moeda Real</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-55'>STELLA-55</a>]
+	- Faces Validator para IEs</li>
+	<li>[<a href='http://jira.caelum.com.br/browse/STELLA-56'>STELLA-56</a>]
+	- Hibernate Validator para IEs</li>
 </ul>
 
 </body>
