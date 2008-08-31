@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.1</version>
 	</parent>
 
 	<artifactId>caelum-stella-boleto</artifactId>
