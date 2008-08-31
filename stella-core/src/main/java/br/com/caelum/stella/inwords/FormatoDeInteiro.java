@@ -1,25 +1,28 @@
 package br.com.caelum.stella.inwords;
 
 /**
+ * Representa o formato de para números inteiros com precisão de miléssimos.
+ * 
+ * 
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
  * 
  */
 public class FormatoDeInteiro implements FormatoDeExtenso {
 
-    public String getDecimais() {
+    public String getUnidadeDecimalNoPlural() {
         return "milésimos";
     }
 
-    public String getDecimal() {
+    public String getUnidadeDecimalNoSingular() {
         return "milésimo";
     }
 
-    public String getUnidade() {
+    public String getUnidadeInteiraNoSingular() {
         return "inteiro";
     }
 
-    public String getUnidades() {
+    public String getUnidadeInteiraNoPlural() {
         return "inteiros";
     }
 

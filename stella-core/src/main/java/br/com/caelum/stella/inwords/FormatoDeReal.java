@@ -7,19 +7,19 @@ package br.com.caelum.stella.inwords;
  */
 public class FormatoDeReal implements FormatoDeExtenso {
 
-    public String getDecimais() {
+    public String getUnidadeDecimalNoPlural() {
         return "centavos";
     }
 
-    public String getDecimal() {
+    public String getUnidadeDecimalNoSingular() {
         return "centavo";
     }
 
-    public String getUnidade() {
+    public String getUnidadeInteiraNoSingular() {
         return "real";
     }
 
-    public String getUnidades() {
+    public String getUnidadeInteiraNoPlural() {
         return "reais";
     }
 

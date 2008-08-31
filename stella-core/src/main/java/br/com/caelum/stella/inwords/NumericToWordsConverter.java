@@ -5,6 +5,8 @@ import java.text.DecimalFormatSymbols;
 import java.util.MissingResourceException;
 
 /**
+ * Responsável por transformar um número em sua representação por extenso.
+ * 
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
  * 
@@ -13,10 +15,17 @@ public class NumericToWordsConverter {
 
     private final FormatoDeExtenso formato;
 
+    /**
+     * @param formato formato desejado para a transfomação por extenso
+     */
     public NumericToWordsConverter(FormatoDeExtenso formato) {
         this.formato = formato;
     }
 
+    /**
+     * @param number número a ser transformado
+     * @return Representação do número por extenso.
+     */
     public String toWords(long number) {
         try {
             if (number < 0) {
@@ -48,7 +57,11 @@ public class NumericToWordsConverter {
                     "Número muito grande para ser transformado em extenso.");
         }
     }
-
+    
+    /**
+     * @param number número a ser transformado
+     * @return Representação do número por extenso.
+     */
     public String toWords(double number) {
         try {
             if (number < 0) {
@@ -97,9 +110,9 @@ public class NumericToWordsConverter {
     private void appendDecimalUnits(StringBuffer result, ThousandBlock modBlock) {
         result.append(" ");
         if (modBlock.isUnitary()) {
-            result.append(formato.getDecimal());
+            result.append(formato.getUnidadeDecimalNoSingular());
         } else {
-            result.append(formato.getDecimais());
+            result.append(formato.getUnidadeDecimalNoPlural());
         }
     }
 
@@ -129,9 +142,9 @@ public class NumericToWordsConverter {
                         && blocks[length - 2].isZero()) {
                     result.append("de ");
                 }
-                result.append(formato.getUnidades());
+                result.append(formato.getUnidadeInteiraNoPlural());
             } else {
-                result.append(formato.getUnidade());
+                result.append(formato.getUnidadeInteiraNoSingular());
             }
         }
     }
