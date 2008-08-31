@@ -32,5 +32,65 @@ String extenso = converter.toWords(numero);
 System.out.println(extenso);
 </textarea>
 Saída no Console: <b>um milhão e cento e cinquenta reais e noventa e nove centavos</b>
+
+<h2>Utilizando um Formato Próprio</h2>
+
+Primeiramente criamos um formato próprio implmentando a interface FormatoDeExtenso.
+
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+
+import br.com.caelum.stella.inwords.FormatoDeExtenso;
+
+public class FormatoDeSegundosComMilesimos implements FormatoDeExtenso {
+
+    public int getCasasDecimais() {
+        return 3;
+    }
+
+    public String getUnidadeDecimalNoPlural() {
+        return "milésimos de segundo";
+    }
+
+    public String getUnidadeDecimalNoSingular() {
+        return "milésimo de segundo";
+    }
+
+    public String getUnidadeInteiraNoPlural() {
+        return "segundos";
+    }
+
+    public String getUnidadeInteiraNoSingular() {
+        return "segundo";
+    }
+
+}
+</textarea>
+
+Agora vamos utilizar este formato para extrair números por extenso.
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+import br.com.caelum.stella.inwords.FormatoDeExtenso;
+import br.com.caelum.stella.inwords.NumericToWordsConverter;
+
+public class ExemploDeExtenso {
+
+    public static void main(String[] args) {
+        FormatoDeExtenso formato = new FormatoDeSegundosComMilesimos();
+        NumericToWordsConverter converter = new NumericToWordsConverter(formato);
+        String tempo = converter.toWords(0.05);
+        String message = "Cibernautas demoram " + tempo + " a avaliar uma página.";
+        System.out.println(message);
+        
+        tempo = converter.toWords(9.52);
+        message =   "Técnico diz que Bolt poderia ter feito 100m em " + tempo + ".";
+        System.out.println(message);
+    }
+}
+</textarea>
+A saída no console será a seguinte: <br/>
+
+Cibernautas demoram cinquenta milésimos de segundo a avaliar uma página.<br/>
+Técnico diz que Bolt poderia ter feito 100m em nove segundos e quinhentos e vinte milésimos de segundo.<br/>
 </body>
 </html>
