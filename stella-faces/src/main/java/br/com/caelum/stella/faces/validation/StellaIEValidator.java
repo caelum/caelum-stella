@@ -123,7 +123,9 @@ public class StellaIEValidator implements Validator, StateHolder {
         formatted = (Boolean) values[1];
         estado = (String) values[2];
         binding = (ValueExpression) values[3];
-        binding.setValue(context.getELContext(), this);
+        if (binding!=null) {
+            binding.setValue(context.getELContext(), this);
+        }
     }
 
     public boolean isTransient() {
