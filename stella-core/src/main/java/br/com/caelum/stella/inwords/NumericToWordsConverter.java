@@ -39,7 +39,7 @@ public class NumericToWordsConverter {
                 DecimalFormatSymbols symbols = new DecimalFormatSymbols();
                 symbols.setGroupingSeparator(',');
                 symbols.setDecimalSeparator('.');
-                DecimalFormat formatter = new DecimalFormat("###,###", symbols);
+                DecimalFormat formatter = new DecimalFormat("###,###",symbols);
                 String formattedInt = formatter.format(number);
                 String[] ints = formattedInt.split("[,]");
                 ThousandBlock[] blocks = new ThousandBlock[ints.length];
