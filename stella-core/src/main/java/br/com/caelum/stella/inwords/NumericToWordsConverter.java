@@ -36,10 +36,10 @@ public class NumericToWordsConverter {
             if (number == 0) {
                 result.append(getNumber(0));
             } else {
-                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+               /* DecimalFormatSymbols symbols = new DecimalFormatSymbols();
                 symbols.setGroupingSeparator(',');
-                symbols.setDecimalSeparator('.');
-                DecimalFormat formatter = new DecimalFormat("###,###", symbols);
+                symbols.setDecimalSeparator('.');*/
+                DecimalFormat formatter = new DecimalFormat("###,###");
                 String formattedInt = formatter.format(number);
                 String[] ints = formattedInt.split("[,]");
                 ThousandBlock[] blocks = new ThousandBlock[ints.length];
