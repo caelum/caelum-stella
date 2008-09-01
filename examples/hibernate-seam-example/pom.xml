@@ -6,7 +6,7 @@
   <parent>
     <groupId>br.com.caelum.stella</groupId>
     <artifactId>caelum-stella</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1</version>
   </parent>
   <artifactId>hibernate-seam-example</artifactId>
   <packaging>war</packaging>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>cz.softeu</groupId>
       <artifactId>softeu-rewriter</artifactId>
-      <version>1.1.1-SNAPSHOT</version>
+      <version>1.1</version>
       <scope>runtime</scope>
     </dependency>
     <!-- SEAM -->
