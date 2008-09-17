@@ -7,8 +7,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 
-// TODO refactor to composition + strategy
-public abstract class BaseValidator<T> implements Validator<T> {
+public class BaseValidator {
     private final MessageProducer messageProducer;
 
     public BaseValidator() {
@@ -19,7 +18,7 @@ public abstract class BaseValidator<T> implements Validator<T> {
         this.messageProducer = messageProducer;
     }
 
-    protected List<ValidationMessage> generateValidationMessages(
+    public List<ValidationMessage> generateValidationMessages(
             List<InvalidValue> invalidValues) {
         List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
         for (InvalidValue invalidValue : invalidValues) {
@@ -30,19 +29,11 @@ public abstract class BaseValidator<T> implements Validator<T> {
         return messages;
     }
 
-    public List<ValidationMessage> invalidMessagesFor(T value) {
-        List<InvalidValue> invalidValues = getInvalidValues(value);
-        List<ValidationMessage> messages = generateValidationMessages(invalidValues);
-        return messages;
-    }
-
-    public void assertValid(T value) {
-        List<InvalidValue> errors = getInvalidValues(value);
-        if (!errors.isEmpty()) {
-            throw new InvalidStateException(generateValidationMessages(errors));
+    public void assertValid(List<InvalidValue> invalidValues) {
+        if (!invalidValues.isEmpty()) {
+            throw new InvalidStateException(
+                    generateValidationMessages(invalidValues));
         }
     }
-
-    protected abstract List<InvalidValue> getInvalidValues(T value);
 
 }

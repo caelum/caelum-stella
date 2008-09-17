@@ -7,8 +7,7 @@ import org.junit.Test;
 public abstract class IntegerNumericToWordsConverterTest {
 
     private final NumericToWordsConverter converter = new NumericToWordsConverter(
-                new FormatoDeInteiro());
-    
+            new FormatoDeInteiro());
 
     public IntegerNumericToWordsConverterTest() {
         super();
@@ -151,112 +150,112 @@ public abstract class IntegerNumericToWordsConverterTest {
         String actual = converter.toWords(twoHundred);
         assertEquals("duzentos e vinte e dois milésimos", actual);
     }
-    
+
     @Test
     public void shouldTransform1E21() {
         double number = 1E21;
         String actual = converter.toWords(number);
         assertEquals("um sextilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E21() {
         double number = 2E21;
         String actual = converter.toWords(number);
         assertEquals("dois sextilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E24() {
         double number = 1E24;
         String actual = converter.toWords(number);
         assertEquals("um septilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E24() {
         double number = 2E24;
         String actual = converter.toWords(number);
         assertEquals("dois septilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E27() {
         double number = 1E27;
         String actual = converter.toWords(number);
         assertEquals("um octilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E27() {
         double number = 2E27;
         String actual = converter.toWords(number);
         assertEquals("dois octilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E30() {
         double number = 1E30;
         String actual = converter.toWords(number);
         assertEquals("um nonilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E30() {
         double number = 2E30;
         String actual = converter.toWords(number);
         assertEquals("dois nonilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E33() {
         double number = 1E33;
         String actual = converter.toWords(number);
         assertEquals("um decilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E33() {
         double number = 2E33;
         String actual = converter.toWords(number);
         assertEquals("dois decilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E36() {
         double number = 1E36;
         String actual = converter.toWords(number);
         assertEquals("um undecilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E36() {
         double number = 2E36;
         String actual = converter.toWords(number);
         assertEquals("dois undecilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E39() {
         double number = 1E39;
         String actual = converter.toWords(number);
         assertEquals("um doudecilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E39() {
         double number = 2E39;
         String actual = converter.toWords(number);
         assertEquals("dois doudecilhões de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform1E42() {
         double number = 1E42;
         String actual = converter.toWords(number);
         assertEquals("um tredecilhão de inteiros", actual);
     }
-    
+
     @Test
     public void shouldTransform2E42() {
         double number = 2E42;

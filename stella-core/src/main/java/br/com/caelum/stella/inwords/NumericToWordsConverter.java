@@ -16,14 +16,16 @@ public class NumericToWordsConverter {
     private final FormatoDeExtenso formato;
 
     /**
-     * @param formato formato desejado para a transfomação por extenso
+     * @param formato
+     *            formato desejado para a transfomação por extenso
      */
     public NumericToWordsConverter(FormatoDeExtenso formato) {
         this.formato = formato;
     }
 
     /**
-     * @param number número a ser transformado
+     * @param number
+     *            número a ser transformado
      * @return Representação do número por extenso.
      */
     public String toWords(long number) {
@@ -39,7 +41,7 @@ public class NumericToWordsConverter {
                 DecimalFormatSymbols symbols = new DecimalFormatSymbols();
                 symbols.setGroupingSeparator(',');
                 symbols.setDecimalSeparator('.');
-                DecimalFormat formatter = new DecimalFormat("###,###",symbols);
+                DecimalFormat formatter = new DecimalFormat("###,###", symbols);
                 String formattedInt = formatter.format(number);
                 String[] ints = formattedInt.split("[,]");
                 ThousandBlock[] blocks = new ThousandBlock[ints.length];
@@ -57,9 +59,10 @@ public class NumericToWordsConverter {
                     "Número muito grande para ser transformado em extenso.");
         }
     }
-    
+
     /**
-     * @param number número a ser transformado
+     * @param number
+     *            número a ser transformado
      * @return Representação do número por extenso.
      */
     public String toWords(double number) {

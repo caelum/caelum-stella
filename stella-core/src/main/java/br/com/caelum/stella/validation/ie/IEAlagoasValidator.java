@@ -6,12 +6,14 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
+import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 /**
@@ -26,7 +28,7 @@ import br.com.caelum.stella.validation.error.IEError;
  * @author Leonardo Bessa
  * 
  */
-public class IEAlagoasValidator extends BaseValidator<String> {
+public class IEAlagoasValidator implements Validator<String> {
 
     private static final int MOD = 11;
 
@@ -83,18 +85,17 @@ public class IEAlagoasValidator extends BaseValidator<String> {
      *            considerar cadeia formatada quando <code>true</code>
      */
     public IEAlagoasValidator(boolean isFormatted) {
-        super();
+        this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
     }
 
     public IEAlagoasValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
 
-    @Override
-    protected List<InvalidValue> getInvalidValues(String IE) {
+    private List<InvalidValue> getInvalidValues(String IE) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
         if (IE != null) {
@@ -138,6 +139,16 @@ public class IEAlagoasValidator extends BaseValidator<String> {
             result = UNFORMATED.matcher(value).matches();
         }
         return result;
+    }
+
+    private final BaseValidator baseValidator;
+
+    public void assertValid(String cpf) {
+        baseValidator.assertValid(getInvalidValues(cpf));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
 
 }

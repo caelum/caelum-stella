@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.constraint.CNPJConstraints.Rotina;
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.validation.error.CNPJError;
@@ -15,7 +16,9 @@ import br.com.caelum.stella.validation.error.CNPJError;
 /**
  * @author Leonardo Bessa
  */
-public class CNPJValidator extends BaseValidator<String> {
+public class CNPJValidator implements Validator<String> {
+
+    private final BaseValidator baseValidator;
     private final boolean isFormatted;
 
     private static final int MOD = 11;
@@ -59,7 +62,7 @@ public class CNPJValidator extends BaseValidator<String> {
      *            "d" é um dígito decimal.
      */
     public CNPJValidator(boolean isFormatted) {
-        super();
+        this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
     }
 
@@ -76,11 +79,11 @@ public class CNPJValidator extends BaseValidator<String> {
      *            "d" é um dígito decimal.
      */
     public CNPJValidator(MessageProducer messageProducer, boolean isFormatted) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
 
-    protected List<InvalidValue> getInvalidValues(String cnpj) {
+    private List<InvalidValue> getInvalidValues(String cnpj) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
         if (cnpj != null) {
@@ -122,6 +125,14 @@ public class CNPJValidator extends BaseValidator<String> {
             result = CNPJ_FORMATED.matcher(value).matches();
         }
         return result;
+    }
+
+    public void assertValid(String cnpj) {
+        baseValidator.assertValid(getInvalidValues(cnpj));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cnpj) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cnpj));
     }
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.format.NITFormatter;
 import br.com.caelum.stella.validation.error.NITError;
 
@@ -24,7 +25,9 @@ import br.com.caelum.stella.validation.error.NITError;
  * 
  * @author Leonardo Bessa
  */
-public class NITValidator extends BaseValidator<String> {
+public class NITValidator implements Validator<String> {
+
+    private final BaseValidator baseValidator;
 
     private static final int MOD = 11;
 
@@ -69,7 +72,7 @@ public class NITValidator extends BaseValidator<String> {
      * mensagens.
      */
     public NITValidator(boolean isFormatted) {
-        super();
+        this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
     }
 
@@ -85,11 +88,11 @@ public class NITValidator extends BaseValidator<String> {
      *            é um dígito decimal.
      */
     public NITValidator(MessageProducer messageProducer, boolean isFormatted) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
 
-    protected List<InvalidValue> getInvalidValues(String nit) {
+    private List<InvalidValue> getInvalidValues(String nit) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         if (nit != null) {
             String unformatedNit = checkForCorrectFormat(nit, errors);
@@ -132,5 +135,13 @@ public class NITValidator extends BaseValidator<String> {
             result = NIT_FORMATED.matcher(value).matches();
         }
         return result;
+    }
+
+    public void assertValid(String cpf) {
+        baseValidator.assertValid(getInvalidValues(cpf));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.format.CPFFormatter;
 import br.com.caelum.stella.validation.error.CPFError;
 
@@ -17,7 +18,8 @@ import br.com.caelum.stella.validation.error.CPFError;
  * 
  * @author Leonardo Bessa
  */
-public class CPFValidator extends BaseValidator<String> {
+public class CPFValidator implements Validator<String> {
+    private final BaseValidator baseValidator;
     private static final int MOD = 11;
 
     private final boolean isFormatted;
@@ -76,7 +78,7 @@ public class CPFValidator extends BaseValidator<String> {
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public CPFValidator(boolean isFormatted) {
-        super();
+        this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
         this.isIgnoringRepeatedDigits = true;
     }
@@ -100,9 +102,7 @@ public class CPFValidator extends BaseValidator<String> {
      *            é um dígito decimal.
      */
     public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
-        super(messageProducer);
-        this.isFormatted = isFormatted;
-        this.isIgnoringRepeatedDigits = true;
+        this(messageProducer, isFormatted, true);
     }
 
     /**
@@ -117,7 +117,7 @@ public class CPFValidator extends BaseValidator<String> {
      */
     public CPFValidator(MessageProducer messageProducer, boolean isFormatted,
             boolean isIgnoringRepeatedDigits) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
         this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
     }
@@ -129,7 +129,7 @@ public class CPFValidator extends BaseValidator<String> {
      * @return <code>true</code> se a cadeia é válida ou é nula;
      *         <code>false</code> caso contrario.
      */
-    protected List<InvalidValue> getInvalidValues(String cpf) {
+    private List<InvalidValue> getInvalidValues(String cpf) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         if (cpf != null) {
             String unformatedCPF = checkForCorrectFormat(cpf, errors);
@@ -187,6 +187,14 @@ public class CPFValidator extends BaseValidator<String> {
             result = CPF_FORMATED.matcher(value).matches();
         }
         return result;
+    }
+
+    public void assertValid(String cpf) {
+        baseValidator.assertValid(getInvalidValues(cpf));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
 
 }

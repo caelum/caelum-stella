@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jmock.Expectations;
@@ -24,7 +25,6 @@ public class BaseValidatorTest {
         final InvalidValue invalidValue = mockery.mock(InvalidValue.class);
         final ValidationMessage validationMessage = mockery
                 .mock(ValidationMessage.class);
-        final Object any = new Object();
 
         mockery.checking(new Expectations() {
             {
@@ -32,25 +32,14 @@ public class BaseValidatorTest {
                 will(returnValue(validationMessage));
             }
         });
-        Validator validator = new BaseValidator(messageProducer) {
+        BaseValidator validator = new BaseValidator(messageProducer);
 
-            @Override
-            protected List<InvalidValue> getInvalidValues(Object value) {
-                assertEquals(value, any);
-                ArrayList<InvalidValue> invalidValues = new ArrayList<InvalidValue>();
-                invalidValues.add(invalidValue);
-                return invalidValues;
-            }
-
-            public boolean isEligible(Object object) {
-                return false;
-            }
-
-        };
-        List<ValidationMessage> messages0 = validator.invalidMessagesFor(any);
-        List<ValidationMessage> messages1 = new ArrayList<ValidationMessage>();
-        messages1.add(validationMessage);
-        assertEquals(messages0, messages1);
+        List<InvalidValue> invalidValues = Arrays.asList(invalidValue);
+        List<ValidationMessage> actual = validator
+                .generateValidationMessages(invalidValues);
+        List<ValidationMessage> expected = new ArrayList<ValidationMessage>();
+        expected.add(validationMessage);
+        assertEquals(expected, actual);
 
         mockery.assertIsSatisfied();
     }
@@ -64,7 +53,6 @@ public class BaseValidatorTest {
         final InvalidValue invalidValue = mockery.mock(InvalidValue.class);
         final ValidationMessage validationMessage = mockery
                 .mock(ValidationMessage.class);
-        final Object any = new Object();
 
         mockery.checking(new Expectations() {
             {
@@ -72,23 +60,10 @@ public class BaseValidatorTest {
                 will(returnValue(validationMessage));
             }
         });
-        Validator validator = new BaseValidator(messageProducer) {
-
-            @Override
-            protected List<InvalidValue> getInvalidValues(Object value) {
-                assertEquals(value, any);
-                ArrayList<InvalidValue> invalidValues = new ArrayList<InvalidValue>();
-                invalidValues.add(invalidValue);
-                return invalidValues;
-            }
-
-            public boolean isEligible(Object object) {
-                return false;
-            }
-
-        };
+        BaseValidator validator = new BaseValidator(messageProducer);
         try {
-            validator.assertValid(any);
+            List<InvalidValue> invalidValues = Arrays.asList(invalidValue);
+            validator.assertValid(invalidValues);
             fail();
         } catch (InvalidStateException e) {
             List<ValidationMessage> messages0 = e.getInvalidMessages();
@@ -108,25 +83,12 @@ public class BaseValidatorTest {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery
                 .mock(MessageProducer.class);
-        final Object any = new Object();
 
         mockery.checking(new Expectations());
-        Validator validator = new BaseValidator(messageProducer) {
-
-            @Override
-            protected List<InvalidValue> getInvalidValues(Object value) {
-                assertEquals(value, any);
-                ArrayList<InvalidValue> empty = new ArrayList<InvalidValue>();
-                return empty;
-            }
-
-            public boolean isEligible(Object object) {
-                return false;
-            }
-
-        };
+        BaseValidator validator = new BaseValidator(messageProducer);
         try {
-            validator.assertValid(any);
+            List<InvalidValue> invalidValues = new ArrayList<InvalidValue>();
+            validator.assertValid(invalidValues);
         } catch (InvalidStateException e) {
             fail();
         }

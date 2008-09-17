@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
  */
 public class IntegerNumericToWordsConverterPT_BR_Test extends
         IntegerNumericToWordsConverterTest {
-    
+
     private static Locale defaultLocale;
 
     @BeforeClass

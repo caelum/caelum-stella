@@ -5,15 +5,17 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
+import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-class IEPernambucoAntigaValidator extends BaseValidator<String> {
+class IEPernambucoAntigaValidator implements Validator<String> {
 
     // Exemplo 18.1.001.0000004-9
 
@@ -50,12 +52,11 @@ class IEPernambucoAntigaValidator extends BaseValidator<String> {
 
     public IEPernambucoAntigaValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
 
-    @Override
-    protected List<InvalidValue> getInvalidValues(String IE) {
+    private List<InvalidValue> getInvalidValues(String IE) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
         if (IE != null) {
@@ -98,5 +99,15 @@ class IEPernambucoAntigaValidator extends BaseValidator<String> {
             result = UNFORMATED.matcher(value).matches();
         }
         return result;
+    }
+
+    private final BaseValidator baseValidator;
+
+    public void assertValid(String cpf) {
+        baseValidator.assertValid(getInvalidValues(cpf));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
 }

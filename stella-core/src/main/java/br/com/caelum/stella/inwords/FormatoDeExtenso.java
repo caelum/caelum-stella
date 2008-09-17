@@ -1,7 +1,8 @@
 package br.com.caelum.stella.inwords;
 
 /**
- * Representa o formato utilizado para os números serem transformados em extenso.
+ * Representa o formato utilizado para os números serem transformados em
+ * extenso.
  * 
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
@@ -15,7 +16,7 @@ public interface FormatoDeExtenso {
     String getUnidadeInteiraNoSingular();
 
     /**
-     * @return A unidade no plural da parte inteira do número. 
+     * @return A unidade no plural da parte inteira do número.
      */
     String getUnidadeInteiraNoPlural();
 
@@ -30,7 +31,8 @@ public interface FormatoDeExtenso {
     String getUnidadeDecimalNoPlural();
 
     /**
-     * @return A quantidade de casas decimais a serem consideradas na transfomação em extenso.
+     * @return A quantidade de casas decimais a serem consideradas na
+     *         transfomação em extenso.
      */
     int getCasasDecimais();
 

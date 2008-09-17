@@ -6,15 +6,17 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.constraint.IEConstraints;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
+import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IESantaCatarinaValidator extends BaseValidator<String> {
+public class IESantaCatarinaValidator implements Validator<String> {
 
     private static final int MOD = 11;
 
@@ -57,18 +59,17 @@ public class IESantaCatarinaValidator extends BaseValidator<String> {
      *            considerar cadeia formatada quando <code>true</code>
      */
     public IESantaCatarinaValidator(boolean isFormatted) {
-        super();
+        this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
     }
 
     public IESantaCatarinaValidator(MessageProducer messageProducer,
             boolean isFormatted) {
-        super(messageProducer);
+        this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
 
-    @Override
-    protected List<InvalidValue> getInvalidValues(String ie) {
+    private List<InvalidValue> getInvalidValues(String ie) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
         if (ie != null) {
@@ -113,4 +114,13 @@ public class IESantaCatarinaValidator extends BaseValidator<String> {
         return result;
     }
 
+    private final BaseValidator baseValidator;
+
+    public void assertValid(String cpf) {
+        baseValidator.assertValid(getInvalidValues(cpf));
+    }
+
+    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
+    }
 }
