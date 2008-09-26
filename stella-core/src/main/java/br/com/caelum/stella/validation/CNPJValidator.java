@@ -19,6 +19,7 @@ import br.com.caelum.stella.validation.error.CNPJError;
 public class CNPJValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;
+
     private final boolean isFormatted;
 
     private static final int MOD = 11;
@@ -87,30 +88,26 @@ public class CNPJValidator implements Validator<String> {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
         if (cnpj != null) {
-            String unformatedCNPJ = checkForCorrectFormat(cnpj, errors);
-            if (errors.isEmpty()) {
+            if (!isEligible(cnpj)) {
+                if (isFormatted) {
+                    errors.add(CNPJError.INVALID_FORMAT);
+                } else {
+                    errors.add(CNPJError.INVALID_DIGITS);
+                }
+            } else {
+                String unformatedCNPJ;
+                if (isFormatted) {
+                    CNPJFormatter formatter = new CNPJFormatter();
+                    unformatedCNPJ = formatter.unformat(cnpj);
+                } else {
+                    unformatedCNPJ = cnpj;
+                }
                 if (!hasValidCheckDigits(unformatedCNPJ)) {
                     errors.add(CNPJError.INVALID_CHECK_DIGITS);
                 }
             }
         }
         return errors;
-    }
-
-    private String checkForCorrectFormat(String cnpj, List<InvalidValue> errors) {
-        String unformatedCNPJ = null;
-        if (isFormatted) {
-            if (!(CNPJ_FORMATED.matcher(cnpj).matches())) {
-                errors.add(CNPJError.INVALID_FORMAT);
-            }
-            unformatedCNPJ = (new CNPJFormatter()).unformat(cnpj);
-        } else {
-            if (!CNPJ_UNFORMATED.matcher(cnpj).matches()) {
-                errors.add(CNPJError.INVALID_DIGITS);
-            }
-            unformatedCNPJ = cnpj;
-        }
-        return unformatedCNPJ;
     }
 
     private boolean hasValidCheckDigits(String value) {
@@ -122,7 +119,7 @@ public class CNPJValidator implements Validator<String> {
         if (isFormatted) {
             result = CNPJ_FORMATED.matcher(value).matches();
         } else {
-            result = CNPJ_FORMATED.matcher(value).matches();
+            result = CNPJ_UNFORMATED.matcher(value).matches();
         }
         return result;
     }

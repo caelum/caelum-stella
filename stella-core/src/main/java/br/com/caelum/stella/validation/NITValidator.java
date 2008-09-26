@@ -95,32 +95,29 @@ public class NITValidator implements Validator<String> {
     private List<InvalidValue> getInvalidValues(String nit) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         if (nit != null) {
-            String unformatedNit = checkForCorrectFormat(nit, errors);
+            if (!isEligible(nit)) {
+                if (isFormatted) {
+                    errors.add(NITError.INVALID_FORMAT);
+                } else {
+                    errors.add(NITError.INVALID_DIGITS);
+                }
+            } else {
+                String unformatedNit;
+                if (isFormatted) {
+                    NITFormatter formatter = new NITFormatter();
+                    unformatedNit = formatter.unformat(nit);
+                } else {
+                    unformatedNit = nit;
+                }
 
-            if (errors.isEmpty()) {
-                if (!hasValidCheckDigits(unformatedNit)) {
-                    errors.add(NITError.INVALID_CHECK_DIGITS);
+                if (errors.isEmpty()) {
+                    if (!hasValidCheckDigits(unformatedNit)) {
+                        errors.add(NITError.INVALID_CHECK_DIGITS);
+                    }
                 }
             }
         }
         return errors;
-    }
-
-    private String checkForCorrectFormat(String string,
-            List<InvalidValue> errors) {
-        String unformatedNit;
-        if (isFormatted) {
-            if (!NIT_FORMATED.matcher(string).matches()) {
-                errors.add(NITError.INVALID_FORMAT);
-            }
-            unformatedNit = (new NITFormatter()).unformat(string);
-        } else {
-            if (!NIT_UNFORMATED.matcher(string).matches()) {
-                errors.add(NITError.INVALID_DIGITS);
-            }
-            unformatedNit = string;
-        }
-        return unformatedNit;
     }
 
     private boolean hasValidCheckDigits(String value) {
@@ -132,7 +129,7 @@ public class NITValidator implements Validator<String> {
         if (isFormatted) {
             result = NIT_FORMATED.matcher(value).matches();
         } else {
-            result = NIT_FORMATED.matcher(value).matches();
+            result = NIT_UNFORMATED.matcher(value).matches();
         }
         return result;
     }

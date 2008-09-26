@@ -20,6 +20,7 @@ import br.com.caelum.stella.validation.error.CPFError;
  */
 public class CPFValidator implements Validator<String> {
     private final BaseValidator baseValidator;
+
     private static final int MOD = 11;
 
     private final boolean isFormatted;
@@ -132,38 +133,35 @@ public class CPFValidator implements Validator<String> {
     private List<InvalidValue> getInvalidValues(String cpf) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         if (cpf != null) {
-            String unformatedCPF = checkForCorrectFormat(cpf, errors);
 
-            if (errors.isEmpty()) {
-                if ((!isIgnoringRepeatedDigits)
-                        && hasAllRepeatedDigits(unformatedCPF)) {
-                    errors.add(CPFError.REPEATED_DIGITS);
+            if (!isEligible(cpf)) {
+                if (isFormatted) {
+                    errors.add(CPFError.INVALID_FORMAT);
+                } else {
+                    errors.add(CPFError.INVALID_DIGITS);
                 }
-            }
-            if (errors.isEmpty()) {
-                if (!hasValidCheckDigits(unformatedCPF)) {
-                    errors.add(CPFError.INVALID_CHECK_DIGITS);
+            } else {
+                String unformatedCPF;
+                if (isFormatted) {
+                    CPFFormatter formatter = new CPFFormatter();
+                    unformatedCPF = formatter.unformat(cpf);
+                } else {
+                    unformatedCPF = cpf;
+                }
+                if (errors.isEmpty()) {
+                    if ((!isIgnoringRepeatedDigits)
+                            && hasAllRepeatedDigits(unformatedCPF)) {
+                        errors.add(CPFError.REPEATED_DIGITS);
+                    }
+                }
+                if (errors.isEmpty()) {
+                    if (!hasValidCheckDigits(unformatedCPF)) {
+                        errors.add(CPFError.INVALID_CHECK_DIGITS);
+                    }
                 }
             }
         }
         return errors;
-    }
-
-    private String checkForCorrectFormat(String string,
-            List<InvalidValue> errors) {
-        String unformatedCPF = null;
-        if (isFormatted) {
-            if (!CPF_FORMATED.matcher(string).matches()) {
-                errors.add(CPFError.INVALID_FORMAT);
-            }
-            unformatedCPF = (new CPFFormatter()).unformat(string);
-        } else {
-            if (!(CPF_UNFORMATED.matcher(string).matches())) {
-                errors.add(CPFError.INVALID_DIGITS);
-            }
-            unformatedCPF = string;
-        }
-        return unformatedCPF;
     }
 
     private boolean hasValidCheckDigits(String value) {
@@ -184,7 +182,7 @@ public class CPFValidator implements Validator<String> {
         if (isFormatted) {
             result = CPF_FORMATED.matcher(value).matches();
         } else {
-            result = CPF_FORMATED.matcher(value).matches();
+            result = CPF_UNFORMATED.matcher(value).matches();
         }
         return result;
     }

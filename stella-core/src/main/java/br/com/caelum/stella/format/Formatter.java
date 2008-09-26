@@ -9,29 +9,25 @@ package br.com.caelum.stella.format;
 public interface Formatter {
 
     /**
-     * Formata uma cadeia.
      * <p>
-     * Será lançada {@linkplain IllegalArgumentException} caso receba
-     * <code>null</code> como parâmetro.
+     * Formata uma cadeia.
      * </p>
-     * 
-     * @param value
-     *            cadeia sem formatado
+     * @param value cadeia sem formatado
      * @return cadeia formatada
+     * @throws IllegalArgumentException caso argumento seja nulo ou não represente propriamente um valor sem formato.
      */
-    public abstract String format(String value);
+    public abstract String format(String value) throws IllegalArgumentException;
 
     /**
-     * Remove a formatação de uma cadeia.
      * <p>
-     * Será lançada {@linkplain IllegalArgumentException} caso receba
-     * <code>null</code> como parâmetro.
+     * Remove a formatação de uma cadeia.
      * </p>
      * 
-     * @param cadeia
-     *            formatada
+     * @param value cadeia formatada
      * @return cadeia sem formato
+     * @throws IllegalArgumentException caso argumento seja nulo ou não represente propriamente um valor formatado.
      */
-    public abstract String unformat(String value);
+    public abstract String unformat(String value)
+            throws IllegalArgumentException;
 
 }
