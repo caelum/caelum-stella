@@ -5,8 +5,6 @@ import org.hibernate.validator.InvalidStateException;
 import org.hibernate.validator.InvalidValue;
 
 import br.com.caelum.stella.hibernate.example.util.HibernateUtil;
-import br.com.caelum.stella.hibernate.example.Modelo;
-import br.com.caelum.stella.hibernate.example.ModeloDAO;
 
 public class HibernatePersistenceExample {
 

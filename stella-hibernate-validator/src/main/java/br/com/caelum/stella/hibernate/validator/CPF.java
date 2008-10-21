@@ -1,12 +1,14 @@
 package br.com.caelum.stella.hibernate.validator;
 
-import org.hibernate.validator.ValidatorClass;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
 
 import java.lang.annotation.Documented;
-import static java.lang.annotation.ElementType.*;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.hibernate.validator.ValidatorClass;
 
 /**
  * Restrição que pode ser associada a objetos em que o método {@linkplain #toString()} 

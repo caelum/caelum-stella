@@ -1,9 +1,7 @@
 package br.com.caelum.stella.faces.validation;
 
-import br.com.caelum.stella.ResourceBundleMessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.InvalidStateException;
-import br.com.caelum.stella.validation.NITValidator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.StateHolder;
@@ -11,8 +9,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import java.util.List;
-import java.util.ResourceBundle;
+
+import br.com.caelum.stella.ResourceBundleMessageProducer;
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.InvalidStateException;
+import br.com.caelum.stella.validation.NITValidator;
 
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no

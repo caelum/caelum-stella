@@ -1,9 +1,10 @@
 package br.com.caelum.stella.faces.validation;
 
-import javax.faces.application.Application;
-import javax.faces.context.FacesContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javax.faces.application.Application;
+import javax.faces.context.FacesContext;
 
 /**
  * Busca o arquivo de mensagens configurado no faces-config.xml:

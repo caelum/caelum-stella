@@ -1,13 +1,13 @@
 package br.com.caelum.stella.hibernate.validator;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleValidationMessage;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidValue;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Recupera mensagens de validação definida na anotação do Hibernate Validator.

@@ -1,8 +1,8 @@
 package br.com.caelum.stella.faces.example;
 
-import br.com.caelum.stella.faces.validation.StellaIEValidator;
-
 import javax.faces.event.ValueChangeEvent;
+
+import br.com.caelum.stella.faces.validation.StellaIEValidator;
 
 /**
  * @author Fabio Kung

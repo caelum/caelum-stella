@@ -1,16 +1,18 @@
 package br.com.caelum.stella.faces.validation;
 
-import org.jmock.Mockery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import org.junit.Before;
-import org.junit.Test;
+
+import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import java.util.Locale;
+
+import org.jmock.Mockery;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * StellaNITValidator integration tests

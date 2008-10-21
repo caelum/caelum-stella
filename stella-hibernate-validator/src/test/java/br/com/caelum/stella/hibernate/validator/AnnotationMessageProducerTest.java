@@ -1,13 +1,16 @@
 package br.com.caelum.stella.hibernate.validator;
 
 
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.InvalidValue;
-import junit.framework.Assert;
 import static org.junit.Assert.fail;
-import org.junit.Test;
 
 import java.lang.reflect.Field;
+
+import junit.framework.Assert;
+
+import org.junit.Test;
+
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.InvalidValue;
 
 /**
  * @author Fabio Kung

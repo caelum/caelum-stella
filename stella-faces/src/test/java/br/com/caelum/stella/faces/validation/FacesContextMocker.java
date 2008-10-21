@@ -1,13 +1,14 @@
 package br.com.caelum.stella.faces.validation;
 
-import org.jmock.Mockery;
-import org.jmock.Expectations;
-import org.jmock.lib.legacy.ClassImposteriser;
+import java.util.Locale;
 
-import javax.faces.context.FacesContext;
 import javax.faces.application.Application;
 import javax.faces.component.UIViewRoot;
-import java.util.Locale;
+import javax.faces.context.FacesContext;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.lib.legacy.ClassImposteriser;
 
 /**
  * @author Fabio Kung

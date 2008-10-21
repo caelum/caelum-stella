@@ -1,16 +1,18 @@
 package br.com.caelum.stella.faces.validation;
 
+import static org.junit.Assert.assertNotNull;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.junit.Test;
+
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.error.CNPJError;
 import br.com.caelum.stella.validation.error.CPFError;
 import br.com.caelum.stella.validation.error.IEError;
 import br.com.caelum.stella.validation.error.NITError;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
-
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * @author Fabio Kung

@@ -1,8 +1,8 @@
 package br.com.caelum.stella.constraint;
 
+import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.format.LeftSideZerosFormatter;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.RotinaParameters;
 

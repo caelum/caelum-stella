@@ -2,14 +2,12 @@ package br.com.caelum.stella.faces.validation;
 
 import static org.junit.Assert.assertTrue;
 
-import javax.faces.validator.Validator;
-import javax.faces.context.FacesContext;
 import javax.el.ELContext;
+import javax.faces.validator.Validator;
 
-import org.junit.Test;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
-import org.jmock.api.Imposteriser;
+import org.junit.Test;
 
 /**
  * @author Leonardo Bessa

@@ -1,9 +1,9 @@
 package br.com.caelum.stella.constraint;
 
+import java.util.regex.Pattern;
+
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.RotinaParameters;
-
-import java.util.regex.Pattern;
 
 /**
  * @author Leonardo Bessa

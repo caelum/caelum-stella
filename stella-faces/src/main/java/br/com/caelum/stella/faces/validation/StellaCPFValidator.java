@@ -1,18 +1,19 @@
 package br.com.caelum.stella.faces.validation;
 
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.StateHolder;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
+
 import br.com.caelum.stella.ResourceBundleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.StateHolder;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-import javax.faces.validator.Validator;
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
