@@ -33,25 +33,21 @@ public class CPFValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "CPFError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false);
@@ -65,17 +61,14 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false);
@@ -89,17 +82,14 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false);
@@ -115,17 +105,14 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithCheckDigitsWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false);
@@ -142,17 +129,14 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithCheckDigitsWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_CHECK_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false);
@@ -169,12 +153,10 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateValidCPF() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         CPFValidator validator = new CPFValidator(messageProducer, false);
 
@@ -210,12 +192,10 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateNullCPF() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         CPFValidator validator = new CPFValidator(messageProducer, false);
 
@@ -232,16 +212,13 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateCPFWithAllRepeatedDigitsFaulWhenNotIgnoringIt() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.REPEATED_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CPFError.REPEATED_DIGITS);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, false, false);
@@ -257,12 +234,10 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateCPFWithAllRepeatedDigitsFaulWhenIgnoringIt() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         CPFValidator validator = new CPFValidator(messageProducer, false);
         List<ValidationMessage> errors;
@@ -279,12 +254,10 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateValidFormattedCPF() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         CPFValidator validator = new CPFValidator(messageProducer, true);
@@ -303,17 +276,14 @@ public class CPFValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateValidUnformattedCPF() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CPFError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(CPFError.INVALID_FORMAT);
             }
         });
         CPFValidator validator = new CPFValidator(messageProducer, true);

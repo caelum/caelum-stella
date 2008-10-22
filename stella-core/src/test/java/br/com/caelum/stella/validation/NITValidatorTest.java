@@ -18,17 +18,14 @@ import br.com.caelum.stella.validation.error.NITError;
  */
 public class NITValidatorTest {
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateNITWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, false);
@@ -44,17 +41,14 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateNITWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, false);
@@ -70,17 +64,14 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateNITWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_DIGITS);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, false);
@@ -96,17 +87,14 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateNITWithCheckDigitsWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, false);
@@ -123,17 +111,14 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateNITWithCheckDigitsWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_CHECK_DIGITS);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, false);
@@ -150,12 +135,10 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateValidNIT() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         NITValidator validator = new NITValidator(messageProducer, false);
 
@@ -191,12 +174,10 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateNullNIT() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         NITValidator validator = new NITValidator(messageProducer, false);
 
@@ -212,12 +193,10 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldValidateValidFormattedNIT() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         NITValidator validator = new NITValidator(messageProducer, true);
@@ -235,17 +214,14 @@ public class NITValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotValidateValidUnformattedNIT() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        NITError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(NITError.INVALID_FORMAT);
             }
         });
         NITValidator validator = new NITValidator(messageProducer, true);

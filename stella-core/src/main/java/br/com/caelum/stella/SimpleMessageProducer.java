@@ -13,20 +13,18 @@ import br.com.caelum.stella.validation.InvalidValue;
  * </p>
  * <code>
  * String message = (simpleName + "." + errorName).replaceFirst("[.]", " : ").replaceAll("_", " "); 
- * </code>
- * </p>
+ * </code> </p>
  * <p>
  * Veja o exemplo:
  * </p>
  * <p>
- * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/> CPFError :
- * INVALID DIGITS .
+ * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/> CPFError
+ * : INVALID DIGITS .
  * </p>
  * 
  * @author Leonardo Bessa
  * 
  */
-@SuppressWarnings("unchecked")
 public class SimpleMessageProducer implements MessageProducer {
 
     /**
@@ -35,7 +33,7 @@ public class SimpleMessageProducer implements MessageProducer {
     public ValidationMessage getMessage(InvalidValue error) {
         String simpleName = error.getClass().getSimpleName();
         String errorName = error.name();
-        String key = (simpleName + "." + errorName);
+        String key = simpleName + "." + errorName;
         String message;
         message = key.replaceFirst("[.]", " : ").replaceAll("_", " ");
         return new SimpleValidationMessage(message);

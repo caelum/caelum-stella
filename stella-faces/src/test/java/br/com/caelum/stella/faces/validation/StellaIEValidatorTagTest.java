@@ -13,6 +13,8 @@ import org.junit.Test;
  * @author Leonardo Bessa
  */
 public class StellaIEValidatorTagTest {
+
+    @SuppressWarnings("serial")
     @Test
     public void shouldReturnTheStellaValidator() throws Exception {
         Mockery mockery = new Mockery();
@@ -20,6 +22,7 @@ public class StellaIEValidatorTagTest {
 
         final ELContext elContext = mockery.mock(ELContext.class);
         StellaIEValidatorTag tag = new StellaIEValidatorTag() {
+            @Override
             protected ELContext getELContext() {
                 return elContext;
             }

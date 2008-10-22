@@ -16,15 +16,12 @@ import br.com.caelum.stella.ValidationMessage;
 
 public class BaseValidatorTest {
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testGetValidationMessagesT() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         final InvalidValue invalidValue = mockery.mock(InvalidValue.class);
-        final ValidationMessage validationMessage = mockery
-                .mock(ValidationMessage.class);
+        final ValidationMessage validationMessage = mockery.mock(ValidationMessage.class);
 
         mockery.checking(new Expectations() {
             {
@@ -35,8 +32,7 @@ public class BaseValidatorTest {
         BaseValidator validator = new BaseValidator(messageProducer);
 
         List<InvalidValue> invalidValues = Arrays.asList(invalidValue);
-        List<ValidationMessage> actual = validator
-                .generateValidationMessages(invalidValues);
+        List<ValidationMessage> actual = validator.generateValidationMessages(invalidValues);
         List<ValidationMessage> expected = new ArrayList<ValidationMessage>();
         expected.add(validationMessage);
         assertEquals(expected, actual);
@@ -44,15 +40,12 @@ public class BaseValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testAssertValidShouldThrowInvalidStateExpectionWhenComesAnInvalidValue() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         final InvalidValue invalidValue = mockery.mock(InvalidValue.class);
-        final ValidationMessage validationMessage = mockery
-                .mock(ValidationMessage.class);
+        final ValidationMessage validationMessage = mockery.mock(ValidationMessage.class);
 
         mockery.checking(new Expectations() {
             {
@@ -77,12 +70,10 @@ public class BaseValidatorTest {
         mockery.assertIsSatisfied();
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testAssertValidShouldNotThrowInvalidStateExpectionWhenValueIsValid() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         BaseValidator validator = new BaseValidator(messageProducer);

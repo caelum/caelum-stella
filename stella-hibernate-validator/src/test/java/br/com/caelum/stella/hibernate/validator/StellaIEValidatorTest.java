@@ -14,11 +14,9 @@ public class StellaIEValidatorTest {
 
     @IE
     private static class ObjectWithIE {
-        @SuppressWarnings("unused")
-        private String ie;
+        private final String ie;
 
-        @SuppressWarnings("unused")
-        private String estado;
+        private final String estado;
 
         private ObjectWithIE(String ie, String estado) {
             this.ie = ie;
@@ -83,7 +81,7 @@ public class StellaIEValidatorTest {
         boolean valid = validator.isValid(new ObjectWithIE("P011004243002", ""));
         assertFalse(valid);
     }
-    
+
     @Test
     public void shouldValidateEmpty() {
         boolean valid = validator.isValid(new ObjectWithIE("", "SP"));
