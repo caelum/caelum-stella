@@ -34,8 +34,7 @@ public interface BoletoWriter {
      * @param height
      * @throws IOException
      */
-    void writeImage(float x, float y, BufferedImage image, float width,
-            float height) throws IOException;
+    void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException;
 
     /**
      * Grava num InputStream

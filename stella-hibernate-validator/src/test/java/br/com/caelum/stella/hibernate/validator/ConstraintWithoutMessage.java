@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * @author Fabio Kung
  */
 @Documented
-@Target({FIELD, METHOD})
+@Target( { FIELD, METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConstraintWithoutMessage {
 }

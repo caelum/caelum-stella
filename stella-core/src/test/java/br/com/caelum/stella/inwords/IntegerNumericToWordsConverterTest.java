@@ -6,8 +6,7 @@ import org.junit.Test;
 
 public abstract class IntegerNumericToWordsConverterTest {
 
-    private final NumericToWordsConverter converter = new NumericToWordsConverter(
-            new FormatoDeInteiro());
+    private final NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeInteiro());
 
     public IntegerNumericToWordsConverterTest() {
         super();
@@ -29,11 +28,10 @@ public abstract class IntegerNumericToWordsConverterTest {
     public void shouldTransformMaxLong() {
         long max = Long.MAX_VALUE;
         String actual = converter.toWords(max);
-        assertEquals(
-                "nove quintilhões, duzentos e vinte e três quatrilhões,"
-                        + " trezentos e setenta e dois trilhões, trinta e seis bilhões,"
-                        + " oitocentos e cinquenta e quatro milhões, setecentos e setenta"
-                        + " e cinco mil e oitocentos e sete inteiros", actual);
+        assertEquals("nove quintilhões, duzentos e vinte e três quatrilhões,"
+                + " trezentos e setenta e dois trilhões, trinta e seis bilhões,"
+                + " oitocentos e cinquenta e quatro milhões, setecentos e setenta"
+                + " e cinco mil e oitocentos e sete inteiros", actual);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -123,18 +121,14 @@ public abstract class IntegerNumericToWordsConverterTest {
     public void shouldTransformAMillionIntoNumberInWordsUsingAnd() {
         double twoHundred = 1000150.99;
         String actual = converter.toWords(twoHundred);
-        assertEquals(
-                "um milhão e cento e cinquenta inteiros e novecentos e noventa milésimos",
-                actual);
+        assertEquals("um milhão e cento e cinquenta inteiros e novecentos e noventa milésimos", actual);
     }
 
     @Test
     public void shouldTransformAMillionAndThousandIntoNumberInWordsUsingAnd() {
         double twoHundred = 1023850;
         String actual = converter.toWords(twoHundred);
-        assertEquals(
-                "um milhão, vinte e três mil e oitocentos e cinquenta inteiros",
-                actual);
+        assertEquals("um milhão, vinte e três mil e oitocentos e cinquenta inteiros", actual);
     }
 
     @Test

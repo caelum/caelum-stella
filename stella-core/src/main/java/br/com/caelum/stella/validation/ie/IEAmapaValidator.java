@@ -36,40 +36,34 @@ public class IEAmapaValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] ROTINAS_CASO1 = {
-            IEConstraints.Rotina.C, IEConstraints.Rotina.E,
+    private static final RotinaDeDigitoVerificador[] ROTINAS_CASO1 = { IEConstraints.Rotina.C, IEConstraints.Rotina.E,
             IEConstraints.Rotina.POS_IE };
 
     private static final RotinaDeDigitoVerificador[] ROTINAS_CASO2 = ROTINAS_CASO1;
 
-    private static final RotinaDeDigitoVerificador[] ROTINAS_CASO3 = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] ROTINAS_CASO3 = { IEConstraints.Rotina.E,
+            IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO_CASO1 = new DigitoVerificadorInfo(
-            0, ROTINAS_CASO1, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_CASO1 = new DigitoVerificadorInfo(0, ROTINAS_CASO1, MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVX_INFO_CASO2 = new DigitoVerificadorInfo(
-            1, ROTINAS_CASO2, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_CASO2 = new DigitoVerificadorInfo(1, ROTINAS_CASO2, MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVX_INFO_CASO3 = new DigitoVerificadorInfo(
-            0, ROTINAS_CASO3, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_CASO3 = new DigitoVerificadorInfo(0, ROTINAS_CASO3, MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final ValidadorDeDV DVX_CHECKER_CASO1 = new ValidadorDeDV(
-            DVX_INFO_CASO1);
+    private static final ValidadorDeDV DVX_CHECKER_CASO1 = new ValidadorDeDV(DVX_INFO_CASO1);
 
-    private static final ValidadorDeDV DVX_CHECKER_CASO2 = new ValidadorDeDV(
-            DVX_INFO_CASO2);
+    private static final ValidadorDeDV DVX_CHECKER_CASO2 = new ValidadorDeDV(DVX_INFO_CASO2);
 
-    private static final ValidadorDeDV DVX_CHECKER_CASO3 = new ValidadorDeDV(
-            DVX_INFO_CASO3);
+    private static final ValidadorDeDV DVX_CHECKER_CASO3 = new ValidadorDeDV(DVX_INFO_CASO3);
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(03)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(03)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(03)(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(03)(\\d{3})(\\d{3})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -138,8 +132,7 @@ public class IEAmapaValidator implements Validator<String> {
          * 
          * De 03019023X em diante => CASO 3
          */
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         ValidadorDeDV validadorDeDV = null;
         if ((3000001 <= ie) && (ie <= 3017000)) {
             validadorDeDV = DVX_CHECKER_CASO1;

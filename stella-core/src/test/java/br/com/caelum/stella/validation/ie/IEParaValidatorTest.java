@@ -42,8 +42,7 @@ public class IEParaValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -54,19 +53,16 @@ public class IEParaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEParaValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -79,13 +75,11 @@ public class IEParaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEParaValidator(messageProducer, false);
@@ -103,13 +97,11 @@ public class IEParaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEParaValidator(messageProducer, false);
@@ -129,13 +121,11 @@ public class IEParaValidatorTest {
     @Test
     public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new IEParaValidator(messageProducer, false);
@@ -155,16 +145,14 @@ public class IEParaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEParaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { validUnformattedString, "152298517",
-                "151330816", "151437726", "151918090", "151330816",
-                "151055610", "150695101", "150029349", "151330417" };
+        String[] validValues = { validUnformattedString, "152298517", "151330816", "151437726", "151918090",
+                "151330816", "151055610", "150695101", "150029349", "151330417" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -181,8 +169,7 @@ public class IEParaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEParaValidator(messageProducer, true);
 
@@ -205,8 +192,7 @@ public class IEParaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEParaValidator(messageProducer, false);
 
@@ -227,13 +213,11 @@ public class IEParaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IEParaValidator(messageProducer, true);

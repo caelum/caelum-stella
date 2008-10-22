@@ -26,7 +26,7 @@ public class Emissor {
      * @return
      */
     public static Emissor newEmissor() {
-	return new Emissor();
+        return new Emissor();
     }
 
     /**
@@ -34,7 +34,7 @@ public class Emissor {
      * 
      */
     public int getAgencia() {
-	return agencia;
+        return agencia;
     }
 
     /**
@@ -43,8 +43,8 @@ public class Emissor {
      * @param agencia
      */
     public Emissor withAgencia(int agencia) {
-	this.agencia = agencia;
-	return this;
+        this.agencia = agencia;
+        return this;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Emissor {
      * 
      */
     public long getContaCorrente() {
-	return contaCorrente;
+        return contaCorrente;
     }
 
     /**
@@ -61,8 +61,8 @@ public class Emissor {
      * @param contaCorrente
      */
     public Emissor withContaCorrente(long contaCorrente) {
-	this.contaCorrente = contaCorrente;
-	return this;
+        this.contaCorrente = contaCorrente;
+        return this;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Emissor {
      * 
      */
     public int getCarteira() {
-	return carteira;
+        return carteira;
     }
 
     /**
@@ -81,8 +81,8 @@ public class Emissor {
      * @param carteira
      */
     public Emissor withCarteira(int carteira) {
-	this.carteira = carteira;
-	return this;
+        this.carteira = carteira;
+        return this;
     }
 
     /**
@@ -91,7 +91,7 @@ public class Emissor {
      * 
      */
     public long getNumConvenio() {
-	return numConvenio;
+        return numConvenio;
     }
 
     /**
@@ -102,8 +102,8 @@ public class Emissor {
      * @param numConvenio
      */
     public Emissor withNumConvenio(long numConvenio) {
-	this.numConvenio = numConvenio;
-	return this;
+        this.numConvenio = numConvenio;
+        return this;
     }
 
     /**
@@ -115,7 +115,7 @@ public class Emissor {
      * 
      */
     public long getNossoNumero() {
-	return nossoNumero;
+        return nossoNumero;
     }
 
     /**
@@ -128,8 +128,8 @@ public class Emissor {
      * @param nossoNumero
      */
     public Emissor withNossoNumero(long nossoNumero) {
-	this.nossoNumero = nossoNumero;
-	return this;
+        this.nossoNumero = nossoNumero;
+        return this;
     }
 
     /**
@@ -137,7 +137,7 @@ public class Emissor {
      * 
      */
     public String getCedente() {
-	return cedente;
+        return cedente;
     }
 
     /**
@@ -146,8 +146,8 @@ public class Emissor {
      * @param cedente
      */
     public Emissor withCedente(String cedente) {
-	this.cedente = cedente;
-	return this;
+        this.cedente = cedente;
+        return this;
     }
 
     /**
@@ -156,7 +156,7 @@ public class Emissor {
      * @return
      */
     public String getDvContaCorrente() {
-	return dvContaCorrete;
+        return dvContaCorrete;
     }
 
     /**
@@ -166,8 +166,8 @@ public class Emissor {
      * @return
      */
     public Emissor withDvContaCorrete(String dv) {
-	dvContaCorrete = dv;
-	return this;
+        dvContaCorrete = dv;
+        return this;
     }
 
     /**
@@ -176,7 +176,7 @@ public class Emissor {
      * @return
      */
     public String getDvAgencia() {
-	return dvAgencia;
+        return dvAgencia;
     }
 
     /**
@@ -186,8 +186,8 @@ public class Emissor {
      * @return
      */
     public Emissor withDvAgencia(String dv) {
-	dvAgencia = dv;
-	return this;
+        dvAgencia = dv;
+        return this;
     }
 
     /**
@@ -196,6 +196,6 @@ public class Emissor {
      * @return
      */
     public String getAgenciaFormatado() {
-	return String.format("%04d", agencia);
+        return String.format("%04d", agencia);
     }
 }

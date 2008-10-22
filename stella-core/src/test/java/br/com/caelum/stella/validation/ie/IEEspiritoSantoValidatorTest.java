@@ -30,8 +30,7 @@ public class IEEspiritoSantoValidatorTest {
 
     private static final String validFormattedString = "082.223.54-8";
 
-    private String[] validUnformattedValues = new String[] {
-            validUnformattedString, "082260664", "081877455" };
+    private String[] validUnformattedValues = new String[] { validUnformattedString, "082260664", "081877455" };
 
     private Validator<String> newValidator() {
         return new IEEspiritoSantoValidator();
@@ -47,8 +46,7 @@ public class IEEspiritoSantoValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -59,20 +57,16 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -85,17 +79,14 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -110,17 +101,14 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -137,17 +125,14 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldNotValidateIECheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -164,11 +149,9 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -188,11 +171,9 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                false);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -211,12 +192,10 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                true);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         String value = validFormattedString;
@@ -234,17 +213,14 @@ public class IEEspiritoSantoValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEEspiritoSantoValidator(messageProducer,
-                true);
+        Validator validator = new IEEspiritoSantoValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {

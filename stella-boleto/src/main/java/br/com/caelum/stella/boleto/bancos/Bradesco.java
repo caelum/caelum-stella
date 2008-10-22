@@ -43,14 +43,13 @@ public class Bradesco implements Banco {
         codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
         codigoDeBarras.append("0");
 
-        codigoDeBarras.insert(4, dvGenerator
-                .geraDVCodigoDeBarras(codigoDeBarras.toString()));
+        codigoDeBarras.insert(4, dvGenerator.geraDVCodigoDeBarras(codigoDeBarras.toString()));
 
         String result = codigoDeBarras.toString();
 
         if (result.length() != 44) {
             throw new CriacaoBoletoException(
-            "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
+                    "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
         }
 
         return result;
@@ -106,9 +105,7 @@ public class Bradesco implements Banco {
     }
 
     public java.net.URL getImage() {
-        return getClass().getResource(
-                String.format("/br/com/caelum/stella/boleto/img/%s.png",
-                        getNumeroFormatado()));
+        return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
     }
 
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {

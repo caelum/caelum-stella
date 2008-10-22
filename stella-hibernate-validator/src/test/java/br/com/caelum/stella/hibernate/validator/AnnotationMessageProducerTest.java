@@ -1,6 +1,5 @@
 package br.com.caelum.stella.hibernate.validator;
 
-
 import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
@@ -48,7 +47,7 @@ public class AnnotationMessageProducerTest {
         AnnotationMessageProducer producer = new AnnotationMessageProducer(constraint);
         try {
             @SuppressWarnings("unused")
-			ValidationMessage validationMessage = producer.getMessage(Errors.ANY);
+            ValidationMessage validationMessage = producer.getMessage(Errors.ANY);
             fail();
         } catch (IllegalArgumentException e) {
             // ok
@@ -57,6 +56,5 @@ public class AnnotationMessageProducerTest {
             fail();
         }
     }
-
 
 }

@@ -14,29 +14,29 @@ import com.sun.facelets.tag.jsf.ValidatorConfig;
  */
 public class StellaCNPJValidatorTagHandler extends ValidateHandler {
 
-	private final TagAttribute formatted;
+    private final TagAttribute formatted;
 
-	@SuppressWarnings("deprecation")
-	public StellaCNPJValidatorTagHandler(TagConfig config) {
-		super(config);
-		formatted = getAttribute("formatted");
-	}
+    @SuppressWarnings("deprecation")
+    public StellaCNPJValidatorTagHandler(TagConfig config) {
+        super(config);
+        formatted = getAttribute("formatted");
+    }
 
-	public StellaCNPJValidatorTagHandler(ValidatorConfig validatorConfig) {
-		super(validatorConfig);
-		formatted = getAttribute("formatted");
-	}
+    public StellaCNPJValidatorTagHandler(ValidatorConfig validatorConfig) {
+        super(validatorConfig);
+        formatted = getAttribute("formatted");
+    }
 
-	/**
-	 * @see com.sun.facelets.tag.jsf.ValidateHandler#createValidator(com.sun.facelets.FaceletContext)
-	 */
-	protected Validator createValidator(FaceletContext context) {
-		StellaCNPJValidator validator = new StellaCNPJValidator();
-		if (formatted != null) {
-			validator.setFormatted(formatted.getBoolean(context));
-		} else {
-			validator.setFormatted(false);
-		}
-		return validator;
-	}
+    /**
+     * @see com.sun.facelets.tag.jsf.ValidateHandler#createValidator(com.sun.facelets.FaceletContext)
+     */
+    protected Validator createValidator(FaceletContext context) {
+        StellaCNPJValidator validator = new StellaCNPJValidator();
+        if (formatted != null) {
+            validator.setFormatted(formatted.getBoolean(context));
+        } else {
+            validator.setFormatted(false);
+        }
+        return validator;
+    }
 }

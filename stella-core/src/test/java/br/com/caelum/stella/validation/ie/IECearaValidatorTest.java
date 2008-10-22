@@ -44,8 +44,7 @@ public class IECearaValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -56,19 +55,16 @@ public class IECearaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IECearaValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -81,13 +77,11 @@ public class IECearaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IECearaValidator(messageProducer, false);
@@ -105,13 +99,11 @@ public class IECearaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IECearaValidator(messageProducer, false);
@@ -131,13 +123,11 @@ public class IECearaValidatorTest {
     @Test
     public void shouldNotValidateIEWithNineDigitsAndCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new IECearaValidator(messageProducer, false);
@@ -157,8 +147,7 @@ public class IECearaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IECearaValidator(messageProducer, false);
 
@@ -180,8 +169,7 @@ public class IECearaValidatorTest {
     @Test
     public void shouldValidateMultipleValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IECearaValidator(messageProducer, true);
 
@@ -205,8 +193,7 @@ public class IECearaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IECearaValidator(messageProducer, false);
 
@@ -227,8 +214,7 @@ public class IECearaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IECearaValidator(messageProducer, true);
@@ -249,13 +235,11 @@ public class IECearaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IECearaValidator(messageProducer, true);

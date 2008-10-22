@@ -34,13 +34,12 @@ public class IEDistritoFederalValidator implements Validator<String> {
 
     private static final int DVX_POSITION = 1 + 12;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P2;
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -48,8 +47,8 @@ public class IEDistritoFederalValidator implements Validator<String> {
 
     private static final int DVY_POSITION = 1 + 13;
 
-    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVY_MULTIPLIERS,
+            DVY_POSITION);
 
     private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
@@ -59,11 +58,9 @@ public class IEDistritoFederalValidator implements Validator<String> {
      * Formato: 07.408.738/002-50
      */
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(07)[.]([3-4]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(07)[.]([3-4]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(07)([3-4]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(07)([3-4]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -85,8 +82,7 @@ public class IEDistritoFederalValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IEDistritoFederalValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IEDistritoFederalValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -122,10 +118,8 @@ public class IEDistritoFederalValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
-        return DVX_CHECKER.isDVValid(testedValue)
-                && DVY_CHECKER.isDVValid(testedValue);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
+        return DVX_CHECKER.isDVValid(testedValue) && DVY_CHECKER.isDVValid(testedValue);
     }
 
     public boolean isEligible(String value) {

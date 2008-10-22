@@ -36,11 +36,10 @@ public class IEParaValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -50,11 +49,9 @@ public class IEParaValidator implements Validator<String> {
      * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
      */
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(15)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(15)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(15)(\\d{6})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(15)(\\d{6})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -112,8 +109,7 @@ public class IEParaValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

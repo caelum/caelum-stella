@@ -18,7 +18,7 @@ import br.com.caelum.stella.validation.InvalidStateException;
 /**
  * Caso ocorra algum erro de validação, todas as mensagens serão enfileiradas no
  * FacesContext e associadas ao elemento inválido.
- *
+ * 
  * @author Leonardo Bessa
  */
 public class StellaCNPJValidator implements Validator, StateHolder {
@@ -36,10 +36,11 @@ public class StellaCNPJValidator implements Validator, StateHolder {
     /**
      * Atribui se a regra de validação deve considerar, ou não, a cadeia no
      * formato do documento.
-     *
-     * @param formatted caso seja <code>true</code> o validador considera que a
-     *                  cadeia está formatada; caso contrário, considera que a cadeia
-     *                  contém apenas dígitos numéricos.
+     * 
+     * @param formatted
+     *            caso seja <code>true</code> o validador considera que a cadeia
+     *            está formatada; caso contrário, considera que a cadeia contém
+     *            apenas dígitos numéricos.
      */
     public void setFormatted(boolean formatted) {
         this.formatted = formatted;
@@ -52,8 +53,7 @@ public class StellaCNPJValidator implements Validator, StateHolder {
 
         try {
             validator.assertValid(value.toString());
-        }
-        catch (InvalidStateException e) {
+        } catch (InvalidStateException e) {
             List<ValidationMessage> messages = e.getInvalidMessages();
             String firstErrorMessage = messages.remove(0).getMessage();
             registerAllMessages(facesContext, uiComponent, messages);
@@ -62,7 +62,7 @@ public class StellaCNPJValidator implements Validator, StateHolder {
     }
 
     private void registerAllMessages(FacesContext facesContext, UIComponent uiComponent,
-                                     List<ValidationMessage> messages) {
+            List<ValidationMessage> messages) {
         for (ValidationMessage message : messages) {
             String componentId = uiComponent.getClientId(facesContext);
             facesContext.addMessage(componentId, new FacesMessage(message.getMessage()));

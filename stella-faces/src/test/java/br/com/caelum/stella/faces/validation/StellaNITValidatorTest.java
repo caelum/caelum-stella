@@ -16,7 +16,7 @@ import org.junit.Test;
 
 /**
  * StellaNITValidator integration tests
- *
+ * 
  * @author Leonardo Bessa
  * @author Fabio Kung
  */
@@ -59,7 +59,6 @@ public class StellaNITValidatorTest {
             mockery.assertIsSatisfied();
         }
     }
-
 
     @Test
     public void shouldGiveMessagesFromDefaultResourceBundleForInvalidNITAndEnUSLocale() throws Exception {

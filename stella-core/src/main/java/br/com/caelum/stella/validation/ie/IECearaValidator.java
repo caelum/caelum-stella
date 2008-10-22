@@ -36,11 +36,10 @@ public class IECearaValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -52,11 +51,9 @@ public class IECearaValidator implements Validator<String> {
      * Exemplo: CGF número 06000001-5 Exemplo Formatado: 06.998.161-2
      */
 
-    public static final Pattern FORMATED = Pattern
-            .compile("([0]\\d{1})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("([0]\\d{1})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("([0]\\d{1})(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("([0]\\d{1})(\\d{3})(\\d{3})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -114,8 +111,7 @@ public class IECearaValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

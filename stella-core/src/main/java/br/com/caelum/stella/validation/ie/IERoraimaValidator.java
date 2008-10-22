@@ -27,17 +27,14 @@ public class IERoraimaValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P5;
 
-    private static final RotinaDeDigitoVerificador[] ROTINAS = {
-            IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] ROTINAS = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, ROTINAS, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, ROTINAS, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
-    public static final Pattern FORMATED = Pattern
-            .compile("([2][4])(\\d{6})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("([2][4])(\\d{6})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("([2][4])(\\d{6})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("([2][4])(\\d{6})(\\d{1})");
 
     private final ValidadorDeDV validadorDeDV = new ValidadorDeDV(DVX_INFO);
 

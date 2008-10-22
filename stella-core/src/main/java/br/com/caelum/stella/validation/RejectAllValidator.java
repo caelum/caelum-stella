@@ -13,8 +13,7 @@ public class RejectAllValidator<T> implements Validator<T> {
 
     private final List<InvalidValue> invalidValues;
 
-    public RejectAllValidator(MessageProducer messageProducer,
-            InvalidValue... invalidValues) {
+    public RejectAllValidator(MessageProducer messageProducer, InvalidValue... invalidValues) {
         this.messageProducer = messageProducer;
         this.invalidValues = Arrays.asList(invalidValues);
     }
@@ -38,12 +37,10 @@ public class RejectAllValidator<T> implements Validator<T> {
         return true;
     }
 
-    private List<ValidationMessage> generateValidationMessages(
-            List<InvalidValue> invalidValues) {
+    private List<ValidationMessage> generateValidationMessages(List<InvalidValue> invalidValues) {
         List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
         for (InvalidValue invalidValue : invalidValues) {
-            ValidationMessage message = messageProducer
-                    .getMessage(invalidValue);
+            ValidationMessage message = messageProducer.getMessage(invalidValue);
             messages.add(message);
         }
         return messages;

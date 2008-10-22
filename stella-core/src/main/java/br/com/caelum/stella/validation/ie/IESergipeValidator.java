@@ -27,22 +27,19 @@ public class IESergipeValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P11;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
     // 27123456-3
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{8})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{8})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{8})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{8})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -64,8 +61,7 @@ public class IESergipeValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IESergipeValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IESergipeValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }

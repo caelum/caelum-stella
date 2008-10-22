@@ -83,8 +83,7 @@ public class ResourceBundleMessageProducer implements MessageProducer {
      * @return chave que representa o erro a ser usada para recuperar sua
      *         mensagem associada
      */
-    public String messageKeyFor(Locale locale,
-            Class<? extends InvalidValue> errorClass, InvalidValue error) {
+    public String messageKeyFor(Locale locale, Class<? extends InvalidValue> errorClass, InvalidValue error) {
         String simpleName = errorClass.getSimpleName();
         String errorName = error.name();
         String key = simpleName + "." + errorName;

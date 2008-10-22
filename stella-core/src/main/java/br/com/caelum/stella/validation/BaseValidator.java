@@ -18,12 +18,10 @@ public class BaseValidator {
         this.messageProducer = messageProducer;
     }
 
-    public List<ValidationMessage> generateValidationMessages(
-            List<InvalidValue> invalidValues) {
+    public List<ValidationMessage> generateValidationMessages(List<InvalidValue> invalidValues) {
         List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
         for (InvalidValue invalidValue : invalidValues) {
-            ValidationMessage message = messageProducer
-                    .getMessage(invalidValue);
+            ValidationMessage message = messageProducer.getMessage(invalidValue);
             messages.add(message);
         }
         return messages;
@@ -31,8 +29,7 @@ public class BaseValidator {
 
     public void assertValid(List<InvalidValue> invalidValues) {
         if (!invalidValues.isEmpty()) {
-            throw new InvalidStateException(
-                    generateValidationMessages(invalidValues));
+            throw new InvalidStateException(generateValidationMessages(invalidValues));
         }
     }
 

@@ -22,7 +22,6 @@ public class IEBahiaValidatorTest {
      * 612345-57
      * 
      * 123456-63
-     * 
      */
 
     private static final String wrongCheckDigitUnformattedNewString = "61234559";
@@ -31,8 +30,7 @@ public class IEBahiaValidatorTest {
 
     private static final String validFormattedNewString = "612345-57";
 
-    private static final String[] validValues = { validFormattedNewString,
-            "123456-63" };
+    private static final String[] validValues = { validFormattedNewString, "123456-63" };
 
     private Validator<String> newValidator() {
         return new IEBahiaValidator();
@@ -48,8 +46,7 @@ public class IEBahiaValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -60,19 +57,16 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEBahiaValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedNewString.replaceFirst(".",
-                    "&"));
+            validator.assertValid(validUnformattedNewString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -85,19 +79,16 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEBahiaValidator(messageProducer, false);
         try {
-            validator.assertValid(validUnformattedNewString.replaceFirst(".",
-                    ""));
+            validator.assertValid(validUnformattedNewString.replaceFirst(".", ""));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -110,13 +101,11 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEBahiaValidator(messageProducer, false);
@@ -136,13 +125,11 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new IEBahiaValidator(messageProducer, false);
@@ -162,8 +149,7 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEBahiaValidator(messageProducer, true);
 
@@ -185,8 +171,7 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldValidateValidFormattedNovaIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEBahiaValidator(messageProducer, true);
 
@@ -209,8 +194,7 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEBahiaValidator(messageProducer, false);
 
@@ -231,13 +215,11 @@ public class IEBahiaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IEBahiaValidator(messageProducer, true);

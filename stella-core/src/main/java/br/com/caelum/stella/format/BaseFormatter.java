@@ -38,14 +38,13 @@ public class BaseFormatter implements Formatter {
         if (matcher.matches()) {
             result = matcher.replaceAll(replacement);
         } else {
-            throw new IllegalArgumentException(
-                    "Value is not properly formatted.");
+            throw new IllegalArgumentException("Value is not properly formatted.");
         }
         return result;
     }
 
-    public BaseFormatter(Pattern formatted, String formattedReplacement,
-            Pattern unformatted, String unformattedReplacement) {
+    public BaseFormatter(Pattern formatted, String formattedReplacement, Pattern unformatted,
+            String unformattedReplacement) {
         super();
         this.formatted = formatted;
         this.formattedReplacement = formattedReplacement;

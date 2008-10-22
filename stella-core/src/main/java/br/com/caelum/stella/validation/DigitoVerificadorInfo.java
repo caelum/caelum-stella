@@ -11,8 +11,7 @@ public class DigitoVerificadorInfo {
 
     private final Integer posicaoDoDv;
 
-    public DigitoVerificadorInfo(Integer fator,
-            RotinaDeDigitoVerificador[] rotinas, Integer mod, Integer[] pesos,
+    public DigitoVerificadorInfo(Integer fator, RotinaDeDigitoVerificador[] rotinas, Integer mod, Integer[] pesos,
             Integer posicaoDoDv) {
         this.fator = fator;
         this.rotinas = rotinas;

@@ -7,8 +7,7 @@ class DVGenerator {
         for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
             if (multiplicador == 10) // volta pro 2
                 multiplicador = 2;
-            soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i)))
-                    * multiplicador;
+            soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i))) * multiplicador;
         }
 
         soma *= 10;
@@ -25,9 +24,7 @@ class DVGenerator {
         int soma = 0;
         for (int i = campo.length() - 1; i >= 0; i--) {
             int multiplicador = (campo.length() - i) % 2 + 1;
-            int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo
-                    .charAt(i)))
-                    * multiplicador;
+            int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo.charAt(i))) * multiplicador;
             soma += (algarismoMultiplicado / 10) + (algarismoMultiplicado % 10);
         }
 

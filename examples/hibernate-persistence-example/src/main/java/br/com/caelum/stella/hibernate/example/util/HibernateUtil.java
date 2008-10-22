@@ -1,6 +1,5 @@
 package br.com.caelum.stella.hibernate.example.util;
 
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 

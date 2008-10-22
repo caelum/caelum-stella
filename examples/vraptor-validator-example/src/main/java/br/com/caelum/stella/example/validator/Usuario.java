@@ -5,38 +5,36 @@ import br.com.caelum.stella.hibernate.validator.CPF;
 import br.com.caelum.stella.hibernate.validator.NIT;
 
 public class Usuario {
-	@CPF
-	private String cpf;
-	@CNPJ
-	private String cnpj;
-	public String getCpf() {
-		return cpf;
-	}
+    @CPF
+    private String cpf;
+    @CNPJ
+    private String cnpj;
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	@NIT
-	private String nit;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-	public String getNit() {
-		return nit;
-	}
+    @NIT
+    private String nit;
 
-	public void setNit(String nit) {
-		this.nit = nit;
-	}
-	
-	
+    public String getNit() {
+        return nit;
+    }
 
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
 
 }

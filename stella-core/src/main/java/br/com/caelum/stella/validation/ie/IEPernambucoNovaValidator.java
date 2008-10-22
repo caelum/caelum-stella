@@ -33,17 +33,17 @@ class IEPernambucoNovaValidator implements Validator<String> {
 
     private static final Integer[] DVY_MULTIPLIERS = IEConstraints.P13;
 
-    private static final RotinaDeDigitoVerificador[] DVX_ROTINAS = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] DVX_ROTINAS = { IEConstraints.Rotina.E,
+            IEConstraints.Rotina.POS_IE };
 
-    private static final RotinaDeDigitoVerificador[] DVY_ROTINAS = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] DVY_ROTINAS = { IEConstraints.Rotina.E,
+            IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, DVX_ROTINAS, DVX_MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, DVX_ROTINAS, DVX_MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(
-            0, DVY_ROTINAS, DVY_MOD, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(0, DVY_ROTINAS, DVY_MOD,
+            DVY_MULTIPLIERS, DVY_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -52,16 +52,13 @@ class IEPernambucoNovaValidator implements Validator<String> {
     private final boolean isFormatted;
 
     // 0321418-40
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{7})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{7})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{7})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{7})(\\d{2})");
 
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2";
 
-    public IEPernambucoNovaValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IEPernambucoNovaValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }

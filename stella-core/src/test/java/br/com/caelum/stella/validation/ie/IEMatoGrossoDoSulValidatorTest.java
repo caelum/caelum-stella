@@ -44,8 +44,7 @@ public class IEMatoGrossoDoSulValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -56,20 +55,16 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -82,17 +77,14 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -107,17 +99,14 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -134,17 +123,14 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -161,18 +147,15 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                true);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { validFormattedString, "28.322.235-2",
-                "28.301.273-0", "28.288.890-0", "28.226.590-2", "28.296.665-0",
-                "28.303.740-7", "28.306.701-2", "28.071.810-1", "28.311.591-2",
-                "28.098.983-0", "28.316.487-5" };
+        String[] validValues = { validFormattedString, "28.322.235-2", "28.301.273-0", "28.288.890-0", "28.226.590-2",
+                "28.296.665-0", "28.303.740-7", "28.306.701-2", "28.071.810-1", "28.311.591-2", "28.098.983-0",
+                "28.316.487-5" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -189,11 +172,9 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                true);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
@@ -214,11 +195,9 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                false);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -237,17 +216,14 @@ public class IEMatoGrossoDoSulValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer,
-                true);
+        Validator validator = new IEMatoGrossoDoSulValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {

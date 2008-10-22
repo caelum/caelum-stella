@@ -27,8 +27,7 @@ public class CPFValidator implements Validator<String> {
 
     private final boolean isIgnoringRepeatedDigits;
 
-    private static class RotinaPosProdutoInterno implements
-            RotinaDeDigitoVerificador {
+    private static class RotinaPosProdutoInterno implements RotinaDeDigitoVerificador {
         public Integer transform(RotinaParameters parameter) {
             Integer mod = parameter.getDigitoVerificadorInfo().getMod();
             Integer result = parameter.getResult() % mod;
@@ -43,23 +42,17 @@ public class CPFValidator implements Validator<String> {
 
     private static final Integer DV1_POSITION = 10;
 
-    private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3,
-            2 };
+    private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static final Integer DV2_POSITION = 11;
 
-    private static final Integer[] DV2_MULTIPLIERS = { 11, 10, 9, 8, 7, 6, 5,
-            4, 3, 2 };
+    private static final Integer[] DV2_MULTIPLIERS = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
-            0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
-            MOD, DV1_MULTIPLIERS, DV1_POSITION);
+    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
+            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
-    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(
-            0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
-            MOD, DV2_MULTIPLIERS, DV2_POSITION);
+    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
+            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 
@@ -116,8 +109,7 @@ public class CPFValidator implements Validator<String> {
      *            condição para ignorar cadeias de CPF com todos os dígitos
      *            repetidos.
      */
-    public CPFValidator(MessageProducer messageProducer, boolean isFormatted,
-            boolean isIgnoringRepeatedDigits) {
+    public CPFValidator(MessageProducer messageProducer, boolean isFormatted, boolean isIgnoringRepeatedDigits) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
         this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
@@ -149,8 +141,7 @@ public class CPFValidator implements Validator<String> {
                     unformatedCPF = cpf;
                 }
                 if (errors.isEmpty()) {
-                    if ((!isIgnoringRepeatedDigits)
-                            && hasAllRepeatedDigits(unformatedCPF)) {
+                    if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCPF)) {
                         errors.add(CPFError.REPEATED_DIGITS);
                     }
                 }

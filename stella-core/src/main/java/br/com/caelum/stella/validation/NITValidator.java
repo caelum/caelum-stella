@@ -33,8 +33,7 @@ public class NITValidator implements Validator<String> {
 
     private final boolean isFormatted;
 
-    private static class RotinaPosProdutoInterno implements
-            RotinaDeDigitoVerificador {
+    private static class RotinaPosProdutoInterno implements RotinaDeDigitoVerificador {
         public Integer transform(RotinaParameters parameter) {
             Integer mod = parameter.getDigitoVerificadorInfo().getMod();
             Integer result = parameter.getResult() % mod;
@@ -49,13 +48,10 @@ public class NITValidator implements Validator<String> {
 
     private static final Integer DV1_POSITION = 11;
 
-    private static final Integer[] DV1_MULTIPLIERS = { 3, 2, 9, 8, 7, 6, 5, 4,
-            3, 2 };
+    private static final Integer[] DV1_MULTIPLIERS = { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
-            0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() },
-            MOD, DV1_MULTIPLIERS, DV1_POSITION);
+    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
+            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 

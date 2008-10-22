@@ -6,12 +6,12 @@ import org.jboss.seam.annotations.Scope;
 
 @Name("docAction")
 @Scope(ScopeType.EVENT)
-public class DocAction {    
+public class DocAction {
     /**
      * Action method
      */
-    public String send(){
-        //do something real
+    public String send() {
+        // do something real
 
         return ("success");
     }

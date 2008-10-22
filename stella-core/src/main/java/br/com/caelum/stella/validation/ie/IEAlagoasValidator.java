@@ -36,12 +36,11 @@ public class IEAlagoasValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.B, IEConstraints.Rotina.D,
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.B, IEConstraints.Rotina.D,
             IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -63,11 +62,9 @@ public class IEAlagoasValidator implements Validator<String> {
      * Exemplo: 2 4 0 0 0 0 0 4 8
      */
 
-    public static final Pattern FORMATED = Pattern
-            .compile("([2][4])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("([2][4])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("([2][4])(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("([2][4])(\\d{3})(\\d{3})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -89,8 +86,7 @@ public class IEAlagoasValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IEAlagoasValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IEAlagoasValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -126,8 +122,7 @@ public class IEAlagoasValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

@@ -34,12 +34,9 @@ public class IEPernambucoValidator implements Validator<String> {
     }
 
     @SuppressWarnings("unchecked")
-    public IEPernambucoValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
-        Class[] validatorClasses = { IEPernambucoNovaValidator.class,
-                IEPernambucoAntigaValidator.class };
-        this.baseValidator = new LogicOrComposedValidator<String>(
-                messageProducer, isFormatted, validatorClasses);
+    public IEPernambucoValidator(MessageProducer messageProducer, boolean isFormatted) {
+        Class[] validatorClasses = { IEPernambucoNovaValidator.class, IEPernambucoAntigaValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(messageProducer, isFormatted, validatorClasses);
         this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 

@@ -30,14 +30,13 @@ class IESaoPauloComercioIndustriaValidator implements Validator<String> {
 
     private static final Integer[] DVY_MULTIPLIERS = IEConstraints.P13;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVY_MULTIPLIERS,
+            DVY_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -45,14 +44,11 @@ class IESaoPauloComercioIndustriaValidator implements Validator<String> {
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{3})[.](\\d{3})[.](\\d{3})[.](\\d{3})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})[.](\\d{3})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{3})(\\d{3})(\\d{3})(\\d{3})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{3})");
 
-    public IESaoPauloComercioIndustriaValidator(
-            MessageProducer messageProducer, boolean isFormatted) {
+    public IESaoPauloComercioIndustriaValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -89,8 +85,7 @@ class IESaoPauloComercioIndustriaValidator implements Validator<String> {
 
     private boolean hasValidCheckDigits(String value) {
         String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return (DVX_CHECKER.isDVValid(testedValue))
-                && (DVY_CHECKER.isDVValid(testedValue));
+        return (DVX_CHECKER.isDVValid(testedValue)) && (DVY_CHECKER.isDVValid(testedValue));
     }
 
     public boolean isEligible(String value) {

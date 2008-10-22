@@ -26,24 +26,20 @@ class IERondoniaCasoDoisValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            1, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(1, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{13})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{13})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{13})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{13})(\\d{1})");
 
-    public IERondoniaCasoDoisValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IERondoniaCasoDoisValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }

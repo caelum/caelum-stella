@@ -10,8 +10,7 @@ import org.junit.BeforeClass;
  * @author Leonardo Bessa
  * 
  */
-public class IntegerNumericToWordsConverterEN_US_Test extends
-        IntegerNumericToWordsConverterTest {
+public class IntegerNumericToWordsConverterEN_US_Test extends IntegerNumericToWordsConverterTest {
 
     private static Locale defaultLocale;
 

@@ -6,11 +6,11 @@ package br.com.caelum.stella.hibernate.validator;
 class BeanToBeValidated {
 
     @SuppressWarnings("unused")
-	@FakeConstraint
+    @FakeConstraint
     private String field;
 
     @SuppressWarnings("unused")
-	@ConstraintWithoutMessage
+    @ConstraintWithoutMessage
     private String other;
 
 }

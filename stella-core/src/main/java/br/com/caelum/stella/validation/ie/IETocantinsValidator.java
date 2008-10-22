@@ -34,12 +34,9 @@ public class IETocantinsValidator implements Validator<String> {
     }
 
     @SuppressWarnings("unchecked")
-    public IETocantinsValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
-        Class[] validatorClasses = { IETocantinsNovaValidator.class,
-                IETocantinsAntigaValidator.class };
-        this.baseValidator = new LogicOrComposedValidator<String>(
-                messageProducer, isFormatted, validatorClasses);
+    public IETocantinsValidator(MessageProducer messageProducer, boolean isFormatted) {
+        Class[] validatorClasses = { IETocantinsNovaValidator.class, IETocantinsAntigaValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(messageProducer, isFormatted, validatorClasses);
         this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 

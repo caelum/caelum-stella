@@ -34,18 +34,17 @@ public class IEMinasGeraisValidator implements Validator<String> {
 
     private static final Integer[] DVY_MULTIPLIERS = IEConstraints.P11;
 
-    private static final RotinaDeDigitoVerificador[] DVX_ROTINAS = {
-            IEConstraints.Rotina.A, IEConstraints.Rotina.E,
+    private static final RotinaDeDigitoVerificador[] DVX_ROTINAS = { IEConstraints.Rotina.A, IEConstraints.Rotina.E,
             IEConstraints.Rotina.POS_IE };
 
-    private static final RotinaDeDigitoVerificador[] DVY_ROTINAS = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] DVY_ROTINAS = { IEConstraints.Rotina.E,
+            IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, DVX_ROTINAS, DVX_MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, DVX_ROTINAS, DVX_MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(
-            0, DVY_ROTINAS, DVY_MOD, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(0, DVY_ROTINAS, DVY_MOD,
+            DVY_MULTIPLIERS, DVY_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -53,11 +52,9 @@ public class IEMinasGeraisValidator implements Validator<String> {
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{3})[.](\\d{3})[.](\\d{3})[/](\\d{4})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})[/](\\d{4})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{3})(\\d{3})(\\d{3})(\\d{4})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{4})");
 
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3$4";
 
@@ -81,8 +78,7 @@ public class IEMinasGeraisValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IEMinasGeraisValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IEMinasGeraisValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }

@@ -10,26 +10,26 @@ import com.sun.facelets.tag.jsf.ValidatorConfig;
 
 public class StellaCPFValidatorTagHandler extends ValidateHandler {
 
-	private final TagAttribute formatted;
-	
-	@SuppressWarnings("deprecation")
-	public StellaCPFValidatorTagHandler(TagConfig config) {
-		super(config);
-		formatted = getAttribute("formatted");
-	}
+    private final TagAttribute formatted;
 
-	public StellaCPFValidatorTagHandler(ValidatorConfig validatorConfig) {
-		super(validatorConfig);
-		formatted = getAttribute("formatted");
-	}
+    @SuppressWarnings("deprecation")
+    public StellaCPFValidatorTagHandler(TagConfig config) {
+        super(config);
+        formatted = getAttribute("formatted");
+    }
 
-	protected Validator createValidator(FaceletContext context) {
-		StellaCPFValidator validator = new StellaCPFValidator();
-		if (formatted != null) {
-			validator.setFormatted(formatted.getBoolean(context));
-		} else {
-			validator.setFormatted(false);
-		}
-		return validator;
-	}
+    public StellaCPFValidatorTagHandler(ValidatorConfig validatorConfig) {
+        super(validatorConfig);
+        formatted = getAttribute("formatted");
+    }
+
+    protected Validator createValidator(FaceletContext context) {
+        StellaCPFValidator validator = new StellaCPFValidator();
+        if (formatted != null) {
+            validator.setFormatted(formatted.getBoolean(context));
+        } else {
+            validator.setFormatted(false);
+        }
+        return validator;
+    }
 }

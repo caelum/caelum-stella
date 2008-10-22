@@ -43,8 +43,7 @@ public class IEDistritoFederalValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -55,20 +54,16 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -81,17 +76,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -106,17 +98,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -133,17 +122,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateIEWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
 
         String value = wrongFirstCheckDigitUnformattedString;
         try {
@@ -160,17 +146,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateIEWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
 
         String value = wrongSecondCheckDigitUnformattedString;
         try {
@@ -187,17 +170,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { validUnformattedString, "0734362300177",
-                "0745153000168", "0738963400101", "0733680200160",
-                "0734677900146" };
+        String[] validValues = { validUnformattedString, "0734362300177", "0745153000168", "0738963400101",
+                "0733680200160", "0734677900146" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -214,11 +194,9 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                false);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -237,12 +215,10 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                true);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         String value = validFormattedString;
@@ -260,17 +236,14 @@ public class IEDistritoFederalValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEDistritoFederalValidator(messageProducer,
-                true);
+        Validator validator = new IEDistritoFederalValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {

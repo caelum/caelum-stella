@@ -22,19 +22,17 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
     };
 
     @SuppressWarnings("unchecked")
-    public LogicOrComposedValidator(MessageProducer messageProducer,
-            boolean isFormatted, Class<Validator<T>>... validatorClasses) {
+    public LogicOrComposedValidator(MessageProducer messageProducer, boolean isFormatted,
+            Class<Validator<T>>... validatorClasses) {
         this.messageProducer = messageProducer;
         this.validators = new Validator[validatorClasses.length];
         int i = 0;
         for (Class<Validator<T>> clazz : validatorClasses) {
             Constructor<Validator<T>> constructor;
             try {
-                constructor = clazz.getConstructor(MessageProducer.class,
-                        boolean.class);
+                constructor = clazz.getConstructor(MessageProducer.class, boolean.class);
                 constructor.setAccessible(true);
-                validators[i++] = constructor.newInstance(messageProducer,
-                        isFormatted);
+                validators[i++] = constructor.newInstance(messageProducer, isFormatted);
             } catch (SecurityException e) {
                 e.printStackTrace();
             } catch (NoSuchMethodException e) {
@@ -69,8 +67,7 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
             if (lastException != null) {
                 throw lastException;
             } else {
-                throw new InvalidStateException(messageProducer
-                        .getMessage(invalidFormat));
+                throw new InvalidStateException(messageProducer.getMessage(invalidFormat));
             }
         }
     }
@@ -79,8 +76,7 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
         List<ValidationMessage> result = null;
         for (Validator<T> v : validators) {
             if (v.isEligible(value)) {
-                List<ValidationMessage> invalidMessages = v
-                        .invalidMessagesFor(value);
+                List<ValidationMessage> invalidMessages = v.invalidMessagesFor(value);
                 result = invalidMessages;
                 if (invalidMessages.isEmpty()) {
                     break;

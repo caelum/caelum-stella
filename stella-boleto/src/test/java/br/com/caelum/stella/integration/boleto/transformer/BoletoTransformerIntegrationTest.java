@@ -29,33 +29,27 @@ public class BoletoTransformerIntegrationTest {
     public static void setUp() {
 
         Boleto boleto;
-        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
-                .withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
+        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(2, 5,
+                2008);
 
-        Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
-                1824).withDvAgencia("4").withContaCorrente(76000)
-                .withNumConvenio(1207113).withDvContaCorrete("5").withCarteira(
-                        18).withNossoNumero(9000206);
+        Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDvAgencia("4")
+                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrete("5").withCarteira(18)
+                .withNossoNumero(9000206);
 
-        Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf(
-                "111.222.333-12").withEndereco("Av dos testes, 111 apto 333")
-                .withBairro("Bairro Teste").withCep("01234-111").withCidade(
-                        "São Paulo").withUf("SP");
+        Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12").withEndereco(
+                "Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111").withCidade("São Paulo")
+                .withUf("SP");
 
-        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
-                "descricao 4", "descricao 5" };
+        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
 
         String[] locaisDePagamento = { "local 1", "local 2" };
 
-        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
-                "instrucao 4", "instrucao 5" };
+        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 
         Banco banco = new BancoDoBrasil();
 
-        boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas)
-                .withDescricoes(descricoes).withEmissor(emissor).withSacado(
-                        sacado).withValorBoleto("40.00")
-                .withNoDocumento("4323").withInstrucoes(instrucoes)
+        boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas).withDescricoes(descricoes).withEmissor(emissor)
+                .withSacado(sacado).withValorBoleto("40.00").withNoDocumento("4323").withInstrucoes(instrucoes)
                 .withLocaisDePagamento(locaisDePagamento);
 
         BoletoGenerator generator = new BoletoGenerator(boleto);
@@ -88,8 +82,7 @@ public class BoletoTransformerIntegrationTest {
         String text = stripper.getText(document);
         document.close();
 
-        assertTrue(text
-                .contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
+        assertTrue(text.contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
     }
 
     @Test

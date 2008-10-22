@@ -9,41 +9,41 @@ import br.com.caelum.stella.hibernate.validator.CPF;
 
 @Entity
 public class Modelo {
-	@Id
-	@GeneratedValue
-	private Long id;
-	@CNPJ
-	private String cnpj;
-	@CPF
-	private String cpf;
-	
-	public String getCnpj() {
-		return cnpj;
-	}
+    @Id
+    @GeneratedValue
+    private Long id;
+    @CNPJ
+    private String cnpj;
+    @CPF
+    private String cpf;
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	@Override
-	public String toString() {
-		return "(ID:"+this.id+") CPF:" + this.cpf + " CNPJ:" + this.cnpj;
-	}
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "(ID:" + this.id + ") CPF:" + this.cpf + " CNPJ:" + this.cnpj;
+    }
 
 }

@@ -31,8 +31,7 @@ public class CNPJValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "CNPJError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -43,13 +42,11 @@ public class CNPJValidatorTest {
     @Test
     public void shouldNotValidateCNPJWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_DIGITS);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, false);
@@ -68,13 +65,11 @@ public class CNPJValidatorTest {
     @Test
     public void shouldNotValidateCNPJWithMoreDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_DIGITS);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, false);
@@ -93,13 +88,11 @@ public class CNPJValidatorTest {
     @Test
     public void shouldNotValidateCNPJWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_DIGITS);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, false);
@@ -117,8 +110,7 @@ public class CNPJValidatorTest {
     @Test
     public void shouldValidateValidCNPJ() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, false);
 
@@ -150,8 +142,7 @@ public class CNPJValidatorTest {
     @Test
     public void shoulValidateNullCNPJ() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, false);
 
@@ -168,13 +159,11 @@ public class CNPJValidatorTest {
     @Test
     public void shouldNotValidateCNPJCheckDigitsWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, false);
@@ -194,13 +183,11 @@ public class CNPJValidatorTest {
     @Test
     public void shouldNotValidateCNPJCheckDigitsWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, false);
@@ -220,8 +207,7 @@ public class CNPJValidatorTest {
     @Test
     public void shouldValidateValidFormattedCNPJ() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new CNPJValidator(messageProducer, true);
@@ -239,13 +225,11 @@ public class CNPJValidatorTest {
     @Test(expected = InvalidStateException.class)
     public void shouldNotValidateValidUnformattedCNPJ() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        CNPJError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(CNPJError.INVALID_FORMAT);
             }
         });
         Validator validator = new CNPJValidator(messageProducer, true);

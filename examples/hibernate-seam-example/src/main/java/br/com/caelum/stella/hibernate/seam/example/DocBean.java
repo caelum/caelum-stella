@@ -13,24 +13,24 @@ import br.com.caelum.stella.hibernate.validator.CPF;
 @Name("docBean")
 @Scope(ScopeType.EVENT)
 public class DocBean {
-	@CPF
+    @CPF
     private String cpf;
-	private String name;
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-    
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
 }

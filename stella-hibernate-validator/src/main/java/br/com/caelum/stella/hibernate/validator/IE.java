@@ -11,7 +11,9 @@ import org.hibernate.validator.ValidatorClass;
 
 /**
  * Restrição que pode ser associada a classes que contenham um objeto que
- * represente uma Inscricao Estadual e outro objeto identificando o estado a que este documento pertence.
+ * represente uma Inscricao Estadual e outro objeto identificando o estado a que
+ * este documento pertence.
+ * 
  * @author Leonardo Bessa
  */
 @Documented
@@ -20,9 +22,9 @@ import org.hibernate.validator.ValidatorClass;
 @ValidatorClass(StellaIEValidator.class)
 public @interface IE {
     String message() default "{ie_invalid}";
-    
+
     String ieField() default "ie";
-    
+
     String estadoField() default "estado";
 
     boolean formatted() default false;

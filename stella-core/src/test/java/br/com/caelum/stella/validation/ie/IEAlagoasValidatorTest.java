@@ -54,8 +54,7 @@ public class IEAlagoasValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -66,19 +65,16 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEAlagoasValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -91,13 +87,11 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEAlagoasValidator(messageProducer, false);
@@ -115,13 +109,11 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IEAlagoasValidator(messageProducer, false);
@@ -141,13 +133,11 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldNotValidateIEWithNineDigitsAndCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new IEAlagoasValidator(messageProducer, false);
@@ -167,8 +157,7 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEAlagoasValidator(messageProducer, false);
 
@@ -190,21 +179,17 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldValidateMultipleValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEAlagoasValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
-        String[] validValues = { "24.076.739-0", "24.103.644-5",
-                "24.089.826-5", "24.099.991-6", "24.067.173-2", "24.102.358-0",
-                "24.079.990-9", "24.089.451-0", "24.080.152-0", "24.092.497-5",
-                "24.095.056-9", "24.099.899-5", "24.104.510-0", "24.069.666-2",
-                "24.088.932-0", "24.097.262-7", "24.086.162-0", "24.097.871-4",
-                "24.085.016-5", "24.073.874-8", "24.071.760-0", "24.065.706-3",
-                "24.054.337-8", "24.102.324-6", "24.105.106-1", "24.104.536-3",
-                "24.086.313-5", "24.089.826-5" };
+        String[] validValues = { "24.076.739-0", "24.103.644-5", "24.089.826-5", "24.099.991-6", "24.067.173-2",
+                "24.102.358-0", "24.079.990-9", "24.089.451-0", "24.080.152-0", "24.092.497-5", "24.095.056-9",
+                "24.099.899-5", "24.104.510-0", "24.069.666-2", "24.088.932-0", "24.097.262-7", "24.086.162-0",
+                "24.097.871-4", "24.085.016-5", "24.073.874-8", "24.071.760-0", "24.065.706-3", "24.054.337-8",
+                "24.102.324-6", "24.105.106-1", "24.104.536-3", "24.086.313-5", "24.089.826-5" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -222,8 +207,7 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEAlagoasValidator(messageProducer, false);
 
@@ -244,8 +228,7 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IEAlagoasValidator(messageProducer, true);
@@ -266,13 +249,11 @@ public class IEAlagoasValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IEAlagoasValidator(messageProducer, true);

@@ -36,20 +36,18 @@ public class IEGoiasValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE_GOIAS };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
+            IEConstraints.Rotina.POS_IE_GOIAS };
 
-    private static final DigitoVerificadorInfo DVX_INFO_FATOR1 = new DigitoVerificadorInfo(
-            1, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_FATOR1 = new DigitoVerificadorInfo(1, rotinas, MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final DigitoVerificadorInfo DVX_INFO_FATOR0 = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_FATOR0 = new DigitoVerificadorInfo(0, rotinas, MOD,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final ValidadorDeDV DVX_CHECKER_FATOR1 = new ValidadorDeDV(
-            DVX_INFO_FATOR1);
+    private static final ValidadorDeDV DVX_CHECKER_FATOR1 = new ValidadorDeDV(DVX_INFO_FATOR1);
 
-    private static final ValidadorDeDV DVX_CHECKER_FATOR0 = new ValidadorDeDV(
-            DVX_INFO_FATOR0);
+    private static final ValidadorDeDV DVX_CHECKER_FATOR0 = new ValidadorDeDV(DVX_INFO_FATOR0);
 
     private final boolean isFormatted;
 
@@ -89,11 +87,9 @@ public class IEGoiasValidator implements Validator<String> {
      * é igual a sete (7) que é o dígito verificador da Inscrição 10.987.654-7
      */
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -162,8 +158,7 @@ public class IEGoiasValidator implements Validator<String> {
         if (ie == 110944020 || ie == 110944021) {
             result = true;
         } else {
-            String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                    .format(value);
+            String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
             ValidadorDeDV validadorDeDV = null;
             if (101031051 <= ie && ie <= 101199979) {
                 validadorDeDV = DVX_CHECKER_FATOR1;

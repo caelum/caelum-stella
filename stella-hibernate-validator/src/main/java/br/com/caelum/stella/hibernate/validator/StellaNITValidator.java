@@ -13,31 +13,30 @@ import br.com.caelum.stella.validation.NITValidator;
  * @author Leonardo Bessa
  */
 public class StellaNITValidator implements Validator<NIT> {
-	private NITValidator stellaValidator;
+    private NITValidator stellaValidator;
 
-	/**
-	 * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
-	 */
-	public void initialize(NIT nit) {
-		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
-				nit);
-		stellaValidator = new NITValidator(messageProducer, nit.formatted());
-	}
+    /**
+     * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
+     */
+    public void initialize(NIT nit) {
+        AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(nit);
+        stellaValidator = new NITValidator(messageProducer, nit.formatted());
+    }
 
-	/**
-	 * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
-	 */
-	public boolean isValid(Object o) {
-		if (o != null) {
-			String nit = o.toString();
-			if (nit.trim().length() == 0) {
-				return true;
-			} else {
-				return stellaValidator.invalidMessagesFor(nit).isEmpty();
-			}
-		} else {
-			return true;
-		}
-	}
+    /**
+     * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
+     */
+    public boolean isValid(Object o) {
+        if (o != null) {
+            String nit = o.toString();
+            if (nit.trim().length() == 0) {
+                return true;
+            } else {
+                return stellaValidator.invalidMessagesFor(nit).isEmpty();
+            }
+        } else {
+            return true;
+        }
+    }
 
 }

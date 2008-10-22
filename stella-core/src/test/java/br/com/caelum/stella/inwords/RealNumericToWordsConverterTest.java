@@ -11,8 +11,7 @@ import org.junit.Test;
  */
 public class RealNumericToWordsConverterTest {
 
-    private NumericToWordsConverter converter = new NumericToWordsConverter(
-            new FormatoDeReal());
+    private NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeReal());
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldTransformNegativeLong() {
@@ -128,9 +127,7 @@ public class RealNumericToWordsConverterTest {
     public void shouldTransformAMillionIntoNumberInWordsUsingAnd() {
         double twoHundred = 1000150.99;
         String actual = converter.toWords(twoHundred);
-        assertEquals(
-                "um milhão e cento e cinquenta reais e noventa e nove centavos",
-                actual);
+        assertEquals("um milhão e cento e cinquenta reais e noventa e nove centavos", actual);
     }
 
     @Test
@@ -138,9 +135,7 @@ public class RealNumericToWordsConverterTest {
         double twoHundred = 1023850;
         String actual = converter.toWords(twoHundred);
         ;
-        assertEquals(
-                "um milhão, vinte e três mil e oitocentos e cinquenta reais",
-                actual);
+        assertEquals("um milhão, vinte e três mil e oitocentos e cinquenta reais", actual);
     }
 
     @Test
@@ -210,10 +205,8 @@ public class RealNumericToWordsConverterTest {
     public void shouldTransform999999999999999L() {
         long number = 999999999999999L;
         String words = converter.toWords(number);
-        assertEquals("novecentos e noventa e nove trilhões, "
-                + "novecentos e noventa e nove bilhões, "
-                + "novecentos e noventa e nove milhões, "
-                + "novecentos e noventa e nove mil e "
+        assertEquals("novecentos e noventa e nove trilhões, " + "novecentos e noventa e nove bilhões, "
+                + "novecentos e noventa e nove milhões, " + "novecentos e noventa e nove mil e "
                 + "novecentos e noventa e nove reais", words);
     }
 

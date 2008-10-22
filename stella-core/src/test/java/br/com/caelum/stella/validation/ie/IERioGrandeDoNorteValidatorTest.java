@@ -48,8 +48,7 @@ public class IERioGrandeDoNorteValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -60,17 +59,14 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
         try {
             validator.assertValid("2004a0401");
             fail();
@@ -85,17 +81,14 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
         try {
             validator.assertValid("20040040");
             fail();
@@ -110,17 +103,14 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         String value = "20004004005";
         try {
@@ -137,17 +127,14 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateIEWithNineDigitsAndCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedStringWithNineDigits;
         try {
@@ -164,17 +151,14 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateIEWithTenDigitsAndCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedStringWithTenDigits;
         try {
@@ -191,11 +175,9 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldValidateValidIEWithNineDigits() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -215,11 +197,9 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldValidateValidIEWithTenDigits() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -239,11 +219,9 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                false);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -262,12 +240,10 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldValidateValidFormattedIEWithNineDigits() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                true);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         String value = validFormattedStringWithNineDigits;
@@ -285,12 +261,10 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldValidateValidFormattedIEWithTenDigits() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoNorteValidator(messageProducer,
-                true);
+        Validator validator = new IERioGrandeDoNorteValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         String value = validFormattedStringWithTenDigits;
@@ -308,13 +282,11 @@ public class IERioGrandeDoNorteValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IEMatoGrossoValidator(messageProducer, true);

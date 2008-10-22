@@ -36,8 +36,7 @@ public class IERoraimaValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -48,13 +47,11 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IERoraimaValidator(messageProducer, false);
@@ -72,13 +69,11 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IERoraimaValidator(messageProducer, false);
@@ -96,13 +91,11 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
         Validator validator = new IERoraimaValidator(messageProducer, false);
@@ -122,13 +115,11 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
         Validator validator = new IERoraimaValidator(messageProducer, false);
@@ -149,8 +140,7 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IERoraimaValidator(messageProducer, true);
 
@@ -159,12 +149,10 @@ public class IERoraimaValidatorTest {
         /*
          * 24006628-1 24001755-6 24003429-0 24001360-3 24008266-8 24006153-6
          * 24007356-2 24005467-4 24004145-5 24001340-7
-         * 
          */
 
-        String[] validValues = { "24006628-1", "24001755-6", "24003429-0",
-                "24001360-3", "24008266-8", "24006153-6", "24007356-2",
-                "24005467-4", "24004145-5", "24001340-7" };
+        String[] validValues = { "24006628-1", "24001755-6", "24003429-0", "24001360-3", "24008266-8", "24006153-6",
+                "24007356-2", "24005467-4", "24004145-5", "24001340-7" };
         for (String validValue : validValues) {
             try {
                 validator.assertValid(validValue);
@@ -182,8 +170,7 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IERoraimaValidator(messageProducer, false);
 
@@ -204,8 +191,7 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IERoraimaValidator(messageProducer, true);
@@ -228,13 +214,11 @@ public class IERoraimaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IERoraimaValidator(messageProducer, true);

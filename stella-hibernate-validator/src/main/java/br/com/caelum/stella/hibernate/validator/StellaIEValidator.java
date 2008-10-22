@@ -9,8 +9,9 @@ import br.com.caelum.stella.type.Estado;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
- * verificar se ela está de acordo com o padrão de Inscricao Estadual, no estado epecificado.
- *
+ * verificar se ela está de acordo com o padrão de Inscricao Estadual, no estado
+ * epecificado.
+ * 
  * @author Leonardo Bessa
  */
 public class StellaIEValidator implements Validator<IE> {
@@ -34,19 +35,17 @@ public class StellaIEValidator implements Validator<IE> {
             if (obj != null) {
                 String ieValue = getIEValue(obj);
                 String estadoValue = getEstadoValue(obj);
-                final AnnotationMessageProducer annotationMessageProducer = new AnnotationMessageProducer(
-                        ie);
+                final AnnotationMessageProducer annotationMessageProducer = new AnnotationMessageProducer(ie);
                 if (ieValue.trim().length() == 0) {
                     return true;
                 } else {
                     try {
                         final Estado estado = Estado.valueOf(estadoValue);
-                        stellaValidator = estado.getIEValidator(annotationMessageProducer,ie.formatted());
+                        stellaValidator = estado.getIEValidator(annotationMessageProducer, ie.formatted());
                     } catch (IllegalArgumentException e) {
                         return false;
                     }
-                    return stellaValidator.invalidMessagesFor(ieValue)
-                            .isEmpty();
+                    return stellaValidator.invalidMessagesFor(ieValue).isEmpty();
                 }
             } else {
                 return true;
@@ -62,24 +61,21 @@ public class StellaIEValidator implements Validator<IE> {
         }
     }
 
-    private String getEstadoValue(Object obj) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException {
-        Method getEstadoMethod = obj.getClass().getMethod(
-                camelCaseGetFieldName(ie.estadoField()));
+    private String getEstadoValue(Object obj) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException {
+        Method getEstadoMethod = obj.getClass().getMethod(camelCaseGetFieldName(ie.estadoField()));
         String estadoValue = getEstadoMethod.invoke(obj).toString();
         return estadoValue;
     }
 
-    private String getIEValue(Object obj) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException {
-        Method getIeMethod = obj.getClass().getMethod(
-                camelCaseGetFieldName(ie.ieField()));
+    private String getIEValue(Object obj) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException {
+        Method getIeMethod = obj.getClass().getMethod(camelCaseGetFieldName(ie.ieField()));
         String ieValue = getIeMethod.invoke(obj).toString();
         return ieValue;
     }
 
     private String camelCaseGetFieldName(String fieldName) {
-        return "get" + fieldName.substring(0, 1).toUpperCase()
-                + fieldName.substring(1);
+        return "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
     }
 }

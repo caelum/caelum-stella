@@ -9,27 +9,27 @@ import javax.servlet.jsp.JspException;
 
 @SuppressWarnings("serial")
 public class StellaNITValidatorTag extends ValidatorELTag {
-	private boolean formatted;
+    private boolean formatted;
 
-	public StellaNITValidatorTag() {
-		super.setId(StellaNITValidator.VALIDATOR_ID);
-	}
+    public StellaNITValidatorTag() {
+        super.setId(StellaNITValidator.VALIDATOR_ID);
+    }
 
-	@Override
-	protected Validator createValidator() throws JspException {
-		StellaNITValidator validator = new StellaNITValidator();
-		validator.setFormatted(formatted);
-		return validator;
-	}
+    @Override
+    protected Validator createValidator() throws JspException {
+        StellaNITValidator validator = new StellaNITValidator();
+        validator.setFormatted(formatted);
+        return validator;
+    }
 
-	public void setFormatted(ValueExpression formatted) {
-		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-		this.formatted = (Boolean) formatted.getValue(elContext);
-	}
+    public void setFormatted(ValueExpression formatted) {
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+        this.formatted = (Boolean) formatted.getValue(elContext);
+    }
 
-	public void release() {
-		super.release();
-		this.formatted = false;
-	}
+    public void release() {
+        super.release();
+        this.formatted = false;
+    }
 
 }

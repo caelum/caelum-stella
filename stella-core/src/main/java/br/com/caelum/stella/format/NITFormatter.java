@@ -11,8 +11,7 @@ public class NITFormatter implements Formatter {
     private final BaseFormatter base;
 
     public NITFormatter() {
-        this.base = new BaseFormatter(NIT_FORMATED, "$1.$2.$3-$4",
-                NIT_UNFORMATED, "$1$2$3$4");
+        this.base = new BaseFormatter(NIT_FORMATED, "$1.$2.$3-$4", NIT_UNFORMATED, "$1$2$3$4");
     }
 
     public String format(String value) {

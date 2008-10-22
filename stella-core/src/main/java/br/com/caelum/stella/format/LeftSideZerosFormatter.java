@@ -28,8 +28,7 @@ public class LeftSideZerosFormatter implements Formatter {
     public String format(String value) {
         boolean matches = value.matches("\\d{0," + formatedLength + "}");
         if (!matches) {
-            throw new IllegalArgumentException("Argument value must have only "
-                    + formatedLength + " digits at most.");
+            throw new IllegalArgumentException("Argument value must have only " + formatedLength + " digits at most.");
         }
         String formated = value;
         while (formated.length() < formatedLength) {

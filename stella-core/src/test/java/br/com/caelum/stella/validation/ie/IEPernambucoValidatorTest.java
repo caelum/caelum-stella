@@ -35,8 +35,7 @@ public class IEPernambucoValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -47,8 +46,7 @@ public class IEPernambucoValidatorTest {
     @Test
     public void shouldValidateValidIEAntiga() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEPernambucoValidator(messageProducer, false);
 
@@ -70,8 +68,7 @@ public class IEPernambucoValidatorTest {
     @Test
     public void shouldValidateValidIENova() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEPernambucoValidator(messageProducer, false);
 
@@ -93,8 +90,7 @@ public class IEPernambucoValidatorTest {
     @Test
     public void shouldValidateValidFormattedIEAntiga() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IEPernambucoValidator(messageProducer, true);
@@ -117,8 +113,7 @@ public class IEPernambucoValidatorTest {
     @Test
     public void shouldValidateValidFormattedIENova() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IEPernambucoValidator(messageProducer, true);
@@ -141,8 +136,7 @@ public class IEPernambucoValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IEPernambucoValidator(messageProducer, false);
 

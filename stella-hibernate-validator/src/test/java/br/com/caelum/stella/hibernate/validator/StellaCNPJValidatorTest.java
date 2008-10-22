@@ -1,6 +1,5 @@
 package br.com.caelum.stella.hibernate.validator;
 
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -15,7 +14,7 @@ public class StellaCNPJValidatorTest {
 
     private static class ObjectWithCNPJ {
         @SuppressWarnings("unused")
-		@CNPJ
+        @CNPJ
         private String cnpj;
     }
 

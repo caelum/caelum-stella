@@ -16,7 +16,7 @@ import org.junit.Test;
 
 /**
  * StellaCPFValidator integration tests
- *
+ * 
  * @author Fabio Kung
  */
 public class StellaCPFValidatorTest {
@@ -58,7 +58,6 @@ public class StellaCPFValidatorTest {
             mockery.assertIsSatisfied();
         }
     }
-
 
     @Test
     public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCpfAndEnUSLocale() throws Exception {

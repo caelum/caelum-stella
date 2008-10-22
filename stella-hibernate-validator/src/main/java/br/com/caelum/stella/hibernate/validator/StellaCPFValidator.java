@@ -7,7 +7,7 @@ import br.com.caelum.stella.validation.CPFValidator;
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
  * verificar se ela está de acordo com o padrão de CPF.
- *
+ * 
  * @author Fabio Kung
  * @author Leonardo Bessa
  */

@@ -25,9 +25,8 @@ public interface Validator<T> {
     /**
      * @param object
      *            objeto que se deseja validar
-     * @throws {@link InvalidStateException}
-     *             se o parametro não for válido, contendo a lista de
-     *             ValidationMessage
+     * @throws {@link InvalidStateException} se o parametro não for válido,
+     *         contendo a lista de ValidationMessage
      */
     void assertValid(T object);
 

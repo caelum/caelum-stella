@@ -11,16 +11,18 @@ import java.lang.annotation.Target;
 import org.hibernate.validator.ValidatorClass;
 
 /**
- * Restrição que pode ser associada a objetos em que o método {@linkplain #toString()} 
- * represente um NIT (PIS/PASEP/SUS).
+ * Restrição que pode ser associada a objetos em que o método
+ * {@linkplain #toString()} represente um NIT (PIS/PASEP/SUS).
+ * 
  * @author Leonardo Bessa
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({FIELD, METHOD})
+@Target( { FIELD, METHOD })
 @ValidatorClass(StellaNITValidator.class)
 public @interface NIT {
-	String message() default "{nit_invalid}";
-	boolean formatted() default false;
+    String message() default "{nit_invalid}";
+
+    boolean formatted() default false;
 
 }

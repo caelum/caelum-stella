@@ -21,8 +21,7 @@ public class FacesContextMocker {
         mockery.setImposteriser(ClassImposteriser.INSTANCE);
     }
 
-    public void mockMessageBundle(final FacesContext context, final String bundleName,
-                                 final Locale locale) {
+    public void mockMessageBundle(final FacesContext context, final String bundleName, final Locale locale) {
         mockery.checking(new Expectations() {
             {
                 Application application = mockery.mock(Application.class);

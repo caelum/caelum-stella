@@ -35,39 +35,32 @@ public class BancoDoBrasil implements Banco {
         // CAMPO LIVRE
         if (emissor.getNumConvenio() < 1000000) {
             if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
-                codigoDeBarras
-                .append(getNumConvenioDoEmissorFormatado(emissor));
-                codigoDeBarras
-                .append(getNossoNumeroDoEmissorFormatado(emissor));
+                codigoDeBarras.append(getNumConvenioDoEmissorFormatado(emissor));
+                codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
                 codigoDeBarras.append("21");
             } else {
-                codigoDeBarras
-                .append(getNossoNumeroDoEmissorFormatado(emissor));
+                codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
                 codigoDeBarras.append(emissor.getAgenciaFormatado());
                 codigoDeBarras.append(emissor.getCedente());
-                codigoDeBarras.append(boleto.getBanco()
-                        .getCarteiraDoEmissorFormatado(emissor));
+                codigoDeBarras.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
             }
         } else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
             codigoDeBarras.append("000000");
             codigoDeBarras.append(getNumConvenioDoEmissorFormatado(emissor));
-            codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor)
-                    .substring(7));
-            codigoDeBarras.append(boleto.getBanco()
-                    .getCarteiraDoEmissorFormatado(emissor));
+            codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
+            codigoDeBarras.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
         } else {
             throw new CriacaoBoletoException(
-            "Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
+                    "Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
         }
 
-        codigoDeBarras.insert(4, dvGenerator
-                .geraDVCodigoDeBarras(codigoDeBarras.toString()));
+        codigoDeBarras.insert(4, dvGenerator.geraDVCodigoDeBarras(codigoDeBarras.toString()));
 
         String result = codigoDeBarras.toString();
 
         if (result.length() != 44) {
             throw new CriacaoBoletoException(
-            "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
+                    "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
         }
 
         return result;
@@ -123,9 +116,7 @@ public class BancoDoBrasil implements Banco {
     }
 
     public java.net.URL getImage() {
-        return getClass().getResource(
-                String.format("/br/com/caelum/stella/boleto/img/%s.png",
-                        getNumeroFormatado()));
+        return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
     }
 
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {

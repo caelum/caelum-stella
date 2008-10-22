@@ -38,11 +38,10 @@ class IETocantinsAntigaValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P6;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
@@ -57,8 +56,7 @@ class IETocantinsAntigaValidator implements Validator<String> {
     public static final Pattern FORMATED = Pattern
             .compile("(29)[.]((01)|(02)|(03)|(99))[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(29)((01)|(02)|(03)|(99))(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(29)((01)|(02)|(03)|(99))(\\d{3})(\\d{3})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -80,8 +78,7 @@ class IETocantinsAntigaValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IETocantinsAntigaValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IETocantinsAntigaValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -117,8 +114,7 @@ class IETocantinsAntigaValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

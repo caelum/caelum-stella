@@ -1,9 +1,8 @@
 package br.com.caelum.stella.faces.example;
 
-
 /**
  * Managed bean que recebe o cpf do formulario
- *
+ * 
  * @author Fabio Kung
  * @author Leonardo Bessa
  */

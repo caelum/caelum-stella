@@ -11,9 +11,9 @@ public class ExemploDeExtenso {
         String tempo = converter.toWords(0.05);
         String message = "Cibernautas demoram " + tempo + " a avaliar uma página.";
         System.out.println(message);
-        
+
         tempo = converter.toWords(9.52);
-        message =   "Técnico diz que Bolt poderia ter feito 100m em " + tempo;
+        message = "Técnico diz que Bolt poderia ter feito 100m em " + tempo;
         System.out.println(message);
     }
 }

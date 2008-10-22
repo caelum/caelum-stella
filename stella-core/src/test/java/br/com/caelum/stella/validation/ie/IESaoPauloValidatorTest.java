@@ -36,8 +36,7 @@ public class IESaoPauloValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -48,8 +47,7 @@ public class IESaoPauloValidatorTest {
     @Test
     public void shouldValidateValidIERural() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IESaoPauloValidator(messageProducer, false);
 
@@ -71,12 +69,10 @@ public class IESaoPauloValidatorTest {
     @Test(expected = InvalidStateException.class)
     public void shouldNotValidateValidIERuralWithWrongFormat() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
         Validator validator = new IESaoPauloValidator(messageProducer, false);
@@ -97,8 +93,7 @@ public class IESaoPauloValidatorTest {
     @Test
     public void shouldValidateValidIEParaComercioIndustria() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IESaoPauloValidator(messageProducer, false);
 
@@ -120,8 +115,7 @@ public class IESaoPauloValidatorTest {
     @Test
     public void shouldValidateValidFormattedIERural() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IESaoPauloValidator(messageProducer, true);
@@ -144,8 +138,7 @@ public class IESaoPauloValidatorTest {
     @Test
     public void shouldValidateValidFormattedIEParaComercioIndustria() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
         Validator validator = new IESaoPauloValidator(messageProducer, true);
@@ -168,8 +161,7 @@ public class IESaoPauloValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
         Validator validator = new IESaoPauloValidator(messageProducer, false);
 

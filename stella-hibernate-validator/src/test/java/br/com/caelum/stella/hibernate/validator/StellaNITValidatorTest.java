@@ -1,6 +1,5 @@
 package br.com.caelum.stella.hibernate.validator;
 
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -17,7 +16,7 @@ public class StellaNITValidatorTest {
 
     private static class ObjectWithNIT {
         @SuppressWarnings("unused")
-		@NIT
+        @NIT
         private String nit;
     }
 

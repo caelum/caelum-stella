@@ -52,14 +52,11 @@ public class BoletoGenerator {
             fos.write(b);
             fos.close();
         } catch (FileNotFoundException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PDF", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
         } catch (NumberFormatException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PDF", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
         } catch (IOException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PDF", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
         } finally {
             tryToClose(fos);
         }
@@ -97,11 +94,9 @@ public class BoletoGenerator {
 
             fos.write(b);
         } catch (FileNotFoundException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PNG", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
         } catch (IOException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PNG", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
         } finally {
             tryToClose(fos);
         }
@@ -133,11 +128,9 @@ public class BoletoGenerator {
             is.read(b);
 
         } catch (NumberFormatException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PDF", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
         } catch (IOException e) {
-            throw new GeracaoBoletoException(
-                    "Erro na geração do boleto em PDF", e);
+            throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
         } finally {
             tryToClose(is);
         }

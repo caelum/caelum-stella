@@ -27,17 +27,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
         try {
             validator.assertValid("032141s840");
             fail();
@@ -52,17 +49,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
         try {
             validator.assertValid("03241840");
             fail();
@@ -77,17 +71,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
 
         String value = "0321418406";
         try {
@@ -104,17 +95,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
 
         // VALID IE = 032141840
         String value = "032141870";
@@ -132,17 +120,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
 
         // VALID IE = 032141840
         String value = "032141841";
@@ -160,11 +145,9 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -186,11 +169,9 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                false);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -209,12 +190,10 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                true);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 0321418-40
@@ -234,17 +213,14 @@ public class IEPernambucoNovaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IEPernambucoNovaValidator(messageProducer,
-                true);
+        Validator validator = new IEPernambucoNovaValidator(messageProducer, true);
 
         // VALID IE = 0321418-40
         String value = "032141840";

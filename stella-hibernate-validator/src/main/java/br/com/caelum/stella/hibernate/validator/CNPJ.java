@@ -11,16 +11,18 @@ import java.lang.annotation.Target;
 import org.hibernate.validator.ValidatorClass;
 
 /**
- * Restrição que pode ser associada a objetos em que o método {@linkplain #toString()} 
- * represente um CNPJ.
+ * Restrição que pode ser associada a objetos em que o método
+ * {@linkplain #toString()} represente um CNPJ.
+ * 
  * @author Leonardo Bessa
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({FIELD, METHOD})
+@Target( { FIELD, METHOD })
 @ValidatorClass(StellaCNPJValidator.class)
 public @interface CNPJ {
-	String message() default "{cnpj_invalid}";
-	boolean formatted() default false;
+    String message() default "{cnpj_invalid}";
+
+    boolean formatted() default false;
 
 }

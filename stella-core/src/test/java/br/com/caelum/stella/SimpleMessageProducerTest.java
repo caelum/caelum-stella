@@ -15,10 +15,8 @@ public class SimpleMessageProducerTest {
     @Test
     public void testGetMessage() {
         SimpleMessageProducer messageProducer = new SimpleMessageProducer();
-        ValidationMessage message = messageProducer
-                .getMessage(DocumentoError.INVALID_CHECK_DIGITS);
-        assertEquals("DocumentoError : INVALID CHECK DIGITS", message
-                .getMessage());
+        ValidationMessage message = messageProducer.getMessage(DocumentoError.INVALID_CHECK_DIGITS);
+        assertEquals("DocumentoError : INVALID CHECK DIGITS", message.getMessage());
     }
 
 }

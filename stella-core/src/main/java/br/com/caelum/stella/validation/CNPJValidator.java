@@ -28,19 +28,15 @@ public class CNPJValidator implements Validator<String> {
 
     private static final int DV2_POSITION = 14;
 
-    private static final Integer[] DV1_MULTIPLIERS = { 5, 4, 3, 2, 9, 8, 7, 6,
-            5, 4, 3, 2 };
+    private static final Integer[] DV1_MULTIPLIERS = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-    private static final Integer[] DV2_MULTIPLIERS = { 6, 5, 4, 3, 2, 9, 8, 7,
-            6, 5, 4, 3, 2 };
+    private static final Integer[] DV2_MULTIPLIERS = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(
-            0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
-            DV1_MULTIPLIERS, DV1_POSITION);
+    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
+            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
-    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(
-            0, new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD,
-            DV2_MULTIPLIERS, DV2_POSITION);
+    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
+            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 

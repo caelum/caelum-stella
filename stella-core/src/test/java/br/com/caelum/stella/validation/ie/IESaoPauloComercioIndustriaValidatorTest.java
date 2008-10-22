@@ -21,17 +21,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
         try {
             validator.assertValid("1234567a9012");
             fail();
@@ -46,17 +43,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
         try {
             validator.assertValid("12345678901");
             fail();
@@ -71,17 +65,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
 
         String value = "1234567890123";
         try {
@@ -98,17 +89,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithFirstCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
 
         // VALID IE = 110.042.490.114
         String value = "110042490104";
@@ -126,17 +114,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithSecondCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
 
         // VALID IE = 110.042.490.114
         String value = "110042490118";
@@ -154,11 +139,9 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
 
@@ -178,11 +161,9 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -201,12 +182,10 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = 110.042.490.114
@@ -226,17 +205,14 @@ public class IESaoPauloComercioIndustriaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, true);
 
         // VALID IE = 110.042.490.114
         String value = "110.0424.490.114";

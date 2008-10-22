@@ -26,24 +26,20 @@ class IESaoPauloProdutorRuralValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P12;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("P-(\\d{8})[.](\\d{1})[/](\\d{3})");
+    public static final Pattern FORMATED = Pattern.compile("P-(\\d{8})[.](\\d{1})[/](\\d{3})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("P(\\d{8})(\\d{1})(\\d{3})");
+    public static final Pattern UNFORMATED = Pattern.compile("P(\\d{8})(\\d{1})(\\d{3})");
 
-    public IESaoPauloProdutorRuralValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IESaoPauloProdutorRuralValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }

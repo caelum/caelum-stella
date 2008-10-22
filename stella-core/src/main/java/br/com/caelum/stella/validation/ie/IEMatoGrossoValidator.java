@@ -24,21 +24,18 @@ public class IEMatoGrossoValidator implements Validator<String> {
 
     private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(
-            0, rotinas, MOD, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+            DVX_POSITION);
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{8,10})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{8,10})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{8,10})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{8,10})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -60,8 +57,7 @@ public class IEMatoGrossoValidator implements Validator<String> {
         this.isFormatted = isFormatted;
     }
 
-    public IEMatoGrossoValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
+    public IEMatoGrossoValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
         this.isFormatted = isFormatted;
     }
@@ -97,8 +93,7 @@ public class IEMatoGrossoValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 

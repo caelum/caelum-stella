@@ -23,7 +23,8 @@ import com.lowagie.text.pdf.PdfWriter;
  * Writer que sabe escrever num PDF usando IText como dependencia.
  * 
  * @see <a
- *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum.com.br/boleto-setup.html</a>
+ *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
+ *      .com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira
@@ -58,10 +59,8 @@ public class PDFBoletoWriter implements BoletoWriter {
         try {
             this.writer = PdfWriter.getInstance(this.document, this.bytes);
 
-            this.fonteSimples = BaseFont.createFont(BaseFont.HELVETICA,
-                    BaseFont.WINANSI, BaseFont.EMBEDDED);
-            this.fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD,
-                    BaseFont.WINANSI, BaseFont.EMBEDDED);
+            this.fonteSimples = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
+            this.fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.WINANSI, BaseFont.EMBEDDED);
 
         } catch (DocumentException e) {
             throw new GeracaoBoletoException(e);
@@ -108,20 +107,17 @@ public class PDFBoletoWriter implements BoletoWriter {
 
     private void checkIfDocIsClosed() {
         if (this.stream != null)
-            throw new IllegalStateException(
-                    "boleto ja gerado, voce nao pode mais escrever na imagem");
+            throw new IllegalStateException("boleto ja gerado, voce nao pode mais escrever na imagem");
     }
 
-    public void writeImage(float x, float y, BufferedImage image, float width,
-            float height) throws IOException {
+    public void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException {
         checkIfDocIsClosed();
 
         try {
             Image pdfImage = Image.getInstance(image, null);
             pdfImage.setAbsolutePosition(0, 0);
             pdfImage.scaleToFit(width, height);
-            PdfTemplate template = this.contentByte.createTemplate(image
-                    .getWidth(), image.getHeight());
+            PdfTemplate template = this.contentByte.createTemplate(image.getWidth(), image.getHeight());
             template.addImage(pdfImage);
             final float leftMargin = this.document.leftMargin();
             this.contentByte.addTemplate(template, leftMargin + x, y);

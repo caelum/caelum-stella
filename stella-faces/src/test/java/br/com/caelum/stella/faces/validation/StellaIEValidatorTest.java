@@ -24,16 +24,16 @@ import org.junit.Test;
  */
 public class StellaIEValidatorTest {
 
-	private Mockery mockery;
-	private StellaIEValidator validator;
-	private FacesContextMocker facesContextMocker;
+    private Mockery mockery;
+    private StellaIEValidator validator;
+    private FacesContextMocker facesContextMocker;
 
-	@Before
-	public void init() {
-		mockery = new Mockery();
-		facesContextMocker = new FacesContextMocker(mockery);
-		this.validator = new StellaIEValidator();
-	}
+    @Before
+    public void init() {
+        mockery = new Mockery();
+        facesContextMocker = new FacesContextMocker(mockery);
+        this.validator = new StellaIEValidator();
+    }
 
     @After
     public void end() {
@@ -51,78 +51,74 @@ public class StellaIEValidatorTest {
     }
 
     @Test
-	public void shouldNotThrowValidatorExceptionForValidIE() throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
-		final UIInput valueHolder = mockery.mock(UIInput.class);
-		final String estadoComponentId = "form:estado";
-		facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
-		mockery.checking(new Expectations() {
-			{
-				one(context.getViewRoot()).findComponent(estadoComponentId);
-				will(returnValue(valueHolder));
-				one(valueHolder).getValue();
-				will(returnValue("SP"));
-			}
-		});
-		validator.setEstadoComponentId(estadoComponentId);
-		validator.validate(context, component, "P011004243002");
-	}
+    public void shouldNotThrowValidatorExceptionForValidIE() throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        final UIInput valueHolder = mockery.mock(UIInput.class);
+        final String estadoComponentId = "form:estado";
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+        mockery.checking(new Expectations() {
+            {
+                one(context.getViewRoot()).findComponent(estadoComponentId);
+                will(returnValue(valueHolder));
+                one(valueHolder).getValue();
+                will(returnValue("SP"));
+            }
+        });
+        validator.setEstadoComponentId(estadoComponentId);
+        validator.validate(context, component, "P011004243002");
+    }
 
-	@Test
-	public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidIEAndPtBRLocale()
-			throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
-		facesContextMocker.mockMessageBundle(context, "messages", new Locale(
-				"pt", "BR"));
-		final UIInput valueHolder = mockery.mock(UIInput.class);
-		final String estadoComponentId = "form:estado";
-		mockery.checking(new Expectations() {
-			{
-				one(context.getViewRoot()).findComponent(estadoComponentId);
-				will(returnValue(valueHolder));
-				one(valueHolder).getValue();
-				will(returnValue("SP"));
-			}
-		});
-		try {
-			validator.setEstadoComponentId(estadoComponentId);
-			validator.validate(context, component, "P011004245002");
-			fail();
-		} catch (ValidatorException e) {
-			// it should throw exception for invalid IE
-			FacesMessage message = e.getFacesMessage();
-			assertEquals("IE Invalido", message.getSummary());
-		}
-	}
+    @Test
+    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidIEAndPtBRLocale() throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
+        final UIInput valueHolder = mockery.mock(UIInput.class);
+        final String estadoComponentId = "form:estado";
+        mockery.checking(new Expectations() {
+            {
+                one(context.getViewRoot()).findComponent(estadoComponentId);
+                will(returnValue(valueHolder));
+                one(valueHolder).getValue();
+                will(returnValue("SP"));
+            }
+        });
+        try {
+            validator.setEstadoComponentId(estadoComponentId);
+            validator.validate(context, component, "P011004245002");
+            fail();
+        } catch (ValidatorException e) {
+            // it should throw exception for invalid IE
+            FacesMessage message = e.getFacesMessage();
+            assertEquals("IE Invalido", message.getSummary());
+        }
+    }
 
-	@Test
-	public void shouldGiveMessagesFromDefaultResourceBundleForInvalidIEAndEnUSLocale()
-			throws Exception {
-		final FacesContext context = mockery.mock(FacesContext.class);
-		final UIComponent component = mockery.mock(UIComponent.class);
-		facesContextMocker.mockMessageBundle(context, "messages", new Locale(
-				"en"));
-		final UIInput valueHolder = mockery.mock(UIInput.class);
-		final String estadoComponentId = "form:estado";
-		mockery.checking(new Expectations() {
-			{
-				one(context.getViewRoot()).findComponent(estadoComponentId);
-				will(returnValue(valueHolder));
-				one(valueHolder).getValue();
-				will(returnValue("SP"));
-			}
-		});
-		try {
-			validator.setEstadoComponentId(estadoComponentId);
-			validator.validate(context, component, "P011004245002");
-			fail();
-		} catch (ValidatorException e) {
-			// it should throw exception for invalid IE
-			FacesMessage message = e.getFacesMessage();
-			assertEquals("Invalid IE", message.getSummary());
-		}
-	}
+    @Test
+    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidIEAndEnUSLocale() throws Exception {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", new Locale("en"));
+        final UIInput valueHolder = mockery.mock(UIInput.class);
+        final String estadoComponentId = "form:estado";
+        mockery.checking(new Expectations() {
+            {
+                one(context.getViewRoot()).findComponent(estadoComponentId);
+                will(returnValue(valueHolder));
+                one(valueHolder).getValue();
+                will(returnValue("SP"));
+            }
+        });
+        try {
+            validator.setEstadoComponentId(estadoComponentId);
+            validator.validate(context, component, "P011004245002");
+            fail();
+        } catch (ValidatorException e) {
+            // it should throw exception for invalid IE
+            FacesMessage message = e.getFacesMessage();
+            assertEquals("Invalid IE", message.getSummary());
+        }
+    }
 
 }

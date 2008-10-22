@@ -14,11 +14,9 @@ public class ValidadorDeDVTest {
         Integer posicaoDoDv = 14;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
-                IEConstraints.Rotina.POS_IE };
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
         Integer[] pesos = IEConstraints.P8;
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00000080336012");
         assertTrue(dvIsValid);
@@ -29,11 +27,9 @@ public class ValidadorDeDVTest {
         Integer posicaoDoDv = 14;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
-                IEConstraints.Rotina.POS_IE };
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
         Integer[] pesos = IEConstraints.P8;
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00000080336013");
         assertFalse(dvIsValid);
@@ -44,11 +40,9 @@ public class ValidadorDeDVTest {
         Integer posicaoDoDv = 14;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
-                IEConstraints.Rotina.POS_IE };
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
         Integer[] pesos = IEConstraints.P8;
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00000084920045");
         assertTrue(dvIsValid);
@@ -59,11 +53,9 @@ public class ValidadorDeDVTest {
         Integer posicaoDoDv = 14;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
-                IEConstraints.Rotina.POS_IE };
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
         Integer[] pesos = IEConstraints.P8;
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00000084920048");
         assertFalse(dvIsValid);
@@ -75,10 +67,8 @@ public class ValidadorDeDVTest {
         Integer[] pesos = IEConstraints.P12;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D,
-                IEConstraints.Rotina.POS_IE };
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00417032057114");
         assertTrue(dvIsValid);
@@ -90,10 +80,8 @@ public class ValidadorDeDVTest {
         Integer[] pesos = IEConstraints.P13;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D,
-                IEConstraints.Rotina.POS_IE };
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00417032057114");
         assertTrue(dvIsValid);
@@ -105,10 +93,8 @@ public class ValidadorDeDVTest {
         Integer[] pesos = IEConstraints.P12;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D,
-                IEConstraints.Rotina.POS_IE };
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00417032050114");
         assertFalse(dvIsValid);
@@ -120,10 +106,8 @@ public class ValidadorDeDVTest {
         Integer[] pesos = IEConstraints.P13;
         Integer fator = 0;
         Integer mod = 11;
-        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D,
-                IEConstraints.Rotina.POS_IE };
-        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas,
-                mod, pesos, posicaoDoDv);
+        RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
+        DigitoVerificadorInfo info = new DigitoVerificadorInfo(fator, rotinas, mod, pesos, posicaoDoDv);
         ValidadorDeDV verificador = new ValidadorDeDV(info);
         boolean dvIsValid = verificador.isDVValid("00417032057116");
         assertFalse(dvIsValid);

@@ -19,9 +19,8 @@ import br.com.caelum.stella.validation.error.NITError;
  */
 public class StellaMessagesTest {
     @SuppressWarnings("unchecked")
-    private static final Class[] ERROR_CLASSES = {CNPJError.class, CPFError.class, IEError.class, NITError.class};
+    private static final Class[] ERROR_CLASSES = { CNPJError.class, CPFError.class, IEError.class, NITError.class };
 
-    
     @Test
     @SuppressWarnings("unchecked")
     public void deveConterMensagensPadraoParaTodosOsErrosPossiveis() throws Exception {

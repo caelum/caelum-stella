@@ -34,12 +34,9 @@ public class IERondoniaValidator implements Validator<String> {
     }
 
     @SuppressWarnings("unchecked")
-    public IERondoniaValidator(MessageProducer messageProducer,
-            boolean isFormatted) {
-        Class[] validatorClasses = { IERondoniaCasoUmValidator.class,
-                IERondoniaCasoDoisValidator.class };
-        this.baseValidator = new LogicOrComposedValidator<String>(
-                messageProducer, isFormatted, validatorClasses);
+    public IERondoniaValidator(MessageProducer messageProducer, boolean isFormatted) {
+        Class[] validatorClasses = { IERondoniaCasoUmValidator.class, IERondoniaCasoDoisValidator.class };
+        this.baseValidator = new LogicOrComposedValidator<String>(messageProducer, isFormatted, validatorClasses);
         this.baseValidator.setInvalidFormat(IEError.INVALID_FORMAT);
     }
 

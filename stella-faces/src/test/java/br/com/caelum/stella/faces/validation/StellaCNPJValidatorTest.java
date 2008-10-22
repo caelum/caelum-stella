@@ -16,7 +16,7 @@ import org.junit.Test;
 
 /**
  * StellaCPFValidator integration tests
- *
+ * 
  * @author Leonardo Bessa
  * @author Fabio Kung
  */
@@ -44,8 +44,7 @@ public class StellaCNPJValidatorTest {
     }
 
     @Test
-    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCNPJAndPtBRLocale()
-            throws Exception {
+    public void shouldGiveMessagesFromBrazilianResourceBundleForInvalidCNPJAndPtBRLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         facesContextMocker.mockMessageBundle(context, "messages", new Locale("pt", "BR"));
@@ -62,8 +61,7 @@ public class StellaCNPJValidatorTest {
     }
 
     @Test
-    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCNPJAndEnUSLocale()
-            throws Exception {
+    public void shouldGiveMessagesFromDefaultResourceBundleForInvalidCNPJAndEnUSLocale() throws Exception {
         final FacesContext context = mockery.mock(FacesContext.class);
         final UIComponent component = mockery.mock(UIComponent.class);
         facesContextMocker.mockMessageBundle(context, "messages", new Locale("en"));

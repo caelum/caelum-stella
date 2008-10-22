@@ -25,9 +25,8 @@ public class ResourceBundleMessageProducerTest {
         final String errorMessage = "message for ANY error";
         ResourceBundle bundleMock = new ResourceBundle() {
             protected Object handleGetObject(final String s) {
-                String errorKey = (MessageFormat.format("{0}.{1}", Errors.class
-                        .getSimpleName(), Errors.WITH_COMPOSITE_NAME.name()))
-                        .toLowerCase();
+                String errorKey = (MessageFormat.format("{0}.{1}", Errors.class.getSimpleName(),
+                        Errors.WITH_COMPOSITE_NAME.name())).toLowerCase();
                 if (s.equals(errorKey)) {
                     return errorMessage;
                 }
@@ -43,10 +42,8 @@ public class ResourceBundleMessageProducerTest {
             }
         };
 
-        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(
-                bundleMock);
-        ValidationMessage validationMessage = producer
-                .getMessage(Errors.WITH_COMPOSITE_NAME);
+        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundleMock);
+        ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
         assertEquals(errorMessage, validationMessage.getMessage());
     }
 
@@ -67,12 +64,9 @@ public class ResourceBundleMessageProducerTest {
             }
         };
 
-        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(
-                bundleMock);
-        ValidationMessage validationMessage = producer
-                .getMessage(Errors.WITH_COMPOSITE_NAME);
-        assertEquals("errors : with composite name", validationMessage
-                .getMessage());
+        ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundleMock);
+        ValidationMessage validationMessage = producer.getMessage(Errors.WITH_COMPOSITE_NAME);
+        assertEquals("errors : with composite name", validationMessage.getMessage());
 
     }
 

@@ -30,8 +30,7 @@ import br.com.caelum.stella.validation.error.IEError;
  */
 public class IEBahiaValidator implements Validator<String> {
 
-    private static final RotinaDeDigitoVerificador[] rotinas = {
-            IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
+    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
 
     private static final int DVX_POSITION = 6 + 8;
 
@@ -41,29 +40,25 @@ public class IEBahiaValidator implements Validator<String> {
 
     private static final Integer[] DVY_MULTIPLIERS = IEConstraints.P3;
 
-    private static final DigitoVerificadorInfo DVX_INFO_MOD11 = new DigitoVerificadorInfo(
-            0, rotinas, 11, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_MOD11 = new DigitoVerificadorInfo(0, rotinas, 11,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final ValidadorDeDV DVX_CHECKER_MOD11 = new ValidadorDeDV(
-            DVX_INFO_MOD11);
+    private static final ValidadorDeDV DVX_CHECKER_MOD11 = new ValidadorDeDV(DVX_INFO_MOD11);
 
-    private static final DigitoVerificadorInfo DVY_INFO_MOD11 = new DigitoVerificadorInfo(
-            0, rotinas, 11, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO_MOD11 = new DigitoVerificadorInfo(0, rotinas, 11,
+            DVY_MULTIPLIERS, DVY_POSITION);
 
-    private static final ValidadorDeDV DVY_CHECKER_MOD11 = new ValidadorDeDV(
-            DVY_INFO_MOD11);
+    private static final ValidadorDeDV DVY_CHECKER_MOD11 = new ValidadorDeDV(DVY_INFO_MOD11);
 
-    private static final DigitoVerificadorInfo DVX_INFO_MOD10 = new DigitoVerificadorInfo(
-            0, rotinas, 10, DVX_MULTIPLIERS, DVX_POSITION);
+    private static final DigitoVerificadorInfo DVX_INFO_MOD10 = new DigitoVerificadorInfo(0, rotinas, 10,
+            DVX_MULTIPLIERS, DVX_POSITION);
 
-    private static final ValidadorDeDV DVX_CHECKER_MOD10 = new ValidadorDeDV(
-            DVX_INFO_MOD10);
+    private static final ValidadorDeDV DVX_CHECKER_MOD10 = new ValidadorDeDV(DVX_INFO_MOD10);
 
-    private static final DigitoVerificadorInfo DVY_INFO_MOD10 = new DigitoVerificadorInfo(
-            0, rotinas, 10, DVY_MULTIPLIERS, DVY_POSITION);
+    private static final DigitoVerificadorInfo DVY_INFO_MOD10 = new DigitoVerificadorInfo(0, rotinas, 10,
+            DVY_MULTIPLIERS, DVY_POSITION);
 
-    private static final ValidadorDeDV DVY_CHECKER_MOD10 = new ValidadorDeDV(
-            DVY_INFO_MOD10);
+    private static final ValidadorDeDV DVY_CHECKER_MOD10 = new ValidadorDeDV(DVY_INFO_MOD10);
 
     private final boolean isFormatted;
 
@@ -71,13 +66,10 @@ public class IEBahiaValidator implements Validator<String> {
      * 612345-57
      * 
      * 123456-63
-     * 
      */
-    public static final Pattern FORMATED = Pattern
-            .compile("(\\d{6})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{6})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern
-            .compile("(\\d{6})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{6})(\\d{2})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -135,19 +127,16 @@ public class IEBahiaValidator implements Validator<String> {
     }
 
     private boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
-                .format(value);
+        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         boolean result = false;
         switch (value.charAt(0)) {
         case '6':
         case '7':
         case '9':
-            result = DVX_CHECKER_MOD11.isDVValid(testedValue)
-                    && DVY_CHECKER_MOD11.isDVValid(testedValue);
+            result = DVX_CHECKER_MOD11.isDVValid(testedValue) && DVY_CHECKER_MOD11.isDVValid(testedValue);
             break;
         default:
-            result = DVX_CHECKER_MOD10.isDVValid(testedValue)
-                    && DVY_CHECKER_MOD10.isDVValid(testedValue);
+            result = DVX_CHECKER_MOD10.isDVValid(testedValue) && DVY_CHECKER_MOD10.isDVValid(testedValue);
         }
         return result;
     }

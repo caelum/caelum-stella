@@ -31,8 +31,7 @@ public class NumericToWordsConverter {
     public String toWords(long number) {
         try {
             if (number < 0) {
-                throw new IllegalArgumentException(
-                        "Não é possível transforma número negativos.");
+                throw new IllegalArgumentException("Não é possível transforma número negativos.");
             }
             StringBuffer result = new StringBuffer();
             if (number == 0) {
@@ -55,8 +54,7 @@ public class NumericToWordsConverter {
             }
             return result.toString();
         } catch (MissingResourceException e) {
-            throw new IllegalArgumentException(
-                    "Número muito grande para ser transformado em extenso.");
+            throw new IllegalArgumentException("Número muito grande para ser transformado em extenso.");
         }
     }
 
@@ -68,8 +66,7 @@ public class NumericToWordsConverter {
     public String toWords(double number) {
         try {
             if (number < 0) {
-                throw new IllegalArgumentException(
-                        "Não é possível transforma número negativos.");
+                throw new IllegalArgumentException("Não é possível transforma número negativos.");
             }
             StringBuffer result = new StringBuffer();
             if (number == 0) {
@@ -88,8 +85,7 @@ public class NumericToWordsConverter {
                 ThousandBlock modBlock = new ThousandBlock(formattedMod);
 
                 boolean hasMod = !modBlock.isZero();
-                boolean hasInteger = (blocks.length > 1)
-                        || (!blocks[blocks.length - 1].isZero());
+                boolean hasInteger = (blocks.length > 1) || (!blocks[blocks.length - 1].isZero());
 
                 if (hasInteger) {
                     appendIntegers(result, blocks);
@@ -105,8 +101,7 @@ public class NumericToWordsConverter {
             }
             return result.toString();
         } catch (MissingResourceException e) {
-            throw new IllegalArgumentException(
-                    "Número muito grande para ser transformado em extenso.");
+            throw new IllegalArgumentException("Número muito grande para ser transformado em extenso.");
         }
     }
 
@@ -128,21 +123,18 @@ public class NumericToWordsConverter {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator(',');
         symbols.setDecimalSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat(pattern.toString(),
-                symbols);
+        DecimalFormat decimalFormat = new DecimalFormat(pattern.toString(), symbols);
         String formatted = decimalFormat.format(number);
         String[] parts = formatted.split("[.]");
         return parts;
     }
 
-    private void appendIntegersUnits(double number, StringBuffer result,
-            ThousandBlock[] blocks) {
+    private void appendIntegersUnits(double number, StringBuffer result, ThousandBlock[] blocks) {
         if (blocks.length != 1 || !blocks[0].isZero()) {
             result.append(" ");
             if (number > 1) {
                 int length = blocks.length;
-                if (length > 2 && blocks[length - 1].isZero()
-                        && blocks[length - 2].isZero()) {
+                if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
                     result.append("de ");
                 }
                 result.append(formato.getUnidadeInteiraNoPlural());
@@ -174,12 +166,8 @@ public class NumericToWordsConverter {
 
                 if (thousandPower > 0) {
                     result.append(" ");
-                    result.append(this.getString("1e"
-                            + 3
-                            * thousandPower
-                            + "."
-                            + (thousandBlock.isUnitary() ? "singular"
-                                    : "plural")));
+                    result.append(this.getString("1e" + 3 * thousandPower + "."
+                            + (thousandBlock.isUnitary() ? "singular" : "plural")));
                 }
                 hasStarted = true;
             }
@@ -193,9 +181,7 @@ public class NumericToWordsConverter {
         public ThousandBlock(String number) {
             super();
             if (number.length() > 3) {
-                throw new IllegalArgumentException(
-                        "ThousandBlock deve conter numeros"
-                                + " de no maximo 3 digitos.");
+                throw new IllegalArgumentException("ThousandBlock deve conter numeros" + " de no maximo 3 digitos.");
             }
             this.numberValue = Integer.parseInt(number);
         }
@@ -228,8 +214,7 @@ public class NumericToWordsConverter {
                 if (resto == 0) {
                     result = centena;
                 } else {
-                    result = centena + getAndSeparator()
-                            + getNumberUnder100(resto);
+                    result = centena + getAndSeparator() + getNumberUnder100(resto);
                 }
             }
             return result;

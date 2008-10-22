@@ -22,7 +22,6 @@ public class IETocantinsNovaValidatorTest {
      * Formato: 8 dígitos (empresa)+1 dígito verificador
      * 
      * Exemplo valido: 29.040.636-6 29.040.634-0 29.385.524-2 29.032.038-0
-     * 
      */
 
     private static final String wrongCheckDigitUnformattedString = "290406360";
@@ -31,8 +30,7 @@ public class IETocantinsNovaValidatorTest {
 
     private static final String validFormattedString = "29.040.636-6";
 
-    private static final String[] validValues = { validFormattedString,
-            "29.040.634-0", "29.385.524-2", "29.032.038-0" };
+    private static final String[] validValues = { validFormattedString, "29.040.634-0", "29.385.524-2", "29.032.038-0" };
 
     private Validator<String> newValidator() {
         return new IETocantinsNovaValidator();
@@ -48,8 +46,7 @@ public class IETocantinsNovaValidatorTest {
             if (e instanceof InvalidStateException) {
                 InvalidStateException invalidStateException = (InvalidStateException) e;
                 String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException
-                        .getInvalidMessages().get(0).getMessage());
+                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
             } else {
                 fail();
             }
@@ -60,20 +57,16 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                false);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, false);
         try {
-            validator
-                    .assertValid(validUnformattedString.replaceFirst(".", "&"));
+            validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
@@ -86,17 +79,14 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                false);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, false);
         try {
             validator.assertValid(validUnformattedString.replaceFirst(".", ""));
             fail();
@@ -111,17 +101,14 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                false);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, false);
 
         String value = validUnformattedString + "5";
         try {
@@ -138,17 +125,14 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldNotValidateIEsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                false);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, false);
 
         String value = wrongCheckDigitUnformattedString;
         try {
@@ -165,11 +149,9 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                true);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
@@ -189,11 +171,9 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                true);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, true);
 
         List<ValidationMessage> errors;
 
@@ -214,11 +194,9 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                false);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -237,17 +215,14 @@ public class IETocantinsNovaValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IETocantinsNovaValidator(messageProducer,
-                true);
+        Validator validator = new IETocantinsNovaValidator(messageProducer, true);
 
         String value = validFormattedString.replace('.', ':');
         try {

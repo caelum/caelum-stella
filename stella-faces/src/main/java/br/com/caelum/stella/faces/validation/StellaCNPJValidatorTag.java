@@ -15,33 +15,33 @@ import javax.servlet.jsp.JspException;
  */
 @SuppressWarnings("serial")
 public class StellaCNPJValidatorTag extends ValidatorELTag {
-	private boolean formatted;
+    private boolean formatted;
 
-	public StellaCNPJValidatorTag() {
-		super.setId(StellaCNPJValidator.VALIDATOR_ID);
-	}
+    public StellaCNPJValidatorTag() {
+        super.setId(StellaCNPJValidator.VALIDATOR_ID);
+    }
 
-	/**
-	 * @return StellaCNPJValidator
-	 */
-	@Override
-	protected Validator createValidator() throws JspException {
-		StellaCNPJValidator validator = new StellaCNPJValidator();
-		validator.setFormatted(this.formatted);
-		return validator;
-	}
+    /**
+     * @return StellaCNPJValidator
+     */
+    @Override
+    protected Validator createValidator() throws JspException {
+        StellaCNPJValidator validator = new StellaCNPJValidator();
+        validator.setFormatted(this.formatted);
+        return validator;
+    }
 
-	/**
-	 * @see StellaCNPJValidator#setFormatted(boolean)
-	 */
-	public void setFormatted(ValueExpression formatted) {
-		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-		this.formatted = (Boolean) formatted.getValue(elContext);
-	}
+    /**
+     * @see StellaCNPJValidator#setFormatted(boolean)
+     */
+    public void setFormatted(ValueExpression formatted) {
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+        this.formatted = (Boolean) formatted.getValue(elContext);
+    }
 
-	@Override
-	public void release() {
-		super.release();
-		this.formatted = false;
-	}
+    @Override
+    public void release() {
+        super.release();
+        this.formatted = false;
+    }
 }

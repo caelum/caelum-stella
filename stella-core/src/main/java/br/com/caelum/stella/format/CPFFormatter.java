@@ -10,9 +10,9 @@ import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
 public class CPFFormatter implements Formatter {
 
     private final BaseFormatter base;
-    
-    public CPFFormatter(){
-        this.base = new BaseFormatter(CPF_FORMATED,"$1.$2.$3-$4",CPF_UNFORMATED,"$1$2$3$4");
+
+    public CPFFormatter() {
+        this.base = new BaseFormatter(CPF_FORMATED, "$1.$2.$3-$4", CPF_UNFORMATED, "$1$2$3$4");
     }
 
     public String format(String value) {
@@ -22,7 +22,5 @@ public class CPFFormatter implements Formatter {
     public String unformat(String value) {
         return base.unformat(value);
     }
-    
-    
 
 }

@@ -21,17 +21,14 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldNotValidateIEWithInvalidCharacter() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
         try {
             validator.assertValid("P12345678*012");
             fail();
@@ -46,17 +43,14 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldNotValidateIEWithLessDigitsThanAllowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
         try {
             validator.assertValid("P12345678901");
             fail();
@@ -71,17 +65,14 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
 
         String value = "P1234567890123";
         try {
@@ -98,17 +89,14 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_CHECK_DIGITS);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
             }
         });
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
 
         // VALID IE = P-01100424.3/002
         String value = "P011004245002";
@@ -126,11 +114,9 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldValidateValidIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         // VALID IE = P-01100424.3/002
@@ -150,11 +136,9 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldValidateNullIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, false);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, false);
 
         List<ValidationMessage> errors;
         String value = null;
@@ -173,12 +157,10 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldValidateValidFormattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, true);
         List<ValidationMessage> errors;
 
         // VALID IE = P-01100424.3/002
@@ -198,17 +180,14 @@ public class IESaoPauloProdutorRuralValidatorTest {
     @Test
     public void shouldNotValidateValidUnformattedIE() {
         Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery
-                .mock(MessageProducer.class);
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
 
         mockery.checking(new Expectations() {
             {
-                exactly(1).of(messageProducer).getMessage(
-                        IEError.INVALID_FORMAT);
+                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
             }
         });
-        Validator validator = new IESaoPauloProdutorRuralValidator(
-                messageProducer, true);
+        Validator validator = new IESaoPauloProdutorRuralValidator(messageProducer, true);
 
         // VALID IE = P-01100424.3/002
         String value = "Q-01100424.3/002";
