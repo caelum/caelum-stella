@@ -1,0 +1,3 @@
+stella.onLoad(function(event){
+  
+});
