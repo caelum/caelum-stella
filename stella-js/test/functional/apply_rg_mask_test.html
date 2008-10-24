@@ -5,10 +5,8 @@
   <title>JavaScript unit test file</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <script src="../assets/jsunittest.js" type="text/javascript"></script>
-  <script src="../../src/prototype-1.6.0.2.js" type="text/javascript"></script>
   <script src="../../src/jquery-1.2.6.js" type="text/javascript"></script>
-	<script src="../../src/caelum-stella-core.js" type="text/javascript"></script>
-  <script src="../../src/mask.js" type="text/javascript"></script>
+  <script src="../../dist/caelum-stella.js" type="text/javascript"></script>
   
   <link rel="stylesheet" href="../assets/unittest.css" type="text/css" />
 </head>
@@ -19,7 +17,7 @@
   <div id="header">
     <h1>JavaScript unit test file</h1>
     <p>
-      This file tests <strong>mask.js</strong>.
+      Functional tests for <strong>dist/apply_cpf_mask.js</strong>.
     </p>
   </div>
 
@@ -28,9 +26,8 @@
   
   <!-- Put sample/test html here -->
   <div id="sample">
-    CPF: <input class="cpf" />
-    CNPJ: <input class="cnpj" />
-    RG: <input class="rg" />
+        RG: <input type="text" class="rg" value="123456789"><br/>
+        RG 2: <input type="text" id="rg" class="rg" value="123"><br/>
   </div>
 </div>
 
@@ -50,28 +47,14 @@
     testTruth: function() { with(this) {
       assert(true);
     }},
-
-	  testIfSetsMaskPropertyForCpf: function(){ with(this){
-		  new Stella.Masker();
-      jQuery(':text.cpf').each(function(){
-        assertElementMatches(['#','#','#','.','#','#','#','.','#','#','#','-','#','#'], this.mask);
-      });
-	  }},
-	  
-	  testIfSetsMaskPropertyForCnpj: function(){ with(this){
-	    new Stella.Masker();
-	    jQuery(':text.cnpj').each(function(){
-	      assertElementMatches(['#','#','.','#','#','#','.','#','#','#','/','#','#','#','#','-','#','#'], this.mask);
-	    });
-	  }},
-	  
-	  testIfSetsMaskPropertyForRg: function(){ with(this){
-	    new Stella.Masker();
-	    jQuery(':text.rg').each(function(){
-	      assertElementMatches(['#','#','.','#','#','#','.','#','#','#','-','#'], this.mask)
-	    });
-	  }}
-	  
+    
+    testIfTheValueApplyTheMask: function(){ with(this){
+      assertEqual('12.345.678-9', jQuery(':text.rg').val());
+    }},
+    
+    testIfTheValueLengthIsLesserthanNineDoNotApplyTheMask: function(){ with(this){
+      assertEqual('123', jQuery(':text#rg.rg').val());
+    }}
       
   }, {testLog: "testlog"}); 
   // For each Test.UnitRunner instance, specify the element id where results will be
