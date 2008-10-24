@@ -29,7 +29,7 @@
   <!-- Put sample/test html here -->
   <div id="sample">
     CPF: <input class="cpf" />
-    
+    CNPJ: <input class="cnpj" />
   </div>
 </div>
 
@@ -50,11 +50,18 @@
       assert(true);
     }},
 
-	  testIfSetsMaskProperty: function(){ with(this){
+	  testIfSetsMaskPropertyForCpf: function(){ with(this){
 		  new Stella.Masker();
       jQuery(':text.cpf').each(function(){
         assertElementMatches(['#','#','#','.','#','#','#','.','#','#','#','-','#','#'], this.mask);
       });
+	  }},
+	  
+	  testIfSetsMaskPropertyForCnpj: function(){ with(this){
+	    new Stella.Masker();
+	    jQuery(':text.cnpj').each(function(){
+	      assertElementMatches(['#','#','.','#','#','#','.','#','#','#','/','#','#','#','#','-','#','#'], this.mask);
+	    });
 	  }}
       
   }, {testLog: "testlog"}); 

@@ -26,8 +26,8 @@
   
   <!-- Put sample/test html here -->
   <div id="sample">
-        CPF: <input type="text" class="cpf" value="11122233322"/><br/>
-        CPF 2: <input type="text" id="cpf" class="cpf" value="12" /> <br/>
+        CNPJ: <input type="text" class="cnpj" value="12345678901234"><br/>
+        CNPJ 2: <input type="text" id="cnpj" class="cnpj" value="123"><br/>
   </div>
 </div>
 
@@ -48,12 +48,12 @@
       assert(true);
     }},
     
-    testIfTheValueApplyTheMask: function() { with(this){
-      assertEqual('111.222.333-22',jQuery(':text.cpf').val());
+    testIfTheValueApplyTheMask: function(){ with(this){
+      assertEqual('12.345.678/9012-34', jQuery(':text.cnpj').val());
     }},
     
-    testIfTheValueLengthIsLesserThanElevenDoNotApplyTheMask: function() { with(this){
-      assertEqual('12', jQuery(':text#cpf.cpf').val()); 
+    testIfTheValueLengthIsLesserthanFourteenDoNotApplyTheMask: function(){ with(this){
+      assertEqual('123', jQuery(':text#cnpj.cnpj').val());
     }}
       
   }, {testLog: "testlog"}); 
