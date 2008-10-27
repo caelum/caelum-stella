@@ -65,7 +65,7 @@ Stella.Masker.cpfWithDefinedValue = function(field){
     var isBackspace = false;
     var size = input.val().length;
     var mask = field.mask;
-    if(size >= 11){
+    if(size == 11){
       jQuery(input).attr('maxLength', mask.length);
       if(!isBackspace){
         var temp = [];
@@ -108,7 +108,7 @@ Stella.Masker.cnpjWithDefinedValue = function(field){
   var size = input.val().length;
   var mask = field.mask;
   jQuery(input).attr('maxLength', mask.length);
-  if(size >= 14 ){
+  if(size == 14 ){
     if(!isBackspace){
       var temp = [];
       temp = input.val().split('');
@@ -150,7 +150,7 @@ Stella.Masker.rgWithDefinedValue = function(field){
   var size = input.val().length;
   var mask = field.mask;
   jQuery(input).attr('maxLength', mask.length);
-  if(size >= 9){
+  if(size == 9){
     if(!isBackspace){
       var temp = [];
       temp = input.val().split('');

@@ -1,3 +1,1 @@
-stella.onLoad(function(event){
-  
-});
+//TODO: Validadores de documentos
