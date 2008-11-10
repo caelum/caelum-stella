@@ -15,7 +15,7 @@ public class Emissor {
     private long numConvenio;
     private long nossoNumero;
     private String cedente;
-    private String dvContaCorrete;
+    private String dvContaCorrente;
 
     private Emissor() {
     }
@@ -156,7 +156,7 @@ public class Emissor {
      * @return
      */
     public String getDvContaCorrente() {
-        return dvContaCorrete;
+        return dvContaCorrente;
     }
 
     /**
@@ -165,8 +165,8 @@ public class Emissor {
      * @param dv
      * @return
      */
-    public Emissor withDvContaCorrete(String dv) {
-        dvContaCorrete = dv;
+    public Emissor withDvContaCorrente(String dv) {
+        dvContaCorrente = dv;
         return this;
     }
 

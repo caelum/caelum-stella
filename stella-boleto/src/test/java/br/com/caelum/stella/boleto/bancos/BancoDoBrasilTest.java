@@ -25,7 +25,7 @@ public class BancoDoBrasilTest {
                 2008);
 
         emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDvAgencia("4")
-                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrete("5").withCarteira(18)
+                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrente("5").withCarteira(18)
                 .withNossoNumero(9000206);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");

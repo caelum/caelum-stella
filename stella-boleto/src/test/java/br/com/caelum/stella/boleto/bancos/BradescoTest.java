@@ -25,7 +25,7 @@ public class BradescoTest {
                 2006);
 
         emissor = Emissor.newEmissor().withCedente("Leonardo Bessa").withAgencia(2949).withDvAgencia("1")
-                .withContaCorrente(6580).withNumConvenio(1207113).withDvContaCorrete("3").withCarteira(6)
+                .withContaCorrente(6580).withNumConvenio(1207113).withDvContaCorrente("3").withCarteira(6)
                 .withNossoNumero(3);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");
