@@ -14,7 +14,7 @@ public class BoletoBradescoExample {
                 2008);
 
         Emissor emissor = Emissor.newEmissor().withCedente("Fulano de Tal").withAgencia(2345).withDvAgencia("6")
-                .withContaCorrente(12345).withNumConvenio(1234567).withDvContaCorrente("1").withCarteira(22)
+                .withContaCorrente(12345).withNumConvenio(1234567).withDvContaCorrete("1").withCarteira(22)
                 .withNossoNumero(9050987);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12").withEndereco(

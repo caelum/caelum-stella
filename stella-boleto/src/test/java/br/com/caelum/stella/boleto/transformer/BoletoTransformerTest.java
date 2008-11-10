@@ -28,7 +28,7 @@ public class BoletoTransformerTest {
         datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
         emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDvAgencia("4")
-                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrente("5").withCarteira(18)
+                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrete("5").withCarteira(18)
                 .withNossoNumero(9000206);
 
         sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12").withEndereco(
