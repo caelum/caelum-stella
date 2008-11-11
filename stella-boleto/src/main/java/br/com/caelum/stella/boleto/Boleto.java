@@ -42,7 +42,8 @@ public class Boleto {
      * 
      */
     public static Boleto newBoleto() {
-        return new Boleto().withEspecieMoeda("R$").withCodEspecieMoeda(9).withAceite(false).withEspecieDocumento("DV");
+        return new Boleto().withEspecieMoeda("R$").withCodEspecieMoeda(9)
+                .withAceite(false).withEspecieDocumento("DV");
     }
 
     /**
@@ -51,7 +52,7 @@ public class Boleto {
      * @return
      */
     public boolean getAceite() {
-        return aceite;
+        return this.aceite;
     }
 
     /**
@@ -70,7 +71,7 @@ public class Boleto {
      * @return
      */
     public Datas getDatas() {
-        return datas;
+        return this.datas;
     }
 
     /**
@@ -90,7 +91,7 @@ public class Boleto {
      * @return
      */
     public String getEspecieDocumento() {
-        return especieDocumento;
+        return this.especieDocumento;
     }
 
     /**
@@ -109,7 +110,7 @@ public class Boleto {
      * @return
      */
     public String getNoDocumento() {
-        return noDocumento;
+        return this.noDocumento;
     }
 
     /**
@@ -128,7 +129,7 @@ public class Boleto {
      * @return
      */
     public BigDecimal getQtdMoeda() {
-        return qtdMoeda;
+        return this.qtdMoeda;
     }
 
     /**
@@ -146,7 +147,7 @@ public class Boleto {
      * Devolve o valor desse boleto
      */
     public BigDecimal getValorBoleto() {
-        return valorBoleto;
+        return this.valorBoleto;
     }
 
     /**
@@ -178,7 +179,7 @@ public class Boleto {
      * @return
      */
     public String getEspecieMoeda() {
-        return especieMoeda;
+        return this.especieMoeda;
     }
 
     /**
@@ -198,7 +199,7 @@ public class Boleto {
      * @return
      */
     public int getCodEspecieMoeda() {
-        return codEspecieMoeda;
+        return this.codEspecieMoeda;
     }
 
     /**
@@ -219,7 +220,7 @@ public class Boleto {
      * @return
      */
     public BigDecimal getValorMoeda() {
-        return valorMoeda;
+        return this.valorMoeda;
     }
 
     /**
@@ -237,7 +238,7 @@ public class Boleto {
      * @return
      */
     public Banco getBanco() {
-        return banco;
+        return this.banco;
     }
 
     /**
@@ -257,7 +258,7 @@ public class Boleto {
      * @return
      */
     public Sacado getSacado() {
-        return sacado;
+        return this.sacado;
     }
 
     /**
@@ -277,7 +278,7 @@ public class Boleto {
      * @return
      */
     public Emissor getEmissor() {
-        return emissor;
+        return this.emissor;
     }
 
     /**
@@ -297,7 +298,7 @@ public class Boleto {
      * @return
      */
     public List<String> getInstrucoes() {
-        return instrucoes;
+        return this.instrucoes;
     }
 
     /**
@@ -308,7 +309,8 @@ public class Boleto {
      */
     public Boleto withInstrucoes(String... instrucoes) {
         if (instrucoes.length > 5) {
-            throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
+            throw new IllegalArgumentException(
+                    "maximo de 5 instrucoes permitidas");
         }
         this.instrucoes = Arrays.asList(instrucoes);
         return this;
@@ -321,7 +323,7 @@ public class Boleto {
      * @return
      */
     public List<String> getDescricoes() {
-        return descricoes;
+        return this.descricoes;
     }
 
     /**
@@ -332,7 +334,8 @@ public class Boleto {
      */
     public Boleto withDescricoes(String... descricoes) {
         if (descricoes.length > 5) {
-            throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
+            throw new IllegalArgumentException(
+                    "maximo de 5 descricoes permitidas");
         }
         this.descricoes = Arrays.asList(descricoes);
         return this;
@@ -344,7 +347,7 @@ public class Boleto {
      * @return
      */
     public List<String> getLocaisDePagamento() {
-        return locaisDePagamento;
+        return this.locaisDePagamento;
     }
 
     /**
@@ -355,7 +358,8 @@ public class Boleto {
      */
     public Boleto withLocaisDePagamento(String... locaisDePagamento) {
         if (locaisDePagamento.length > 2) {
-            throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");
+            throw new IllegalArgumentException(
+                    "maximo de 2 locais de pagamento permitidos");
         }
         this.locaisDePagamento = Arrays.asList(locaisDePagamento);
         return this;
@@ -378,16 +382,25 @@ public class Boleto {
         dataBase.set(Calendar.MILLISECOND, 0);
 
         Calendar vencimentoSemHoras = Calendar.getInstance();
-        vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, datas.getVencimento().get(Calendar.DAY_OF_MONTH));
-        vencimentoSemHoras.set(Calendar.MONTH, datas.getVencimento().get(Calendar.MONTH));
-        vencimentoSemHoras.set(Calendar.YEAR, datas.getVencimento().get(Calendar.YEAR));
+        vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, this.datas
+                .getVencimento().get(Calendar.DAY_OF_MONTH));
+        vencimentoSemHoras.set(Calendar.MONTH, this.datas.getVencimento().get(
+                Calendar.MONTH));
+        vencimentoSemHoras.set(Calendar.YEAR, this.datas.getVencimento().get(
+                Calendar.YEAR));
         vencimentoSemHoras.set(Calendar.HOUR_OF_DAY, 0);
         vencimentoSemHoras.set(Calendar.MINUTE, 0);
         vencimentoSemHoras.set(Calendar.SECOND, 0);
         vencimentoSemHoras.set(Calendar.MILLISECOND, 0);
 
-        long diferencasEmMiliSegundos = vencimentoSemHoras.getTimeInMillis() - dataBase.getTimeInMillis();
-        long diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
+        long diferencasEmMiliSegundos = vencimentoSemHoras.getTimeInMillis()
+                - dataBase.getTimeInMillis();
+        long diferencasEmDias = diferencasEmMiliSegundos
+                / (1000 * 60 * 60 * 24);
+
+        if (diferencasEmDias > 9999) {
+            throw new CriacaoBoletoException("Data fora do formato aceito!");
+        }
 
         return String.valueOf((int) diferencasEmDias);
     }
@@ -398,7 +411,8 @@ public class Boleto {
      * @return
      */
     public String getValorFormatado() {
-        return String.format("%011.2f", valorBoleto).replaceAll("[^0-9]", "");
+        return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]",
+                "");
     }
 
     /**
@@ -407,6 +421,6 @@ public class Boleto {
      * @return
      */
     public String getNoDocumentoFormatado() {
-        return String.format("%04d", Integer.parseInt(noDocumento));
+        return String.format("%04d", Integer.parseInt(this.noDocumento));
     }
 }

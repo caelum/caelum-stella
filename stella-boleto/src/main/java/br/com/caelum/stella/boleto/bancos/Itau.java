@@ -1,27 +1,15 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import java.net.URL;
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
 
-/**
- * Gera dados de um boleto relativos ao Banco Bradesco.
- * 
- * @see <a *
- *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
- *      * .com.br/boleto-setup.html< /a>
- * 
- * @see <a * href=
- *      "http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf"
- *      >MANUAL * DO BLOQUETO DE COBRANÇA< /a>
- * 
- * @author Leonardo Bessa
- * 
- */
-public class Bradesco implements Banco {
+public class Itau implements Banco {
 
-    private static final String NUMERO_BRADESCO = "237";
+    private static final String NUMERO_ITAU = "341";
 
     private final DVGenerator dvGenerator = new DVGenerator();
 
@@ -36,12 +24,20 @@ public class Bradesco implements Banco {
 
         Emissor emissor = boleto.getEmissor();
 
-        // CAMPO LIVRE
-        codigoDeBarras.append(emissor.getAgenciaFormatado());
         codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
         codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-        codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
-        codigoDeBarras.append("0");
+        // Digito Verificador sera inserido aqui.
+
+        codigoDeBarras.append(emissor.getAgenciaFormatado());
+        codigoDeBarras.append(getContaCorrenteFormatado(emissor));
+
+        codigoDeBarras.append("000");
+
+        codigoDeBarras.insert(39, this.dvGenerator.geraDVMod10(codigoDeBarras
+                .substring(30, 38)));
+
+        codigoDeBarras.insert(29, this.dvGenerator.geraDVMod10(codigoDeBarras
+                .substring(30, 38).concat(codigoDeBarras.substring(18, 28))));
 
         codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
                 .toString()));
@@ -56,30 +52,30 @@ public class Bradesco implements Banco {
         return result;
     }
 
-    public String getNumeroFormatado() {
-        return NUMERO_BRADESCO;
+    private Object getContaCorrenteFormatado(Emissor emissor) {
+        return String.format("%05d", emissor.getContaCorrente());
     }
 
-    public java.net.URL getImage() {
+    public String getCarteiraDoEmissorFormatado(Emissor emissor) {
+        return String.format("%03d", emissor.getCarteira());
+    }
+
+    public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
+        return String.format("%08d", emissor.getContaCorrente());
+    }
+
+    public URL getImage() {
         return getClass().getResource(
                 String.format("/br/com/caelum/stella/boleto/img/%s.png",
                         getNumeroFormatado()));
     }
 
-    public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        return String.format("%07d", emissor.getNumConvenio());
-    }
-
-    public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-        return String.format("%07d", emissor.getContaCorrente());
-    }
-
-    public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-        return String.format("%02d", emissor.getCarteira());
-    }
-
     public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-        return String.format("%011d", emissor.getNossoNumero());
+        return String.format("%08d", emissor.getNossoNumero());
+    }
+
+    public String getNumeroFormatado() {
+        return NUMERO_ITAU;
     }
 
 }

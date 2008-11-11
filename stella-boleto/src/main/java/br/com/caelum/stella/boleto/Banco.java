@@ -4,17 +4,21 @@ import java.net.URL;
 
 /**
  * Interface que define métodos específicos ao funcionamento de cada banco para
- * gerar o código de barras e a linha digitável.<br/><br/>
+ * gerar o código de barras e a linha digitável.<br/>
+ * <br/>
  * 
  * Infelizmente cada banco funciona de uma maneira diferente para gerar esses
  * valores, e as vezes até mudam de funcionamento.
  * 
- * Documentação que pode ser consultada:<br/><br/>
+ * Documentação que pode ser consultada:<br/>
+ * <br/>
  * 
  * http://www.macoratti.net/boleto.htm<br/>
- * http://pt.wikipedia.org/wiki/Boleto_bancário<br/><br/>
+ * http://pt.wikipedia.org/wiki/Boleto_bancário<br/>
+ * <br/>
  * 
- * Para testes rapidos: http://evandro.net/codigo_barras.html<br/><br/>
+ * Para testes rapidos: http://evandro.net/codigo_barras.html<br/>
+ * <br/>
  * 
  * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
  * valores e testar alguns boletos, em especial se valores serão altos.
@@ -43,12 +47,6 @@ public interface Banco {
      * Gera o código de barras para determinado boleto
      */
     String geraCodigoDeBarrasPara(Boleto boleto);
-
-    /**
-     * Gera a linha digitavel para determinado boleto
-     * 
-     */
-    String geraLinhaDigitavelPara(Boleto boleto);
 
     String getContaCorrenteDoEmissorFormatado(Emissor emissor);
 
