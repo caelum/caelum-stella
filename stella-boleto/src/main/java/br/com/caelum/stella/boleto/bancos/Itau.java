@@ -29,11 +29,11 @@ public class Itau implements Banco {
         // Digito Verificador sera inserido aqui.
 
         codigoDeBarras.append(emissor.getAgenciaFormatado());
-        codigoDeBarras.append(getContaCorrenteFormatado(emissor));
+        codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
 
         codigoDeBarras.append("000");
 
-        codigoDeBarras.insert(39, this.dvGenerator.geraDVMod10(codigoDeBarras
+        codigoDeBarras.insert(38, this.dvGenerator.geraDVMod10(codigoDeBarras
                 .substring(30, 38)));
 
         codigoDeBarras.insert(29, this.dvGenerator.geraDVMod10(codigoDeBarras
@@ -52,16 +52,12 @@ public class Itau implements Banco {
         return result;
     }
 
-    private Object getContaCorrenteFormatado(Emissor emissor) {
-        return String.format("%05d", emissor.getContaCorrente());
-    }
-
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {
         return String.format("%03d", emissor.getCarteira());
     }
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-        return String.format("%08d", emissor.getContaCorrente());
+        return String.format("%05d", emissor.getContaCorrente());
     }
 
     public URL getImage() {
