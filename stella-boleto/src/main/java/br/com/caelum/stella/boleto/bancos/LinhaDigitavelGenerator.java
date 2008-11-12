@@ -5,7 +5,6 @@ import br.com.caelum.stella.boleto.Boleto;
 
 public class LinhaDigitavelGenerator {
     private final DVGenerator dvGenerator = new DVGenerator();
-    private final Formatter linhaDigitavelFormatter = new Formatter();
 
     public String geraLinhaDigitavelPara(Boleto boleto) {
         Banco banco = boleto.getBanco();
@@ -37,9 +36,20 @@ public class LinhaDigitavelGenerator {
         linhaDigitavel.append(bloco3);
         linhaDigitavel.append(bloco4);
 
-        linhaDigitavel = this.linhaDigitavelFormatter
-                .linhaDigitavelFormatter(linhaDigitavel);
+        linhaDigitavel = linhaDigitavelFormatter(linhaDigitavel);
 
         return linhaDigitavel.toString();
+    }
+
+    public StringBuilder linhaDigitavelFormatter(StringBuilder linhaDigitavel) {
+        linhaDigitavel.insert(5, '.');
+        linhaDigitavel.insert(11, "  ");
+        linhaDigitavel.insert(18, '.');
+        linhaDigitavel.insert(25, "  ");
+        linhaDigitavel.insert(32, '.');
+        linhaDigitavel.insert(39, "  ");
+        linhaDigitavel.insert(42, "  ");
+
+        return linhaDigitavel;
     }
 }

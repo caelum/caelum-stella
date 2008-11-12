@@ -7,9 +7,9 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
 
-public class Itau implements Banco {
+public class Caixa implements Banco {
 
-    private static final String NUMERO_ITAU = "341";
+    private static final String NUMERO_CAIXA = "104";
 
     private final DVGenerator dvGenerator = new DVGenerator();
 
@@ -26,19 +26,10 @@ public class Itau implements Banco {
 
         codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
         codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-        // Digito Verificador sera inserido aqui.
 
         codigoDeBarras.append(emissor.getAgenciaFormatado());
-        codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
-        // Digito Verificador sera inserido aqui.
-
-        codigoDeBarras.append("000");
-
-        codigoDeBarras.insert(38, this.dvGenerator.geraDVMod10(codigoDeBarras
-                .substring(30, 38)));
-
-        codigoDeBarras.insert(29, this.dvGenerator.geraDVMod10(codigoDeBarras
-                .substring(30, 38).concat(codigoDeBarras.substring(18, 28))));
+        codigoDeBarras.append(getCodOperacaoFormatado(emissor));
+        codigoDeBarras.append(getCodFornecidoPelaAgenciaFormatado(emissor));
 
         codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
                 .toString()));
@@ -54,11 +45,19 @@ public class Itau implements Banco {
     }
 
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-        return String.format("%03d", emissor.getCarteira());
+        return String.format("%02d", emissor.getCarteira());
     }
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
         return String.format("%05d", emissor.getContaCorrente());
+    }
+
+    private String getCodFornecidoPelaAgenciaFormatado(Emissor emissor) {
+        return String.format("%08d", emissor.getCodFornecidoPelaAgencia());
+    }
+
+    private String getCodOperacaoFormatado(Emissor emissor) {
+        return String.format("%03d", emissor.getCodOperacao());
     }
 
     public URL getImage() {
@@ -72,7 +71,7 @@ public class Itau implements Banco {
     }
 
     public String getNumeroFormatado() {
-        return NUMERO_ITAU;
+        return NUMERO_CAIXA;
     }
 
 }

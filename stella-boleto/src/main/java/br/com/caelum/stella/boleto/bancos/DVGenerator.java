@@ -2,7 +2,7 @@ package br.com.caelum.stella.boleto.bancos;
 
 class DVGenerator {
 
-    public int geraDVMod11(String codigoDeBarras) {
+    int geraDVMod11(String codigoDeBarras) {
         int soma = 0;
         for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
             if (multiplicador == 10) {
@@ -23,7 +23,7 @@ class DVGenerator {
         }
     }
 
-    public int geraDVMod10(String campo) {
+    int geraDVMod10(String campo) {
         int soma = 0;
         for (int i = campo.length() - 1; i >= 0; i--) {
             int multiplicador = (campo.length() - i) % 2 + 1;
