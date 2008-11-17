@@ -8,7 +8,7 @@ import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.constraint.TituloDeEleitorConstraints;
 import br.com.caelum.stella.constraint.TituloDeEleitorConstraints.Rotina;
-import br.com.caelum.stella.validation.error.TituloDeEleitorError;
+import br.com.caelum.stella.validation.error.TituloEleitoralError;
 
 /**
  * http://www.tre-al.gov.br/unidades/corregedoria/resolucoes/res21538.pdf
@@ -116,16 +116,16 @@ public class TituloEleitoralValidator implements Validator<String> {
         errors.clear();
         if (tituloDeEleitor != null) {
             if (!isEligible(tituloDeEleitor)) {
-                errors.add(TituloDeEleitorError.INVALID_FORMAT);
+                errors.add(TituloEleitoralError.INVALID_FORMAT);
             } 
             else if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
-                errors.add(TituloDeEleitorError.INVALID_CODIGO_DE_ESTADO);
+                errors.add(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO);
             }
             else {
                 String unformated;
                 unformated = tituloDeEleitor;
                 if (!hasValidCheckDigits(unformated)) {
-                    errors.add(TituloDeEleitorError.INVALID_CHECK_DIGITS);
+                    errors.add(TituloEleitoralError.INVALID_CHECK_DIGITS);
                 }
             }
         }

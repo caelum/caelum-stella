@@ -22,6 +22,12 @@
 		</validator-class>
 	</validator>
 	<validator>
+		<validator-id>StellaTituloEleitoralValidator</validator-id>
+		<validator-class>
+			br.com.caelum.stella.faces.validation.StellaTituloEleitoralValidator
+		</validator-class>
+	</validator>
+	<validator>
 		<validator-id>StellaNITValidator</validator-id>
 		<validator-class>
 			br.com.caelum.stella.faces.validation.StellaNITValidator
