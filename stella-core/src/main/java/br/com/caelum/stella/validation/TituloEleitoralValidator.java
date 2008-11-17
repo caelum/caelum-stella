@@ -117,7 +117,11 @@ public class TituloEleitoralValidator implements Validator<String> {
         if (tituloDeEleitor != null) {
             if (!isEligible(tituloDeEleitor)) {
                 errors.add(TituloDeEleitorError.INVALID_FORMAT);
-            } else {
+            } 
+            else if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
+                errors.add(TituloDeEleitorError.INVALID_CODIGO_DE_ESTADO);
+            }
+            else {
                 String unformated;
                 unformated = tituloDeEleitor;
                 if (!hasValidCheckDigits(unformated)) {
@@ -126,6 +130,12 @@ public class TituloEleitoralValidator implements Validator<String> {
             }
         }
         return errors;
+    }
+
+    private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
+        final int length = tituloDeEleitor.length();
+        int codigo = Integer.parseInt(tituloDeEleitor.substring(length-4, length-2));
+        return !(codigo>=01 && codigo<=28);
     }
 
     private boolean hasValidCheckDigits(String value) {
