@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * @author Leonardo Bessa
  */
-public class TituloDeEleitorValidatorTest {
+public class TituloEleitoralValidatorTest {
 
     private final String[] validStrings = { "543275360116", "452083221724", "253346440540", "553505611201",
             "884328631058" };
@@ -21,7 +21,7 @@ public class TituloDeEleitorValidatorTest {
 
     @Before
     public void setup() {
-        validator = new TituloDeEleitorValidator();
+        validator = new TituloEleitoralValidator();
     }
 
     @Test

@@ -29,12 +29,34 @@ import br.com.caelum.stella.validation.error.TituloDeEleitorError;
  * b) os dois algarismos seguintes serão representativos da unidade da Federação
  * de origem da inscrição, conforme códigos constantes da seguinte tabela:
  * 
- * 01 - São Paulo 02 - Minas Gerais 03 - Rio de Janeiro 04 - Rio Grande do Sul
- * 05 - Bahia 06 - Paraná 07 - Ceará 08 - Pernambuco 09 - Santa Catarina 10 -
- * Goiás 11 - Maranhão 12 - Paraíba 13 - Pará 14 - Espírito Santo 15 - Piauí 16 -
- * Rio Grande do Norte 17 - Alagoas 18 - Mato Grosso 19 - Mato Grosso do Sul 20 -
- * Distrito Federal 21 - Sergipe 22 - Amazonas 23 - Rondônia 24 - Acre 25 -
- * Amapá 26 - Roraima 27 - Tocantins 28 - Exterior (ZZ)
+ * 01 - São Paulo 
+ * 02 - Minas Gerais 
+ * 03 - Rio de Janeiro 
+ * 04 - Rio Grande do Sul
+ * 05 - Bahia 
+ * 06 - Paraná 
+ * 07 - Ceará 
+ * 08 - Pernambuco 
+ * 09 - Santa Catarina 
+ * 10 - Goiás 
+ * 11 - Maranhão 
+ * 12 - Paraíba 
+ * 13 - Pará 
+ * 14 - Espírito Santo 
+ * 15 - Piauí 
+ * 16 - Rio Grande do Norte
+ * 17 - Alagoas
+ * 18 - Mato Grosso 
+ * 19 - Mato Grosso do Sul 
+ * 20 - Distrito Federal 
+ * 21 - Sergipe 
+ * 22 - Amazonas 
+ * 23 - Rondônia 
+ * 24 - Acre 
+ * 25 - Amapá 
+ * 26 - Roraima 
+ * 27 - Tocantins 
+ * 28 - Exterior (ZZ)
  * 
  * <p>
  * c) os dois últimos algarismos constituirão dígitos verificadores,
@@ -45,7 +67,7 @@ import br.com.caelum.stella.validation.error.TituloDeEleitorError;
  * 
  * @author Leonardo Bessa
  */
-public class TituloDeEleitorValidator implements Validator<String> {
+public class TituloEleitoralValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;
 
@@ -72,7 +94,7 @@ public class TituloDeEleitorValidator implements Validator<String> {
     /**
      * Utiliza um {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
-    public TituloDeEleitorValidator() {
+    public TituloEleitoralValidator() {
         this.baseValidator = new BaseValidator();
     }
 
@@ -85,7 +107,7 @@ public class TituloDeEleitorValidator implements Validator<String> {
      * @param messageProducer
      *            produtor de mensagem de erro.
      */
-    public TituloDeEleitorValidator(MessageProducer messageProducer) {
+    public TituloEleitoralValidator(MessageProducer messageProducer) {
         this.baseValidator = new BaseValidator(messageProducer);
     }
 
