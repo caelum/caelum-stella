@@ -15,7 +15,7 @@ public class Emissor {
     private long numConvenio;
     private long nossoNumero;
     private String cedente;
-    private String dvContaCorrete;
+    private String dvContaCorrente;
     private int codOperacao;
     private int codFornecidoPelaAgencia;
 
@@ -161,7 +161,7 @@ public class Emissor {
      * @return
      */
     public String getDvContaCorrente() {
-        return this.dvContaCorrete;
+        return this.dvContaCorrente;
     }
 
     /**
@@ -170,8 +170,20 @@ public class Emissor {
      * @param dv
      * @return
      */
+    @Deprecated
     public Emissor withDvContaCorrete(String dv) {
-        this.dvContaCorrete = dv;
+        this.dvContaCorrente = dv;
+        return this;
+    }
+    
+    /**
+     * Associa um digito verificador (DV) da conta corrente ao emissor
+     * 
+     * @param dv
+     * @return
+     */
+    public Emissor withDvContaCorrente(String dv) {
+        this.dvContaCorrente = dv;
         return this;
     }
 
