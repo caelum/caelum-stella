@@ -1,9 +1,10 @@
 package br.com.caelum.stella.validation;
 
 /**
+ * Representa um parâmetro para {@link RotinaDeDigitoVerificador}.
+ * 
  * @author Leonardo Bessa
  */
-
 public class RotinaParameters {
     private final DigitoVerificadorInfo digitoVerificadorInfo;
 

@@ -2,15 +2,17 @@ package br.com.caelum.stella.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.constraint.TituloDeEleitorConstraints;
-import br.com.caelum.stella.constraint.TituloDeEleitorConstraints.Rotina;
 import br.com.caelum.stella.validation.error.TituloEleitoralError;
 
 /**
+ * Representa um validador de Título de Eleitor. O algoritmo utilzado foi
+ * basaedo na seguinte referência.
+ * 
  * http://www.tre-al.gov.br/unidades/corregedoria/resolucoes/res21538.pdf
  * <p>
  * Art. 12. Os tribunais regionais eleitorais farão distribuir, observada a
@@ -21,7 +23,7 @@ import br.com.caelum.stella.validation.error.TituloEleitoralError;
  * <p>
  * Parágrafo único. O número de inscrição compor-se-á de até 12 algarismos, por
  * unidade da Federação, assim discriminados:
- * <p>
+ * </p>
  * 
  * a) os oito primeiros algarismos serão seqüenciados,desprezando-se, na
  * emissão, os zeros à esquerda;
@@ -29,41 +31,43 @@ import br.com.caelum.stella.validation.error.TituloEleitoralError;
  * b) os dois algarismos seguintes serão representativos da unidade da Federação
  * de origem da inscrição, conforme códigos constantes da seguinte tabela:
  * 
- * 01 - São Paulo 
- * 02 - Minas Gerais 
- * 03 - Rio de Janeiro 
- * 04 - Rio Grande do Sul
- * 05 - Bahia 
- * 06 - Paraná 
- * 07 - Ceará 
- * 08 - Pernambuco 
- * 09 - Santa Catarina 
- * 10 - Goiás 
- * 11 - Maranhão 
- * 12 - Paraíba 
- * 13 - Pará 
- * 14 - Espírito Santo 
- * 15 - Piauí 
- * 16 - Rio Grande do Norte
- * 17 - Alagoas
- * 18 - Mato Grosso 
- * 19 - Mato Grosso do Sul 
- * 20 - Distrito Federal 
- * 21 - Sergipe 
- * 22 - Amazonas 
- * 23 - Rondônia 
- * 24 - Acre 
- * 25 - Amapá 
- * 26 - Roraima 
- * 27 - Tocantins 
- * 28 - Exterior (ZZ)
+ * <ul>
+ * <li>01 - São Paulo</li>
+ * <li>02 - Minas Gerais</li>
+ * <li>03 - Rio de Janeiro</li>
+ * <li>04 - Rio Grande do Sul</li>
+ * <li>05 - Bahia</li>
+ * <li>06 - Paraná</li>
+ * <li>07 - Ceará</li>
+ * <li>08 - Pernambuco</li>
+ * <li>09 - Santa Catarina</li>
+ * <li>10 - Goiás</li>
+ * <li>11 - Maranhão</li>
+ * <li>12 - Paraíba</li>
+ * <li>13 - Pará</li>
+ * <li>14 - Espírito Santo</li>
+ * <li>15 - Piauí</li>
+ * <li>16 - Rio Grande do Norte</li>
+ * <li>17 - Alagoas</li>
+ * <li>18 - Mato Grosso</li>
+ * <li>19 - Mato Grosso do Sul</li>
+ * <li>20 - Distrito Federal</li>
+ * <li>21 - Sergipe</li>
+ * <li>22 - Amazonas</li>
+ * <li>23 - Rondônia</li>
+ * <li>24 - Acre</li>
+ * <li>25 - Amapá</li>
+ * <li>26 - Roraima</li>
+ * <li>27 - Tocantins</li>
+ * <li>28 - Exterior (ZZ)</li>
+ * </ul>
  * 
  * <p>
  * c) os dois últimos algarismos constituirão dígitos verificadores,
  * determinados com base no módulo 11, sendo o primeiro calculado sobre o número
  * seqüencial e o último sobre o código da unidade da Federação seguido do
  * primeiro dígito verificador.
- * <p>
+ * </p>
  * 
  * @author Leonardo Bessa
  */
@@ -80,6 +84,23 @@ public class TituloEleitoralValidator implements Validator<String> {
     private static final Integer[] DV1_MULTIPLIERS = { 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static final Integer[] DV2_MULTIPLIERS = { 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2 };
+    
+    public static final Pattern TITULO_DE_ELEITOR_PATTERN = Pattern.compile("(\\d{12})");
+
+    private enum Rotina implements RotinaDeDigitoVerificador {
+        POS_PRODUTO_INTERNO {
+            public Integer transform(RotinaParameters parameter) {
+                Integer mod = parameter.getDigitoVerificadorInfo().getMod();
+                Integer result = parameter.getResult() % mod;
+                if (result < 2) {
+                    result = 0;
+                } else {
+                    result = 11 - result;
+                }
+                return result;
+            }
+        }
+    }
 
     private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
             new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
@@ -100,9 +121,8 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     /**
      * <p>
-     * Construtor do Validador de Titulo De Eleitor.
+     * Construtor do Validador de Titulo de Eleitor.
      * </p>
-     * <p>
      * 
      * @param messageProducer
      *            produtor de mensagem de erro.
@@ -144,7 +164,7 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     public boolean isEligible(String value) {
         boolean result;
-        result = TituloDeEleitorConstraints.TITULO_DE_ELEITOR_PATTERN.matcher(value).matches();
+        result = TITULO_DE_ELEITOR_PATTERN.matcher(value).matches();
         return result;
     }
 

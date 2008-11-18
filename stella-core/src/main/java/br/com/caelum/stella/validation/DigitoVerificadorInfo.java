@@ -1,5 +1,11 @@
 package br.com.caelum.stella.validation;
 
+/**
+ * Representa as informações sobre um Dígito Verificador.
+ * 
+ * @author leobessa
+ *
+ */
 public class DigitoVerificadorInfo {
     private final Integer fator;
 

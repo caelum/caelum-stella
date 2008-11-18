@@ -30,6 +30,12 @@ import br.com.caelum.stella.validation.ie.IESaoPauloValidator;
 import br.com.caelum.stella.validation.ie.IESergipeValidator;
 import br.com.caelum.stella.validation.ie.IETocantinsValidator;
 
+/**
+ * Respresenta um estado brasileiro, ou o Destrito Federal.
+ * 
+ * @author leobessa
+ *
+ */
 public enum Estado {
 
     AC {
@@ -195,5 +201,12 @@ public enum Estado {
 
     };
 
+    /**
+     * Retorna um validador de Inscrição Estadual.
+     * 
+     * @param messageProducer um produtor de mensagens.
+     * @param isFormatted indicando se o validador deve considerar as cadeias como formatadas.
+     * @return Validador de Inscrição Estudual correspondente.
+     */
     public abstract Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted);
 }

@@ -14,6 +14,8 @@ import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.validation.error.CNPJError;
 
 /**
+ * Representa um validador de CNPJ.
+ * 
  * @author Leonardo Bessa
  */
 public class CNPJValidator implements Validator<String> {
