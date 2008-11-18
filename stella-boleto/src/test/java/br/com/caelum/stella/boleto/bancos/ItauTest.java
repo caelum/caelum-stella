@@ -25,7 +25,7 @@ public class ItauTest {
 
         this.emissor = Emissor.newEmissor().withCedente("Caue Guerra")
                 .withAgencia(2949).withDvAgencia("1").withContaCorrente(6580)
-                .withNumConvenio(1207113).withDvContaCorrete("3").withCarteira(
+                .withNumConvenio(1207113).withDvContaCorrente("3").withCarteira(
                         6).withNossoNumero(3);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");

@@ -170,18 +170,6 @@ public class Emissor {
      * @param dv
      * @return
      */
-    @Deprecated
-    public Emissor withDvContaCorrete(String dv) {
-        this.dvContaCorrente = dv;
-        return this;
-    }
-    
-    /**
-     * Associa um digito verificador (DV) da conta corrente ao emissor
-     * 
-     * @param dv
-     * @return
-     */
     public Emissor withDvContaCorrente(String dv) {
         this.dvContaCorrente = dv;
         return this;

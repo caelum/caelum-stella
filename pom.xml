@@ -301,7 +301,13 @@
     </developer>
   </developers>
 
-  <contributors></contributors>
+  <contributors>
+    <contributor>
+      <name>Alberto Souza</name>
+      <email>asouza @ settech.com.br</email>
+      <url>http://www.settech.com.br/blog</url>
+    </contributor>
+  </contributors>
 
   <licenses>
     <license>
