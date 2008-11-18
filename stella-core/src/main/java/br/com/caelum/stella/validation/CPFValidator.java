@@ -1,7 +1,7 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_FORMATED;
-import static br.com.caelum.stella.constraint.CPFConstraints.CPF_UNFORMATED;
+import static br.com.caelum.stella.constraint.CPFConstraints.FORMATED;
+import static br.com.caelum.stella.constraint.CPFConstraints.UNFORMATED;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,9 +171,9 @@ public class CPFValidator implements Validator<String> {
     public boolean isEligible(String value) {
         boolean result;
         if (isFormatted) {
-            result = CPF_FORMATED.matcher(value).matches();
+            result = FORMATED.matcher(value).matches();
         } else {
-            result = CPF_UNFORMATED.matcher(value).matches();
+            result = UNFORMATED.matcher(value).matches();
         }
         return result;
     }

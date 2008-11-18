@@ -1,7 +1,7 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_FORMATED;
-import static br.com.caelum.stella.constraint.CNPJConstraints.CNPJ_UNFORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.FORMATED;
+import static br.com.caelum.stella.constraint.CNPJConstraints.UNFORMATED;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,9 +115,9 @@ public class CNPJValidator implements Validator<String> {
     public boolean isEligible(String value) {
         boolean result;
         if (isFormatted) {
-            result = CNPJ_FORMATED.matcher(value).matches();
+            result = FORMATED.matcher(value).matches();
         } else {
-            result = CNPJ_UNFORMATED.matcher(value).matches();
+            result = UNFORMATED.matcher(value).matches();
         }
         return result;
     }
