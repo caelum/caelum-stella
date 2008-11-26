@@ -24,6 +24,7 @@
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
     <module>stella-boleto</module>
+    <module>stella-nfe</module>
     <module>stella-distribution</module>
     <module>examples/boleto-example</module>
     <module>examples/core-example</module>
