@@ -25,8 +25,8 @@ public class CaixaTest {
 
         this.emissor = Emissor.newEmissor().withCedente("Caue Guerra")
                 .withAgencia(2949).withDvAgencia("1").withContaCorrente(6580)
-                .withNumConvenio(1207113).withDvContaCorrete("3").withCarteira(
-                        9).withNossoNumero(1200200)
+                .withNumConvenio(1207113).withDvContaCorrente("3")
+                .withCarteira(9).withNossoNumero(1200200)
                 .withCodFornecidoPelaAgencia(789).withCodOperacao(123);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");
