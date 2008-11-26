@@ -24,7 +24,7 @@ public class Caixa implements Banco {
 
         Emissor emissor = boleto.getEmissor();
 
-        codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
+        codigoDeBarras.append(emissor.getCarteira());
         codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
 
         codigoDeBarras.append(emissor.getAgenciaFormatado());
@@ -38,7 +38,8 @@ public class Caixa implements Banco {
 
         if (result.length() != 44) {
             throw new CriacaoBoletoException(
-                    "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
+                    "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados."
+                            + result.length());
         }
 
         return result;
@@ -52,11 +53,11 @@ public class Caixa implements Banco {
         return String.format("%05d", emissor.getContaCorrente());
     }
 
-    private String getCodFornecidoPelaAgenciaFormatado(Emissor emissor) {
+    String getCodFornecidoPelaAgenciaFormatado(Emissor emissor) {
         return String.format("%08d", emissor.getCodFornecidoPelaAgencia());
     }
 
-    private String getCodOperacaoFormatado(Emissor emissor) {
+    String getCodOperacaoFormatado(Emissor emissor) {
         return String.format("%03d", emissor.getCodOperacao());
     }
 
@@ -67,7 +68,9 @@ public class Caixa implements Banco {
     }
 
     public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-        return String.format("%08d", emissor.getNossoNumero());
+        int length = 10 - (emissor.getCarteira() / 10);
+        return String.format("%0" + (length - 1) + "d", emissor
+                .getNossoNumero());
     }
 
     public String getNumeroFormatado() {
