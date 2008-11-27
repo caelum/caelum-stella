@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
@@ -16,18 +15,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TransformsType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "transform"
-})
+@XmlType(name = "TransformsType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "transform" })
 public class TransformsType {
 
     @XmlElement(name = "Transform", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected List<TransformType> transform;
 
-    
     public List<TransformType> getTransform() {
         if (transform == null) {
             transform = new ArrayList<TransformType>();

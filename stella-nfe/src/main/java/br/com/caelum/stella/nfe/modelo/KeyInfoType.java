@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,12 +17,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "KeyInfoType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "x509Data"
-})
+@XmlType(name = "KeyInfoType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "x509Data" })
 public class KeyInfoType {
 
     @XmlElement(name = "X509Data", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
@@ -34,22 +29,18 @@ public class KeyInfoType {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    
     public X509DataType getX509Data() {
         return x509Data;
     }
 
-    
     public void setX509Data(X509DataType value) {
         this.x509Data = value;
     }
 
-    
     public String getId() {
         return id;
     }
 
-    
     public void setId(String value) {
         this.id = value;
     }

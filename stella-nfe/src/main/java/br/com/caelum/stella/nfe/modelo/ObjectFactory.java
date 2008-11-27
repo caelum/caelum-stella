@@ -5,476 +5,362 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
-
-
 
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Signature_QNAME = new QName("http://www.w3.org/2000/09/xmldsig#", "Signature");
-    private final static QName _NFe_QNAME = new QName("http://www.portalfiscal.inf.br/nfe", "NFe");
-
-    
-    public ObjectFactory() {
+    public Adi createAdi() {
+        return new Adi();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Comb createTNFeInfNFeDetProdComb() {
-        return new TNFe.InfNFe.Det.Prod.Comb();
+    public Arma createArma() {
+        return new Arma();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS00 createTNFeInfNFeDetImpostoICMSICMS00() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS00();
+    public Avulsa createAvulsa() {
+        return new Avulsa();
     }
 
-    
-    public TNFe.InfNFe.Ide createTNFeInfNFeIde() {
-        return new TNFe.InfNFe.Ide();
+    public CanonicalizationMethod createCanonicalizationMethod() {
+        return new CanonicalizationMethod();
     }
 
-    
-    public TNFe.InfNFe.Dest createTNFeInfNFeDest() {
-        return new TNFe.InfNFe.Dest();
+    public CIDE createCIDE() {
+        return new CIDE();
     }
 
-    
-    public TNFe.InfNFe.Total.ISSQNtot createTNFeInfNFeTotalISSQNtot() {
-        return new TNFe.InfNFe.Total.ISSQNtot();
+    public Cobr createCobr() {
+        return new Cobr();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS60 createTNFeInfNFeDetImpostoICMSICMS60() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS60();
+    public COFINS createCOFINS() {
+        return new COFINS();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.COFINSST createTNFeInfNFeDetImpostoCOFINSST() {
-        return new TNFe.InfNFe.Det.Imposto.COFINSST();
+    public COFINSAliq createCOFINSAliq() {
+        return new COFINSAliq();
     }
 
-    
-    public TConsReciNFe createTConsReciNFe() {
-        return new TConsReciNFe();
+    public COFINSNT createCOFINSNT() {
+        return new COFINSNT();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Comb.CIDE createTNFeInfNFeDetProdCombCIDE() {
-        return new TNFe.InfNFe.Det.Prod.Comb.CIDE();
+    public COFINSOutr createCOFINSOutr() {
+        return new COFINSOutr();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS30 createTNFeInfNFeDetImpostoICMSICMS30() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS30();
+    public COFINSQtde createCOFINSQtde() {
+        return new COFINSQtde();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSOutr createTNFeInfNFeDetImpostoCOFINSCOFINSOutr() {
-        return new TNFe.InfNFe.Det.Imposto.COFINS.COFINSOutr();
+    public COFINSST createCOFINSST() {
+        return new COFINSST();
     }
 
-    
-    public TNFe createTNFe() {
-        return new TNFe();
+    public Comb createComb() {
+        return new Comb();
     }
 
-    
-    public TNFe.InfNFe.Exporta createTNFeInfNFeExporta() {
-        return new TNFe.InfNFe.Exporta();
+    public Compra createCompra() {
+        return new Compra();
     }
 
-    
-    public TNFe.InfNFe.Cobr createTNFeInfNFeCobr() {
-        return new TNFe.InfNFe.Cobr();
+    public Dest createDest() {
+        return new Dest();
     }
 
-    
-    public ReferenceType.DigestMethod createReferenceTypeDigestMethod() {
-        return new ReferenceType.DigestMethod();
+    public Det createDet() {
+        return new Det();
     }
 
-    
-    public TNFe.InfNFe.Cobr.Fat createTNFeInfNFeCobrFat() {
-        return new TNFe.InfNFe.Cobr.Fat();
+    public DI createDI() {
+        return new DI();
     }
 
-    
-    public X509DataType createX509DataType() {
-        return new X509DataType();
+    public DigestMethod createDigestMethod() {
+        return new DigestMethod();
     }
 
-    
-    public TNFe.InfNFe.InfAdic.ProcRef createTNFeInfNFeInfAdicProcRef() {
-        return new TNFe.InfNFe.InfAdic.ProcRef();
+    public Dup createDup() {
+        return new Dup();
     }
 
-    
-    public SignatureValueType createSignatureValueType() {
-        return new SignatureValueType();
+    public Emit createEmit() {
+        return new Emit();
     }
 
-    
-    public SignatureType createSignatureType() {
-        return new SignatureType();
+    public Exporta createExporta() {
+        return new Exporta();
     }
 
-    
-    public TLocal createTLocal() {
-        return new TLocal();
+    public Fat createFat() {
+        return new Fat();
     }
 
-    
-    public TNFe.InfNFe.Compra createTNFeInfNFeCompra() {
-        return new TNFe.InfNFe.Compra();
+    public ICMS createICMS() {
+        return new ICMS();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Comb.ICMSInter createTNFeInfNFeDetProdCombICMSInter() {
-        return new TNFe.InfNFe.Det.Prod.Comb.ICMSInter();
+    public ICMS00 createICMS00() {
+        return new ICMS00();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.DI createTNFeInfNFeDetProdDI() {
-        return new TNFe.InfNFe.Det.Prod.DI();
+    public ICMS10 createICMS10() {
+        return new ICMS10();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Comb.ICMSCons createTNFeInfNFeDetProdCombICMSCons() {
-        return new TNFe.InfNFe.Det.Prod.Comb.ICMSCons();
+    public ICMS20 createICMS20() {
+        return new ICMS20();
     }
 
-    
+    public ICMS30 createICMS30() {
+        return new ICMS30();
+    }
+
+    public ICMS40 createICMS40() {
+        return new ICMS40();
+    }
+
+    public ICMS51 createICMS51() {
+        return new ICMS51();
+    }
+
+    public ICMS60 createICMS60() {
+        return new ICMS60();
+    }
+
+    public ICMS70 createICMS70() {
+        return new ICMS70();
+    }
+
+    public ICMS90 createICMS90() {
+        return new ICMS90();
+    }
+
+    public ICMSComb createICMSComb() {
+        return new ICMSComb();
+    }
+
+    public ICMSCons createICMSCons() {
+        return new ICMSCons();
+    }
+
+    public ICMSInter createICMSInter() {
+        return new ICMSInter();
+    }
+
+    public ICMSTot createICMSTot() {
+        return new ICMSTot();
+    }
+
+    public Ide createIde() {
+        return new Ide();
+    }
+
+    public II createII() {
+        return new II();
+    }
+
+    public Imposto createImposto() {
+        return new Imposto();
+    }
+
+    public InfAdic createInfAdic() {
+        return new InfAdic();
+    }
+
+    public InfNFe createInfNFe() {
+        return new InfNFe();
+    }
+
+    public InfProt createInfProt() {
+        return new InfProt();
+    }
+
+    public InfRec createInfRec() {
+        return new InfRec();
+    }
+
+    public IPI createIPI() {
+        return new IPI();
+    }
+
+    public IPINT createIPINT() {
+        return new IPINT();
+    }
+
+    public IPITrib createIPITrib() {
+        return new IPITrib();
+    }
+
+    public ISSQN createISSQN() {
+        return new ISSQN();
+    }
+
+    public ISSQNtot createISSQNtot() {
+        return new ISSQNtot();
+    }
+
     public KeyInfoType createKeyInfoType() {
         return new KeyInfoType();
     }
 
-    
-    public TRetConsReciNFe createTRetConsReciNFe() {
-        return new TRetConsReciNFe();
+    public Lacres createLacres() {
+        return new Lacres();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS createTNFeInfNFeDetImpostoICMS() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS();
+    public Med createMed() {
+        return new Med();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.PIS.PISOutr createTNFeInfNFeDetImpostoPISPISOutr() {
-        return new TNFe.InfNFe.Det.Imposto.PIS.PISOutr();
+    public NFref createNFref() {
+        return new NFref();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.IPI createTNFeInfNFeDetImpostoIPI() {
-        return new TNFe.InfNFe.Det.Imposto.IPI();
+    public ObsCont createObsCont() {
+        return new ObsCont();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.IPI.IPINT createTNFeInfNFeDetImpostoIPIIPINT() {
-        return new TNFe.InfNFe.Det.Imposto.IPI.IPINT();
+    public ObsFisco createObsFisco() {
+        return new ObsFisco();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSQtde createTNFeInfNFeDetImpostoCOFINSCOFINSQtde() {
-        return new TNFe.InfNFe.Det.Imposto.COFINS.COFINSQtde();
+    public PIS createPIS() {
+        return new PIS();
     }
 
-    
-    public TNFe.InfNFe.Transp.Transporta createTNFeInfNFeTranspTransporta() {
-        return new TNFe.InfNFe.Transp.Transporta();
+    public PISAliq createPISAliq() {
+        return new PISAliq();
     }
 
-    
-    public TNFe.InfNFe.Transp.Vol createTNFeInfNFeTranspVol() {
-        return new TNFe.InfNFe.Transp.Vol();
+    public PISNT createPISNT() {
+        return new PISNT();
     }
 
-    
-    public TNFe.InfNFe.Total createTNFeInfNFeTotal() {
-        return new TNFe.InfNFe.Total();
+    public PISOutr createPISOutr() {
+        return new PISOutr();
     }
 
-    
-    public TVeiculo createTVeiculo() {
-        return new TVeiculo();
+    public PISQtde createPISQtde() {
+        return new PISQtde();
     }
 
-    
-    public TEndereco createTEndereco() {
-        return new TEndereco();
+    public PISST createPISST() {
+        return new PISST();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Med createTNFeInfNFeDetProdMed() {
-        return new TNFe.InfNFe.Det.Prod.Med();
+    public ProcRef createProcRef() {
+        return new ProcRef();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS40 createTNFeInfNFeDetImpostoICMSICMS40() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS40();
+    public Prod createProd() {
+        return new Prod();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.PIS.PISAliq createTNFeInfNFeDetImpostoPISPISAliq() {
-        return new TNFe.InfNFe.Det.Imposto.PIS.PISAliq();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.COFINS createTNFeInfNFeDetImpostoCOFINS() {
-        return new TNFe.InfNFe.Det.Imposto.COFINS();
-    }
-
-    
-    public TNFe.InfNFe.InfAdic.ObsFisco createTNFeInfNFeInfAdicObsFisco() {
-        return new TNFe.InfNFe.InfAdic.ObsFisco();
-    }
-
-    
-    public TNFe.InfNFe.Total.RetTrib createTNFeInfNFeTotalRetTrib() {
-        return new TNFe.InfNFe.Total.RetTrib();
-    }
-
-    
-    public TNFe.InfNFe.Cobr.Dup createTNFeInfNFeCobrDup() {
-        return new TNFe.InfNFe.Cobr.Dup();
-    }
-
-    
-    public TProtNFe.InfProt createTProtNFeInfProt() {
-        return new TProtNFe.InfProt();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.PISST createTNFeInfNFeDetImpostoPISST() {
-        return new TNFe.InfNFe.Det.Imposto.PISST();
-    }
-
-    
-    public SignedInfoType.SignatureMethod createSignedInfoTypeSignatureMethod() {
-        return new SignedInfoType.SignatureMethod();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS20 createTNFeInfNFeDetImpostoICMSICMS20() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS20();
-    }
-
-    
-    public TNFe.InfNFe.InfAdic createTNFeInfNFeInfAdic() {
-        return new TNFe.InfNFe.InfAdic();
-    }
-
-    
-    public TNFe.InfNFe.Transp.Vol.Lacres createTNFeInfNFeTranspVolLacres() {
-        return new TNFe.InfNFe.Transp.Vol.Lacres();
-    }
-
-    
-    public TNFe.InfNFe createTNFeInfNFe() {
-        return new TNFe.InfNFe();
-    }
-
-    
-    public TNFe.InfNFe.Det.Prod.VeicProd createTNFeInfNFeDetProdVeicProd() {
-        return new TNFe.InfNFe.Det.Prod.VeicProd();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ISSQN createTNFeInfNFeDetImpostoISSQN() {
-        return new TNFe.InfNFe.Det.Imposto.ISSQN();
-    }
-
-    
-    public TEnviNFe createTEnviNFe() {
-        return new TEnviNFe();
-    }
-
-    
-    public TRetEnviNFe createTRetEnviNFe() {
-        return new TRetEnviNFe();
-    }
-
-    
-    public TransformsType createTransformsType() {
-        return new TransformsType();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS90 createTNFeInfNFeDetImpostoICMSICMS90() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS90();
-    }
-
-    
-    public TNFe.InfNFe.Det createTNFeInfNFeDet() {
-        return new TNFe.InfNFe.Det();
-    }
-
-    
-    public TNFe.InfNFe.Total.ICMSTot createTNFeInfNFeTotalICMSTot() {
-        return new TNFe.InfNFe.Total.ICMSTot();
-    }
-
-    
-    public TRetEnviNFe.InfRec createTRetEnviNFeInfRec() {
-        return new TRetEnviNFe.InfRec();
-    }
-
-    
-    public TNFe.InfNFe.Det.Prod.Arma createTNFeInfNFeDetProdArma() {
-        return new TNFe.InfNFe.Det.Prod.Arma();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSNT createTNFeInfNFeDetImpostoCOFINSCOFINSNT() {
-        return new TNFe.InfNFe.Det.Imposto.COFINS.COFINSNT();
-    }
-
-    
-    public TNFe.InfNFe.Transp createTNFeInfNFeTransp() {
-        return new TNFe.InfNFe.Transp();
-    }
-
-    
-    public SignedInfoType.CanonicalizationMethod createSignedInfoTypeCanonicalizationMethod() {
-        return new SignedInfoType.CanonicalizationMethod();
-    }
-
-    
-    public TNFe.InfNFe.InfAdic.ObsCont createTNFeInfNFeInfAdicObsCont() {
-        return new TNFe.InfNFe.InfAdic.ObsCont();
-    }
-
-    
-    public TNFe.InfNFe.Avulsa createTNFeInfNFeAvulsa() {
-        return new TNFe.InfNFe.Avulsa();
-    }
-
-    
-    public TNFe.InfNFe.Ide.NFref createTNFeInfNFeIdeNFref() {
-        return new TNFe.InfNFe.Ide.NFref();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.PIS createTNFeInfNFeDetImpostoPIS() {
-        return new TNFe.InfNFe.Det.Imposto.PIS();
-    }
-
-    
-    public TNFe.InfNFe.Emit createTNFeInfNFeEmit() {
-        return new TNFe.InfNFe.Emit();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.PIS.PISNT createTNFeInfNFeDetImpostoPISPISNT() {
-        return new TNFe.InfNFe.Det.Imposto.PIS.PISNT();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.PIS.PISQtde createTNFeInfNFeDetImpostoPISPISQtde() {
-        return new TNFe.InfNFe.Det.Imposto.PIS.PISQtde();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS10 createTNFeInfNFeDetImpostoICMSICMS10() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS10();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS51 createTNFeInfNFeDetImpostoICMSICMS51() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS51();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq createTNFeInfNFeDetImpostoCOFINSCOFINSAliq() {
-        return new TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.II createTNFeInfNFeDetImpostoII() {
-        return new TNFe.InfNFe.Det.Imposto.II();
-    }
-
-    
-    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS70 createTNFeInfNFeDetImpostoICMSICMS70() {
-        return new TNFe.InfNFe.Det.Imposto.ICMS.ICMS70();
-    }
-
-    
     public ReferenceType createReferenceType() {
         return new ReferenceType();
     }
 
-    
-    public TProtNFe createTProtNFe() {
-        return new TProtNFe();
+    public RefNF createRefNF() {
+        return new RefNF();
     }
 
-    
-    public TNFe.InfNFe.Transp.RetTransp createTNFeInfNFeTranspRetTransp() {
-        return new TNFe.InfNFe.Transp.RetTransp();
+    public RetTransp createRetTransp() {
+        return new RetTransp();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.DI.Adi createTNFeInfNFeDetProdDIAdi() {
-        return new TNFe.InfNFe.Det.Prod.DI.Adi();
+    public RetTrib createRetTrib() {
+        return new RetTrib();
     }
 
-    
-    public TransformType createTransformType() {
-        return new TransformType();
+    public SignatureMethod createSignatureMethod() {
+        return new SignatureMethod();
     }
 
-    
-    public TNfeProc createTNfeProc() {
-        return new TNfeProc();
+    public SignatureType createSignatureType() {
+        return new SignatureType();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod.Comb.ICMSComb createTNFeInfNFeDetProdCombICMSComb() {
-        return new TNFe.InfNFe.Det.Prod.Comb.ICMSComb();
+    public SignatureValueType createSignatureValueType() {
+        return new SignatureValueType();
     }
 
-    
     public SignedInfoType createSignedInfoType() {
         return new SignedInfoType();
     }
 
-    
-    public TNFe.InfNFe.Ide.NFref.RefNF createTNFeInfNFeIdeNFrefRefNF() {
-        return new TNFe.InfNFe.Ide.NFref.RefNF();
+    public TConsReciNFe createTConsReciNFe() {
+        return new TConsReciNFe();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto.IPI.IPITrib createTNFeInfNFeDetImpostoIPIIPITrib() {
-        return new TNFe.InfNFe.Det.Imposto.IPI.IPITrib();
+    public TEndereco createTEndereco() {
+        return new TEndereco();
     }
 
-    
-    public TNFe.InfNFe.Det.Prod createTNFeInfNFeDetProd() {
-        return new TNFe.InfNFe.Det.Prod();
+    public TEnviNFe createTEnviNFe() {
+        return new TEnviNFe();
     }
 
-    
-    public TNFe.InfNFe.Det.Imposto createTNFeInfNFeDetImposto() {
-        return new TNFe.InfNFe.Det.Imposto();
+    public TLocal createTLocal() {
+        return new TLocal();
     }
 
-    
-    @XmlElementDecl(namespace = "http://www.w3.org/2000/09/xmldsig#", name = "Signature")
-    public JAXBElement<SignatureType> createSignature(SignatureType value) {
-        return new JAXBElement<SignatureType>(_Signature_QNAME, SignatureType.class, null, value);
+    public TNFe createTNFe() {
+        return new TNFe();
     }
 
-    
-    @XmlElementDecl(namespace = "http://www.portalfiscal.inf.br/nfe", name = "NFe")
-    public JAXBElement<TNFe> createNFe(TNFe value) {
-        return new JAXBElement<TNFe>(_NFe_QNAME, TNFe.class, null, value);
+    public TNfeProc createTNfeProc() {
+        return new TNfeProc();
     }
 
+    public Total createTotal() {
+        return new Total();
+    }
+
+    public TProtNFe createTProtNFe() {
+        return new TProtNFe();
+    }
+
+    public TransformsType createTransformsType() {
+        return new TransformsType();
+    }
+
+    public TransformType createTransformType() {
+        return new TransformType();
+    }
+
+    public Transp createTransp() {
+        return new Transp();
+    }
+
+    public Transporta createTransporta() {
+        return new Transporta();
+    }
+
+    public TRetConsReciNFe createTRetConsReciNFe() {
+        return new TRetConsReciNFe();
+    }
+
+    public TRetEnviNFe createTRetEnviNFe() {
+        return new TRetEnviNFe();
+    }
+
+    public TVeiculo createTVeiculo() {
+        return new TVeiculo();
+    }
+
+    public VeicProd createVeicProd() {
+        return new VeicProd();
+    }
+
+    public Vol createVol() {
+        return new Vol();
+    }
+
+    public X509DataType createX509DataType() {
+        return new X509DataType();
+    }
 }

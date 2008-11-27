@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,14 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SignatureType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "signedInfo",
-    "signatureValue",
-    "keyInfo"
-})
+@XmlType(name = "SignatureType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "signedInfo",
+        "signatureValue", "keyInfo" })
 public class SignatureType {
 
     @XmlElement(name = "SignedInfo", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
@@ -40,42 +34,34 @@ public class SignatureType {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    
     public SignedInfoType getSignedInfo() {
         return signedInfo;
     }
 
-    
     public void setSignedInfo(SignedInfoType value) {
         this.signedInfo = value;
     }
 
-    
     public SignatureValueType getSignatureValue() {
         return signatureValue;
     }
 
-    
     public void setSignatureValue(SignatureValueType value) {
         this.signatureValue = value;
     }
 
-    
     public KeyInfoType getKeyInfo() {
         return keyInfo;
     }
 
-    
     public void setKeyInfo(KeyInfoType value) {
         this.keyInfo = value;
     }
 
-    
     public String getId() {
         return id;
     }
 
-    
     public void setId(String value) {
         this.id = value;
     }

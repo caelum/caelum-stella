@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,13 +15,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TConsReciNFe", propOrder = {
-    "tpAmb",
-    "nRec"
-})
+@XmlType(name = "TConsReciNFe", propOrder = { "tpAmb", "nRec" })
 public class TConsReciNFe {
 
     @XmlElement(required = true)
@@ -35,32 +29,26 @@ public class TConsReciNFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public String getTpAmb() {
         return tpAmb;
     }
 
-    
     public void setTpAmb(String value) {
         this.tpAmb = value;
     }
 
-    
     public String getNRec() {
         return nRec;
     }
 
-    
     public void setNRec(String value) {
         this.nRec = value;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
     public void setVersao(String value) {
         this.versao = value;
     }

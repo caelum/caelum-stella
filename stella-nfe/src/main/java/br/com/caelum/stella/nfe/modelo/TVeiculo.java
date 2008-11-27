@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,14 +14,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TVeiculo", propOrder = {
-    "placa",
-    "uf",
-    "rntc"
-})
+@XmlType(name = "TVeiculo", propOrder = { "placa", "uf", "rntc" })
 public class TVeiculo {
 
     @XmlElement(required = true)
@@ -34,32 +27,26 @@ public class TVeiculo {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String rntc;
 
-    
     public String getPlaca() {
         return placa;
     }
 
-    
     public void setPlaca(String value) {
         this.placa = value;
     }
 
-    
     public TUf getUF() {
         return uf;
     }
 
-    
     public void setUF(TUf value) {
         this.uf = value;
     }
 
-    
     public String getRNTC() {
         return rntc;
     }
 
-    
     public void setRNTC(String value) {
         this.rntc = value;
     }

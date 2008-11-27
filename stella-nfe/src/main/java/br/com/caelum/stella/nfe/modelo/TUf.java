@@ -5,46 +5,16 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
-
-
 @XmlType(name = "TUf")
 @XmlEnum
 public enum TUf {
 
-    AC,
-    AL,
-    AM,
-    AP,
-    BA,
-    CE,
-    DF,
-    ES,
-    GO,
-    MA,
-    MG,
-    MS,
-    MT,
-    PA,
-    PB,
-    PE,
-    PI,
-    PR,
-    RJ,
-    RN,
-    RO,
-    RR,
-    RS,
-    SC,
-    SE,
-    SP,
-    TO,
-    EX;
+    AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, EX;
 
     public String value() {
         return name();

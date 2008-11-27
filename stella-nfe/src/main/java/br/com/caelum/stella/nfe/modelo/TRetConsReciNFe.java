@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
@@ -19,18 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TRetConsReciNFe", propOrder = {
-    "tpAmb",
-    "verAplic",
-    "nRec",
-    "cStat",
-    "xMotivo",
-    "cuf",
-    "protNFe"
-})
+@XmlType(name = "TRetConsReciNFe", propOrder = { "tpAmb", "verAplic", "nRec", "cStat", "xMotivo", "cuf", "protNFe" })
 public class TRetConsReciNFe {
 
     @XmlElement(required = true)
@@ -56,67 +45,54 @@ public class TRetConsReciNFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public String getTpAmb() {
         return tpAmb;
     }
 
-    
     public void setTpAmb(String value) {
         this.tpAmb = value;
     }
 
-    
     public String getVerAplic() {
         return verAplic;
     }
 
-    
     public void setVerAplic(String value) {
         this.verAplic = value;
     }
 
-    
     public String getNRec() {
         return nRec;
     }
 
-    
     public void setNRec(String value) {
         this.nRec = value;
     }
 
-    
     public String getCStat() {
         return cStat;
     }
 
-    
     public void setCStat(String value) {
         this.cStat = value;
     }
 
-    
     public String getXMotivo() {
         return xMotivo;
     }
 
-    
     public void setXMotivo(String value) {
         this.xMotivo = value;
     }
 
-    
     public String getCUF() {
         return cuf;
     }
 
-    
     public void setCUF(String value) {
         this.cuf = value;
     }
 
-    
     public List<TProtNFe> getProtNFe() {
         if (protNFe == null) {
             protNFe = new ArrayList<TProtNFe>();
@@ -124,12 +100,10 @@ public class TRetConsReciNFe {
         return this.protNFe;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
     public void setVersao(String value) {
         this.versao = value;
     }

@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,23 +12,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "X509DataType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "x509Certificate"
-})
+@XmlType(name = "X509DataType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "x509Certificate" })
 public class X509DataType {
 
     @XmlElement(name = "X509Certificate", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected byte[] x509Certificate;
 
-    
     public byte[] getX509Certificate() {
         return x509Certificate;
     }
 
-    
     public void setX509Certificate(byte[] value) {
         this.x509Certificate = ((byte[]) value);
     }

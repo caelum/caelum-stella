@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
@@ -17,12 +16,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TransformType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "xPath"
-})
+@XmlType(name = "TransformType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "xPath" })
 public class TransformType {
 
     @XmlElement(name = "XPath", namespace = "http://www.w3.org/2000/09/xmldsig#")
@@ -30,7 +25,6 @@ public class TransformType {
     @XmlAttribute(name = "Algorithm", required = true)
     protected String algorithm;
 
-    
     public List<String> getXPath() {
         if (xPath == null) {
             xPath = new ArrayList<String>();
@@ -38,12 +32,10 @@ public class TransformType {
         return this.xPath;
     }
 
-    
     public String getAlgorithm() {
         return algorithm;
     }
 
-    
     public void setAlgorithm(String value) {
         this.algorithm = value;
     }

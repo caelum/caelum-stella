@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,12 +17,8 @@ import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SignatureValueType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "value"
-})
+@XmlType(name = "SignatureValueType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = { "value" })
 public class SignatureValueType {
 
     @XmlValue
@@ -34,22 +29,18 @@ public class SignatureValueType {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    
     public byte[] getValue() {
         return value;
     }
 
-    
     public void setValue(byte[] value) {
         this.value = ((byte[]) value);
     }
 
-    
     public String getId() {
         return id;
     }
 
-    
     public void setId(String value) {
         this.id = value;
     }

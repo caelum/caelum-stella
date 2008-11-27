@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,19 +14,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TLocal", propOrder = {
-    "cnpj",
-    "xLgr",
-    "nro",
-    "xCpl",
-    "xBairro",
-    "cMun",
-    "xMun",
-    "uf"
-})
+@XmlType(name = "TLocal", propOrder = { "cnpj", "xLgr", "nro", "xCpl", "xBairro", "cMun", "xMun", "uf" })
 public class TLocal {
 
     @XmlElement(name = "CNPJ", required = true)
@@ -48,82 +36,66 @@ public class TLocal {
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
 
-    
     public String getCNPJ() {
         return cnpj;
     }
 
-    
     public void setCNPJ(String value) {
         this.cnpj = value;
     }
 
-    
     public String getXLgr() {
         return xLgr;
     }
 
-    
     public void setXLgr(String value) {
         this.xLgr = value;
     }
 
-    
     public String getNro() {
         return nro;
     }
 
-    
     public void setNro(String value) {
         this.nro = value;
     }
 
-    
     public String getXCpl() {
         return xCpl;
     }
 
-    
     public void setXCpl(String value) {
         this.xCpl = value;
     }
 
-    
     public String getXBairro() {
         return xBairro;
     }
 
-    
     public void setXBairro(String value) {
         this.xBairro = value;
     }
 
-    
     public String getCMun() {
         return cMun;
     }
 
-    
     public void setCMun(String value) {
         this.cMun = value;
     }
 
-    
     public String getXMun() {
         return xMun;
     }
 
-    
     public void setXMun(String value) {
         this.xMun = value;
     }
 
-    
     public TUf getUF() {
         return uf;
     }
 
-    
     public void setUF(TUf value) {
         this.uf = value;
     }

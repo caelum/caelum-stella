@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TEnviNFe", propOrder = {
-    "idLote",
-    "nFe"
-})
+@XmlType(name = "TEnviNFe", propOrder = { "idLote", "nFe" })
 public class TEnviNFe {
 
     @XmlElement(required = true)
@@ -37,17 +31,14 @@ public class TEnviNFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public String getIdLote() {
         return idLote;
     }
 
-    
     public void setIdLote(String value) {
         this.idLote = value;
     }
 
-    
     public List<TNFe> getNFe() {
         if (nFe == null) {
             nFe = new ArrayList<TNFe>();
@@ -55,12 +46,10 @@ public class TEnviNFe {
         return this.nFe;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
     public void setVersao(String value) {
         this.versao = value;
     }

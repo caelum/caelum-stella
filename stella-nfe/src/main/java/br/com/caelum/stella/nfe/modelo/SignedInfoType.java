@@ -5,7 +5,6 @@
 // Generated on: 2008.10.22 at 06:02:18 PM BRST 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,20 +17,15 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SignedInfoType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "canonicalizationMethod",
-    "signatureMethod",
-    "reference"
-})
+        "canonicalizationMethod", "signatureMethod", "reference" })
 public class SignedInfoType {
 
     @XmlElement(name = "CanonicalizationMethod", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
-    protected SignedInfoType.CanonicalizationMethod canonicalizationMethod;
+    protected CanonicalizationMethod canonicalizationMethod;
     @XmlElement(name = "SignatureMethod", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
-    protected SignedInfoType.SignatureMethod signatureMethod;
+    protected SignatureMethod signatureMethod;
     @XmlElement(name = "Reference", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected ReferenceType reference;
     @XmlAttribute(name = "Id")
@@ -40,96 +34,36 @@ public class SignedInfoType {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    
-    public SignedInfoType.CanonicalizationMethod getCanonicalizationMethod() {
+    public CanonicalizationMethod getCanonicalizationMethod() {
         return canonicalizationMethod;
     }
 
-    
-    public void setCanonicalizationMethod(SignedInfoType.CanonicalizationMethod value) {
+    public void setCanonicalizationMethod(CanonicalizationMethod value) {
         this.canonicalizationMethod = value;
     }
 
-    
-    public SignedInfoType.SignatureMethod getSignatureMethod() {
+    public SignatureMethod getSignatureMethod() {
         return signatureMethod;
     }
 
-    
-    public void setSignatureMethod(SignedInfoType.SignatureMethod value) {
+    public void setSignatureMethod(SignatureMethod value) {
         this.signatureMethod = value;
     }
 
-    
     public ReferenceType getReference() {
         return reference;
     }
 
-    
     public void setReference(ReferenceType value) {
         this.reference = value;
     }
 
-    
     public String getId() {
         return id;
     }
 
-    
     public void setId(String value) {
         this.id = value;
-    }
-
-
-    
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "")
-    public static class CanonicalizationMethod {
-
-        @XmlAttribute(name = "Algorithm", required = true)
-        @XmlSchemaType(name = "anyURI")
-        protected String algorithm;
-
-        
-        public String getAlgorithm() {
-            if (algorithm == null) {
-                return "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
-            } else {
-                return algorithm;
-            }
-        }
-
-        
-        public void setAlgorithm(String value) {
-            this.algorithm = value;
-        }
-
-    }
-
-
-    
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "")
-    public static class SignatureMethod {
-
-        @XmlAttribute(name = "Algorithm", required = true)
-        @XmlSchemaType(name = "anyURI")
-        protected String algorithm;
-
-        
-        public String getAlgorithm() {
-            if (algorithm == null) {
-                return "http://www.w3.org/2000/09/xmldsig#rsa-sha1";
-            } else {
-                return algorithm;
-            }
-        }
-
-        
-        public void setAlgorithm(String value) {
-            this.algorithm = value;
-        }
-
     }
 
 }
