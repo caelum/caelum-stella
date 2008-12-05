@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "qVol", "esp", "marca", "nVol", "pesoL", "pesoB", "lacres" })
+@XmlType(name = "Vol ", propOrder = { "qVol", "esp", "marca", "nVol", "pesoL", "pesoB", "lacres" })
 public class Vol {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

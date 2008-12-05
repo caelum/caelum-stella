@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "SignatureMethod")
 public class SignatureMethod {
 
     @XmlAttribute(name = "Algorithm", required = true)

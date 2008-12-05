@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vbc", "vicms", "vbcst", "vst", "vProd", "vFrete", "vSeg", "vDesc", "vii", "vipi",
-        "vpis", "vcofins", "vOutro", "vnf" })
+@XmlType(name = "ICMSTot ", propOrder = { "vbc", "vicms", "vbcst", "vst", "vProd", "vFrete", "vSeg", "vDesc", "vii",
+        "vipi", "vpis", "vcofins", "vOutro", "vnf" })
 public class ICMSTot {
 
     @XmlElement(name = "vBC", required = true)

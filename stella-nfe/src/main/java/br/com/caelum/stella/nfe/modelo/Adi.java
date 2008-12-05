@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "nAdicao", "nSeqAdic", "cFabricante", "vDescDI" })
+@XmlType(name = "Adi ", propOrder = { "nAdicao", "nSeqAdic", "cFabricante", "vDescDI" })
 public class Adi {
 
     @XmlElement(required = true)

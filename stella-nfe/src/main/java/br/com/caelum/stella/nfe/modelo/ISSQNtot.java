@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vServ", "vbc", "viss", "vpis", "vcofins" })
+@XmlType(name = "ISSQNtot ", propOrder = { "vServ", "vbc", "viss", "vpis", "vcofins" })
 public class ISSQNtot {
 
     protected String vServ;

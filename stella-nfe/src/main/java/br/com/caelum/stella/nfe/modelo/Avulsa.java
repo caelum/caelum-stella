@@ -12,8 +12,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cnpj", "xOrgao", "matr", "xAgente", "fone", "uf", "ndar", "dEmi", "vdar", "repEmi",
-        "dPag" })
+@XmlType(name = "Avulsa ", propOrder = { "cnpj", "xOrgao", "matr", "xAgente", "fone", "uf", "ndar", "dEmi", "vdar",
+        "repEmi", "dPag" })
 public class Avulsa {
 
     @XmlElement(name = "CNPJ", required = true)

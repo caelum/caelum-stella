@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "tpArma", "nSerie", "nCano", "descr" })
+@XmlType(name = "Arma ", propOrder = { "tpArma", "nSerie", "nCano", "descr" })
 public class Arma {
 
     @XmlElement(required = true)

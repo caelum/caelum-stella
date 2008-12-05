@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cProdANP", "codif", "qTemp", "cide", "icmsComb", "icmsInter", "icmsCons" })
+@XmlType(name = "Comb ", propOrder = { "cProdANP", "codif", "qTemp", "cide", "icmsComb", "icmsInter", "icmsCons" })
 public class Comb {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

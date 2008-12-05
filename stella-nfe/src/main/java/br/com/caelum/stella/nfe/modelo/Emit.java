@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cnpj", "cpf", "xNome", "xFant", "enderEmit", "ie", "iest", "im", "cnae" })
+@XmlType(name = "Emit ", propOrder = { "cnpj", "cpf", "xNome", "xFant", "enderEmit", "ie", "iest", "im", "cnae" })
 public class Emit {
 
     @XmlElement(name = "CNPJ")

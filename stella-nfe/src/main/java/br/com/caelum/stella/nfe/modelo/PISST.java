@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vbc", "ppis", "qbcProd", "vAliqProd", "vpis" })
+@XmlType(name = "PISST ", propOrder = { "vbc", "ppis", "qbcProd", "vAliqProd", "vpis" })
 public class PISST {
 
     @XmlElement(name = "vBC")

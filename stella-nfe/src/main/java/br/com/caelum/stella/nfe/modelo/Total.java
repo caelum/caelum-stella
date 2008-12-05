@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "icmsTot", "issqNtot", "retTrib" })
+@XmlType(name = "Total ", propOrder = { "icmsTot", "issqNtot", "retTrib" })
 public class Total {
 
     @XmlElement(name = "ICMSTot", required = true)

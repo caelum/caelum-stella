@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "CanonicalizationMethod")
 public class CanonicalizationMethod {
 
     @XmlAttribute(name = "Algorithm", required = true)

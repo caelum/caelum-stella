@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "xTexto" })
+@XmlType(name = "ObsFisco ", propOrder = { "xTexto" })
 public class ObsFisco {
 
     @XmlElement(required = true)

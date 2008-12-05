@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "infAdFisco", "infCpl", "obsCont", "obsFisco", "procRef" })
+@XmlType(name = "InfAdic ", propOrder = { "infAdFisco", "infCpl", "obsCont", "obsFisco", "procRef" })
 public class InfAdic {
 
     protected String infAdFisco;

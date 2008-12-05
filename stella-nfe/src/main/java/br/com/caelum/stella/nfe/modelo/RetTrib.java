@@ -9,7 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vRetPIS", "vRetCOFINS", "vRetCSLL", "vbcirrf", "virrf", "vbcRetPrev", "vRetPrev" })
+@XmlType(name = "RetTrib ", propOrder = { "vRetPIS", "vRetCOFINS", "vRetCSLL", "vbcirrf", "virrf", "vbcRetPrev",
+        "vRetPrev" })
 public class RetTrib {
 
     protected String vRetPIS;

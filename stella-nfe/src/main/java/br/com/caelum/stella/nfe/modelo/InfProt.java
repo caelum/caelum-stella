@@ -15,7 +15,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "tpAmb", "verAplic", "chNFe", "dhRecbto", "nProt", "digVal", "cStat", "xMotivo" })
+@XmlType(name = "InfProt ", propOrder = { "tpAmb", "verAplic", "chNFe", "dhRecbto", "nProt", "digVal", "cStat",
+        "xMotivo" })
 public class InfProt {
 
     @XmlElement(required = true)
@@ -89,7 +90,7 @@ public class InfProt {
     }
 
     public void setDigVal(byte[] value) {
-        this.digVal = ((byte[]) value);
+        this.digVal = value;
     }
 
     public String getCStat() {

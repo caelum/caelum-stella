@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "fat", "dup" })
+@XmlType(name = "Cobr ", propOrder = { "fat", "dup" })
 public class Cobr {
 
     protected Fat fat;

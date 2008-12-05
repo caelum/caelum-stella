@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "ufEmbarq", "xLocEmbarq" })
+@XmlType(name = "Exporta ", propOrder = { "ufEmbarq", "xLocEmbarq" })
 public class Exporta {
 
     @XmlElement(name = "UFEmbarq", required = true)

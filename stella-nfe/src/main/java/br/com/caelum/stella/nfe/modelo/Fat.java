@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "nFat", "vOrig", "vDesc", "vLiq" })
+@XmlType(name = "Fat ", propOrder = { "nFat", "vOrig", "vDesc", "vLiq" })
 public class Fat {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

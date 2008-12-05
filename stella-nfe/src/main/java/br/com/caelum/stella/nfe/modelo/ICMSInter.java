@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vbcicmsstDest", "vicmsstDest" })
+@XmlType(name = "ICMSInter ", propOrder = { "vbcicmsstDest", "vicmsstDest" })
 public class ICMSInter {
 
     @XmlElement(name = "vBCICMSSTDest", required = true)

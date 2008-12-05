@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "modFrete", "transporta", "retTransp", "veicTransp", "reboque", "vol" })
+@XmlType(name = "Transp ", propOrder = { "modFrete", "transporta", "retTransp", "veicTransp", "reboque", "vol" })
 public class Transp {
 
     @XmlElement(required = true)

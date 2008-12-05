@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "nDup", "dVenc", "vDup" })
+@XmlType(name = "Dup ", propOrder = { "nDup", "dVenc", "vDup" })
 public class Dup {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

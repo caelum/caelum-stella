@@ -15,8 +15,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cuf", "cnf", "natOp", "indPag", "mod", "serie", "nnf", "dEmi", "dSaiEnt", "tpNF",
-        "cMunFG", "nFref", "tpImp", "tpEmis", "cdv", "tpAmb", "finNFe", "procEmi", "verProc" })
+@XmlType(name = "Ide ", propOrder = { "cuf", "cnf", "natOp", "indPag", "mod", "serie", "nnf", "dEmi", "dSaiEnt",
+        "tpNF", "cMunFG", "nFref", "tpImp", "tpEmis", "cdv", "tpAmb", "finNFe", "procEmi", "verProc" })
 public class Ide {
 
     @XmlElement(name = "cUF", required = true)

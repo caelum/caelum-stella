@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cuf", "aamm", "cnpj", "mod", "serie", "nnf" })
+@XmlType(name = "RefNF ", propOrder = { "cuf", "aamm", "cnpj", "mod", "serie", "nnf" })
 public class RefNF {
 
     @XmlElement(name = "cUF", required = true)

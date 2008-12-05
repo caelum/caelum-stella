@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "orig", "cst", "modBC", "vbc", "pRedBC", "picms", "vicms", "modBCST", "pmvast",
-        "pRedBCST", "vbcst", "picmsst", "vicmsst" })
+@XmlType(name = "ICMS90 ", propOrder = { "orig", "cst", "modBC", "vbc", "pRedBC", "picms", "vicms", "modBCST",
+        "pmvast", "pRedBCST", "vbcst", "picmsst", "vicmsst" })
 public class ICMS90 {
 
     @XmlElement(required = true)

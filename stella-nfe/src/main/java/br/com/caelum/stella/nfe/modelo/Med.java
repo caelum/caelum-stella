@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "nLote", "qLote", "dFab", "dVal", "vpmc" })
+@XmlType(name = "Med ", propOrder = { "nLote", "qLote", "dFab", "dVal", "vpmc" })
 public class Med {
 
     @XmlElement(required = true)

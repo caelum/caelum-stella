@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "prod", "imposto", "infAdProd" })
+@XmlType(name = "Det ", propOrder = { "prod", "imposto", "infAdProd" })
 public class Det {
 
     @XmlElement(required = true)

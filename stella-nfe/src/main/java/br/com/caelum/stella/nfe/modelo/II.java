@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "vbc", "vDespAdu", "vii", "viof" })
+@XmlType(name = "II ", propOrder = { "vbc", "vDespAdu", "vii", "viof" })
 public class II {
 
     @XmlElement(name = "vBC", required = true)

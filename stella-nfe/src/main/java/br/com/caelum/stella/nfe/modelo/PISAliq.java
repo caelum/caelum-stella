@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cst", "vbc", "ppis", "vpis" })
+@XmlType(name = "PISAliq ", propOrder = { "cst", "vbc", "ppis", "vpis" })
 public class PISAliq {
 
     @XmlElement(name = "CST", required = true)
