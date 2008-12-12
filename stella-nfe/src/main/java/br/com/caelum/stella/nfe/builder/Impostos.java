@@ -1,40 +1,44 @@
 package br.com.caelum.stella.nfe.builder;
 
-import br.com.caelum.stella.nfe.modelo.Imposto;
 
 public class Impostos {
 
-    private final Imposto imposto = new Imposto();
+    private Impostos() {
+    }
 
-    public Impostos addICMS(ICMS icms) {
+    public static Impostos create() {
+        return new Impostos();
+    }
+
+    public Impostos withIPI() {
         return this;
     }
 
-    public Impostos addIPI() {
+    public Impostos withII() {
         return this;
     }
 
-    public Impostos addII() {
+    public Impostos withPIS() {
         return this;
     }
 
-    public Impostos addPIS() {
+    public Impostos withPISST() {
         return this;
     }
 
-    public Impostos addPISST() {
+    public Impostos withCOFINS() {
         return this;
     }
 
-    public Impostos addCOFINS() {
+    public Impostos withCOFINSST() {
         return this;
     }
 
-    public Impostos addCOFINSST() {
+    public Impostos withISSQN() {
         return this;
     }
 
-    public Impostos addISSQN() {
+    public Impostos withICMS(ICMS... icms) {
         return this;
     }
 

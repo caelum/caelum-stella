@@ -10,9 +10,11 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import br.com.caelum.stella.nfe.builder.ICMS;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ICMS51 ", propOrder = { "orig", "cst", "modBC", "pRedBC", "vbc", "picms", "vicms" })
-public class ICMS51 {
+public class ICMS51 implements ICMS {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
