@@ -14,11 +14,15 @@ public class PISST {
 
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "pPIS")
     protected String ppis;
+
     @XmlElement(name = "qBCProd")
     protected String qbcProd;
+
     protected String vAliqProd;
+
     @XmlElement(name = "vPIS", required = true)
     protected String vpis;
 

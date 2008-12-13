@@ -23,6 +23,7 @@ public class SignatureValueType {
 
     @XmlValue
     protected byte[] value;
+
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

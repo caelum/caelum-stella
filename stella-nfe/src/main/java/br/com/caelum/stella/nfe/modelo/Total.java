@@ -14,8 +14,10 @@ public class Total {
 
     @XmlElement(name = "ICMSTot", required = true)
     protected ICMSTot icmsTot;
+
     @XmlElement(name = "ISSQNtot")
     protected ISSQNtot issqNtot;
+
     protected RetTrib retTrib;
 
     public ICMSTot getICMSTot() {

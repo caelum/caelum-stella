@@ -26,6 +26,7 @@ import br.com.caelum.stella.validation.error.IEError;
  * @author Leonardo Bessa
  */
 public class StellaIEValidator implements Validator, StateHolder {
+
     /**
      * Identificador do Validador JSF.
      */
@@ -40,9 +41,11 @@ public class StellaIEValidator implements Validator, StateHolder {
     private String estado;
 
     private boolean transientValue = false;
+
     private ValueExpression binding;
 
-    public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
+    public void validate(final FacesContext facesContext, final UIComponent uiComponent, final Object value)
+            throws ValidatorException {
 
         ResourceBundle bundle = resourceBundleFinder.getForCurrentLocale(facesContext);
         ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
@@ -50,12 +53,12 @@ public class StellaIEValidator implements Validator, StateHolder {
             br.com.caelum.stella.validation.Validator<String> validator;
             try {
                 String estadoValue;
-                if (this.estado == null) {
+                if (estado == null) {
                     ValueHolder estadoValueHolder = (ValueHolder) facesContext.getViewRoot().findComponent(
-                            this.estadoComponentId);
+                            estadoComponentId);
                     estadoValue = estadoValueHolder.getValue().toString();
                 } else {
-                    estadoValue = this.estado;
+                    estadoValue = estado;
                 }
 
                 validator = Estado.valueOf(estadoValue).getIEValidator(producer, formatted);
@@ -71,8 +74,8 @@ public class StellaIEValidator implements Validator, StateHolder {
         }
     }
 
-    private void registerAllMessages(FacesContext facesContext, UIComponent uiComponent,
-            List<ValidationMessage> messages) {
+    private void registerAllMessages(final FacesContext facesContext, final UIComponent uiComponent,
+            final List<ValidationMessage> messages) {
         for (ValidationMessage message : messages) {
             String componentId = uiComponent.getClientId(facesContext);
             facesContext.addMessage(componentId, new FacesMessage(message.getMessage()));
@@ -88,11 +91,11 @@ public class StellaIEValidator implements Validator, StateHolder {
      *            está formatada; caso contrário, considera que a cadeia contém
      *            apenas dígitos numéricos.
      */
-    public void setFormatted(boolean formatted) {
+    public void setFormatted(final boolean formatted) {
         this.formatted = formatted;
     }
 
-    public void setEstadoComponentId(String estadoComponentId) {
+    public void setEstadoComponentId(final String estadoComponentId) {
         this.estadoComponentId = estadoComponentId;
     }
 
@@ -100,20 +103,20 @@ public class StellaIEValidator implements Validator, StateHolder {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(final String estado) {
         this.estado = estado;
     }
 
-    public Object saveState(FacesContext context) {
+    public Object saveState(final FacesContext context) {
         Object values[] = new Object[4];
         values[0] = estadoComponentId;
         values[1] = formatted;
         values[2] = estado;
         values[3] = binding;
-        return ((Object) (values));
+        return values;
     }
 
-    public void restoreState(FacesContext context, Object state) {
+    public void restoreState(final FacesContext context, final Object state) {
         Object values[] = (Object[]) state;
         estadoComponentId = (String) values[0];
         formatted = (Boolean) values[1];
@@ -128,11 +131,11 @@ public class StellaIEValidator implements Validator, StateHolder {
         return transientValue;
     }
 
-    public void setTransient(boolean transientValue) {
+    public void setTransient(final boolean transientValue) {
         this.transientValue = transientValue;
     }
 
-    public void setBinding(ValueExpression binding) {
+    public void setBinding(final ValueExpression binding) {
         this.binding = binding;
     }
 }

@@ -18,12 +18,16 @@ public class Med {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nLote;
+
     @XmlElement(required = true)
     protected String qLote;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dFab;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dVal;
+
     @XmlElement(name = "vPMC", required = true)
     protected String vpmc;
 

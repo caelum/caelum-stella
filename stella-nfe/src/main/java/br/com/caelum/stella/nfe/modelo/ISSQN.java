@@ -16,13 +16,17 @@ public class ISSQN {
 
     @XmlElement(name = "vBC", required = true)
     protected String vbc;
+
     @XmlElement(required = true)
     protected String vAliq;
+
     @XmlElement(name = "vISSQN", required = true)
     protected String vissqn;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cMunFG;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cListServ;

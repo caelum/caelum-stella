@@ -17,10 +17,13 @@ public class COFINSQtde {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "qBCProd", required = true)
     protected String qbcProd;
+
     @XmlElement(required = true)
     protected String vAliqProd;
+
     @XmlElement(name = "vCOFINS", required = true)
     protected String vcofins;
 

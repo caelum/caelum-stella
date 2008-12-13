@@ -21,8 +21,10 @@ public class TNfeProc {
 
     @XmlElement(name = "NFe", required = true)
     protected TNFe nFe;
+
     @XmlElement(required = true)
     protected TProtNFe protNFe;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;

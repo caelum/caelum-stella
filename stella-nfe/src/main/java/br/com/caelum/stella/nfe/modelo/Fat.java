@@ -15,8 +15,11 @@ public class Fat {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nFat;
+
     protected String vOrig;
+
     protected String vDesc;
+
     protected String vLiq;
 
     public String getNFat() {

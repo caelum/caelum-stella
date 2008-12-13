@@ -15,6 +15,7 @@ public class NFref {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String refNFe;
+
     protected RefNF refNF;
 
     public String getRefNFe() {

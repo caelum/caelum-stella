@@ -17,8 +17,10 @@ public class Compra {
     @XmlElement(name = "xNEmp")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xnEmp;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xPed;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xCont;
 

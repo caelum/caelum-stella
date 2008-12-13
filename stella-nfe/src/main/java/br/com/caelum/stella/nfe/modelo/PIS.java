@@ -14,10 +14,13 @@ public class PIS {
 
     @XmlElement(name = "PISAliq")
     protected PISAliq pisAliq;
+
     @XmlElement(name = "PISQtde")
     protected PISQtde pisQtde;
+
     @XmlElement(name = "PISNT")
     protected PISNT pisnt;
+
     @XmlElement(name = "PISOutr")
     protected PISOutr pisOutr;
 

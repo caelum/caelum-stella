@@ -10,53 +10,54 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.caelum.stella.nfe.builder.ICMS;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ICMS60 ", propOrder = { "orig", "cst", "vbcst", "vicmsst" })
-public class ICMS60 implements ICMS {
+public class ICMS60 {
 
-    @XmlElement(required = true)
+    @XmlElement(name = "orig", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String orig;
+    protected String origem;
+
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
-    @XmlElement(name = "vBCST", required = true)
-    protected String vbcst;
-    @XmlElement(name = "vICMSST", required = true)
-    protected String vicmsst;
+    protected String tipoTributacao;
 
-    public String getOrig() {
-        return orig;
+    @XmlElement(name = "vBCST", required = true)
+    protected String valorBaseCalculoSubstituicaoTributaria;
+
+    @XmlElement(name = "vICMSST", required = true)
+    protected String valorSubstituicaoTributaria;
+
+    public String getOrigem() {
+        return origem;
     }
 
-    public void setOrig(String value) {
-        this.orig = value;
+    public void setOrigem(final String value) {
+        origem = value;
     }
 
     public String getCST() {
-        return cst;
+        return tipoTributacao;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCST(final String value) {
+        tipoTributacao = value;
     }
 
     public String getVBCST() {
-        return vbcst;
+        return valorBaseCalculoSubstituicaoTributaria;
     }
 
-    public void setVBCST(String value) {
-        this.vbcst = value;
+    public void setVBCST(final String value) {
+        valorBaseCalculoSubstituicaoTributaria = value;
     }
 
     public String getVICMSST() {
-        return vicmsst;
+        return valorSubstituicaoTributaria;
     }
 
-    public void setVICMSST(String value) {
-        this.vicmsst = value;
+    public void setVICMSST(final String value) {
+        valorSubstituicaoTributaria = value;
     }
 
 }

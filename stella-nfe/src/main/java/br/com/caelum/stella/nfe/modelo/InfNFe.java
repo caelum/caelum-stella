@@ -23,26 +23,40 @@ public class InfNFe {
 
     @XmlElement(required = true)
     protected Ide ide;
+
     @XmlElement(required = true)
     protected Emit emit;
+
     protected Avulsa avulsa;
+
     @XmlElement(required = true)
     protected Dest dest;
+
     protected TLocal retirada;
+
     protected TLocal entrega;
+
     @XmlElement(required = true)
     protected List<Det> det;
+
     @XmlElement(required = true)
     protected Total total;
+
     @XmlElement(required = true)
     protected Transp transp;
+
     protected Cobr cobr;
+
     protected InfAdic infAdic;
+
     protected Exporta exporta;
+
     protected Compra compra;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
+
     @XmlAttribute(name = "Id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

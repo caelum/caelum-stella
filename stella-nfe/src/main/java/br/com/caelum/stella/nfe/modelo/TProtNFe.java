@@ -21,8 +21,10 @@ public class TProtNFe {
 
     @XmlElement(required = true)
     protected InfProt infProt;
+
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#")
     protected SignatureType signature;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;

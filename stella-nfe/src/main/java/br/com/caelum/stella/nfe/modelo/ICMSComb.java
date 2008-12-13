@@ -14,10 +14,13 @@ public class ICMSComb {
 
     @XmlElement(name = "vBCICMS", required = true)
     protected String vbcicms;
+
     @XmlElement(name = "vICMS", required = true)
     protected String vicms;
+
     @XmlElement(name = "vBCICMSST", required = true)
     protected String vbcicmsst;
+
     @XmlElement(name = "vICMSST", required = true)
     protected String vicmsst;
 

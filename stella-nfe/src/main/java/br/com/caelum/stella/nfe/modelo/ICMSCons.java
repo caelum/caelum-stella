@@ -14,8 +14,10 @@ public class ICMSCons {
 
     @XmlElement(name = "vBCICMSSTCons", required = true)
     protected String vbcicmsstCons;
+
     @XmlElement(name = "vICMSSTCons", required = true)
     protected String vicmsstCons;
+
     @XmlElement(name = "UFCons", required = true)
     protected TUf ufCons;
 

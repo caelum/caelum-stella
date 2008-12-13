@@ -14,18 +14,25 @@ public class Imposto {
 
     @XmlElement(name = "ICMS", required = true)
     protected ICMS icms;
+
     @XmlElement(name = "IPI")
     protected IPI ipi;
+
     @XmlElement(name = "II")
     protected II ii;
+
     @XmlElement(name = "PIS", required = true)
     protected PIS pis;
+
     @XmlElement(name = "PISST")
     protected PISST pisst;
+
     @XmlElement(name = "COFINS", required = true)
     protected COFINS cofins;
+
     @XmlElement(name = "COFINSST")
     protected COFINSST cofinsst;
+
     @XmlElement(name = "ISSQN")
     protected ISSQN issqn;
 

@@ -14,11 +14,15 @@ public class COFINSST {
 
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "pCOFINS")
     protected String pcofins;
+
     @XmlElement(name = "qBCProd")
     protected String qbcProd;
+
     protected String vAliqProd;
+
     @XmlElement(name = "vCOFINS", required = true)
     protected String vcofins;
 

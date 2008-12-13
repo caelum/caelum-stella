@@ -15,9 +15,13 @@ import javax.xml.bind.annotation.XmlType;
 public class InfAdic {
 
     protected String infAdFisco;
+
     protected String infCpl;
+
     protected List<ObsCont> obsCont;
+
     protected List<ObsFisco> obsFisco;
+
     protected List<ProcRef> procRef;
 
     public String getInfAdFisco() {

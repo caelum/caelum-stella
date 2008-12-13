@@ -18,8 +18,10 @@ public class InfRec {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nRec;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dhRecbto;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tMed;

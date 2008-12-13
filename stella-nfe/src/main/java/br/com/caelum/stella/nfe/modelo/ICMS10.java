@@ -10,135 +10,209 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.caelum.stella.nfe.builder.ICMS;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ICMS10 ", propOrder = { "orig", "cst", "modBC", "vbc", "picms", "vicms", "modBCST", "pmvast",
         "pRedBCST", "vbcst", "picmsst", "vicmsst" })
-public class ICMS10 implements ICMS {
+public class ICMS10 {
 
-    @XmlElement(required = true)
+    @XmlElement(name = "orig", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String orig;
+    protected String origem;
+
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modBC;
-    @XmlElement(name = "vBC", required = true)
-    protected String vbc;
-    @XmlElement(name = "pICMS", required = true)
-    protected String picms;
-    @XmlElement(name = "vICMS", required = true)
-    protected String vicms;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modBCST;
-    @XmlElement(name = "pMVAST")
-    protected String pmvast;
-    protected String pRedBCST;
-    @XmlElement(name = "vBCST", required = true)
-    protected String vbcst;
-    @XmlElement(name = "pICMSST", required = true)
-    protected String picmsst;
-    @XmlElement(name = "vICMSST", required = true)
-    protected String vicmsst;
+    protected String tipoTributacao;
 
-    public String getOrig() {
-        return orig;
+    @XmlElement(name = "modBC", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String modalidadeBaseCalculo;
+
+    @XmlElement(name = "vBC", required = true)
+    protected String valorBaseCalculo;
+
+    @XmlElement(name = "pICMS", required = true)
+    protected String aliquota;
+
+    @XmlElement(name = "vICMS", required = true)
+    protected String valor;
+
+    @XmlElement(name = "modBCST", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String modalidadeSubstituicaoTributaria;
+
+    @XmlElement(name = "pMVAST")
+    protected String percentualAdicionadoSubstituicaoTributaria;
+
+    @XmlElement(name = "pRedBCST")
+    protected String percentualReducaoBaseCalculo;
+
+    @XmlElement(name = "vBCST", required = true)
+    protected String valorBaseCalculoSubstituicaoTributaria;
+
+    @XmlElement(name = "pICMSST", required = true)
+    protected String aliquotaSubstituicaoTributaria;
+
+    @XmlElement(name = "vICMSST", required = true)
+    protected String valorSubstituicaoTributaria;
+
+    public String getOrigem() {
+        return origem;
     }
 
-    public void setOrig(String value) {
-        this.orig = value;
+    public void setOrigem(final String value) {
+        origem = value;
     }
 
     public String getCST() {
-        return cst;
+        return tipoTributacao;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCST(final String value) {
+        tipoTributacao = value;
     }
 
-    public String getModBC() {
-        return modBC;
+    public String getModalidadeBaseCalculo() {
+        return modalidadeBaseCalculo;
     }
 
-    public void setModBC(String value) {
-        this.modBC = value;
+    public void setModalidadeBaseCalculo(final String value) {
+        modalidadeBaseCalculo = value;
     }
 
     public String getVBC() {
-        return vbc;
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setVBC(final String value) {
+        valorBaseCalculo = value;
     }
 
     public String getPICMS() {
-        return picms;
+        return aliquota;
     }
 
-    public void setPICMS(String value) {
-        this.picms = value;
+    public void setPICMS(final String value) {
+        aliquota = value;
     }
 
     public String getVICMS() {
-        return vicms;
+        return valor;
     }
 
-    public void setVICMS(String value) {
-        this.vicms = value;
+    public void setVICMS(final String value) {
+        valor = value;
     }
 
-    public String getModBCST() {
-        return modBCST;
+    public String getModalidadeSubstituicaoTributaria() {
+        return modalidadeSubstituicaoTributaria;
     }
 
-    public void setModBCST(String value) {
-        this.modBCST = value;
+    public void setModalidadeSubstituicaoTributaria(final String value) {
+        modalidadeSubstituicaoTributaria = value;
     }
 
     public String getPMVAST() {
-        return pmvast;
+        return percentualAdicionadoSubstituicaoTributaria;
     }
 
-    public void setPMVAST(String value) {
-        this.pmvast = value;
+    public void setPMVAST(final String value) {
+        percentualAdicionadoSubstituicaoTributaria = value;
     }
 
-    public String getPRedBCST() {
-        return pRedBCST;
+    public String getPercentualReducaoBaseCalculo() {
+        return percentualReducaoBaseCalculo;
     }
 
-    public void setPRedBCST(String value) {
-        this.pRedBCST = value;
+    public void setPercentualReducaoBaseCalculo(final String value) {
+        percentualReducaoBaseCalculo = value;
     }
 
     public String getVBCST() {
-        return vbcst;
+        return valorBaseCalculoSubstituicaoTributaria;
     }
 
-    public void setVBCST(String value) {
-        this.vbcst = value;
+    public void setVBCST(final String value) {
+        valorBaseCalculoSubstituicaoTributaria = value;
     }
 
     public String getPICMSST() {
-        return picmsst;
+        return aliquotaSubstituicaoTributaria;
     }
 
-    public void setPICMSST(String value) {
-        this.picmsst = value;
+    public void setPICMSST(final String value) {
+        aliquotaSubstituicaoTributaria = value;
     }
 
     public String getVICMSST() {
-        return vicmsst;
+        return valorSubstituicaoTributaria;
     }
 
-    public void setVICMSST(String value) {
-        this.vicmsst = value;
+    public void setVICMSST(final String value) {
+        valorSubstituicaoTributaria = value;
+    }
+
+    public String getTipoTributacao() {
+        return tipoTributacao;
+    }
+
+    public void setTipoTributacao(final String cst) {
+        this.tipoTributacao = cst;
+    }
+
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
+    }
+
+    public void setValorBaseCalculo(final String vbc) {
+        this.valorBaseCalculo = vbc;
+    }
+
+    public String getAliquota() {
+        return aliquota;
+    }
+
+    public void setAliquota(final String picms) {
+        this.aliquota = picms;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(final String vicms) {
+        this.valor = vicms;
+    }
+
+    public String getPercentualAdicionadoSubstituicaoTributaria() {
+        return percentualAdicionadoSubstituicaoTributaria;
+    }
+
+    public void setPercentualAdicionadoSubstituicaoTributaria(final String pmvast) {
+        this.percentualAdicionadoSubstituicaoTributaria = pmvast;
+    }
+
+    public String getValorBaseCalculoSubstituicaoTributaria() {
+        return valorBaseCalculoSubstituicaoTributaria;
+    }
+
+    public void setValorBaseCalculoSubstituicaoTributaria(final String vbcst) {
+        this.valorBaseCalculoSubstituicaoTributaria = vbcst;
+    }
+
+    public String getAliquotaSubstituicaoTributaria() {
+        return aliquotaSubstituicaoTributaria;
+    }
+
+    public void setAliquotaSubstituicaoTributaria(final String picmsst) {
+        this.aliquotaSubstituicaoTributaria = picmsst;
+    }
+
+    public String getValorSubstituicaoTributaria() {
+        return valorSubstituicaoTributaria;
+    }
+
+    public void setValorSubstituicaoTributaria(final String vicmsst) {
+        this.valorSubstituicaoTributaria = vicmsst;
     }
 
 }

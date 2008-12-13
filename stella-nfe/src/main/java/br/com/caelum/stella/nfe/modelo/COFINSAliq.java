@@ -17,10 +17,13 @@ public class COFINSAliq {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "vBC", required = true)
     protected String vbc;
+
     @XmlElement(name = "pCOFINS", required = true)
     protected String pcofins;
+
     @XmlElement(name = "vCOFINS", required = true)
     protected String vcofins;
 

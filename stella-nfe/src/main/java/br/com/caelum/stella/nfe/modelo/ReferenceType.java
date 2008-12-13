@@ -24,17 +24,22 @@ public class ReferenceType {
 
     @XmlElement(name = "Transforms", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected TransformsType transforms;
+
     @XmlElement(name = "DigestMethod", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected DigestMethod digestMethod;
+
     @XmlElement(name = "DigestValue", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected byte[] digestValue;
+
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String id;
+
     @XmlAttribute(name = "URI", required = true)
     protected String uri;
+
     @XmlAttribute(name = "Type")
     @XmlSchemaType(name = "anyURI")
     protected String type;

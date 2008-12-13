@@ -16,16 +16,22 @@ public class Comb {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cProdANP;
+
     @XmlElement(name = "CODIF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String codif;
+
     protected String qTemp;
+
     @XmlElement(name = "CIDE")
     protected CIDE cide;
+
     @XmlElement(name = "ICMSComb", required = true)
     protected ICMSComb icmsComb;
+
     @XmlElement(name = "ICMSInter")
     protected ICMSInter icmsInter;
+
     @XmlElement(name = "ICMSCons")
     protected ICMSCons icmsCons;
 

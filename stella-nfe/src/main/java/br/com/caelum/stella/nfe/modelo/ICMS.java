@@ -15,20 +15,28 @@ public class ICMS {
 
     @XmlElement(name = "ICMS00")
     protected ICMS00 icms00;
+
     @XmlElement(name = "ICMS10")
     protected ICMS10 icms10;
+
     @XmlElement(name = "ICMS20")
     protected ICMS20 icms20;
+
     @XmlElement(name = "ICMS30")
     protected ICMS30 icms30;
+
     @XmlElement(name = "ICMS40")
     protected ICMS40 icms40;
+
     @XmlElement(name = "ICMS51")
     protected ICMS51 icms51;
+
     @XmlElement(name = "ICMS60")
     protected ICMS60 icms60;
+
     @XmlElement(name = "ICMS70")
     protected ICMS70 icms70;
+
     @XmlElement(name = "ICMS90")
     protected ICMS90 icms90;
 

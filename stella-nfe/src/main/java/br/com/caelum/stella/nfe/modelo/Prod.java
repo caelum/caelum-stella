@@ -22,50 +22,72 @@ public class Prod {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cProd;
+
     @XmlElement(name = "cEAN", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cean;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xProd;
+
     @XmlElement(name = "NCM")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ncm;
+
     @XmlElement(name = "EXTIPI")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String extipi;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String genero;
+
     @XmlElement(name = "CFOP", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cfop;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String uCom;
+
     @XmlElement(required = true)
     protected String qCom;
+
     @XmlElement(required = true)
     protected String vUnCom;
+
     @XmlElement(required = true)
     protected String vProd;
+
     @XmlElement(name = "cEANTrib", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ceanTrib;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String uTrib;
+
     @XmlElement(required = true)
     protected String qTrib;
+
     @XmlElement(required = true)
     protected String vUnTrib;
+
     protected String vFrete;
+
     protected String vSeg;
+
     protected String vDesc;
+
     @XmlElement(name = "DI")
     protected List<DI> di;
+
     protected VeicProd veicProd;
+
     protected List<Med> med;
+
     protected List<Arma> arma;
+
     protected Comb comb;
 
     public String getCProd() {

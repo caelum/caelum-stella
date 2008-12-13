@@ -17,12 +17,17 @@ public class IPITrib {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "pIPI")
     protected String pipi;
+
     protected String qUnid;
+
     protected String vUnid;
+
     @XmlElement(name = "vIPI", required = true)
     protected String vipi;
 

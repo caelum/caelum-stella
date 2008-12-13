@@ -16,18 +16,24 @@ public class IPI {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String clEnq;
+
     @XmlElement(name = "CNPJProd")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpjProd;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cSelo;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String qSelo;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cEnq;
+
     @XmlElement(name = "IPITrib")
     protected IPITrib ipiTrib;
+
     @XmlElement(name = "IPINT")
     protected IPINT ipint;
 

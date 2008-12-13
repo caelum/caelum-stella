@@ -1,6 +1,5 @@
 package br.com.caelum.stella.nfe.builder;
 
-
 public class Impostos {
 
     private Impostos() {
@@ -38,7 +37,7 @@ public class Impostos {
         return this;
     }
 
-    public Impostos withICMS(ICMS... icms) {
+    public Impostos withICMS(final ICMS... icms) {
         return this;
     }
 

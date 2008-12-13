@@ -14,14 +14,20 @@ import javax.xml.bind.annotation.XmlType;
 public class RetTrib {
 
     protected String vRetPIS;
+
     protected String vRetCOFINS;
+
     protected String vRetCSLL;
+
     @XmlElement(name = "vBCIRRF")
     protected String vbcirrf;
+
     @XmlElement(name = "vIRRF")
     protected String virrf;
+
     @XmlElement(name = "vBCRetPrev")
     protected String vbcRetPrev;
+
     protected String vRetPrev;
 
     public String getVRetPIS() {

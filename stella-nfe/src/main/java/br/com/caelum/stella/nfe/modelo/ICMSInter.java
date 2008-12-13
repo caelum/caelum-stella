@@ -14,6 +14,7 @@ public class ICMSInter {
 
     @XmlElement(name = "vBCICMSSTDest", required = true)
     protected String vbcicmsstDest;
+
     @XmlElement(name = "vICMSSTDest", required = true)
     protected String vicmsstDest;
 

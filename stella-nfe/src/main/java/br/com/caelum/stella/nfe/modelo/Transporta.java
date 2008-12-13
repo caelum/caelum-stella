@@ -17,15 +17,21 @@ public class Transporta {
     @XmlElement(name = "CNPJ")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(name = "CPF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cpf;
+
     protected String xNome;
+
     @XmlElement(name = "IE")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ie;
+
     protected String xEnder;
+
     protected String xMun;
+
     @XmlElement(name = "UF")
     protected TUf uf;
 

@@ -17,16 +17,21 @@ public class Dest {
     @XmlElement(name = "CNPJ")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(name = "CPF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cpf;
+
     @XmlElement(required = true)
     protected String xNome;
+
     @XmlElement(required = true)
     protected TEndereco enderDest;
+
     @XmlElement(name = "IE", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ie;
+
     @XmlElement(name = "ISUF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String isuf;

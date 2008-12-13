@@ -18,6 +18,7 @@ public class TNFe {
 
     @XmlElement(required = true)
     protected InfNFe infNFe;
+
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected SignatureType signature;
 

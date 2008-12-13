@@ -10,82 +10,88 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.caelum.stella.nfe.builder.ICMS;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ICMS51 ", propOrder = { "orig", "cst", "modBC", "pRedBC", "vbc", "picms", "vicms" })
-public class ICMS51 implements ICMS {
+public class ICMS51 {
 
-    @XmlElement(required = true)
+    @XmlElement(name = "orig", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String orig;
+    protected String origem;
+
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modBC;
-    protected String pRedBC;
-    @XmlElement(name = "vBC")
-    protected String vbc;
-    @XmlElement(name = "pICMS")
-    protected String picms;
-    @XmlElement(name = "vICMS")
-    protected String vicms;
+    protected String tipoTributacao;
 
-    public String getOrig() {
-        return orig;
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlElement(name = "modBC")
+    protected String modalidade;
+
+    @XmlElement(name = "pRedBC")
+    protected String percentualReducaoBaseCalculo;
+
+    @XmlElement(name = "vBC")
+    protected String valorBaseCalculo;
+
+    @XmlElement(name = "pICMS")
+    protected String aliquota;
+
+    @XmlElement(name = "vICMS")
+    protected String valor;
+
+    public String getOrigem() {
+        return origem;
     }
 
-    public void setOrig(String value) {
-        this.orig = value;
+    public void setOrigem(final String value) {
+        origem = value;
     }
 
     public String getCST() {
-        return cst;
+        return tipoTributacao;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCST(final String value) {
+        tipoTributacao = value;
     }
 
-    public String getModBC() {
-        return modBC;
+    public String getModalidade() {
+        return modalidade;
     }
 
-    public void setModBC(String value) {
-        this.modBC = value;
+    public void setModalidade(final String value) {
+        modalidade = value;
     }
 
-    public String getPRedBC() {
-        return pRedBC;
+    public String getPercentualReducaoBaseCalculo() {
+        return percentualReducaoBaseCalculo;
     }
 
-    public void setPRedBC(String value) {
-        this.pRedBC = value;
+    public void setPercentualReducaoBaseCalculo(final String value) {
+        percentualReducaoBaseCalculo = value;
     }
 
     public String getVBC() {
-        return vbc;
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setVBC(final String value) {
+        valorBaseCalculo = value;
     }
 
     public String getPICMS() {
-        return picms;
+        return aliquota;
     }
 
-    public void setPICMS(String value) {
-        this.picms = value;
+    public void setPICMS(final String value) {
+        aliquota = value;
     }
 
     public String getVICMS() {
-        return vicms;
+        return valor;
     }
 
-    public void setVICMS(String value) {
-        this.vicms = value;
+    public void setVICMS(final String value) {
+        valor = value;
     }
 
 }

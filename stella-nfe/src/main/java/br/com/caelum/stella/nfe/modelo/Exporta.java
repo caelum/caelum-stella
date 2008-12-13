@@ -14,6 +14,7 @@ public class Exporta {
 
     @XmlElement(name = "UFEmbarq", required = true)
     protected TUf ufEmbarq;
+
     @XmlElement(required = true)
     protected String xLocEmbarq;
 

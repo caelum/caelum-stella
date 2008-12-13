@@ -22,23 +22,31 @@ public class InfProt {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tpAmb;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String verAplic;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String chNFe;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dhRecbto;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nProt;
+
     protected byte[] digVal;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cStat;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xMotivo;
+
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

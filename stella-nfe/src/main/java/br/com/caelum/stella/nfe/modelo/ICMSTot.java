@@ -15,30 +15,43 @@ public class ICMSTot {
 
     @XmlElement(name = "vBC", required = true)
     protected String vbc;
+
     @XmlElement(name = "vICMS", required = true)
     protected String vicms;
+
     @XmlElement(name = "vBCST", required = true)
     protected String vbcst;
+
     @XmlElement(name = "vST", required = true)
     protected String vst;
+
     @XmlElement(required = true)
     protected String vProd;
+
     @XmlElement(required = true)
     protected String vFrete;
+
     @XmlElement(required = true)
     protected String vSeg;
+
     @XmlElement(required = true)
     protected String vDesc;
+
     @XmlElement(name = "vII", required = true)
     protected String vii;
+
     @XmlElement(name = "vIPI", required = true)
     protected String vipi;
+
     @XmlElement(name = "vPIS", required = true)
     protected String vpis;
+
     @XmlElement(name = "vCOFINS", required = true)
     protected String vcofins;
+
     @XmlElement(required = true)
     protected String vOutro;
+
     @XmlElement(name = "vNF", required = true)
     protected String vnf;
 

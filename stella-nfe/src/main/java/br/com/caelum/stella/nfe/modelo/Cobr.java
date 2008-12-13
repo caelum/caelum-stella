@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Cobr {
 
     protected Fat fat;
+
     protected List<Dup> dup;
 
     public Fat getFat() {

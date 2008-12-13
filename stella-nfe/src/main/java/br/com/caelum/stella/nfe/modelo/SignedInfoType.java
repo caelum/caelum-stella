@@ -24,10 +24,13 @@ public class SignedInfoType {
 
     @XmlElement(name = "CanonicalizationMethod", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected CanonicalizationMethod canonicalizationMethod;
+
     @XmlElement(name = "SignatureMethod", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected SignatureMethod signatureMethod;
+
     @XmlElement(name = "Reference", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected ReferenceType reference;
+
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

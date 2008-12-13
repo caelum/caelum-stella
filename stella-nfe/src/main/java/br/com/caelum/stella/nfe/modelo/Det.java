@@ -17,9 +17,12 @@ public class Det {
 
     @XmlElement(required = true)
     protected Prod prod;
+
     @XmlElement(required = true)
     protected Imposto imposto;
+
     protected String infAdProd;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nItem;

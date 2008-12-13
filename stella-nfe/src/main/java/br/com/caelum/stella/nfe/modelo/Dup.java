@@ -16,7 +16,9 @@ public class Dup {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nDup;
+
     protected XMLGregorianCalendar dVenc;
+
     protected String vDup;
 
     public String getNDup() {

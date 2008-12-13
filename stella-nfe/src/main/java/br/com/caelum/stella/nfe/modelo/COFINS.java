@@ -14,10 +14,13 @@ public class COFINS {
 
     @XmlElement(name = "COFINSAliq")
     protected COFINSAliq cofinsAliq;
+
     @XmlElement(name = "COFINSQtde")
     protected COFINSQtde cofinsQtde;
+
     @XmlElement(name = "COFINSNT")
     protected COFINSNT cofinsnt;
+
     @XmlElement(name = "COFINSOutr")
     protected COFINSOutr cofinsOutr;
 

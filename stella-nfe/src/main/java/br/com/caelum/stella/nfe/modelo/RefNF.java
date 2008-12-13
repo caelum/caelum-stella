@@ -17,18 +17,23 @@ public class RefNF {
     @XmlElement(name = "cUF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cuf;
+
     @XmlElement(name = "AAMM", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String aamm;
+
     @XmlElement(name = "CNPJ", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String mod;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String serie;
+
     @XmlElement(name = "nNF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nnf;

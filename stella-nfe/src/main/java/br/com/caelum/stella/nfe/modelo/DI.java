@@ -21,18 +21,24 @@ public class DI {
     @XmlElement(name = "nDI", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ndi;
+
     @XmlElement(name = "dDI", required = true)
     protected XMLGregorianCalendar ddi;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xLocDesemb;
+
     @XmlElement(name = "UFDesemb", required = true)
     protected TUf ufDesemb;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dDesemb;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cExportador;
+
     @XmlElement(required = true)
     protected List<Adi> adi;
 

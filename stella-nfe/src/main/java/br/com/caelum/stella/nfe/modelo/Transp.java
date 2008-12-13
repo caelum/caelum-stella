@@ -20,10 +20,15 @@ public class Transp {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String modFrete;
+
     protected Transporta transporta;
+
     protected RetTransp retTransp;
+
     protected TVeiculo veicTransp;
+
     protected List<TVeiculo> reboque;
+
     protected List<Vol> vol;
 
     public String getModFrete() {

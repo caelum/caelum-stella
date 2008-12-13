@@ -21,24 +21,34 @@ public class TEndereco {
 
     @XmlElement(required = true)
     protected String xLgr;
+
     @XmlElement(required = true)
     protected String nro;
+
     protected String xCpl;
+
     @XmlElement(required = true)
     protected String xBairro;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cMun;
+
     @XmlElement(required = true)
     protected String xMun;
+
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
+
     @XmlElement(name = "CEP")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cep;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cPais;
+
     protected String xPais;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String fone;
 

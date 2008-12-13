@@ -19,30 +19,40 @@ public class Avulsa {
     @XmlElement(name = "CNPJ", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xOrgao;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String matr;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String xAgente;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String fone;
+
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
+
     @XmlElement(name = "nDAR", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ndar;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dEmi;
+
     @XmlElement(name = "vDAR", required = true)
     protected String vdar;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String repEmi;
+
     protected XMLGregorianCalendar dPag;
 
     public String getCNPJ() {

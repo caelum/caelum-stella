@@ -17,23 +17,31 @@ public class Emit {
     @XmlElement(name = "CNPJ")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(name = "CPF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cpf;
+
     @XmlElement(required = true)
     protected String xNome;
+
     protected String xFant;
+
     @XmlElement(required = true)
     protected TEndereco enderEmit;
+
     @XmlElement(name = "IE", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ie;
+
     @XmlElement(name = "IEST")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String iest;
+
     @XmlElement(name = "IM")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String im;
+
     @XmlElement(name = "CNAE")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnae;

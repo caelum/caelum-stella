@@ -14,8 +14,10 @@ public class CIDE {
 
     @XmlElement(name = "qBCProd", required = true)
     protected String qbcProd;
+
     @XmlElement(required = true)
     protected String vAliqProd;
+
     @XmlElement(name = "vCIDE", required = true)
     protected String vcide;
 

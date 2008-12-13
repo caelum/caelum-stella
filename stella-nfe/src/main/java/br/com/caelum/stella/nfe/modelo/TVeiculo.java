@@ -21,8 +21,10 @@ public class TVeiculo {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String placa;
+
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
+
     @XmlElement(name = "RNTC")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String rntc;

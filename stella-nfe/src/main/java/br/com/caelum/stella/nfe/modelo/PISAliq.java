@@ -17,10 +17,13 @@ public class PISAliq {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "vBC", required = true)
     protected String vbc;
+
     @XmlElement(name = "pPIS", required = true)
     protected String ppis;
+
     @XmlElement(name = "vPIS", required = true)
     protected String vpis;
 

@@ -10,74 +10,109 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.caelum.stella.nfe.builder.ICMS;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ICMS00 ", propOrder = { "orig", "cst", "modBC", "vbc", "picms", "vicms" })
-public class ICMS00 implements ICMS {
+public class ICMS00 {
 
-    @XmlElement(required = true)
+    @XmlElement(name = "orig", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String orig;
+    protected String origem;
+
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modBC;
-    @XmlElement(name = "vBC", required = true)
-    protected String vbc;
-    @XmlElement(name = "pICMS", required = true)
-    protected String picms;
-    @XmlElement(name = "vICMS", required = true)
-    protected String vicms;
+    protected String tipoTributacao;
 
-    public String getOrig() {
-        return orig;
+    @XmlElement(name = "", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String modalidadeBaseCalculo;
+
+    @XmlElement(name = "vBC", required = true)
+    protected String valorBaseCalculo;
+
+    @XmlElement(name = "pICMS", required = true)
+    protected String aliquota;
+
+    @XmlElement(name = "vICMS", required = true)
+    protected String valor;
+
+    public String getOrigem() {
+        return origem;
     }
 
-    public void setOrig(String value) {
-        this.orig = value;
+    public void setOrigem(final String value) {
+        origem = value;
     }
 
     public String getCST() {
-        return cst;
+        return tipoTributacao;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCST(final String value) {
+        tipoTributacao = value;
     }
 
-    public String getModBC() {
-        return modBC;
+    public String getModalidadeBaseCalculo() {
+        return modalidadeBaseCalculo;
     }
 
-    public void setModBC(String value) {
-        this.modBC = value;
+    public void setModalidadeBaseCalculo(final String value) {
+        modalidadeBaseCalculo = value;
     }
 
     public String getVBC() {
-        return vbc;
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setVBC(final String value) {
+        valorBaseCalculo = value;
     }
 
     public String getPICMS() {
-        return picms;
+        return aliquota;
     }
 
-    public void setPICMS(String value) {
-        this.picms = value;
+    public void setPICMS(final String value) {
+        aliquota = value;
     }
 
     public String getVICMS() {
-        return vicms;
+        return valor;
     }
 
-    public void setVICMS(String value) {
-        this.vicms = value;
+    public void setVICMS(final String value) {
+        valor = value;
+    }
+
+    public String getTipoTributacao() {
+        return tipoTributacao;
+    }
+
+    public void setTipoTributacao(final String cst) {
+        this.tipoTributacao = cst;
+    }
+
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
+    }
+
+    public void setValorBaseCalculo(final String vbc) {
+        this.valorBaseCalculo = vbc;
+    }
+
+    public String getAliquota() {
+        return aliquota;
+    }
+
+    public void setAliquota(final String picms) {
+        this.aliquota = picms;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(final String vicms) {
+        this.valor = vicms;
     }
 
 }

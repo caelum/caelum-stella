@@ -18,14 +18,20 @@ public class Vol {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String qVol;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String esp;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String marca;
+
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nVol;
+
     protected String pesoL;
+
     protected String pesoB;
+
     protected List<Lacres> lacres;
 
     public String getQVol() {

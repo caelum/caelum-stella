@@ -14,10 +14,13 @@ public class II {
 
     @XmlElement(name = "vBC", required = true)
     protected String vbc;
+
     @XmlElement(required = true)
     protected String vDespAdu;
+
     @XmlElement(name = "vII", required = true)
     protected String vii;
+
     @XmlElement(name = "vIOF", required = true)
     protected String viof;
 

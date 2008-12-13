@@ -17,13 +17,18 @@ public class COFINSOutr {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "pCOFINS")
     protected String pcofins;
+
     @XmlElement(name = "qBCProd")
     protected String qbcProd;
+
     protected String vAliqProd;
+
     @XmlElement(name = "vCOFINS", required = true)
     protected String vcofins;
 

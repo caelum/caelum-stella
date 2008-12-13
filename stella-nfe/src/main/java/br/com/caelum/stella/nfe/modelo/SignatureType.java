@@ -24,10 +24,13 @@ public class SignatureType {
 
     @XmlElement(name = "SignedInfo", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected SignedInfoType signedInfo;
+
     @XmlElement(name = "SignatureValue", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected SignatureValueType signatureValue;
+
     @XmlElement(name = "KeyInfo", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
     protected KeyInfoType keyInfo;
+
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

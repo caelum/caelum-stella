@@ -17,13 +17,18 @@ public class PISOutr {
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cst;
+
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "pPIS")
     protected String ppis;
+
     @XmlElement(name = "qBCProd")
     protected String qbcProd;
+
     protected String vAliqProd;
+
     @XmlElement(name = "vPIS", required = true)
     protected String vpis;
 

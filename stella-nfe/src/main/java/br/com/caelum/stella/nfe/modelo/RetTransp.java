@@ -16,15 +16,20 @@ public class RetTransp {
 
     @XmlElement(required = true)
     protected String vServ;
+
     @XmlElement(name = "vBCRet", required = true)
     protected String vbcRet;
+
     @XmlElement(name = "pICMSRet", required = true)
     protected String picmsRet;
+
     @XmlElement(name = "vICMSRet", required = true)
     protected String vicmsRet;
+
     @XmlElement(name = "CFOP", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cfop;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cMunFG;

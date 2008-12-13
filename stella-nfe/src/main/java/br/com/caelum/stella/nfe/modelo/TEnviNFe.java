@@ -25,8 +25,10 @@ public class TEnviNFe {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String idLote;
+
     @XmlElement(name = "NFe", required = true)
     protected List<TNFe> nFe;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;

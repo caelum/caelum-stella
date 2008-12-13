@@ -13,12 +13,16 @@ import javax.xml.bind.annotation.XmlType;
 public class ISSQNtot {
 
     protected String vServ;
+
     @XmlElement(name = "vBC")
     protected String vbc;
+
     @XmlElement(name = "vISS")
     protected String viss;
+
     @XmlElement(name = "vPIS")
     protected String vpis;
+
     @XmlElement(name = "vCOFINS")
     protected String vcofins;
 

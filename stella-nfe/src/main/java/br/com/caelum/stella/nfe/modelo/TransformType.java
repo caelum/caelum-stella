@@ -22,6 +22,7 @@ public class TransformType {
 
     @XmlElement(name = "XPath", namespace = "http://www.w3.org/2000/09/xmldsig#")
     protected List<String> xPath;
+
     @XmlAttribute(name = "Algorithm", required = true)
     protected String algorithm;
 

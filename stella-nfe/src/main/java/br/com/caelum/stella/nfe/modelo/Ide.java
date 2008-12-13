@@ -22,53 +22,71 @@ public class Ide {
     @XmlElement(name = "cUF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cuf;
+
     @XmlElement(name = "cNF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnf;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String natOp;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String indPag;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String mod;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String serie;
+
     @XmlElement(name = "nNF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String nnf;
+
     @XmlElement(required = true)
     protected XMLGregorianCalendar dEmi;
+
     protected XMLGregorianCalendar dSaiEnt;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tpNF;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cMunFG;
+
     @XmlElement(name = "NFref")
     protected List<NFref> nFref;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tpImp;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tpEmis;
+
     @XmlElement(name = "cDV", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cdv;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String tpAmb;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String finNFe;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String procEmi;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String verProc;

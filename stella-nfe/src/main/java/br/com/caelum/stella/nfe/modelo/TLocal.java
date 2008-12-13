@@ -21,18 +21,25 @@ public class TLocal {
     @XmlElement(name = "CNPJ", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cnpj;
+
     @XmlElement(required = true)
     protected String xLgr;
+
     @XmlElement(required = true)
     protected String nro;
+
     protected String xCpl;
+
     @XmlElement(required = true)
     protected String xBairro;
+
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String cMun;
+
     @XmlElement(required = true)
     protected String xMun;
+
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
 
