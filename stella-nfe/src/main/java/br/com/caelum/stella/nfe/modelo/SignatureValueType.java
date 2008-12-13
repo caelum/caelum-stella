@@ -33,16 +33,16 @@ public class SignatureValueType {
         return value;
     }
 
-    public void setValue(byte[] value) {
-        this.value = ((byte[]) value);
+    public void setValue(final byte[] value) {
+        this.value = value;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    public void setId(final String value) {
+        id = value;
     }
 
 }

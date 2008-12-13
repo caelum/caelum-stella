@@ -23,8 +23,8 @@ public class X509DataType {
         return x509Certificate;
     }
 
-    public void setX509Certificate(byte[] value) {
-        this.x509Certificate = ((byte[]) value);
+    public void setX509Certificate(final byte[] value) {
+        x509Certificate = value;
     }
 
 }

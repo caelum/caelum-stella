@@ -43,48 +43,48 @@ public class ReferenceType {
         return transforms;
     }
 
-    public void setTransforms(TransformsType value) {
-        this.transforms = value;
+    public void setTransforms(final TransformsType value) {
+        transforms = value;
     }
 
     public DigestMethod getDigestMethod() {
         return digestMethod;
     }
 
-    public void setDigestMethod(DigestMethod value) {
-        this.digestMethod = value;
+    public void setDigestMethod(final DigestMethod value) {
+        digestMethod = value;
     }
 
     public byte[] getDigestValue() {
         return digestValue;
     }
 
-    public void setDigestValue(byte[] value) {
-        this.digestValue = ((byte[]) value);
+    public void setDigestValue(final byte[] value) {
+        digestValue = value;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    public void setId(final String value) {
+        id = value;
     }
 
     public String getURI() {
         return uri;
     }
 
-    public void setURI(String value) {
-        this.uri = value;
+    public void setURI(final String value) {
+        uri = value;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String value) {
-        this.type = value;
+    public void setType(final String value) {
+        type = value;
     }
 
 }

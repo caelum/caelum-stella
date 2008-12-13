@@ -1,7 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Assert;
@@ -49,7 +48,7 @@ public class BoletoTransformerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMinimumDateForVencimento() throws IOException {
+    public void testMinimumDateForVencimento() {
         banco = new BancoDoBrasil();
         Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(31, 12,
                 1979);
@@ -59,7 +58,7 @@ public class BoletoTransformerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMinimumDateForDocumento() throws IOException {
+    public void testMinimumDateForDocumento() {
         banco = new BancoDoBrasil();
         Datas datas = Datas.newDatas().withDocumento(31, 12, 1979).withProcessamento(4, 5, 2008).withVencimento(25, 8,
                 2008);
@@ -69,7 +68,7 @@ public class BoletoTransformerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMinimumDateForProcessamento() throws IOException {
+    public void testMinimumDateForProcessamento() {
         banco = new BancoDoBrasil();
         Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(31, 12, 1979).withVencimento(25, 8,
                 2008);
@@ -103,15 +102,16 @@ public class BoletoTransformerTest {
 
         class BoletoWriterMock implements BoletoWriter {
 
-            public void write(float x, float y, String text) {
+            public void write(final float x, final float y, final String text) {
                 Assert.assertNotNull(text);
             }
 
-            public void writeBold(float x, float y, String text) {
+            public void writeBold(final float x, final float y, final String text) {
                 Assert.assertNotNull(text);
             }
 
-            public void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException {
+            public void writeImage(final float x, final float y, final BufferedImage image, final float width,
+                    final float height) {
                 Assert.assertNotNull(image);
             }
 
