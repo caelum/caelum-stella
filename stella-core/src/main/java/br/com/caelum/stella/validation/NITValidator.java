@@ -1,10 +1,8 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.NITConstraints.NIT_FORMATED;
-import static br.com.caelum.stella.constraint.NITConstraints.NIT_UNFORMATED;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -54,6 +52,10 @@ public class NITValidator implements Validator<String> {
             new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
+    
+    public static final Pattern NIT_FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[.](\\d{2})-(\\d{1})");
+
+    public static final Pattern NIT_UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})(\\d{1})");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um

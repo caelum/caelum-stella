@@ -1,7 +1,7 @@
 package br.com.caelum.stella.format;
 
-import static br.com.caelum.stella.constraint.CNPJConstraints.FORMATED;
-import static br.com.caelum.stella.constraint.CNPJConstraints.UNFORMATED;
+import br.com.caelum.stella.validation.CNPJValidator;
+
 
 /**
  * @author Leonardo Bessa
@@ -11,7 +11,7 @@ public class CNPJFormatter implements Formatter {
     private final BaseFormatter base;
 
     public CNPJFormatter() {
-        this.base = new BaseFormatter(FORMATED, "$1.$2.$3/$4-$5", UNFORMATED, "$1$2$3$4$5");
+        this.base = new BaseFormatter(CNPJValidator.FORMATED, "$1.$2.$3/$4-$5", CNPJValidator.UNFORMATED, "$1$2$3$4$5");
     }
 
     public String format(String value) {

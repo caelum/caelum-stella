@@ -1,10 +1,8 @@
 package br.com.caelum.stella.validation;
 
-import static br.com.caelum.stella.constraint.CPFConstraints.FORMATED;
-import static br.com.caelum.stella.constraint.CPFConstraints.UNFORMATED;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -40,6 +38,10 @@ public class CPFValidator implements Validator<String> {
         }
     }
 
+    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
+
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
+    
     private static final Integer DV1_POSITION = 10;
 
     private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

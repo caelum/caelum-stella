@@ -1,7 +1,6 @@
 package br.com.caelum.stella.format;
 
-import static br.com.caelum.stella.constraint.CPFConstraints.FORMATED;
-import static br.com.caelum.stella.constraint.CPFConstraints.UNFORMATED;
+import br.com.caelum.stella.validation.CPFValidator;
 
 /**
  * @author Leonardo Bessa
@@ -12,7 +11,7 @@ public class CPFFormatter implements Formatter {
     private final BaseFormatter base;
 
     public CPFFormatter() {
-        this.base = new BaseFormatter(FORMATED, "$1.$2.$3-$4", UNFORMATED, "$1$2$3$4");
+        this.base = new BaseFormatter(CPFValidator.FORMATED, "$1.$2.$3-$4", CPFValidator.UNFORMATED, "$1$2$3$4");
     }
 
     public String format(String value) {

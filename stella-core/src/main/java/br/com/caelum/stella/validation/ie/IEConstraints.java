@@ -1,4 +1,4 @@
-package br.com.caelum.stella.constraint;
+package br.com.caelum.stella.validation.ie;
 
 import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.format.LeftSideZerosFormatter;
