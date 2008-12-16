@@ -16,6 +16,7 @@ public class Emissor {
     private long nossoNumero;
     private String cedente;
     private String dvContaCorrente;
+    private String dvNossoNumero;
     private int codOperacao;
     private int codFornecidoPelaAgencia;
 
@@ -242,5 +243,24 @@ public class Emissor {
     public Emissor withCodFornecidoPelaAgencia(int codFornecidoPelaAgencia) {
         this.codFornecidoPelaAgencia = codFornecidoPelaAgencia;
         return this;
+    }
+
+    /**
+     * Associa o DV do nosso número ao emissor
+     * 
+     * @param dvNossoNumero
+     */
+    public Emissor withDvNossoNumero(String dvNossoNumero) {
+        this.dvNossoNumero = dvNossoNumero;
+        return this;
+    }
+
+    /**
+     * Devolve o DV no nosso número associado ao emissor
+     * 
+     * @return
+     */
+    public String getDvNossoNumero() {
+        return this.dvNossoNumero;
     }
 }
