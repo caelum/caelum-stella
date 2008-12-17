@@ -372,7 +372,7 @@
       <id>stella.caelum.com.br</id>
       <name>Caelum Stella Server</name>
       <url>
-        scp://caelum.com.br/usr/java/webapps/stella.caelum.com.br/ROOT/dev
+        scp://caelum.com.br/usr/java/webapps/stella.caelum.com.br/root/dev
       </url>
     </site>
     <repository>
