@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder;
 
+import java.math.BigDecimal;
+
 public class IPITrib {
 
 	private IPITrib() {
@@ -14,35 +16,37 @@ public class IPITrib {
 		return this;
 	}
 
-	public IPITrib withValorDaBaseDeCalculo(String baseDeCalculo) {
+	public IPITrib withValorDaBaseDeCalculo(BigDecimal baseDeCalculo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public IPITrib withAliquota(String aliquota) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @param quantidadeTotal Quantidade total na unidade padrão para tributação.
-	 * @return
-	 */
-	public IPITrib withQuantidadeTotal(String quantidadeTotal) {
+	public IPITrib withAliquota(BigDecimal aliquota) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * @param valorPorUnidade o valor do imposto Pauta por unidade de medida.
+	 * @param quantidadeTotal
+	 *            Quantidade total na unidade padrão para tributação.
 	 * @return
 	 */
-	public IPITrib withValorPorUnidadeTributavel(String valorPorUnidade) {
+	public IPITrib withQuantidadeTotal(BigDecimal quantidadeTotal) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public IPITrib withValorDoIPI(String valor) {
+	/**
+	 * @param valorPorUnidade
+	 *            o valor do imposto Pauta por unidade de medida.
+	 * @return
+	 */
+	public IPITrib withValorPorUnidadeTributavel(BigDecimal valorPorUnidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IPITrib withValorDoIPI(BigDecimal valor) {
 		// TODO Auto-generated method stub
 		return this;
 	}

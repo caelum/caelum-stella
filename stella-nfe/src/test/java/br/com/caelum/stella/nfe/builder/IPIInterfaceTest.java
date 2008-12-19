@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 public class IPIInterfaceTest {
@@ -25,10 +27,10 @@ public class IPIInterfaceTest {
 	public void testIPIIntTrib(){
 		IPITrib.create()
 		.withSituacaoTribuaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO)
-		.withValorDaBaseDeCalculo("")
-		.withAliquota("")
-		.withQuantidadeTotal("")
-		.withValorPorUnidadeTributavel("")
-		.withValorDoIPI("");
+		.withValorDaBaseDeCalculo(new BigDecimal(""))
+		.withAliquota(new BigDecimal(""))
+		.withQuantidadeTotal(new BigDecimal(""))
+		.withValorPorUnidadeTributavel(new BigDecimal(""))
+		.withValorDoIPI(new BigDecimal(""));
 	}
 }
