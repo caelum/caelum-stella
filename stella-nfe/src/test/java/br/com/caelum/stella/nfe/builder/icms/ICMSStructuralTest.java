@@ -54,14 +54,14 @@ public class ICMSStructuralTest {
         for (Field f : Mirror.on(clazz).reflectAll().fields()) {
             Assert.assertTrue("Field " + f.getName() + " from class " + clazz.getSimpleName()
                     + " should be annotated by @XmlElement",
-                    Mirror.on(f).reflect().annontation(XmlElement.class) != null);
+                    Mirror.on(f).reflect().annotation(XmlElement.class) != null);
         }
     }
 
     @Theory
     public void testThatAllFieldsHaveNameSetted(final Class<?> clazz) {
         for (Field f : Mirror.on(clazz).reflectAll().fields()) {
-            XmlElement ann = (XmlElement) Mirror.on(f).reflect().annontation(XmlElement.class);
+            XmlElement ann = (XmlElement) Mirror.on(f).reflect().annotation(XmlElement.class);
             Assert.assertFalse("Field " + f.getName() + " from class " + clazz.getSimpleName()
                     + " should have @XmlElement property name setted", ann.name().equals("##default"));
         }

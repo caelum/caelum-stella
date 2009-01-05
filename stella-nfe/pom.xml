@@ -27,8 +27,15 @@
     <dependency>
     	<groupId>net.vidageek</groupId>
     	<artifactId>mirror</artifactId>
-    	<version>1.3-SNAPSHOT</version>
+    	<version>1.3</version>
     </dependency>
   </dependencies>
+  
+  <repositories>
+    <repository>
+        <id>vidageek.net</id>
+        <url>http://maven.vidageek.net/</url>
+    </repository>
+  </repositories>
 
 </project>
