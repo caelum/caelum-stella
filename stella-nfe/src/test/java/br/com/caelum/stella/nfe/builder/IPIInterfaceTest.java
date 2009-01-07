@@ -14,23 +14,18 @@ public class IPIInterfaceTest {
 		.withCodigoDoSeloDeControle("")
 		.withQuantidadeDeSelos(123456789012L)
 		.withCodigoDeEnquandramento("")
-		.withIPITrib(IPITrib.create())
-		.withIPIInt(IPIInt.withSituacaoTribuaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO));
-	}
-	
-	@Test
-	public void testIPIIntInterface(){
-		IPIInt.withSituacaoTribuaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO);
+		.withIPITrib(new IPITrib())
+		.withIPIInt(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO);
 	}
 	
 	@Test
 	public void testIPIIntTrib(){
-		IPITrib.create()
+		new IPITrib()
 		.withSituacaoTribuaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO)
-		.withValorDaBaseDeCalculo(new BigDecimal(""))
-		.withAliquota(new BigDecimal(""))
-		.withQuantidadeTotal(new BigDecimal(""))
-		.withValorPorUnidadeTributavel(new BigDecimal(""))
-		.withValorDoIPI(new BigDecimal(""));
+		.withValorDaBaseDeCalculo(new BigDecimal(1))
+		.withAliquota(new BigDecimal(1))
+		.withQuantidadeTotal(new BigDecimal(1))
+		.withValorPorUnidadeTributavel(new BigDecimal(1))
+		.withValorDoIPI(new BigDecimal(1));
 	}
 }

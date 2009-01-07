@@ -24,7 +24,7 @@ public class ICMS20 {
 
     @XmlElement(name = "modBC", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modalidade;
+    protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "pRedBC", required = true)
     protected String percentualReducaoBaseCalculo;
@@ -54,12 +54,12 @@ public class ICMS20 {
         tipoTributacao = value;
     }
 
-    public String getModalidade() {
-        return modalidade;
+    public String getModalidadeBaseCalculo() {
+        return modalidadeBaseCalculo;
     }
 
-    public void setModalidade(final String value) {
-        modalidade = value;
+    public void setModalidadeBaseCalculo(final String value) {
+        modalidadeBaseCalculo = value;
     }
 
     public String getPercentualReducaoBaseCalculo() {

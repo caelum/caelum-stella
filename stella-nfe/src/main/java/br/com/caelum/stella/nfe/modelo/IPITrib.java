@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,67 +13,69 @@ public class IPITrib {
 
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
+    protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC")
-    protected String vbc;
+    protected String valorBaseCalculo;
 
     @XmlElement(name = "pIPI")
-    protected String pipi;
+    protected String aliquotaIPI;
 
-    protected String qUnid;
+    @XmlElement(name = "qUnid")
+    protected String quantidade;
 
-    protected String vUnid;
+    @XmlElement(name = "vUnid")
+    protected String valorUnidade;
 
     @XmlElement(name = "vIPI", required = true)
-    protected String vipi;
+    protected String valorIPI;
 
-    public String getCST() {
-        return cst;
+    public String getCodigoSituacaoTributaria() {
+        return codigoSituacaoTributaria;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCodigoSituacaoTributaria(String codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getVBC() {
-        return vbc;
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setValorBaseCalculo(String valorBaseCalculo) {
+        this.valorBaseCalculo = valorBaseCalculo;
     }
 
-    public String getPIPI() {
-        return pipi;
+    public String getAliquotaIPI() {
+        return aliquotaIPI;
     }
 
-    public void setPIPI(String value) {
-        this.pipi = value;
+    public void setAliquotaIPI(String aliquotaIPI) {
+        this.aliquotaIPI = aliquotaIPI;
     }
 
-    public String getQUnid() {
-        return qUnid;
+    public String getQuantidade() {
+        return quantidade;
     }
 
-    public void setQUnid(String value) {
-        this.qUnid = value;
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public String getVUnid() {
-        return vUnid;
+    public String getValorUnidade() {
+        return valorUnidade;
     }
 
-    public void setVUnid(String value) {
-        this.vUnid = value;
+    public void setValorUnidade(String valorUnidade) {
+        this.valorUnidade = valorUnidade;
     }
 
-    public String getVIPI() {
-        return vipi;
+    public String getValorIPI() {
+        return valorIPI;
     }
 
-    public void setVIPI(String value) {
-        this.vipi = value;
+    public void setValorIPI(String valorIPI) {
+        this.valorIPI = valorIPI;
     }
 
 }

@@ -4,50 +4,36 @@ import java.math.BigDecimal;
 
 public class IPITrib {
 
-	private IPITrib() {
-	}
+    public IPITrib() {
+    }
+    
+    public IPITrib withSituacaoTribuaria(SituacaoTributaria situacao) {
 
-	public static IPITrib create() {
-		return new IPITrib();
-	}
+        return this;
+    }
 
-	public IPITrib withSituacaoTribuaria(SituacaoTributaria situacao) {
-		// TODO Auto-generated method stub
-		return this;
-	}
+    public IPITrib withValorDaBaseDeCalculo(BigDecimal baseDeCalculo) {
 
-	public IPITrib withValorDaBaseDeCalculo(BigDecimal baseDeCalculo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return this;
+    }
 
-	public IPITrib withAliquota(BigDecimal aliquota) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public IPITrib withAliquota(BigDecimal aliquota) {
 
-	/**
-	 * @param quantidadeTotal
-	 *            Quantidade total na unidade padrão para tributação.
-	 * @return
-	 */
-	public IPITrib withQuantidadeTotal(BigDecimal quantidadeTotal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return this;
+    }
 
-	/**
-	 * @param valorPorUnidade
-	 *            o valor do imposto Pauta por unidade de medida.
-	 * @return
-	 */
-	public IPITrib withValorPorUnidadeTributavel(BigDecimal valorPorUnidade) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public IPITrib withQuantidadeTotal(BigDecimal quantidadeTotal) {
 
-	public IPITrib withValorDoIPI(BigDecimal valor) {
-		// TODO Auto-generated method stub
-		return this;
-	}
+        return this;
+    }
+
+    public IPITrib withValorPorUnidadeTributavel(BigDecimal valorPorUnidade) {
+
+        return this;
+    }
+
+    public IPITrib withValorDoIPI(BigDecimal valor) {
+
+        return this;
+    }
 }

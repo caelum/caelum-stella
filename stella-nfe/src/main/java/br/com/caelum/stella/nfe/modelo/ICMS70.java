@@ -25,7 +25,7 @@ public class ICMS70 {
 
     @XmlElement(name = "modBC", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modalidade;
+    protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "pRedBC", required = true)
     protected String percentualReducaoBaseCalculo;
@@ -41,7 +41,7 @@ public class ICMS70 {
 
     @XmlElement(name = "modBCST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modalidadeBaseCalculoSubstituicaoTributaria;
+    protected String modalidadeSubstituicaoTributaria;
 
     @XmlElement(name = "pMVAST")
     protected String percentualAdicionadoSubstituicaoTributaria;
@@ -74,12 +74,12 @@ public class ICMS70 {
         tipoTributacao = value;
     }
 
-    public String getModalidade() {
-        return modalidade;
+    public String getModalidadeBaseCalculo() {
+        return modalidadeBaseCalculo;
     }
 
-    public void setModalidade(final String value) {
-        modalidade = value;
+    public void setModalidadeBaseCalculo(final String value) {
+        modalidadeBaseCalculo = value;
     }
 
     public String getPercentualReducaoBaseCalculo() {
@@ -114,12 +114,12 @@ public class ICMS70 {
         valor = value;
     }
 
-    public String getModalidadeBaseCalculoSubstituicaoTributaria() {
-        return modalidadeBaseCalculoSubstituicaoTributaria;
+    public String getModalidadeSubstituicaoTributaria() {
+        return modalidadeSubstituicaoTributaria;
     }
 
-    public void setModalidadeBaseCalculoSubstituicaoTributaria(final String value) {
-        modalidadeBaseCalculoSubstituicaoTributaria = value;
+    public void setModalidadeSubstituicaoTributaria(final String value) {
+        modalidadeSubstituicaoTributaria = value;
     }
 
     public String getPMVAST() {

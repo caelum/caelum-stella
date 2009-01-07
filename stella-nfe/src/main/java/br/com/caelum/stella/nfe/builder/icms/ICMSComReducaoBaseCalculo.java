@@ -1,49 +1,23 @@
 package br.com.caelum.stella.nfe.builder.icms;
 
+import java.math.BigDecimal;
+
+import br.com.caelum.stella.nfe.builder.ICMS;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
-import br.com.caelum.stella.nfe.modelo.ICMS20;
 
-public class ICMSComReducaoBaseCalculo {
+public interface ICMSComReducaoBaseCalculo extends ICMS {
 
-    private final ICMSBuilderDelegate<ICMS20> delegate;
+    public ICMSComReducaoBaseCalculo withOrigem(OrigemICMS origem);
 
-    private ICMSComReducaoBaseCalculo() {
-        delegate = new ICMSBuilderDelegate<ICMS20>(ICMS20.class);
-    }
+    public ICMSComReducaoBaseCalculo withModalidade(ModalidadeBaseCalculo modalidade);
 
-    public static ICMSComReducaoBaseCalculo create() {
-        return new ICMSComReducaoBaseCalculo();
-    }
+    public ICMSComReducaoBaseCalculo withPercentualReducaoBaseCalculo(BigDecimal percentual);
 
-    public ICMSComReducaoBaseCalculo withOrigem(OrigemICMS origem) {
-        delegate.withOrigem(origem);
-        return this;
-    }
+    public ICMSComReducaoBaseCalculo withBaseCalculo(BigDecimal valor);
 
-    public ICMSComReducaoBaseCalculo withModalidade(ModalidadeBaseCalculo modalidade) {
-        delegate.withModalidade(modalidade);
-        return this;
-    }
+    public ICMSComReducaoBaseCalculo withAliquota(BigDecimal aliquota);
 
-    public ICMSComReducaoBaseCalculo withPercentualReducaoBaseCalculo(String percentual) {
-        delegate.withPercentualReducaoBaseCalculo(percentual);
-        return this;
-    }
-
-    public ICMSComReducaoBaseCalculo withBaseCalculo(String valor) {
-        delegate.withBaseDeCalculo(valor);
-        return this;
-    }
-
-    public ICMSComReducaoBaseCalculo withAliquota(String aliquota) {
-        delegate.withAliquota(aliquota);
-        return this;
-    }
-
-    public ICMSComReducaoBaseCalculo withValor(String valor) {
-        delegate.withValor(valor);
-        return this;
-    }
+    public ICMSComReducaoBaseCalculo withValor(BigDecimal valor);
 
 }

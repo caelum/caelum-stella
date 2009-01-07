@@ -10,6 +10,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import br.com.caelum.stella.nfe.builder.icms.impl.ICMSBuilderDelegate;
 import br.com.caelum.stella.nfe.modelo.ICMS00;
 import br.com.caelum.stella.nfe.modelo.ICMS10;
 import br.com.caelum.stella.nfe.modelo.ICMS20;

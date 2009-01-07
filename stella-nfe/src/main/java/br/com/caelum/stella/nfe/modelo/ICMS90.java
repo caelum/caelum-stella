@@ -25,7 +25,7 @@ public class ICMS90 {
 
     @XmlElement(name = "modBC")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String modalidade;
+    protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "vBC")
     protected String valorBaseCalculo;
@@ -74,12 +74,12 @@ public class ICMS90 {
         tipoTributacao = value;
     }
 
-    public String getModalidade() {
-        return modalidade;
+    public String getModalidadeBaseCalculo() {
+        return modalidadeBaseCalculo;
     }
 
-    public void setModalidade(final String value) {
-        modalidade = value;
+    public void setModalidadeBaseCalculo(final String value) {
+        modalidadeBaseCalculo = value;
     }
 
     public String getVBC() {

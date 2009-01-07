@@ -9,10 +9,10 @@ public class ImpostoDeImportacaoInterfaceTest {
 	@Test
 	public void testImpostoDeImportacaoInterface(){
 		ImpostoDeImportacao.create()
-		.withBaseDeCalulo(new BigDecimal(""))
-		.withDespesasAduaneiras(new BigDecimal(""))
-		.withValor(new BigDecimal(""))
-		.withValorDoIOF(new BigDecimal(""));
+		.withBaseDeCalculo(new BigDecimal(1))
+		.withDespesasAduaneiras(new BigDecimal(1))
+		.withValor(new BigDecimal(1))
+		.withValorDoIOF(new BigDecimal(1));
 	}
 
 }

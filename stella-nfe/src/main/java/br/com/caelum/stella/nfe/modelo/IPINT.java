@@ -16,14 +16,14 @@ public class IPINT {
 
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
+    protected String codigoSituacaoTributaria;
 
-    public String getCST() {
-        return cst;
+    public String getCodigoSituacaoTributaria() {
+        return codigoSituacaoTributaria;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCodigoSituacaoTributaria(String codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
 }

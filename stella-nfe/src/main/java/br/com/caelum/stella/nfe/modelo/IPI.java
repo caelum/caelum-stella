@@ -14,83 +14,86 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "IPI ", propOrder = { "clEnq", "cnpjProd", "cSelo", "qSelo", "cEnq", "ipiTrib", "ipint" })
 public class IPI {
 
+    @XmlElement(name = "clEnq")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String clEnq;
+    protected String classeEnquadramento;
 
     @XmlElement(name = "CNPJProd")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cnpjProd;
+    protected String cnpjProdutor;
 
+    @XmlElement(name = "cSelo")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cSelo;
+    protected String codigoSelo;
 
+    @XmlElement(name = "qSelo")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String qSelo;
+    protected String quantidadeSelo;
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, name="cEnq")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cEnq;
+    protected String codigoEnquadramento;
 
     @XmlElement(name = "IPITrib")
-    protected IPITrib ipiTrib;
+    protected IPITrib ipiTributacao;
 
     @XmlElement(name = "IPINT")
     protected IPINT ipint;
 
-    public String getClEnq() {
-        return clEnq;
+    public String getClasseEnquadramento() {
+        return classeEnquadramento;
     }
 
-    public void setClEnq(String value) {
-        this.clEnq = value;
+    public void setClasseEnquadramento(String classeEnquadramento) {
+        this.classeEnquadramento = classeEnquadramento;
     }
 
-    public String getCNPJProd() {
-        return cnpjProd;
+    public String getCnpjProdutor() {
+        return cnpjProdutor;
     }
 
-    public void setCNPJProd(String value) {
-        this.cnpjProd = value;
+    public void setCnpjProdutor(String cnpjProdutor) {
+        this.cnpjProdutor = cnpjProdutor;
     }
 
-    public String getCSelo() {
-        return cSelo;
+    public String getCodigoSelo() {
+        return codigoSelo;
     }
 
-    public void setCSelo(String value) {
-        this.cSelo = value;
+    public void setCodigoSelo(String codigoSelo) {
+        this.codigoSelo = codigoSelo;
     }
 
-    public String getQSelo() {
-        return qSelo;
+    public String getQuantidadeSelo() {
+        return quantidadeSelo;
     }
 
-    public void setQSelo(String value) {
-        this.qSelo = value;
+    public void setQuantidadeSelo(String quantidadeSelo) {
+        this.quantidadeSelo = quantidadeSelo;
     }
 
-    public String getCEnq() {
-        return cEnq;
+    public String getCodigoEnquadramento() {
+        return codigoEnquadramento;
     }
 
-    public void setCEnq(String value) {
-        this.cEnq = value;
+    public void setCodigoEnquadramento(String codigoEnquadramento) {
+        this.codigoEnquadramento = codigoEnquadramento;
     }
 
-    public IPITrib getIPITrib() {
-        return ipiTrib;
+    public IPITrib getIpiTributacao() {
+        return ipiTributacao;
     }
 
-    public void setIPITrib(IPITrib value) {
-        this.ipiTrib = value;
+    public void setIpiTributacao(IPITrib ipiTributacao) {
+        this.ipiTributacao = ipiTributacao;
     }
 
-    public IPINT getIPINT() {
+    public IPINT getIpint() {
         return ipint;
     }
 
-    public void setIPINT(IPINT value) {
-        this.ipint = value;
+    public void setIpint(IPINT ipint) {
+        this.ipint = ipint;
     }
 
 }
