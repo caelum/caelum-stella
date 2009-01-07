@@ -1,48 +1,20 @@
 package br.com.caelum.stella.nfe.builder;
 
-public class IPI {
+import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 
-    private IPI() {
+public interface IPI {
 
-    }
+    public IPI withClasseDeEnquadramento(String classeDeEnquadramento);
 
-    public static IPI create() {
-        return new IPI();
-    }
+    public IPI withCNPJDoProdutor(String cnpj);
 
-    public IPI withClasseDeEnquadramento(String classeDeEnquadramento) {
+    public IPI withCodigoDoSeloDeControle(String seloDeControle);
 
-        return this;
-    }
+    public IPI withQuantidadeDeSelos(long quantidadeDeSelos);
 
-    public IPI withCNPJDoProdutor(String cnpj) {
+    public IPI withCodigoDeEnquandramento(String codigoDeEnquadramento);
 
-        return this;
-    }
+    public IPI withIPITrib(IPITributacao ipiTrib);
 
-    public IPI withCodigoDoSeloDeControle(String seloDeControle) {
-
-        return this;
-    }
-
-    public IPI withQuantidadeDeSelos(long quantidadeDeSelos) {
-
-        return this;
-    }
-
-    public IPI withCodigoDeEnquandramento(String codigoDeEnquadramento) {
-
-        return this;
-    }
-
-    public IPI withIPITrib(IPITrib ipiTrib) {
-
-        return this;
-    }
-
-    public IPI withIPIInt(SituacaoTributaria situacaoTributaria) {
-
-        return this;
-    }
-
+    public IPI withIPIInt(SituacaoTributaria situacaoTributaria);
 }

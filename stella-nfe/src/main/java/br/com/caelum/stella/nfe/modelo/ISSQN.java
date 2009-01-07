@@ -15,60 +15,60 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class ISSQN {
 
     @XmlElement(name = "vBC", required = true)
-    protected String vbc;
+    protected String valorBaseCalculo;
 
-    @XmlElement(required = true)
-    protected String vAliq;
+    @XmlElement(required = true, name = "vAliq")
+    protected String aliquota;
 
     @XmlElement(name = "vISSQN", required = true)
-    protected String vissqn;
+    protected String valorISSQN;
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, name = "cMunFG")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cMunFG;
+    protected String codigoMunicipio;
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, name = "cListServ")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cListServ;
+    protected String codigoListaServicos;
 
-    public String getVBC() {
-        return vbc;
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setValorBaseCalculo(String valorBaseCalculo) {
+        this.valorBaseCalculo = valorBaseCalculo;
     }
 
-    public String getVAliq() {
-        return vAliq;
+    public String getAliquota() {
+        return aliquota;
     }
 
-    public void setVAliq(String value) {
-        this.vAliq = value;
+    public void setAliquota(String aliquota) {
+        this.aliquota = aliquota;
     }
 
-    public String getVISSQN() {
-        return vissqn;
+    public String getValorISSQN() {
+        return valorISSQN;
     }
 
-    public void setVISSQN(String value) {
-        this.vissqn = value;
+    public void setValorISSQN(String valorISSQN) {
+        this.valorISSQN = valorISSQN;
     }
 
-    public String getCMunFG() {
-        return cMunFG;
+    public String getCodigoMunicipio() {
+        return codigoMunicipio;
     }
 
-    public void setCMunFG(String value) {
-        this.cMunFG = value;
+    public void setCodigoMunicipio(String codigoMunicipio) {
+        this.codigoMunicipio = codigoMunicipio;
     }
 
-    public String getCListServ() {
-        return cListServ;
+    public String getCodigoListaServicos() {
+        return codigoListaServicos;
     }
 
-    public void setCListServ(String value) {
-        this.cListServ = value;
+    public void setCodigoListaServicos(String codigoListaServicos) {
+        this.codigoListaServicos = codigoListaServicos;
     }
 
 }

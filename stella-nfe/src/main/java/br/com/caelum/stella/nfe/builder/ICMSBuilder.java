@@ -19,36 +19,35 @@ import br.com.caelum.stella.nfe.builder.icms.impl.ICMSTributadoIntegralmenteImpl
 
 public class ICMSBuilder {
 
-    public ICMSTributadoIntegralmente createICMSTributadoIntegralmente() {
+    public ICMSTributadoIntegralmente tributadoIntegralmente() {
         return new ICMSTributadoIntegralmenteImpl();
     }
 
-    public ICMSTributadoComSubstituicaoTributaria createICMSTributadoComSubstituicaoTributaria() {
-        
+    public ICMSTributadoComSubstituicaoTributaria tributadoComSubstituicaoTributaria() {
         return new ICMSTributadoComSubstituicaoTributariaImpl();
     }
 
-    public ICMSComReducaoBaseCalculo createICMSComReducaoBaseCalculo() {
+    public ICMSComReducaoBaseCalculo comReducaoBaseCalculo() {
         return new ICMSComReducaoBaseCalculoImpl();
     }
 
-    public ICMSNaoTributado createICMSNaoTributado() {
+    public ICMSNaoTributado naoTributado() {
         return new ICMSNaoTributadoImpl();
     }
 
-    public ICMSDiferimento createICMSDiferimento() {
+    public ICMSDiferimento diferimento() {
         return new ICMSDiferimentoImpl();
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributaria createICMSComReducaoBaseDeCalculoESubstituicaoTributaria() {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributaria comReducaoBaseDeCalculoESubstituicaoTributaria() {
         return new ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl();
     }
 
-    public ICMSOutros createICMSOutros() {
+    public ICMSOutros outros() {
         return new ICMSOutrosImpl();
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicao createICMSCobradoAnteriormentePorSubstituicao() {
+    public ICMSCobradoAnteriormentePorSubstituicao cobradoAnteriormentePorSubstituicao() {
         return new ICMSCobradoAnteriormentePorSubstituicaoImpl();
     }
 

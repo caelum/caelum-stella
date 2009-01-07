@@ -13,47 +13,47 @@ import javax.xml.bind.annotation.XmlType;
 public class II {
 
     @XmlElement(name = "vBC", required = true)
-    protected String vbc;
+    protected String valorBaseCalculo;
 
-    @XmlElement(required = true)
-    protected String vDespAdu;
+    @XmlElement(required = true, name = "vDespAdu")
+    protected String valorDespesaAduaneira;
 
     @XmlElement(name = "vII", required = true)
-    protected String vii;
+    protected String valorImpostoImportacao;
 
     @XmlElement(name = "vIOF", required = true)
-    protected String viof;
+    protected String valorImpostoSobreOperacoesFinanceiras;
 
-    public String getVBC() {
-        return vbc;
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setValorBaseCalculo(String valorBaseCalculo) {
+        this.valorBaseCalculo = valorBaseCalculo;
     }
 
-    public String getVDespAdu() {
-        return vDespAdu;
+    public String getValorDespesaAduaneira() {
+        return valorDespesaAduaneira;
     }
 
-    public void setVDespAdu(String value) {
-        this.vDespAdu = value;
+    public void setValorDespesaAduaneira(String valorDespesaAduaneira) {
+        this.valorDespesaAduaneira = valorDespesaAduaneira;
     }
 
-    public String getVII() {
-        return vii;
+    public String getValorImpostoImportacao() {
+        return valorImpostoImportacao;
     }
 
-    public void setVII(String value) {
-        this.vii = value;
+    public void setValorImpostoImportacao(String valorImpostoImportacao) {
+        this.valorImpostoImportacao = valorImpostoImportacao;
     }
 
-    public String getVIOF() {
-        return viof;
+    public String getValorImpostoSobreOperacoesFinanceiras() {
+        return valorImpostoSobreOperacoesFinanceiras;
     }
 
-    public void setVIOF(String value) {
-        this.viof = value;
+    public void setValorImpostoSobreOperacoesFinanceiras(String valorImpostoSobreOperacoesFinanceiras) {
+        this.valorImpostoSobreOperacoesFinanceiras = valorImpostoSobreOperacoesFinanceiras;
     }
 
 }

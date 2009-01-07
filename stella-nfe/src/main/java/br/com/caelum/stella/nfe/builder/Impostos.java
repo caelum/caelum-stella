@@ -1,19 +1,24 @@
 package br.com.caelum.stella.nfe.builder;
 
+import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.nfe.builder.icms.ICMS;
+import br.com.caelum.stella.nfe.modelo.Imposto;
+
 public class Impostos {
 
-    private Impostos() {
-    }
+    private Imposto imposto;
 
-    public static Impostos create() {
-        return new Impostos();
+    public Impostos() {
+        imposto = new Imposto();
     }
-
-    public Impostos withIPI() {
+    
+    public Impostos withIPI(IPI ipi) {
+        imposto.setIPI((br.com.caelum.stella.nfe.modelo.IPI) ((ObjectCreator)ipi).getInstance());
         return this;
     }
 
-    public Impostos withII() {
+    public Impostos withII(II ii) {
+        imposto.setII((br.com.caelum.stella.nfe.modelo.II) ((ObjectCreator)ii).getInstance());
         return this;
     }
 
@@ -33,7 +38,8 @@ public class Impostos {
         return this;
     }
 
-    public Impostos withISSQN() {
+    public Impostos withISSQN(ISSQN issqn) {
+        imposto.setISSQN((br.com.caelum.stella.nfe.modelo.ISSQN) ((ObjectCreator)issqn).getInstance());
         return this;
     }
 

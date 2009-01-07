@@ -2,7 +2,6 @@ package br.com.caelum.stella.nfe.builder.icms;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.stella.nfe.builder.ICMS;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 
