@@ -34,7 +34,18 @@ public class BoletoTest {
         assertEquals("3860", b.getFatorVencimento());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
+    public void fatorVencimentoComDataMuitoAntiga() {
+        Datas.newDatas().withDocumento(01, 01, 1996).withProcessamento(01, 1,
+                1996).withVencimento(1, 2, 1996);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void fatorVencimentoComDataMaiorQueOPermitido() {
+        Datas.newDatas().withDocumento(01, 01, 2025).withProcessamento(01, 1,
+                2025).withVencimento(1, 2, 2025);
+    }
+
     public void regraDoFatorVencimentoParaDataDaNoite() {
         Boleto b = Boleto.newBoleto();
 
