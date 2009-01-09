@@ -10,10 +10,6 @@ import br.com.caelum.stella.boleto.bancos.Bradesco;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 
 public class BoletosToPdfExample {
-
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         BoletoGenerator gerador = new BoletoGenerator(getBoletoBancoDoBrasil(),
                 getBoletoBradesco(), getBoletoBancoDoBrasil());
