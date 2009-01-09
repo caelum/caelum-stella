@@ -9,14 +9,14 @@ package br.com.caelum.stella.boleto;
  */
 public class Emissor {
     private int agencia;
-    private String dvAgencia;
+    private char dvAgencia;
     private long contaCorrente;
     private int carteira;
     private long numConvenio;
     private long nossoNumero;
     private String cedente;
-    private String dvContaCorrente;
-    private String dvNossoNumero;
+    private char dvContaCorrente;
+    private char dvNossoNumero;
     private int codOperacao;
     private int codFornecidoPelaAgencia;
 
@@ -161,7 +161,7 @@ public class Emissor {
      * 
      * @return
      */
-    public String getDvContaCorrente() {
+    public char getDvContaCorrente() {
         return this.dvContaCorrente;
     }
 
@@ -171,7 +171,7 @@ public class Emissor {
      * @param dv
      * @return
      */
-    public Emissor withDvContaCorrente(String dv) {
+    public Emissor withDvContaCorrente(char dv) {
         this.dvContaCorrente = dv;
         return this;
     }
@@ -181,7 +181,7 @@ public class Emissor {
      * 
      * @return
      */
-    public String getDvAgencia() {
+    public char getDvAgencia() {
         return this.dvAgencia;
     }
 
@@ -191,7 +191,7 @@ public class Emissor {
      * @param dv
      * @return
      */
-    public Emissor withDvAgencia(String dv) {
+    public Emissor withDvAgencia(char dv) {
         this.dvAgencia = dv;
         return this;
     }
@@ -250,7 +250,7 @@ public class Emissor {
      * 
      * @param dvNossoNumero
      */
-    public Emissor withDvNossoNumero(String dvNossoNumero) {
+    public Emissor withDvNossoNumero(char dvNossoNumero) {
         this.dvNossoNumero = dvNossoNumero;
         return this;
     }
@@ -260,7 +260,7 @@ public class Emissor {
      * 
      * @return
      */
-    public String getDvNossoNumero() {
+    public char getDvNossoNumero() {
         return this.dvNossoNumero;
     }
 }

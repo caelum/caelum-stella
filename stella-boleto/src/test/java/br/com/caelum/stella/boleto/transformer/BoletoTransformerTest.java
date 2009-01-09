@@ -24,76 +24,84 @@ public class BoletoTransformerTest {
 
     @Before
     public void setUp() {
-        datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
+        this.datas = Datas.newDatas().withDocumento(4, 5, 2008)
+                .withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
-        emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDvAgencia("4")
-                .withContaCorrente(76000).withNumConvenio(1207113).withDvContaCorrente("5").withCarteira(18)
-                .withNossoNumero(9000206);
+        this.emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
+                1824).withDvAgencia('4').withContaCorrente(76000)
+                .withNumConvenio(1207113).withDvContaCorrente('5')
+                .withCarteira(18).withNossoNumero(9000206);
 
-        sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12").withEndereco(
-                "Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111").withCidade("São Paulo")
-                .withUf("SP");
+        this.sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf(
+                "111.222.333-12").withEndereco("Av dos testes, 111 apto 333")
+                .withBairro("Bairro Teste").withCep("01234-111").withCidade(
+                        "São Paulo").withUf("SP");
 
-        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
+        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
+                "descricao 4", "descricao 5" };
 
         String[] locaisDePagamento = { "local 1", "local 2" };
 
-        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
+        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
+                "instrucao 4", "instrucao 5" };
 
-        banco = new BancoDoBrasil();
+        this.banco = new BancoDoBrasil();
 
-        boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas).withDescricoes(descricoes).withEmissor(emissor)
-                .withSacado(sacado).withValorBoleto("40.00").withNoDocumento("4323").withInstrucoes(instrucoes)
-                .withLocaisDePagamento(locaisDePagamento);
+        this.boleto = Boleto.newBoleto().withBanco(this.banco).withDatas(
+                this.datas).withDescricoes(descricoes)
+                .withEmissor(this.emissor).withSacado(this.sacado)
+                .withValorBoleto("40.00").withNoDocumento("4323")
+                .withInstrucoes(instrucoes).withLocaisDePagamento(
+                        locaisDePagamento);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testMinimumDateForVencimento() {
-        banco = new BancoDoBrasil();
-        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(31, 12,
-                1979);
-        boleto.withDatas(datas);
-        boleto = boleto.withBanco(banco);
+        this.banco = new BancoDoBrasil();
+        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+                .withProcessamento(4, 5, 2008).withVencimento(31, 12, 1979);
+        this.boleto.withDatas(datas);
+        this.boleto = this.boleto.withBanco(this.banco);
         transforma();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testMinimumDateForDocumento() {
-        banco = new BancoDoBrasil();
-        Datas datas = Datas.newDatas().withDocumento(31, 12, 1979).withProcessamento(4, 5, 2008).withVencimento(25, 8,
-                2008);
-        boleto.withDatas(datas);
-        boleto = boleto.withBanco(banco);
+        this.banco = new BancoDoBrasil();
+        Datas datas = Datas.newDatas().withDocumento(31, 12, 1979)
+                .withProcessamento(4, 5, 2008).withVencimento(25, 8, 2008);
+        this.boleto.withDatas(datas);
+        this.boleto = this.boleto.withBanco(this.banco);
         transforma();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testMinimumDateForProcessamento() {
-        banco = new BancoDoBrasil();
-        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(31, 12, 1979).withVencimento(25, 8,
-                2008);
-        boleto.withDatas(datas);
-        boleto = boleto.withBanco(banco);
+        this.banco = new BancoDoBrasil();
+        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008)
+                .withProcessamento(31, 12, 1979).withVencimento(25, 8, 2008);
+        this.boleto.withDatas(datas);
+        this.boleto = this.boleto.withBanco(this.banco);
         transforma();
     }
 
     @Test(expected = NullPointerException.class)
     public void testCriacaoDeBoletoSemDescricoes() {
-        boleto.withDescricoes((String[]) null);
+        this.boleto.withDescricoes((String[]) null);
 
         transforma();
     }
 
     @Test(expected = NullPointerException.class)
     public void testCriacaoDeBoletoSemInstrucoes() {
-        boleto.withInstrucoes((String[]) null);
+        this.boleto.withInstrucoes((String[]) null);
 
         transforma();
     }
 
     @Test(expected = NullPointerException.class)
     public void testCriacaoDeBoletoSemLocaisDePagamento() {
-        boleto.withLocaisDePagamento((String[]) null);
+        this.boleto.withLocaisDePagamento((String[]) null);
 
         transforma();
     }
@@ -106,11 +114,13 @@ public class BoletoTransformerTest {
                 Assert.assertNotNull(text);
             }
 
-            public void writeBold(final float x, final float y, final String text) {
+            public void writeBold(final float x, final float y,
+                    final String text) {
                 Assert.assertNotNull(text);
             }
 
-            public void writeImage(final float x, final float y, final BufferedImage image, final float width,
+            public void writeImage(final float x, final float y,
+                    final BufferedImage image, final float width,
                     final float height) {
                 Assert.assertNotNull(image);
             }
@@ -124,7 +134,8 @@ public class BoletoTransformerTest {
             }
         }
 
-        BoletoTransformer transformer = new BoletoTransformer(new BoletoWriterMock());
-        transformer.transform(boleto);
+        BoletoTransformer transformer = new BoletoTransformer(
+                new BoletoWriterMock());
+        transformer.transform(this.boleto);
     }
 }
