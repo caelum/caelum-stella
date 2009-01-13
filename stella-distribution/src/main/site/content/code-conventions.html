@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Convenção de Código</title>
+<meta name="author" content="Leonardo Nicacio Bessa">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+         <h2>Um pouco sobre a convenção de código</h2>
+
+<p>Convenção de código é importante por vários <a
+	href="http://java.sun.com/docs/codeconv/">motivos</a>. Nesta seção,
+iremos ressaltar que a convenção aprimora a legibilidade do software,
+possibilitando a compreensão de novos códigos de forma rápida e
+abrangente.</p>
+
+<p>No domínio da aplicação encontramos termos específicos do nosso
+país, tais como CPF, Inscrição Estadual, Carteira entre outros. Por
+isso, a covenção adotada preserva a identidade deles em português
+brasileiro, mantendo a legibilidade. O reconhecimento de termos é mais
+dispendioso com as traduções, como por exemplo: <a
+	href="http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas">Natural
+Persons Register</a>. O código abaixo certamente causaria muita estranheza.</p>
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+		public String getNpr();
+</textarea>
+
+<p>Revelada a importância da referência, através da língua nativa,
+aos termos específicos do domínio, surge a questão: Será que todos os
+outros termos da API devem manter esta mesma língua?</p>
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+		public String pegueCpf();
+		public void atribuaCpf(String cpf);
+</textarea>
+<p>Note que os termos <code>public</code>, <code>String</code> e <code>void</code>
+nem podem ser traduzidos, pois são palavras-chave.</p>
+<p>Os desenvovedores acostumados com o ambiente Java, certamente
+estão familiarizados com as convenções de getters e setters.</p>
+<textarea rows="10" cols="65" class="java" name="code"
+	readonly="readonly">
+		public String getCpf();
+		public void setCpf(String cpf);
+</textarea>
+
+<p>Levando esses fatores em consideração a equipe do Caelum Stella
+optou pela seguinte convenção:
+<ul>
+	<li>Em português do Brasil</li>
+	<ul>
+		<li>Todos os termos relacionados com o domínio brasileiro</li>
+		<li>JavaDoc e Documentação do site</li>
+	</ul>
+	<li>Em inglês</li>
+	<ul>
+		<li>Todo o restante.</li>
+	</ul>
+</ul>
+</body>
+</html>

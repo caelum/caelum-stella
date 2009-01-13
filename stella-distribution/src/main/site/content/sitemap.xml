@@ -2,6 +2,7 @@
 	<section>
 		<name>Caelum Stella</name>
 		<page>index.html</page>
+        <page>code-conventions.html</page>
 		<page>roadmap.html</page>
 		<page>release-notes.html</page>
 		<link title="Issue Tracking (Bugs)">

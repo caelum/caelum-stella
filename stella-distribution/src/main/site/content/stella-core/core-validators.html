@@ -27,10 +27,11 @@
 </textarea>
 
 <p>Após a execução deste programa a saída do console apresentará a
-seguinte linha: <b> [CPFError : INVALID CHECK DIGITS]</b>
+seguinte linha: <br/>
+    <b> [CPFError : INVALID CHECK DIGITS]</b>
 </p>
-<p>Atenção: Ao se chamar o método <code>assertValid()</code> este <b>lançará
-uma exceção (do tipo <code>RuntimeException</code>) <code>InvalidStateException</code></b>.
+<p>Ao chamar o método <code>assertValid()</code> este <b>lançará
+uma exceção (do tipo unchecked): <code>InvalidStateException</code></b>.
 </p>
 
 
@@ -74,4 +75,5 @@ podem produzir.
 		<li>TituloEleitoralError.INVALID_CODIGO_DE_ESTADO</li>
 	</ul>
 </li>
+</ul>
 </body>
