@@ -3,13 +3,13 @@
   <parent>
     <artifactId>caelum-stella</artifactId>
     <groupId>br.com.caelum.stella</groupId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>stella-nfe</artifactId>
   <name>Stella NFE</name>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.2</version>
   <description>Gerador de Notas Fiscais Eletrônicas</description>
   
   <dependencies>
