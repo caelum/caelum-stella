@@ -5,7 +5,7 @@
   <parent>
     <groupId>br.com.caelum.stella</groupId>
     <artifactId>caelum-stella</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
   </parent>
   <artifactId>vraptor-validator-example</artifactId>
   <packaging>war</packaging>
@@ -55,7 +55,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.2</version>
+      <version>1.2.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>

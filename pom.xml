@@ -5,7 +5,7 @@
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>caelum-stella</artifactId>
   <packaging>pom</packaging>
-  <version>1.2</version>
+  <version>1.2.1-SNAPSHOT</version>
   <name>Caelum Stella</name>
   <description>
     Caelum Stella is a set of validators, formatters and converters
@@ -24,7 +24,7 @@
     <module>stella-hibernate-validator</module>
     <module>stella-faces</module>
     <module>stella-boleto</module>
-
+	
     <module>stella-distribution</module>
     <module>examples/boleto-example</module>
     <module>examples/core-example</module>
