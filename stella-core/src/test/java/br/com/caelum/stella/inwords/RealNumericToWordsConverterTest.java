@@ -1,13 +1,11 @@
 package br.com.caelum.stella.inwords;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 /**
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
- * 
  */
 public class RealNumericToWordsConverterTest {
 
@@ -134,7 +132,6 @@ public class RealNumericToWordsConverterTest {
     public void shouldTransformAMillionAndThousandIntoNumberInWordsUsingAnd() {
         double twoHundred = 1023850;
         String actual = converter.toWords(twoHundred);
-        ;
         assertEquals("um milhão, vinte e três mil e oitocentos e cinquenta reais", actual);
     }
 
