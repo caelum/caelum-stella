@@ -22,6 +22,7 @@
   <modules>
     <module>stella-core</module>
     <module>stella-hibernate-validator</module>
+    <module>stella-hibernate-user-types</module>
     <module>stella-faces</module>
     <module>stella-boleto</module>
 	

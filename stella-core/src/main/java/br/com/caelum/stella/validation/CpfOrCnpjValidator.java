@@ -10,8 +10,7 @@ import java.util.List;
  * Este validador aceita como válidas as cadeias que represntam tanto CPF como
  * CPNJ válidas.
  * 
- * Created by IntelliJ IDEA. User: leonardobessa Date: Jan 26, 2009 Time:
- * 4:29:57 PM
+ * @author leonardobessa
  */
 public class CpfOrCnpjValidator implements Validator<String> {
 
