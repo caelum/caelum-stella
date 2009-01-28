@@ -7,8 +7,13 @@
   <script src="../assets/jsunittest.js" type="text/javascript"></script>
   <script src="../../src/prototype-1.6.0.2.js" type="text/javascript"></script>
   <script src="../../src/jquery-1.2.6.js" type="text/javascript"></script>
-	<script src="../../src/caelum-stella-core.js" type="text/javascript"></script>
+    <script src="../../src/stella-jquery-adapter.js" type="text/javascript"></script>
   <script src="../../src/mask.js" type="text/javascript"></script>
+  <script type="text/javascript" charset="utf-8">
+   $('input').mask();$(function(){
+      $('input').mask();
+   })
+  </script>
   
   <link rel="stylesheet" href="../assets/unittest.css" type="text/css" />
 </head>
@@ -52,23 +57,20 @@
     }},
 
 	  testIfSetsMaskPropertyForCpf: function(){ with(this){
-		  new Stella.Masker();
       jQuery(':text.cpf').each(function(){
-        assertElementMatches(['#','#','#','.','#','#','#','.','#','#','#','-','#','#'], this.mask);
+        assertEqual('###.###.###-##', $(this).attr('maskString'));
       });
 	  }},
 	  
 	  testIfSetsMaskPropertyForCnpj: function(){ with(this){
-	    new Stella.Masker();
 	    jQuery(':text.cnpj').each(function(){
-	      assertElementMatches(['#','#','.','#','#','#','.','#','#','#','/','#','#','#','#','-','#','#'], this.mask);
+	      assertEqual('##.###.###/####-##', $(this).attr('maskString'));
 	    });
 	  }},
 	  
 	  testIfSetsMaskPropertyForRg: function(){ with(this){
-	    new Stella.Masker();
 	    jQuery(':text.rg').each(function(){
-	      assertElementMatches(['#','#','.','#','#','#','.','#','#','#','-','#'], this.mask)
+	      assertEqual('##.###.###-#', $(this).attr('maskString'));
 	    });
 	  }}
 	  

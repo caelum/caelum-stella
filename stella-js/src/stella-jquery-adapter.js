@@ -1,3 +1,3 @@
-jQuery(window).load(function(){
-  new Stella.Masker().mask();
-});
+jQuery(function(){
+   jQuery(':text').mask();
+})

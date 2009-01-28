@@ -1,168 +1,54 @@
-Stella.Masker = function(){
-  this.cpfFields = jQuery(':text.cpf');
-  this.cpfFields.each(function(){
-    this.mask = ['#','#','#','.','#','#','#','.','#','#','#','-','#','#'];
-  });
+jQuery.fn.extend({
+  mask : function(){
+    var cpfFields = $('.cpf');
+    cpfFields.each(function(){
+      $(this).attr('maskString', '###.###.###-##');
+      $(this).format(this);
+    });
+    cpfFields.keypress(function(event){
+      $(this).doMask(this, event.which);
+    });
+    var cnpjFields = $('.cnpj');
+    cnpjFields.each(function(){
+      $(this).attr('maskString', '##.###.###/####-##')
+      $(this).format(this);
+    });
+    cnpjFields.keypress(function(event){
+      $(this).doMask(this, event.which)
+    });
+    var rgFields = $('.rg');
+    rgFields.each(function(){
+      $(this).attr('maskString', '##.###.###-#');
+      $(this).format(this);
+    })
+    rgFields.keypress(function(event){
+      $(this).doMask(this, event.which);
+    })
+  },
   
-  this.cnpjFields = jQuery(':text.cnpj');
-  this.cnpjFields.each(function(){
-    // 00.000.000/0000-00
-    // 12345678901234
-    this.mask = ['#','#','.','#','#','#','.','#','#','#','/','#','#','#','#','-','#','#'];
-  });
-  
-  this.rgFields = jQuery(':text.rg');
-  this.rgFields.each(function(){
-    this.mask = ['#','#','.','#','#','#','.','#','#','#','-','#'];
-  });
-  
-};
-
-Stella.Masker.prototype.mask = function(){
-  this.cpfFields.keypress(function(event){
-    Stella.Masker.cpf(this, event);
-  });
-  this.cpfFields.each(function(){
-    Stella.Masker.cpfWithDefinedValue(this);
-  });
-  
-  this.cnpjFields.keypress(function(event){
-    Stella.Masker.cnpj(this, event);
-  });
-  this.cnpjFields.each(function(){
-    Stella.Masker.cnpjWithDefinedValue(this);
-  });
-  
-  this.rgFields.keypress(function(event){
-    Stella.Masker.rg(this, event);
-  });
-  this.rgFields.each(function(){
-    Stella.Masker.rgWithDefinedValue(this);
-  });
-};
-
-Stella.Masker.cpf = function(field, keyEvent){
-  var input = jQuery(field);
-  var isBackspace = false;
-  var size =  input.val().length;
-  var mask = field.mask;
-  jQuery(input).attr('maxLength', mask.length);
-  
-  var kp = keyEvent.which || keyEvent.keyCode; 
-  if(kp == 8){
-    isBackspace = true;
-  }
-
-  if(!isBackspace){
-    if(mask[size] == '.' || mask[size] == '-'){
-      jQuery(input).val(input.val() + mask[size]);
-    } 
-  }
-}
-
-Stella.Masker.cpfWithDefinedValue = function(field){
-    var input = jQuery(field);
-    var isBackspace = false;
-    var size = input.val().length;
-    var mask = field.mask;
-    if(size == 11){
-      jQuery(input).attr('maxLength', mask.length);
-      if(!isBackspace){
-        var temp = [];
-        temp = input.val().split('');
-        var newInput = '';
-
-        var valueIndex = 0;
-        for(var size in mask){
-          newInput += mask[size] == '.' || mask[size] == '-' 
-                      ? mask[size]
-                      : temp[valueIndex++];
-        }
-        jQuery(input).val(newInput);
+  doMask : function(element, keyCode){
+    var input = $(this);
+    var size =  input.val().length;
+    var mask = input.attr('maskString');
+    $(input).attr('maxLength', mask.length);
+    // cuida de backspace
+    if(keyCode != 8 && mask.charAt(size) != '#'){
+        input.val(input.val() + mask.charAt(size)); 
     }
-  }
-}
-
-Stella.Masker.cnpj = function(field, keyEvent){
-  var input = jQuery(field);
-  var isBackspace = false;
-  var size =  input.val().length;
-  var mask = field.mask;
-  jQuery(input).attr('maxLength', mask.length);
+  },
   
-  var kp = keyEvent.which ||keyEvent.keyCode;
-  if(kp == 8){
-    isBackspace = true;
-  }
-  
-  if(!isBackspace){
-    if(mask[size] == '.' || mask[size] == '-' || mask[size] == '/'){
-      jQuery(input).val(input.val() + mask[size]);
-    }
-  }
-}
-
-Stella.Masker.cnpjWithDefinedValue = function(field){
-  var input = jQuery(field);
-  var isBackspace = false;
-  var size = input.val().length;
-  var mask = field.mask;
-  jQuery(input).attr('maxLength', mask.length);
-  if(size == 14 ){
-    if(!isBackspace){
-      var temp = [];
-      temp = input.val().split('');
-      var newInput = '';
+  format : function () {
+    var input = $(this);
+    var mask = $(this).attr('maskString');
+    // o campo esta populado com o tamanho esperado
+    if(input.val().length == mask.replace(/[^#]/g, '').length){
+      var temp = input.val().split('');
+      var formattedValue = '';
       var valueIndex = 0;
-
       for(var size in mask){
-        newInput += mask[size] == '.' || mask[size] == '-' || mask[size] == '/'
-                    ? mask[size]
-                    : temp[valueIndex++];
+        formattedValue += mask.charAt(size) != '#' ? mask.charAt(size) : temp[valueIndex++];
       }
-      jQuery(input).val(newInput);    
+      $(input).val(formattedValue);
     }
   }
-}
-
-Stella.Masker.rg = function(field, keyEvent){
-  var input = jQuery(field);
-  var isBackspace = false;
-  var size = input.val().length;
-  var mask = field.mask;
-  jQuery(input).attr('maxLength', mask.length);
-  
-  var kp = keyEvent.which || keyEvent.keyCode;
-  if(kp == 8){
-    isBackspace = true;
-  }
-  
-  if(!isBackspace){
-    if(mask[size] == '.' || mask[size] == '-'){
-      jQuery(input).val(input.val() + mask[size]);
-    }
-  }
-}
-
-Stella.Masker.rgWithDefinedValue = function(field){ 
-  var input = jQuery(field);
-  var isBackspace = false;
-  var size = input.val().length;
-  var mask = field.mask;
-  jQuery(input).attr('maxLength', mask.length);
-  if(size == 9){
-    if(!isBackspace){
-      var temp = [];
-      temp = input.val().split('');
-      var newInput = '';
-      var valueIndex = 0;
-
-      for(var size in mask){
-        newInput += mask[size] == '.' || mask[size] == '-'
-                    ? mask[size]
-                    : temp[valueIndex++];
-      }
-      jQuery(input).val(newInput);    
-    }
-  }
-}
+})
