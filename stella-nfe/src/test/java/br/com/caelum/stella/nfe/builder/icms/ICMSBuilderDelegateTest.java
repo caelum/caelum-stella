@@ -51,8 +51,8 @@ public class ICMSBuilderDelegateTest {
         @SuppressWarnings("unchecked")
         ICMSBuilderDelegate builder = new ICMSBuilderDelegate(icmsClass);
 
-        Assert.assertEquals(icmsClass.getSimpleName().substring(4), Mirror.on(builder.getModelInstance()).get().field(
-                "tipoTributacao"));
+        Assert.assertEquals(icmsClass.getSimpleName().substring(4), 
+        		Mirror.on(builder.getModelInstance()).get().field("tipoTributacao"));
     }
 
 }
