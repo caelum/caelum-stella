@@ -14,7 +14,7 @@ public class ImpostoBuilder {
         return new IPIImpl();
     }
 
-    public ISSQN createISSQN() {
+    public ISS createISS() {
         return new ISSQNImpl();
     }
 

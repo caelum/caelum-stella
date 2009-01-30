@@ -5,7 +5,7 @@ import static net.vidageek.mirror.Mirror.on;
 import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.builder.icms.enums.TributacaoICMS;
 
@@ -42,7 +42,7 @@ public class ICMSBuilderDelegate<T> {
         on(instance).set().field("valor").withValue(valor.toString());
     }
 
-    public void withModalidadeSubstituicaoTributaria(final ModalidadeSubstituicaoTributaria modalidade) {
+    public void withModalidadeSubstituicaoTributaria(final ModalidadeST modalidade) {
         on(instance).set().field("modalidadeSubstituicaoTributaria").withValue(modalidade.getValue());
     }
 

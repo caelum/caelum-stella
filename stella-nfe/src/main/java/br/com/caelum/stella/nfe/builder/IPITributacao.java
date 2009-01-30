@@ -6,7 +6,7 @@ import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 
 public interface IPITributacao {
 
-    public IPITributacao withSituacaoTribuaria(SituacaoTributaria situacao);
+    public IPITributacao withSituacaoTributaria(SituacaoTributaria situacao);
 
     public IPITributacao withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 

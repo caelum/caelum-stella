@@ -6,15 +6,12 @@ import org.junit.Test;
 
 public class ISSQNInterfaceTest {
 
-    @Test
-    public void testISSQNInterface() {
-        new ImpostoBuilder()
-                .createISSQN()
-                    .withValorBaseCalculo(new BigDecimal(1))
-                    .withAliquota(new BigDecimal(1))
-                    .withValor(new BigDecimal(1))
-                    .withCodigoMunicipio(1)
-                    .withCodigoListaServicos(1);
-    }
+	@Test
+	public void testISSInterface() {
+		new ImpostoBuilder().createISS()
+				.withValorBaseCalculo(new BigDecimal(1)).withAliquota(
+						new BigDecimal(1)).withValor(new BigDecimal(1))
+				.withCodigoMunicipio(1).withCodigoListaServicos(1);
+	}
 
 }

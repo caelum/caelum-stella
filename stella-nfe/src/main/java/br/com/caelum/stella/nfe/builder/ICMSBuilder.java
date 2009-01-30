@@ -2,11 +2,11 @@ package br.com.caelum.stella.nfe.builder;
 
 import br.com.caelum.stella.nfe.builder.icms.ICMSCobradoAnteriormentePorSubstituicao;
 import br.com.caelum.stella.nfe.builder.icms.ICMSComReducaoBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.ICMSComReducaoBaseDeCalculoESubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.ICMSComReducaoBaseDeCalculoEST;
 import br.com.caelum.stella.nfe.builder.icms.ICMSDiferimento;
 import br.com.caelum.stella.nfe.builder.icms.ICMSNaoTributado;
 import br.com.caelum.stella.nfe.builder.icms.ICMSOutros;
-import br.com.caelum.stella.nfe.builder.icms.ICMSTributadoComSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.ICMSTributadoComST;
 import br.com.caelum.stella.nfe.builder.icms.ICMSTributadoIntegralmente;
 import br.com.caelum.stella.nfe.builder.icms.impl.ICMSCobradoAnteriormentePorSubstituicaoImpl;
 import br.com.caelum.stella.nfe.builder.icms.impl.ICMSComReducaoBaseCalculoImpl;
@@ -23,7 +23,7 @@ public class ICMSBuilder {
         return new ICMSTributadoIntegralmenteImpl();
     }
 
-    public ICMSTributadoComSubstituicaoTributaria tributadoComSubstituicaoTributaria() {
+    public ICMSTributadoComST tributadoComST() {
         return new ICMSTributadoComSubstituicaoTributariaImpl();
     }
 
@@ -39,7 +39,7 @@ public class ICMSBuilder {
         return new ICMSDiferimentoImpl();
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributaria comReducaoBaseDeCalculoESubstituicaoTributaria() {
+    public ICMSComReducaoBaseDeCalculoEST comReducaoBaseDeCalculoEST() {
         return new ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl();
     }
 

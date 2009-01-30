@@ -15,7 +15,7 @@ public class IPITributacaoImpl implements IPITributacao, ObjectCreator{
         trib = new IPITrib();
     }
     
-    public IPITributacaoImpl withSituacaoTribuaria(SituacaoTributaria situacao) {
+    public IPITributacaoImpl withSituacaoTributaria(SituacaoTributaria situacao) {
         trib.setCodigoSituacaoTributaria(situacao.getCodigo());
         return this;
     }

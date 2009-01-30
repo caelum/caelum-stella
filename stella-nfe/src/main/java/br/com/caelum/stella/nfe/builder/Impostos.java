@@ -38,7 +38,7 @@ public class Impostos {
         return this;
     }
 
-    public Impostos withISSQN(ISSQN issqn) {
+    public Impostos withISSQN(ISS issqn) {
         imposto.setISSQN((br.com.caelum.stella.nfe.modelo.ISSQN) ((ObjectCreator)issqn).getInstance());
         return this;
     }

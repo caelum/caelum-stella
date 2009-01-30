@@ -20,7 +20,7 @@ public class ImpostoInterfaceTest {
                     .withCOFINS()
                     .withCOFINSST()
                     .withISSQN(new ImpostoBuilder()
-                            .createISSQN());
+                            .createISS());
     }
 
 }

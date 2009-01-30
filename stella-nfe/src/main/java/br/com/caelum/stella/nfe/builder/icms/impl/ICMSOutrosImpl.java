@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.icms.ICMSOutros;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.modelo.ICMS90;
 
@@ -51,32 +51,32 @@ public class ICMSOutrosImpl implements ICMSOutros, ObjectCreator  {
         return this;
     }
 
-    public ICMSOutrosImpl withModalidadeSubstituicaoTributaria(ModalidadeSubstituicaoTributaria modalidade) {
+    public ICMSOutrosImpl withModalidadeST(ModalidadeST modalidade) {
         delegate.withModalidadeSubstituicaoTributaria(modalidade);
         return this;
     }
 
-    public ICMSOutrosImpl withPercentualAdicionadoSubstituicaoTributaria(BigDecimal percentual) {
+    public ICMSOutrosImpl withPercentualAdicionadoST(BigDecimal percentual) {
         delegate.withPercentualAdicionadoSubstituicaoTributaria(percentual);
         return this;
     }
 
-    public ICMSOutrosImpl withValorBaseCalculoSubstituicaoTributaria(BigDecimal valor) {
+    public ICMSOutrosImpl withValorBaseCalculoST(BigDecimal valor) {
         delegate.withValorBaseCalculoSubstituicaoTributaria(valor);
         return this;
     }
 
-    public ICMSOutrosImpl withAliquotaSubstituicaoTributaria(BigDecimal aliquota) {
+    public ICMSOutrosImpl withAliquotaST(BigDecimal aliquota) {
         delegate.withAliquotaSubstituicaoTributaria(aliquota);
         return this;
     }
 
-    public ICMSOutrosImpl withValorSubstituicaoTributaria(BigDecimal valor) {
+    public ICMSOutrosImpl withValorST(BigDecimal valor) {
         delegate.withValorSubstituicaoTributaria(valor);
         return this;
     }
 
-    public ICMSOutrosImpl withPercentualReducaoBaseCalculoSubstituicaoTributaria(BigDecimal percentual) {
+    public ICMSOutrosImpl withPercentualReducaoBaseCalculoST(BigDecimal percentual) {
         delegate.withPercentualReducaoBaseCalculoSubstituicaoTributaria(percentual);
         return this;
     }

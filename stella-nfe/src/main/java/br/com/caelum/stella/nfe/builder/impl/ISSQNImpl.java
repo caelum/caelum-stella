@@ -6,7 +6,7 @@ import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.modelo.ISSQN;
 
 
-public class ISSQNImpl implements br.com.caelum.stella.nfe.builder.ISSQN, ObjectCreator{
+public class ISSQNImpl implements br.com.caelum.stella.nfe.builder.ISS, ObjectCreator{
 
     private ISSQN issqn;
 

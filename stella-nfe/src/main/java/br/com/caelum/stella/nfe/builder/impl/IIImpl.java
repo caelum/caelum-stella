@@ -18,12 +18,12 @@ public class IIImpl implements br.com.caelum.stella.nfe.builder.II, ObjectCreato
         return this;
     }
 
-    public IIImpl withValorImpostoImportacao(BigDecimal valorII) {
+    public IIImpl withValorII(BigDecimal valorII) {
         ii.setValorImpostoImportacao(valorII.toString());
         return this;
     }
 
-    public IIImpl withValorImpostoSobreOperacoesFinanceiras(BigDecimal valorIOF) {
+    public IIImpl withValorIOF(BigDecimal valorIOF) {
         ii.setValorImpostoSobreOperacoesFinanceiras(valorIOF.toString());
         return this;
     }

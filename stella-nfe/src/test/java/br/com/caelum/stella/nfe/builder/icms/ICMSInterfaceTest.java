@@ -7,7 +7,7 @@ import org.junit.Test;
 import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.builder.ICMSBuilder;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.builder.icms.enums.TributacaoICMS;
 
@@ -27,20 +27,20 @@ public class ICMSInterfaceTest {
     }
 
     @Test
-    public void testICMSTributadoComSubstituicaoTributariaInterface() {
-        ICMSTributadoComSubstituicaoTributaria icms = new ICMSBuilder()
-                .tributadoComSubstituicaoTributaria()
+    public void testICMSTributadoComSTInterface() {
+        ICMSTributadoComST icms = new ICMSBuilder()
+                .tributadoComST()
                     .withOrigem(OrigemICMS.NACIONAL)
                     .withModalidade(ModalidadeBaseCalculo.MARGEM_VALOR_AGREGADO)
                     .withBaseDeCalculo(new BigDecimal(1))
                     .withAliquota(new BigDecimal(1))
                     .withValor(new BigDecimal(1))
-                    .withModalidadeSubstituicaoTributaria(ModalidadeSubstituicaoTributaria.PAUTA)
+                    .withModalidadeST(ModalidadeST.PAUTA)
                     .withPercentualAdicionado(new BigDecimal(1))
                     .withPercentualReducaoBaseCalculo(new BigDecimal(1))
-                    .withValorBaseCalculoSubstituicaoTributaria(new BigDecimal(1))
-                    .withAliquotaSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorSubstituicaoTributaria(new BigDecimal(1));
+                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withAliquotaST(new BigDecimal(1))
+                    .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
     }
 
@@ -84,27 +84,27 @@ public class ICMSInterfaceTest {
         ICMSCobradoAnteriormentePorSubstituicao icms = new ICMSBuilder()
                 .cobradoAnteriormentePorSubstituicao()
                     .withOrigem(OrigemICMS.NACIONAL)
-                    .withValorBaseCalculoSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorSubstituicaoTributaria(new BigDecimal(1));
+                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
     }
 
     @Test
-    public void testICMSComReducaoBaseDeCalculoESubstituicaoTributariaInterface() {
-        ICMSComReducaoBaseDeCalculoESubstituicaoTributaria icms = new ICMSBuilder()
-                .comReducaoBaseDeCalculoESubstituicaoTributaria()
+    public void testICMSComReducaoBaseDeCalculoESTInterface() {
+        ICMSComReducaoBaseDeCalculoEST icms = new ICMSBuilder()
+                .comReducaoBaseDeCalculoEST()
                     .withOrigem(OrigemICMS.NACIONAL)
                     .withModalidade(ModalidadeBaseCalculo.MARGEM_VALOR_AGREGADO)
                     .withPercentualReducaoBaseCalculo(new BigDecimal(1))
                     .withBaseDeCalculo(new BigDecimal(1))
                     .withAliquota(new BigDecimal(1))
                     .withValor(new BigDecimal(1))
-                    .withModalidadeSubstituicaoTributaria(ModalidadeSubstituicaoTributaria.PAUTA)
-                    .withPercentualAdicionadoSubstituicaoTributaria(new BigDecimal(1))
-                    .withPercentualReducaoBaseCalculoSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorBaseCalculoSubstituicaoTributaria(new BigDecimal(1))
-                    .withAliquotaSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorSubstituicaoTributaria(new BigDecimal(1));
+                    .withModalidadeST(ModalidadeST.PAUTA)
+                    .withPercentualAdicionadoST(new BigDecimal(1))
+                    .withPercentualReducaoBaseCalculoST(new BigDecimal(1))
+                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withAliquotaST(new BigDecimal(1))
+                    .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
     }
 
@@ -118,12 +118,12 @@ public class ICMSInterfaceTest {
                     .withPercentualReducaoBaseCalculo(new BigDecimal(1))
                     .withAliquota(new BigDecimal(1))
                     .withValor(new BigDecimal(1))
-                    .withModalidadeSubstituicaoTributaria(ModalidadeSubstituicaoTributaria.PAUTA)
-                    .withPercentualAdicionadoSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorBaseCalculoSubstituicaoTributaria(new BigDecimal(1))
-                    .withAliquotaSubstituicaoTributaria(new BigDecimal(1))
-                    .withValorSubstituicaoTributaria(new BigDecimal(1))
-                    .withPercentualReducaoBaseCalculoSubstituicaoTributaria(new BigDecimal(1));
+                    .withModalidadeST(ModalidadeST.PAUTA)
+                    .withPercentualAdicionadoST(new BigDecimal(1))
+                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withAliquotaST(new BigDecimal(1))
+                    .withValorST(new BigDecimal(1))
+                    .withPercentualReducaoBaseCalculoST(new BigDecimal(1));
 
         assertModelWasFilled(icms);
     }

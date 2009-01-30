@@ -25,7 +25,7 @@ public class IPIInterfaceTest {
 	@Test
 	public void testIPIIntTrib(){
 		new IPITributacaoImpl()
-		.withSituacaoTribuaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO)
+		.withSituacaoTributaria(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO)
 		.withValorDaBaseDeCalculo(new BigDecimal(1))
 		.withAliquota(new BigDecimal(1))
 		.withQuantidadeTotal(new BigDecimal(1))

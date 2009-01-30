@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.icms;
 import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 
 public interface ICMSOutros extends ICMS {
@@ -20,16 +20,16 @@ public interface ICMSOutros extends ICMS {
 
     public ICMSOutros withValor(BigDecimal valor);
 
-    public ICMSOutros withModalidadeSubstituicaoTributaria(ModalidadeSubstituicaoTributaria modalidade);
+    public ICMSOutros withModalidadeST(ModalidadeST modalidade);
 
-    public ICMSOutros withPercentualAdicionadoSubstituicaoTributaria(BigDecimal percentual);
+    public ICMSOutros withPercentualAdicionadoST(BigDecimal percentual);
 
-    public ICMSOutros withValorBaseCalculoSubstituicaoTributaria(BigDecimal valor);
+    public ICMSOutros withValorBaseCalculoST(BigDecimal valor);
 
-    public ICMSOutros withAliquotaSubstituicaoTributaria(BigDecimal aliquota);
+    public ICMSOutros withAliquotaST(BigDecimal aliquota);
 
-    public ICMSOutros withValorSubstituicaoTributaria(BigDecimal valor);
+    public ICMSOutros withValorST(BigDecimal valor);
 
-    public ICMSOutros withPercentualReducaoBaseCalculoSubstituicaoTributaria(BigDecimal percentual);
+    public ICMSOutros withPercentualReducaoBaseCalculoST(BigDecimal percentual);
 
 }

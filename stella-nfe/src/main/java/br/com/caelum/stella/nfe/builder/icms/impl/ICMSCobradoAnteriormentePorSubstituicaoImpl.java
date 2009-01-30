@@ -24,13 +24,13 @@ public class ICMSCobradoAnteriormentePorSubstituicaoImpl implements ICMSCobradoA
         return this;
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorBaseCalculoSubstituicaoTributaria(
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorBaseCalculoST(
             BigDecimal valorBaseCalculo) {
         delegate.withValorBaseCalculoSubstituicaoTributaria(valorBaseCalculo);
         return this;
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorSubstituicaoTributaria(
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorST(
             BigDecimal valorSubstituicaoTributaria) {
         delegate.withValorSubstituicaoTributaria(valorSubstituicaoTributaria);
         return this;

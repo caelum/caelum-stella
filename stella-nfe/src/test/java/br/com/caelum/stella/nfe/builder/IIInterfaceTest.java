@@ -13,8 +13,8 @@ public class IIInterfaceTest {
                 .createII()
                     .withValorBaseCalculo(new BigDecimal(1))
                     .withValorAduaneira(new BigDecimal(1))
-                    .withValorImpostoImportacao(new BigDecimal(1))
-                    .withValorImpostoSobreOperacoesFinanceiras(new BigDecimal(1));
+                    .withValorII(new BigDecimal(1))
+                    .withValorIOF(new BigDecimal(1));
 
     }
 

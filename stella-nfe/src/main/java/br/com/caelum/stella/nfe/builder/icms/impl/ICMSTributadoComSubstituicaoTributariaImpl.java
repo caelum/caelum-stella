@@ -6,9 +6,9 @@ package br.com.caelum.stella.nfe.builder.icms.impl;
 import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
-import br.com.caelum.stella.nfe.builder.icms.ICMSTributadoComSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.ICMSTributadoComST;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
-import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
+import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.modelo.ICMS10;
 
@@ -16,7 +16,7 @@ import br.com.caelum.stella.nfe.modelo.ICMS10;
  * @author jonasabreu
  * 
  */
-public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributadoComSubstituicaoTributaria, ObjectCreator  {
+public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributadoComST, ObjectCreator  {
 
     private final ICMSBuilderDelegate<ICMS10> delegate;
 
@@ -53,8 +53,8 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withModalidadeSubstituicaoTributaria(
-            final ModalidadeSubstituicaoTributaria modalidade) {
+    public ICMSTributadoComSubstituicaoTributariaImpl withModalidadeST(
+            final ModalidadeST modalidade) {
         delegate.withModalidadeSubstituicaoTributaria(modalidade);
         return this;
     }
@@ -70,18 +70,18 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withValorBaseCalculoSubstituicaoTributaria(
+    public ICMSTributadoComSubstituicaoTributariaImpl withValorBaseCalculoST(
             final BigDecimal valorBaseCalculo) {
         delegate.withValorBaseCalculoSubstituicaoTributaria(valorBaseCalculo);
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withAliquotaSubstituicaoTributaria(final BigDecimal aliquota) {
+    public ICMSTributadoComSubstituicaoTributariaImpl withAliquotaST(final BigDecimal aliquota) {
         delegate.withAliquotaSubstituicaoTributaria(aliquota);
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withValorSubstituicaoTributaria(final BigDecimal valor) {
+    public ICMSTributadoComSubstituicaoTributariaImpl withValorST(final BigDecimal valor) {
         delegate.withValorSubstituicaoTributaria(valor);
         return this;
     }
