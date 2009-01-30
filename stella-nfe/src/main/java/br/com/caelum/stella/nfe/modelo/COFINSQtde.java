@@ -16,47 +16,47 @@ public class COFINSQtde {
 
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
+    protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "qBCProd", required = true)
-    protected String qbcProd;
+    protected String quantidadeVendida;
 
-    @XmlElement(required = true)
-    protected String vAliqProd;
+    @XmlElement(name = "vAliqProd", required = true)
+    protected String aliquota;
 
     @XmlElement(name = "vCOFINS", required = true)
-    protected String vcofins;
+    protected String valor;
 
-    public String getCST() {
-        return cst;
+    public String getCodigoSituacaoTributaria() {
+        return codigoSituacaoTributaria;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getQBCProd() {
-        return qbcProd;
+    public String getQuantidadeVendida() {
+        return quantidadeVendida;
     }
 
-    public void setQBCProd(String value) {
-        this.qbcProd = value;
+    public void setQuantidadeVendida(final String quantidadeVendida) {
+        this.quantidadeVendida = quantidadeVendida;
     }
 
-    public String getVAliqProd() {
-        return vAliqProd;
+    public String getAliquota() {
+        return aliquota;
     }
 
-    public void setVAliqProd(String value) {
-        this.vAliqProd = value;
+    public void setAliquota(final String aliquota) {
+        this.aliquota = aliquota;
     }
 
-    public String getVCOFINS() {
-        return vcofins;
+    public String getValor() {
+        return valor;
     }
 
-    public void setVCOFINS(String value) {
-        this.vcofins = value;
+    public void setValor(final String valor) {
+        this.valor = valor;
     }
 
 }

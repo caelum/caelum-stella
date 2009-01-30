@@ -1,14 +1,10 @@
 package br.com.caelum.stella.nfe.builder.icms;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
-import net.vidageek.mirror.Mirror;
-
-import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.builder.ICMSBuilder;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeBaseCalculo;
 import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeSubstituicaoTributaria;
@@ -133,11 +129,6 @@ public class ICMSInterfaceTest {
     }
 
     private void assertModelWasFilled(ICMS icms) {
-        Object instance = ((ObjectCreator) icms)
-                .getInstance();
-        for (Field field : Mirror.on(instance.getClass()).reflectAll().fields()) {
-            Assert.assertNotNull("O campo " + field.getName() + " da classe " + icms.getClass() + " deveria ter sido preenchido.", 
-                    Mirror.on(instance).get().field(field));
-        }
+    	new BuilderTestHelper(icms).assertModelWasFilled();
     }
 }

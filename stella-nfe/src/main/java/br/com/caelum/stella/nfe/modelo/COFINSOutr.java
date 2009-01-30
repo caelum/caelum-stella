@@ -16,68 +16,69 @@ public class COFINSOutr {
 
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
+    protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC")
-    protected String vbc;
+    protected String valorBaseCalculo;
 
     @XmlElement(name = "pCOFINS")
-    protected String pcofins;
+    protected String aliquotaEmPercentual;
 
-    @XmlElement(name = "qBCProd")
-    protected String qbcProd;
+    @XmlElement(name = "qbcProd")
+    protected String quantidadeVendida;
 
-    protected String vAliqProd;
+    @XmlElement(name = "vAliqProd")
+    protected String aliquota;
 
     @XmlElement(name = "vCOFINS", required = true)
-    protected String vcofins;
+    protected String valor;
 
-    public String getCST() {
-        return cst;
+    public String getCodigoSituacaoTributaria() {
+        return codigoSituacaoTributaria;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getVBC() {
-        return vbc;
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setValorBaseCalculo(final String valorBaseCalculo) {
+        this.valorBaseCalculo = valorBaseCalculo;
     }
 
-    public String getPCOFINS() {
-        return pcofins;
+    public String getAliquotaEmPercentual() {
+        return aliquotaEmPercentual;
     }
 
-    public void setPCOFINS(String value) {
-        this.pcofins = value;
+    public void setAliquotaEmPercentual(final String aliquotaEmPercentual) {
+        this.aliquotaEmPercentual = aliquotaEmPercentual;
     }
 
-    public String getQBCProd() {
-        return qbcProd;
+    public String getQuantidadeVendida() {
+        return quantidadeVendida;
     }
 
-    public void setQBCProd(String value) {
-        this.qbcProd = value;
+    public void setQuantidadeVendida(final String quantidadeVendida) {
+        this.quantidadeVendida = quantidadeVendida;
     }
 
-    public String getVAliqProd() {
-        return vAliqProd;
+    public String getAliquota() {
+        return aliquota;
     }
 
-    public void setVAliqProd(String value) {
-        this.vAliqProd = value;
+    public void setAliquota(final String aliquota) {
+        this.aliquota = aliquota;
     }
 
-    public String getVCOFINS() {
-        return vcofins;
+    public String getValor() {
+        return valor;
     }
 
-    public void setVCOFINS(String value) {
-        this.vcofins = value;
+    public void setValor(final String valor) {
+        this.valor = valor;
     }
 
 }

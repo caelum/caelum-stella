@@ -15,6 +15,7 @@ public enum SituacaoTributaria {
     SAIDA_IMUNE("54"), 
     SAIDA_COM_SUSPENSAO("55"), 
     OUTRAS_SAIDAS("99");
+    
 
     private String codigo;
 

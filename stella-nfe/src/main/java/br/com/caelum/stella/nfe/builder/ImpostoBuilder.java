@@ -22,4 +22,8 @@ public class ImpostoBuilder {
         return new ICMSBuilder();
     }
 
+    public COFINSBuilder createCOFINS() {
+        return new COFINSBuilder();
+    }
+
 }

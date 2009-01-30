@@ -16,47 +16,47 @@ public class COFINSAliq {
 
     @XmlElement(name = "CST", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String cst;
+    protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC", required = true)
-    protected String vbc;
+    protected String valorBaseCalculo;
 
     @XmlElement(name = "pCOFINS", required = true)
-    protected String pcofins;
+    protected String aliquotaEmPercentual;
 
     @XmlElement(name = "vCOFINS", required = true)
-    protected String vcofins;
+    protected String valor;
 
-    public String getCST() {
-        return cst;
+    public String getCodigoSituacaoTributaria() {
+        return codigoSituacaoTributaria;
     }
 
-    public void setCST(String value) {
-        this.cst = value;
+    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getVBC() {
-        return vbc;
+    public String getValorBaseCalculo() {
+        return valorBaseCalculo;
     }
 
-    public void setVBC(String value) {
-        this.vbc = value;
+    public void setValorBaseCalculo(final String valorBaseCalculo) {
+        this.valorBaseCalculo = valorBaseCalculo;
     }
 
-    public String getPCOFINS() {
-        return pcofins;
+    public String getAliquotaEmPercentual() {
+        return aliquotaEmPercentual;
     }
 
-    public void setPCOFINS(String value) {
-        this.pcofins = value;
+    public void setAliquotaEmPercentual(final String aliquotaEmPercentual) {
+        this.aliquotaEmPercentual = aliquotaEmPercentual;
     }
 
-    public String getVCOFINS() {
-        return vcofins;
+    public String getValor() {
+        return valor;
     }
 
-    public void setVCOFINS(String value) {
-        this.vcofins = value;
+    public void setValor(final String valor) {
+        this.valor = valor;
     }
 
 }
