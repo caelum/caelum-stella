@@ -27,7 +27,7 @@ final public class JAXBBuilderCodeGenerator {
 
         System.out.println(clazz.getInterface());
         System.out.println(clazz.getImplentation());
-
+        System.out.println(clazz.getInterfaceTest());
     }
 
 }

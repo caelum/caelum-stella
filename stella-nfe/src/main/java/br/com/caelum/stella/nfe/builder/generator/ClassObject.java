@@ -5,11 +5,22 @@ import java.util.List;
 
 /**
  * @author jonasabreu
+ * @author leonardobessa
  * 
  */
 final public class ClassObject {
+	
+	private String packageName;
 
-    private final Class<?> source;
+    public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+
+	private final Class<?> source;
 
     private final List<MethodObject> methodList;
 
@@ -41,7 +52,8 @@ final public class ClassObject {
     }
 
     private String implementationHeader() {
-        return "public final class " + getInterfaceName() + "Impl implements " + getInterfaceName()
+        return getPackageDeclaration()+
+        "public final class " + getInterfaceName() + "Impl implements " + getInterfaceName()
                 + ", ObjectCreator { " + "private final br.com.caelum.stella.nfe.modelo." + source.getSimpleName()
                 + " " + asVariable(source.getSimpleName()) + ";";
     }
@@ -59,12 +71,51 @@ final public class ClassObject {
     }
 
     private String constructor() {
-        return "public " + getInterfaceName() + "Impl () { this." + asVariable(source.getSimpleName())
+        return "public " + getImplementationName() +" () { this." + asVariable(source.getSimpleName())
                 + " = new br.com.caelum.stella.nfe.modelo." + source.getSimpleName() + "();}";
     }
 
-    private String objectCreator() {
+    private String getImplementationName() {
+    	return getInterfaceName() + "Impl";
+	}
+
+	private String objectCreator() {
         return "public br.com.caelum.stella.nfe.modelo." + source.getSimpleName() + " getInstance() {" + "return this."
                 + asVariable(source.getSimpleName()) + ";}";
     }
+
+	public String getInterfaceTest() {
+        return getPackageDeclaration()+"public final class " + getImplementationName() + "Test { " + getTestMethods() + " }";
+	}
+
+	private String getPackageDeclaration() {
+		if (packageName!=null){
+			return "package "+ packageName + " ";
+		} else
+			return "";
+	}
+
+	private String getTestMethods() {
+		String result = "";
+		String annotation = " @org.junit.Test ";
+		String signature = "public void test" + getInterfaceName() + "Interface() ";
+		String body =  getInterfaceName() + " " + asVariable(getInterfaceName()) + 
+		" = new " + getImplementationName() + "()";
+		String methodChain = "";
+		for (MethodObject method : methodList) {
+			methodChain += method.getCall();
+        }
+		methodChain += "; ";
+		String assertMethodCall = String.format("assertModelWasFilled(%s);", asVariable(getInterfaceName()));
+		body += methodChain + assertMethodCall;
+		String testMethod = String.format("%s %s { %s }", annotation, signature, body);
+		
+		String assertWasFilledTestMethod = String.format(
+				"private void assertModelWasFilled(%s %s) { "+
+					"new BuilderTestHelper(%2$s).assertModelWasFilled();"+
+				"}", getInterfaceName(), asVariable(getInterfaceName()));
+		
+		result = testMethod + assertWasFilledTestMethod;
+		return result;	
+	}
 }

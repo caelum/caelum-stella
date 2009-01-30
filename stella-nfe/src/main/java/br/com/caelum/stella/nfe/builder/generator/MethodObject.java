@@ -2,6 +2,7 @@ package br.com.caelum.stella.nfe.builder.generator;
 
 /**
  * @author jonasabreu
+ * @author leonardobessa
  * 
  */
 final public class MethodObject {
@@ -26,8 +27,22 @@ final public class MethodObject {
         return getSignature() + "{ this." + asVariable(className) + ".set" + asClass(name) + "("
                 + asVariable(parameter) + "); return this; }";
     }
+    
+    public String getCall(){
+    	return ".with"+asClass(name)+"("+getDefaultArgumentFor(parameter)+")";
+    }
 
-    private String asClass(final String parameter) {
+    private String getDefaultArgumentFor(String type) {
+    	String result;
+    	if ("String".equals(type)){
+			result = "\"\"";
+    	} else {
+    		throw new IllegalArgumentException(String.format("O tipo %s ainda não é suportado.",type));
+    	}
+		return result;
+	}
+
+	private String asClass(final String parameter) {
         return parameter.toUpperCase().charAt(0) + parameter.substring(1);
     }
 
