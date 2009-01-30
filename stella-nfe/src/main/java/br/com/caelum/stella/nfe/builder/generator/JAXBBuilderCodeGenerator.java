@@ -9,6 +9,7 @@ import java.util.List;
 
 import net.vidageek.mirror.Mirror;
 import br.com.caelum.stella.nfe.modelo.Adi;
+import br.com.caelum.stella.nfe.modelo.Arma;
 
 /**
  * @author jonasabreu
@@ -18,10 +19,20 @@ import br.com.caelum.stella.nfe.modelo.Adi;
  */
 final public class JAXBBuilderCodeGenerator {
 
-	private static final Class<?> source = Adi.class;
-
 	public static void main(final String[] args) throws IOException {
+		Class<?>[] sources = { Adi.class , Arma.class};
+		generateBuilderFor(sources);
+	}
 
+	private static void generateBuilderFor(Class<?>... sources)
+			throws FileNotFoundException {
+		for (Class<?> type : sources) {
+			generateBuilderFor(type);
+		}
+	}
+
+	private static void generateBuilderFor(Class<?> source)
+			throws FileNotFoundException {
 		ClassObject clazz = new ClassObject(source);
 
 		List<Field> fields = Mirror.on(source).reflectAll().fields();
@@ -35,9 +46,12 @@ final public class JAXBBuilderCodeGenerator {
 		String testPath = "src/test/java/";
 		String packagePath = clazz.getPackageName().replace('.', '/') + "/";
 		String extension = ".java";
-		String implementationPathName = mainPath + packagePath + clazz.getImplementationName() + extension;
-		String interfacePathName = mainPath + packagePath + clazz.getInterfaceName() + extension;
-		String interfaceTestPathName = testPath + packagePath + clazz.getInterfaceTestName() + extension;
+		String implementationPathName = mainPath + packagePath
+				+ clazz.getImplementationName() + extension;
+		String interfacePathName = mainPath + packagePath
+				+ clazz.getInterfaceName() + extension;
+		String interfaceTestPathName = testPath + packagePath
+				+ clazz.getInterfaceTestName() + extension;
 
 		generateSourceCode(clazz.getInterface(), interfacePathName);
 		generateSourceCode(clazz.getImplementation(), implementationPathName);
