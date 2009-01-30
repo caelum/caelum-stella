@@ -8,8 +8,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import net.vidageek.mirror.Mirror;
-import br.com.caelum.stella.nfe.modelo.Adi;
-import br.com.caelum.stella.nfe.modelo.Arma;
+import br.com.caelum.stella.nfe.builder.generated.Adi;
 
 /**
  * @author jonasabreu
@@ -20,7 +19,7 @@ import br.com.caelum.stella.nfe.modelo.Arma;
 final public class JAXBBuilderCodeGenerator {
 
 	public static void main(final String[] args) throws IOException {
-		Class<?>[] sources = { Adi.class , Arma.class};
+		Class<?>[] sources = { Adi.class};
 		generateBuilderFor(sources);
 	}
 
