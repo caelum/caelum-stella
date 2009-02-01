@@ -2,23 +2,24 @@ package br.com.caelum.stella.hibernate.validator;
 
 import org.hibernate.validator.Validator;
 
-import br.com.caelum.stella.validation.CpfOrCnpjValidator;
+import br.com.caelum.stella.validation.AcceptAnyValidator;
 
 /**
  * Valida a cadeia gerada através do método {@linkplain #toString()} para
- * verificar se ela está de acordo com o padrão de CPF ou CNPJ.
+ * verificar se ela está de acordo com o padrão de qualquer um dos documentos
+ *  passados como parametro.
  * 
  * @author Leonardo Bessa
  */
-public class StellaCpfOrCnpjValidator implements Validator<CpfOrCnpj> {
-    private CpfOrCnpjValidator stellaValidator;
+public class StellaAcceptAnyValidator implements Validator<AcceptAny> {
+    private AcceptAnyValidator stellaValidator;
 
     /**
      * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
      */
-    public void initialize(CpfOrCnpj annotation) {
+    public void initialize(AcceptAny annotation) {
         AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(annotation);
-        stellaValidator = new CpfOrCnpjValidator(messageProducer, annotation.formatted());
+        stellaValidator = new AcceptAnyValidator(messageProducer, annotation.formatted(), annotation.documentos());
     }
 
     /**

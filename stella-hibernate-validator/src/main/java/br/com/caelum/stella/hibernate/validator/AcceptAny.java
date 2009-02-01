@@ -10,19 +10,23 @@ import java.lang.annotation.Target;
 
 import org.hibernate.validator.ValidatorClass;
 
+import br.com.caelum.stella.validation.AcceptAnyValidator.Documento;
+
 /**
  * Restrição que pode ser associada a objetos em que o método
- * {@linkplain #toString()} represente um CPF ou CNPJ.
+ * {@linkplain #toString()} represente um dos documentos passados como parametro.
  * 
  * @author Leonardo Bessa
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { FIELD, METHOD })
-@ValidatorClass(StellaCpfOrCnpjValidator.class)
-public @interface CpfOrCnpj {
-    String message() default "{cpf_or_cnpj_invalid}";
+@ValidatorClass(StellaAcceptAnyValidator.class)
+public @interface AcceptAny {
+    String message() default "{document_invalid}";
 
     boolean formatted() default false;
+    
+    Documento[] documentos();
 
 }

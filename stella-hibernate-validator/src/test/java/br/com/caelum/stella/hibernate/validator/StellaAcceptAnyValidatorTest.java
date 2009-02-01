@@ -6,23 +6,25 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.validation.AcceptAnyValidator.Documento;
+
 /**
  * @author Leonardo Bessa
  */
-public class StellaCpfOrCnpjValidatorTest {
-	private StellaCpfOrCnpjValidator validator;
+public class StellaAcceptAnyValidatorTest {
+	private StellaAcceptAnyValidator validator;
 
 	private static class ObjectWithAnnotation {
 		@SuppressWarnings("unused")
-		@CpfOrCnpj
+		@AcceptAny(documentos={Documento.CPF,Documento.CNPJ})
 		private String cpfOrCnpj;
 	}
 
 	@Before
 	public void createValidator() throws Exception {
-		CpfOrCnpj annotation = ObjectWithAnnotation.class.getDeclaredField(
-				"cpfOrCnpj").getAnnotation(CpfOrCnpj.class);
-		validator = new StellaCpfOrCnpjValidator();
+		AcceptAny annotation = ObjectWithAnnotation.class.getDeclaredField(
+				"cpfOrCnpj").getAnnotation(AcceptAny.class);
+		validator = new StellaAcceptAnyValidator();
 		validator.initialize(annotation);
 	}
 
