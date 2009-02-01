@@ -23,20 +23,17 @@ public class CpfUserTypeTest {
 	}
 	
 	@Test
-	public void shouldSaveEntityMappedWithCpfUserType(){
+	public void shouldSaveAndLoadEntityMappedWithCpfUserType(){
 		Session session = factory.openSession();
 		PessoaFisica pessoa = new PessoaFisica();
-		pessoa.setCpf(new CPF("555.555.555-55"));
+		CPF cpf = new CPF("555.555.555-55");
+		pessoa.setCpf(cpf);
 		session.save(pessoa);
-		Assert.assertNotNull(pessoa.getId());
-	}
-	
-	@Test
-	public void shouldLoadEntity(){
-		Session session = factory.openSession();
-		PessoaFisica result = (PessoaFisica) session.createCriteria(
-				PessoaFisica.class).setMaxResults(1).uniqueResult();
-		Assert.assertNotNull(result.getCpf());
+		session.flush();
+		session = factory.openSession();
+		Long id = pessoa.getId();
+		PessoaFisica load = (PessoaFisica) session.load(PessoaFisica.class, id);
+		Assert.assertEquals(cpf, load.getCpf());
 	}
 	
 }
