@@ -7,8 +7,10 @@ import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import net.vidageek.mirror.Mirror;
-import br.com.caelum.stella.nfe.builder.generated.Adi;
+import br.com.caelum.stella.nfe.modelo.*;
 
 /**
  * @author jonasabreu
@@ -18,8 +20,10 @@ import br.com.caelum.stella.nfe.builder.generated.Adi;
  */
 final public class JAXBBuilderCodeGenerator {
 
+	private static boolean enableFileGeneration = false;
+
 	public static void main(final String[] args) throws IOException {
-		Class<?>[] sources = { Adi.class};
+		Class<?>[] sources = { Avulsa.class};
 		generateBuilderFor(sources);
 	}
 
@@ -36,7 +40,13 @@ final public class JAXBBuilderCodeGenerator {
 
 		List<Field> fields = Mirror.on(source).reflectAll().fields();
 		for (Field field : fields) {
-			clazz.addMethod(field.getName(), field.getType());
+			String name = field.getName();
+			XmlElement annotation = field.getAnnotation(XmlElement.class);
+			if (annotation != null
+					&& !"##default".equals(annotation.name())) {
+				name = annotation.name();
+			}
+			clazz.addMethod(name, field.getType());
 		}
 
 		clazz.setPackageName("br.com.caelum.stella.nfe.builder.generated");
@@ -63,9 +73,11 @@ final public class JAXBBuilderCodeGenerator {
 
 	private static void generateSourceCode(String code, String pathName)
 			throws FileNotFoundException {
-		File impl = new File(pathName);
-		PrintStream implPrintStream = new PrintStream(impl);
-		implPrintStream.print(code);
+		if (enableFileGeneration) {
+			File impl = new File(pathName);
+			PrintStream implPrintStream = new PrintStream(impl);
+			implPrintStream.print(code);
+		}
 	}
 
 }
