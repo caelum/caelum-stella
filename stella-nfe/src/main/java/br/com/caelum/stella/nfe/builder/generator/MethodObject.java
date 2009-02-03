@@ -1,5 +1,8 @@
 package br.com.caelum.stella.nfe.builder.generator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author jonasabreu
  * @author leonardobessa
@@ -15,7 +18,11 @@ final public class MethodObject {
 
     public MethodObject(final String name, final String parameter, final String className) {
         this.name = name;
-        this.parameter = parameter;
+        if (parameter.equals("XMLGregorianCalendar")) {
+            this.parameter = "Calendar";
+        } else {
+            this.parameter = parameter;
+        }
         this.className = className;
     }
 
@@ -25,24 +32,27 @@ final public class MethodObject {
 
     public String getImplementation() {
         return getSignature() + "{ this." + asVariable(className) + ".set" + asClass(name) + "("
-                + asVariable(parameter) + "); return this; }";
+        + asVariable(parameter) + "); return this; }";
     }
-    
+
     public String getCall(){
-    	return ".with"+asClass(name)+"("+getDefaultArgumentFor(parameter)+")";
+        return ".with"+asClass(name)+"("+getDefaultArgumentFor(parameter)+")";
     }
+
+    private Map<String, String> map = new HashMap<String, String>(){
+        {
+            this.put("String", "\"abc\"");
+            this.put("TUf", "TUf.AC");
+            this.put("Calendar", "Calendar.getInstance()");
+        }
+    };
 
     private String getDefaultArgumentFor(String type) {
-    	String result;
-    	if ("String".equals(type)){
-			result = "\"\"";
-    	} else {
-    		throw new IllegalArgumentException(String.format("O tipo %s ainda não é suportado.",type));
-    	}
-		return result;
-	}
+        String result = map.get(type);
+        return result;
+    }
 
-	private String asClass(final String parameter) {
+    private String asClass(final String parameter) {
         return parameter.toUpperCase().charAt(0) + parameter.substring(1);
     }
 
