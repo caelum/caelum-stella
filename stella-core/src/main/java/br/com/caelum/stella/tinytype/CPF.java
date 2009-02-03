@@ -1,29 +1,30 @@
 package br.com.caelum.stella.tinytype;
 
-
 /**
  * Representa um CPF (Cadastro de Pessoas Física).
  * 
  * @author leobessa
- *
+ * 
  */
 public final class CPF {
 
     private final String numero;
 
     /**
-     * @param numero do CPF
+     * @param numero
+     *            do CPF
      */
     public CPF(String numero) {
-       this.numero = numero;
+        this.numero = numero;
     }
-    
+
     /**
-     * @return número do CPF 
+     * @return número do CPF
      */
     public String getNumero() {
         return numero;
     }
+
     /**
      * @return número do CPF.
      */
@@ -56,5 +57,5 @@ public final class CPF {
             return false;
         return true;
     }
-    
+
 }

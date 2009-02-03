@@ -9,7 +9,7 @@ import br.com.caelum.stella.ValidationMessage;
  * Sinaliza uma ocorrência de um valor inválido.
  * 
  * @author leobessa
- *
+ * 
  */
 public class InvalidStateException extends RuntimeException {
 

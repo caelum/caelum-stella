@@ -2,7 +2,6 @@ package br.com.caelum.stella.format;
 
 import br.com.caelum.stella.validation.CNPJValidator;
 
-
 /**
  * @author Leonardo Bessa
  * 

@@ -84,7 +84,7 @@ public class TituloEleitoralValidator implements Validator<String> {
     private static final Integer[] DV1_MULTIPLIERS = { 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static final Integer[] DV2_MULTIPLIERS = { 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2 };
-    
+
     public static final Pattern TITULO_DE_ELEITOR_PATTERN = Pattern.compile("(\\d{12})");
 
     private enum Rotina implements RotinaDeDigitoVerificador {
@@ -137,11 +137,9 @@ public class TituloEleitoralValidator implements Validator<String> {
         if (tituloDeEleitor != null) {
             if (!isEligible(tituloDeEleitor)) {
                 errors.add(TituloEleitoralError.INVALID_FORMAT);
-            } 
-            else if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
+            } else if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
                 errors.add(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO);
-            }
-            else {
+            } else {
                 String unformated;
                 unformated = tituloDeEleitor;
                 if (!hasValidCheckDigits(unformated)) {
@@ -154,8 +152,8 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
         final int length = tituloDeEleitor.length();
-        int codigo = Integer.parseInt(tituloDeEleitor.substring(length-4, length-2));
-        return !(codigo>=01 && codigo<=28);
+        int codigo = Integer.parseInt(tituloDeEleitor.substring(length - 4, length - 2));
+        return !(codigo >= 01 && codigo <= 28);
     }
 
     private boolean hasValidCheckDigits(String value) {

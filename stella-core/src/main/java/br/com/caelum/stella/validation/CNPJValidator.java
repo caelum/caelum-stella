@@ -30,27 +30,11 @@ public class CNPJValidator implements Validator<String> {
     private static final Integer[] DV1_MULTIPLIERS = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static final Integer[] DV2_MULTIPLIERS = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-    
+
     public static final Pattern FORMATED = Pattern.compile("(\\d{2})[.](\\d{3})[.](\\d{3})/(\\d{4})-(\\d{2})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})");
 
-    public enum Rotina implements RotinaDeDigitoVerificador {
-        POS_PRODUTO_INTERNO {
-            public Integer transform(RotinaParameters parameter) {
-                Integer mod = parameter.getDigitoVerificadorInfo().getMod();
-                Integer result = parameter.getResult() % mod;
-                if (result < 2) {
-                    result = 0;
-                } else {
-                    result = 11 - result;
-                }
-                return result;
-            }
-        }
-    }
-    
-    
 
     private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
             new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);

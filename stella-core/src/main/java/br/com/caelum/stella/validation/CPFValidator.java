@@ -24,24 +24,11 @@ public class CPFValidator implements Validator<String> {
     private final boolean isFormatted;
 
     private final boolean isIgnoringRepeatedDigits;
-
-    private static class RotinaPosProdutoInterno implements RotinaDeDigitoVerificador {
-        public Integer transform(RotinaParameters parameter) {
-            Integer mod = parameter.getDigitoVerificadorInfo().getMod();
-            Integer result = parameter.getResult() % mod;
-            if (result < 2) {
-                result = 0;
-            } else {
-                result = 11 - result;
-            }
-            return result;
-        }
-    }
-
+    
     public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
-    
+
     private static final Integer DV1_POSITION = 10;
 
     private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -51,10 +38,10 @@ public class CPFValidator implements Validator<String> {
     private static final Integer[] DV2_MULTIPLIERS = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
+            new RotinaDeDigitoVerificador[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
     private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
+            new RotinaDeDigitoVerificador[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 

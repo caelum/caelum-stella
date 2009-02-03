@@ -52,7 +52,7 @@ public class NITValidator implements Validator<String> {
             new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
-    
+
     public static final Pattern NIT_FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[.](\\d{2})-(\\d{1})");
 
     public static final Pattern NIT_UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})(\\d{1})");

@@ -32,35 +32,36 @@ public class BaseValidator {
     }
 
     /**
-     * @param messageProducer produtor das mensagens de validação.
+     * @param messageProducer
+     *            produtor das mensagens de validação.
      */
     public BaseValidator(MessageProducer messageProducer) {
         this.messageProducer = messageProducer;
     }
 
-    
     /**
-     * @param invalidValues lista de valores que descrevem erros de validação.
+     * @param invalidValues
+     *            lista de valores que descrevem erros de validação.
      * @return lista de mensagens inválidas obtida pelo produto de mensagem.
      */
-    public List<ValidationMessage> generateValidationMessages(
-            List<InvalidValue> invalidValues) {
+    public List<ValidationMessage> generateValidationMessages(List<InvalidValue> invalidValues) {
         List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
         for (InvalidValue invalidValue : invalidValues) {
-            ValidationMessage message = messageProducer
-                    .getMessage(invalidValue);
+            ValidationMessage message = messageProducer.getMessage(invalidValue);
             messages.add(message);
         }
         return messages;
     }
+
     /**
-     * @param invalidValues lista de valores que descrevem erros de validação.
-     * @throws InvalidStateException caso a lista não esteja vazia.
+     * @param invalidValues
+     *            lista de valores que descrevem erros de validação.
+     * @throws InvalidStateException
+     *             caso a lista não esteja vazia.
      */
     public void assertValid(List<InvalidValue> invalidValues) {
         if (!invalidValues.isEmpty()) {
-            throw new InvalidStateException(
-                    generateValidationMessages(invalidValues));
+            throw new InvalidStateException(generateValidationMessages(invalidValues));
         }
     }
 
