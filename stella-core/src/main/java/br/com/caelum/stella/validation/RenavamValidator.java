@@ -11,14 +11,15 @@ import br.com.caelum.stella.validation.error.RenavamError;
 public class RenavamValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;
-    private final Integer fator = 0;
-    private final Integer mod = 11;
-    private final Integer[] pesos = { 9, 8, 7, 6, 5, 4, 3, 2 };
-    private final Integer posicaoDoDigitoVerificador = 9;
-    private final RotinaDeDigitoVerificador[] rotinas = { Rotina.POS_PRODUTO_INTERNO };
-    private final DigitoVerificadorInfo digitoVerificadorInfo = new DigitoVerificadorInfo(fator, rotinas, mod, pesos,
+    private static final Integer fator = 0;
+    private static final Integer mod = 11;
+    private static final Integer[] pesos = { 9, 8, 7, 6, 5, 4, 3, 2 };
+    private static final Integer posicaoDoDigitoVerificador = 9;
+    private static final RotinaDeDigitoVerificador[] rotinas = { new RotinaComumDeDigitoVerificador() };
+    private static final DigitoVerificadorInfo digitoVerificadorInfo = new DigitoVerificadorInfo(fator, rotinas, mod,
+            pesos,
             posicaoDoDigitoVerificador);
-    private final ValidadorDeDV validatorDeDigitoVerificador = new ValidadorDeDV(digitoVerificadorInfo);
+    private static final ValidadorDeDV validatorDeDigitoVerificador = new ValidadorDeDV(digitoVerificadorInfo);
     private final boolean isFormatted;
 
     public RenavamValidator() {

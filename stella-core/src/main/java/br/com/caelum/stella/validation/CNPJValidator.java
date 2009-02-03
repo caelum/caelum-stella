@@ -37,10 +37,12 @@ public class CNPJValidator implements Validator<String> {
 
 
     private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
+            new RotinaComumDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV1_MULTIPLIERS,
+            DV1_POSITION);
 
     private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
-            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
+            new RotinaComumDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV2_MULTIPLIERS,
+            DV2_POSITION);
 
     private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
 
