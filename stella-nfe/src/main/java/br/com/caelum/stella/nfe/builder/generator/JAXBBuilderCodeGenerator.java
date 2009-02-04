@@ -20,7 +20,7 @@ import br.com.caelum.stella.nfe.modelo.Avulsa;
  */
 final public class JAXBBuilderCodeGenerator {
 
-    private static boolean enableFileGeneration = true;
+    private static boolean enableFileGeneration = false;
 
     public static void main(final String[] args) throws IOException {
         Class<?>[] sources = { Avulsa.class };
