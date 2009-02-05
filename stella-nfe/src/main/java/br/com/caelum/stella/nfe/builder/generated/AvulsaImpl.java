@@ -2,13 +2,11 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import br.com.caelum.stella.nfe.modelo.TUf;
 
 public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.ObjectCreator {
+
+    private static final CalendarToStringConverter CONVERTER = new CalendarToStringConverter();
     private final br.com.caelum.stella.nfe.modelo.Avulsa avulsa;
 
     public AvulsaImpl() {
@@ -55,19 +53,8 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
     }
 
     public Avulsa withDEmi(Calendar calendar) {
-        this.avulsa.setDEmi(toXMLGregorianCalendar(calendar));
+        // TODO : this.avulsa.setDEmi(CONVERTER.convertDateToString(calendar));
         return this;
-    }
-
-    private XMLGregorianCalendar toXMLGregorianCalendar(Calendar calendar) {
-        try {
-            // TODO: return
-            // String lexicalRepresentation = calendar.toString();
-            // DatatypeFactory.newInstance().newXMLGregorianCalendar(lexicalRepresentation);
-            return DatatypeFactory.newInstance().newXMLGregorianCalendar();
-        } catch (DatatypeConfigurationException e) {
-            throw new IllegalStateException(e);
-        }
     }
 
     public Avulsa withVDAR(String string) {
@@ -81,7 +68,7 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
     }
 
     public Avulsa withDPag(Calendar calendar) {
-        this.avulsa.setDPag(toXMLGregorianCalendar(calendar));
+        // TODO : this.avulsa.setDPag(CONVERTER.convertDateToString(calendar));
         return this;
     }
 }
