@@ -4,6 +4,7 @@
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,7 +13,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ide ", propOrder = { "cuf", "cnf", "natOp", "indPag", "mod", "serie", "nnf", "dEmi", "dSaiEnt",
@@ -48,9 +48,9 @@ public class Ide {
     protected String nnf;
 
     @XmlElement(required = true)
-    protected XMLGregorianCalendar dEmi;
+    protected String dEmi;
 
-    protected XMLGregorianCalendar dSaiEnt;
+    protected String dSaiEnt;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -95,151 +95,155 @@ public class Ide {
         return cuf;
     }
 
-    public void setCUF(String value) {
-        this.cuf = value;
+    public void setCUF(final String value) {
+        cuf = value;
     }
 
     public String getCNF() {
         return cnf;
     }
 
-    public void setCNF(String value) {
-        this.cnf = value;
+    public void setCNF(final String value) {
+        cnf = value;
     }
 
     public String getNatOp() {
         return natOp;
     }
 
-    public void setNatOp(String value) {
-        this.natOp = value;
+    public void setNatOp(final String value) {
+        natOp = value;
     }
 
     public String getIndPag() {
         return indPag;
     }
 
-    public void setIndPag(String value) {
-        this.indPag = value;
+    public void setIndPag(final String value) {
+        indPag = value;
     }
 
     public String getMod() {
         return mod;
     }
 
-    public void setMod(String value) {
-        this.mod = value;
+    public void setMod(final String value) {
+        mod = value;
     }
 
     public String getSerie() {
         return serie;
     }
 
-    public void setSerie(String value) {
-        this.serie = value;
+    public void setSerie(final String value) {
+        serie = value;
     }
 
     public String getNNF() {
         return nnf;
     }
 
-    public void setNNF(String value) {
-        this.nnf = value;
+    public void setNNF(final String value) {
+        nnf = value;
     }
 
-    public XMLGregorianCalendar getDEmi() {
+    public String getDEmi() {
         return dEmi;
     }
 
-    public void setDEmi(XMLGregorianCalendar value) {
-        this.dEmi = value;
+    public void setDEmi(final Calendar calendar) {
+        dEmi = calendar.toString(); // TODO formatar isso
     }
 
-    public XMLGregorianCalendar getDSaiEnt() {
+    public String getDSaiEnt() {
         return dSaiEnt;
     }
 
-    public void setDSaiEnt(XMLGregorianCalendar value) {
-        this.dSaiEnt = value;
+    public void setDSaiEnt(final Calendar calendar) {
+        dSaiEnt = calendar.toString(); // TODO formatar isso
     }
 
     public String getTpNF() {
         return tpNF;
     }
 
-    public void setTpNF(String value) {
-        this.tpNF = value;
+    public void setTpNF(final String value) {
+        tpNF = value;
     }
 
     public String getCMunFG() {
         return cMunFG;
     }
 
-    public void setCMunFG(String value) {
-        this.cMunFG = value;
+    public void setCMunFG(final String value) {
+        cMunFG = value;
     }
 
     public List<NFref> getNFref() {
         if (nFref == null) {
             nFref = new ArrayList<NFref>();
         }
-        return this.nFref;
+        return nFref;
     }
 
     public String getTpImp() {
         return tpImp;
     }
 
-    public void setTpImp(String value) {
-        this.tpImp = value;
+    public void setTpImp(final String value) {
+        tpImp = value;
     }
 
     public String getTpEmis() {
         return tpEmis;
     }
 
-    public void setTpEmis(String value) {
-        this.tpEmis = value;
+    public void setTpEmis(final String value) {
+        tpEmis = value;
     }
 
     public String getCDV() {
         return cdv;
     }
 
-    public void setCDV(String value) {
-        this.cdv = value;
+    public void setCDV(final String value) {
+        cdv = value;
     }
 
     public String getTpAmb() {
         return tpAmb;
     }
 
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
     public String getFinNFe() {
         return finNFe;
     }
 
-    public void setFinNFe(String value) {
-        this.finNFe = value;
+    public void setFinNFe(final String value) {
+        finNFe = value;
     }
 
     public String getProcEmi() {
         return procEmi;
     }
 
-    public void setProcEmi(String value) {
-        this.procEmi = value;
+    public void setProcEmi(final String value) {
+        procEmi = value;
     }
 
     public String getVerProc() {
         return verProc;
     }
 
-    public void setVerProc(String value) {
-        this.verProc = value;
+    public void setVerProc(final String value) {
+        verProc = value;
+    }
+
+    public void setNFref(final List<NFref> nfref) {
+        nFref = nfref;
     }
 
 }

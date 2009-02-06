@@ -56,63 +56,67 @@ public class TRetConsReciNFe {
         return tpAmb;
     }
 
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
     public String getVerAplic() {
         return verAplic;
     }
 
-    public void setVerAplic(String value) {
-        this.verAplic = value;
+    public void setVerAplic(final String value) {
+        verAplic = value;
     }
 
     public String getNRec() {
         return nRec;
     }
 
-    public void setNRec(String value) {
-        this.nRec = value;
+    public void setNRec(final String value) {
+        nRec = value;
     }
 
     public String getCStat() {
         return cStat;
     }
 
-    public void setCStat(String value) {
-        this.cStat = value;
+    public void setCStat(final String value) {
+        cStat = value;
     }
 
     public String getXMotivo() {
         return xMotivo;
     }
 
-    public void setXMotivo(String value) {
-        this.xMotivo = value;
+    public void setXMotivo(final String value) {
+        xMotivo = value;
     }
 
     public String getCUF() {
         return cuf;
     }
 
-    public void setCUF(String value) {
-        this.cuf = value;
+    public void setCUF(final String value) {
+        cuf = value;
     }
 
     public List<TProtNFe> getProtNFe() {
         if (protNFe == null) {
             protNFe = new ArrayList<TProtNFe>();
         }
-        return this.protNFe;
+        return protNFe;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
+    }
+
+    public void setProtNFe(final List<TProtNFe> protNFe) {
+        this.protNFe = protNFe;
     }
 
 }

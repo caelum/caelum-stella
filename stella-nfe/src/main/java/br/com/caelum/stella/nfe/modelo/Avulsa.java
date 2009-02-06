@@ -3,13 +3,14 @@
  */
 package br.com.caelum.stella.nfe.modelo;
 
+import java.util.Calendar;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Avulsa ", propOrder = { "cnpj", "xOrgao", "matr", "xAgente", "fone", "uf", "ndar", "dEmi", "vdar",
@@ -44,7 +45,7 @@ public class Avulsa {
     protected String ndar;
 
     @XmlElement(required = true)
-    protected XMLGregorianCalendar dEmi;
+    protected String dEmi;
 
     @XmlElement(name = "vDAR", required = true)
     protected String vdar;
@@ -53,94 +54,94 @@ public class Avulsa {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String repEmi;
 
-    protected XMLGregorianCalendar dPag;
+    protected String dPag;
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
-        this.cnpj = value;
+    public void setCNPJ(final String value) {
+        cnpj = value;
     }
 
     public String getXOrgao() {
         return xOrgao;
     }
 
-    public void setXOrgao(String value) {
-        this.xOrgao = value;
+    public void setXOrgao(final String value) {
+        xOrgao = value;
     }
 
     public String getMatr() {
         return matr;
     }
 
-    public void setMatr(String value) {
-        this.matr = value;
+    public void setMatr(final String value) {
+        matr = value;
     }
 
     public String getXAgente() {
         return xAgente;
     }
 
-    public void setXAgente(String value) {
-        this.xAgente = value;
+    public void setXAgente(final String value) {
+        xAgente = value;
     }
 
     public String getFone() {
         return fone;
     }
 
-    public void setFone(String value) {
-        this.fone = value;
+    public void setFone(final String value) {
+        fone = value;
     }
 
     public TUf getUF() {
         return uf;
     }
 
-    public void setUF(TUf value) {
-        this.uf = value;
+    public void setUF(final TUf value) {
+        uf = value;
     }
 
     public String getNDAR() {
         return ndar;
     }
 
-    public void setNDAR(String value) {
-        this.ndar = value;
+    public void setNDAR(final String value) {
+        ndar = value;
     }
 
-    public XMLGregorianCalendar getDEmi() {
+    public String getDEmi() {
         return dEmi;
     }
 
-    public void setDEmi(XMLGregorianCalendar value) {
-        this.dEmi = value;
+    public void setDEmi(final Calendar calendar) {
+        dEmi = calendar.toString(); // TODO formatar isso
     }
 
     public String getVDAR() {
         return vdar;
     }
 
-    public void setVDAR(String value) {
-        this.vdar = value;
+    public void setVDAR(final String value) {
+        vdar = value;
     }
 
     public String getRepEmi() {
         return repEmi;
     }
 
-    public void setRepEmi(String value) {
-        this.repEmi = value;
+    public void setRepEmi(final String value) {
+        repEmi = value;
     }
 
-    public XMLGregorianCalendar getDPag() {
+    public String getDPag() {
         return dPag;
     }
 
-    public void setDPag(XMLGregorianCalendar value) {
-        this.dPag = value;
+    public void setDPag(final Calendar calendar) {
+        dPag = calendar.toString(); // TODO formatar isso
     }
 
 }

@@ -22,15 +22,19 @@ public class Cobr {
         return fat;
     }
 
-    public void setFat(Fat value) {
-        this.fat = value;
+    public void setFat(final Fat value) {
+        fat = value;
     }
 
     public List<Dup> getDup() {
         if (dup == null) {
             dup = new ArrayList<Dup>();
         }
-        return this.dup;
+        return dup;
+    }
+
+    public void setDup(final List<Dup> dups) {
+        dup = dups;
     }
 
 }

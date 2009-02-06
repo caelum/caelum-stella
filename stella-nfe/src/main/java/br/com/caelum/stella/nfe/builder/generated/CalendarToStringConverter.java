@@ -5,12 +5,12 @@ import java.util.GregorianCalendar;
 
 class CalendarToStringConverter {
 
-    String convertDateToString(Calendar calendar) {
+    public String convertDateToString(final Calendar calendar) {
         String format = "%tF";
         return String.format(format, calendar);
     }
 
-    public String convertDateTimeToString(GregorianCalendar calendar) {
+    public String convertDateTimeToString(final GregorianCalendar calendar) {
         String format = "%tFT%1$tT";
         return String.format(format, calendar);
     }

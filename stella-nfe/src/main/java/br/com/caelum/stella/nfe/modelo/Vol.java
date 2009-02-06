@@ -38,55 +38,59 @@ public class Vol {
         return qVol;
     }
 
-    public void setQVol(String value) {
-        this.qVol = value;
+    public void setQVol(final String value) {
+        qVol = value;
     }
 
     public String getEsp() {
         return esp;
     }
 
-    public void setEsp(String value) {
-        this.esp = value;
+    public void setEsp(final String value) {
+        esp = value;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public void setMarca(String value) {
-        this.marca = value;
+    public void setMarca(final String value) {
+        marca = value;
     }
 
     public String getNVol() {
         return nVol;
     }
 
-    public void setNVol(String value) {
-        this.nVol = value;
+    public void setNVol(final String value) {
+        nVol = value;
     }
 
     public String getPesoL() {
         return pesoL;
     }
 
-    public void setPesoL(String value) {
-        this.pesoL = value;
+    public void setPesoL(final String value) {
+        pesoL = value;
     }
 
     public String getPesoB() {
         return pesoB;
     }
 
-    public void setPesoB(String value) {
-        this.pesoB = value;
+    public void setPesoB(final String value) {
+        pesoB = value;
     }
 
     public List<Lacres> getLacres() {
         if (lacres == null) {
             lacres = new ArrayList<Lacres>();
         }
-        return this.lacres;
+        return lacres;
+    }
+
+    public void setLacres(final List<Lacres> lacres) {
+        this.lacres = lacres;
     }
 
 }

@@ -4,6 +4,7 @@
 package br.com.caelum.stella.nfe.modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,7 +13,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DI ", propOrder = { "ndi", "ddi", "xLocDesemb", "ufDesemb", "dDesemb", "cExportador", "adi" })
@@ -23,7 +23,7 @@ public class DI {
     protected String ndi;
 
     @XmlElement(name = "dDI", required = true)
-    protected XMLGregorianCalendar ddi;
+    protected String ddi;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -33,7 +33,7 @@ public class DI {
     protected TUf ufDesemb;
 
     @XmlElement(required = true)
-    protected XMLGregorianCalendar dDesemb;
+    protected String dDesemb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -46,55 +46,59 @@ public class DI {
         return ndi;
     }
 
-    public void setNDI(String value) {
-        this.ndi = value;
+    public void setNDI(final String value) {
+        ndi = value;
     }
 
-    public XMLGregorianCalendar getDDI() {
+    public String getDDI() {
         return ddi;
     }
 
-    public void setDDI(XMLGregorianCalendar value) {
-        this.ddi = value;
+    public void setDDI(final Calendar calendar) {
+        ddi = calendar.toString(); // TODO formatar isso
     }
 
     public String getXLocDesemb() {
         return xLocDesemb;
     }
 
-    public void setXLocDesemb(String value) {
-        this.xLocDesemb = value;
+    public void setXLocDesemb(final String value) {
+        xLocDesemb = value;
     }
 
     public TUf getUFDesemb() {
         return ufDesemb;
     }
 
-    public void setUFDesemb(TUf value) {
-        this.ufDesemb = value;
+    public void setUFDesemb(final TUf value) {
+        ufDesemb = value;
     }
 
-    public XMLGregorianCalendar getDDesemb() {
+    public String getDDesemb() {
         return dDesemb;
     }
 
-    public void setDDesemb(XMLGregorianCalendar value) {
-        this.dDesemb = value;
+    public void setDDesemb(final Calendar calendar) {
+        dDesemb = calendar.toString(); // TODO formatar isso
     }
 
     public String getCExportador() {
         return cExportador;
     }
 
-    public void setCExportador(String value) {
-        this.cExportador = value;
+    public void setCExportador(final String value) {
+        cExportador = value;
     }
 
     public List<Adi> getAdi() {
         if (adi == null) {
             adi = new ArrayList<Adi>();
         }
-        return this.adi;
+        return adi;
+    }
+
+    public void setAdi(final List<Adi> adis) {
+        adi = adis;
     }
 
 }

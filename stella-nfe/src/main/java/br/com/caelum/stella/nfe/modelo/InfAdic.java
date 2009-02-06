@@ -28,37 +28,49 @@ public class InfAdic {
         return infAdFisco;
     }
 
-    public void setInfAdFisco(String value) {
-        this.infAdFisco = value;
+    public void setInfAdFisco(final String value) {
+        infAdFisco = value;
     }
 
     public String getInfCpl() {
         return infCpl;
     }
 
-    public void setInfCpl(String value) {
-        this.infCpl = value;
+    public void setInfCpl(final String value) {
+        infCpl = value;
     }
 
     public List<ObsCont> getObsCont() {
         if (obsCont == null) {
             obsCont = new ArrayList<ObsCont>();
         }
-        return this.obsCont;
+        return obsCont;
     }
 
     public List<ObsFisco> getObsFisco() {
         if (obsFisco == null) {
             obsFisco = new ArrayList<ObsFisco>();
         }
-        return this.obsFisco;
+        return obsFisco;
     }
 
     public List<ProcRef> getProcRef() {
         if (procRef == null) {
             procRef = new ArrayList<ProcRef>();
         }
-        return this.procRef;
+        return procRef;
+    }
+
+    public void setObsCont(final List<ObsCont> obsCont) {
+        this.obsCont = obsCont;
+    }
+
+    public void setObsFisco(final List<ObsFisco> obsFisco) {
+        this.obsFisco = obsFisco;
+    }
+
+    public void setProcRef(final List<ProcRef> procRef) {
+        this.procRef = procRef;
     }
 
 }

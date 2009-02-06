@@ -37,23 +37,27 @@ public class TEnviNFe {
         return idLote;
     }
 
-    public void setIdLote(String value) {
-        this.idLote = value;
+    public void setIdLote(final String value) {
+        idLote = value;
     }
 
     public List<TNFe> getNFe() {
         if (nFe == null) {
             nFe = new ArrayList<TNFe>();
         }
-        return this.nFe;
+        return nFe;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
+    }
+
+    public void setNFe(final List<TNFe> nfes) {
+        nFe = nfes;
     }
 
 }

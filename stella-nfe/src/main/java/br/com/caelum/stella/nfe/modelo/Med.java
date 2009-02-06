@@ -3,13 +3,14 @@
  */
 package br.com.caelum.stella.nfe.modelo;
 
+import java.util.Calendar;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Med ", propOrder = { "nLote", "qLote", "dFab", "dVal", "vpmc" })
@@ -23,10 +24,10 @@ public class Med {
     protected String qLote;
 
     @XmlElement(required = true)
-    protected XMLGregorianCalendar dFab;
+    protected String dFab;
 
     @XmlElement(required = true)
-    protected XMLGregorianCalendar dVal;
+    protected String dVal;
 
     @XmlElement(name = "vPMC", required = true)
     protected String vpmc;
@@ -35,40 +36,40 @@ public class Med {
         return nLote;
     }
 
-    public void setNLote(String value) {
-        this.nLote = value;
+    public void setNLote(final String value) {
+        nLote = value;
     }
 
     public String getQLote() {
         return qLote;
     }
 
-    public void setQLote(String value) {
-        this.qLote = value;
+    public void setQLote(final String value) {
+        qLote = value;
     }
 
-    public XMLGregorianCalendar getDFab() {
+    public String getDFab() {
         return dFab;
     }
 
-    public void setDFab(XMLGregorianCalendar value) {
-        this.dFab = value;
+    public void setDFab(final String value) {
+        dFab = value;
     }
 
-    public XMLGregorianCalendar getDVal() {
+    public String getDVal() {
         return dVal;
     }
 
-    public void setDVal(XMLGregorianCalendar value) {
-        this.dVal = value;
+    public void setDVal(final Calendar calendar) {
+        dVal = calendar.toString();// TODO formatar isso
     }
 
     public String getVPMC() {
         return vpmc;
     }
 
-    public void setVPMC(String value) {
-        this.vpmc = value;
+    public void setVPMC(final String value) {
+        vpmc = value;
     }
 
 }

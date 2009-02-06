@@ -10,65 +10,65 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
     private final br.com.caelum.stella.nfe.modelo.Avulsa avulsa;
 
     public AvulsaImpl() {
-        this.avulsa = new br.com.caelum.stella.nfe.modelo.Avulsa();
+        avulsa = new br.com.caelum.stella.nfe.modelo.Avulsa();
     }
 
     public br.com.caelum.stella.nfe.modelo.Avulsa getInstance() {
-        return this.avulsa;
+        return avulsa;
     }
 
-    public Avulsa withCNPJ(String string) {
-        this.avulsa.setCNPJ(string);
+    public Avulsa withCNPJ(final String string) {
+        avulsa.setCNPJ(string);
         return this;
     }
 
-    public Avulsa withXOrgao(String string) {
-        this.avulsa.setXOrgao(string);
+    public Avulsa withXOrgao(final String string) {
+        avulsa.setXOrgao(string);
         return this;
     }
 
-    public Avulsa withMatr(String string) {
-        this.avulsa.setMatr(string);
+    public Avulsa withMatr(final String string) {
+        avulsa.setMatr(string);
         return this;
     }
 
-    public Avulsa withXAgente(String string) {
-        this.avulsa.setXAgente(string);
+    public Avulsa withXAgente(final String string) {
+        avulsa.setXAgente(string);
         return this;
     }
 
-    public Avulsa withFone(String string) {
-        this.avulsa.setFone(string);
+    public Avulsa withFone(final String string) {
+        avulsa.setFone(string);
         return this;
     }
 
-    public Avulsa withUF(TUf tUf) {
-        this.avulsa.setUF(tUf);
+    public Avulsa withUF(final TUf tUf) {
+        avulsa.setUF(tUf);
         return this;
     }
 
-    public Avulsa withNDAR(String string) {
-        this.avulsa.setNDAR(string);
+    public Avulsa withNDAR(final String string) {
+        avulsa.setNDAR(string);
         return this;
     }
 
-    public Avulsa withDEmi(Calendar calendar) {
-        // TODO : this.avulsa.setDEmi(CONVERTER.convertDateToString(calendar));
+    public Avulsa withDEmi(final Calendar calendar) {
+        avulsa.setDEmi(calendar);
         return this;
     }
 
-    public Avulsa withVDAR(String string) {
-        this.avulsa.setVDAR(string);
+    public Avulsa withVDAR(final String string) {
+        avulsa.setVDAR(string);
         return this;
     }
 
-    public Avulsa withRepEmi(String string) {
-        this.avulsa.setRepEmi(string);
+    public Avulsa withRepEmi(final String string) {
+        avulsa.setRepEmi(string);
         return this;
     }
 
-    public Avulsa withDPag(Calendar calendar) {
-        // TODO : this.avulsa.setDPag(CONVERTER.convertDateToString(calendar));
+    public Avulsa withDPag(final Calendar calendar) {
+        avulsa.setDPag(calendar);
         return this;
     }
 }

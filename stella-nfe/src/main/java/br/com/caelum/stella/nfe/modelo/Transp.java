@@ -35,46 +35,54 @@ public class Transp {
         return modFrete;
     }
 
-    public void setModFrete(String value) {
-        this.modFrete = value;
+    public void setModFrete(final String value) {
+        modFrete = value;
     }
 
     public Transporta getTransporta() {
         return transporta;
     }
 
-    public void setTransporta(Transporta value) {
-        this.transporta = value;
+    public void setTransporta(final Transporta value) {
+        transporta = value;
     }
 
     public RetTransp getRetTransp() {
         return retTransp;
     }
 
-    public void setRetTransp(RetTransp value) {
-        this.retTransp = value;
+    public void setRetTransp(final RetTransp value) {
+        retTransp = value;
     }
 
     public TVeiculo getVeicTransp() {
         return veicTransp;
     }
 
-    public void setVeicTransp(TVeiculo value) {
-        this.veicTransp = value;
+    public void setVeicTransp(final TVeiculo value) {
+        veicTransp = value;
     }
 
     public List<TVeiculo> getReboque() {
         if (reboque == null) {
             reboque = new ArrayList<TVeiculo>();
         }
-        return this.reboque;
+        return reboque;
     }
 
     public List<Vol> getVol() {
         if (vol == null) {
             vol = new ArrayList<Vol>();
         }
-        return this.vol;
+        return vol;
+    }
+
+    public void setReboques(final List<TVeiculo> reboques) {
+        reboque = reboques;
+    }
+
+    public void setVol(final List<Vol> vol) {
+        this.vol = vol;
     }
 
 }

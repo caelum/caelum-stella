@@ -67,119 +67,123 @@ public class InfNFe {
         return ide;
     }
 
-    public void setIde(Ide value) {
-        this.ide = value;
+    public void setIde(final Ide value) {
+        ide = value;
     }
 
     public Emit getEmit() {
         return emit;
     }
 
-    public void setEmit(Emit value) {
-        this.emit = value;
+    public void setEmit(final Emit value) {
+        emit = value;
     }
 
     public Avulsa getAvulsa() {
         return avulsa;
     }
 
-    public void setAvulsa(Avulsa value) {
-        this.avulsa = value;
+    public void setAvulsa(final Avulsa value) {
+        avulsa = value;
     }
 
     public Dest getDest() {
         return dest;
     }
 
-    public void setDest(Dest value) {
-        this.dest = value;
+    public void setDest(final Dest value) {
+        dest = value;
     }
 
     public TLocal getRetirada() {
         return retirada;
     }
 
-    public void setRetirada(TLocal value) {
-        this.retirada = value;
+    public void setRetirada(final TLocal value) {
+        retirada = value;
     }
 
     public TLocal getEntrega() {
         return entrega;
     }
 
-    public void setEntrega(TLocal value) {
-        this.entrega = value;
+    public void setEntrega(final TLocal value) {
+        entrega = value;
     }
 
     public List<Det> getDet() {
         if (det == null) {
             det = new ArrayList<Det>();
         }
-        return this.det;
+        return det;
     }
 
     public Total getTotal() {
         return total;
     }
 
-    public void setTotal(Total value) {
-        this.total = value;
+    public void setTotal(final Total value) {
+        total = value;
     }
 
     public Transp getTransp() {
         return transp;
     }
 
-    public void setTransp(Transp value) {
-        this.transp = value;
+    public void setTransp(final Transp value) {
+        transp = value;
     }
 
     public Cobr getCobr() {
         return cobr;
     }
 
-    public void setCobr(Cobr value) {
-        this.cobr = value;
+    public void setCobr(final Cobr value) {
+        cobr = value;
     }
 
     public InfAdic getInfAdic() {
         return infAdic;
     }
 
-    public void setInfAdic(InfAdic value) {
-        this.infAdic = value;
+    public void setInfAdic(final InfAdic value) {
+        infAdic = value;
     }
 
     public Exporta getExporta() {
         return exporta;
     }
 
-    public void setExporta(Exporta value) {
-        this.exporta = value;
+    public void setExporta(final Exporta value) {
+        exporta = value;
     }
 
     public Compra getCompra() {
         return compra;
     }
 
-    public void setCompra(Compra value) {
-        this.compra = value;
+    public void setCompra(final Compra value) {
+        compra = value;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    public void setId(final String value) {
+        id = value;
+    }
+
+    public void setDet(final List<Det> det) {
+        this.det = det;
     }
 
 }
