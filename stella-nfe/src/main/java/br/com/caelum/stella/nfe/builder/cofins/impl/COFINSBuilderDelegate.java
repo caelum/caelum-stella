@@ -1,10 +1,10 @@
 package br.com.caelum.stella.nfe.builder.cofins.impl;
 
+import static net.vidageek.mirror.Mirror.on;
+
 import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.builder.cofins.enums.SituacaoTributaria;
-
-import static net.vidageek.mirror.Mirror.on;
 
 public class COFINSBuilderDelegate<T> {
 

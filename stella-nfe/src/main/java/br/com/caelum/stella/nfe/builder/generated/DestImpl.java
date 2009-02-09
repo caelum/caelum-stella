@@ -1,6 +1,8 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
 
 public final class DestImpl implements Dest, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Dest dest;
@@ -13,13 +15,13 @@ public final class DestImpl implements Dest, br.com.caelum.stella.nfe.ObjectCrea
         return dest;
     }
 
-    public Dest withCNPJ(final String string) {
-        dest.setCNPJ(string);
+    public Dest withCNPJ(final CNPJ cnpj) {
+        dest.setCNPJ(cnpj.getNumero());
         return this;
     }
 
-    public Dest withCPF(final String string) {
-        dest.setCPF(string);
+    public Dest withCPF(final CPF cpf) {
+        dest.setCPF(cpf.getNumero());
         return this;
     }
 

@@ -16,7 +16,7 @@ public final class ImpostoImpl implements Imposto, br.com.caelum.stella.nfe.Obje
     }
 
     public Imposto withICMS(final ICMS iCMS) {
-        imposto.setICMS((br.com.caelum.stella.nfe.modelo.ICMS) ((ObjectCreator) iCMS).getInstance());
+        imposto.setICMS((br.com.caelum.stella.nfe.modelo.ICMS) (((ObjectCreator) iCMS).getInstance()));
         return this;
     }
 

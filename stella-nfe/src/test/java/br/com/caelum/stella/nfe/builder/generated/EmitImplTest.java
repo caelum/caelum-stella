@@ -1,9 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
+
 public final class EmitImplTest {
     @org.junit.Test
     public void testEmitInterface() {
-        Emit emit = new EmitImpl().withCNPJ("abc").withCPF("abc").withXNome("abc").withXFant("abc").withEnderEmit(
+        Emit emit = new EmitImpl().withCNPJ(new CNPJ("abc")).withCPF(new CPF("abc")).withXNome("abc").withXFant("abc")
+                .withEnderEmit(
                 new TEnderecoImpl()).withIE("abc").withIEST("abc").withIM("abc").withCNAE("abc");
         assertModelWasFilled(emit);
     }

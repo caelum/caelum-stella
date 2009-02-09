@@ -1,9 +1,12 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Emit {
-    public Emit withCNPJ(String string);
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
 
-    public Emit withCPF(String string);
+public interface Emit {
+    public Emit withCNPJ(CNPJ cnpj);
+
+    public Emit withCPF(CPF cpf);
 
     public Emit withXNome(String string);
 

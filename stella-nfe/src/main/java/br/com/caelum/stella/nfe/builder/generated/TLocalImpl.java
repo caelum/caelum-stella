@@ -1,6 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.tinytype.CNPJ;
 
 public final class TLocalImpl implements TLocal, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TLocal tLocal;
@@ -13,8 +14,8 @@ public final class TLocalImpl implements TLocal, br.com.caelum.stella.nfe.Object
         return this.tLocal;
     }
 
-    public TLocal withCNPJ(String string) {
-        this.tLocal.setCNPJ(string);
+    public TLocal withCNPJ(CNPJ cnpj) {
+        this.tLocal.setCNPJ(cnpj.getNumero());
         return this;
     }
 

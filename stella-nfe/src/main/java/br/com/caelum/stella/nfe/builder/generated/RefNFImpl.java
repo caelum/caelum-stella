@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.tinytype.CNPJ;
+
 public final class RefNFImpl implements RefNF, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RefNF refNF;
 
@@ -21,8 +23,8 @@ public final class RefNFImpl implements RefNF, br.com.caelum.stella.nfe.ObjectCr
         return this;
     }
 
-    public RefNF withCNPJ(String string) {
-        this.refNF.setCNPJ(string);
+    public RefNF withCNPJ(CNPJ cnpj) {
+        this.refNF.setCNPJ(cnpj.getNumero());
         return this;
     }
 

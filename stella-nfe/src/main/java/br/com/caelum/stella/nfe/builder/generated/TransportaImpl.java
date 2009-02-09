@@ -1,6 +1,8 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
 
 public final class TransportaImpl implements Transporta, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Transporta transporta;
@@ -13,13 +15,13 @@ public final class TransportaImpl implements Transporta, br.com.caelum.stella.nf
         return this.transporta;
     }
 
-    public Transporta withCNPJ(String string) {
-        this.transporta.setCNPJ(string);
+    public Transporta withCNPJ(CNPJ cnpj) {
+        this.transporta.setCNPJ(cnpj.getNumero());
         return this;
     }
 
-    public Transporta withCPF(String string) {
-        this.transporta.setCPF(string);
+    public Transporta withCPF(CPF cpf) {
+        this.transporta.setCPF(cpf.getNumero());
         return this;
     }
 

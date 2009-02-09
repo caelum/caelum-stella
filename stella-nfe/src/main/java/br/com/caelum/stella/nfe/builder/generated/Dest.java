@@ -1,9 +1,12 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Dest {
-    public Dest withCNPJ(String string);
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
 
-    public Dest withCPF(String string);
+public interface Dest {
+    public Dest withCNPJ(CNPJ cnpj);
+
+    public Dest withCPF(CPF cpf);
 
     public Dest withXNome(String string);
 

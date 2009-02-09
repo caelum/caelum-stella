@@ -1,41 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <artifactId>caelum-stella</artifactId>
-    <groupId>br.com.caelum.stella</groupId>
-    <version>1.2.1-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.caelum.stella</groupId>
-  <artifactId>stella-nfe</artifactId>
-  <name>Stella NFE</name>
-  <version>1.2.1-SNAPSHOT</version>
-  <description>Gerador de Notas Fiscais Eletrônicas</description>
-  
-  <dependencies>
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <version>2.1</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.xml</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>2.0EA3</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>net.vidageek</groupId>
-    	<artifactId>mirror</artifactId>
-    	<version>1.3</version>
-    </dependency>
-  </dependencies>
-  
-  <repositories>
-    <repository>
-        <id>vidageek.net</id>
-        <url>http://maven.vidageek.net/</url>
-    </repository>
-  </repositories>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>caelum-stella</artifactId>
+		<groupId>br.com.caelum.stella</groupId>
+		<version>1.2.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.caelum.stella</groupId>
+	<artifactId>stella-nfe</artifactId>
+	<name>Stella NFE</name>
+	<version>1.2.1-SNAPSHOT</version>
+	<description>Gerador de Notas Fiscais Eletrônicas</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>${pom.groupId}</groupId>
+			<artifactId>caelum-stella-hibernate-validator</artifactId>
+			<version>${pom.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.0EA3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.vidageek</groupId>
+			<artifactId>mirror</artifactId>
+			<version>1.3</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>vidageek.net</id>
+			<url>http://maven.vidageek.net/</url>
+		</repository>
+	</repositories>
 
 </project>

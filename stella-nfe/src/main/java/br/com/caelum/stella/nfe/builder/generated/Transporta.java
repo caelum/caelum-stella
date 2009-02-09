@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.tinytype.CNPJ;
+import br.com.caelum.stella.tinytype.CPF;
 
 public interface Transporta {
-    public Transporta withCNPJ(String string);
+    public Transporta withCNPJ(CNPJ cnpj);
 
-    public Transporta withCPF(String string);
+    public Transporta withCPF(CPF cpf);
 
     public Transporta withXNome(String string);
 

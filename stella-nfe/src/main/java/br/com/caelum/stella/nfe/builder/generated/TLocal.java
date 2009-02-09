@@ -1,9 +1,10 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.tinytype.CNPJ;
 
 public interface TLocal {
-    public TLocal withCNPJ(String string);
+    public TLocal withCNPJ(CNPJ cnpj);
 
     public TLocal withXLgr(String string);
 
