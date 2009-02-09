@@ -5,6 +5,8 @@ import net.vidageek.mirror.Mirror;
 
 import org.junit.Test;
 
+import br.com.caelum.stella.hibernate.validator.xml.logic.StellaLengthValidator;
+
 public class StellaLengthValidatorTest {
 
     @Test

@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 
 import org.hibernate.validator.ValidatorClass;
 
+import br.com.caelum.stella.hibernate.validator.xml.logic.StellaLengthValidator;
+
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.FIELD })

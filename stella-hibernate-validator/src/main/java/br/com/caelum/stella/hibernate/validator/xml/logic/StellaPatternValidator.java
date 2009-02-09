@@ -1,6 +1,8 @@
-package br.com.caelum.stella.hibernate.validator.xml;
+package br.com.caelum.stella.hibernate.validator.xml.logic;
 
 import org.hibernate.validator.Validator;
+
+import br.com.caelum.stella.hibernate.validator.xml.Pattern;
 
 public class StellaPatternValidator implements Validator<Pattern> {
 

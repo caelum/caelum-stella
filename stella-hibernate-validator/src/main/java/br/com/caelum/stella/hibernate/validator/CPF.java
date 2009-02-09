@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 
 import org.hibernate.validator.ValidatorClass;
 
+import br.com.caelum.stella.hibernate.validator.logic.StellaCPFValidator;
+
 /**
  * Restrição que pode ser associada a objetos em que o método
  * {@linkplain #toString()} represente um CPF.

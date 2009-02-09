@@ -9,6 +9,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.hibernate.validator.logic.AnnotationMessageProducer;
 import br.com.caelum.stella.validation.InvalidValue;
 
 /**

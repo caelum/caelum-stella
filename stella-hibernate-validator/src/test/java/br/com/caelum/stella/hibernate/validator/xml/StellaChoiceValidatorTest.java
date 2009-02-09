@@ -5,6 +5,8 @@ import net.vidageek.mirror.Mirror;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.caelum.stella.hibernate.validator.xml.logic.StellaChoiceValidator;
+
 public class StellaChoiceValidatorTest {
 
     @Choice

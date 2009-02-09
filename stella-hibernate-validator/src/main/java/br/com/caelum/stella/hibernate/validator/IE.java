@@ -9,6 +9,8 @@ import java.lang.annotation.Target;
 
 import org.hibernate.validator.ValidatorClass;
 
+import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
+
 /**
  * Restrição que pode ser associada a classes que contenham um objeto que
  * represente uma Inscricao Estadual e outro objeto identificando o estado a que

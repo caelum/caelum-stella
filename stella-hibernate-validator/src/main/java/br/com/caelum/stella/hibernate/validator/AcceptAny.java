@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 
 import org.hibernate.validator.ValidatorClass;
 
+import br.com.caelum.stella.hibernate.validator.logic.StellaAcceptAnyValidator;
 import br.com.caelum.stella.validation.AcceptAnyValidator.Documento;
 
 /**

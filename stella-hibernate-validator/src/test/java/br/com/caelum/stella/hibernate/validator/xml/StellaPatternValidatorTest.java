@@ -5,6 +5,8 @@ import net.vidageek.mirror.Mirror;
 
 import org.junit.Test;
 
+import br.com.caelum.stella.hibernate.validator.xml.logic.StellaPatternValidator;
+
 public class StellaPatternValidatorTest {
 
     public static class AnnotatedModel {

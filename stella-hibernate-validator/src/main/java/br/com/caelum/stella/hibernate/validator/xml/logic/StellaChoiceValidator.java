@@ -1,4 +1,4 @@
-package br.com.caelum.stella.hibernate.validator.xml;
+package br.com.caelum.stella.hibernate.validator.xml.logic;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import java.util.List;
 import net.vidageek.mirror.Mirror;
 
 import org.hibernate.validator.Validator;
+
+import br.com.caelum.stella.hibernate.validator.xml.Choice;
+import br.com.caelum.stella.hibernate.validator.xml.ChoiceItem;
 
 public class StellaChoiceValidator implements Validator<Choice> {
 
