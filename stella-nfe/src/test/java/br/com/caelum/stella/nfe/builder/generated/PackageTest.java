@@ -12,6 +12,7 @@ import net.vidageek.mirror.Mirror;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.caelum.stella.nfe.builder.generator.ClassEnumerator;
 import br.com.caelum.stella.nfe.modelo.TNFe;
 
 public class PackageTest {
