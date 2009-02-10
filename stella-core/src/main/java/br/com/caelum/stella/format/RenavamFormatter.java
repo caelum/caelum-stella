@@ -2,6 +2,10 @@ package br.com.caelum.stella.format;
 
 import java.util.regex.Pattern;
 
+/**
+ * @author Rafael Carvalho
+ *
+ */
 public class RenavamFormatter implements Formatter {
 
     public static final Pattern FORMATTED = Pattern.compile("(\\d{2}).(\\d{6})-(\\d{1})");
