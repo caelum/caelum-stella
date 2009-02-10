@@ -78,23 +78,33 @@ final public class JAXBBuilderPropertiesGenerator {
     private void addClassFieldsProperties(final Class<?> source) {
         List<Field> fields = Mirror.on(source).reflectAll().fields();
         for (Field field : fields) {
-            String name = field.getName();
-            XmlElement annotation = field.getAnnotation(XmlElement.class);
-            if ((annotation != null) && !"##default".equals(annotation.name())) {
-                name = annotation.name();
-            }
-            String key = String.format("%s.%s", source.getSimpleName(), name);
+            String name = extractAnnotatedFieldName(field);
+            String key = String.format("%s.%s", extractAnnotatedTypeName(source).trim(), name);
             properties.setProperty(key, field.getName());
         }
     }
 
+    private String extractAnnotatedFieldName(Field field) {
+        String name = field.getName();
+        XmlElement annotation = field.getAnnotation(XmlElement.class);
+        if ((annotation != null) && !"##default".equals(annotation.name())) {
+            name = annotation.name();
+        }
+        return name;
+    }
+
     private void addClassNameProperty(final Class<?> source) {
+        String extractedTypeName = extractAnnotatedTypeName(source);
+        properties.setProperty(extractedTypeName.trim(), source.getSimpleName());
+    }
+
+    private String extractAnnotatedTypeName(final Class<?> source) {
         String typeName = source.getSimpleName();
         XmlType classAnnotation = source.getAnnotation(XmlType.class);
         if ((classAnnotation != null) && !"##default".equals(classAnnotation.name())) {
             typeName = classAnnotation.name();
         }
-        properties.setProperty(source.getSimpleName(), typeName);
+        return typeName;
     }
 
 
