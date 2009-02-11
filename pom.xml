@@ -306,8 +306,16 @@
   <contributors>
     <contributor>
       <name>Alberto Souza</name>
-      <email>asouza @ settech.com.br</email>
+      <email>asouza@settech.com.br</email>
       <url>http://www.settech.com.br/blog</url>
+    </contributor>
+	<contributor>
+      <name>Mateus Padro</name>
+      <email>mateush.prado@gmail.com</email>
+    </contributor>
+	<contributor>
+      <name>Rafael Carvalho</name>
+      <email>rafael.c.carvalho@gmail.com</email>
     </contributor>
   </contributors>
 
