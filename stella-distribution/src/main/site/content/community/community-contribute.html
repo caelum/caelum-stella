@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Como Contribuir</title>
+  <meta name="author" content="Leonardo Bessa">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<h2>Introdução</h2>
+<p>
+O Caelum Stella é um projeto de código aberto, e as contribuições da comunidade são sempre bem vindas. Os usuários podem baixar a biblioteca e começar a contribuir prontamente. Além do mais, podem também enviar dúvidas e sugestões para a lista de discussão do projeto, no fórum do <a href="http://www.guj.com.br">GUJ</a> ou no <a href="http://jira.caelum.com.br">JIRA do projeto</a>.
+</p>
+
+<p>
+O número de colaboradores está aumentando e queremos motivá-los e orientá-los para que o projeto continue crescendo.
+</p>
+
+<h2>Primeiros Passos</h2>
+
+<p>O primeiro passo para contribuir com Stella é se cadastrar na lista de desnovolvedores. Tendo isto feito, chegou a hora de instalar o ambiente de desenvolvimento. Para isto, é necessário instalar na sua máquina o <a href="http://subversion.tigris.org/">Subversion</a> (para controle de versão), o <a href="http://maven.apache.org/download.html">Maven2<a> (para gerenciamento das dependências e automatização de tarefas) e o Eclipse. Além disso, é conveniente instalar um plugin no eclipse chamado Subversive.
+</p>
+
+<p>
+Caso tenha dificuldade para instalar estas ferramentas, envie um e-mail para a lista de desenvolvedores. Para alguns, este início pode ser um pouco complicado, mas esta é uma oportunidade para aprender.
+</p>
+
+<p>
+Para participar do Caelum Stella não é necessário ler toda a documentação inicialmente. No entanto, é recomendável que se leia documentação referente ao Stella Core e ao Stella Boleto, para entender como a API funciona.
+</p>
+
+<h2>Baixando o código do repositório</h2>
+
+<p>Com o cliente do subversion instalado, execute a linha de comando abaixo para baixar o código do Caelum Stella para a sua máquina. Execute o comando na pasta onde deseja salvar os arquivos. Uma nova pasta chamada caelum-stella será criada.</p>
+
+<code>svn co http://caelum-stella.svn.sourceforge.net/svnroot/caelum-stella/trunk caelum-stella</code>
+<br/>
+
+<h2>Gerando os arquivos do eclipse</h2>
+
+<p>Garanta que o maven está instalado e disponível no PATH. Para isso, execute:<p>
+<code>mvn --version<code>
+<p>A saída deve ser parecida com esta:<br/>
+<code>
+Maven version: 2.0.9<br/>
+Java version: 1.5.0_16<br/>
+OS name: "mac os x" version: "10.5.6" arch: "i386" Family: "unix"<code>
+</p>
+<p>
+Com o maven instalado, podemos agora utilizá-lo para montar os arquivos de projeto do eclipse. Para isso, na pasta caelum-stella, execute a seguinte linha de comando:</p>
+<code> mvn eclipse:eclipse </code>
+<p>Aguarde. Aguardade até que o maven baixe todas as dependências dos projetos do e salve-as na pasta ~/.m2/repository . Isto deve levar alguns minutos.</p>
+<p>Após a execução do comando, devem ter sido criados arquivos (.classpath e .project) nas pastas dos projetos.</p>
+<p>Agora precisamos, importar os projetos criados para o Eclipse.</p>
+
+<h3>Importando os projetos no Eclipse</h3>
+
+<p>Abra o Eclipse e clique em File -> Import ... . Selecione a opção "Existing projects into workspace" e clique em Next. Na opção "Select root folder:" insira o caminho correto para a pasta "caelum-stella". Selecione todos os projetos disponíves e pressione o botão "Finish".</p>
+
+<p>O processo está quase pronto. Por último precisamos configurar um variável no Eclipse que indica onde está o repositório local do Maven, isto é, aquela pasta ~/.m2/repository onde as dependências foram salvas. Para isto, selecione no menu a opção Window -> Preferences . Na aba da esquerda, selecione o item Java --> Build Path --> <b>Classpath Variables</b>. Clique no botão "New ..." que aparece na aba da direta. Na janela que se abriu, atribua o valor <b>M2_REPO</b> no campo Name, e algo como <b>/Users/leonardobessa/.m2/repository</b> no campo Path. </p>
+
+<p> O Eclipse irá perguntar se deseja fazer o build do projeto novamente. Diga que sim.</p>
+
+<p>Pronto. O ambiente de desenovlimento do Caelum Stella está montado.</p>
+
+
+</body>
+</html>

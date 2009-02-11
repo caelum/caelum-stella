@@ -53,6 +53,10 @@
 		<page>frameworks/frameworks-vraptor.html</page>
 		<page>frameworks/frameworks-seam.html</page>
 	</section>
+	<section>
+		<name>Comunidade Open-Source</name>
+		<page>community/community-contribute.html</page>
+	</section>
 	<!--<section>-->
 	<!--<name>Tutoriais</name>-->
 	<!--</section>-->
