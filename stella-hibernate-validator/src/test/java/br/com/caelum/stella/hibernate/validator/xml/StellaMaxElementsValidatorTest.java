@@ -8,10 +8,16 @@ import net.vidageek.mirror.Mirror;
 
 import org.junit.Test;
 
-import br.com.caelum.stella.hibernate.validator.xml.MaxElements;
 import br.com.caelum.stella.hibernate.validator.xml.logic.StellaMaxElementsValidator;
 
 public class StellaMaxElementsValidatorTest {
+
+    @Test
+    public void testThatNullIsValid() {
+        StellaMaxElementsValidator validator = new StellaMaxElementsValidator();
+        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(MaxElements.class).atField("c"));
+        Assert.assertTrue(validator.isValid(null));
+    }
 
     @Test(expected = IllegalStateException.class)
     public void testThatThrowsExceptionIfAnnotatedElementIsNotACollectionOrArray() {
@@ -83,9 +89,18 @@ public class StellaMaxElementsValidatorTest {
         validator.isValid(new int[10]);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void testThatThrowsExceptionIfValueIsNegative() {
+        StellaMaxElementsValidator validator = new StellaMaxElementsValidator();
+        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(MaxElements.class).atField("c2"));
+    }
+
     public static class AnnotatedModel {
         @MaxElements(2)
         public Collection<String> c;
+
+        @MaxElements(-2)
+        public Collection<String> c2;
 
     }
 }
