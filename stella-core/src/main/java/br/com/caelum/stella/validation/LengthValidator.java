@@ -7,16 +7,35 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.error.LengthError;
 
+/**
+ * Validador para aceitar cadeias de tamanho pré-definido. A cadeia verificada
+ * por este validador é a retornada pelo método {@code toString()} do objeto em
+ * questão.
+ * 
+ * @author leonardobessa
+ * 
+ */
 public class LengthValidator implements Validator<Object> {
 
     private final int validLength;
     private final BaseValidator base;
 
+    /**
+     * @param validLength
+     *            quantidade de caracteres das cadeias a serem aceitas.
+     */
     public LengthValidator(int validLength) {
         this.validLength = validLength;
         base = new BaseValidator();
     }
 
+    /**
+     * @param messageProducer
+     *            produto de mensagens.
+     * @param validLength
+     *            quantidade de caracteres das cadeias a serem aceitas.
+     * 
+     */
     public LengthValidator(MessageProducer messageProducer, int validLength) {
         base = new BaseValidator(messageProducer);
         this.validLength = validLength;

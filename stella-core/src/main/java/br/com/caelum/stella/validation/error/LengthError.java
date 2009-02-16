@@ -9,8 +9,12 @@ import br.com.caelum.stella.validation.InvalidValue;
  */
 public class LengthError implements InvalidValue {
 
-    private int validLength;
+    private final int validLength;
 
+    /**
+     * @param validLength
+     *            tamanho esperado para considerar válida a cadeia.
+     */
     public LengthError(int validLength) {
         this.validLength = validLength;
     }
@@ -41,6 +45,9 @@ public class LengthError implements InvalidValue {
         return true;
     }
 
+    /**
+     * @return tamanho esperado para considerar válida a cadeia.
+     */
     public int getValidLength() {
         return validLength;
     }
