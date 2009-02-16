@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface Adi {
-    public Adi withNAdicao(String string);
+	public Adi withNAdicao(Integer integer);
 
-    public Adi withNSeqAdic(String string);
+	public Adi withNSeqAdic(Integer integer);
 
-    public Adi withCFabricante(String string);
+	public Adi withCFabricante(String string);
 
-    public Adi withVDescDI(String string);
+	public Adi withVDescDI(BigDecimal bigDecimal);
 }

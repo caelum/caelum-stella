@@ -1,33 +1,35 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class AdiImpl implements Adi, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Adi adi;
 
     public AdiImpl() {
-        this.adi = new br.com.caelum.stella.nfe.modelo.Adi();
+        adi = new br.com.caelum.stella.nfe.modelo.Adi();
     }
 
     public br.com.caelum.stella.nfe.modelo.Adi getInstance() {
-        return this.adi;
+        return adi;
     }
 
-    public Adi withNAdicao(String string) {
-        this.adi.setNAdicao(string);
+    public Adi withNAdicao(final Integer integer) {
+        adi.setNAdicao(integer.toString());
         return this;
     }
 
-    public Adi withNSeqAdic(String string) {
-        this.adi.setNSeqAdic(string);
+    public Adi withNSeqAdic(final Integer integer) {
+        adi.setNSeqAdic(integer.toString());
         return this;
     }
 
-    public Adi withCFabricante(String string) {
-        this.adi.setCFabricante(string);
+    public Adi withCFabricante(final String string) {
+        adi.setCFabricante(string);
         return this;
     }
 
-    public Adi withVDescDI(String string) {
-        this.adi.setVDescDI(string);
+    public Adi withVDescDI(final BigDecimal bigDecimal) {
+        adi.setVDescDI(bigDecimal.toString());
         return this;
     }
 }
