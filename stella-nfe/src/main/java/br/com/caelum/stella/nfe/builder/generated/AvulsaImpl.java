@@ -7,7 +7,6 @@ import br.com.caelum.stella.tinytype.CNPJ;
 
 public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.ObjectCreator {
 
-    private static final CalendarToStringConverter CONVERTER = new CalendarToStringConverter();
     private final br.com.caelum.stella.nfe.modelo.Avulsa avulsa;
 
     public AvulsaImpl() {

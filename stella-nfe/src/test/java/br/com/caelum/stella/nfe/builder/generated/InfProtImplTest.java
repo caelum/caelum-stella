@@ -5,20 +5,13 @@ import java.util.Calendar;
 public final class InfProtImplTest {
     @org.junit.Test
     public void testInfProtInterface() {
-        InfProt infProt = new InfProtImpl()
-                                .withTpAmb("abc")
-                                .withVerAplic("abc")
-                                .withChNFe("abc")
-                                .withDhRecbto(Calendar.getInstance())
-                                .withNProt("abc")
-                                .withDigVal(new byte[]{})
-                                .withCStat("abc")
-                                .withXMotivo("abc")
-                                .withId("abc");
+        InfProt infProt = new InfProtImpl().withTpAmb("abc").withVerAplic("abc").withChNFe("abc").withDhRecbto(
+                Calendar.getInstance()).withNProt("abc").withDigVal("abc".getBytes()).withCStat("abc").withXMotivo(
+                "abc").withId("abc");
         assertModelWasFilled(infProt);
     }
 
-    private void assertModelWasFilled(InfProt infProt) {
+    private void assertModelWasFilled(final InfProt infProt) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(infProt).assertModelWasFilled();
     }
 }
