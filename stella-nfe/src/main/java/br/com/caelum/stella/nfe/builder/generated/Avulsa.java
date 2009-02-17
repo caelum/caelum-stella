@@ -1,5 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
@@ -8,23 +9,23 @@ import br.com.caelum.stella.tinytype.CNPJ;
 public interface Avulsa {
     public Avulsa withCnpj(CNPJ cnpj);
 
-    public Avulsa withXOrgao(String string);
+    public Avulsa withOrgaoEmitente(String string);
 
-    public Avulsa withMatr(String string);
+    public Avulsa withMatriculaDoAgente(String string);
 
-    public Avulsa withXAgente(String string);
+    public Avulsa withNomeDoAgente(String string);
 
-    public Avulsa withFone(String string);
+    public Avulsa withTelefone(Long telefone);
 
     public Avulsa withUf(TUf tUf);
 
-    public Avulsa withNdar(String string);
+    public Avulsa withNumeroDeArrecadacaoDaReceita(String string);
 
-    public Avulsa withDEmi(Calendar calendar);
+    public Avulsa withDataDeEmissao(Calendar calendar);
 
-    public Avulsa withVdar(String string);
+    public Avulsa withValorDoDocumentoDeArrecadacao(BigDecimal bigDecimal);
 
-    public Avulsa withRepEmi(String string);
+    public Avulsa withReparticaoFiscalEmitente(String string);
 
-    public Avulsa withDPag(Calendar calendar);
+    public Avulsa withDataDePagamento(Calendar calendar);
 }

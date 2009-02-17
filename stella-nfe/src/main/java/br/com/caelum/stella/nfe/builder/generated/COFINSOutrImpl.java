@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class COFINSOutrImpl implements COFINSOutr, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSOutr cOFINSOutr;
 
@@ -16,8 +18,8 @@ public final class COFINSOutrImpl implements COFINSOutr, br.com.caelum.stella.nf
         return this;
     }
 
-    public COFINSOutr withValorDaBaseDeCalculo(final String string) {
-        cOFINSOutr.setvalorDaBaseDeCalculo(string);
+    public COFINSOutr withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+        cOFINSOutr.setvalorDaBaseDeCalculo(baseDeCalculo.toPlainString());
         return this;
     }
 

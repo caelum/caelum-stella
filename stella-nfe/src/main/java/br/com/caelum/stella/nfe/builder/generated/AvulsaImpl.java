@@ -1,5 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
@@ -22,23 +23,23 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return this;
     }
 
-    public Avulsa withXOrgao(final String string) {
+    public Avulsa withOrgaoEmitente(final String string) {
         avulsa.setXOrgao(string);
         return this;
     }
 
-    public Avulsa withMatr(final String string) {
+    public Avulsa withMatriculaDoAgente(final String string) {
         avulsa.setMatr(string);
         return this;
     }
 
-    public Avulsa withXAgente(final String string) {
+    public Avulsa withNomeDoAgente(final String string) {
         avulsa.setXAgente(string);
         return this;
     }
 
-    public Avulsa withFone(final String string) {
-        avulsa.setFone(string);
+    public Avulsa withTelefone(final Long telefone) {
+        avulsa.setFone(telefone.toString().replace("L", ""));
         return this;
     }
 
@@ -47,27 +48,27 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return this;
     }
 
-    public Avulsa withNdar(final String string) {
+    public Avulsa withNumeroDeArrecadacaoDaReceita(final String string) {
         avulsa.setNDAR(string);
         return this;
     }
 
-    public Avulsa withDEmi(final Calendar calendar) {
+    public Avulsa withDataDeEmissao(final Calendar calendar) {
         avulsa.setDEmi(calendar);
         return this;
     }
 
-    public Avulsa withVdar(final String string) {
-        avulsa.setVDAR(string);
+    public Avulsa withValorDoDocumentoDeArrecadacao(final BigDecimal bigDecimal) {
+        avulsa.setVDAR(bigDecimal.toPlainString());
         return this;
     }
 
-    public Avulsa withRepEmi(final String string) {
+    public Avulsa withReparticaoFiscalEmitente(final String string) {
         avulsa.setRepEmi(string);
         return this;
     }
 
-    public Avulsa withDPag(final Calendar calendar) {
+    public Avulsa withDataDePagamento(final Calendar calendar) {
         avulsa.setDPag(calendar);
         return this;
     }

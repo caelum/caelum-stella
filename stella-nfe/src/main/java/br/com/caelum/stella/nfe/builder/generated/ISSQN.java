@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface ISSQN {
-    public ISSQN withValorDaBaseDeCalculo(String string);
+    public ISSQN withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
     public ISSQN withAliquota(String string);
 

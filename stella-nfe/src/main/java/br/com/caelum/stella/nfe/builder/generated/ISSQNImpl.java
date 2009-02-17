@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class ISSQNImpl implements ISSQN, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ISSQN iSSQN;
 
@@ -11,8 +13,8 @@ public final class ISSQNImpl implements ISSQN, br.com.caelum.stella.nfe.ObjectCr
         return iSSQN;
     }
 
-    public ISSQN withValorDaBaseDeCalculo(final String string) {
-        iSSQN.setvalorDaBaseDeCalculo(string);
+    public ISSQN withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+        iSSQN.setvalorDaBaseDeCalculo(baseDeCalculo.toPlainString());
         return this;
     }
 

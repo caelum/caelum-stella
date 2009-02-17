@@ -1,7 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface Cobr {
-    public Cobr withFat(Fat fat);
+    public Cobr withFatura(Fat fat);
 
-    public Cobr withDup(Dup... dups);
+    public Cobr withDuplicata(Dup... dups);
 }

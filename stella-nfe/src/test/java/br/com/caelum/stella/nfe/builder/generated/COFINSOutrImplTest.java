@@ -1,10 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class COFINSOutrImplTest {
     @org.junit.Test
     public void testCOFINSOutrInterface() {
-        COFINSOutr cOFINSOutr = new COFINSOutrImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo("abc").withAliquotaEmPercentual("abc")
-                .withQuantidadeVendida("abc").withAliquota("abc").withValor("abc");
+        COFINSOutr cOFINSOutr = new COFINSOutrImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo(
+                new BigDecimal(1)).withAliquotaEmPercentual("abc")
+        .withQuantidadeVendida("abc").withAliquota("abc").withValor("abc");
         assertModelWasFilled(cOFINSOutr);
     }
 

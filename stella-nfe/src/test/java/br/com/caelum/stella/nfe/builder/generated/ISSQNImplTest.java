@@ -1,10 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class ISSQNImplTest {
     @org.junit.Test
     public void testISSQNInterface() {
-        ISSQN iSSQN = new ISSQNImpl().withValorDaBaseDeCalculo("abc").withAliquota("abc").withValorISSQN("abc").withCodigoMunicipio("abc")
-                .withCodigoListaServicos("abc");
+        ISSQN iSSQN = new ISSQNImpl().withValorDaBaseDeCalculo(new BigDecimal(1)).withAliquota("abc").withValorISSQN(
+                "abc").withCodigoMunicipio("abc")
+        .withCodigoListaServicos("abc");
         assertModelWasFilled(iSSQN);
     }
 

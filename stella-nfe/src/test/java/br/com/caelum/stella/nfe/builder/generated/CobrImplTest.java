@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class CobrImplTest {
     @org.junit.Test
     public void testCobrInterface() {
-        Cobr cobr = new CobrImpl().withFat(new FatImpl()).withDup(new DupImpl());
+        Cobr cobr = new CobrImpl().withFatura(new FatImpl()).withDuplicata(new DupImpl());
         assertModelWasFilled(cobr);
     }
 

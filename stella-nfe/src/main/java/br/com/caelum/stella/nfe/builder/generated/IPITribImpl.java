@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class IPITribImpl implements IPITrib, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.IPITrib iPITrib;
 
@@ -16,8 +18,8 @@ public final class IPITribImpl implements IPITrib, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public IPITrib withValorDaBaseDeCalculo(final String string) {
-        iPITrib.setvalorDaBaseDeCalculo(string);
+    public IPITrib withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+        iPITrib.setvalorDaBaseDeCalculo(baseDeCalculo.toPlainString());
         return this;
     }
 

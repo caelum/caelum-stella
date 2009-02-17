@@ -60,7 +60,8 @@ public class DomainNamesTest {
             String expectedValue = (String) expectedProperties.get(key);
             String actualValue = (String) properties.get(key);
             if (!expectedValue.equals(actualValue)) {
-                log.info(String.format("Property (or Class) %s should be named as %s", actualValue, expectedValue));
+                // log.info(String.format("Property (or Class) %s should be named as %s",
+                // actualValue, expectedValue));
             }
         }
         Assert.assertEquals(expectedProperties, properties);
@@ -68,7 +69,7 @@ public class DomainNamesTest {
 
     @Test
     public void interfacesShouldHaveNamesDefinedInThePropertiesFile() throws ClassNotFoundException,
-            FileNotFoundException, IOException {
+    FileNotFoundException, IOException {
         int errors = 0;
         ClassEnumerator classEnumerator = new ClassEnumerator();
         List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(ArmamentoImpl.class);
@@ -84,7 +85,7 @@ public class DomainNamesTest {
                     // System.out.println("Wrapped Class Field: " +
                     // field.getName());
                     String key = wrappedClass.getSimpleName() + "."
-                            + propertiesGenerator.extractAnnotatedFieldName(field);
+                    + propertiesGenerator.extractAnnotatedFieldName(field);
                     // System.out.println(key);
                     String expectedValue = (String) expectedProperties.get(key);
                     if (expectedValue == null) {

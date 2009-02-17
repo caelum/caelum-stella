@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface COFINSOutr {
     public COFINSOutr withCodigoSituacaoTributaria(String string);
 
-    public COFINSOutr withValorDaBaseDeCalculo(String string);
+    public COFINSOutr withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
     public COFINSOutr withAliquotaEmPercentual(String string);
 
