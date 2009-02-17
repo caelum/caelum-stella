@@ -13,32 +13,32 @@ public final class IPIImpl implements IPI, br.com.caelum.stella.nfe.ObjectCreato
         return iPI;
     }
 
-    public IPI withClEnq(final String string) {
+    public IPI withClasseDeEnquadramento(final String string) {
         iPI.setClasseEnquadramento(string);
         return this;
     }
 
-    public IPI withCNPJProd(final String string) {
+    public IPI withCnpjDoProdutor(final String string) {
         iPI.setCnpjProdutor(string);
         return this;
     }
 
-    public IPI withCSelo(final String string) {
+    public IPI withCodigoDoSelo(final String string) {
         iPI.setCodigoSelo(string);
         return this;
     }
 
-    public IPI withQSelo(final String string) {
+    public IPI withQuantidadeDeSelos(final String string) {
         iPI.setQuantidadeSelo(string);
         return this;
     }
 
-    public IPI withCEnq(final String string) {
+    public IPI withCodigoDeEnquadramento(final String string) {
         iPI.setCodigoEnquadramento(string);
         return this;
     }
 
-    public IPI withIPITrib(final IPITrib iPITrib) {
+    public IPI withTributacao(final IPITrib iPITrib) {
         iPI.setIpiTributacao((br.com.caelum.stella.nfe.modelo.IPITrib) ((ObjectCreator) iPITrib).getInstance());
         return this;
     }

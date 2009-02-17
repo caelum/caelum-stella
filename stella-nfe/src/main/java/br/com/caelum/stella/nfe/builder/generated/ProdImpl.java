@@ -129,9 +129,9 @@ public final class ProdImpl implements Prod, br.com.caelum.stella.nfe.ObjectCrea
         return this;
     }
 
-    public Prod withArma(final Arma... armas) {
+    public Prod withArma(final Armamento... armas) {
         List<br.com.caelum.stella.nfe.modelo.Arma> list = new ArrayList<br.com.caelum.stella.nfe.modelo.Arma>();
-        for (Arma p : armas) {
+        for (Armamento p : armas) {
             list.add((br.com.caelum.stella.nfe.modelo.Arma) ((ObjectCreator) p).getInstance());
         }
         prod.setArma(list);

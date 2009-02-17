@@ -5,9 +5,9 @@ public interface PISST {
 
     public PISST withPPIS(String string);
 
-    public PISST withQBCProd(String string);
+    public PISST withQuantidadeVendida(String string);
 
-    public PISST withVAliqProd(String string);
+    public PISST withAliquota(String string);
 
     public PISST withVPIS(String string);
 }

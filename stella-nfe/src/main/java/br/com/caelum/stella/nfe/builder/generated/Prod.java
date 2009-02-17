@@ -43,7 +43,7 @@ public interface Prod {
 
     public Prod withMed(Med... meds);
 
-    public Prod withArma(Arma... armas);
+    public Prod withArma(Armamento... armas);
 
     public Prod withComb(Comb comb);
 }

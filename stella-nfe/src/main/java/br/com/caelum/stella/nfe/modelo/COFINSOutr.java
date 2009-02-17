@@ -19,7 +19,7 @@ public class COFINSOutr {
     protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC")
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pCOFINS")
     protected String aliquotaEmPercentual;
@@ -41,12 +41,12 @@ public class COFINSOutr {
         this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(final String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getAliquotaEmPercentual() {

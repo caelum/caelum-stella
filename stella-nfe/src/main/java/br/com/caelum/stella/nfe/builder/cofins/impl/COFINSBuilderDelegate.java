@@ -19,8 +19,8 @@ public class COFINSBuilderDelegate<T> {
         on(instance).set().field("codigoSituacaoTributaria").withValue(situacaoTributaria.getCodigo());
     }
 
-    public void withValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        on(instance).set().field("valorBaseCalculo").withValue(valorBaseCalculo.toString());
+    public void withValorDaBaseDeCalculo(final BigDecimal valorDaBaseDeCalculo) {
+        on(instance).set().field("valorDaBaseDeCalculo").withValue(valorDaBaseDeCalculo.toString());
     }
 
     public void withAliquotaEmPercentual(final BigDecimal aliquotaEmPercentual) {

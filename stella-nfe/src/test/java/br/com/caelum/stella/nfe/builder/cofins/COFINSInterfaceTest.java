@@ -12,7 +12,7 @@ public class COFINSInterfaceTest {
     @Test
     public void testCOFINSTributadoPelaAliquota() {
         COFINS target = new COFINSBuilder().cofinsAliquotaDiferenciada().withAliquotaEmPercentual(new BigDecimal(1))
-                .withValor(new BigDecimal(1)).withValorBaseCalculo(new BigDecimal(1));
+                .withValor(new BigDecimal(1)).withValorDaBaseDeCalculo(new BigDecimal(1));
         new BuilderTestHelper(target).assertModelWasFilled();
     }
 
@@ -26,7 +26,7 @@ public class COFINSInterfaceTest {
     public void testCOFINSSubstituicaoTributaria() {
         COFINS target = new COFINSBuilder().cofinsSubstituicaoTributaria().withAliquotaEmPercentual(new BigDecimal(1))
                 .withAliquotaEmReais(new BigDecimal(1)).withQuantidadeVendida(1).withValor(new BigDecimal(1))
-                .withValorBaseCalculo(new BigDecimal(1));
+                .withValorDaBaseDeCalculo(new BigDecimal(1));
         new BuilderTestHelper(target).assertModelWasFilled();
     }
 
@@ -34,7 +34,7 @@ public class COFINSInterfaceTest {
     public void testCOFINSOutrasOperacoes() {
         COFINS target = new COFINSBuilder().cofinsOutrasOperacoes().withAliquotaEmPercentual(new BigDecimal(1))
                 .withAliquotaEmReais(new BigDecimal(1)).withQuantidadeVendida(1).withValor(new BigDecimal(1))
-                .withValorBaseCalculo(new BigDecimal(1));
+                .withValorDaBaseDeCalculo(new BigDecimal(1));
         new BuilderTestHelper(target).assertModelWasFilled();
     }
 

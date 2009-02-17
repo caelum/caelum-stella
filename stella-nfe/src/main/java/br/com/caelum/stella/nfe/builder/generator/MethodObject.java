@@ -40,6 +40,8 @@ final public class MethodObject {
     }
 
     private Map<String, String> map = new HashMap<String, String>(){
+        private static final long serialVersionUID = 1L;
+
         {
             this.put("String", "\"abc\"");
             this.put("TUf", "TUf.AC");

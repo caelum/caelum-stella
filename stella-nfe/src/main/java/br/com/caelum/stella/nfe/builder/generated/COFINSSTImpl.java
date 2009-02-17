@@ -11,27 +11,27 @@ public final class COFINSSTImpl implements COFINSST, br.com.caelum.stella.nfe.Ob
         return cOFINSST;
     }
 
-    public COFINSST withVBC(final String string) {
-        cOFINSST.setValorBaseCalculo(string);
+    public COFINSST withValorDaBaseDeCalculo(final String string) {
+        cOFINSST.setvalorDaBaseDeCalculo(string);
         return this;
     }
 
-    public COFINSST withPCOFINS(final String string) {
+    public COFINSST withAliquotaEmPercentual(final String string) {
         cOFINSST.setAliquotaEmPercentual(string);
         return this;
     }
 
-    public COFINSST withQBCProd(final String string) {
+    public COFINSST withQuantidadeVendida(final String string) {
         cOFINSST.setQuantidadeVendida(string);
         return this;
     }
 
-    public COFINSST withVAliqProd(final String string) {
+    public COFINSST withAliquota(final String string) {
         cOFINSST.setAliquota(string);
         return this;
     }
 
-    public COFINSST withVCOFINS(final String string) {
+    public COFINSST withValor(final String string) {
         cOFINSST.setValor(string);
         return this;
     }

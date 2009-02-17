@@ -11,22 +11,22 @@ public final class COFINSAliqImpl implements COFINSAliq, br.com.caelum.stella.nf
         return cOFINSAliq;
     }
 
-    public COFINSAliq withCST(final String string) {
+    public COFINSAliq withCodigoSituacaoTributaria(final String string) {
         cOFINSAliq.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public COFINSAliq withVBC(final String string) {
-        cOFINSAliq.setValorBaseCalculo(string);
+    public COFINSAliq withValorDaBaseDeCalculo(final String string) {
+        cOFINSAliq.setvalorDaBaseDeCalculo(string);
         return this;
     }
 
-    public COFINSAliq withPCOFINS(final String string) {
+    public COFINSAliq withAliquotaEmPercentual(final String string) {
         cOFINSAliq.setAliquotaEmPercentual(string);
         return this;
     }
 
-    public COFINSAliq withVCOFINS(final String string) {
+    public COFINSAliq withValor(final String string) {
         cOFINSAliq.setValor(string);
         return this;
     }

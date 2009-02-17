@@ -6,7 +6,7 @@ import br.com.caelum.stella.nfe.modelo.TUf;
 import br.com.caelum.stella.tinytype.CNPJ;
 
 public interface Avulsa {
-    public Avulsa withCNPJ(CNPJ cnpj);
+    public Avulsa withCnpj(CNPJ cnpj);
 
     public Avulsa withXOrgao(String string);
 
@@ -16,13 +16,13 @@ public interface Avulsa {
 
     public Avulsa withFone(String string);
 
-    public Avulsa withUF(TUf tUf);
+    public Avulsa withUf(TUf tUf);
 
-    public Avulsa withNDAR(String string);
+    public Avulsa withNdar(String string);
 
     public Avulsa withDEmi(Calendar calendar);
 
-    public Avulsa withVDAR(String string);
+    public Avulsa withVdar(String string);
 
     public Avulsa withRepEmi(String string);
 

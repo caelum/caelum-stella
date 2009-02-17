@@ -20,12 +20,12 @@ public class IPIImpl implements br.com.caelum.stella.nfe.builder.IPI, ObjectCrea
         return this;
     }
 
-    public IPIImpl withCNPJDoProdutor(String cnpj) {
+    public IPIImpl withCnpjDoProdutor(String cnpj) {
         ipi.setCnpjProdutor(cnpj);
         return this;
     }
 
-    public IPIImpl withCodigoDoSeloDeControle(String seloDeControle) {
+    public IPIImpl withCodigoDoSelo(String seloDeControle) {
         ipi.setCodigoSelo(seloDeControle);
         return this;
     }

@@ -24,7 +24,7 @@ public interface ICMSOutros extends ICMS {
 
     public ICMSOutros withPercentualAdicionadoST(BigDecimal percentual);
 
-    public ICMSOutros withValorBaseCalculoST(BigDecimal valor);
+    public ICMSOutros withValorDaBaseDeCalculoST(BigDecimal valor);
 
     public ICMSOutros withAliquotaST(BigDecimal aliquota);
 

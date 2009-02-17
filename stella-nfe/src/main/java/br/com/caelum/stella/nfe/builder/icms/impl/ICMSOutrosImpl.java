@@ -61,8 +61,8 @@ public class ICMSOutrosImpl implements ICMSOutros, ObjectCreator  {
         return this;
     }
 
-    public ICMSOutrosImpl withValorBaseCalculoST(BigDecimal valor) {
-        delegate.withValorBaseCalculoSubstituicaoTributaria(valor);
+    public ICMSOutrosImpl withValorDaBaseDeCalculoST(BigDecimal valor) {
+        delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valor);
         return this;
     }
 

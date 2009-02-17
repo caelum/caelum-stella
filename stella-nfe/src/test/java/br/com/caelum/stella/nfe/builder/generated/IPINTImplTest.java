@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class IPINTImplTest {
     @org.junit.Test
     public void testIPINTInterface() {
-        IPINT iPINT = new IPINTImpl().withCST("abc");
+        IPINT iPINT = new IPINTImpl().withCodigoSituacaoTributaria("abc");
         assertModelWasFilled(iPINT);
     }
 

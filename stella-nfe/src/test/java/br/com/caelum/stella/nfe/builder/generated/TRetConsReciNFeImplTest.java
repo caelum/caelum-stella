@@ -4,7 +4,7 @@ public final class TRetConsReciNFeImplTest {
     @org.junit.Test
     public void testTRetConsReciNFeInterface() {
         TRetConsReciNFe tRetConsReciNFe = new TRetConsReciNFeImpl().withTpAmb("abc").withVerAplic("abc")
-                .withNRec("abc").withCStat("abc").withXMotivo("abc").withCUF("abc").withProtNFe(new TProtNFeImpl())
+                .withNRec("abc").withCodigoDeStatus("abc").withXMotivo("abc").withCUF("abc").withProtNFe(new TProtNFeImpl())
                 .withVersao("abc");
         assertModelWasFilled(tRetConsReciNFe);
     }

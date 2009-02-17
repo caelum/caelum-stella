@@ -1,15 +1,15 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface IPITrib {
-    public IPITrib withCST(String string);
+    public IPITrib withCodigoSituacaoTributaria(String string);
 
-    public IPITrib withVBC(String string);
+    public IPITrib withValorDaBaseDeCalculo(String string);
 
-    public IPITrib withPIPI(String string);
+    public IPITrib withAliquota(String string);
 
-    public IPITrib withQUnid(String string);
+    public IPITrib withQuantidade(String string);
 
-    public IPITrib withVUnid(String string);
+    public IPITrib withValorPorUnidade(String string);
 
-    public IPITrib withVIPI(String string);
+    public IPITrib withValor(String string);
 }

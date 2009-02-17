@@ -8,8 +8,8 @@ public interface ICMSCobradoAnteriormentePorSubstituicao extends ICMS {
 
 	public ICMSCobradoAnteriormentePorSubstituicao withOrigem(OrigemICMS origem);
 
-	public ICMSCobradoAnteriormentePorSubstituicao withValorBaseCalculoST(
-			BigDecimal valorBaseCalculo);
+	public ICMSCobradoAnteriormentePorSubstituicao withValorDaBaseDeCalculoST(
+			BigDecimal valorDaBaseDeCalculo);
 
 	public ICMSCobradoAnteriormentePorSubstituicao withValorST(
 			BigDecimal valorST);

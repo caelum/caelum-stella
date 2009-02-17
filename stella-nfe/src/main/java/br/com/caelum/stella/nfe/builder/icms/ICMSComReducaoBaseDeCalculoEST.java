@@ -30,8 +30,8 @@ public interface ICMSComReducaoBaseDeCalculoEST extends ICMS {
     public ICMSComReducaoBaseDeCalculoEST withPercentualReducaoBaseCalculoST(
             BigDecimal percentualReducao);
 
-    public ICMSComReducaoBaseDeCalculoEST withValorBaseCalculoST(
-            BigDecimal valorBaseCalculo);
+    public ICMSComReducaoBaseDeCalculoEST withValorDaBaseDeCalculoST(
+            BigDecimal valorDaBaseDeCalculo);
 
     public ICMSComReducaoBaseDeCalculoEST withAliquotaST(BigDecimal aliquota);
 

@@ -23,7 +23,7 @@ public interface ICMSTot {
 
     public ICMSTot withVPIS(String string);
 
-    public ICMSTot withVCOFINS(String string);
+    public ICMSTot withValor(String string);
 
     public ICMSTot withVOutro(String string);
 

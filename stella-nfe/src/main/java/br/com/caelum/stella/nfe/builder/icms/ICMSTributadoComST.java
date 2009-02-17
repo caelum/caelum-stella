@@ -33,8 +33,8 @@ public interface ICMSTributadoComST extends ICMS {
     public ICMSTributadoComST withPercentualReducaoBaseCalculo(
             final BigDecimal percentualReducaoBaseCalculo);
 
-    public ICMSTributadoComST withValorBaseCalculoST(
-            final BigDecimal valorBaseCalculo);
+    public ICMSTributadoComST withValorDaBaseDeCalculoST(
+            final BigDecimal valorDaBaseDeCalculo);
 
     public ICMSTributadoComST withAliquotaST(final BigDecimal aliquota);
 

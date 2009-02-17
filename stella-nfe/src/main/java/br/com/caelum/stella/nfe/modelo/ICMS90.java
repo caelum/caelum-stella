@@ -28,7 +28,7 @@ public class ICMS90 {
     protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "vBC")
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pRedBC")
     protected String percentualReducaoBaseCalculo;
@@ -50,7 +50,7 @@ public class ICMS90 {
     protected String percentualReducaoSubstituicaoTributaria;
 
     @XmlElement(name = "vBCST")
-    protected String valorBaseCalculoSubstituicaoTributaria;
+    protected String valorDaBaseDeCalculoSubstituicaoTributaria;
 
     @XmlElement(name = "pICMSST")
     protected String aliquotaSubstituicaoTributaria;
@@ -83,11 +83,11 @@ public class ICMS90 {
     }
 
     public String getVBC() {
-        return valorBaseCalculo;
+        return valorDaBaseDeCalculo;
     }
 
     public void setVBC(final String value) {
-        valorBaseCalculo = value;
+        valorDaBaseDeCalculo = value;
     }
 
     public String getPercentualReducaoBaseCalculo() {
@@ -139,11 +139,11 @@ public class ICMS90 {
     }
 
     public String getVBCST() {
-        return valorBaseCalculoSubstituicaoTributaria;
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public void setVBCST(final String value) {
-        valorBaseCalculoSubstituicaoTributaria = value;
+        valorDaBaseDeCalculoSubstituicaoTributaria = value;
     }
 
     public String getPICMSST() {

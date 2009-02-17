@@ -21,12 +21,12 @@ public final class PISSTImpl implements PISST, br.com.caelum.stella.nfe.ObjectCr
         return this;
     }
 
-    public PISST withQBCProd(String string) {
+    public PISST withQuantidadeVendida(String string) {
         this.pISST.setQBCProd(string);
         return this;
     }
 
-    public PISST withVAliqProd(String string) {
+    public PISST withAliquota(String string) {
         this.pISST.setVAliqProd(string);
         return this;
     }

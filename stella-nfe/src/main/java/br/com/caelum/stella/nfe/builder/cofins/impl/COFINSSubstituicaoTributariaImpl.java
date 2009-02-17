@@ -34,8 +34,8 @@ public class COFINSSubstituicaoTributariaImpl implements ObjectCreator, COFINSSu
         return this;
     }
 
-    public COFINSSubstituicaoTributaria withValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculo(valorBaseCalculo);
+    public COFINSSubstituicaoTributaria withValorDaBaseDeCalculo(final BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculo(valorDaBaseDeCalculo);
         return this;
     }
 

@@ -11,7 +11,7 @@ public final class COFINSNTImpl implements COFINSNT, br.com.caelum.stella.nfe.Ob
         return cOFINSNT;
     }
 
-    public COFINSNT withCST(final String string) {
+    public COFINSNT withCodigoSituacaoTributaria(final String string) {
         cOFINSNT.setCodigoSituacaoTributaria(string);
         return this;
     }

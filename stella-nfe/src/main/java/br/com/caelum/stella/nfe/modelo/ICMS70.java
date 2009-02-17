@@ -31,7 +31,7 @@ public class ICMS70 {
     protected String percentualReducaoBaseCalculo;
 
     @XmlElement(name = "vBC", required = true)
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pICMS", required = true)
     protected String aliquota;
@@ -50,7 +50,7 @@ public class ICMS70 {
     protected String percentualReducaoSubstituicaoTributaria;
 
     @XmlElement(name = "vBCST", required = true)
-    protected String valorBaseCalculoSubstituicaoTributaria;
+    protected String valorDaBaseDeCalculoSubstituicaoTributaria;
 
     @XmlElement(name = "pICMSST", required = true)
     protected String aliquotaSubstituicaoTributaria;
@@ -91,11 +91,11 @@ public class ICMS70 {
     }
 
     public String getVBC() {
-        return valorBaseCalculo;
+        return valorDaBaseDeCalculo;
     }
 
     public void setVBC(final String value) {
-        valorBaseCalculo = value;
+        valorDaBaseDeCalculo = value;
     }
 
     public String getPICMS() {
@@ -139,11 +139,11 @@ public class ICMS70 {
     }
 
     public String getVBCST() {
-        return valorBaseCalculoSubstituicaoTributaria;
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public void setVBCST(final String value) {
-        valorBaseCalculoSubstituicaoTributaria = value;
+        valorDaBaseDeCalculoSubstituicaoTributaria = value;
     }
 
     public String getPICMSST() {
@@ -170,12 +170,12 @@ public class ICMS70 {
         this.tipoTributacao = tipoTributacao;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(final String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getAliquota() {
@@ -202,12 +202,12 @@ public class ICMS70 {
         this.percentualAdicionadoSubstituicaoTributaria = percentualAdicionadoSubstituicaoTributaria;
     }
 
-    public String getValorBaseCalculoSubstituicaoTributaria() {
-        return valorBaseCalculoSubstituicaoTributaria;
+    public String getvalorDaBaseDeCalculoSubstituicaoTributaria() {
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
-    public void setValorBaseCalculoSubstituicaoTributaria(final String valorBaseCalculoSubstituicaoTributaria) {
-        this.valorBaseCalculoSubstituicaoTributaria = valorBaseCalculoSubstituicaoTributaria;
+    public void setvalorDaBaseDeCalculoSubstituicaoTributaria(final String valorDaBaseDeCalculoSubstituicaoTributaria) {
+        this.valorDaBaseDeCalculoSubstituicaoTributaria = valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public String getAliquotaSubstituicaoTributaria() {

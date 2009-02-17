@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class PISQtdeImplTest {
     @org.junit.Test
     public void testPISQtdeInterface() {
-        PISQtde pISQtde = new PISQtdeImpl().withCST("abc").withQBCProd("abc").withVAliqProd("abc").withVPIS("abc");
+        PISQtde pISQtde = new PISQtdeImpl().withCodigoSituacaoTributaria("abc").withQuantidadeVendida("abc").withAliquota("abc").withVPIS("abc");
         assertModelWasFilled(pISQtde);
     }
 

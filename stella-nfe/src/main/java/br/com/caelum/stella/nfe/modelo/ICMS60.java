@@ -23,7 +23,7 @@ public class ICMS60 {
     protected String tipoTributacao;
 
     @XmlElement(name = "vBCST", required = true)
-    protected String valorBaseCalculoSubstituicaoTributaria;
+    protected String valorDaBaseDeCalculoSubstituicaoTributaria;
 
     @XmlElement(name = "vICMSST", required = true)
     protected String valorSubstituicaoTributaria;
@@ -45,11 +45,11 @@ public class ICMS60 {
     }
 
     public String getVBCST() {
-        return valorBaseCalculoSubstituicaoTributaria;
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public void setVBCST(final String value) {
-        valorBaseCalculoSubstituicaoTributaria = value;
+        valorDaBaseDeCalculoSubstituicaoTributaria = value;
     }
 
     public String getVICMSST() {

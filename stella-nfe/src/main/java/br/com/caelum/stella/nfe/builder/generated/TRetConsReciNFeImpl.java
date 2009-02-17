@@ -31,7 +31,7 @@ public final class TRetConsReciNFeImpl implements TRetConsReciNFe, br.com.caelum
         return this;
     }
 
-    public TRetConsReciNFe withCStat(final String string) {
+    public TRetConsReciNFe withCodigoDeStatus(final String string) {
         tRetConsReciNFe.setCStat(string);
         return this;
     }

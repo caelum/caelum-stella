@@ -21,7 +21,7 @@ public class IPITributacaoImpl implements IPITributacao, ObjectCreator{
     }
 
     public IPITributacaoImpl withValorDaBaseDeCalculo(BigDecimal baseDeCalculo) {
-        trib.setValorBaseCalculo(baseDeCalculo.toString());
+        trib.setvalorDaBaseDeCalculo(baseDeCalculo.toString());
         return this;
     }
 

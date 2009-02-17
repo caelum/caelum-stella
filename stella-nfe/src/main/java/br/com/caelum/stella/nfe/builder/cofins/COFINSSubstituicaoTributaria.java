@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface COFINSSubstituicaoTributaria extends COFINS {
 
-	public COFINSSubstituicaoTributaria withValorBaseCalculo(BigDecimal valorBaseCalculo);
+	public COFINSSubstituicaoTributaria withValorDaBaseDeCalculo(BigDecimal valorDaBaseDeCalculo);
 	
 	public COFINSSubstituicaoTributaria withAliquotaEmPercentual(BigDecimal aliquotaEmPercentual);
 	

@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class CIDEImplTest {
     @org.junit.Test
     public void testCIDEInterface() {
-        CIDE cIDE = new CIDEImpl().withQBCProd("abc").withVAliqProd("abc").withVCIDE("abc");
+        CIDE cIDE = new CIDEImpl().withBC("abc").withAliquota("abc").withValor("abc");
         assertModelWasFilled(cIDE);
     }
 

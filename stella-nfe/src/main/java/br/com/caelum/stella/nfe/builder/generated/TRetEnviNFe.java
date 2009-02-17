@@ -5,7 +5,7 @@ public interface TRetEnviNFe {
 
     public TRetEnviNFe withVerAplic(String string);
 
-    public TRetEnviNFe withCStat(String string);
+    public TRetEnviNFe withCodigoDeStatus(String string);
 
     public TRetEnviNFe withXMotivo(String string);
 

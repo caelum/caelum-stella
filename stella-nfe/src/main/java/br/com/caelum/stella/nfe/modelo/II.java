@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 public class II {
 
     @XmlElement(name = "vBC", required = true)
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(required = true, name = "vDespAdu")
     protected String valorDespesaAduaneira;
@@ -24,12 +24,12 @@ public class II {
     @XmlElement(name = "vIOF", required = true)
     protected String valorImpostoSobreOperacoesFinanceiras;
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getValorDespesaAduaneira() {

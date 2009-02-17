@@ -11,32 +11,32 @@ public final class COFINSOutrImpl implements COFINSOutr, br.com.caelum.stella.nf
         return cOFINSOutr;
     }
 
-    public COFINSOutr withCST(final String string) {
+    public COFINSOutr withCodigoSituacaoTributaria(final String string) {
         cOFINSOutr.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public COFINSOutr withVBC(final String string) {
-        cOFINSOutr.setValorBaseCalculo(string);
+    public COFINSOutr withValorDaBaseDeCalculo(final String string) {
+        cOFINSOutr.setvalorDaBaseDeCalculo(string);
         return this;
     }
 
-    public COFINSOutr withPCOFINS(final String string) {
+    public COFINSOutr withAliquotaEmPercentual(final String string) {
         cOFINSOutr.setAliquotaEmPercentual(string);
         return this;
     }
 
-    public COFINSOutr withQbcProd(final String string) {
+    public COFINSOutr withQuantidadeVendida(final String string) {
         cOFINSOutr.setQuantidadeVendida(string);
         return this;
     }
 
-    public COFINSOutr withVAliqProd(final String string) {
+    public COFINSOutr withAliquota(final String string) {
         cOFINSOutr.setAliquota(string);
         return this;
     }
 
-    public COFINSOutr withVCOFINS(final String string) {
+    public COFINSOutr withValor(final String string) {
         cOFINSOutr.setValor(string);
         return this;
     }

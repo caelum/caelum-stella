@@ -3,8 +3,8 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class COFINSQtdeImplTest {
     @org.junit.Test
     public void testCOFINSQtdeInterface() {
-        COFINSQtde cOFINSQtde = new COFINSQtdeImpl().withCST("abc").withQBCProd("abc").withVAliqProd("abc")
-                .withVCOFINS("abc");
+        COFINSQtde cOFINSQtde = new COFINSQtdeImpl().withCodigoSituacaoTributaria("abc").withQuantidadeVendida("abc").withAliquota("abc")
+                .withValor("abc");
         assertModelWasFilled(cOFINSQtde);
     }
 

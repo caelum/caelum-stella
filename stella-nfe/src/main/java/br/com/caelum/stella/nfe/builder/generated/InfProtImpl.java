@@ -44,7 +44,7 @@ public final class InfProtImpl implements InfProt, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public InfProt withCStat(final String string) {
+    public InfProt withCodigoDeStatus(final String string) {
         infProt.setCStat(string);
         return this;
     }

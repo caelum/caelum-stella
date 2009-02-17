@@ -15,7 +15,7 @@ public interface InfProt {
 
     public InfProt withDigVal(byte[] b);
 
-    public InfProt withCStat(String string);
+    public InfProt withCodigoDeStatus(String string);
 
     public InfProt withXMotivo(String string);
 

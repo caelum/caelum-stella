@@ -1,7 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface PISAliq {
-    public PISAliq withCST(String string);
+    public PISAliq withCodigoSituacaoTributaria(String string);
 
     public PISAliq withVBC(String string);
 

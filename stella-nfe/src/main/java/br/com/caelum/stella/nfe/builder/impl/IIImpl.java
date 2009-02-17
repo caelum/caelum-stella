@@ -13,8 +13,8 @@ public class IIImpl implements br.com.caelum.stella.nfe.builder.II, ObjectCreato
         ii = new II();
     }
 
-    public IIImpl withValorBaseCalculo(BigDecimal valorBaseCalculo) {
-        ii.setValorBaseCalculo(valorBaseCalculo.toString());
+    public IIImpl withValorDaBaseDeCalculo(BigDecimal valorDaBaseDeCalculo) {
+        ii.setvalorDaBaseDeCalculo(valorDaBaseDeCalculo.toString());
         return this;
     }
 

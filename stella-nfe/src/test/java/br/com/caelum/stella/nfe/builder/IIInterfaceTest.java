@@ -11,7 +11,7 @@ public class IIInterfaceTest {
 
         new ImpostoBuilder()
                 .createII()
-                    .withValorBaseCalculo(new BigDecimal(1))
+                    .withValorDaBaseDeCalculo(new BigDecimal(1))
                     .withValorAduaneira(new BigDecimal(1))
                     .withValorII(new BigDecimal(1))
                     .withValorIOF(new BigDecimal(1));

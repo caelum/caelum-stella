@@ -11,7 +11,7 @@ public final class PISOutrImpl implements PISOutr, br.com.caelum.stella.nfe.Obje
         return this.pISOutr;
     }
 
-    public PISOutr withCST(String string) {
+    public PISOutr withCodigoSituacaoTributaria(String string) {
         this.pISOutr.setCST(string);
         return this;
     }
@@ -26,12 +26,12 @@ public final class PISOutrImpl implements PISOutr, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public PISOutr withQBCProd(String string) {
+    public PISOutr withQuantidadeVendida(String string) {
         this.pISOutr.setQBCProd(string);
         return this;
     }
 
-    public PISOutr withVAliqProd(String string) {
+    public PISOutr withAliquota(String string) {
         this.pISOutr.setVAliqProd(string);
         return this;
     }

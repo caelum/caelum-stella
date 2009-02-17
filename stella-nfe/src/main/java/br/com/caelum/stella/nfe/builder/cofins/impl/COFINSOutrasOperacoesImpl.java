@@ -35,8 +35,8 @@ public class COFINSOutrasOperacoesImpl implements COFINSOutrasOperacoes, ObjectC
         return this;
     }
 
-    public COFINSOutrasOperacoes withValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculo(valorBaseCalculo);
+    public COFINSOutrasOperacoes withValorDaBaseDeCalculo(final BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculo(valorDaBaseDeCalculo);
         return this;
     }
 

@@ -24,9 +24,9 @@ public class ICMSCobradoAnteriormentePorSubstituicaoImpl implements ICMSCobradoA
         return this;
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorBaseCalculoST(
-            BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculoSubstituicaoTributaria(valorBaseCalculo);
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorDaBaseDeCalculoST(
+            BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
 

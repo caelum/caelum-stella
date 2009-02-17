@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface II {
 
-	II withValorBaseCalculo(BigDecimal valorBaseCalculo);
+	II withValorDaBaseDeCalculo(BigDecimal valorDaBaseDeCalculo);
 
 	/**
 	 * Entendem-se como despesas aduaneiras, além das referentes aos valores dos

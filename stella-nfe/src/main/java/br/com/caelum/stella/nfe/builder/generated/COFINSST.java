@@ -1,13 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface COFINSST {
-    public COFINSST withVBC(String string);
+    public COFINSST withValorDaBaseDeCalculo(String string);
 
-    public COFINSST withPCOFINS(String string);
+    public COFINSST withAliquotaEmPercentual(String string);
 
-    public COFINSST withQBCProd(String string);
+    public COFINSST withQuantidadeVendida(String string);
 
-    public COFINSST withVAliqProd(String string);
+    public COFINSST withAliquota(String string);
 
-    public COFINSST withVCOFINS(String string);
+    public COFINSST withValor(String string);
 }

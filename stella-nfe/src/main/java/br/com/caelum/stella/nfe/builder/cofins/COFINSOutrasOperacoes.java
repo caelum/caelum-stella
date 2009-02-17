@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface COFINSOutrasOperacoes extends COFINS,COFINSTributavel {
 
-	public COFINSOutrasOperacoes withValorBaseCalculo(BigDecimal valorBaseCalculo);
+	public COFINSOutrasOperacoes withValorDaBaseDeCalculo(BigDecimal valorDaBaseDeCalculo);
 	
 	public COFINSOutrasOperacoes withAliquotaEmPercentual(BigDecimal aliquotaEmPercentual);
 	

@@ -66,7 +66,7 @@ public final class ICMSTotImpl implements ICMSTot, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public ICMSTot withVCOFINS(String string) {
+    public ICMSTot withValor(String string) {
         this.iCMSTot.setVCOFINS(string);
         return this;
     }

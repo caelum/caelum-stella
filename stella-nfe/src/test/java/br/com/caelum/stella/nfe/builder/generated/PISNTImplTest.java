@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class PISNTImplTest {
     @org.junit.Test
     public void testPISNTInterface() {
-        PISNT pISNT = new PISNTImpl().withCST("abc");
+        PISNT pISNT = new PISNTImpl().withCodigoSituacaoTributaria("abc");
         assertModelWasFilled(pISNT);
     }
 

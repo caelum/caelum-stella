@@ -23,7 +23,7 @@ public final class TRetEnviNFeImpl implements TRetEnviNFe, br.com.caelum.stella.
         return this;
     }
 
-    public TRetEnviNFe withCStat(final String string) {
+    public TRetEnviNFe withCodigoDeStatus(final String string) {
         tRetEnviNFe.setCStat(string);
         return this;
     }

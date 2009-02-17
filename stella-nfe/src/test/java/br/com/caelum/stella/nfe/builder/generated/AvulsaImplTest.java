@@ -9,8 +9,8 @@ public final class AvulsaImplTest {
 
     @org.junit.Test
     public void testAvulsaInterface() {
-        Avulsa avulsa = new AvulsaImpl().withCNPJ(new CNPJ("abc")).withXOrgao("abc").withMatr("abc").withXAgente("abc").withFone(
-                "abc").withUF(TUf.AC).withNDAR("abc").withDEmi(Calendar.getInstance()).withVDAR("abc")
+        Avulsa avulsa = new AvulsaImpl().withCnpj(new CNPJ("abc")).withXOrgao("abc").withMatr("abc").withXAgente("abc").withFone(
+                "abc").withUf(TUf.AC).withNdar("abc").withDEmi(Calendar.getInstance()).withVdar("abc")
                 .withRepEmi("abc").withDPag(Calendar.getInstance());
         assertModelWasFilled(avulsa);
     }

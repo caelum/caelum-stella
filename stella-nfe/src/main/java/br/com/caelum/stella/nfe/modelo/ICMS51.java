@@ -30,7 +30,7 @@ public class ICMS51 {
     protected String percentualReducaoBaseCalculo;
 
     @XmlElement(name = "vBC")
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pICMS")
     protected String aliquota;
@@ -71,11 +71,11 @@ public class ICMS51 {
     }
 
     public String getVBC() {
-        return valorBaseCalculo;
+        return valorDaBaseDeCalculo;
     }
 
     public void setVBC(final String value) {
-        valorBaseCalculo = value;
+        valorDaBaseDeCalculo = value;
     }
 
     public String getPICMS() {

@@ -11,7 +11,7 @@ public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.Obje
         return this.pISAliq;
     }
 
-    public PISAliq withCST(String string) {
+    public PISAliq withCodigoSituacaoTributaria(String string) {
         this.pISAliq.setCST(string);
         return this;
     }

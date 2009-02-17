@@ -4,7 +4,7 @@ public final class ISSQNtotImplTest {
     @org.junit.Test
     public void testISSQNtotInterface() {
         ISSQNtot iSSQNtot = new ISSQNtotImpl().withVServ("abc").withVBC("abc").withVISS("abc").withVPIS("abc")
-                .withVCOFINS("abc");
+                .withValor("abc");
         assertModelWasFilled(iSSQNtot);
     }
 

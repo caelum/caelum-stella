@@ -31,7 +31,7 @@ public final class ISSQNtotImpl implements ISSQNtot, br.com.caelum.stella.nfe.Ob
         return this;
     }
 
-    public ISSQNtot withVCOFINS(String string) {
+    public ISSQNtot withValor(String string) {
         this.iSSQNtot.setVCOFINS(string);
         return this;
     }

@@ -11,7 +11,7 @@ public final class PISNTImpl implements PISNT, br.com.caelum.stella.nfe.ObjectCr
         return this.pISNT;
     }
 
-    public PISNT withCST(String string) {
+    public PISNT withCodigoSituacaoTributaria(String string) {
         this.pISNT.setCST(string);
         return this;
     }

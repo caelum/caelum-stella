@@ -25,8 +25,8 @@ public class COFINSTributadoImpl implements COFINSTributadoPelaAliquota, ObjectC
         return this;
     }
 
-    public COFINSTributadoPelaAliquota withValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculo(valorBaseCalculo);
+    public COFINSTributadoPelaAliquota withValorDaBaseDeCalculo(final BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculo(valorDaBaseDeCalculo);
         return this;
     }
 

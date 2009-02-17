@@ -29,8 +29,8 @@ public class ISSQNImpl implements br.com.caelum.stella.nfe.builder.ISS, ObjectCr
         return this;
     }
 
-    public ISSQNImpl withValorBaseCalculo(BigDecimal valor) {
-        issqn.setValorBaseCalculo(valor.toString());
+    public ISSQNImpl withValorDaBaseDeCalculo(BigDecimal valor) {
+        issqn.setvalorDaBaseDeCalculo(valor.toString());
         return this;
     }
 

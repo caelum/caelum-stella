@@ -70,9 +70,9 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withValorBaseCalculoST(
-            final BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculoSubstituicaoTributaria(valorBaseCalculo);
+    public ICMSTributadoComSubstituicaoTributariaImpl withValorDaBaseDeCalculoST(
+            final BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
 

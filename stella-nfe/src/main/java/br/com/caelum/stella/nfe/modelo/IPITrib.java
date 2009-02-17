@@ -16,7 +16,7 @@ public class IPITrib {
     protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC")
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pIPI")
     protected String aliquotaIPI;
@@ -38,12 +38,12 @@ public class IPITrib {
         this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getAliquotaIPI() {

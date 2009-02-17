@@ -9,5 +9,5 @@ public interface ISSQNtot {
 
     public ISSQNtot withVPIS(String string);
 
-    public ISSQNtot withVCOFINS(String string);
+    public ISSQNtot withValor(String string);
 }

@@ -28,7 +28,7 @@ public class ICMS10 {
     protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "vBC", required = true)
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pICMS", required = true)
     protected String aliquota;
@@ -47,7 +47,7 @@ public class ICMS10 {
     protected String percentualReducaoBaseCalculo;
 
     @XmlElement(name = "vBCST", required = true)
-    protected String valorBaseCalculoSubstituicaoTributaria;
+    protected String valorDaBaseDeCalculoSubstituicaoTributaria;
 
     @XmlElement(name = "pICMSST", required = true)
     protected String aliquotaSubstituicaoTributaria;
@@ -80,11 +80,11 @@ public class ICMS10 {
     }
 
     public String getVBC() {
-        return valorBaseCalculo;
+        return valorDaBaseDeCalculo;
     }
 
     public void setVBC(final String value) {
-        valorBaseCalculo = value;
+        valorDaBaseDeCalculo = value;
     }
 
     public String getPICMS() {
@@ -128,11 +128,11 @@ public class ICMS10 {
     }
 
     public String getVBCST() {
-        return valorBaseCalculoSubstituicaoTributaria;
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public void setVBCST(final String value) {
-        valorBaseCalculoSubstituicaoTributaria = value;
+        valorDaBaseDeCalculoSubstituicaoTributaria = value;
     }
 
     public String getPICMSST() {
@@ -159,12 +159,12 @@ public class ICMS10 {
         this.tipoTributacao = cst;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String vbc) {
-        this.valorBaseCalculo = vbc;
+    public void setvalorDaBaseDeCalculo(final String vbc) {
+        this.valorDaBaseDeCalculo = vbc;
     }
 
     public String getAliquota() {
@@ -191,12 +191,12 @@ public class ICMS10 {
         this.percentualAdicionadoSubstituicaoTributaria = pmvast;
     }
 
-    public String getValorBaseCalculoSubstituicaoTributaria() {
-        return valorBaseCalculoSubstituicaoTributaria;
+    public String getvalorDaBaseDeCalculoSubstituicaoTributaria() {
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
-    public void setValorBaseCalculoSubstituicaoTributaria(final String vbcst) {
-        this.valorBaseCalculoSubstituicaoTributaria = vbcst;
+    public void setvalorDaBaseDeCalculoSubstituicaoTributaria(final String vbcst) {
+        this.valorDaBaseDeCalculoSubstituicaoTributaria = vbcst;
     }
 
     public String getAliquotaSubstituicaoTributaria() {

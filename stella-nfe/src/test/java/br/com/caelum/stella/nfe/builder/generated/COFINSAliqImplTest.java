@@ -3,8 +3,8 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class COFINSAliqImplTest {
     @org.junit.Test
     public void testCOFINSAliqInterface() {
-        COFINSAliq cOFINSAliq = new COFINSAliqImpl().withCST("abc").withVBC("abc").withPCOFINS("abc")
-                .withVCOFINS("abc");
+        COFINSAliq cOFINSAliq = new COFINSAliqImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo("abc").withAliquotaEmPercentual("abc")
+                .withValor("abc");
         assertModelWasFilled(cOFINSAliq);
     }
 

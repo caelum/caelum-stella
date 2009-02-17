@@ -6,9 +6,9 @@ public interface IPI {
 
     public IPI withClasseDeEnquadramento(String classeDeEnquadramento);
 
-    public IPI withCNPJDoProdutor(String cnpj);
+    public IPI withCnpjDoProdutor(String cnpj);
 
-    public IPI withCodigoDoSeloDeControle(String seloDeControle);
+    public IPI withCodigoDoSelo(String seloDeControle);
 
     public IPI withQuantidadeDeSelos(long quantidadeDeSelos);
 

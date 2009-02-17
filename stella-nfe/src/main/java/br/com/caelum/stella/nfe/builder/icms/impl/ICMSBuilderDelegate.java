@@ -31,7 +31,7 @@ public class ICMSBuilderDelegate<T> {
     }
 
     public void withBaseDeCalculo(final BigDecimal baseDeCalculo) {
-        on(instance).set().field("valorBaseCalculo").withValue(baseDeCalculo.toString());
+        on(instance).set().field("valorDaBaseDeCalculo").withValue(baseDeCalculo.toString());
     }
 
     public void withAliquota(final BigDecimal aliquota) {
@@ -55,8 +55,8 @@ public class ICMSBuilderDelegate<T> {
         on(instance).set().field("percentualReducaoBaseCalculo").withValue(percentualReducaoBaseCalculo.toString());
     }
 
-    public void withValorBaseCalculoSubstituicaoTributaria(final BigDecimal valorBaseCalculo) {
-        on(instance).set().field("valorBaseCalculoSubstituicaoTributaria").withValue(valorBaseCalculo.toString());
+    public void withValorDaBaseDeCalculoSubstituicaoTributaria(final BigDecimal valorDaBaseDeCalculo) {
+        on(instance).set().field("valorDaBaseDeCalculoSubstituicaoTributaria").withValue(valorDaBaseDeCalculo.toString());
     }
 
     public void withPercentualReducaoBaseCalculoSubstituicaoTributaria(final BigDecimal percentualReducao) {

@@ -9,7 +9,7 @@ public class ISSQNInterfaceTest {
 	@Test
 	public void testISSInterface() {
 		new ImpostoBuilder().createISS()
-				.withValorBaseCalculo(new BigDecimal(1)).withAliquota(
+				.withValorDaBaseDeCalculo(new BigDecimal(1)).withAliquota(
 						new BigDecimal(1)).withValor(new BigDecimal(1))
 				.withCodigoMunicipio(1).withCodigoListaServicos(1);
 	}

@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 public class COFINSST {
 
     @XmlElement(name = "vBC")
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pCOFINS")
     protected String aliquotaEmPercentual;
@@ -27,12 +27,12 @@ public class COFINSST {
     @XmlElement(name = "vCOFINS", required = true)
     protected String valor;
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(final String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getAliquotaEmPercentual() {

@@ -25,7 +25,7 @@ public final class ProdImplTest {
                         .withDI(new DIImpl())
                         .withVeicProd(new VeicProdImpl())
                         .withMed(new MedImpl())
-                        .withArma(new ArmaImpl())
+                        .withArma(new ArmamentoImpl())
                         .withComb(new CombImpl());
         assertModelWasFilled(prod);
     }

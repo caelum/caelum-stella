@@ -11,27 +11,27 @@ public final class ISSQNImpl implements ISSQN, br.com.caelum.stella.nfe.ObjectCr
         return iSSQN;
     }
 
-    public ISSQN withVBC(final String string) {
-        iSSQN.setValorBaseCalculo(string);
+    public ISSQN withValorDaBaseDeCalculo(final String string) {
+        iSSQN.setvalorDaBaseDeCalculo(string);
         return this;
     }
 
-    public ISSQN withVAliq(final String string) {
+    public ISSQN withAliquota(final String string) {
         iSSQN.setAliquota(string);
         return this;
     }
 
-    public ISSQN withVISSQN(final String string) {
+    public ISSQN withValorISSQN(final String string) {
         iSSQN.setValorISSQN(string);
         return this;
     }
 
-    public ISSQN withCMunFG(final String string) {
+    public ISSQN withCodigoMunicipio(final String string) {
         iSSQN.setCodigoMunicipio(string);
         return this;
     }
 
-    public ISSQN withCListServ(final String string) {
+    public ISSQN withCodigoListaServicos(final String string) {
         iSSQN.setCodigoListaServicos(string);
         return this;
     }

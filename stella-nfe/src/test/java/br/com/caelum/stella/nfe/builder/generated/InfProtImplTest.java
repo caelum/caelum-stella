@@ -6,7 +6,8 @@ public final class InfProtImplTest {
     @org.junit.Test
     public void testInfProtInterface() {
         InfProt infProt = new InfProtImpl().withTpAmb("abc").withVerAplic("abc").withChNFe("abc").withDhRecbto(
-                Calendar.getInstance()).withNProt("abc").withDigVal("abc".getBytes()).withCStat("abc").withXMotivo(
+                Calendar.getInstance()).withNProt("abc").withDigVal("abc".getBytes()).withCodigoDeStatus("abc")
+                .withXMotivo(
                 "abc").withId("abc");
         assertModelWasFilled(infProt);
     }

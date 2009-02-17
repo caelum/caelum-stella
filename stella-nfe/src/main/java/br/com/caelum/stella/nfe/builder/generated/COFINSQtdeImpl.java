@@ -11,22 +11,22 @@ public final class COFINSQtdeImpl implements COFINSQtde, br.com.caelum.stella.nf
         return cOFINSQtde;
     }
 
-    public COFINSQtde withCST(final String string) {
+    public COFINSQtde withCodigoSituacaoTributaria(final String string) {
         cOFINSQtde.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public COFINSQtde withQBCProd(final String string) {
+    public COFINSQtde withQuantidadeVendida(final String string) {
         cOFINSQtde.setQuantidadeVendida(string);
         return this;
     }
 
-    public COFINSQtde withVAliqProd(final String string) {
+    public COFINSQtde withAliquota(final String string) {
         cOFINSQtde.setAliquota(string);
         return this;
     }
 
-    public COFINSQtde withVCOFINS(final String string) {
+    public COFINSQtde withValor(final String string) {
         cOFINSQtde.setValor(string);
         return this;
     }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface ISS {
 
-    ISS withValorBaseCalculo(BigDecimal valor);
+    ISS withValorDaBaseDeCalculo(BigDecimal valor);
 
     ISS withAliquota(BigDecimal aliquota);
 

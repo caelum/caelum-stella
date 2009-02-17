@@ -11,17 +11,17 @@ public final class CIDEImpl implements CIDE, br.com.caelum.stella.nfe.ObjectCrea
         return this.cIDE;
     }
 
-    public CIDE withQBCProd(String string) {
+    public CIDE withBC(String string) {
         this.cIDE.setQBCProd(string);
         return this;
     }
 
-    public CIDE withVAliqProd(String string) {
+    public CIDE withAliquota(String string) {
         this.cIDE.setVAliqProd(string);
         return this;
     }
 
-    public CIDE withVCIDE(String string) {
+    public CIDE withValor(String string) {
         this.cIDE.setVCIDE(string);
         return this;
     }

@@ -38,7 +38,7 @@ public class ICMSInterfaceTest {
                     .withModalidadeST(ModalidadeST.PAUTA)
                     .withPercentualAdicionado(new BigDecimal(1))
                     .withPercentualReducaoBaseCalculo(new BigDecimal(1))
-                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withValorDaBaseDeCalculoST(new BigDecimal(1))
                     .withAliquotaST(new BigDecimal(1))
                     .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
@@ -84,7 +84,7 @@ public class ICMSInterfaceTest {
         ICMSCobradoAnteriormentePorSubstituicao icms = new ICMSBuilder()
                 .cobradoAnteriormentePorSubstituicao()
                     .withOrigem(OrigemICMS.NACIONAL)
-                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withValorDaBaseDeCalculoST(new BigDecimal(1))
                     .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
     }
@@ -102,7 +102,7 @@ public class ICMSInterfaceTest {
                     .withModalidadeST(ModalidadeST.PAUTA)
                     .withPercentualAdicionadoST(new BigDecimal(1))
                     .withPercentualReducaoBaseCalculoST(new BigDecimal(1))
-                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withValorDaBaseDeCalculoST(new BigDecimal(1))
                     .withAliquotaST(new BigDecimal(1))
                     .withValorST(new BigDecimal(1));
         assertModelWasFilled(icms);
@@ -120,7 +120,7 @@ public class ICMSInterfaceTest {
                     .withValor(new BigDecimal(1))
                     .withModalidadeST(ModalidadeST.PAUTA)
                     .withPercentualAdicionadoST(new BigDecimal(1))
-                    .withValorBaseCalculoST(new BigDecimal(1))
+                    .withValorDaBaseDeCalculoST(new BigDecimal(1))
                     .withAliquotaST(new BigDecimal(1))
                     .withValorST(new BigDecimal(1))
                     .withPercentualReducaoBaseCalculoST(new BigDecimal(1));

@@ -11,7 +11,7 @@ public final class IPINTImpl implements IPINT, br.com.caelum.stella.nfe.ObjectCr
         return iPINT;
     }
 
-    public IPINT withCST(final String string) {
+    public IPINT withCodigoSituacaoTributaria(final String string) {
         iPINT.setCodigoSituacaoTributaria(string);
         return this;
     }

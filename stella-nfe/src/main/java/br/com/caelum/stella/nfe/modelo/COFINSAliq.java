@@ -19,7 +19,7 @@ public class COFINSAliq {
     protected String codigoSituacaoTributaria;
 
     @XmlElement(name = "vBC", required = true)
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pCOFINS", required = true)
     protected String aliquotaEmPercentual;
@@ -35,12 +35,12 @@ public class COFINSAliq {
         this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+    public void setvalorDaBaseDeCalculo(final String valorDaBaseDeCalculo) {
+        this.valorDaBaseDeCalculo = valorDaBaseDeCalculo;
     }
 
     public String getAliquotaEmPercentual() {

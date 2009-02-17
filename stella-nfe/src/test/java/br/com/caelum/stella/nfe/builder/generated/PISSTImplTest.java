@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class PISSTImplTest {
     @org.junit.Test
     public void testPISSTInterface() {
-        PISST pISST = new PISSTImpl().withVBC("abc").withPPIS("abc").withQBCProd("abc").withVAliqProd("abc").withVPIS(
+        PISST pISST = new PISSTImpl().withVBC("abc").withPPIS("abc").withQuantidadeVendida("abc").withAliquota("abc").withVPIS(
                 "abc");
         assertModelWasFilled(pISST);
     }

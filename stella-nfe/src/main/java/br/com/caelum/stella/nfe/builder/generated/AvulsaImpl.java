@@ -17,7 +17,7 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return avulsa;
     }
 
-    public Avulsa withCNPJ(final CNPJ cnpj) {
+    public Avulsa withCnpj(final CNPJ cnpj) {
         avulsa.setCNPJ(cnpj.getNumero());
         return this;
     }
@@ -42,12 +42,12 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return this;
     }
 
-    public Avulsa withUF(final TUf tUf) {
+    public Avulsa withUf(final TUf tUf) {
         avulsa.setUF(tUf);
         return this;
     }
 
-    public Avulsa withNDAR(final String string) {
+    public Avulsa withNdar(final String string) {
         avulsa.setNDAR(string);
         return this;
     }
@@ -57,7 +57,7 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return this;
     }
 
-    public Avulsa withVDAR(final String string) {
+    public Avulsa withVdar(final String string) {
         avulsa.setVDAR(string);
         return this;
     }

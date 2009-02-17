@@ -7,7 +7,7 @@ public interface TRetConsReciNFe {
 
     public TRetConsReciNFe withNRec(String string);
 
-    public TRetConsReciNFe withCStat(String string);
+    public TRetConsReciNFe withCodigoDeStatus(String string);
 
     public TRetConsReciNFe withXMotivo(String string);
 

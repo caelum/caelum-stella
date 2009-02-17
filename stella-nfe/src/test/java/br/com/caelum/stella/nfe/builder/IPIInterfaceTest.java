@@ -14,8 +14,8 @@ public class IPIInterfaceTest {
 	public void testIPIInterface(){
 		new IPIImpl()
 		.withClasseDeEnquadramento("")
-		.withCNPJDoProdutor("")
-		.withCodigoDoSeloDeControle("")
+		.withCnpjDoProdutor("")
+		.withCodigoDoSelo("")
 		.withQuantidadeDeSelos(123456789012L)
 		.withCodigoDeEnquandramento("")
 		.withIPITrib(new IPITributacaoImpl())

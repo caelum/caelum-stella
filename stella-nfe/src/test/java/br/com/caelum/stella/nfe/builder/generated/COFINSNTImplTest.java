@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class COFINSNTImplTest {
     @org.junit.Test
     public void testCOFINSNTInterface() {
-        COFINSNT cOFINSNT = new COFINSNTImpl().withCST("abc");
+        COFINSNT cOFINSNT = new COFINSNTImpl().withCodigoSituacaoTributaria("abc");
         assertModelWasFilled(cOFINSNT);
     }
 

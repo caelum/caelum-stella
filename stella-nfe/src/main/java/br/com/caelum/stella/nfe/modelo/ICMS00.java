@@ -27,7 +27,7 @@ public class ICMS00 {
     protected String modalidadeBaseCalculo;
 
     @XmlElement(name = "vBC", required = true)
-    protected String valorBaseCalculo;
+    protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pICMS", required = true)
     protected String aliquota;
@@ -60,11 +60,11 @@ public class ICMS00 {
     }
 
     public String getVBC() {
-        return valorBaseCalculo;
+        return valorDaBaseDeCalculo;
     }
 
     public void setVBC(final String value) {
-        valorBaseCalculo = value;
+        valorDaBaseDeCalculo = value;
     }
 
     public String getPICMS() {
@@ -91,12 +91,12 @@ public class ICMS00 {
         this.tipoTributacao = cst;
     }
 
-    public String getValorBaseCalculo() {
-        return valorBaseCalculo;
+    public String getvalorDaBaseDeCalculo() {
+        return valorDaBaseDeCalculo;
     }
 
-    public void setValorBaseCalculo(final String vbc) {
-        this.valorBaseCalculo = vbc;
+    public void setvalorDaBaseDeCalculo(final String vbc) {
+        this.valorDaBaseDeCalculo = vbc;
     }
 
     public String getAliquota() {

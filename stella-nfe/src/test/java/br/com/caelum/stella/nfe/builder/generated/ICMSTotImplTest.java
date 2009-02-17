@@ -5,7 +5,7 @@ public final class ICMSTotImplTest {
     public void testICMSTotInterface() {
         ICMSTot iCMSTot = new ICMSTotImpl().withVBC("abc").withVICMS("abc").withVBCST("abc").withVST("abc").withVProd(
                 "abc").withVFrete("abc").withVSeg("abc").withVDesc("abc").withVII("abc").withVIPI("abc")
-                .withVPIS("abc").withVCOFINS("abc").withVOutro("abc").withVNF("abc");
+                .withVPIS("abc").withValor("abc").withVOutro("abc").withVNF("abc");
         assertModelWasFilled(iCMSTot);
     }
 

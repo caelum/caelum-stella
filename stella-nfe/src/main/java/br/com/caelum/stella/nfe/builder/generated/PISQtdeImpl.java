@@ -11,17 +11,17 @@ public final class PISQtdeImpl implements PISQtde, br.com.caelum.stella.nfe.Obje
         return this.pISQtde;
     }
 
-    public PISQtde withCST(String string) {
+    public PISQtde withCodigoSituacaoTributaria(String string) {
         this.pISQtde.setCST(string);
         return this;
     }
 
-    public PISQtde withQBCProd(String string) {
+    public PISQtde withQuantidadeVendida(String string) {
         this.pISQtde.setQBCProd(string);
         return this;
     }
 
-    public PISQtde withVAliqProd(String string) {
+    public PISQtde withAliquota(String string) {
         this.pISQtde.setVAliqProd(string);
         return this;
     }

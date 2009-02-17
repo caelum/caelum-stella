@@ -33,7 +33,7 @@ public class ICMS30 {
     protected String percentualReducaoSubstituicaoTributaria;
 
     @XmlElement(name = "vBCST", required = true)
-    protected String valorBaseCalculoSubstituicaoTributaria;
+    protected String valorDaBaseDeCalculoSubstituicaoTributaria;
 
     @XmlElement(name = "pICMSST", required = true)
     protected String aliquotaSubstituicaoTributaria;
@@ -82,11 +82,11 @@ public class ICMS30 {
     }
 
     public String getVBCST() {
-        return valorBaseCalculoSubstituicaoTributaria;
+        return valorDaBaseDeCalculoSubstituicaoTributaria;
     }
 
     public void setVBCST(final String value) {
-        valorBaseCalculoSubstituicaoTributaria = value;
+        valorDaBaseDeCalculoSubstituicaoTributaria = value;
     }
 
     public String getPICMSST() {

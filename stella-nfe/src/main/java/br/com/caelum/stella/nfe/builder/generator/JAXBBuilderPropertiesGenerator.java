@@ -1,7 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generator;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -45,7 +44,7 @@ final public class JAXBBuilderPropertiesGenerator {
 
     public static void main(final String[] args) throws IOException, ClassNotFoundException {
         ClassEnumerator classEnumerator = new ClassEnumerator();
-        List<Class<?>> classList = classEnumerator.getAllClassesInTheSamePackageAs(Adi.class);
+        List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(Adi.class);
         Class<?>[] sources = classList.toArray(new Class[0]);
         JAXBBuilderPropertiesGenerator builder = new JAXBBuilderPropertiesGenerator();
         builder.generatePropertiesFor(sources);
@@ -60,19 +59,15 @@ final public class JAXBBuilderPropertiesGenerator {
         return properties;
     }
 
-    private void generatePropertiesFor(final Class<?>... sources) throws FileNotFoundException {
+    public void generatePropertiesFor(final Class<?>... sources) {
         for (Class<?> type : sources) {
             generatePropertiesFor(type);
         }
     }
 
-    private void generatePropertiesFor(final Class<?> source) throws FileNotFoundException {
+    private void generatePropertiesFor(final Class<?> source) {
         addClassNameProperty(source);
-
         addClassFieldsProperties(source);
-
-
-
     }
 
     private void addClassFieldsProperties(final Class<?> source) {
@@ -84,7 +79,7 @@ final public class JAXBBuilderPropertiesGenerator {
         }
     }
 
-    private String extractAnnotatedFieldName(Field field) {
+    public String extractAnnotatedFieldName(Field field) {
         String name = field.getName();
         XmlElement annotation = field.getAnnotation(XmlElement.class);
         if ((annotation != null) && !"##default".equals(annotation.name())) {

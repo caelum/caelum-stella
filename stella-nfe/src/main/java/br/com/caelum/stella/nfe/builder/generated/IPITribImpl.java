@@ -11,32 +11,32 @@ public final class IPITribImpl implements IPITrib, br.com.caelum.stella.nfe.Obje
         return iPITrib;
     }
 
-    public IPITrib withCST(final String string) {
+    public IPITrib withCodigoSituacaoTributaria(final String string) {
         iPITrib.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public IPITrib withVBC(final String string) {
-        iPITrib.setValorBaseCalculo(string);
+    public IPITrib withValorDaBaseDeCalculo(final String string) {
+        iPITrib.setvalorDaBaseDeCalculo(string);
         return this;
     }
 
-    public IPITrib withPIPI(final String string) {
+    public IPITrib withAliquota(final String string) {
         iPITrib.setAliquotaIPI(string);
         return this;
     }
 
-    public IPITrib withQUnid(final String string) {
+    public IPITrib withQuantidade(final String string) {
         iPITrib.setQuantidade(string);
         return this;
     }
 
-    public IPITrib withVUnid(final String string) {
+    public IPITrib withValorPorUnidade(final String string) {
         iPITrib.setValorUnidade(string);
         return this;
     }
 
-    public IPITrib withVIPI(final String string) {
+    public IPITrib withValor(final String string) {
         iPITrib.setValorIPI(string);
         return this;
     }

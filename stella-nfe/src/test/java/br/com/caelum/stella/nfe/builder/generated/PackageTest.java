@@ -21,7 +21,7 @@ public class PackageTest {
 
     @Test
     public void shouldNotHaveAnyXMLGregorianCalendarTypesInModel() throws ClassNotFoundException {
-        List<Class<?>> classes = new ClassEnumerator().getAllClassesInTheSamePackageAs(TNFe.class);
+        List<Class<?>> classes = new ClassEnumerator().getAllTypesInTheSamePackageAs(TNFe.class);
         types.addAll(classes);
         Assert.assertTrue(types.size() == 91);
         assertXMLGregorianCalendarAvoidanceOn(types);

@@ -70,9 +70,9 @@ public class ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl implements I
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValorBaseCalculoST(
-            BigDecimal valorBaseCalculo) {
-        delegate.withValorBaseCalculoSubstituicaoTributaria(valorBaseCalculo);
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValorDaBaseDeCalculoST(
+            BigDecimal valorDaBaseDeCalculo) {
+        delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
 
