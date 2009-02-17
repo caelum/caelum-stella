@@ -16,7 +16,6 @@ import junit.framework.Assert;
 import net.vidageek.mirror.Mirror;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.caelum.stella.nfe.builder.generator.ClassEnumerator;
@@ -27,7 +26,7 @@ public class DomainNamesTest {
 
     private final Logger log = Logger.getLogger(DomainNamesTest.class.getCanonicalName());
     private static Properties expectedProperties;
-    private JAXBBuilderPropertiesGenerator propertiesGenerator = new JAXBBuilderPropertiesGenerator();
+    private final JAXBBuilderPropertiesGenerator propertiesGenerator = new JAXBBuilderPropertiesGenerator();
 
     @BeforeClass
     public static void loadProperties() throws IOException {
@@ -52,7 +51,6 @@ public class DomainNamesTest {
     }
 
     @Test
-    @Ignore
     public void classesAndFieldsShouldHaveNamesDefinedInThePropertiesFile() throws ClassNotFoundException {
         ClassEnumerator classEnumerator = new ClassEnumerator();
         List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(Adi.class);
@@ -70,7 +68,7 @@ public class DomainNamesTest {
 
     @Test
     public void interfacesShouldHaveNamesDefinedInThePropertiesFile() throws ClassNotFoundException,
-    FileNotFoundException, IOException {
+            FileNotFoundException, IOException {
         int errors = 0;
         ClassEnumerator classEnumerator = new ClassEnumerator();
         List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(ArmamentoImpl.class);
@@ -86,7 +84,7 @@ public class DomainNamesTest {
                     // System.out.println("Wrapped Class Field: " +
                     // field.getName());
                     String key = wrappedClass.getSimpleName() + "."
-                    + propertiesGenerator.extractAnnotatedFieldName(field);
+                            + propertiesGenerator.extractAnnotatedFieldName(field);
                     // System.out.println(key);
                     String expectedValue = (String) expectedProperties.get(key);
                     if (expectedValue == null) {
@@ -105,7 +103,7 @@ public class DomainNamesTest {
                             candidate = name;
                         }
                     }
-                    if (!methodNames.contains(actualValue)){
+                    if (!methodNames.contains(actualValue)) {
                         errors++;
                         log.info(String.format("Builder  %s should contain method %s", type.getSimpleName(),
                                 actualValue));
@@ -122,7 +120,7 @@ public class DomainNamesTest {
 
     }
 
-    private String capitalize(String s) {
+    private String capitalize(final String s) {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
