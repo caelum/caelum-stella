@@ -23,8 +23,8 @@ public final class COFINSAliqImpl implements COFINSAliq, br.com.caelum.stella.nf
         return this;
     }
 
-    public COFINSAliq withAliquotaEmPercentual(final String string) {
-        cOFINSAliq.setAliquotaEmPercentual(string);
+    public COFINSAliq withAliquotaEmPercentual(final BigDecimal percentual) {
+        cOFINSAliq.setAliquotaEmPercentual(percentual.toPlainString());
         return this;
     }
 

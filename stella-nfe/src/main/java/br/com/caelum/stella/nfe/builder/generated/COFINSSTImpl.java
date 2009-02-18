@@ -18,8 +18,8 @@ public final class COFINSSTImpl implements COFINSST, br.com.caelum.stella.nfe.Ob
         return this;
     }
 
-    public COFINSST withAliquotaEmPercentual(final String string) {
-        cOFINSST.setAliquotaEmPercentual(string);
+    public COFINSST withAliquotaEmPercentual(final BigDecimal percentual) {
+        cOFINSST.setAliquotaEmPercentual(percentual.toPlainString());
         return this;
     }
 

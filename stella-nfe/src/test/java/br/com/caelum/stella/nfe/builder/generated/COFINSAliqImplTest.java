@@ -6,8 +6,8 @@ public final class COFINSAliqImplTest {
     @org.junit.Test
     public void testCOFINSAliqInterface() {
         COFINSAliq cOFINSAliq = new COFINSAliqImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo(
-                new BigDecimal(1)).withAliquotaEmPercentual("abc")
-        .withValor("abc");
+                new BigDecimal(1)).withAliquotaEmPercentual(new BigDecimal(1))
+                .withValor("abc");
         assertModelWasFilled(cOFINSAliq);
     }
 

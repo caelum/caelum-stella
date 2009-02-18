@@ -23,8 +23,8 @@ public final class COFINSOutrImpl implements COFINSOutr, br.com.caelum.stella.nf
         return this;
     }
 
-    public COFINSOutr withAliquotaEmPercentual(final String string) {
-        cOFINSOutr.setAliquotaEmPercentual(string);
+    public COFINSOutr withAliquotaEmPercentual(final BigDecimal percentual) {
+        cOFINSOutr.setAliquotaEmPercentual(percentual.toPlainString());
         return this;
     }
 

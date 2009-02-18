@@ -7,7 +7,7 @@ public interface COFINSOutr {
 
     public COFINSOutr withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public COFINSOutr withAliquotaEmPercentual(String string);
+    public COFINSOutr withAliquotaEmPercentual(BigDecimal percentual);
 
     public COFINSOutr withQuantidadeVendida(String string);
 

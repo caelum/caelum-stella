@@ -6,8 +6,8 @@ public final class COFINSOutrImplTest {
     @org.junit.Test
     public void testCOFINSOutrInterface() {
         COFINSOutr cOFINSOutr = new COFINSOutrImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo(
-                new BigDecimal(1)).withAliquotaEmPercentual("abc")
-        .withQuantidadeVendida("abc").withAliquota("abc").withValor("abc");
+                new BigDecimal(1)).withAliquotaEmPercentual(new BigDecimal(1))
+                .withQuantidadeVendida("abc").withAliquota("abc").withValor("abc");
         assertModelWasFilled(cOFINSOutr);
     }
 

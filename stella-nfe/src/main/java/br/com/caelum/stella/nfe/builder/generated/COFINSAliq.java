@@ -7,7 +7,7 @@ public interface COFINSAliq {
 
     public COFINSAliq withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public COFINSAliq withAliquotaEmPercentual(String string);
+    public COFINSAliq withAliquotaEmPercentual(BigDecimal percentual);
 
     public COFINSAliq withValor(String string);
 }
