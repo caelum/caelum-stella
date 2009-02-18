@@ -7,7 +7,7 @@ public interface IPITrib {
 
     public IPITrib withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public IPITrib withAliquota(String string);
+    public IPITrib withAliquota(BigDecimal aliquota);
 
     public IPITrib withQuantidade(String string);
 

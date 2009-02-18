@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class PISOutrImpl implements PISOutr, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISOutr pISOutr;
 
@@ -21,8 +23,8 @@ public final class PISOutrImpl implements PISOutr, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public PISOutr withPPIS(String string) {
-        this.pISOutr.setPPIS(string);
+    public PISOutr withPPIS(BigDecimal string) {
+        this.pISOutr.setPPIS(string.toPlainString());
         return this;
     }
 

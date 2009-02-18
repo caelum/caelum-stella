@@ -23,8 +23,8 @@ public final class IPITribImpl implements IPITrib, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public IPITrib withAliquota(final String string) {
-        iPITrib.setAliquotaIPI(string);
+    public IPITrib withAliquota(final BigDecimal aliquota) {
+        iPITrib.setAliquotaIPI(aliquota.toPlainString());
         return this;
     }
 

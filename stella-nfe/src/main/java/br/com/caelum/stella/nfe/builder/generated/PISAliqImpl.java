@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISAliq pISAliq;
 
@@ -21,8 +23,8 @@ public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public PISAliq withPPIS(String string) {
-        this.pISAliq.setPPIS(string);
+    public PISAliq withPPIS(BigDecimal aliquota) {
+        this.pISAliq.setPPIS(aliquota.toPlainString());
         return this;
     }
 

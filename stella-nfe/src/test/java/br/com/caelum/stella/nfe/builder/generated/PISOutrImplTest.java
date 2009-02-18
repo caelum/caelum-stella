@@ -1,10 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class PISOutrImplTest {
     @org.junit.Test
     public void testPISOutrInterface() {
-        PISOutr pISOutr = new PISOutrImpl().withCodigoSituacaoTributaria("abc").withVBC("abc").withPPIS("abc").withQuantidadeVendida("abc")
-                .withAliquota("abc").withVPIS("abc");
+        PISOutr pISOutr = new PISOutrImpl().withCodigoSituacaoTributaria("abc").withVBC("abc").withPPIS(
+                new BigDecimal(1)).withQuantidadeVendida("abc")
+        .withAliquota("abc").withVPIS("abc");
         assertModelWasFilled(pISOutr);
     }
 

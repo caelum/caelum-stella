@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class RetTranspImpl implements RetTransp, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RetTransp retTransp;
 
@@ -21,8 +23,8 @@ public final class RetTranspImpl implements RetTransp, br.com.caelum.stella.nfe.
         return this;
     }
 
-    public RetTransp withPICMSRet(String string) {
-        this.retTransp.setPICMSRet(string);
+    public RetTransp withPICMSRet(BigDecimal aliquota) {
+        this.retTransp.setPICMSRet(aliquota.toPlainString());
         return this;
     }
 

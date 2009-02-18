@@ -75,50 +75,40 @@ public class DomainNamesTest {
         List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(ArmamentoImpl.class);
         for (Class<?> type : classList) {
             if (type.getSimpleName().endsWith("Impl")) {
-                // System.out.println("Builder -->" + type);
                 List<Field> builderFields = Mirror.on(type).reflectAll().fields();
-                // System.out.println("builderFields: " + builderFields);
                 Class<?> wrappedClass = builderFields.get(0).getType();
-                // System.out.println("wrappedClass -->" + wrappedClass);
                 List<Field> fields = Mirror.on(wrappedClass).reflectAll().fields();
                 for (Field field : fields) {
-                    // System.out.println("Wrapped Class Field: " +
-                    // field.getName());
                     String key = wrappedClass.getSimpleName() + "."
                     + propertiesGenerator.extractAnnotatedFieldName(field);
-                    // System.out.println(key);
                     String expectedValue = (String) expectedProperties.get(key);
                     if (expectedValue == null) {
                         throw new IllegalStateException(String
                                 .format("Key %s must exist in stella-nfe.properties", key));
                     }
 
-                    List<Method> methods = Mirror.on(type).reflectAll().methods();
-                    List<String> methodNames = new ArrayList<String>();
+                    List<String> methodNames = getMethodNames(type);
                     String actualValue = "with" + capitalize(expectedValue);
-                    String candidate = null;
-                    for (Method method : methods) {
-                        String name = method.getName();
-                        methodNames.add(name);
-                        if (name.equalsIgnoreCase(actualValue)) {
-                            candidate = name;
-                        }
-                    }
                     if (!methodNames.contains(actualValue)) {
                         errors++;
                         log.info(String.format("Builder  %s should contain method %s", type.getSimpleName(),
                                 actualValue));
-                        if (candidate != null) {
-                            String replaced = candidate.replace("with", "");
-                            // System.out.println("try " + replaced);
-                            expectedProperties.setProperty(key, replaced);
-                        }
                     }
                 }
             }
         }
         Assert.assertEquals(String.format("%d erros\n", errors), 0, errors);
 
+    }
+
+    private List<String> getMethodNames(Class<?> type) {
+        List<Method> methods = Mirror.on(type).reflectAll().methods();
+        List<String> methodNames = new ArrayList<String>();
+        for (Method method : methods) {
+            String name = method.getName();
+            methodNames.add(name);
+        }
+        return methodNames;
     }
 
     private String capitalize(final String s) {

@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class PISSTImpl implements PISST, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISST pISST;
 
@@ -16,8 +18,8 @@ public final class PISSTImpl implements PISST, br.com.caelum.stella.nfe.ObjectCr
         return this;
     }
 
-    public PISST withPPIS(String string) {
-        this.pISST.setPPIS(string);
+    public PISST withPPIS(BigDecimal string) {
+        this.pISST.setPPIS(string.toPlainString());
         return this;
     }
 
