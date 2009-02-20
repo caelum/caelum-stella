@@ -75,4 +75,18 @@ public class StellaCPFValidatorTest {
             mockery.assertIsSatisfied();
         }
     }
+
+    @Test
+    public void shouldAcceptCPFWithLeadingZeros() {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+
+        try {
+            validator.validate(context, component, "01169538452");
+            mockery.assertIsSatisfied();
+        } catch (ValidatorException e) {
+            fail("shouldn't throw exception for valid cpf with leading zeros");
+        }
+    }
 }
