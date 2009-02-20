@@ -213,6 +213,23 @@ public class CPFValidatorTest {
     }
 
     @Test
+    public void shouldValidateCPFWithLeadingZeros() {
+        Mockery mockery = new Mockery();
+        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+        mockery.checking(new Expectations());
+        CPFValidator validator = new CPFValidator(messageProducer, false);
+
+        String value = "01169538452";
+        try {
+            validator.assertValid(value);
+        } catch (InvalidStateException e) {
+            fail();
+        }
+        List<ValidationMessage> errors = validator.invalidMessagesFor(value);
+        assertTrue(errors.isEmpty());
+    }
+
+    @Test
     public void shouldNotValidateCPFWithAllRepeatedDigitsFaulWhenNotIgnoringIt() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
