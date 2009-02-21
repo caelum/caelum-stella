@@ -1,6 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.nfe.builder.Impostos;
 
 public final class DetImpl implements Det, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Det det;
@@ -18,7 +19,7 @@ public final class DetImpl implements Det, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Det withImposto(final Imposto imposto) {
+    public Det withImposto(final Impostos imposto) {
         det.setImposto((br.com.caelum.stella.nfe.modelo.Imposto) ((ObjectCreator) imposto).getInstance());
         return this;
     }
