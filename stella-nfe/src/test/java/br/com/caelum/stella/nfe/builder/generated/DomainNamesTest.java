@@ -20,7 +20,6 @@ import org.junit.Test;
 
 import br.com.caelum.stella.nfe.builder.generator.ClassEnumerator;
 import br.com.caelum.stella.nfe.builder.generator.JAXBBuilderPropertiesGenerator;
-import br.com.caelum.stella.nfe.modelo.Adi;
 
 public class DomainNamesTest {
 
@@ -51,25 +50,8 @@ public class DomainNamesTest {
     }
 
     @Test
-    public void classesAndFieldsShouldHaveNamesDefinedInThePropertiesFile() throws ClassNotFoundException {
-        ClassEnumerator classEnumerator = new ClassEnumerator();
-        List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(Adi.class);
-        Properties properties = propertiesGenerator.getProperties();
-        propertiesGenerator.generatePropertiesFor(classList.toArray(new Class[] {}));
-        for (Object key : expectedProperties.keySet()) {
-            String expectedValue = (String) expectedProperties.get(key);
-            String actualValue = (String) properties.get(key);
-            if (!expectedValue.equals(actualValue)) {
-                // log.info(String.format("Property (or Class) %s should be named as %s",
-                // actualValue, expectedValue));
-            }
-        }
-        Assert.assertEquals(expectedProperties, properties);
-    }
-
-    @Test
     public void interfacesShouldHaveNamesDefinedInThePropertiesFile() throws ClassNotFoundException,
-    FileNotFoundException, IOException {
+            FileNotFoundException, IOException {
         int errors = 0;
         ClassEnumerator classEnumerator = new ClassEnumerator();
         List<Class<?>> classList = classEnumerator.getAllTypesInTheSamePackageAs(ArmamentoImpl.class);
@@ -80,7 +62,7 @@ public class DomainNamesTest {
                 List<Field> fields = Mirror.on(wrappedClass).reflectAll().fields();
                 for (Field field : fields) {
                     String key = wrappedClass.getSimpleName() + "."
-                    + propertiesGenerator.extractAnnotatedFieldName(field);
+                            + propertiesGenerator.extractAnnotatedFieldName(field);
                     String expectedValue = (String) expectedProperties.get(key);
                     if (expectedValue == null) {
                         throw new IllegalStateException(String
@@ -101,7 +83,7 @@ public class DomainNamesTest {
 
     }
 
-    private List<String> getMethodNames(Class<?> type) {
+    private List<String> getMethodNames(final Class<?> type) {
         List<Method> methods = Mirror.on(type).reflectAll().methods();
         List<String> methodNames = new ArrayList<String>();
         for (Method method : methods) {
