@@ -31,7 +31,7 @@ public class CartaoCredito {
 	 * @return
 	 */
 	public String getFormattedExp(){
-		return String.format("%1$ty%1$tm",this.exp);
+		return String.format("%1$tm%1$ty",this.exp);
 	}	
 	
 }

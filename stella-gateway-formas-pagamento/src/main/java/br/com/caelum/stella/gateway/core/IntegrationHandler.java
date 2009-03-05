@@ -7,7 +7,7 @@ package br.com.caelum.stella.gateway.core;
  *
  * @param <T> Como as integrações podem gerar diferentes retornos, o mesmo é especificado pela classe que implementa
  */
-public interface Integracao<T> {
+public interface IntegrationHandler<T> {
 	
-	public T integra();
+	public T handle();
 }

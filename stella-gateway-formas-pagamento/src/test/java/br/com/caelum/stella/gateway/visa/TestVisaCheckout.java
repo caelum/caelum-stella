@@ -1,6 +1,7 @@
 package br.com.caelum.stella.gateway.visa;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 
 import junit.framework.Assert;
@@ -25,18 +26,23 @@ public class TestVisaCheckout {
 	public void testValorDaCompraFormatado() {
 		Assert.assertEquals("1234548", new Checkout(null,null,null,new BigDecimal(12345.48),null,null).getFormattedPrice());
 	}
+	
+	@Test
+	public void testFormatandoParaBigDecimalOValor(){
+		Assert.assertEquals(new BigDecimal(12345.45).setScale(2,RoundingMode.HALF_EVEN), new Checkout(null,null,null,"1234545",null,null).getPrice());
+	}
 
 	@Test
 	public void testGeracaoDoTidComCreditoAVista() {
 		Calendar dataReferencia = getDataReferencia();
-		Assert.assertEquals("73489405115052541001",new Checkout(null,null,null,null,new Parcelamento(FormaParcelamento.CREDITO_A_VISTA,1),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
+		Assert.assertEquals("73489405115052541001",new Checkout(null,null,null,BigDecimal.ONE,new Parcelamento(FormaParcelamento.CREDITO_A_VISTA,1),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
 	}
 	
 	@Test
 	public void testGeracaoDoTidComCreditoParceladoPelaLoja() {
 		// data montada pegando a referencia da documentacao do visa
 		Calendar dataReferencia = getDataReferencia();
-		Assert.assertEquals("73489405115052542003",new Checkout(null,null,null,null,new Parcelamento(FormaParcelamento.PARCELADO_COM_JUROS_DA_LOJA,3),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
+		Assert.assertEquals("73489405115052542003",new Checkout(null,null,null,BigDecimal.ONE,new Parcelamento(FormaParcelamento.PARCELADO_COM_JUROS_DA_LOJA,3),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
 	}
 
 	private Calendar getDataReferencia() {
@@ -54,13 +60,13 @@ public class TestVisaCheckout {
 	@Test
 	public void testGeracaoDoTidComCreditoParceladoPelaAdministrador() {
 		Calendar dataReferencia = getDataReferencia();
-		Assert.assertEquals("73489405115052543006",new Checkout(null,null,null,null,new Parcelamento(FormaParcelamento.PARCELADO_COM_JUROS_DA_ADMINISTRADORA,6),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
+		Assert.assertEquals("73489405115052543006",new Checkout(null,null,null,BigDecimal.ONE,new Parcelamento(FormaParcelamento.PARCELADO_COM_JUROS_DA_ADMINISTRADORA,6),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
 	}	
 	
 	@Test
 	public void testGeracaoDoTidComDebito() {
 		Calendar dataReferencia = getDataReferencia();
-		Assert.assertEquals("7348940511505254A001",new Checkout(null,null,null,null,new Parcelamento(FormaParcelamento.DEBITO,1),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
+		Assert.assertEquals("7348940511505254A001",new Checkout(null,null,null,BigDecimal.ONE,new Parcelamento(FormaParcelamento.DEBITO,1),null).getTid(dataReferencia,gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
 	}	
 
 }

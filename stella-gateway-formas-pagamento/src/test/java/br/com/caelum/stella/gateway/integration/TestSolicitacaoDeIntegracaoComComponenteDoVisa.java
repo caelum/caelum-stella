@@ -8,10 +8,10 @@ import org.junit.BeforeClass;
 import br.com.caelum.stella.gateway.visa.CartaoCredito;
 import br.com.caelum.stella.gateway.visa.Checkout;
 import br.com.caelum.stella.gateway.visa.FormaParcelamento;
-import br.com.caelum.stella.gateway.visa.IntegracaoCheckoutViaPost;
 import br.com.caelum.stella.gateway.visa.Parcelamento;
+import br.com.caelum.stella.gateway.visa.integration.SolicitaAutorizacaoPagamentoViaHttp;
 
-public class TestCriacaoVisaCheckout {
+public class TestSolicitacaoDeIntegracaoComComponenteDoVisa {
 
 	private static Checkout checkout;
 	
@@ -25,9 +25,14 @@ public class TestCriacaoVisaCheckout {
 	
 	/**
 	 * Configurar o test aqui vai ser uma arte... tem que ter ip fixo e não sei o que lá...
+	 * Para testar mockado, eu teria que criar uma classe que se comportasse como o componente... vou pensar no assunto
+	 * 
 	 */
 	public void testComunicacaoTeoricamenteCorretaComComponenteDeCheckout(){
-		String telaDeResultadoQueDeveSerApresentadaAoCliente = new IntegracaoCheckoutViaPost(checkout).integra();
+		String telaDeResultadoQueDeveSerApresentadaAoCliente = new SolicitaAutorizacaoPagamentoViaHttp(checkout).handle();
 		System.out.println(telaDeResultadoQueDeveSerApresentadaAoCliente);
 	}
+	
+	
+		
 }

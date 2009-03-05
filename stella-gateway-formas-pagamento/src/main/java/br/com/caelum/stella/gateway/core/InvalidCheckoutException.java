@@ -5,14 +5,14 @@ package br.com.caelum.stella.gateway.core;
  * @author Alberto Pc
  *
  */
-public class CheckoutInvalidoException extends RuntimeException {
+public class InvalidCheckoutException extends RuntimeException {
 
-	public CheckoutInvalidoException(String message, Throwable cause) {
+	public InvalidCheckoutException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CheckoutInvalidoException(String message) {
+	public InvalidCheckoutException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

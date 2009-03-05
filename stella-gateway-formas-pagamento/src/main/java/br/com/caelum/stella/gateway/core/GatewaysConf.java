@@ -12,8 +12,7 @@ import java.util.Properties;
  */
 public class GatewaysConf {
 
-	private static Properties gatewaysProperties;
-	private static String fileSeparator = File.separator;
+	private static Properties gatewaysProperties;	
 	
 	static{
 		gatewaysProperties = new Properties();
@@ -25,6 +24,7 @@ public class GatewaysConf {
 		}
 	}
 	
+	
 	private String getProperty(String key){			
 		return gatewaysProperties.getProperty(key);
 	}
@@ -32,6 +32,18 @@ public class GatewaysConf {
 	public String getUrlParaComponenteDeAutorizacaoDoVisa(){
 		return getProperty("visa.urlComponenteDeAutorizacao");
 	}
+	
+	public String getUrlParaComponenteDeCapturaDoVisa(){
+		return getProperty("visa.urlComponenteDeCaptura");
+	}
+	
+	public String getUrlParaComponenteDeCancelamentoDoVisa(){
+		return getProperty("visa.urlComponenteDeCancelamento");
+	}	
+	
+	public String getUrlParaComponenteDeConsultaDoVisa(){
+		return getProperty("visa.urlComponenteDeConsulta");
+	}	
 	
 	public String getNumeroDeAfiliacaoDoVisa(){
 		return getProperty("visa.numeroDeAfiliacao");

@@ -2,7 +2,7 @@ package br.com.caelum.stella.gateway.visa;
 
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.core.CheckoutInvalidoException;
+import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
 
 import junit.framework.Assert;
 
@@ -21,13 +21,13 @@ public class TestParcelamento {
 		try{
 			new Parcelamento(FormaParcelamento.DEBITO,2).getCodigoDePagamento();
 		}
-		catch(CheckoutInvalidoException numeroDeParcelasMaiorQuePermitidoException){
+		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){
 			Assert.assertEquals("Com débito ou crédito a vista só pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}
 		try{
 			new Parcelamento(FormaParcelamento.CREDITO_A_VISTA,2).getCodigoDePagamento();
 		}
-		catch(CheckoutInvalidoException numeroDeParcelasMaiorQuePermitidoException){
+		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){
 			Assert.assertEquals("Com débito ou crédito a vista só pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}		
 	}
@@ -37,7 +37,7 @@ public class TestParcelamento {
 		try{
 			new Parcelamento(FormaParcelamento.CREDITO_A_VISTA,0).getCodigoDePagamento();
 		}
-		catch(CheckoutInvalidoException numeroDeParcelasMaiorQuePermitidoException){
+		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){
 			Assert.assertEquals("O número de parcelas não pode ser igual ou menor que 0",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}		
 	}

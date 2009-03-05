@@ -1,23 +1,23 @@
 package br.com.caelum.stella.gateway.core;
 
-public class FalhaIntegracaoException extends RuntimeException {
+public class IntegrationFailedException extends RuntimeException {
 
-	public FalhaIntegracaoException() {
+	public IntegrationFailedException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FalhaIntegracaoException(String message, Throwable cause) {
+	public IntegrationFailedException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public FalhaIntegracaoException(String message) {
+	public IntegrationFailedException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public FalhaIntegracaoException(Throwable cause) {
+	public IntegrationFailedException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
