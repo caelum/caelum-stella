@@ -14,7 +14,7 @@ import br.com.caelum.stella.gateway.visa.integration.IntegrationReturn;
  * @author Alberto Pc
  *
  */
-public class TestRetornoDoComponenteVisa {
+public class TestRetornoComponenteDoVisa {
 
 	@Test
 	public void testRetornoValidoDoCheckoutComLrIgualA00() {

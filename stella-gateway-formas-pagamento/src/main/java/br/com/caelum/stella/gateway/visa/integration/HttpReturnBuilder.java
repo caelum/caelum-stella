@@ -30,13 +30,13 @@ public enum HttpReturnBuilder implements ReturnBuilder<HttpServletRequest>{
 	
 	CAPTURA_RETORNO_BUILDER(){
 		public CapturaReturn buildRetorno(HttpServletRequest request) {
-			CapturaReturn retornoCaptura = new CapturaReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),new BigDecimal(request.getParameter("cap")),request.getParameter("free"));			
+			CapturaReturn retornoCaptura = new CapturaReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),PriceFormatter.convertToNormalValue(request.getParameter("cap")),request.getParameter("free"));			
 			return retornoCaptura;		
 		}
 	},
 	CANCELAMENTO_RETORNO_BUILDER(){
 		public CancelamentoReturn buildRetorno(HttpServletRequest request) {
-			CancelamentoReturn retornoCancelamento = new CancelamentoReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),new BigDecimal(request.getParameter("cancel_amount")),request.getParameter("free"));			
+			CancelamentoReturn retornoCancelamento = new CancelamentoReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),PriceFormatter.convertToNormalValue(request.getParameter("cancel_amount")),request.getParameter("free"));			
 			return retornoCancelamento;		
 		}
 	},

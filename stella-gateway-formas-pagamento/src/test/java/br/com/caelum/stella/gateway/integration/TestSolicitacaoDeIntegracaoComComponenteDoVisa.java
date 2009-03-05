@@ -5,15 +5,23 @@ import java.util.Calendar;
 
 import org.junit.BeforeClass;
 
+import br.com.caelum.stella.gateway.core.GatewaysConf;
 import br.com.caelum.stella.gateway.visa.CartaoCredito;
 import br.com.caelum.stella.gateway.visa.Checkout;
 import br.com.caelum.stella.gateway.visa.FormaParcelamento;
 import br.com.caelum.stella.gateway.visa.Parcelamento;
 import br.com.caelum.stella.gateway.visa.integration.SolicitaAutorizacaoPagamentoViaHttp;
+import br.com.caelum.stella.gateway.visa.integration.SolicitaConferenciaViaHttp;
+import br.com.caelum.stella.gateway.visa.integration.TipoSolicitacaoIntegracao;
 
 public class TestSolicitacaoDeIntegracaoComComponenteDoVisa {
+	
+	/*
+	 * Precisa configurar um ambiente correto para testar isso aqui
+	 */
 
 	private static Checkout checkout;
+	private static GatewaysConf gatewaysConf = new GatewaysConf();
 	
 	@BeforeClass
 	public static void before(){
@@ -28,10 +36,27 @@ public class TestSolicitacaoDeIntegracaoComComponenteDoVisa {
 	 * Para testar mockado, eu teria que criar uma classe que se comportasse como o componente... vou pensar no assunto
 	 * 
 	 */
-	public void testComunicacaoTeoricamenteCorretaComComponenteDeCheckout(){
+	public void testSolicitacaoDeAutorizacaoDePagamento(){
 		String telaDeResultadoQueDeveSerApresentadaAoCliente = new SolicitaAutorizacaoPagamentoViaHttp(checkout).handle();
 		System.out.println(telaDeResultadoQueDeveSerApresentadaAoCliente);
 	}
+		
+	public void testSolicitacaoDeCaptura(){
+		String retorno = new SolicitaConferenciaViaHttp(checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeAfiliacaoDoVisa()),TipoSolicitacaoIntegracao.CAPTURA).handle();
+		System.out.println(retorno);
+	}
+	
+	public void testSolicitacaoDeCancelamento(){
+		String retorno = new SolicitaConferenciaViaHttp(checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeAfiliacaoDoVisa()),TipoSolicitacaoIntegracao.CANCELAMENTO).handle();
+		System.out.println(retorno);
+	}
+	
+	public void testSolicitacaoDeConsulta(){
+		String retorno = new SolicitaConferenciaViaHttp(checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeAfiliacaoDoVisa()),TipoSolicitacaoIntegracao.CONSULTA).handle();
+		System.out.println(retorno);
+	}	
+	
+	
 	
 	
 		

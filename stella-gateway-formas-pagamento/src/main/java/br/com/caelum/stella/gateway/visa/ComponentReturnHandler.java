@@ -33,7 +33,7 @@ public class ComponentReturnHandler {
 	 * @throws ProblematicTransactionException caso o retorno indique problema
 	 */
 	public IntegrationReturn check(){			
-		if (retornoIntegracao.getLr()!=0	&& retornoIntegracao.getLr()!=11) {
+		if (retornoIntegracao.getLr()!=0 && retornoIntegracao.getLr()!=11) {
 			throw new ProblematicTransactionException(retornoIntegracao.getArs());
 		}		
 		return retornoIntegracao;
