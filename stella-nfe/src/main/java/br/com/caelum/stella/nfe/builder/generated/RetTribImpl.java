@@ -1,48 +1,50 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class RetTribImpl implements RetTrib, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RetTrib retTrib;
 
     public RetTribImpl() {
-        this.retTrib = new br.com.caelum.stella.nfe.modelo.RetTrib();
+        retTrib = new br.com.caelum.stella.nfe.modelo.RetTrib();
     }
 
     public br.com.caelum.stella.nfe.modelo.RetTrib getInstance() {
-        return this.retTrib;
+        return retTrib;
     }
 
-    public RetTrib withVRetPIS(String string) {
-        this.retTrib.setVRetPIS(string);
+    public RetTrib withVRetPIS(final BigDecimal string) {
+        retTrib.setVRetPIS(string.toString());
         return this;
     }
 
-    public RetTrib withVRetCOFINS(String string) {
-        this.retTrib.setVRetCOFINS(string);
+    public RetTrib withVRetCOFINS(final BigDecimal string) {
+        retTrib.setVRetCOFINS(string.toString());
         return this;
     }
 
-    public RetTrib withVRetCSLL(String string) {
-        this.retTrib.setVRetCSLL(string);
+    public RetTrib withVRetCSLL(final BigDecimal string) {
+        retTrib.setVRetCSLL(string.toString());
         return this;
     }
 
-    public RetTrib withVBCIRRF(String string) {
-        this.retTrib.setVBCIRRF(string);
+    public RetTrib withVBCIRRF(final BigDecimal string) {
+        retTrib.setVBCIRRF(string.toString());
         return this;
     }
 
-    public RetTrib withVIRRF(String string) {
-        this.retTrib.setVIRRF(string);
+    public RetTrib withVIRRF(final BigDecimal string) {
+        retTrib.setVIRRF(string.toString());
         return this;
     }
 
-    public RetTrib withVBCRetPrev(String string) {
-        this.retTrib.setVBCRetPrev(string);
+    public RetTrib withVBCRetPrev(final BigDecimal string) {
+        retTrib.setVBCRetPrev(string.toString());
         return this;
     }
 
-    public RetTrib withVRetPrev(String string) {
-        this.retTrib.setVRetPrev(string);
+    public RetTrib withVRetPrev(final BigDecimal string) {
+        retTrib.setVRetPrev(string.toString());
         return this;
     }
 }

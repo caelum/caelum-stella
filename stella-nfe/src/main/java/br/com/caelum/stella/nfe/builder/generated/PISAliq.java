@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public interface PISAliq {
     public PISAliq withCodigoSituacaoTributaria(String string);
 
-    public PISAliq withVBC(String string);
+    public PISAliq withVBC(BigDecimal string);
 
     public PISAliq withPPIS(BigDecimal aliquota);
 
-    public PISAliq withVPIS(String string);
+    public PISAliq withVPIS(BigDecimal string);
 }

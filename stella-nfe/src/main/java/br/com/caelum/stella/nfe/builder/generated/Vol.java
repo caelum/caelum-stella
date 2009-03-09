@@ -1,7 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface Vol {
-    public Vol withQVol(String string);
+    public Vol withQVol(Long string);
 
     public Vol withEsp(String string);
 

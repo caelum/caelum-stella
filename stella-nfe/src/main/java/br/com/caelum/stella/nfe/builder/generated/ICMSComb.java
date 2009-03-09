@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface ICMSComb {
-    public ICMSComb withVBCICMS(String string);
+    public ICMSComb withVBCICMS(BigDecimal string);
 
-    public ICMSComb withVICMS(String string);
+    public ICMSComb withVICMS(BigDecimal string);
 
-    public ICMSComb withVBCICMSST(String string);
+    public ICMSComb withVBCICMSST(BigDecimal string);
 
-    public ICMSComb withVICMSST(String string);
+    public ICMSComb withVICMSST(BigDecimal string);
 }

@@ -3,13 +3,13 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 
 public interface PISST {
-    public PISST withVBC(String string);
+    public PISST withVBC(BigDecimal string);
 
     public PISST withPPIS(BigDecimal string);
 
-    public PISST withQuantidadeVendida(String string);
+    public PISST withQuantidadeVendida(BigDecimal string);
 
-    public PISST withAliquota(String string);
+    public PISST withAliquota(BigDecimal string);
 
-    public PISST withVPIS(String string);
+    public PISST withVPIS(BigDecimal string);
 }

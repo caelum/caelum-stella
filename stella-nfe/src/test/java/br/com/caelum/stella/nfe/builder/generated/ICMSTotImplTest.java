@@ -1,15 +1,19 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class ICMSTotImplTest {
     @org.junit.Test
     public void testICMSTotInterface() {
-        ICMSTot iCMSTot = new ICMSTotImpl().withVBC("abc").withVICMS("abc").withVBCST("abc").withVST("abc").withVProd(
-                "abc").withVFrete("abc").withVSeg("abc").withVDesc("abc").withVII("abc").withVIPI("abc")
-                .withVPIS("abc").withValor("abc").withVOutro("abc").withVNF("abc");
+        ICMSTot iCMSTot = new ICMSTotImpl().withVBC(new BigDecimal("1")).withVICMS(new BigDecimal("1")).withVBCST(
+                new BigDecimal("1")).withVST(new BigDecimal("1")).withVProd(new BigDecimal("1")).withVFrete(
+                new BigDecimal("1")).withVSeg(new BigDecimal("1")).withVDesc(new BigDecimal("1")).withVII(
+                new BigDecimal("1")).withVIPI(new BigDecimal("1")).withVPIS(new BigDecimal("1")).withValor(
+                new BigDecimal("1")).withVOutro(new BigDecimal("1")).withVNF(new BigDecimal("1"));
         assertModelWasFilled(iCMSTot);
     }
 
-    private void assertModelWasFilled(ICMSTot iCMSTot) {
+    private void assertModelWasFilled(final ICMSTot iCMSTot) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(iCMSTot).assertModelWasFilled();
     }
 }

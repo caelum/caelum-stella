@@ -35,12 +35,12 @@ public class IPIImpl implements br.com.caelum.stella.nfe.builder.IPI, ObjectCrea
         return this;
     }
 
-    public IPIImpl withCodigoDeEnquandramento(String codigoDeEnquadramento) {
+    public IPIImpl withCodigoDeEnquadramento(String codigoDeEnquadramento) {
         ipi.setCodigoEnquadramento(codigoDeEnquadramento);
         return this;
     }
 
-    public IPIImpl withIPITrib(IPITributacao ipiTrib) {
+    public IPIImpl withTributacao(IPITributacao ipiTrib) {
         ipi.setIpiTributacao((IPITrib)((ObjectCreator)ipiTrib).getInstance());
         return this;
     }

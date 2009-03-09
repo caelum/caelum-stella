@@ -7,9 +7,9 @@ public interface COFINSST {
 
     public COFINSST withAliquotaEmPercentual(BigDecimal percentual);
 
-    public COFINSST withQuantidadeVendida(String string);
+    public COFINSST withQuantidadeVendida(BigDecimal string);
 
-    public COFINSST withAliquota(String string);
+    public COFINSST withAliquota(BigDecimal string);
 
-    public COFINSST withValor(String string);
+    public COFINSST withValor(BigDecimal string);
 }

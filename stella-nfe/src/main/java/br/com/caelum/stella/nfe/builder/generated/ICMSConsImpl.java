@@ -1,30 +1,32 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 import br.com.caelum.stella.nfe.modelo.TUf;
 
 public final class ICMSConsImpl implements ICMSCons, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSCons iCMSCons;
 
     public ICMSConsImpl() {
-        this.iCMSCons = new br.com.caelum.stella.nfe.modelo.ICMSCons();
+        iCMSCons = new br.com.caelum.stella.nfe.modelo.ICMSCons();
     }
 
     public br.com.caelum.stella.nfe.modelo.ICMSCons getInstance() {
-        return this.iCMSCons;
+        return iCMSCons;
     }
 
-    public ICMSCons withVBCICMSSTCons(String string) {
-        this.iCMSCons.setVBCICMSSTCons(string);
+    public ICMSCons withVBCICMSSTCons(final BigDecimal string) {
+        iCMSCons.setVBCICMSSTCons(string.toString());
         return this;
     }
 
-    public ICMSCons withVICMSSTCons(String string) {
-        this.iCMSCons.setVICMSSTCons(string);
+    public ICMSCons withVICMSSTCons(final BigDecimal string) {
+        iCMSCons.setVICMSSTCons(string.toString());
         return this;
     }
 
-    public ICMSCons withUFCons(TUf tUf) {
-        this.iCMSCons.setUFCons(tUf);
+    public ICMSCons withUFCons(final TUf tUf) {
+        iCMSCons.setUFCons(tUf);
         return this;
     }
 }

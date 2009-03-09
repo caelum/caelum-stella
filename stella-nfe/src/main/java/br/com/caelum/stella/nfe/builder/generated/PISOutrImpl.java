@@ -6,40 +6,40 @@ public final class PISOutrImpl implements PISOutr, br.com.caelum.stella.nfe.Obje
     private final br.com.caelum.stella.nfe.modelo.PISOutr pISOutr;
 
     public PISOutrImpl() {
-        this.pISOutr = new br.com.caelum.stella.nfe.modelo.PISOutr();
+        pISOutr = new br.com.caelum.stella.nfe.modelo.PISOutr();
     }
 
     public br.com.caelum.stella.nfe.modelo.PISOutr getInstance() {
-        return this.pISOutr;
+        return pISOutr;
     }
 
-    public PISOutr withCodigoSituacaoTributaria(String string) {
-        this.pISOutr.setCST(string);
+    public PISOutr withCodigoSituacaoTributaria(final String string) {
+        pISOutr.setCST(string);
         return this;
     }
 
-    public PISOutr withVBC(String string) {
-        this.pISOutr.setVBC(string);
+    public PISOutr withVBC(final BigDecimal string) {
+        pISOutr.setVBC(string.toString());
         return this;
     }
 
-    public PISOutr withPPIS(BigDecimal string) {
-        this.pISOutr.setPPIS(string.toPlainString());
+    public PISOutr withPPIS(final BigDecimal string) {
+        pISOutr.setPPIS(string.toString());
         return this;
     }
 
-    public PISOutr withQuantidadeVendida(String string) {
-        this.pISOutr.setQBCProd(string);
+    public PISOutr withQuantidadeVendida(final BigDecimal string) {
+        pISOutr.setQBCProd(string.toString());
         return this;
     }
 
-    public PISOutr withAliquota(String string) {
-        this.pISOutr.setVAliqProd(string);
+    public PISOutr withAliquota(final BigDecimal string) {
+        pISOutr.setVAliqProd(string.toString());
         return this;
     }
 
-    public PISOutr withVPIS(String string) {
-        this.pISOutr.setVPIS(string);
+    public PISOutr withVPIS(final BigDecimal string) {
+        pISOutr.setVPIS(string.toString());
         return this;
     }
 }

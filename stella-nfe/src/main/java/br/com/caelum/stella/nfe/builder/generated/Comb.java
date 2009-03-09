@@ -1,11 +1,14 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public interface Comb {
-    public Comb withCProdANP(String string);
+    public Comb withCProdANP(Integer string);
 
-    public Comb withCODIF(String string);
+    public Comb withCODIF(BigInteger string);
 
-    public Comb withQTemp(String string);
+    public Comb withQTemp(BigDecimal string);
 
     public Comb withCIDE(CIDE cIDE);
 

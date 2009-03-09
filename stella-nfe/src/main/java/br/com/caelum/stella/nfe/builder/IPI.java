@@ -12,9 +12,9 @@ public interface IPI {
 
     public IPI withQuantidadeDeSelos(long quantidadeDeSelos);
 
-    public IPI withCodigoDeEnquandramento(String codigoDeEnquadramento);
+    public IPI withCodigoDeEnquadramento(String codigoDeEnquadramento);
 
-    public IPI withIPITrib(IPITributacao ipiTrib);
+    public IPI withTributacao(IPITributacao ipiTrib);
 
     public IPI withIPIInt(SituacaoTributaria situacaoTributaria);
 }

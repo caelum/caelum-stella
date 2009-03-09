@@ -23,18 +23,18 @@ public final class COFINSSTImpl implements COFINSST, br.com.caelum.stella.nfe.Ob
         return this;
     }
 
-    public COFINSST withQuantidadeVendida(final String string) {
-        cOFINSST.setQuantidadeVendida(string);
+    public COFINSST withQuantidadeVendida(final BigDecimal string) {
+        cOFINSST.setQuantidadeVendida(string.toString());
         return this;
     }
 
-    public COFINSST withAliquota(final String string) {
-        cOFINSST.setAliquota(string);
+    public COFINSST withAliquota(final BigDecimal string) {
+        cOFINSST.setAliquota(string.toString());
         return this;
     }
 
-    public COFINSST withValor(final String string) {
-        cOFINSST.setValor(string);
+    public COFINSST withValor(final BigDecimal string) {
+        cOFINSST.setValor(string.toString());
         return this;
     }
 }

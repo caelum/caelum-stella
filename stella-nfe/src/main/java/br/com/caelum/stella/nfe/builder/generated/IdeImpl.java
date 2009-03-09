@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.nfe.builder.generated.enums.FormaDePagamento;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoDocumentoFiscal;
 
 public final class IdeImpl implements Ide, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Ide ide;
@@ -22,8 +24,8 @@ public final class IdeImpl implements Ide, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Ide withCNF(final String string) {
-        ide.setCNF(string);
+    public Ide withCNF(final Integer string) {
+        ide.setCNF(string.toString());
         return this;
     }
 
@@ -32,8 +34,8 @@ public final class IdeImpl implements Ide, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Ide withIndPag(final String string) {
-        ide.setIndPag(string);
+    public Ide withIndPag(final FormaDePagamento string) {
+        ide.setIndPag(string.getCode());
         return this;
     }
 
@@ -62,8 +64,8 @@ public final class IdeImpl implements Ide, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Ide withTpNF(final String string) {
-        ide.setTpNF(string);
+    public Ide withTpNF(final TipoDocumentoFiscal string) {
+        ide.setTpNF(string.getCode());
         return this;
     }
 

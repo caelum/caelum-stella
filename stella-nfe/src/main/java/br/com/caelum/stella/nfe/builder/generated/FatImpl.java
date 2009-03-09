@@ -1,33 +1,35 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class FatImpl implements Fat, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Fat fat;
 
     public FatImpl() {
-        this.fat = new br.com.caelum.stella.nfe.modelo.Fat();
+        fat = new br.com.caelum.stella.nfe.modelo.Fat();
     }
 
     public br.com.caelum.stella.nfe.modelo.Fat getInstance() {
-        return this.fat;
+        return fat;
     }
 
-    public Fat withNFat(String string) {
-        this.fat.setNFat(string);
+    public Fat withNFat(final String string) {
+        fat.setNFat(string);
         return this;
     }
 
-    public Fat withVOrig(String string) {
-        this.fat.setVOrig(string);
+    public Fat withVOrig(final BigDecimal string) {
+        fat.setVOrig(string.toString());
         return this;
     }
 
-    public Fat withVDesc(String string) {
-        this.fat.setVDesc(string);
+    public Fat withVDesc(final BigDecimal string) {
+        fat.setVDesc(string.toString());
         return this;
     }
 
-    public Fat withVLiq(String string) {
-        this.fat.setVLiq(string);
+    public Fat withVLiq(final BigDecimal string) {
+        fat.setVLiq(string.toString());
         return this;
     }
 }

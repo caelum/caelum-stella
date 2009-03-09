@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 public final class RetTranspImplTest {
     @org.junit.Test
     public void testRetTranspInterface() {
-        RetTransp retTransp = new RetTranspImpl().withVServ("abc").withVBCRet("abc").withPICMSRet(new BigDecimal(1))
-        .withVICMSRet("abc").withCFOP("abc").withCMunFG("abc");
+        RetTransp retTransp = new RetTranspImpl().withVServ(new BigDecimal(1)).withVBCRet(new BigDecimal(1))
+                .withPICMSRet(new BigDecimal(1)).withVICMSRet(new BigDecimal(1)).withCFOP("abc").withCMunFG("abc");
         assertModelWasFilled(retTransp);
     }
 
-    private void assertModelWasFilled(RetTransp retTransp) {
+    private void assertModelWasFilled(final RetTransp retTransp) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(retTransp).assertModelWasFilled();
     }
 }

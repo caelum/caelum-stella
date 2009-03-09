@@ -1,5 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public final class MedImpl implements Med, br.com.caelum.stella.nfe.ObjectCreator {
@@ -23,6 +24,7 @@ public final class MedImpl implements Med, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
+    // Isso n‹o deveria estar usando o calendar
     public Med withDFab(final Calendar calendar) {
         med.setDFab(new CalendarToStringConverter().convertDateToString(calendar));
         return this;
@@ -33,8 +35,8 @@ public final class MedImpl implements Med, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Med withVPMC(final String string) {
-        med.setVPMC(string);
+    public Med withVPMC(final BigDecimal string) {
+        med.setVPMC(string.toString());
         return this;
     }
 }

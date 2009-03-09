@@ -1,5 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,18 +57,18 @@ public final class ProdImpl implements Prod, br.com.caelum.stella.nfe.ObjectCrea
         return this;
     }
 
-    public Prod withQCom(final String string) {
-        prod.setQCom(string);
+    public Prod withQCom(final BigDecimal string) {
+        prod.setQCom(string.toString());
         return this;
     }
 
-    public Prod withVUnCom(final String string) {
-        prod.setVUnCom(string);
+    public Prod withVUnCom(final BigDecimal string) {
+        prod.setVUnCom(string.toString());
         return this;
     }
 
-    public Prod withVProd(final String string) {
-        prod.setVProd(string);
+    public Prod withVProd(final BigDecimal string) {
+        prod.setVProd(string.toString());
         return this;
     }
 
@@ -81,28 +82,28 @@ public final class ProdImpl implements Prod, br.com.caelum.stella.nfe.ObjectCrea
         return this;
     }
 
-    public Prod withQTrib(final String string) {
-        prod.setQTrib(string);
+    public Prod withQTrib(final BigDecimal string) {
+        prod.setQTrib(string.toString());
         return this;
     }
 
-    public Prod withVUnTrib(final String string) {
-        prod.setVUnTrib(string);
+    public Prod withVUnTrib(final BigDecimal string) {
+        prod.setVUnTrib(string.toString());
         return this;
     }
 
-    public Prod withVFrete(final String string) {
-        prod.setVFrete(string);
+    public Prod withVFrete(final BigDecimal string) {
+        prod.setVFrete(string.toString());
         return this;
     }
 
-    public Prod withVSeg(final String string) {
-        prod.setVSeg(string);
+    public Prod withVSeg(final BigDecimal string) {
+        prod.setVSeg(string.toString());
         return this;
     }
 
-    public Prod withVDesc(final String string) {
-        prod.setVDesc(string);
+    public Prod withVDesc(final BigDecimal string) {
+        prod.setVDesc(string.toString());
         return this;
     }
 

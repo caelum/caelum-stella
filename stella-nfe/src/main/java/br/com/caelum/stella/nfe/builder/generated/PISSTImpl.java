@@ -6,35 +6,35 @@ public final class PISSTImpl implements PISST, br.com.caelum.stella.nfe.ObjectCr
     private final br.com.caelum.stella.nfe.modelo.PISST pISST;
 
     public PISSTImpl() {
-        this.pISST = new br.com.caelum.stella.nfe.modelo.PISST();
+        pISST = new br.com.caelum.stella.nfe.modelo.PISST();
     }
 
     public br.com.caelum.stella.nfe.modelo.PISST getInstance() {
-        return this.pISST;
+        return pISST;
     }
 
-    public PISST withVBC(String string) {
-        this.pISST.setVBC(string);
+    public PISST withVBC(final BigDecimal string) {
+        pISST.setVBC(string.toString());
         return this;
     }
 
-    public PISST withPPIS(BigDecimal string) {
-        this.pISST.setPPIS(string.toPlainString());
+    public PISST withPPIS(final BigDecimal string) {
+        pISST.setPPIS(string.toPlainString());
         return this;
     }
 
-    public PISST withQuantidadeVendida(String string) {
-        this.pISST.setQBCProd(string);
+    public PISST withQuantidadeVendida(final BigDecimal string) {
+        pISST.setQBCProd(string.toString());
         return this;
     }
 
-    public PISST withAliquota(String string) {
-        this.pISST.setVAliqProd(string);
+    public PISST withAliquota(final BigDecimal string) {
+        pISST.setVAliqProd(string.toString());
         return this;
     }
 
-    public PISST withVPIS(String string) {
-        this.pISST.setVPIS(string);
+    public PISST withVPIS(final BigDecimal string) {
+        pISST.setVPIS(string.toString());
         return this;
     }
 }

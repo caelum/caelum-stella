@@ -1,7 +1,10 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.generated.enums.CondicaoDoVeiculo;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoOperacao;
+
 public interface VeicProd {
-    public VeicProd withTpOp(String string);
+    public VeicProd withTpOp(TipoOperacao tipoOperacao);
 
     public VeicProd withChassi(String string);
 
@@ -41,7 +44,7 @@ public interface VeicProd {
 
     public VeicProd withVIN(String string);
 
-    public VeicProd withCondVeic(String string);
+    public VeicProd withCondVeic(CondicaoDoVeiculo condicao);
 
     public VeicProd withCMod(String string);
 }

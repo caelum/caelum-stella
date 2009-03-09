@@ -6,40 +6,40 @@ public final class RetTranspImpl implements RetTransp, br.com.caelum.stella.nfe.
     private final br.com.caelum.stella.nfe.modelo.RetTransp retTransp;
 
     public RetTranspImpl() {
-        this.retTransp = new br.com.caelum.stella.nfe.modelo.RetTransp();
+        retTransp = new br.com.caelum.stella.nfe.modelo.RetTransp();
     }
 
     public br.com.caelum.stella.nfe.modelo.RetTransp getInstance() {
-        return this.retTransp;
+        return retTransp;
     }
 
-    public RetTransp withVServ(String string) {
-        this.retTransp.setVServ(string);
+    public RetTransp withVServ(final BigDecimal string) {
+        retTransp.setVServ(string.toString());
         return this;
     }
 
-    public RetTransp withVBCRet(String string) {
-        this.retTransp.setVBCRet(string);
+    public RetTransp withVBCRet(final BigDecimal string) {
+        retTransp.setVBCRet(string.toString());
         return this;
     }
 
-    public RetTransp withPICMSRet(BigDecimal aliquota) {
-        this.retTransp.setPICMSRet(aliquota.toPlainString());
+    public RetTransp withPICMSRet(final BigDecimal aliquota) {
+        retTransp.setPICMSRet(aliquota.toPlainString());
         return this;
     }
 
-    public RetTransp withVICMSRet(String string) {
-        this.retTransp.setVICMSRet(string);
+    public RetTransp withVICMSRet(final BigDecimal string) {
+        retTransp.setVICMSRet(string.toString());
         return this;
     }
 
-    public RetTransp withCFOP(String string) {
-        this.retTransp.setCFOP(string);
+    public RetTransp withCFOP(final String string) {
+        retTransp.setCFOP(string);
         return this;
     }
 
-    public RetTransp withCMunFG(String string) {
-        this.retTransp.setCMunFG(string);
+    public RetTransp withCMunFG(final String string) {
+        retTransp.setCMunFG(string);
         return this;
     }
 }

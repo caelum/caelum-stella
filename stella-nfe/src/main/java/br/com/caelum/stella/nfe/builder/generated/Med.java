@@ -1,5 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public interface Med {
@@ -11,5 +12,5 @@ public interface Med {
 
     public Med withDVal(Calendar calendar);
 
-    public Med withVPMC(String string);
+    public Med withVPMC(BigDecimal string);
 }

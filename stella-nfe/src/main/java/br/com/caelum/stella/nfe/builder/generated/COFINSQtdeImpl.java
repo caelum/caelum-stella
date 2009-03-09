@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class COFINSQtdeImpl implements COFINSQtde, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSQtde cOFINSQtde;
 
@@ -16,18 +18,18 @@ public final class COFINSQtdeImpl implements COFINSQtde, br.com.caelum.stella.nf
         return this;
     }
 
-    public COFINSQtde withQuantidadeVendida(final String string) {
-        cOFINSQtde.setQuantidadeVendida(string);
+    public COFINSQtde withQuantidadeVendida(final BigDecimal string) {
+        cOFINSQtde.setQuantidadeVendida(string.toString());
         return this;
     }
 
-    public COFINSQtde withAliquota(final String string) {
-        cOFINSQtde.setAliquota(string);
+    public COFINSQtde withAliquota(final BigDecimal string) {
+        cOFINSQtde.setAliquota(string.toString());
         return this;
     }
 
-    public COFINSQtde withValor(final String string) {
-        cOFINSQtde.setValor(string);
+    public COFINSQtde withValor(final BigDecimal string) {
+        cOFINSQtde.setValor(string.toString());
         return this;
     }
 }

@@ -2,28 +2,31 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public interface Ide {
-    public Ide withCUF(String string);
+import br.com.caelum.stella.nfe.builder.generated.enums.FormaDePagamento;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoDocumentoFiscal;
 
-    public Ide withCNF(String string);
+public interface Ide {
+    public Ide withCUF(String string);// TODO Isso Ž um TCodUFIBGE
+
+    public Ide withCNF(Integer string);// TODO Deve ser autogerado
 
     public Ide withNatOp(String string);
 
-    public Ide withIndPag(String string);
+    public Ide withIndPag(FormaDePagamento string);
 
-    public Ide withMod(String string);
+    public Ide withMod(String string); // TODO Campo fixo
 
-    public Ide withSerie(String string);
+    public Ide withSerie(String string); // TODO TSerie
 
-    public Ide withNNF(String string);
+    public Ide withNNF(String string); // TODO TNF
 
     public Ide withDEmi(Calendar calendar);
 
     public Ide withDSaiEnt(Calendar calendar);
 
-    public Ide withTpNF(String string);
+    public Ide withTpNF(TipoDocumentoFiscal string);
 
-    public Ide withCMunFG(String string);
+    public Ide withCMunFG(String string); // TODO TCodMunIBGE
 
     public Ide withNFref(NFref... nfref);
 

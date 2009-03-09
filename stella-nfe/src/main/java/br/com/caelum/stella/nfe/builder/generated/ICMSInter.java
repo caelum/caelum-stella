@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface ICMSInter {
-    public ICMSInter withVBCICMSSTDest(String string);
+import java.math.BigDecimal;
 
-    public ICMSInter withVICMSSTDest(String string);
+public interface ICMSInter {
+    public ICMSInter withVBCICMSSTDest(BigDecimal string);
+
+    public ICMSInter withVICMSSTDest(BigDecimal string);
 }

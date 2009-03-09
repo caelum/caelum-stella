@@ -17,8 +17,8 @@ public class IPIInterfaceTest {
 		.withCnpjDoProdutor("")
 		.withCodigoDoSelo("")
 		.withQuantidadeDeSelos(123456789012L)
-		.withCodigoDeEnquandramento("")
-		.withIPITrib(new IPITributacaoImpl())
+		.withCodigoDeEnquadramento("")
+		.withTributacao(new IPITributacaoImpl())
 		.withIPIInt(SituacaoTributaria.ENTRADA_COM_RECUPERACAO_DE_CREDITO);
 	}
 	

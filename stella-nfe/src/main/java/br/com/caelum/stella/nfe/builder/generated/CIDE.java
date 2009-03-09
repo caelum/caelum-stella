@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface CIDE {
-    public CIDE withBC(String string);
+    public CIDE withBC(BigDecimal string);
 
-    public CIDE withAliquota(String string);
+    public CIDE withAliquota(BigDecimal string);
 
-    public CIDE withValor(String string);
+    public CIDE withValor(BigDecimal string);
 }

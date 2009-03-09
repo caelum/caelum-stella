@@ -1,5 +1,8 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import br.com.caelum.stella.nfe.ObjectCreator;
 
 public final class CombImpl implements Comb, br.com.caelum.stella.nfe.ObjectCreator {
@@ -13,18 +16,18 @@ public final class CombImpl implements Comb, br.com.caelum.stella.nfe.ObjectCrea
         return comb;
     }
 
-    public Comb withCProdANP(final String string) {
-        comb.setCProdANP(string);
+    public Comb withCProdANP(final Integer string) {
+        comb.setCProdANP(string.toString());
         return this;
     }
 
-    public Comb withCODIF(final String string) {
-        comb.setCODIF(string);
+    public Comb withCODIF(final BigInteger string) {
+        comb.setCODIF(string.toString());
         return this;
     }
 
-    public Comb withQTemp(final String string) {
-        comb.setQTemp(string);
+    public Comb withQTemp(final BigDecimal string) {
+        comb.setQTemp(string.toString());
         return this;
     }
 

@@ -16,8 +16,8 @@ public final class VolImpl implements Vol, br.com.caelum.stella.nfe.ObjectCreato
         return vol;
     }
 
-    public Vol withQVol(final String string) {
-        vol.setQVol(string);
+    public Vol withQVol(final Long string) {
+        vol.setQVol(string.toString());
         return this;
     }
 

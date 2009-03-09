@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public interface Prod {
     public Prod withCProd(String string);
 
@@ -17,25 +19,25 @@ public interface Prod {
 
     public Prod withUCom(String string);
 
-    public Prod withQCom(String string);
+    public Prod withQCom(BigDecimal string);
 
-    public Prod withVUnCom(String string);
+    public Prod withVUnCom(BigDecimal string);
 
-    public Prod withVProd(String string);
+    public Prod withVProd(BigDecimal string);
 
     public Prod withCEANTrib(String string);
 
     public Prod withUTrib(String string);
 
-    public Prod withQTrib(String string);
+    public Prod withQTrib(BigDecimal string);
 
-    public Prod withVUnTrib(String string);
+    public Prod withVUnTrib(BigDecimal string);
 
-    public Prod withVFrete(String string);
+    public Prod withVFrete(BigDecimal string);
 
-    public Prod withVSeg(String string);
+    public Prod withVSeg(BigDecimal string);
 
-    public Prod withVDesc(String string);
+    public Prod withVDesc(BigDecimal string);
 
     public Prod withDI(DI... di);
 

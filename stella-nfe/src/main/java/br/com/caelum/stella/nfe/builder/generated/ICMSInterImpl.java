@@ -1,23 +1,25 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class ICMSInterImpl implements ICMSInter, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSInter iCMSInter;
 
     public ICMSInterImpl() {
-        this.iCMSInter = new br.com.caelum.stella.nfe.modelo.ICMSInter();
+        iCMSInter = new br.com.caelum.stella.nfe.modelo.ICMSInter();
     }
 
     public br.com.caelum.stella.nfe.modelo.ICMSInter getInstance() {
-        return this.iCMSInter;
+        return iCMSInter;
     }
 
-    public ICMSInter withVBCICMSSTDest(String string) {
-        this.iCMSInter.setVBCICMSSTDest(string);
+    public ICMSInter withVBCICMSSTDest(final BigDecimal string) {
+        iCMSInter.setVBCICMSSTDest(string.toString());
         return this;
     }
 
-    public ICMSInter withVICMSSTDest(String string) {
-        this.iCMSInter.setVICMSSTDest(string);
+    public ICMSInter withVICMSSTDest(final BigDecimal string) {
+        iCMSInter.setVICMSSTDest(string.toString());
         return this;
     }
 }

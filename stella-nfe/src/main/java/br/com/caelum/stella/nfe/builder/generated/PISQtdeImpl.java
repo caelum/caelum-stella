@@ -1,33 +1,35 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+
 public final class PISQtdeImpl implements PISQtde, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISQtde pISQtde;
 
     public PISQtdeImpl() {
-        this.pISQtde = new br.com.caelum.stella.nfe.modelo.PISQtde();
+        pISQtde = new br.com.caelum.stella.nfe.modelo.PISQtde();
     }
 
     public br.com.caelum.stella.nfe.modelo.PISQtde getInstance() {
-        return this.pISQtde;
+        return pISQtde;
     }
 
-    public PISQtde withCodigoSituacaoTributaria(String string) {
-        this.pISQtde.setCST(string);
+    public PISQtde withCodigoSituacaoTributaria(final String string) {
+        pISQtde.setCST(string);
         return this;
     }
 
-    public PISQtde withQuantidadeVendida(String string) {
-        this.pISQtde.setQBCProd(string);
+    public PISQtde withQuantidadeVendida(final BigDecimal string) {
+        pISQtde.setQBCProd(string.toString());
         return this;
     }
 
-    public PISQtde withAliquota(String string) {
-        this.pISQtde.setVAliqProd(string);
+    public PISQtde withAliquota(final BigDecimal string) {
+        pISQtde.setVAliqProd(string.toString());
         return this;
     }
 
-    public PISQtde withVPIS(String string) {
-        this.pISQtde.setVPIS(string);
+    public PISQtde withVPIS(final BigDecimal string) {
+        pISQtde.setVPIS(string.toString());
         return this;
     }
 }

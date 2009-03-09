@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import br.com.caelum.stella.hibernate.validator.xml.logic.StellaChoiceValidator;
 
+@SuppressWarnings("unused")
 public class StellaChoiceValidatorTest {
 
     @Choice

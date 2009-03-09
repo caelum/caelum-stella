@@ -1,123 +1,126 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.generated.enums.CondicaoDoVeiculo;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoOperacao;
+
 public final class VeicProdImpl implements VeicProd, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.VeicProd veicProd;
 
     public VeicProdImpl() {
-        this.veicProd = new br.com.caelum.stella.nfe.modelo.VeicProd();
+        veicProd = new br.com.caelum.stella.nfe.modelo.VeicProd();
     }
 
     public br.com.caelum.stella.nfe.modelo.VeicProd getInstance() {
-        return this.veicProd;
+        return veicProd;
     }
 
-    public VeicProd withTpOp(String string) {
-        this.veicProd.setTpOp(string);
+    public VeicProd withTpOp(final TipoOperacao string) {
+        veicProd.setTpOp(string.getCode());
         return this;
     }
 
-    public VeicProd withChassi(String string) {
-        this.veicProd.setChassi(string);
+    public VeicProd withChassi(final String string) {
+        veicProd.setChassi(string);
         return this;
     }
 
-    public VeicProd withCCor(String string) {
-        this.veicProd.setCCor(string);
+    public VeicProd withCCor(final String string) {
+        veicProd.setCCor(string);
         return this;
     }
 
-    public VeicProd withXCor(String string) {
-        this.veicProd.setXCor(string);
+    public VeicProd withXCor(final String string) {
+        veicProd.setXCor(string);
         return this;
     }
 
-    public VeicProd withPot(String string) {
-        this.veicProd.setPot(string);
+    public VeicProd withPot(final String string) {
+        veicProd.setPot(string);
         return this;
     }
 
-    public VeicProd withCM3(String string) {
-        this.veicProd.setCM3(string);
+    public VeicProd withCM3(final String string) {
+        veicProd.setCM3(string);
         return this;
     }
 
-    public VeicProd withPesoL(String string) {
-        this.veicProd.setPesoL(string);
+    public VeicProd withPesoL(final String string) {
+        veicProd.setPesoL(string);
         return this;
     }
 
-    public VeicProd withPesoB(String string) {
-        this.veicProd.setPesoB(string);
+    public VeicProd withPesoB(final String string) {
+        veicProd.setPesoB(string);
         return this;
     }
 
-    public VeicProd withNSerie(String string) {
-        this.veicProd.setNSerie(string);
+    public VeicProd withNSerie(final String string) {
+        veicProd.setNSerie(string);
         return this;
     }
 
-    public VeicProd withTpComb(String string) {
-        this.veicProd.setTpComb(string);
+    public VeicProd withTpComb(final String string) {
+        veicProd.setTpComb(string);
         return this;
     }
 
-    public VeicProd withNMotor(String string) {
-        this.veicProd.setNMotor(string);
+    public VeicProd withNMotor(final String string) {
+        veicProd.setNMotor(string);
         return this;
     }
 
-    public VeicProd withCMKG(String string) {
-        this.veicProd.setCMKG(string);
+    public VeicProd withCMKG(final String string) {
+        veicProd.setCMKG(string);
         return this;
     }
 
-    public VeicProd withDist(String string) {
-        this.veicProd.setDist(string);
+    public VeicProd withDist(final String string) {
+        veicProd.setDist(string);
         return this;
     }
 
-    public VeicProd withRENAVAM(String string) {
-        this.veicProd.setRENAVAM(string);
+    public VeicProd withRENAVAM(final String string) {
+        veicProd.setRENAVAM(string);
         return this;
     }
 
-    public VeicProd withAnoMod(String string) {
-        this.veicProd.setAnoMod(string);
+    public VeicProd withAnoMod(final String string) {
+        veicProd.setAnoMod(string);
         return this;
     }
 
-    public VeicProd withAnoFab(String string) {
-        this.veicProd.setAnoFab(string);
+    public VeicProd withAnoFab(final String string) {
+        veicProd.setAnoFab(string);
         return this;
     }
 
-    public VeicProd withTpPint(String string) {
-        this.veicProd.setTpPint(string);
+    public VeicProd withTpPint(final String string) {
+        veicProd.setTpPint(string);
         return this;
     }
 
-    public VeicProd withTpVeic(String string) {
-        this.veicProd.setTpVeic(string);
+    public VeicProd withTpVeic(final String string) {
+        veicProd.setTpVeic(string);
         return this;
     }
 
-    public VeicProd withEspVeic(String string) {
-        this.veicProd.setEspVeic(string);
+    public VeicProd withEspVeic(final String string) {
+        veicProd.setEspVeic(string);
         return this;
     }
 
-    public VeicProd withVIN(String string) {
-        this.veicProd.setVIN(string);
+    public VeicProd withVIN(final String string) {
+        veicProd.setVIN(string);
         return this;
     }
 
-    public VeicProd withCondVeic(String string) {
-        this.veicProd.setCondVeic(string);
+    public VeicProd withCondVeic(final CondicaoDoVeiculo string) {
+        veicProd.setCondVeic(string.getCode());
         return this;
     }
 
-    public VeicProd withCMod(String string) {
-        this.veicProd.setCMod(string);
+    public VeicProd withCMod(final String string) {
+        veicProd.setCMod(string);
         return this;
     }
 }

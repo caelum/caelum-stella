@@ -1,10 +1,14 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public final class CombImplTest {
     @org.junit.Test
     public void testCombInterface() {
-        Comb comb = new CombImpl().withCProdANP("abc").withCODIF("abc").withQTemp("abc").withCIDE(new CIDEImpl())
-                .withICMSComb(new ICMSCombImpl()).withICMSInter(new ICMSInterImpl()).withICMSCons(new ICMSConsImpl());
+        Comb comb = new CombImpl().withCProdANP(1).withCODIF(new BigInteger("1")).withQTemp(new BigDecimal("1"))
+                .withCIDE(new CIDEImpl()).withICMSComb(new ICMSCombImpl()).withICMSInter(new ICMSInterImpl())
+                .withICMSCons(new ICMSConsImpl());
         assertModelWasFilled(comb);
     }
 

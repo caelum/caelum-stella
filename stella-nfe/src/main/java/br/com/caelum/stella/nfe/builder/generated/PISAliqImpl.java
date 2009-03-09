@@ -6,30 +6,30 @@ public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.Obje
     private final br.com.caelum.stella.nfe.modelo.PISAliq pISAliq;
 
     public PISAliqImpl() {
-        this.pISAliq = new br.com.caelum.stella.nfe.modelo.PISAliq();
+        pISAliq = new br.com.caelum.stella.nfe.modelo.PISAliq();
     }
 
     public br.com.caelum.stella.nfe.modelo.PISAliq getInstance() {
-        return this.pISAliq;
+        return pISAliq;
     }
 
-    public PISAliq withCodigoSituacaoTributaria(String string) {
-        this.pISAliq.setCST(string);
+    public PISAliq withCodigoSituacaoTributaria(final String string) {
+        pISAliq.setCST(string);
         return this;
     }
 
-    public PISAliq withVBC(String string) {
-        this.pISAliq.setVBC(string);
+    public PISAliq withVBC(final BigDecimal string) {
+        pISAliq.setVBC(string.toString());
         return this;
     }
 
-    public PISAliq withPPIS(BigDecimal aliquota) {
-        this.pISAliq.setPPIS(aliquota.toPlainString());
+    public PISAliq withPPIS(final BigDecimal aliquota) {
+        pISAliq.setPPIS(aliquota.toPlainString());
         return this;
     }
 
-    public PISAliq withVPIS(String string) {
-        this.pISAliq.setVPIS(string);
+    public PISAliq withVPIS(final BigDecimal string) {
+        pISAliq.setVPIS(string.toString());
         return this;
     }
 }
