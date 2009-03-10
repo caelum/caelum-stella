@@ -38,7 +38,7 @@ public class TEndereco {
     protected String xMun;
 
     @XmlElement(name = "UF", required = true)
-    protected TUf uf;
+    protected UF uf;
 
     @XmlElement(name = "CEP")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -100,11 +100,11 @@ public class TEndereco {
         this.xMun = value;
     }
 
-    public TUf getUF() {
+    public UF getUF() {
         return uf;
     }
 
-    public void setUF(TUf value) {
+    public void setUF(UF value) {
         this.uf = value;
     }
 

@@ -2,12 +2,12 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class DIImplTest {
     @org.junit.Test
     public void testDIInterface() {
-        DI dI = new DIImpl().withNDI("abc").withDDI(Calendar.getInstance()).withXLocDesemb("abc").withUFDesemb(TUf.AC)
+        DI dI = new DIImpl().withNDI("abc").withDDI(Calendar.getInstance()).withXLocDesemb("abc").withUFDesemb(UF.AC)
                 .withDDesemb(Calendar.getInstance()).withCExportador("abc").withAdi(new AdiImpl());
         assertModelWasFilled(dI);
     }

@@ -33,7 +33,7 @@ public class Transporta {
     protected String xMun;
 
     @XmlElement(name = "UF")
-    protected TUf uf;
+    protected UF uf;
 
     public String getCNPJ() {
         return cnpj;
@@ -83,11 +83,11 @@ public class Transporta {
         this.xMun = value;
     }
 
-    public TUf getUF() {
+    public UF getUF() {
         return uf;
     }
 
-    public void setUF(TUf value) {
+    public void setUF(UF value) {
         this.uf = value;
     }
 

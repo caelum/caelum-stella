@@ -9,5 +9,5 @@ public interface InfAdic {
 
     public InfAdic withObsFisco(ObsFisco... obsFiscos);
 
-    public InfAdic withProcRef(ProcRef... procRefs);
+    public InfAdic withProcRef(ProcessoReferenciado... procRefs);
 }

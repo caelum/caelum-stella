@@ -2,7 +2,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public interface DI {
     public DI withNDI(String string);
@@ -11,7 +11,7 @@ public interface DI {
 
     public DI withXLocDesemb(String string);
 
-    public DI withUFDesemb(TUf tUf);
+    public DI withUFDesemb(UF tUf);
 
     public DI withDDesemb(Calendar calendar);
 

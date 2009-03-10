@@ -10,7 +10,7 @@ public interface Dest {
 
     public Dest withXNome(String string);
 
-    public Dest withEnderDest(TEndereco tEndereco);
+    public Dest withEnderDest(Endereco tEndereco);
 
     public Dest withIE(String string);
 

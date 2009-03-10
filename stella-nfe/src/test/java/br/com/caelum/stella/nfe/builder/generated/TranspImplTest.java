@@ -1,15 +1,17 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.generated.enums.ModalidadeDoFrete;
+
 public final class TranspImplTest {
     @org.junit.Test
     public void testTranspInterface() {
-        Transp transp = new TranspImpl().withModFrete("abc").withTransporta(new TransportaImpl()).withRetTransp(
-                new RetTranspImpl()).withVeicTransp(new TVeiculoImpl()).withReboque(new TVeiculoImpl()).withVol(
-                new VolImpl());
+        Transporte transp = new TransporteImpl().withModalidadeDoFrete(ModalidadeDoFrete.PAGO_PELO_DESTINATARIO)
+                .withTransportador(new TransportadorImpl()).withICMSRetidoPeloTransporte(new ICMSRetidoPeloTransporteImpl()).withVeiculoUsado(
+                        new VeiculoImpl()).withReboque(new VeiculoImpl()).withVolume(new VolumeImpl());
         assertModelWasFilled(transp);
     }
 
-    private void assertModelWasFilled(final Transp transp) {
+    private void assertModelWasFilled(final Transporte transp) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(transp).assertModelWasFilled();
     }
 }

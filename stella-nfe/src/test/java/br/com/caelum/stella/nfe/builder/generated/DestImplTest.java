@@ -7,7 +7,7 @@ public final class DestImplTest {
     @org.junit.Test
     public void testDestInterface() {
         Dest dest = new DestImpl().withCNPJ(new CNPJ("abc")).withCPF(new CPF("abc")).withXNome("abc").withEnderDest(
-                new TEnderecoImpl())
+                new EnderecoImpl())
         .withIE("abc").withISUF("abc");
         assertModelWasFilled(dest);
     }

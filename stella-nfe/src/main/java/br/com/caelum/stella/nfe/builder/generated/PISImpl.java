@@ -18,17 +18,17 @@ public final class PISImpl implements PIS, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public PIS withPISQtde(final PISQtde pISQtde) {
+    public PIS withPISQtde(final PISPorQuantidade pISQtde) {
         pIS.setPISQtde((br.com.caelum.stella.nfe.modelo.PISQtde) ((ObjectCreator) pISQtde).getInstance());
         return this;
     }
 
-    public PIS withPISNT(final PISNT pISNT) {
+    public PIS withPISNT(final PISNaoTributado pISNT) {
         pIS.setPISNT((br.com.caelum.stella.nfe.modelo.PISNT) ((ObjectCreator) pISNT).getInstance());
         return this;
     }
 
-    public PIS withPISOutr(final PISOutr pISOutr) {
+    public PIS withPISOutr(final PISOutrasOperacoes pISOutr) {
         pIS.setPISOutr((br.com.caelum.stella.nfe.modelo.PISOutr) ((ObjectCreator) pISOutr).getInstance());
         return this;
     }

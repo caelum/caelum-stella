@@ -2,7 +2,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class ICMSTotImpl implements ICMSTot, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ICMSTotImpl implements ICMSTotal, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSTot iCMSTot;
 
     public ICMSTotImpl() {
@@ -13,72 +13,72 @@ public final class ICMSTotImpl implements ICMSTot, br.com.caelum.stella.nfe.Obje
         return iCMSTot;
     }
 
-    public ICMSTot withVBC(final BigDecimal string) {
+    public ICMSTotal withVBC(final BigDecimal string) {
         iCMSTot.setVBC(string.toString());
         return this;
     }
 
-    public ICMSTot withVICMS(final BigDecimal string) {
+    public ICMSTotal withVICMS(final BigDecimal string) {
         iCMSTot.setVICMS(string.toString());
         return this;
     }
 
-    public ICMSTot withVBCST(final BigDecimal string) {
+    public ICMSTotal withVBCST(final BigDecimal string) {
         iCMSTot.setVBCST(string.toString());
         return this;
     }
 
-    public ICMSTot withVST(final BigDecimal string) {
+    public ICMSTotal withVST(final BigDecimal string) {
         iCMSTot.setVST(string.toString());
         return this;
     }
 
-    public ICMSTot withVProd(final BigDecimal string) {
+    public ICMSTotal withVProd(final BigDecimal string) {
         iCMSTot.setVProd(string.toString());
         return this;
     }
 
-    public ICMSTot withVFrete(final BigDecimal string) {
+    public ICMSTotal withVFrete(final BigDecimal string) {
         iCMSTot.setVFrete(string.toString());
         return this;
     }
 
-    public ICMSTot withVSeg(final BigDecimal string) {
+    public ICMSTotal withVSeg(final BigDecimal string) {
         iCMSTot.setVSeg(string.toString());
         return this;
     }
 
-    public ICMSTot withVDesc(final BigDecimal string) {
+    public ICMSTotal withVDesc(final BigDecimal string) {
         iCMSTot.setVDesc(string.toString());
         return this;
     }
 
-    public ICMSTot withVII(final BigDecimal string) {
+    public ICMSTotal withVII(final BigDecimal string) {
         iCMSTot.setVII(string.toString());
         return this;
     }
 
-    public ICMSTot withVIPI(final BigDecimal string) {
+    public ICMSTotal withVIPI(final BigDecimal string) {
         iCMSTot.setVIPI(string.toString());
         return this;
     }
 
-    public ICMSTot withVPIS(final BigDecimal string) {
+    public ICMSTotal withVPIS(final BigDecimal string) {
         iCMSTot.setVPIS(string.toString());
         return this;
     }
 
-    public ICMSTot withValor(final BigDecimal string) {
+    public ICMSTotal withValor(final BigDecimal string) {
         iCMSTot.setVCOFINS(string.toString());
         return this;
     }
 
-    public ICMSTot withVOutro(final BigDecimal string) {
+    public ICMSTotal withVOutro(final BigDecimal string) {
         iCMSTot.setVOutro(string.toString());
         return this;
     }
 
-    public ICMSTot withVNF(final BigDecimal string) {
+    public ICMSTotal withVNF(final BigDecimal string) {
         iCMSTot.setVNF(string.toString());
         return this;
     }

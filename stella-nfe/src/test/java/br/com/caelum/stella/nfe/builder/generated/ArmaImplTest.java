@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoDeArmamento;
+
 public final class ArmaImplTest {
     @org.junit.Test
     public void testArmaInterface() {

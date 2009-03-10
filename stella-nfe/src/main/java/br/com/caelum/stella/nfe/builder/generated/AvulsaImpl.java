@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 import br.com.caelum.stella.tinytype.CNPJ;
 
 public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.ObjectCreator {
@@ -43,7 +43,7 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         return this;
     }
 
-    public Avulsa withUf(final TUf tUf) {
+    public Avulsa withUf(final UF tUf) {
         avulsa.setUF(tUf);
         return this;
     }

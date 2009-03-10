@@ -12,7 +12,7 @@ public interface Emit {
 
     public Emit withXFant(String string);
 
-    public Emit withEnderEmit(TEndereco tEndereco);
+    public Emit withEnderEmit(Endereco tEndereco);
 
     public Emit withIE(String string);
 

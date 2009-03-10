@@ -41,7 +41,7 @@ public class TLocal {
     protected String xMun;
 
     @XmlElement(name = "UF", required = true)
-    protected TUf uf;
+    protected UF uf;
 
     public String getCNPJ() {
         return cnpj;
@@ -99,11 +99,11 @@ public class TLocal {
         this.xMun = value;
     }
 
-    public TUf getUF() {
+    public UF getUF() {
         return uf;
     }
 
-    public void setUF(TUf value) {
+    public void setUF(UF value) {
         this.uf = value;
     }
 

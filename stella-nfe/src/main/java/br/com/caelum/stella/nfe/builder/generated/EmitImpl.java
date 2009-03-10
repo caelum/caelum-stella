@@ -35,7 +35,7 @@ public final class EmitImpl implements Emit, br.com.caelum.stella.nfe.ObjectCrea
         return this;
     }
 
-    public Emit withEnderEmit(final TEndereco tEndereco) {
+    public Emit withEnderEmit(final Endereco tEndereco) {
         emit.setEnderEmit((br.com.caelum.stella.nfe.modelo.TEndereco) ((ObjectCreator) tEndereco).getInstance());
         return this;
     }

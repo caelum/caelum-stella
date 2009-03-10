@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class DIImpl implements DI, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.DI dI;
@@ -33,7 +33,7 @@ public final class DIImpl implements DI, br.com.caelum.stella.nfe.ObjectCreator 
         return this;
     }
 
-    public DI withUFDesemb(final TUf tUf) {
+    public DI withUFDesemb(final UF tUf) {
         dI.setUFDesemb(tUf);
         return this;
     }

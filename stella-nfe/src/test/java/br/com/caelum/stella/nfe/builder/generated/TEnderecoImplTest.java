@@ -1,17 +1,17 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class TEnderecoImplTest {
     @org.junit.Test
     public void testTEnderecoInterface() {
-        TEndereco tEndereco = new TEnderecoImpl().withXLgr("abc").withNro("abc").withXCpl("abc").withXBairro("abc")
-                .withCMun("abc").withXMun("abc").withUF(TUf.AC).withCEP("abc").withCPais("abc").withXPais("abc")
-                .withFone("abc");
+        Endereco tEndereco = new EnderecoImpl().withLogradouro("abc").withNumero("abc").withComplemento("abc").withBairro("abc")
+                .withCodigoDoMunicipio("abc").withNomeDoMunicipio("abc").withUF(UF.AC).withCEP("abc").withCodigoDoPais("abc").withNomeDoPais("abc")
+                .withTelefone("abc");
         assertModelWasFilled(tEndereco);
     }
 
-    private void assertModelWasFilled(final TEndereco tEndereco) {
+    private void assertModelWasFilled(final Endereco tEndereco) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tEndereco).assertModelWasFilled();
     }
 }

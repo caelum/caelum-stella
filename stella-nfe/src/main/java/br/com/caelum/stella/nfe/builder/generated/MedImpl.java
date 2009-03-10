@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public final class MedImpl implements Med, br.com.caelum.stella.nfe.ObjectCreator {
+public final class MedImpl implements Medicamento, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Med med;
 
     public MedImpl() {
@@ -14,28 +14,28 @@ public final class MedImpl implements Med, br.com.caelum.stella.nfe.ObjectCreato
         return med;
     }
 
-    public Med withNLote(final String string) {
+    public Medicamento withNLote(final String string) {
         med.setNLote(string);
         return this;
     }
 
-    public Med withQLote(final String string) {
+    public Medicamento withQLote(final String string) {
         med.setQLote(string);
         return this;
     }
 
     // Isso n‹o deveria estar usando o calendar
-    public Med withDFab(final Calendar calendar) {
+    public Medicamento withDFab(final Calendar calendar) {
         med.setDFab(new CalendarToStringConverter().convertDateToString(calendar));
         return this;
     }
 
-    public Med withDVal(final Calendar calendar) {
+    public Medicamento withDVal(final Calendar calendar) {
         med.setDVal(calendar);
         return this;
     }
 
-    public Med withVPMC(final BigDecimal string) {
+    public Medicamento withVPMC(final BigDecimal string) {
         med.setVPMC(string.toString());
         return this;
     }

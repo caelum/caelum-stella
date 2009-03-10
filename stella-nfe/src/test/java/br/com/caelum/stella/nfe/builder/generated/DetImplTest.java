@@ -5,7 +5,7 @@ import br.com.caelum.stella.nfe.builder.Impostos;
 public final class DetImplTest {
     @org.junit.Test
     public void testDetInterface() {
-        Det det = new DetImpl().withProd(new ProdImpl()).withImposto(new Impostos()).withInfAdProd("abc").withNItem(
+        Det det = new DetImpl().withProd(new ProdutoImpl()).withImposto(new Impostos()).withInfAdProd("abc").withNItem(
                 "abc");
         assertModelWasFilled(det);
     }

@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 import br.com.caelum.stella.tinytype.CNPJ;
 
 public final class AvulsaImplTest {
@@ -22,7 +22,7 @@ public final class AvulsaImplTest {
         .withMatriculaDoAgente("abc")
         .withNomeDoAgente("abc")
         .withTelefone(1234567890L)
-        .withUf(TUf.AC)
+        .withUf(UF.AC)
         .withNumeroDeArrecadacaoDaReceita("abc")
         .withDataDeEmissao(Calendar.getInstance())
         .withValorDoDocumentoDeArrecadacao(new BigDecimal(1))

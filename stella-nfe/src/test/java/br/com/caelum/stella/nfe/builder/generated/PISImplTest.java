@@ -3,8 +3,8 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class PISImplTest {
     @org.junit.Test
     public void testPISInterface() {
-        PIS pIS = new PISImpl().withPISAliq(new PISAliqImpl()).withPISQtde(new PISQtdeImpl())
-                .withPISNT(new PISNTImpl()).withPISOutr(new PISOutrImpl());
+        PIS pIS = new PISImpl().withPISAliq(new PISAliqImpl()).withPISQtde(new PISPorQuantidadeImpl())
+                .withPISNT(new PISNaoTributadoImpl()).withPISOutr(new PISOutrasOperacoesImpl());
         assertModelWasFilled(pIS);
     }
 

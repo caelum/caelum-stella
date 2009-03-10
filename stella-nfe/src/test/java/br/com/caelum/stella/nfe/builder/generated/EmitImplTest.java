@@ -8,7 +8,7 @@ public final class EmitImplTest {
     public void testEmitInterface() {
         Emit emit = new EmitImpl().withCNPJ(new CNPJ("abc")).withCPF(new CPF("abc")).withXNome("abc").withXFant("abc")
                 .withEnderEmit(
-                new TEnderecoImpl()).withIE("abc").withIEST("abc").withIM("abc").withCNAE("abc");
+                new EnderecoImpl()).withIE("abc").withIEST("abc").withIM("abc").withCNAE("abc");
         assertModelWasFilled(emit);
     }
 

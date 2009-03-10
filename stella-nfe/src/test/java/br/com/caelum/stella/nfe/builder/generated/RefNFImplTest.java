@@ -5,12 +5,12 @@ import br.com.caelum.stella.tinytype.CNPJ;
 public final class RefNFImplTest {
     @org.junit.Test
     public void testRefNFInterface() {
-        RefNF refNF = new RefNFImpl().withCUF("abc").withAAMM("abc").withCNPJ(new CNPJ("abc")).withMod("abc").withSerie("abc")
-                .withNNF("abc");
+        NFReferenciada refNF = new NFReferenciadaImpl().withCodigoUF("abc").withAAMM("abc").withCNPJ(new CNPJ("abc"))
+                .withSerie("abc").withNumero("abc");
         assertModelWasFilled(refNF);
     }
 
-    private void assertModelWasFilled(RefNF refNF) {
+    private void assertModelWasFilled(final NFReferenciada refNF) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(refNF).assertModelWasFilled();
     }
 }

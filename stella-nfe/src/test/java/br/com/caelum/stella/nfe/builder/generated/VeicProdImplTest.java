@@ -1,20 +1,22 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.builder.generated.enums.CondicaoDoVeiculo;
-import br.com.caelum.stella.nfe.builder.generated.enums.TipoOperacao;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoDeOperacao;
 
 public final class VeicProdImplTest {
     @org.junit.Test
     public void testVeicProdInterface() {
-        VeicProd veicProd = new VeicProdImpl().withTpOp(TipoOperacao.FATURAMENTO_DIRETO).withChassi("abc").withCCor(
-                "abc").withXCor("abc").withPot("abc").withCM3("abc").withPesoL("abc").withPesoB("abc")
-                .withNSerie("abc").withTpComb("abc").withNMotor("abc").withCMKG("abc").withDist("abc").withRENAVAM(
-                        "abc").withAnoMod("abc").withAnoFab("abc").withTpPint("abc").withTpVeic("abc").withEspVeic(
-                        "abc").withVIN("abc").withCondVeic(CondicaoDoVeiculo.ACABADO).withCMod("abc");
+        VeiculoNovo veicProd = new VeiculoNovoImpl().withTipoDeOperacao(TipoDeOperacao.FATURAMENTO_DIRETO).withChassi(
+                "abc").withCodigoDaCor("abc").withDescricaoDaCor("abc").withPotenciaDoMotor("abc").withCM3("abc")
+                .withPesoLiquido("abc").withPesoBruto("abc").withNumeroDeSerie("abc").withTipoDeCombustivel("abc")
+                .withNumeroDoMotor("abc").withCMKG("abc").withDistanciaEntreEixos("abc").withRENAVAM("abc")
+                .withAnoDoModelo("abc").withAnoDeFabricacao("abc").withTipoDePintura("abc").withTipoDeVeiculo("abc")
+                .withEspecieDeVeiculo("abc").withVehicleIdentificationNumber("abc").withCondicaoDoVeiculo(
+                        CondicaoDoVeiculo.ACABADO).withCodigoDaMarcaDoModelo("abc");
         assertModelWasFilled(veicProd);
     }
 
-    private void assertModelWasFilled(final VeicProd veicProd) {
+    private void assertModelWasFilled(final VeiculoNovo veicProd) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(veicProd).assertModelWasFilled();
     }
 }

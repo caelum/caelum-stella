@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 import br.com.caelum.stella.tinytype.CNPJ;
 
 public interface Avulsa {
@@ -17,7 +17,7 @@ public interface Avulsa {
 
     public Avulsa withTelefone(Long telefone);
 
-    public Avulsa withUf(TUf tUf);
+    public Avulsa withUf(UF tUf);
 
     public Avulsa withNumeroDeArrecadacaoDaReceita(String string);
 

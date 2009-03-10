@@ -23,7 +23,7 @@ public class TVeiculo {
     protected String placa;
 
     @XmlElement(name = "UF", required = true)
-    protected TUf uf;
+    protected UF uf;
 
     @XmlElement(name = "RNTC")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -37,11 +37,11 @@ public class TVeiculo {
         this.placa = value;
     }
 
-    public TUf getUF() {
+    public UF getUF() {
         return uf;
     }
 
-    public void setUF(TUf value) {
+    public void setUF(UF value) {
         this.uf = value;
     }
 

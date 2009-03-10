@@ -1,6 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class ExportaImpl implements Exporta, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Exporta exporta;
@@ -13,7 +13,7 @@ public final class ExportaImpl implements Exporta, br.com.caelum.stella.nfe.Obje
         return this.exporta;
     }
 
-    public Exporta withUFEmbarq(TUf tUf) {
+    public Exporta withUFEmbarq(UF tUf) {
         this.exporta.setUFEmbarq(tUf);
         return this;
     }

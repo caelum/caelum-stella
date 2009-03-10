@@ -30,7 +30,7 @@ public class DI {
     protected String xLocDesemb;
 
     @XmlElement(name = "UFDesemb", required = true)
-    protected TUf ufDesemb;
+    protected UF ufDesemb;
 
     @XmlElement(required = true)
     protected String dDesemb;
@@ -66,11 +66,11 @@ public class DI {
         xLocDesemb = value;
     }
 
-    public TUf getUFDesemb() {
+    public UF getUFDesemb() {
         return ufDesemb;
     }
 
-    public void setUFDesemb(final TUf value) {
+    public void setUFDesemb(final UF value) {
         ufDesemb = value;
     }
 

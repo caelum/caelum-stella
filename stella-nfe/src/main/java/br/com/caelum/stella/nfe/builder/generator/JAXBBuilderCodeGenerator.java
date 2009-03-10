@@ -74,7 +74,7 @@ import br.com.caelum.stella.nfe.modelo.TNfeProc;
 import br.com.caelum.stella.nfe.modelo.TProtNFe;
 import br.com.caelum.stella.nfe.modelo.TRetConsReciNFe;
 import br.com.caelum.stella.nfe.modelo.TRetEnviNFe;
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 import br.com.caelum.stella.nfe.modelo.TVeiculo;
 import br.com.caelum.stella.nfe.modelo.Total;
 import br.com.caelum.stella.nfe.modelo.TransformType;
@@ -106,7 +106,7 @@ final public class JAXBBuilderCodeGenerator {
                 SignatureValueType.class, SignedInfoType.class, TConsReciNFe.class, TEndereco.class, TEnviNFe.class,
                 TLocal.class, TNFe.class, TNfeProc.class, Total.class, TProtNFe.class, TransformsType.class,
                 TransformType.class, Transp.class, Transporta.class, TRetConsReciNFe.class, TRetEnviNFe.class,
-                TUf.class, TVeiculo.class, VeicProd.class, Vol.class,
+                UF.class, TVeiculo.class, VeicProd.class, Vol.class,
 
         };
         generateBuilderFor(sources);

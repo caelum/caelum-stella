@@ -13,16 +13,16 @@ import javax.xml.bind.annotation.XmlType;
 public class Exporta {
 
     @XmlElement(name = "UFEmbarq", required = true)
-    protected TUf ufEmbarq;
+    protected UF ufEmbarq;
 
     @XmlElement(required = true)
     protected String xLocEmbarq;
 
-    public TUf getUFEmbarq() {
+    public UF getUFEmbarq() {
         return ufEmbarq;
     }
 
-    public void setUFEmbarq(TUf value) {
+    public void setUFEmbarq(UF value) {
         this.ufEmbarq = value;
     }
 

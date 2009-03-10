@@ -1,15 +1,15 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class TVeiculoImplTest {
     @org.junit.Test
     public void testTVeiculoInterface() {
-        TVeiculo tVeiculo = new TVeiculoImpl().withPlaca("abc").withUF(TUf.AC).withRNTC("abc");
+        Veiculo tVeiculo = new VeiculoImpl().withPlaca("abc").withUF(UF.AC).withRegistroNacionalDoTransportadorDeCarga("abc");
         assertModelWasFilled(tVeiculo);
     }
 
-    private void assertModelWasFilled(final TVeiculo tVeiculo) {
+    private void assertModelWasFilled(final Veiculo tVeiculo) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tVeiculo).assertModelWasFilled();
     }
 }

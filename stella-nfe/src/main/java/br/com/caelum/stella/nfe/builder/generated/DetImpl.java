@@ -14,7 +14,7 @@ public final class DetImpl implements Det, br.com.caelum.stella.nfe.ObjectCreato
         return det;
     }
 
-    public Det withProd(final Prod prod) {
+    public Det withProd(final Produto prod) {
         det.setProd((br.com.caelum.stella.nfe.modelo.Prod) ((ObjectCreator) prod).getInstance());
         return this;
     }

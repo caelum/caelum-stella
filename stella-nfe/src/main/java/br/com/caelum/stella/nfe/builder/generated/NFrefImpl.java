@@ -18,7 +18,7 @@ public final class NFrefImpl implements NFref, br.com.caelum.stella.nfe.ObjectCr
         return this;
     }
 
-    public NFref withRefNF(final RefNF refNF) {
+    public NFref withRefNF(final NFReferenciada refNF) {
         nFref.setRefNF((br.com.caelum.stella.nfe.modelo.RefNF) ((ObjectCreator) refNF).getInstance());
         return this;
     }

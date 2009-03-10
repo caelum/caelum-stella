@@ -19,7 +19,7 @@ public class ICMSCons {
     protected String vicmsstCons;
 
     @XmlElement(name = "UFCons", required = true)
-    protected TUf ufCons;
+    protected UF ufCons;
 
     public String getVBCICMSSTCons() {
         return vbcicmsstCons;
@@ -37,11 +37,11 @@ public class ICMSCons {
         this.vicmsstCons = value;
     }
 
-    public TUf getUFCons() {
+    public UF getUFCons() {
         return ufCons;
     }
 
-    public void setUFCons(TUf value) {
+    public void setUFCons(UF value) {
         this.ufCons = value;
     }
 

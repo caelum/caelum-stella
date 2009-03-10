@@ -30,7 +30,7 @@ public final class DestImpl implements Dest, br.com.caelum.stella.nfe.ObjectCrea
         return this;
     }
 
-    public Dest withEnderDest(final TEndereco tEndereco) {
+    public Dest withEnderDest(final Endereco tEndereco) {
         dest.setEnderDest((br.com.caelum.stella.nfe.modelo.TEndereco) ((ObjectCreator) tEndereco).getInstance());
         return this;
     }

@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 public final class PISOutrImplTest {
     @org.junit.Test
     public void testPISOutrInterface() {
-        PISOutr pISOutr = new PISOutrImpl().withCodigoSituacaoTributaria("abc").withVBC(new BigDecimal(1)).withPPIS(
-                new BigDecimal(1)).withQuantidadeVendida(new BigDecimal(1)).withAliquota(new BigDecimal(1)).withVPIS(
+        PISOutrasOperacoes pISOutr = new PISOutrasOperacoesImpl().withValorDaBaseDeCalculo(new BigDecimal(1)).withAliquota(
+                new BigDecimal(1)).withQuantidadeVendida(new BigDecimal(1)).withAliquotaDoProduto(new BigDecimal(1)).withValor(
                 new BigDecimal(1));
         assertModelWasFilled(pISOutr);
     }
 
-    private void assertModelWasFilled(final PISOutr pISOutr) {
+    private void assertModelWasFilled(final PISOutrasOperacoes pISOutr) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(pISOutr).assertModelWasFilled();
     }
 }

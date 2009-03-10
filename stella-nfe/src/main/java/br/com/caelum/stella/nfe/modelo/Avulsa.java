@@ -38,7 +38,7 @@ public class Avulsa {
     protected String fone;
 
     @XmlElement(name = "UF", required = true)
-    protected TUf uf;
+    protected UF uf;
 
     @XmlElement(name = "nDAR", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -96,11 +96,11 @@ public class Avulsa {
         fone = value;
     }
 
-    public TUf getUF() {
+    public UF getUF() {
         return uf;
     }
 
-    public void setUF(final TUf value) {
+    public void setUF(final UF value) {
         uf = value;
     }
 

@@ -44,9 +44,9 @@ public final class InfAdicImpl implements InfAdic, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public InfAdic withProcRef(final ProcRef... procRef) {
+    public InfAdic withProcRef(final ProcessoReferenciado... procRef) {
         List<br.com.caelum.stella.nfe.modelo.ProcRef> list = new ArrayList<br.com.caelum.stella.nfe.modelo.ProcRef>();
-        for (ProcRef p : procRef) {
+        for (ProcessoReferenciado p : procRef) {
             list.add((br.com.caelum.stella.nfe.modelo.ProcRef) ((ObjectCreator) p).getInstance());
         }
         infAdic.setProcRef(list);

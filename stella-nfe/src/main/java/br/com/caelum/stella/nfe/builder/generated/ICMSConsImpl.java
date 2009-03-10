@@ -2,7 +2,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.nfe.modelo.UF;
 
 public final class ICMSConsImpl implements ICMSCons, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSCons iCMSCons;
@@ -25,7 +25,7 @@ public final class ICMSConsImpl implements ICMSCons, br.com.caelum.stella.nfe.Ob
         return this;
     }
 
-    public ICMSCons withUFCons(final TUf tUf) {
+    public ICMSCons withUFCons(final UF tUf) {
         iCMSCons.setUFCons(tUf);
         return this;
     }
