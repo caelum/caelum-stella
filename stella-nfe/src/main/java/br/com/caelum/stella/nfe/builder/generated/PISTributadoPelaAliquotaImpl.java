@@ -2,10 +2,11 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.ObjectCreator {
+public final class PISTributadoPelaAliquotaImpl implements PISTributadoPelaAliquota,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISAliq pISAliq;
 
-    public PISAliqImpl() {
+    public PISTributadoPelaAliquotaImpl() {
         pISAliq = new br.com.caelum.stella.nfe.modelo.PISAliq();
     }
 
@@ -13,22 +14,22 @@ public final class PISAliqImpl implements PISAliq, br.com.caelum.stella.nfe.Obje
         return pISAliq;
     }
 
-    public PISAliq withCodigoSituacaoTributaria(final String string) {
+    public PISTributadoPelaAliquota withCodigoSituacaoTributaria(final String string) {
         pISAliq.setCST(string);
         return this;
     }
 
-    public PISAliq withVBC(final BigDecimal string) {
+    public PISTributadoPelaAliquota withValorDaBaseDeCalculo(final BigDecimal string) {
         pISAliq.setVBC(string.toString());
         return this;
     }
 
-    public PISAliq withPPIS(final BigDecimal aliquota) {
+    public PISTributadoPelaAliquota withAliquotaDoPIS(final BigDecimal aliquota) {
         pISAliq.setPPIS(aliquota.toPlainString());
         return this;
     }
 
-    public PISAliq withVPIS(final BigDecimal string) {
+    public PISTributadoPelaAliquota withValorDoPIS(final BigDecimal string) {
         pISAliq.setVPIS(string.toString());
         return this;
     }

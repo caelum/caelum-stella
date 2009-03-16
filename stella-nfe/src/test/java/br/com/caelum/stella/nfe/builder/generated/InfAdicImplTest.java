@@ -3,8 +3,8 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class InfAdicImplTest {
     @org.junit.Test
     public void testInfAdicInterface() {
-        InfAdic infAdic = new InfAdicImpl().withInfAdFisco("abc").withInfCpl("abc").withObsCont(new ObsContImpl())
-                .withObsFisco(new ObsFiscoImpl()).withProcRef(new ProcessoReferenciadoImpl());
+        InfAdic infAdic = new InfAdicImpl().withInfAdFisco("abc").withInfCpl("abc").withObsCont(new ObservacoesDoContribuinteImpl())
+                .withObsFisco(new ObservacaoFiscoImpl()).withProcRef(new ProcessoReferenciadoImpl());
         assertModelWasFilled(infAdic);
     }
 

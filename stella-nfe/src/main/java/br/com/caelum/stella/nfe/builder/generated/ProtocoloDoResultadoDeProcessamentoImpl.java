@@ -15,7 +15,7 @@ public final class ProtocoloDoResultadoDeProcessamentoImpl implements ProtocoloD
         return tProtNFe;
     }
 
-    public ProtocoloDoResultadoDeProcessamento withDadosDoProtocolo(final DadosDoProtocolo infProt) {
+    public ProtocoloDoResultadoDeProcessamento withDadosDoProtocolo(final Protocolo infProt) {
         tProtNFe.setInfProt((br.com.caelum.stella.nfe.modelo.InfProt) ((ObjectCreator) infProt).getInstance());
         return this;
     }

@@ -10,7 +10,7 @@ public final class ProdImplTest {
                         new BigDecimal(1)).withValorBrutoDoProduto(new BigDecimal(1)).withCodigoEANDaUnidadeTributavel("abc").withUnidadeTributavel("abc").withQuantidadeTributavel(
                         new BigDecimal(1)).withValorUnitarioDeTributacao(new BigDecimal(1)).withValorDoFrete(new BigDecimal(1)).withValorDoSeguro(
                         new BigDecimal(1)).withValorDeDesconto(new BigDecimal(1)).withDI(new DIImpl()).withVeiculoNovo(
-                        new VeiculoNovoImpl()).withMedicamento(new MedImpl()).withArmamento(new ArmamentoImpl()).withCombustivel(
+                        new VeiculoNovoImpl()).withMedicamento(new MedicamentoImpl()).withArmamento(new ArmamentoImpl()).withCombustivel(
                         new CombImpl());
         assertModelWasFilled(prod);
     }

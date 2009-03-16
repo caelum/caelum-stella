@@ -4,15 +4,15 @@ public final class LacresImpl implements Lacres, br.com.caelum.stella.nfe.Object
     private final br.com.caelum.stella.nfe.modelo.Lacres lacres;
 
     public LacresImpl() {
-        this.lacres = new br.com.caelum.stella.nfe.modelo.Lacres();
+        lacres = new br.com.caelum.stella.nfe.modelo.Lacres();
     }
 
     public br.com.caelum.stella.nfe.modelo.Lacres getInstance() {
-        return this.lacres;
+        return lacres;
     }
 
-    public Lacres withNLacre(String string) {
-        this.lacres.setNLacre(string);
+    public Lacres withNumeroDosLacres(final String string) {
+        lacres.setNLacre(string);
         return this;
     }
 }

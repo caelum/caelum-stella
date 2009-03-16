@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 public interface Medicamento {
-    public Medicamento withNLote(String string);
+    public Medicamento withNumeroDoLote(String string);
 
-    public Medicamento withQLote(String string);
+    public Medicamento withQuantidadeDoLote(String string);
 
-    public Medicamento withDFab(Calendar calendar);
+    public Medicamento withDataDeFabricacao(Calendar calendar);
 
-    public Medicamento withDVal(Calendar calendar);
+    public Medicamento withDataDeValidade(Calendar calendar);
 
-    public Medicamento withVPMC(BigDecimal string);
+    public Medicamento withPrecoMaximoAoConsumidor(BigDecimal string);
 }

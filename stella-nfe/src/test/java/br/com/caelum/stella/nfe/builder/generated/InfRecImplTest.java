@@ -5,7 +5,7 @@ import java.util.Calendar;
 public final class InfRecImplTest {
     @org.junit.Test
     public void testInfRecInterface() {
-        ReciboDoLote infRec = new InfRecImpl().withNRec("abc").withDhRecbto(Calendar.getInstance()).withTMed("abc");
+        ReciboDoLote infRec = new ReciboDoLoteImpl().withNumeroDoRecibo("abc").withDataEHoraDoRecebimento(Calendar.getInstance()).withTempoMedioDeResposta("abc");
         assertModelWasFilled(infRec);
     }
 

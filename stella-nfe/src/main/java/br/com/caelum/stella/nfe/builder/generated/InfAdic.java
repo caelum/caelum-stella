@@ -5,9 +5,9 @@ public interface InfAdic {
 
     public InfAdic withInfCpl(String string);
 
-    public InfAdic withObsCont(ObsCont... obsConts);
+    public InfAdic withObsCont(ObservacoesDoContribuinte... obsConts);
 
-    public InfAdic withObsFisco(ObsFisco... obsFiscos);
+    public InfAdic withObsFisco(ObservacaoFisco... obsFiscos);
 
     public InfAdic withProcRef(ProcessoReferenciado... procRefs);
 }

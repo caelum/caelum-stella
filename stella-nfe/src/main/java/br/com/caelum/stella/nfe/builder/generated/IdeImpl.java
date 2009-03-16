@@ -74,9 +74,9 @@ public final class IdeImpl implements Ide, br.com.caelum.stella.nfe.ObjectCreato
         return this;
     }
 
-    public Ide withNFref(final NFref... nfref) {
+    public Ide withNFref(final InformacoesDaNFReferenciada... nfref) {
         List<br.com.caelum.stella.nfe.modelo.NFref> list = new ArrayList<br.com.caelum.stella.nfe.modelo.NFref>();
-        for (NFref p : nfref) {
+        for (InformacoesDaNFReferenciada p : nfref) {
             list.add((br.com.caelum.stella.nfe.modelo.NFref) ((ObjectCreator) p).getInstance());
         }
         ide.setNFref(list);

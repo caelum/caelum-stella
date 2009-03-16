@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 public final class PISAliqImplTest {
     @org.junit.Test
     public void testPISAliqInterface() {
-        PISAliq pISAliq = new PISAliqImpl().withCodigoSituacaoTributaria("abc").withVBC(new BigDecimal(1)).withPPIS(
-                new BigDecimal(1)).withVPIS(new BigDecimal(1));
+        PISTributadoPelaAliquota pISAliq = new PISTributadoPelaAliquotaImpl().withCodigoSituacaoTributaria("abc").withValorDaBaseDeCalculo(new BigDecimal(1)).withAliquotaDoPIS(
+                new BigDecimal(1)).withValorDoPIS(new BigDecimal(1));
         assertModelWasFilled(pISAliq);
     }
 
-    private void assertModelWasFilled(final PISAliq pISAliq) {
+    private void assertModelWasFilled(final PISTributadoPelaAliquota pISAliq) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(pISAliq).assertModelWasFilled();
     }
 }

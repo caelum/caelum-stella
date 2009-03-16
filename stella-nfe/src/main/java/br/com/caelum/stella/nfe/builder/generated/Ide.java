@@ -28,7 +28,7 @@ public interface Ide {
 
     public Ide withCMunFG(String string); // TODO TCodMunIBGE
 
-    public Ide withNFref(NFref... nfref);
+    public Ide withNFref(InformacoesDaNFReferenciada... nfref);
 
     public Ide withTpImp(String string);
 

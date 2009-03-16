@@ -6,8 +6,8 @@ import java.util.Calendar;
 public final class MedImplTest {
     @org.junit.Test
     public void testMedInterface() {
-        Medicamento med = new MedImpl().withNLote("abc").withQLote("abc").withDFab(Calendar.getInstance()).withDVal(
-                Calendar.getInstance()).withVPMC(new BigDecimal(1));
+        Medicamento med = new MedicamentoImpl().withNumeroDoLote("abc").withQuantidadeDoLote("abc").withDataDeFabricacao(Calendar.getInstance()).withDataDeValidade(
+                Calendar.getInstance()).withPrecoMaximoAoConsumidor(new BigDecimal(1));
         assertModelWasFilled(med);
     }
 

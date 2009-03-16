@@ -1,11 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 public interface PIS {
-    public PIS withPISAliq(PISAliq pISAliq);
+    public PIS withPISTributadoPelaAliquota(PISTributadoPelaAliquota pISAliq);
 
-    public PIS withPISQtde(PISPorQuantidade pISQtde);
+    public PIS withPISTributadoPorQuantidade(PISTributadoPorQuantidade pISQtde);
 
-    public PIS withPISNT(PISNaoTributado pISNT);
+    public PIS withPISNaoTributado(PISNaoTributado pISNT);
 
-    public PIS withPISOutr(PISOutrasOperacoes pISOutr);
+    public PIS withPISOutrasOperacoes(PISOutrasOperacoes pISOutr);
 }

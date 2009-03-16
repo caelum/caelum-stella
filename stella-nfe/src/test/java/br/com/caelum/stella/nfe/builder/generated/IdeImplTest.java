@@ -11,7 +11,7 @@ public final class IdeImplTest {
         Ide ide = new IdeImpl().withCUF("abc").withCNF(1).withNatOp("abc").withIndPag(FormaDePagamento.A_PRAZO)
                 .withMod("abc").withSerie("abc").withNNF("abc").withDEmi(Calendar.getInstance()).withDSaiEnt(
                         Calendar.getInstance()).withTpNF(TipoDocumentoFiscal.ENTRADA).withCMunFG("abc").withNFref(
-                        new NFrefImpl()).withTpImp("abc").withTpEmis("abc").withCDV("abc").withTpAmb("abc").withFinNFe(
+                        new InformacoesDaNFReferenciadaImpl()).withTpImp("abc").withTpEmis("abc").withCDV("abc").withTpAmb("abc").withFinNFe(
                         "abc").withProcEmi("abc").withVerProc("abc");
         assertModelWasFilled(ide);
     }

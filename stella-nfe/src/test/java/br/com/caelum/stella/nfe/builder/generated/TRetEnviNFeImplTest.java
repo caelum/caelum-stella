@@ -7,7 +7,7 @@ public final class TRetEnviNFeImplTest {
     public void testTRetEnviNFeInterface() {
         RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE tRetEnviNFe = new RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFEImpl()
                 .withTipoDoAmbiente(TipoDoAmbiente.HOMOLOGACAO).withVersaoAplicativo("abc").withCodigoDeStatus("abc")
-                .withDescricaoDoStatus("abc").withCodigoDaUF("abc").withReciboDoLote(new InfRecImpl()).withVersaoDaNFE(
+                .withDescricaoDoStatus("abc").withCodigoDaUF("abc").withReciboDoLote(new ReciboDoLoteImpl()).withVersaoDaNFE(
                         "abc");
         assertModelWasFilled(tRetEnviNFe);
     }

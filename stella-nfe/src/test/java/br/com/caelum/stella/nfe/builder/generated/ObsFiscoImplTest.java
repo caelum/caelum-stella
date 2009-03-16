@@ -3,11 +3,11 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class ObsFiscoImplTest {
     @org.junit.Test
     public void testObsFiscoInterface() {
-        ObsFisco obsFisco = new ObsFiscoImpl().withXTexto("abc").withXCampo("abc");
+        ObservacaoFisco obsFisco = new ObservacaoFiscoImpl().withDescricaoDoTexto("abc").withDescricaoDoCampo("abc");
         assertModelWasFilled(obsFisco);
     }
 
-    private void assertModelWasFilled(ObsFisco obsFisco) {
+    private void assertModelWasFilled(ObservacaoFisco obsFisco) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(obsFisco).assertModelWasFilled();
     }
 }

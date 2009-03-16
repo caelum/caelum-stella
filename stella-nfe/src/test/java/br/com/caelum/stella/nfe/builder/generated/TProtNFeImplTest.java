@@ -6,7 +6,7 @@ public final class TProtNFeImplTest {
     @org.junit.Test
     public void testTProtNFeInterface() {
         ProtocoloDoResultadoDeProcessamento tProtNFe = new ProtocoloDoResultadoDeProcessamentoImpl()
-                                .withDadosDoProtocolo(new InfProtImpl())
+                                .withDadosDoProtocolo(new ProtocoloImpl())
                                 .withVersao("abc")
                                 .withSignature(new SignatureType());
         assertModelWasFilled(tProtNFe);

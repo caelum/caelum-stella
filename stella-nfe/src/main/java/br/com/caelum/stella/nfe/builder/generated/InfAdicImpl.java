@@ -26,18 +26,18 @@ public final class InfAdicImpl implements InfAdic, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public InfAdic withObsCont(final ObsCont... obsConts) {
+    public InfAdic withObsCont(final ObservacoesDoContribuinte... obsConts) {
         List<br.com.caelum.stella.nfe.modelo.ObsCont> list = new ArrayList<br.com.caelum.stella.nfe.modelo.ObsCont>();
-        for (ObsCont p : obsConts) {
+        for (ObservacoesDoContribuinte p : obsConts) {
             list.add((br.com.caelum.stella.nfe.modelo.ObsCont) ((ObjectCreator) p).getInstance());
         }
         infAdic.setObsCont(list);
         return this;
     }
 
-    public InfAdic withObsFisco(final ObsFisco... obsFiscos) {
+    public InfAdic withObsFisco(final ObservacaoFisco... obsFiscos) {
         List<br.com.caelum.stella.nfe.modelo.ObsFisco> list = new ArrayList<br.com.caelum.stella.nfe.modelo.ObsFisco>();
-        for (ObsFisco p : obsFiscos) {
+        for (ObservacaoFisco p : obsFiscos) {
             list.add((br.com.caelum.stella.nfe.modelo.ObsFisco) ((ObjectCreator) p).getInstance());
         }
         infAdic.setObsFisco(list);
