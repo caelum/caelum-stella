@@ -8,14 +8,14 @@ import br.com.caelum.stella.gateway.visa.BasicDataReturn;
  * @author Alberto Pc
  *
  */
-public class AutorizacaoReturn implements IntegrationReturn{
+public class VISAAutorizacaoReturn implements IntegrationReturn{
 
 	private String pan;
 	private BasicDataReturn dadosBasicoDeRetorno;
 	private String bank;	
 	private Checkout checkout;
 	
-	public AutorizacaoReturn(BasicDataReturn dadosBasicoDeRetorno,final String arp, final String pan,String bank,Checkout checkout) {
+	public VISAAutorizacaoReturn(BasicDataReturn dadosBasicoDeRetorno,final String arp, final String pan,String bank,Checkout checkout) {
 		super();			
 		this.pan = pan;				
 		this.bank = bank;		

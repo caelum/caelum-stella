@@ -11,14 +11,14 @@ import br.com.caelum.stella.gateway.core.IntegrationHandler;
  * @author Alberto Pc
  *
  */
-public class SolicitaConferenciaViaHttp implements IntegrationHandler<String> {
+public class VISASolicitacaoConferenciaViaHttp implements IntegrationHandler<String> {
 		
 	private final GatewaysConf gatewaysConf = new GatewaysConf();
-	private String tid;
-	private TipoSolicitacaoIntegracao solicitacaoConferencia;
+	private final String tid;
+	private final VISATipoSolicitacaoIntegracao solicitacaoConferencia;
 	
 
-	public SolicitaConferenciaViaHttp(final String tid,final TipoSolicitacaoIntegracao solicitacaoConferencia) {
+	public VISASolicitacaoConferenciaViaHttp(final String tid,final VISATipoSolicitacaoIntegracao solicitacaoConferencia) {
 		this.tid = tid;
 		this.solicitacaoConferencia = solicitacaoConferencia;
 	}

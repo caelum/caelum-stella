@@ -1,7 +1,12 @@
-package br.com.caelum.stella.gateway.visa;
+package br.com.caelum.stella.gateway.core;
 
 import java.util.Calendar;
 
+/**
+ * Classe que mantem as informações de cartão de crédito.
+ * @author Alberto Pc
+ *
+ */
 public class CartaoCredito {
 
 	private String ccn;
@@ -27,8 +32,8 @@ public class CartaoCredito {
 	}
 	
 	/**
-	 * Data de expiração do cartao formatada para aamm
-	 * @return
+	 * 
+	 * @return Data de expiração do cartao formatada para aamm
 	 */
 	public String getFormattedExp(){
 		return String.format("%1$tm%1$ty",this.exp);

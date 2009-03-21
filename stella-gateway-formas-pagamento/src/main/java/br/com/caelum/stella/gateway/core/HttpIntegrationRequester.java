@@ -7,7 +7,11 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
 
-
+/**
+ * Classe responsável por fazer as requisições http para as integrações.
+ * @author Alberto
+ *
+ */
 public class HttpIntegrationRequester {
 
 	private HttpMethod httpMethod;
@@ -32,7 +36,7 @@ public class HttpIntegrationRequester {
 				return httpMethod.getResponseBodyAsString();
 			}
 			else{
-				throw new IntegrationFailedException("O status de retorno da comunicação com a url configurada no .ini não foi o esperado(200). "+status);
+				throw new IntegrationFailedException("O status de retorno da comunicação com a url "+httpMethod.getPath()+" não foi o esperado(200). "+status);
 			}
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block

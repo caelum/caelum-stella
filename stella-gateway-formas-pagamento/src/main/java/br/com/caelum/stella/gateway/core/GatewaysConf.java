@@ -1,6 +1,5 @@
 package br.com.caelum.stella.gateway.core;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -45,14 +44,31 @@ public class GatewaysConf {
 		return getProperty("visa.urlComponenteDeConsulta");
 	}	
 	
-	public String getNumeroDeAfiliacaoDoVisa(){
-		return getProperty("visa.numeroDeAfiliacao");
+	public String getNumeroDeFiliacaoDoVisa(){
+		return getProperty("visa.numeroDeFiliacao");
 	}
 	
 	public String getNomeDoArquivoDeConfiguracaoDoVisa(){
 		return getProperty("visa.nomeDoArquivoDeConfiguracao");
 	}
 	
+	public String getUrlParaComponenteDeAutorizacaoDaRedeCard(){
+		return getProperty("redecard.urlComponenteDeAutorizacao");
+	}	
 	
+	public String getNumeroDeFiliacaoDaRedecard(){
+		return getProperty("redecard.numeroDeFiliacaoFornecedor");
+	}
 	
+	public String getNumeroDeFiliacaoDoDistribuidorDaRedecard(){
+		return getProperty("redecard.numeroDeFiliacaoDistribuidor");
+	}		
+	
+	public String getUrlRetornoTransacaoRedecard(){
+		return getProperty("redecard.urlDeRetornoDaTransacao");
+	}
+	
+	public String getUrlConfirmacaoTransacaoRedecard(){
+		return getProperty("redecard.urlConfirmacaoTransacao");
+	}
 }

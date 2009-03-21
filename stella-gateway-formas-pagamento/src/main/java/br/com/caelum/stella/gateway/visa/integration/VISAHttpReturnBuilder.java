@@ -1,23 +1,22 @@
 package br.com.caelum.stella.gateway.visa.integration;
 
-import java.math.BigDecimal;
-
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.caelum.stella.gateway.visa.Checkout;
+import br.com.caelum.stella.gateway.core.ReturnBuilder;
 import br.com.caelum.stella.gateway.visa.BasicDataReturn;
+import br.com.caelum.stella.gateway.visa.Checkout;
 
-public enum HttpReturnBuilder implements ReturnBuilder<HttpServletRequest>{	
+public enum VISAHttpReturnBuilder implements ReturnBuilder<HttpServletRequest>{	
 
 	AUTORIZACAO_RETORNO_BUILDER(){
 		
-		public AutorizacaoReturn buildRetorno(HttpServletRequest request) {
+		public VISAAutorizacaoReturn buildRetorno(HttpServletRequest request) {
 			// TODO Auto-generated method stub
 			Checkout checkout = new Checkout(request
 					.getParameter("orderid"), null, request
 					.getParameter("free"), request.getParameter("price"),
 					null, null);		
-			AutorizacaoReturn retornoAutorizacao = new AutorizacaoReturn(
+			VISAAutorizacaoReturn retornoAutorizacao = new VISAAutorizacaoReturn(
 					new BasicDataReturn(Integer.valueOf(request.getParameter("lr")), request
 							.getParameter("ars"), request.getParameter("tid")),
 					request.getParameter("arp"), request.getParameter("pan"),
@@ -30,13 +29,13 @@ public enum HttpReturnBuilder implements ReturnBuilder<HttpServletRequest>{
 	
 	CAPTURA_RETORNO_BUILDER(){
 		public CapturaReturn buildRetorno(HttpServletRequest request) {
-			CapturaReturn retornoCaptura = new CapturaReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),PriceFormatter.convertToNormalValue(request.getParameter("cap")),request.getParameter("free"));			
+			CapturaReturn retornoCaptura = new CapturaReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),VISAPriceFormatter.convertToNormalValue(request.getParameter("cap")),request.getParameter("free"));			
 			return retornoCaptura;		
 		}
 	},
 	CANCELAMENTO_RETORNO_BUILDER(){
 		public CancelamentoReturn buildRetorno(HttpServletRequest request) {
-			CancelamentoReturn retornoCancelamento = new CancelamentoReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),PriceFormatter.convertToNormalValue(request.getParameter("cancel_amount")),request.getParameter("free"));			
+			CancelamentoReturn retornoCancelamento = new CancelamentoReturn(new BasicDataReturn(Integer.valueOf(request.getParameter("lr")),request.getParameter("tid"),request.getParameter("ars")),VISAPriceFormatter.convertToNormalValue(request.getParameter("cancel_amount")),request.getParameter("free"));			
 			return retornoCancelamento;		
 		}
 	},
@@ -44,7 +43,7 @@ public enum HttpReturnBuilder implements ReturnBuilder<HttpServletRequest>{
 		
 		public ConsultaReturn buildRetorno(HttpServletRequest request) {
 			/*
-			 * trecho repetido, mas só por isso é aceitavel.
+			 * trecho repetido, mas como é só aqui mesmo, ainda é aceitável.
 			 */
 			Checkout checkout = new Checkout(request
 					.getParameter("orderid"), null, request

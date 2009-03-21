@@ -14,19 +14,19 @@ import br.com.caelum.stella.gateway.visa.Checkout;
  * @author Alberto Pc
  *
  */
-public class SolicitaAutorizacaoPagamentoViaHttp implements IntegrationHandler<String> {
+public class VISASolicitacaoAutorizacaoPagamentoViaHttp implements IntegrationHandler<String> {
 
-	private Checkout checkout;
+	private final Checkout checkout;
 	private final GatewaysConf gatewaysConf = new GatewaysConf();
 
-	public SolicitaAutorizacaoPagamentoViaHttp(Checkout checkout) {
+	public VISASolicitacaoAutorizacaoPagamentoViaHttp(final Checkout checkout) {
 		this.checkout = checkout;
 	}
 
 	public String handle() {
 		// TODO Auto-generated method stub		
 		PostMethod post = new PostMethod(gatewaysConf.getUrlParaComponenteDeAutorizacaoDoVisa());		
-		post.addParameter("tid",checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeAfiliacaoDoVisa()));
+		post.addParameter("tid",checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeFiliacaoDoVisa()));
 		post.addParameter("merchid",gatewaysConf.getNomeDoArquivoDeConfiguracaoDoVisa());
 		post.addParameter("orderid",checkout.getOrderId());
 		post.addParameter("order",checkout.getOrder());

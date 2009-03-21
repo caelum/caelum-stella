@@ -10,14 +10,14 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.visa.integration.AutorizacaoReturn;
+import br.com.caelum.stella.gateway.visa.integration.VISAAutorizacaoReturn;
 import br.com.caelum.stella.gateway.visa.integration.CancelamentoReturn;
 import br.com.caelum.stella.gateway.visa.integration.CapturaReturn;
 import br.com.caelum.stella.gateway.visa.integration.ConsultaReturn;
-import br.com.caelum.stella.gateway.visa.integration.HttpReturnBuilder;
-import br.com.caelum.stella.gateway.visa.integration.VerificaRetornoIntegracaoViaHttp;
+import br.com.caelum.stella.gateway.visa.integration.VISAHttpReturnBuilder;
+import br.com.caelum.stella.gateway.visa.integration.VISAVerificacaoRetornoIntegracaoViaHttp;
 
-public class TestRetornoIntegracaoComponenteDoVisa {
+public class VISATestRetornoIntegracaoComponente {
 
 	@Test
 	public void testRetornoAutorizacao(){
@@ -36,8 +36,8 @@ public class TestRetornoIntegracaoComponenteDoVisa {
 				one(request).getParameter("bank");will(returnValue("347"));
 			}
 		});
-		VerificaRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VerificaRetornoIntegracaoViaHttp(request,HttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
-		AutorizacaoReturn autorizacaoReturn = (AutorizacaoReturn)retornoIntegracaoViaHttp.handle();
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
+		VISAAutorizacaoReturn autorizacaoReturn = (VISAAutorizacaoReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(BigDecimal.ONE.setScale(2),autorizacaoReturn.getCheckout().getPrice());
 		
 	}
@@ -55,7 +55,7 @@ public class TestRetornoIntegracaoComponenteDoVisa {
 				one(request).getParameter("cap");will(returnValue("200"));
 			}
 		});
-		VerificaRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VerificaRetornoIntegracaoViaHttp(request,HttpReturnBuilder.CAPTURA_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CAPTURA_RETORNO_BUILDER);
 		CapturaReturn capturaReturn = (CapturaReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(new BigDecimal(2).setScale(2),capturaReturn.getCap());
 		
@@ -74,7 +74,7 @@ public class TestRetornoIntegracaoComponenteDoVisa {
 				one(request).getParameter("cancel_amount");will(returnValue("200"));
 			}
 		});
-		VerificaRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VerificaRetornoIntegracaoViaHttp(request,HttpReturnBuilder.CANCELAMENTO_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CANCELAMENTO_RETORNO_BUILDER);
 		CancelamentoReturn cancelamentoReturn = (CancelamentoReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(new BigDecimal(2).setScale(2),cancelamentoReturn.getCancel_amount());
 		
@@ -97,7 +97,7 @@ public class TestRetornoIntegracaoComponenteDoVisa {
 				one(request).getParameter("authent");will(returnValue("0"));
 			}
 		});
-		VerificaRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VerificaRetornoIntegracaoViaHttp(request,HttpReturnBuilder.CONSULTA_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CONSULTA_RETORNO_BUILDER);
 		ConsultaReturn consultaReturn = (ConsultaReturn)retornoIntegracaoViaHttp.handle();
 		
 		

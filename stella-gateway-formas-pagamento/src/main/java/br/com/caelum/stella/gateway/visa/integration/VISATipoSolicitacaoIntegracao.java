@@ -2,8 +2,12 @@ package br.com.caelum.stella.gateway.visa.integration;
 
 import br.com.caelum.stella.gateway.core.GatewaysConf;
 
-
-public enum TipoSolicitacaoIntegracao {
+/**
+ * Classe responsáveis por indicar as urls de integração de cada componente do visa.
+ * @author Alberto Pc
+ *
+ */
+public enum VISATipoSolicitacaoIntegracao {
 
 	CAPTURA(){
 

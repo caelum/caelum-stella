@@ -1,13 +1,11 @@
 package br.com.caelum.stella.gateway.visa;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Calendar;
 
-import javax.servlet.http.HttpServletRequest;
-
+import br.com.caelum.stella.gateway.core.CartaoCredito;
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
-import br.com.caelum.stella.gateway.visa.integration.PriceFormatter;
+import br.com.caelum.stella.gateway.visa.integration.VISAPriceFormatter;
 
 /**
  * Contém as informações necessárias para processar uma compra através do VISA
@@ -56,7 +54,7 @@ public class Checkout {
 	
 	private BigDecimal calculaPrecoDividoPorCem(String unformattedPrice) {
 		//verificar esse arredondamento.
-		return PriceFormatter.convertToNormalValue(unformattedPrice);
+		return VISAPriceFormatter.convertToNormalValue(unformattedPrice);
 	}			
 	
 

@@ -6,15 +6,15 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.visa.ComponentReturnHandler;
 import br.com.caelum.stella.gateway.visa.integration.IntegrationReturn;
+import br.com.caelum.stella.gateway.visa.integration.VISAComponentReturnHandler;
 
 /**
  * Testa os possiveis de retorno
  * @author Alberto Pc
  *
  */
-public class TestRetornoComponenteDoVisa {
+public class VISATestRetornoComponente {
 
 	@Test
 	public void testRetornoValidoDoCheckoutComLrIgualA00() {
@@ -25,7 +25,7 @@ public class TestRetornoComponenteDoVisa {
 				atLeast(1).of(request).getParameter("lr");will(returnValue("00"));								
 			}
 		});
-		new ComponentReturnHandler(criarRetornoDeIntegracao(request)).check();		
+		new VISAComponentReturnHandler(criarRetornoDeIntegracao(request)).check();		
 		mockery.assertIsSatisfied();
 	}
 
@@ -38,7 +38,7 @@ public class TestRetornoComponenteDoVisa {
 				atLeast(1).of(request).getParameter("lr");will(returnValue("11"));																
 			}
 		});	
-		new ComponentReturnHandler(criarRetornoDeIntegracao(request)).check();		
+		new VISAComponentReturnHandler(criarRetornoDeIntegracao(request)).check();		
 		mockery.assertIsSatisfied();
 	}	
 	
