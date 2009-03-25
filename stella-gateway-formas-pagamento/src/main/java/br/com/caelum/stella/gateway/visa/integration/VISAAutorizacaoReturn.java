@@ -8,7 +8,7 @@ import br.com.caelum.stella.gateway.visa.BasicDataReturn;
  * @author Alberto Pc
  *
  */
-public class VISAAutorizacaoReturn implements IntegrationReturn{
+public class VISAAutorizacaoReturn implements VISAIntegrationReturn{
 
 	private String pan;
 	private BasicDataReturn dadosBasicoDeRetorno;

@@ -1,6 +1,6 @@
 package br.com.caelum.stella.gateway.visa.integration;
 
-public interface IntegrationReturn {
+public interface VISAIntegrationReturn {
 
 	public int getLr();
 	

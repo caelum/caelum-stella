@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import br.com.caelum.stella.gateway.core.CartaoCredito;
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
+import br.com.caelum.stella.gateway.visa.integration.TIDGenerator;
 import br.com.caelum.stella.gateway.visa.integration.VISAPriceFormatter;
 
 /**
@@ -65,6 +66,10 @@ public class Checkout {
 		return cartao;
 	}
 
+	/**
+	 * 
+	 * @return preço formatado em centésimos.
+	 */
 	public String getFormattedPrice() {
 		return String.format("%.0f", this.price.multiply(new BigDecimal(100)));
 	}
@@ -106,15 +111,6 @@ public class Checkout {
 		return orderId;
 	}
 
-	/**
-	 * 
-	 * @param codigoUnicoDoPedido
-	 * @return
-	 */
-	public Checkout withCodigoUnicoDoPedido(String codigoUnicoDoPedido) {
-		this.orderId = codigoUnicoDoPedido;
-		return this;
-	}
 
 	/**
 	 * Campo livre, qualquer informacao adicional que queria ser
@@ -126,15 +122,6 @@ public class Checkout {
 		return free;
 	}
 
-	/**
-	 * 
-	 * @param campoLivre
-	 * @return
-	 */
-	public Checkout withFree(String free) {
-		this.free = free;
-		return this;
-	}
 
 	/**
 	 * 
@@ -156,34 +143,8 @@ public class Checkout {
 	 *             caso o parcelamento não tenha sido definido
 	 */
 	public String getTid(Calendar data, String numeroDeAfiliacao) {
-		if (parcelamento == null) {
-			throw new InvalidCheckoutException(
-					"O parcelamento não foi definido");
-		}
-		String dataNoFormatoJuliano = obterDataNoFormatoJuliano(data);
-		String numeroDeAfiliacaoDoVisaFormatado = numeroDeAfiliacao.substring(
-				4, numeroDeAfiliacao.length() - 1);
-		String horaFormatadaComOMilesimoDoSegundo = String.format(
-				"%1$tH%1$tM%1$tS"
-						+ String.valueOf(data.get(Calendar.MILLISECOND))
-								.substring(0, 1), data);
-		String ultimoDigitoDoAno = getUltimoDigitoDoAno(data);
-		String tid = numeroDeAfiliacaoDoVisaFormatado + ultimoDigitoDoAno
-				+ dataNoFormatoJuliano + horaFormatadaComOMilesimoDoSegundo
-				+ parcelamento.getCodigoDePagamento();
-		return tid;
+		return new TIDGenerator(this.parcelamento,data,numeroDeAfiliacao).getTid();
 
-	}
-
-	private String getUltimoDigitoDoAno(Calendar data) {
-		String ano = String.valueOf(data.get(Calendar.YEAR));
-		return ano.substring(ano.length() - 1);
-	}
-
-	private String obterDataNoFormatoJuliano(Calendar data) {
-		int diaDoAno = data.get(Calendar.DAY_OF_YEAR);
-		String result = String.format("%03d", diaDoAno);
-		return result;
 	}
 
 }

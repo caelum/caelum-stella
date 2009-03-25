@@ -18,6 +18,12 @@ public enum TipoTransacao {
 	public String getCodigo() {
 		return codigo;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.codigo;
+	}
 	
 	
 }

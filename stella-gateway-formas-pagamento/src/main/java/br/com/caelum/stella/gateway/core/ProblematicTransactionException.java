@@ -2,6 +2,12 @@ package br.com.caelum.stella.gateway.core;
 
 
 
+/**
+ * Exception que deve ser lançada quando o retorno da integração não
+ * for o que deveria ser. Ex: a transação falhou...
+ * @author Alberto Pc
+ *
+ */
 public class ProblematicTransactionException extends RuntimeException {
 	
 	private Object someReturn;

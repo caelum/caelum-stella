@@ -4,34 +4,39 @@ import java.math.BigDecimal;
 
 import br.com.caelum.stella.gateway.visa.BasicDataReturn;
 
-public class CapturaReturn implements IntegrationReturn {
-	
+public class VISACancelamentoReturn implements VISAIntegrationReturn {
+
 	private BasicDataReturn dadosBasicoDeRetorno;
-	private BigDecimal cap;
+	private BigDecimal cancel_amount;
 	private String free;
-	public CapturaReturn(BasicDataReturn dadosBasicoDeRetorno,
-			BigDecimal cap, String free) {
+	
+	public VISACancelamentoReturn(BasicDataReturn dadosBasicoDeRetorno,
+			BigDecimal cancel_amount, String free) {
 		super();
 		this.dadosBasicoDeRetorno = dadosBasicoDeRetorno;
-		this.cap = cap;
+		this.cancel_amount = cancel_amount;
 		this.free = free;
 	}
-	public BigDecimal getCap() {
-		return cap;
+
+	public BigDecimal getCancel_amount() {
+		return cancel_amount;
 	}
+
 	public String getFree() {
 		return free;
 	}
+
 	public String getArs() {
 		return dadosBasicoDeRetorno.getArs();
 	}
+
 	public int getLr() {
 		return dadosBasicoDeRetorno.getLr();
 	}
+
 	public String getTid() {
 		return dadosBasicoDeRetorno.getTid();
 	}
-	
 	
 	
 }

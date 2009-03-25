@@ -42,6 +42,9 @@ public class RedecardDadosAutorizacaoPagamento {
 
 
 	public String getFiliacaoDistribuidor() {
+		if(filiacaoDistribuidor==null){
+			filiacaoDistribuidor = "";
+		}
 		return filiacaoDistribuidor;
 	}
 
@@ -57,11 +60,17 @@ public class RedecardDadosAutorizacaoPagamento {
 
 
 	public String getUrlCima() {
+		if(urlCima==null){
+			urlCima = "";
+		}
 		return urlCima;
 	}
 
 
 	public String getTarget() {
+		if(target==null){
+			target = null;
+		}
 		return target;
 	}
 

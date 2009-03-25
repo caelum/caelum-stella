@@ -1,5 +1,7 @@
 package br.com.caelum.stella.gateway.redecard.integration;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 
@@ -7,6 +9,7 @@ import br.com.caelum.stella.gateway.core.GatewaysConf;
 import br.com.caelum.stella.gateway.core.HttpIntegrationRequester;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.redecard.Checkout;
+import br.com.caelum.stella.gateway.redecard.Parcelamento;
 
 public class RedecardSolicitacaoConfirmacaoTransacao implements
 		IntegrationHandler<RedecardConfirmacaoTransacaoReturn> {
@@ -14,13 +17,13 @@ public class RedecardSolicitacaoConfirmacaoTransacao implements
 	private static final String CODIGO_CONFIRMACAO_TRANSACAO = "203";
 	private final GatewaysConf gatewaysConf = new GatewaysConf();
 	private final RedecardAutorizacaoReturn autorizacaoReturn;
-	private final Checkout checkout;
+	private final Checkout checkoutASerVerificado;
 
 	public RedecardSolicitacaoConfirmacaoTransacao(
-			RedecardAutorizacaoReturn autorizacaoReturn, Checkout checkout) {
+			RedecardAutorizacaoReturn autorizacaoReturn, Parcelamento parcelamento, BigDecimal total, String numeroPedido) {
 		super();
 		this.autorizacaoReturn = autorizacaoReturn;
-		this.checkout = checkout;
+		this.checkoutASerVerificado = new Checkout(total,parcelamento,null,numeroPedido,null);
 		// talvez verificar o estado do checkout aqui...
 	}
 
@@ -34,19 +37,19 @@ public class RedecardSolicitacaoConfirmacaoTransacao implements
 								.getDataFormatada()),
 						new NameValuePair("TRANSACAO",
 								CODIGO_CONFIRMACAO_TRANSACAO),
-						new NameValuePair("TRANSORIG", checkout
+						new NameValuePair("TRANSORIG", checkoutASerVerificado
 								.getParcelamento().getTipoTransacao()
 								.getCodigo()),
-						new NameValuePair("PARCELAS", checkout
+						new NameValuePair("PARCELAS", checkoutASerVerificado
 								.getParcelamento()
 								.getNumeroDeParcelasComNoMinimoDoisDigitos()),
 						new NameValuePair("FILIACAO", gatewaysConf
 								.getNumeroDeFiliacaoDaRedecard()),
 						new NameValuePair("DISTRIBUIDOR", gatewaysConf
 								.getNumeroDeFiliacaoDoDistribuidorDaRedecard()),
-						new NameValuePair("TOTAL", checkout
+						new NameValuePair("TOTAL", checkoutASerVerificado
 								.getTotalComDuasCasasDecimais().toString()),
-						new NameValuePair("NUMPEDIDO", checkout
+						new NameValuePair("NUMPEDIDO", checkoutASerVerificado
 								.getNumeroDoPedido()),
 						new NameValuePair("NUMAUTOR", autorizacaoReturn
 								.getNumAutor()),

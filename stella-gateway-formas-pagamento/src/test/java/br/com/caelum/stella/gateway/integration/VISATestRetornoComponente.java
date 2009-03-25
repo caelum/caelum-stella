@@ -6,7 +6,7 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.visa.integration.IntegrationReturn;
+import br.com.caelum.stella.gateway.visa.integration.VISAIntegrationReturn;
 import br.com.caelum.stella.gateway.visa.integration.VISAComponentReturnHandler;
 
 /**
@@ -42,8 +42,8 @@ public class VISATestRetornoComponente {
 		mockery.assertIsSatisfied();
 	}	
 	
-	private IntegrationReturn criarRetornoDeIntegracao(final HttpServletRequest request) {
-		return new IntegrationReturn(){
+	private VISAIntegrationReturn criarRetornoDeIntegracao(final HttpServletRequest request) {
+		return new VISAIntegrationReturn(){
 
 			public String getArs() {
 				// TODO Auto-generated method stub

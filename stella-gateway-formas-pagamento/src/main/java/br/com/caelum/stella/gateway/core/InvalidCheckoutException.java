@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.core;
 
 /**
- * Informa quando um checkout está em estado invalido.
+ * Exception que deve ser lançada quando um checkout está em estado invalido.
  * @author Alberto Pc
  *
  */

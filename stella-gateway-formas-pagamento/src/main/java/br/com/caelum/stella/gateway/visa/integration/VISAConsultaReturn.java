@@ -3,14 +3,14 @@ package br.com.caelum.stella.gateway.visa.integration;
 import br.com.caelum.stella.gateway.visa.Checkout;
 import br.com.caelum.stella.gateway.visa.BasicDataReturn;
 
-public class ConsultaReturn implements IntegrationReturn {
+public class VISAConsultaReturn implements VISAIntegrationReturn {
 
 	private BasicDataReturn dadosBasicoDeRetorno;
 	private Checkout checkout;
 	private int authent;
 	private String bank;
 
-	public ConsultaReturn(BasicDataReturn dadosBasicoDeRetorno,
+	public VISAConsultaReturn(BasicDataReturn dadosBasicoDeRetorno,
 			Checkout checkout, int authent, String bank) {
 		super();
 		this.dadosBasicoDeRetorno = dadosBasicoDeRetorno;

@@ -11,7 +11,7 @@ import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
 /**
  * Classe responsável por verificar o retorno da solicitação de autorização da Redecard.
- * @author Alberto Pc
+ * @author Alberto e Rafael
  *
  */
 public class RedecardVerificaRetornoAutorizacao implements
@@ -29,27 +29,42 @@ public class RedecardVerificaRetornoAutorizacao implements
 
 	public RedecardAutorizacaoReturn handle() {
 		// TODO Auto-generated method stub
-		final int codigoRetorno = Integer.valueOf(request.getParameter("CODRET"));
 		final String mensagemRetorno = request.getParameter("MSGRET");
+		final String codigoRetorno = request.getParameter("CODRET");
 		final String numPedido = request.getParameter("NUMPEDIDO");
-		final String dataDesformatada = request.getParameter("DATA");
-		Calendar dataAutorizacao;
-		try {								
-			dataAutorizacao = converteDataStringParaCalendar(dataDesformatada);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			throw new ProblematicTransactionException("A conversão da data de autorizacao falhou "+dataDesformatada,e,new RedecardAutorizacaoReturn(codigoRetorno,mensagemRetorno,numPedido));
-		}		
-		RedecardAutorizacaoReturn autorizacaoReturn = new RedecardAutorizacaoReturn(codigoRetorno,mensagemRetorno,dataAutorizacao,numPedido,request.getParameter("NR_CARTAO"),request.getParameter("ORIGEM_BIN"),request.getParameter("NUMAUTOR"),request.getParameter("NUMCV"),request.getParameter("NUMAUTENT"),request.getParameter("NUMSQN"));
-		if(autorizacaoReturn.getCodigoRetorno()>49){
-			throw new ProblematicTransactionException(autorizacaoReturn.getMensagemRetorno(),autorizacaoReturn);
+		if(codigoRetorno==null){
+			final int codigoRetornoAprovado = 0;			
+			final String dataDesformatada = request.getParameter("DATA");
+			Calendar dataAutorizacao;
+			try {
+				dataAutorizacao = converteDataStringParaCalendar(dataDesformatada);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				throw new ProblematicTransactionException(
+						"A conversão da data de autorizacao falhou "
+								+ dataDesformatada, e,
+						new RedecardAutorizacaoReturn(codigoRetornoAprovado,
+								mensagemRetorno, numPedido));
+			}
+			RedecardAutorizacaoReturn autorizacaoReturn = new RedecardAutorizacaoReturn(
+					codigoRetornoAprovado, mensagemRetorno, dataAutorizacao, numPedido,
+					request.getParameter("NR_CARTAO"), request
+							.getParameter("ORIGEM_BIN"), request
+							.getParameter("NUMAUTOR"), request
+							.getParameter("NUMCV"), request
+							.getParameter("NUMAUTENT"), request
+							.getParameter("NUMSQN"));
+			return autorizacaoReturn;
 		}
-		return autorizacaoReturn;
+		else{
+			throw new ProblematicTransactionException(mensagemRetorno,new RedecardAutorizacaoReturn(Integer.valueOf(codigoRetorno),mensagemRetorno,numPedido));
+		}
 	}
 
 
 
 	private Calendar converteDataStringParaCalendar(String dataDesformatada) throws ParseException {
+		System.out.println(dataDesformatada);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		Calendar dataAutorizacao = Calendar.getInstance();
 		dataAutorizacao.setTime(formatter.parse(dataDesformatada));		

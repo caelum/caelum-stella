@@ -9,7 +9,7 @@ import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
  */
 public class VISAComponentReturnHandler {
 
-	private IntegrationReturn retornoIntegracao;
+	private VISAIntegrationReturn retornoIntegracao;
 
 	
 	
@@ -17,7 +17,7 @@ public class VISAComponentReturnHandler {
 	
 	
 	public VISAComponentReturnHandler(
-			IntegrationReturn resultadoIntegracao) {
+			VISAIntegrationReturn resultadoIntegracao) {
 		super();
 		this.retornoIntegracao = resultadoIntegracao;
 	}
@@ -31,7 +31,7 @@ public class VISAComponentReturnHandler {
 	 * sucesso ou não.
 	 * @throws ProblematicTransactionException caso o retorno indique problema
 	 */
-	public IntegrationReturn check(){			
+	public VISAIntegrationReturn check(){			
 		if (retornoIntegracao.getLr()!=0 && retornoIntegracao.getLr()!=11) {
 			throw new ProblematicTransactionException(retornoIntegracao.getArs(),retornoIntegracao);
 		}		
