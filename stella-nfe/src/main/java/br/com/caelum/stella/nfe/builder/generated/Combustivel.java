@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public interface Combustivel {
-    public Combustivel withCProdANP(Integer string);
+    public Combustivel withCodigoDoProdutoNaANP(Integer string);
 
-    public Combustivel withCODIF(BigInteger string);
+    public Combustivel withCodigoDeAutorizacaoOuRegistroDoCODIF(BigInteger string);
 
-    public Combustivel withQTemp(BigDecimal string);
+    public Combustivel withQuantidadeDeCombustivelFaturadaNaTemperaturaAmbiente(BigDecimal string);
 
-    public Combustivel withCIDE(CIDE cIDE);
+    public Combustivel withCIDE(CIDESobreCombustiveis cIDE);
 
-    public Combustivel withICMSComb(ICMSComb iCMSComb);
+    public Combustivel withICMS(ICMSSobreCombustiveis iCMSComb);
 
-    public Combustivel withICMSInter(ICMSInter iCMSInter);
+    public Combustivel withICMSSobreOperacoesInterestaduais(ICMSSobreOperacoesInterestaduais iCMSInter);
 
-    public Combustivel withICMSCons(ICMSCons iCMSCons);
+    public Combustivel withICMSSobreConsumo(ICMSSobreConsumo iCMSCons);
 }

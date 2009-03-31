@@ -5,11 +5,11 @@ import br.com.caelum.stella.nfe.modelo.UF;
 public final class ExportaImplTest {
     @org.junit.Test
     public void testExportaInterface() {
-        Exporta exporta = new ExportaImpl().withUFEmbarq(UF.AC).withXLocEmbarq("abc");
+        Exportacao exporta = new ExportacaoImpl().withUFDoEmbarque(UF.AC).withLocalDoEmbarque("abc");
         assertModelWasFilled(exporta);
     }
 
-    private void assertModelWasFilled(final Exporta exporta) {
+    private void assertModelWasFilled(final Exportacao exporta) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(exporta).assertModelWasFilled();
     }
 }

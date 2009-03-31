@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class TotalImplTest {
     @org.junit.Test
     public void testTotalInterface() {
-        TotalNFE total = new TotalNFEImpl().withICMSTotal(new ICMSTotImpl()).withISSQNTotal(new ISSQNtotImpl()).withRetencaoDeTributosFederais(
+        TotalNFE total = new TotalNFEImpl().withICMSTotal(new ICMSTotalImpl()).withISSQNTotal(new ISSQNtotImpl()).withRetencaoDeTributosFederais(
                 new RetencaoDeTributosFederaisImpl());
         assertModelWasFilled(total);
     }

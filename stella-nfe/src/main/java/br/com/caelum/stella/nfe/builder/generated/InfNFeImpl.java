@@ -16,12 +16,12 @@ public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.
         return infNFe;
     }
 
-    public InformacoesDaNFE withIde(final Ide ide) {
+    public InformacoesDaNFE withIde(final IdentificacaoDaNFE ide) {
         infNFe.setIde((br.com.caelum.stella.nfe.modelo.Ide) ((ObjectCreator) ide).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withEmit(final Emit emit) {
+    public InformacoesDaNFE withEmit(final Emitente emit) {
         infNFe.setEmit((br.com.caelum.stella.nfe.modelo.Emit) ((ObjectCreator) emit).getInstance());
         return this;
     }
@@ -31,7 +31,7 @@ public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.
         return this;
     }
 
-    public InformacoesDaNFE withDest(final Dest dest) {
+    public InformacoesDaNFE withDest(final Destinatario dest) {
         infNFe.setDest((br.com.caelum.stella.nfe.modelo.Dest) ((ObjectCreator) dest).getInstance());
         return this;
     }
@@ -46,9 +46,9 @@ public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.
         return this;
     }
 
-    public InformacoesDaNFE withDet(final Det... det) {
+    public InformacoesDaNFE withDet(final Detalhe... det) {
         List<br.com.caelum.stella.nfe.modelo.Det> list = new ArrayList<br.com.caelum.stella.nfe.modelo.Det>();
-        for (Det p : det) {
+        for (Detalhe p : det) {
             list.add((br.com.caelum.stella.nfe.modelo.Det) ((ObjectCreator) p).getInstance());
         }
         infNFe.setDet(list);
@@ -65,17 +65,17 @@ public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.
         return this;
     }
 
-    public InformacoesDaNFE withCobr(final Cobr cobr) {
+    public InformacoesDaNFE withCobr(final Cobranca cobr) {
         infNFe.setCobr((br.com.caelum.stella.nfe.modelo.Cobr) ((ObjectCreator) cobr).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withInfAdic(final InfAdic infAdic) {
+    public InformacoesDaNFE withInfAdic(final InformacoesAdicionais infAdic) {
         infNFe.setInfAdic((br.com.caelum.stella.nfe.modelo.InfAdic) ((ObjectCreator) infAdic).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withExporta(final Exporta exporta) {
+    public InformacoesDaNFE withExporta(final Exportacao exporta) {
         infNFe.setExporta((br.com.caelum.stella.nfe.modelo.Exporta) ((ObjectCreator) exporta).getInstance());
         return this;
     }

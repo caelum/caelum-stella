@@ -5,11 +5,11 @@ import java.util.Calendar;
 public final class DupImplTest {
     @org.junit.Test
     public void testDupInterface() {
-        Dup dup = new DupImpl().withNDup("abc").withDVenc(Calendar.getInstance()).withVDup("abc");
+        Duplicata dup = new DuplicataImpl().withNumero("abc").withDataDeVencimento(Calendar.getInstance()).withValorDaDuplicata("abc");
         assertModelWasFilled(dup);
     }
 
-    private void assertModelWasFilled(Dup dup) {
+    private void assertModelWasFilled(Duplicata dup) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(dup).assertModelWasFilled();
     }
 }

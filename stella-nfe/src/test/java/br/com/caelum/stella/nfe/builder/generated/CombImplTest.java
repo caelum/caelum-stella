@@ -6,9 +6,9 @@ import java.math.BigInteger;
 public final class CombImplTest {
     @org.junit.Test
     public void testCombInterface() {
-        Combustivel comb = new CombImpl().withCProdANP(1).withCODIF(new BigInteger("1")).withQTemp(new BigDecimal("1"))
-                .withCIDE(new CIDEImpl()).withICMSComb(new ICMSCombImpl()).withICMSInter(new ICMSInterImpl())
-                .withICMSCons(new ICMSConsImpl());
+        Combustivel comb = new CombustivelImpl().withCodigoDoProdutoNaANP(1).withCodigoDeAutorizacaoOuRegistroDoCODIF(new BigInteger("1")).withQuantidadeDeCombustivelFaturadaNaTemperaturaAmbiente(new BigDecimal("1"))
+                .withCIDE(new CIDESobreCombustiveisImpl()).withICMS(new ICMSSobreCombustiveisImpl()).withICMSSobreOperacoesInterestaduais(new ICMSSobreOperacoesInterestaduaisImpl())
+                .withICMSSobreConsumo(new ICMSSobreConsumoImpl());
         assertModelWasFilled(comb);
     }
 

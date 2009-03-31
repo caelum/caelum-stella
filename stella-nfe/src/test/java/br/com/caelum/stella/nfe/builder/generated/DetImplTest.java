@@ -5,12 +5,12 @@ import br.com.caelum.stella.nfe.builder.Impostos;
 public final class DetImplTest {
     @org.junit.Test
     public void testDetInterface() {
-        Det det = new DetImpl().withProd(new ProdutoImpl()).withImposto(new Impostos()).withInfAdProd("abc").withNItem(
+        Detalhe det = new DetalheImpl().withProduto(new ProdutoImpl()).withImposto(new Impostos()).withInformacaoAdicionalDoProduto("abc").withNumeroDoItemNaNF(
                 "abc");
         assertModelWasFilled(det);
     }
 
-    private void assertModelWasFilled(final Det det) {
+    private void assertModelWasFilled(final Detalhe det) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(det).assertModelWasFilled();
     }
 }

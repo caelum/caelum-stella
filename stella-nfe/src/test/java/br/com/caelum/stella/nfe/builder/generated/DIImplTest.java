@@ -7,12 +7,12 @@ import br.com.caelum.stella.nfe.modelo.UF;
 public final class DIImplTest {
     @org.junit.Test
     public void testDIInterface() {
-        DI dI = new DIImpl().withNDI("abc").withDDI(Calendar.getInstance()).withXLocDesemb("abc").withUFDesemb(UF.AC)
-                .withDDesemb(Calendar.getInstance()).withCExportador("abc").withAdi(new AdiImpl());
+        DeclaracaoDeImportacao dI = new DeclaracaoDeImportacaoImpl().withNumeroDoDocumentoDeImportacao("abc").withDataDaDeclaracaoDeImportacao(Calendar.getInstance()).withLocalDeDesenbaraco("abc").withUFDoDesembaraco(UF.AC)
+                .withDataDoDeembaraco(Calendar.getInstance()).withCodigoDoExportador("abc").withAdicoes(new AdicoesImpl());
         assertModelWasFilled(dI);
     }
 
-    private void assertModelWasFilled(final DI dI) {
+    private void assertModelWasFilled(final DeclaracaoDeImportacao dI) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(dI).assertModelWasFilled();
     }
 }

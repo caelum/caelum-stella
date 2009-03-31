@@ -107,9 +107,9 @@ public final class ProdutoImpl implements Produto, br.com.caelum.stella.nfe.Obje
         return this;
     }
 
-    public Produto withDI(final DI... di) {
+    public Produto withDI(final DeclaracaoDeImportacao... di) {
         List<br.com.caelum.stella.nfe.modelo.DI> list = new ArrayList<br.com.caelum.stella.nfe.modelo.DI>();
-        for (DI p : di) {
+        for (DeclaracaoDeImportacao p : di) {
             list.add((br.com.caelum.stella.nfe.modelo.DI) ((ObjectCreator) p).getInstance());
         }
         prod.setDI(list);

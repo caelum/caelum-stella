@@ -39,7 +39,7 @@ public interface Produto {
 
     public Produto withValorDeDesconto(BigDecimal string);
 
-    public Produto withDI(DI... di);
+    public Produto withDI(DeclaracaoDeImportacao... di);
 
     public Produto withVeiculoNovo(VeiculoNovo veicProd);
 

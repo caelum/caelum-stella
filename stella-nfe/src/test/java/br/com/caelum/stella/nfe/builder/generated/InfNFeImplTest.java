@@ -3,10 +3,10 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class InfNFeImplTest {
     @org.junit.Test
     public void testInfNFeInterface() {
-        InformacoesDaNFE infNFe = new InfNFeImpl().withIde(new IdeImpl()).withEmit(new EmitImpl()).withAvulsa(new AvulsaImpl())
-                .withDest(new DestImpl()).withRetirada(new DadosDoLocalImpl()).withEntrega(new DadosDoLocalImpl()).withDet(
-                        new DetImpl()).withTotal(new TotalNFEImpl()).withTransp(new TransporteImpl()).withCobr(new CobrImpl())
-                .withInfAdic(new InfAdicImpl()).withExporta(new ExportaImpl()).withCompra(new CompraImpl()).withVersao(
+        InformacoesDaNFE infNFe = new InfNFeImpl().withIde(new IdentificacaoDaNFEImpl()).withEmit(new EmitenteImpl()).withAvulsa(new AvulsaImpl())
+                .withDest(new DestinatarioImpl()).withRetirada(new DadosDoLocalImpl()).withEntrega(new DadosDoLocalImpl()).withDet(
+                        new DetalheImpl()).withTotal(new TotalNFEImpl()).withTransp(new TransporteImpl()).withCobr(new CobrancaImpl())
+                .withInfAdic(new InformacoesAdicionaisImpl()).withExporta(new ExportacaoImpl()).withCompra(new CompraImpl()).withVersao(
                         "abc").withId("abc");
         assertModelWasFilled(infNFe);
     }

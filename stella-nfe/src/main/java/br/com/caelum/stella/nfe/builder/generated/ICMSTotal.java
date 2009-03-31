@@ -3,31 +3,31 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 
 public interface ICMSTotal {
-    public ICMSTotal withVBC(BigDecimal string);
+    public ICMSTotal withValorDaBaseDeCalculo(BigDecimal string);
 
-    public ICMSTotal withVICMS(BigDecimal string);
+    public ICMSTotal withValorTotal(BigDecimal string);
 
-    public ICMSTotal withVBCST(BigDecimal string);
+    public ICMSTotal withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(BigDecimal string);
 
-    public ICMSTotal withVST(BigDecimal string);
+    public ICMSTotal withValorTotalDoICMSSubstituicaoTributaria(BigDecimal string);
 
-    public ICMSTotal withVProd(BigDecimal string);
+    public ICMSTotal withValorTotalDosProdutosEServicos(BigDecimal string);
 
-    public ICMSTotal withVFrete(BigDecimal string);
+    public ICMSTotal withValorTotalDoFrete(BigDecimal string);
 
-    public ICMSTotal withVSeg(BigDecimal string);
+    public ICMSTotal withValorTotalDoSeguro(BigDecimal string);
 
-    public ICMSTotal withVDesc(BigDecimal string);
+    public ICMSTotal withValorTotalDeDesconto(BigDecimal string);
 
-    public ICMSTotal withVII(BigDecimal string);
+    public ICMSTotal withValorTotalDoII(BigDecimal string);
 
-    public ICMSTotal withVIPI(BigDecimal string);
+    public ICMSTotal withValorTotalDoIPI(BigDecimal string);
 
-    public ICMSTotal withVPIS(BigDecimal string);
+    public ICMSTotal withValorTotalDoPIS(BigDecimal string);
 
     public ICMSTotal withValor(BigDecimal string);
 
-    public ICMSTotal withVOutro(BigDecimal string);
+    public ICMSTotal withValorTotalDeOutrasDespesas(BigDecimal string);
 
-    public ICMSTotal withVNF(BigDecimal string);
+    public ICMSTotal withValorTotalDaNF(BigDecimal string);
 }

@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 public final class ICMSTotImplTest {
     @org.junit.Test
     public void testICMSTotInterface() {
-        ICMSTotal iCMSTot = new ICMSTotImpl().withVBC(new BigDecimal("1")).withVICMS(new BigDecimal("1")).withVBCST(
-                new BigDecimal("1")).withVST(new BigDecimal("1")).withVProd(new BigDecimal("1")).withVFrete(
-                new BigDecimal("1")).withVSeg(new BigDecimal("1")).withVDesc(new BigDecimal("1")).withVII(
-                new BigDecimal("1")).withVIPI(new BigDecimal("1")).withVPIS(new BigDecimal("1")).withValor(
-                new BigDecimal("1")).withVOutro(new BigDecimal("1")).withVNF(new BigDecimal("1"));
+        ICMSTotal iCMSTot = new ICMSTotalImpl().withValorDaBaseDeCalculo(new BigDecimal("1")).withValorTotal(new BigDecimal("1")).withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(
+                new BigDecimal("1")).withValorTotalDoICMSSubstituicaoTributaria(new BigDecimal("1")).withValorTotalDosProdutosEServicos(new BigDecimal("1")).withValorTotalDoFrete(
+                new BigDecimal("1")).withValorTotalDoSeguro(new BigDecimal("1")).withValorTotalDeDesconto(new BigDecimal("1")).withValorTotalDoII(
+                new BigDecimal("1")).withValorTotalDoIPI(new BigDecimal("1")).withValorTotalDoPIS(new BigDecimal("1")).withValor(
+                new BigDecimal("1")).withValorTotalDeOutrasDespesas(new BigDecimal("1")).withValorTotalDaNF(new BigDecimal("1"));
         assertModelWasFilled(iCMSTot);
     }
 

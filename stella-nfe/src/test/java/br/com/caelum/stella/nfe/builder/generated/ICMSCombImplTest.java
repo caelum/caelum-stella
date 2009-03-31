@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 public final class ICMSCombImplTest {
     @org.junit.Test
     public void testICMSCombInterface() {
-        ICMSComb iCMSComb = new ICMSCombImpl().withVBCICMS(new BigDecimal("1")).withVICMS(new BigDecimal("1"))
-                .withVBCICMSST(new BigDecimal("1")).withVICMSST(new BigDecimal("1"));
+        ICMSSobreCombustiveis iCMSComb = new ICMSSobreCombustiveisImpl().withValorDaBaseDeCalculo(new BigDecimal("1")).withValor(new BigDecimal("1"))
+                .withValorDaBaseDeCalculoDaSubstituicaoTributaria(new BigDecimal("1")).withValorDoICMSDaSubstituicaoTributaria(new BigDecimal("1"));
         assertModelWasFilled(iCMSComb);
     }
 
-    private void assertModelWasFilled(final ICMSComb iCMSComb) {
+    private void assertModelWasFilled(final ICMSSobreCombustiveis iCMSComb) {
         new br.com.caelum.stella.nfe.builder.BuilderTestHelper(iCMSComb).assertModelWasFilled();
     }
 }

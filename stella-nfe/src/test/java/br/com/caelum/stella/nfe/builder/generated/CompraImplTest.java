@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generated;
 public final class CompraImplTest {
     @org.junit.Test
     public void testCompraInterface() {
-        Compra compra = new CompraImpl().withXNEmp("abc").withXPed("abc").withXCont("abc");
+        Compra compra = new CompraImpl().withInformacoesDaNotaDeEmpenhoDeComprasPublicas("abc").withInformacaoDoPedido("abc").withInformacaoDoContrato("abc");
         assertModelWasFilled(compra);
     }
 

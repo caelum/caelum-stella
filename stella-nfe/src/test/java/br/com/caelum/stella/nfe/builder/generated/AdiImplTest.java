@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 public final class AdiImplTest {
 	@org.junit.Test
 	public void testAdiInterface() {
-		Adi adi = new AdiImpl().withNAdicao(123).withNSeqAdic(123)
-				.withCFabricante("abc").withVDescDI(BigDecimal.ONE);
+		Adicao adi = new AdicoesImpl().withNumeroDaAdicao(123).withNumeroSequencialDoItemDaAdicao(123)
+				.withCodigoDoFabricanteEstrangeiro("abc").withValorDeDescontoDoItemDaDI(BigDecimal.ONE);
 		assertModelWasFilled(adi);
 	}
 
-	private void assertModelWasFilled(Adi adi) {
+	private void assertModelWasFilled(Adicao adi) {
 		new br.com.caelum.stella.nfe.builder.BuilderTestHelper(adi)
 				.assertModelWasFilled();
 	}
