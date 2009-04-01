@@ -2,14 +2,13 @@ package br.com.caelum.stella.gateway.visa.integration;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.stella.gateway.visa.BasicDataReturn;
 
 public class VISACapturaReturn implements VISAIntegrationReturn {
 	
-	private BasicDataReturn dadosBasicoDeRetorno;
+	private VISABasicDataReturn dadosBasicoDeRetorno;
 	private BigDecimal cap;
 	private String free;
-	public VISACapturaReturn(BasicDataReturn dadosBasicoDeRetorno,
+	public VISACapturaReturn(VISABasicDataReturn dadosBasicoDeRetorno,
 			BigDecimal cap, String free) {
 		super();
 		this.dadosBasicoDeRetorno = dadosBasicoDeRetorno;

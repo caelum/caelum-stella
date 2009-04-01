@@ -1,11 +1,10 @@
 package br.com.caelum.stella.gateway.redecard.integration;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.caelum.stella.gateway.core.CalendarFormatter;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
@@ -36,16 +35,7 @@ public class RedecardVerificaRetornoAutorizacao implements
 			final int codigoRetornoAprovado = 0;			
 			final String dataDesformatada = request.getParameter("DATA");
 			Calendar dataAutorizacao;
-			try {
-				dataAutorizacao = converteDataStringParaCalendar(dataDesformatada);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				throw new ProblematicTransactionException(
-						"A conversão da data de autorizacao falhou "
-								+ dataDesformatada, e,
-						new RedecardAutorizacaoReturn(codigoRetornoAprovado,
-								mensagemRetorno, numPedido));
-			}
+			dataAutorizacao = CalendarFormatter.stringToCalendar(dataDesformatada);
 			RedecardAutorizacaoReturn autorizacaoReturn = new RedecardAutorizacaoReturn(
 					codigoRetornoAprovado, mensagemRetorno, dataAutorizacao, numPedido,
 					request.getParameter("NR_CARTAO"), request
@@ -62,13 +52,5 @@ public class RedecardVerificaRetornoAutorizacao implements
 	}
 
 
-
-	private Calendar converteDataStringParaCalendar(String dataDesformatada) throws ParseException {
-		System.out.println(dataDesformatada);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		Calendar dataAutorizacao = Calendar.getInstance();
-		dataAutorizacao.setTime(formatter.parse(dataDesformatada));		
-		return dataAutorizacao;
-	}
 
 }

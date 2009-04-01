@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.visa.integration;
 import java.util.Calendar;
 
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
-import br.com.caelum.stella.gateway.visa.Parcelamento;
+import br.com.caelum.stella.gateway.visa.FormaPagamento;
 
 /**
  * Classe responsável por gerar o TID, tá isolado para facilitar os testes e para que possa ser usada em outro contexto.
@@ -12,10 +12,10 @@ import br.com.caelum.stella.gateway.visa.Parcelamento;
  */
 public class TIDGenerator {
 
-	private final Parcelamento parcelamento;
+	private final FormaPagamento parcelamento;
 	private final Calendar data;
 	private final String numeroDeFiliacao;
-	public TIDGenerator(final Parcelamento parcelamento, final Calendar data,
+	public TIDGenerator(final FormaPagamento parcelamento, final Calendar data,
 			final String numeroDeFiliacao) {		
 		if (parcelamento == null) {
 			throw new InvalidCheckoutException(

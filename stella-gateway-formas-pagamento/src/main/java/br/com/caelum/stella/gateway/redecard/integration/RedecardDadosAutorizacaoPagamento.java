@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import br.com.caelum.stella.gateway.redecard.Bandeira;
 import br.com.caelum.stella.gateway.redecard.Checkout;
-import br.com.caelum.stella.gateway.redecard.Parcelamento;
+import br.com.caelum.stella.gateway.redecard.FormaPagamento;
 
 /**
  * Classe que contém todas as informações que são necessárias para serem passadas para o ambiente da redecard.
@@ -69,7 +69,7 @@ public class RedecardDadosAutorizacaoPagamento {
 
 	public String getTarget() {
 		if(target==null){
-			target = null;
+			target = "";
 		}
 		return target;
 	}
@@ -85,7 +85,7 @@ public class RedecardDadosAutorizacaoPagamento {
 	}
 
 
-	public Parcelamento getParcelamento() {
+	public FormaPagamento getParcelamento() {
 		return checkout.getParcelamento();
 	}
 

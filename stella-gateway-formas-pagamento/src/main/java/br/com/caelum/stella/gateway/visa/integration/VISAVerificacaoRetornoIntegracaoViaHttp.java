@@ -10,7 +10,7 @@ import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
  * @author Alberto Pc
  *
  */
-public class VISAVerificacaoRetornoAutorizacaoViaHttp implements
+public class VISAVerificacaoRetornoIntegracaoViaHttp implements
 		IntegrationHandler<VISAIntegrationReturn> {
 
 	private final HttpServletRequest request;
@@ -21,7 +21,7 @@ public class VISAVerificacaoRetornoAutorizacaoViaHttp implements
 	 * @param request request que contem as informações
 	 * @param httpRetornoBuilder builder especifico para a ocasião.
 	 */
-	public VISAVerificacaoRetornoAutorizacaoViaHttp(final HttpServletRequest request,
+	public VISAVerificacaoRetornoIntegracaoViaHttp(final HttpServletRequest request,
 			final VISAHttpReturnBuilder httpRetornoBuilder) {
 		super();
 		this.request = request;

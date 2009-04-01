@@ -10,7 +10,7 @@ import br.com.caelum.stella.gateway.core.CartaoCredito;
 import br.com.caelum.stella.gateway.core.GatewaysConf;
 import br.com.caelum.stella.gateway.visa.Checkout;
 import br.com.caelum.stella.gateway.visa.TipoTransacao;
-import br.com.caelum.stella.gateway.visa.Parcelamento;
+import br.com.caelum.stella.gateway.visa.FormaPagamento;
 import br.com.caelum.stella.gateway.visa.integration.VISASolicitacaoAutorizacaoPagamentoViaHttp;
 import br.com.caelum.stella.gateway.visa.integration.VISASolicitacaoConferenciaViaHttp;
 import br.com.caelum.stella.gateway.visa.integration.VISATipoSolicitacaoIntegracao;
@@ -31,7 +31,7 @@ public class VISATestSolicitacaoDeIntegracaoComComponente {
 		dataQueExpira.set(Calendar.YEAR, 2010);
 		checkout = new Checkout("123456",
 				"Alberto Souza, Av Juracy Magalhaes,Salvador,Bahia,Brasil",
-				"Testando checkout", BigDecimal.ONE, new Parcelamento(
+				"Testando checkout", BigDecimal.ONE, new FormaPagamento(
 						TipoTransacao.CREDITO_A_VISTA, 1), new CartaoCredito(
 						"4551870000000183", dataQueExpira, "123"));
 	}
@@ -53,7 +53,7 @@ public class VISATestSolicitacaoDeIntegracaoComComponente {
 	public void testSolicitacaoDeCaptura() {
 		String retorno = new VISASolicitacaoConferenciaViaHttp(checkout.getTid(
 				Calendar.getInstance(), gatewaysConf
-						.getNumeroDeFiliacaoDoVisa()),
+						.getVISANumeroDeFiliacao()),
 				VISATipoSolicitacaoIntegracao.CAPTURA).handle();
 		System.out.println(retorno);
 	}
@@ -61,7 +61,7 @@ public class VISATestSolicitacaoDeIntegracaoComComponente {
 	public void testSolicitacaoDeCancelamento() {
 		String retorno = new VISASolicitacaoConferenciaViaHttp(checkout.getTid(
 				Calendar.getInstance(), gatewaysConf
-						.getNumeroDeFiliacaoDoVisa()),
+						.getVISANumeroDeFiliacao()),
 				VISATipoSolicitacaoIntegracao.CANCELAMENTO).handle();
 		System.out.println(retorno);
 	}
@@ -69,7 +69,7 @@ public class VISATestSolicitacaoDeIntegracaoComComponente {
 	public void testSolicitacaoDeConsulta() {
 		String retorno = new VISASolicitacaoConferenciaViaHttp(checkout.getTid(
 				Calendar.getInstance(), gatewaysConf
-						.getNumeroDeFiliacaoDoVisa()),
+						.getVISANumeroDeFiliacao()),
 				VISATipoSolicitacaoIntegracao.CONSULTA).handle();
 		System.out.println(retorno);
 	}

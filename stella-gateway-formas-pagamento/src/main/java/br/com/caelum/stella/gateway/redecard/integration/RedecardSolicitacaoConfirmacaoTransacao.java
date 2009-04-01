@@ -9,7 +9,7 @@ import br.com.caelum.stella.gateway.core.GatewaysConf;
 import br.com.caelum.stella.gateway.core.HttpIntegrationRequester;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.redecard.Checkout;
-import br.com.caelum.stella.gateway.redecard.Parcelamento;
+import br.com.caelum.stella.gateway.redecard.FormaPagamento;
 
 public class RedecardSolicitacaoConfirmacaoTransacao implements
 		IntegrationHandler<RedecardConfirmacaoTransacaoReturn> {
@@ -20,7 +20,7 @@ public class RedecardSolicitacaoConfirmacaoTransacao implements
 	private final Checkout checkoutASerVerificado;
 
 	public RedecardSolicitacaoConfirmacaoTransacao(
-			RedecardAutorizacaoReturn autorizacaoReturn, Parcelamento parcelamento, BigDecimal total, String numeroPedido) {
+			RedecardAutorizacaoReturn autorizacaoReturn, FormaPagamento parcelamento, BigDecimal total, String numeroPedido) {
 		super();
 		this.autorizacaoReturn = autorizacaoReturn;
 		this.checkoutASerVerificado = new Checkout(total,parcelamento,null,numeroPedido,null);
@@ -30,7 +30,7 @@ public class RedecardSolicitacaoConfirmacaoTransacao implements
 	public RedecardConfirmacaoTransacaoReturn handle() {
 		// TODO Auto-generated method stub
 		GetMethod getMethod = new GetMethod(gatewaysConf
-				.getUrlConfirmacaoTransacaoRedecard());
+				.getRedeCardUrlConfirmacaoTransacao());
 		getMethod
 				.setQueryString(new NameValuePair[] {
 						new NameValuePair("DATA", autorizacaoReturn
@@ -44,9 +44,9 @@ public class RedecardSolicitacaoConfirmacaoTransacao implements
 								.getParcelamento()
 								.getNumeroDeParcelasComNoMinimoDoisDigitos()),
 						new NameValuePair("FILIACAO", gatewaysConf
-								.getNumeroDeFiliacaoDaRedecard()),
+								.getRedeCardNumeroDeFiliacao()),
 						new NameValuePair("DISTRIBUIDOR", gatewaysConf
-								.getNumeroDeFiliacaoDoDistribuidorDaRedecard()),
+								.getRedeCardNumeroDeFiliacaoDoDistribuidor()),
 						new NameValuePair("TOTAL", checkoutASerVerificado
 								.getTotalComDuasCasasDecimais().toString()),
 						new NameValuePair("NUMPEDIDO", checkoutASerVerificado

@@ -1,11 +1,11 @@
-package br.com.caelum.stella.gateway.visa;
+package br.com.caelum.stella.gateway.visa.integration;
 
 /**
  * Essa classe contém informações que sempre são retornadas depois da integração.
  * @author Alberto Pc
  *
  */
-public class BasicDataReturn {
+public class VISABasicDataReturn {
 
 	private int lr;
 	private String tid;
@@ -13,7 +13,7 @@ public class BasicDataReturn {
 	
 	
 	
-	public BasicDataReturn(int lr, String tid, String ars) {
+	public VISABasicDataReturn(int lr, String tid, String ars) {
 		super();
 		this.lr = lr;
 		this.tid = tid;

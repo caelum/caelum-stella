@@ -25,16 +25,16 @@ public class VISASolicitacaoAutorizacaoPagamentoViaHttp implements IntegrationHa
 
 	public String handle() {
 		// TODO Auto-generated method stub		
-		PostMethod post = new PostMethod(gatewaysConf.getUrlParaComponenteDeAutorizacaoDoVisa());		
-		post.addParameter("tid",checkout.getTid(Calendar.getInstance(),gatewaysConf.getNumeroDeFiliacaoDoVisa()));
-		post.addParameter("merchid",gatewaysConf.getNomeDoArquivoDeConfiguracaoDoVisa());
+		PostMethod post = new PostMethod(gatewaysConf.getVISAUrlParaComponenteDeAutorizacao());		
+		post.addParameter("tid",checkout.getTid(Calendar.getInstance(),gatewaysConf.getVISANumeroDeFiliacao()));
+		post.addParameter("merchid",gatewaysConf.getVISANomeDoArquivoDeConfiguracao());
 		post.addParameter("orderid",checkout.getOrderId());
 		post.addParameter("order",checkout.getOrder());
 		post.addParameter("free",checkout.getFree());
 		post.addParameter("ccn",checkout.getCartao().getCcn());
-		post.addParameter("exp",checkout.getCartao().getFormattedExp());
+		post.addParameter("exp",checkout.getCartao().getExpFormatado());
 		post.addParameter("cvv2",checkout.getCartao().getCvv2());		
-		post.addParameter("price",checkout.getFormattedPrice());
+		post.addParameter("price",checkout.getValorFormatado());
 		return new HttpIntegrationRequester(post).makeRequest();
 	}
 

@@ -15,7 +15,7 @@ import br.com.caelum.stella.gateway.visa.integration.VISACancelamentoReturn;
 import br.com.caelum.stella.gateway.visa.integration.VISACapturaReturn;
 import br.com.caelum.stella.gateway.visa.integration.VISAConsultaReturn;
 import br.com.caelum.stella.gateway.visa.integration.VISAHttpReturnBuilder;
-import br.com.caelum.stella.gateway.visa.integration.VISAVerificacaoRetornoAutorizacaoViaHttp;
+import br.com.caelum.stella.gateway.visa.integration.VISAVerificacaoRetornoIntegracaoViaHttp;
 
 public class VISATestRetornoIntegracaoComponente {
 
@@ -36,7 +36,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("bank");will(returnValue("347"));
 			}
 		});
-		VISAVerificacaoRetornoAutorizacaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoAutorizacaoViaHttp(request,VISAHttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
 		VISAAutorizacaoReturn autorizacaoReturn = (VISAAutorizacaoReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(BigDecimal.ONE.setScale(2),autorizacaoReturn.getCheckout().getPrice());
 		
@@ -55,7 +55,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("cap");will(returnValue("200"));
 			}
 		});
-		VISAVerificacaoRetornoAutorizacaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoAutorizacaoViaHttp(request,VISAHttpReturnBuilder.CAPTURA_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CAPTURA_RETORNO_BUILDER);
 		VISACapturaReturn capturaReturn = (VISACapturaReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(new BigDecimal(2).setScale(2),capturaReturn.getCap());
 		
@@ -74,7 +74,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("cancel_amount");will(returnValue("200"));
 			}
 		});
-		VISAVerificacaoRetornoAutorizacaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoAutorizacaoViaHttp(request,VISAHttpReturnBuilder.CANCELAMENTO_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CANCELAMENTO_RETORNO_BUILDER);
 		VISACancelamentoReturn cancelamentoReturn = (VISACancelamentoReturn)retornoIntegracaoViaHttp.handle();
 		Assert.assertEquals(new BigDecimal(2).setScale(2),cancelamentoReturn.getCancel_amount());
 		
@@ -97,7 +97,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("authent");will(returnValue("0"));
 			}
 		});
-		VISAVerificacaoRetornoAutorizacaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoAutorizacaoViaHttp(request,VISAHttpReturnBuilder.CONSULTA_RETORNO_BUILDER);
+		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CONSULTA_RETORNO_BUILDER);
 		VISAConsultaReturn consultaReturn = (VISAConsultaReturn)retornoIntegracaoViaHttp.handle();
 		
 		

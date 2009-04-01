@@ -2,15 +2,15 @@ package br.com.caelum.stella.gateway.visa;
 
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
 
-public class Parcelamento {
+public class FormaPagamento {
 
-	private TipoTransacao tipoTransacao;
-	private int numeroDeParcelas;
+	private final TipoTransacao tipoTransacao;
+	private final int numeroDeParcelas;
 	
 	
 	
-	public Parcelamento(TipoTransacao formaParcelamento,
-			int numeroDeParcelas) {
+	public FormaPagamento(final TipoTransacao formaParcelamento,
+			final int numeroDeParcelas) {
 		super();
 		if(numeroDeParcelas<=0){
 			throw new InvalidCheckoutException("O número de parcelas não pode ser igual ou menor que 0");
@@ -23,6 +23,15 @@ public class Parcelamento {
 		this.tipoTransacao = formaParcelamento;
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
+	
+	public static FormaPagamento newPagamentoAVistaComCredito(){
+		return new FormaPagamento(TipoTransacao.CREDITO_A_VISTA,1);
+	}
+	
+	public static FormaPagamento newPagamentoComDebito(){
+		return new FormaPagamento(TipoTransacao.DEBITO,1);
+	}
+	
 	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
 	}

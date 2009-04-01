@@ -14,7 +14,7 @@ public enum VISATipoSolicitacaoIntegracao {
 		@Override
 		public String getUrlComponente() {
 			// TODO Auto-generated method stub			
-			return new GatewaysConf().getUrlParaComponenteDeCapturaDoVisa();
+			return new GatewaysConf().getVISAUrlParaComponenteDeCaptura();
 		}
 
 
@@ -27,7 +27,7 @@ public enum VISATipoSolicitacaoIntegracao {
 		@Override
 		public String getUrlComponente() {
 			// TODO Auto-generated method stub
-			return new GatewaysConf().getUrlParaComponenteDeCancelamentoDoVisa();
+			return new GatewaysConf().getVISAUrlParaComponenteDeCancelamento();
 		}
 		
 	}
@@ -36,7 +36,7 @@ public enum VISATipoSolicitacaoIntegracao {
 		@Override
 		public String getUrlComponente() {
 			// TODO Auto-generated method stub
-			return new GatewaysConf().getUrlParaComponenteDeConsultaDoVisa();
+			return new GatewaysConf().getVISAUrlParaComponenteDeConsulta();
 		}
 		
 	}
@@ -45,7 +45,7 @@ public enum VISATipoSolicitacaoIntegracao {
 		@Override
 		public String getUrlComponente() {
 			// TODO Auto-generated method stub
-			return new GatewaysConf().getUrlParaComponenteDeAutorizacaoDoVisa();
+			return new GatewaysConf().getVISAUrlParaComponenteDeAutorizacao();
 		}
 		
 	};	

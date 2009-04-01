@@ -28,47 +28,71 @@ public class GatewaysConf {
 		return gatewaysProperties.getProperty(key);
 	}
 	
-	public String getUrlParaComponenteDeAutorizacaoDoVisa(){
+	public String getVISAUrlParaComponenteDeAutorizacao(){
 		return getProperty("visa.urlComponenteDeAutorizacao");
 	}
 	
-	public String getUrlParaComponenteDeCapturaDoVisa(){
+	public String getVISAUrlParaComponenteDeCaptura(){
 		return getProperty("visa.urlComponenteDeCaptura");
 	}
 	
-	public String getUrlParaComponenteDeCancelamentoDoVisa(){
+	public String getVISAUrlParaComponenteDeCancelamento(){
 		return getProperty("visa.urlComponenteDeCancelamento");
 	}	
 	
-	public String getUrlParaComponenteDeConsultaDoVisa(){
+	public String getVISAUrlParaComponenteDeConsulta(){
 		return getProperty("visa.urlComponenteDeConsulta");
 	}	
 	
-	public String getNumeroDeFiliacaoDoVisa(){
-		return getProperty("visa.numeroDeFiliacao");
+	public String getVISANumeroDeFiliacao(){
+		return getProperty("visa.numeroDeFiliacao").trim();
 	}
 	
-	public String getNomeDoArquivoDeConfiguracaoDoVisa(){
+	public String getVISANomeDoArquivoDeConfiguracao(){
 		return getProperty("visa.nomeDoArquivoDeConfiguracao");
 	}
 	
-	public String getUrlParaComponenteDeAutorizacaoDaRedeCard(){
+	public String getRedeCardUrlParaComponenteDeAutorizacao(){
 		return getProperty("redecard.urlComponenteDeAutorizacao");
 	}	
 	
-	public String getNumeroDeFiliacaoDaRedecard(){
-		return getProperty("redecard.numeroDeFiliacaoFornecedor");
+	public String getRedeCardNumeroDeFiliacao(){
+		return getProperty("redecard.numeroDeFiliacaoFornecedor").trim();
 	}
 	
-	public String getNumeroDeFiliacaoDoDistribuidorDaRedecard(){
-		return getProperty("redecard.numeroDeFiliacaoDistribuidor");
+	public String getRedeCardNumeroDeFiliacaoDoDistribuidor(){
+		return getProperty("redecard.numeroDeFiliacaoDistribuidor").trim();
 	}		
 	
-	public String getUrlRetornoTransacaoRedecard(){
+	public String getRedeCardUrlRetornoTransacao(){
 		return getProperty("redecard.urlDeRetornoDaTransacao");
 	}
 	
-	public String getUrlConfirmacaoTransacaoRedecard(){
+	public String getRedeCardUrlConfirmacaoTransacao(){
 		return getProperty("redecard.urlConfirmacaoTransacao");
+	}
+	
+	public String getBBIdConv(){
+		return getProperty("bb.idConv").trim();
+	}
+	
+	public String getBBCodigoConvenioDeCobranca(){
+		return getProperty("bb.codigoConvenioDeCobranca").trim();
+	}
+	
+	public String getBBUrlInforma(){
+		return getProperty("bb.urlInforma");
+	}
+	
+	public String getBBUrlRetorno(){
+		return getProperty("bb.urlRetorno");
+	}
+	
+	public String getBBUrlComponenteDeAutorizacao(){
+		return getProperty("bb.urlComponenteDeAutorizacao");
+	}
+	
+	public String getBBUrlSonda(){
+		return getProperty("bb.urlSonda");
 	}
 }

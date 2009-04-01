@@ -1,7 +1,6 @@
 package br.com.caelum.stella.gateway.visa.integration;
 
 import br.com.caelum.stella.gateway.visa.Checkout;
-import br.com.caelum.stella.gateway.visa.BasicDataReturn;
 
 /**
  * Contém as informações de retorno da verificacao de autorizacao de pagamento.
@@ -11,11 +10,11 @@ import br.com.caelum.stella.gateway.visa.BasicDataReturn;
 public class VISAAutorizacaoReturn implements VISAIntegrationReturn{
 
 	private String pan;
-	private BasicDataReturn dadosBasicoDeRetorno;
+	private VISABasicDataReturn dadosBasicoDeRetorno;
 	private String bank;	
 	private Checkout checkout;
 	
-	public VISAAutorizacaoReturn(BasicDataReturn dadosBasicoDeRetorno,final String arp, final String pan,String bank,Checkout checkout) {
+	public VISAAutorizacaoReturn(VISABasicDataReturn dadosBasicoDeRetorno,final String arp, final String pan,String bank,Checkout checkout) {
 		super();			
 		this.pan = pan;				
 		this.bank = bank;		

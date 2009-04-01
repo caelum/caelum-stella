@@ -5,8 +5,8 @@ import java.util.Calendar;
 
 import br.com.caelum.stella.gateway.core.CartaoCredito;
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
+import br.com.caelum.stella.gateway.core.BigDecimalFormatter;
 import br.com.caelum.stella.gateway.visa.integration.TIDGenerator;
-import br.com.caelum.stella.gateway.visa.integration.VISAPriceFormatter;
 
 /**
  * Contém as informações necessárias para processar uma compra através do VISA
@@ -25,12 +25,12 @@ public class Checkout {
 	private String order;
 	private String free;
 	private BigDecimal price;
-	private Parcelamento parcelamento;
+	private FormaPagamento parcelamento;
 	private CartaoCredito cartao;	
 
 	public Checkout(final String orderId, final String order,
 			final String free, final BigDecimal price,
-			final Parcelamento parcelamento, final CartaoCredito cartao) {
+			final FormaPagamento parcelamento, final CartaoCredito cartao) {
 		super();
 		this.orderId = orderId;
 		this.order = order;
@@ -42,7 +42,7 @@ public class Checkout {
 	
 	public Checkout(final String orderId, final String order,
 			final String free, final String unformattedPrice,
-			final Parcelamento parcelamento, final CartaoCredito cartao) {
+			final FormaPagamento parcelamento, final CartaoCredito cartao) {
 		super();
 		this.orderId = orderId;
 		this.order = order;
@@ -54,8 +54,7 @@ public class Checkout {
 
 	
 	private BigDecimal calculaPrecoDividoPorCem(String unformattedPrice) {
-		//verificar esse arredondamento.
-		return VISAPriceFormatter.convertToNormalValue(unformattedPrice);
+		return BigDecimalFormatter.stringInCentsToBigDecimal(unformattedPrice);
 	}			
 	
 
@@ -70,8 +69,8 @@ public class Checkout {
 	 * 
 	 * @return preço formatado em centésimos.
 	 */
-	public String getFormattedPrice() {
-		return String.format("%.0f", this.price.multiply(new BigDecimal(100)));
+	public String getValorFormatado() {
+		return BigDecimalFormatter.bigDecimalToStringInCents(this.price);
 	}
 		
 
@@ -80,7 +79,7 @@ public class Checkout {
 	 * 
 	 * @return
 	 */
-	public Parcelamento getParcelamento() {
+	public FormaPagamento getParcelamento() {
 		return parcelamento;
 	}
 
@@ -93,15 +92,6 @@ public class Checkout {
 		return order;
 	}
 
-	/**
-	 * 
-	 * @param descricaoDaCompra
-	 * @return
-	 */
-	public Checkout withDescricaoDaCompra(String descricaoDaCompra) {
-		this.order = descricaoDaCompra;
-		return this;
-	}
 
 	/**
 	 * 

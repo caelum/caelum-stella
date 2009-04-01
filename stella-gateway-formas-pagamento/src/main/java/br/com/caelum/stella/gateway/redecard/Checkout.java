@@ -6,13 +6,13 @@ import java.math.RoundingMode;
 public class Checkout {
 
 	private BigDecimal total;
-	private Parcelamento parcelamento;
+	private FormaPagamento parcelamento;
 	private Bandeira bandeira;
 	private String numeroDoPedido;
 	private String pax1;
 	
 
-	public Checkout(final BigDecimal total, final Parcelamento parcelamento,
+	public Checkout(final BigDecimal total, final FormaPagamento parcelamento,
 			final Bandeira bandeira, final String numeroDoPedido, final String pax1) {
 		super();
 		this.total = total;
@@ -28,7 +28,7 @@ public class Checkout {
 	}
 
 
-	public Parcelamento getParcelamento() {
+	public FormaPagamento getParcelamento() {
 		return parcelamento;
 	}
 

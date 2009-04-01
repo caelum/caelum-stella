@@ -1,4 +1,4 @@
-package br.com.caelum.stella.gateway.visa.integration;
+package br.com.caelum.stella.gateway.core;
 
 
 
@@ -7,9 +7,11 @@ package br.com.caelum.stella.gateway.visa.integration;
  * com a forma de pagamento, devem implementar.
  * @author Alberto
  *
+ * @param <P> tipo do retorno do metodo
  * @param <T> tipo do parametro que ele vai receber
+ * 
  */
-public interface VISAReturnBuilder<T> {
+public interface ReturnBuilder<P,T> {
 
-	public VISAIntegrationReturn buildRetorno(T source);
+	public P buildRetorno(T source);
 }

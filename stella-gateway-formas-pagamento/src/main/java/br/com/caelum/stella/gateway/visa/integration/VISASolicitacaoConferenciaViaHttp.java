@@ -29,7 +29,7 @@ public class VISASolicitacaoConferenciaViaHttp implements IntegrationHandler<Str
 		// TODO Auto-generated method stub	
 		PostMethod post = new PostMethod(solicitacaoConferencia.getUrlComponente());
 		post.addParameter("tid",tid);
-		post.addParameter("merchid",gatewaysConf.getNomeDoArquivoDeConfiguracaoDoVisa());
+		post.addParameter("merchid",gatewaysConf.getVISANomeDoArquivoDeConfiguracao());
 		return new HttpIntegrationRequester(post).makeRequest();
 	}
 

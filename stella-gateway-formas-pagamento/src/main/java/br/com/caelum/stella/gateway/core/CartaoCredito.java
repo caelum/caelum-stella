@@ -35,7 +35,7 @@ public class CartaoCredito {
 	 * 
 	 * @return Data de expiração do cartao formatada para aamm
 	 */
-	public String getFormattedExp(){
+	public String getExpFormatado(){
 		return String.format("%1$tm%1$ty",this.exp);
 	}	
 	
