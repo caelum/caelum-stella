@@ -1,11 +1,13 @@
 package br.com.caelum.stella.gateway.redecard;
 
+import br.com.caelum.stella.gateway.core.DefinedByCode;
+
 /**
  * Especifica a forma como vai ser o parcelamento
  * @author Alberto Pc
  *
  */
-public enum TipoTransacao {
+public enum TipoTransacao implements DefinedByCode{
 
 	A_VISTA("04"),PARCELADO_EMISSOR("06"),PARCELADO_ESTABELECIMENTO("08");
 	

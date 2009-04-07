@@ -7,11 +7,11 @@ package br.com.caelum.stella.gateway.core;
  * com a forma de pagamento, devem implementar.
  * @author Alberto
  *
- * @param <P> tipo do retorno do metodo
+ * @param <R> tipo do retorno do metodo
  * @param <T> tipo do parametro que ele vai receber
  * 
  */
-public interface ReturnBuilder<P,T> {
+public interface ReturnBuilder<R,T> {
 
-	public P buildRetorno(T source);
+	public R buildRetorno(T source);
 }

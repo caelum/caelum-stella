@@ -19,7 +19,10 @@ import br.com.caelum.stella.gateway.core.DadosComprador;
 import br.com.caelum.stella.gateway.core.GatewaysConf;
 
 public class BBTestSolicitacaoDeIntegracao {
-
+	/*
+	 * tenho que tentar abrir o browser corretamente ainda.
+	 */
+	
 	private static SeleniumHelper seleniumHelper;
 	private static String pathPastaPagina;
 
@@ -30,7 +33,7 @@ public class BBTestSolicitacaoDeIntegracao {
 	}
 
 	@Test
-	public void testIntegrarComBoleto() throws Exception{
+	public void testSolicitarPagamentoComBoleto() throws Exception{
 		Checkout checkout = new Checkout(BigDecimal.TEN,
 				Calendar.getInstance(), TipoTransacao.BLOQUETO_BANCARIO,
 				new DadosComprador("41900000", "Salvador", "Endereco de teste",
@@ -52,7 +55,7 @@ public class BBTestSolicitacaoDeIntegracao {
 	}
 	
 	@Test
-	public void testIntegrarComBoletoDebito() throws Exception{
+	public void testSolicitarPagamentoComDebito() throws Exception{
 		Checkout checkout = new Checkout(BigDecimal.TEN,
 				Calendar.getInstance(), TipoTransacao.DEBITO_EM_CONTA,
 				new DadosComprador("41900000", "Salvador", "Endereco de teste",
@@ -74,7 +77,7 @@ public class BBTestSolicitacaoDeIntegracao {
 	}
 	
 	@Test
-	public void testIntegrarComCrediario() throws Exception{
+	public void testSolicitarPagamentoComCrediario() throws Exception{
 		Checkout checkout = new Checkout(BigDecimal.TEN,
 				Calendar.getInstance(), TipoTransacao.CREDIARIO_INTERNET,
 				new DadosComprador("41900000", "Salvador", "Endereco de teste",

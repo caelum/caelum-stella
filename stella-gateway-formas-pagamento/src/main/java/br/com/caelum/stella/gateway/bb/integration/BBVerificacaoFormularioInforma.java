@@ -19,8 +19,8 @@ public class BBVerificacaoFormularioInforma implements
 
 	public BBFormularioInformaReturn handle() {
 		// TODO Auto-generated method stub
-		BigDecimal valor = BigDecimalFormatter.stringInCentsToBigDecimal(request.getParameter("valor"));		
-		return new BBFormularioInformaReturn(new BBBasicDataReturn(request.getParameter("idConv"),request.getParameter("refTran")),valor,request.getParameter("informacao"));
+		BigDecimal valor = new BigDecimalFormatter().stringInCentsToBigDecimal(request.getParameter("valor"));		
+		return new BBFormularioInformaReturn(new BBBasicDataReturn(request.getParameter("idConv"),request.getParameter("refTran")),valor);
 	}
 
 }

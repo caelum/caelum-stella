@@ -17,7 +17,7 @@ public class BBVerificacaoFormularioRetorno implements IntegrationHandler<BBForm
 
 	public BBFormualrioRetornoReturn handle() {
 		// TODO Auto-generated method stub		
-		TipoTransacao tipoTransacao = new EnumComCodigoFinder<TipoTransacao>().descobreAEnumPeloCodigo(TipoTransacao.class,request.getParameter("tpPagamento"));		
+		TipoTransacao tipoTransacao = new EnumComCodigoFinder().descobreAEnumPeloCodigo(TipoTransacao.class,request.getParameter("tpPagamento"));		
 		return new BBFormualrioRetornoReturn(new BBBasicDataReturn(request.getParameter("idConv"),request.getParameter("refTran")),tipoTransacao);
 	}
 

@@ -16,12 +16,12 @@ public class BigDecimalFormatter {
 	 * @param priceInCents valor em string e em centesimos. Ex: 2050=20.50
 	 * @return
 	 */
-	public static BigDecimal stringInCentsToBigDecimal(String priceInCents) {
+	public BigDecimal stringInCentsToBigDecimal(String priceInCents) {
 		return new BigDecimal(priceInCents).divide(new BigDecimal(100)).setScale(2,
 				RoundingMode.HALF_EVEN);
 	}
 	
-	public static String bigDecimalToStringInCents(BigDecimal value){
+	public String bigDecimalToStringInCents(BigDecimal value){
 		return String.format("%.0f", value.multiply(new BigDecimal(100)));
 	}
 	

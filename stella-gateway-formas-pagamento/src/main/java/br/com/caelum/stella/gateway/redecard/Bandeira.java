@@ -1,6 +1,8 @@
 package br.com.caelum.stella.gateway.redecard;
 
-public enum Bandeira {
+import br.com.caelum.stella.gateway.core.DefinedByCode;
+
+public enum Bandeira implements DefinedByCode{
 
 	MASTERCARD("MASTERCARD"),DINERS("DINERS");
 	

@@ -28,7 +28,7 @@ public class FormaPagamento {
 				}
 
 			} else {
-				if (numeroDeParcelas <= 0) {
+				if (numeroDeParcelas == 0) {
 					throw new InvalidCheckoutException("Para transações com "
 							+ numeroDeParcelas
 							+ " parcela(s), use o tipo de transação a vista");
@@ -47,6 +47,15 @@ public class FormaPagamento {
 		return new FormaPagamento(TipoTransacao.A_VISTA, 0);
 	}
 
+	public static FormaPagamento newPagamentoParceladoJurosLojista(int numeroDeParcelas){
+		return new FormaPagamento(TipoTransacao.PARCELADO_ESTABELECIMENTO,numeroDeParcelas);
+	}
+	
+	public static FormaPagamento newPagamentoParceladoJurosEmissor(int numeroDeParcelas){
+		return new FormaPagamento(TipoTransacao.PARCELADO_EMISSOR,numeroDeParcelas);
+	}
+	
+	
 	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
 	}

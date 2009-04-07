@@ -18,7 +18,7 @@ public class RefTranGenerator {
 			}
 		}
 		refTran.append(numeroASerAnexadoAoCodigoDeConvenio);
-		//como não consegui fazer com o String.format, vai assim mesmo.
+		//como não consegui colocar zero a direita com o String.format, vai assim mesmo.
 		if(refTran.length()<17){
 			while(refTran.length()<17){
 				refTran.append("0");

@@ -49,7 +49,7 @@ public class BBDadosAutorizacaoPagamento {
 	}
 
 	public String getDataVencimentoFormatada() {
-		return CalendarFormatter.calendarToString(checkout.getDataVencimento(),"%1$td%1$tm%1$tY");
+		return new CalendarFormatter().calendarToString(checkout.getDataVencimento(),"%1$td%1$tm%1$tY");
 	}
 
 	public String getEndereco() {
@@ -77,7 +77,7 @@ public class BBDadosAutorizacaoPagamento {
 	 * @return
 	 */
 	public String getValorFormatado() {
-		return BigDecimalFormatter.bigDecimalToStringInCents(checkout.getValor());
+		return new BigDecimalFormatter().bigDecimalToStringInCents(checkout.getValor());
 	}
 	
 	

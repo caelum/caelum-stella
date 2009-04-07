@@ -15,7 +15,7 @@ import br.com.caelum.stella.gateway.redecard.integration.RedecardConfirmacaoTran
 import br.com.caelum.stella.gateway.redecard.integration.RedecardVerificaRetornoAutorizacao;
 import br.com.caelum.stella.gateway.redecard.integration.RedecardVerificadorRetornoConfirmacaoTransacao;
 
-public class RedecardTestRetornoIntegracaoComponente {
+public class RedecardTestRetornoIntegracao {
 
 	@Test
 	public void testVerificaRetornoValidoDaTransacao() {

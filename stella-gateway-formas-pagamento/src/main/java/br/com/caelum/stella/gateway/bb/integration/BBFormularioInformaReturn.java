@@ -5,27 +5,32 @@ import java.math.BigDecimal;
 public class BBFormularioInformaReturn {
 
 	private final BBBasicDataReturn dadosRetornoPadrao;
-	private final BigDecimal valor;
-	private final String informacao;
+	private final BigDecimal valor;	
 
 	public BBFormularioInformaReturn(final BBBasicDataReturn dadosRetornoPadrao,
-			final BigDecimal valor, final String informacao) {		
+			final BigDecimal valor) {		
 		this.dadosRetornoPadrao = dadosRetornoPadrao;
-		this.valor = valor;
-		this.informacao = informacao;
+		this.valor = valor;		
 	}
 
-	public BBBasicDataReturn getDadosRetornoPadrao() {
-		return dadosRetornoPadrao;
+
+
+	public String getIdConv() {
+		return dadosRetornoPadrao.getIdConv();
 	}
+
+
+
+	public String getRefTran() {
+		return dadosRetornoPadrao.getRefTran();
+	}
+
+
 
 	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public String getInformacao() {
-		return informacao;
-	}
 
 	
 }

@@ -9,25 +9,25 @@ import br.com.caelum.stella.gateway.core.GatewaysConf;
 import br.com.caelum.stella.gateway.core.HttpIntegrationRequester;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
-public class BBSolicitaFormularioSonda implements IntegrationHandler<BBFormularioSondaReturn> {
+public class BBVerificaFormularioSonda implements IntegrationHandler<BBFormularioSondaReturn> {
 	
 	private final String idConv;
 	private final String refTran;
 	private final BigDecimal valorSonda;
-	private final FormularioSondaReturnBuilder formularioSondaReturnBuilder;
+	private final BBFormularioSondaReturnBuilder formularioSondaReturnBuilder;
 	
 	
 
-	private BBSolicitaFormularioSonda(String refTran, BigDecimal valorSonda,
-			FormularioSondaReturnBuilder formularioSondaReturnBuilder) {
+	public BBVerificaFormularioSonda(String refTran, BigDecimal valorSonda,
+			BBFormularioSondaReturnBuilder formularioSondaReturnBuilder) {
 		this(new GatewaysConf().getBBIdConv(),refTran,valorSonda,formularioSondaReturnBuilder);
 	}
 
 
 
-	private BBSolicitaFormularioSonda(String idConv, String refTran,
+	public BBVerificaFormularioSonda(String idConv, String refTran,
 			BigDecimal valorSonda,
-			FormularioSondaReturnBuilder formularioSondaReturnBuilder) {
+			BBFormularioSondaReturnBuilder formularioSondaReturnBuilder) {
 		super();
 		this.idConv = idConv;
 		this.refTran = refTran;
@@ -42,7 +42,7 @@ public class BBSolicitaFormularioSonda implements IntegrationHandler<BBFormulari
 		PostMethod postMethod = new PostMethod(new GatewaysConf().getBBUrlSonda());
 		postMethod.addParameter("refTran",refTran);
 		postMethod.addParameter("idConv",idConv);
-		postMethod.addParameter("valorSonda",BigDecimalFormatter.bigDecimalToStringInCents(valorSonda));
+		postMethod.addParameter("valorSonda",new BigDecimalFormatter().bigDecimalToStringInCents(valorSonda));
 		postMethod.addParameter("formato",formularioSondaReturnBuilder.getCodigo());
 		String retorno = new HttpIntegrationRequester(postMethod).makeRequest();		
 		return formularioSondaReturnBuilder.buildRetorno(retorno);

@@ -54,7 +54,7 @@ public class Checkout {
 
 	
 	private BigDecimal calculaPrecoDividoPorCem(String unformattedPrice) {
-		return BigDecimalFormatter.stringInCentsToBigDecimal(unformattedPrice);
+		return new BigDecimalFormatter().stringInCentsToBigDecimal(unformattedPrice);
 	}			
 	
 
@@ -70,7 +70,7 @@ public class Checkout {
 	 * @return preço formatado em centésimos.
 	 */
 	public String getValorFormatado() {
-		return BigDecimalFormatter.bigDecimalToStringInCents(this.price);
+		return new BigDecimalFormatter().bigDecimalToStringInCents(this.price);
 	}
 		
 

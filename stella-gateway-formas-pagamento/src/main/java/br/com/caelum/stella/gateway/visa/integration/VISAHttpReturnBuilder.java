@@ -31,7 +31,7 @@ public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn
 			VISACapturaReturn retornoCaptura = new VISACapturaReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("tid"),
-							request.getParameter("ars")), BigDecimalFormatter
+							request.getParameter("ars")), new BigDecimalFormatter()
 							.stringInCentsToBigDecimal(request.getParameter("cap")),
 					request.getParameter("free"));
 			return retornoCaptura;
@@ -42,7 +42,7 @@ public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn
 			VISACancelamentoReturn retornoCancelamento = new VISACancelamentoReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("tid"),
-							request.getParameter("ars")), BigDecimalFormatter
+							request.getParameter("ars")), new BigDecimalFormatter()
 							.stringInCentsToBigDecimal(request
 									.getParameter("cancel_amount")), request
 							.getParameter("free"));

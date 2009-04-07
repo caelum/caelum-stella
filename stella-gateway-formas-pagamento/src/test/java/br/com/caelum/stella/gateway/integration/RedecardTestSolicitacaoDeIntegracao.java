@@ -28,20 +28,21 @@ public class RedecardTestSolicitacaoDeIntegracao {
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		pathPastaPagina = new File("").getAbsolutePath()+File.separator;
+		pathPastaPagina = new File("").getAbsolutePath() + File.separator;
 		checkout = new Checkout(BigDecimal.ONE, FormaPagamento
 				.newPagamentoAVista(), Bandeira.MASTERCARD, "123456", "");
-		//seleniumHelper.iniciarSelenium().configurarContextoDoTeste("file:///"+pathPastaPagina,"Testando integracao com Komerci");		
+		// seleniumHelper.iniciarSelenium().configurarContextoDoTeste("file:///"+pathPastaPagina,"Testando integracao com Komerci");
 
 	}
-	
+
 	@AfterClass
-	public static void shutDown(){
-		//seleniumHelper.finalizar();
+	public static void shutDown() {
+		// seleniumHelper.finalizar();
 	}
-	
+
 	@Test
-	public void testSolicitaDeAberturaDeTelaParaAutorizacaoDePagamento() throws Exception {
+	public void testSolicitaDeAberturaDeTelaParaAutorizacaoDePagamento()
+			throws Exception {
 		/*
 		 * talvez esse teste não devesse ficar aqui, mas como ele apenas testa
 		 * se a tela foi aberta com sucesso...
@@ -54,32 +55,40 @@ public class RedecardTestSolicitacaoDeIntegracao {
 	}
 
 	private void abrirPaginaHTMLComOsDadosDeAutorizacao(
-			RedecardDadosAutorizacaoPagamento dadosAutorizacaoPagamento) throws Exception {
+			RedecardDadosAutorizacaoPagamento dadosAutorizacaoPagamento)
+			throws Exception {
 		HtmlViewerHelper htmlViewerHelper = new HtmlViewerHelper();
-		htmlViewerHelper.body("onload=document.getElementById('teste').submit();").form(new GatewaysConf().getRedeCardUrlParaComponenteDeAutorizacao(), "post","teste");				
-		HashMap<String,Object> fields = new HashMap<String, Object>();				
-		fields.put("TOTAL",dadosAutorizacaoPagamento.getTotalComDuasCasasDecimais());
-		fields.put("TRANSACAO",dadosAutorizacaoPagamento.getParcelamento().getTipoTransacao());
-		fields.put("PARCELAS",dadosAutorizacaoPagamento.getParcelamento().getNumeroDeParcelasComNoMinimoDoisDigitos());
-		fields.put("FILIACAO",dadosAutorizacaoPagamento.getFiliacao());
-		fields.put("DISTRIBUIDOR",dadosAutorizacaoPagamento.getFiliacaoDistribuidor());
-		fields.put("BANDEIRA",dadosAutorizacaoPagamento.getBandeira());
-		fields.put("NUMPEDIDO",dadosAutorizacaoPagamento.getNumeroDoPedido());
-		fields.put("PAX1",dadosAutorizacaoPagamento.getPax1());
-		fields.put("CODVER",dadosAutorizacaoPagamento.getCodVer());
-		fields.put("URLBACK","http://www.acharuma.com.br");
-		fields.put("URLCIMA",dadosAutorizacaoPagamento.getUrlCima());
-		fields.put("TARGET",dadosAutorizacaoPagamento.getTarget());
-		htmlViewerHelper.createInputsHidden(fields).criarPaginaTemporariaNoDisco(pathPastaPagina+"post_dados_master.html");			
-		Browser browser = new DefaultBrowser(seleniumHelper.getSelenium());	
-		browser.open("post_dados_master.html");		
-		browser.currentPage().span("txtDescricao").contains("R$"+dadosAutorizacaoPagamento.getTotalComDuasCasasDecimais()+" à vista");
+		HashMap<String, Object> fields = new HashMap<String, Object>();
+		fields.put("TOTAL", dadosAutorizacaoPagamento
+				.getTotalComDuasCasasDecimais());
+		fields.put("TRANSACAO", dadosAutorizacaoPagamento.getParcelamento()
+				.getTipoTransacao());
+		fields.put("PARCELAS", dadosAutorizacaoPagamento.getParcelamento()
+				.getNumeroDeParcelasComNoMinimoDoisDigitos());
+		fields.put("FILIACAO", dadosAutorizacaoPagamento.getFiliacao());
+		fields.put("DISTRIBUIDOR", dadosAutorizacaoPagamento
+				.getFiliacaoDistribuidor());
+		fields.put("BANDEIRA", dadosAutorizacaoPagamento.getBandeira());
+		fields.put("NUMPEDIDO", dadosAutorizacaoPagamento.getNumeroDoPedido());
+		fields.put("PAX1", dadosAutorizacaoPagamento.getPax1());
+		fields.put("CODVER", dadosAutorizacaoPagamento.getCodVer());
+		fields.put("URLBACK", "http://www.acharuma.com.br");
+		fields.put("URLCIMA", dadosAutorizacaoPagamento.getUrlCima());
+		fields.put("TARGET", dadosAutorizacaoPagamento.getTarget());
+		htmlViewerHelper.body(
+				"onload=document.getElementById('teste').submit();").form(
+				new GatewaysConf().getRedeCardUrlParaComponenteDeAutorizacao(),
+				"post", "teste").createInputsHidden(fields)
+				.criarPaginaTemporariaNoDisco(
+						pathPastaPagina + "post_dados_master.html");
+		Browser browser = new DefaultBrowser(seleniumHelper.getSelenium());
+		browser.open("post_dados_master.html");
+		browser.currentPage().span("txtDescricao").contains(
+				"R$" + dadosAutorizacaoPagamento.getTotalComDuasCasasDecimais()
+						+ " à vista");
 
-		
 		// TODO Auto-generated method stub
 
 	}
-	
-
 
 }

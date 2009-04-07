@@ -32,6 +32,14 @@ public class FormaPagamento {
 		return new FormaPagamento(TipoTransacao.DEBITO,1);
 	}
 	
+	public FormaPagamento newPagamentoParceladoJurosLojista(int numeroDeParcelas){
+		return new FormaPagamento(TipoTransacao.PARCELADO_COM_JUROS_DA_LOJA,numeroDeParcelas);
+	}
+	
+	public FormaPagamento newPagamentoParceladoJurosEmissor(int numeroDeParcelas){
+		return new FormaPagamento(TipoTransacao.PARCELADO_COM_JUROS_DA_ADMINISTRADORA,numeroDeParcelas);
+	}	
+	
 	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
 	}

@@ -15,7 +15,7 @@ import br.com.caelum.stella.gateway.visa.integration.VISASolicitacaoAutorizacaoP
 import br.com.caelum.stella.gateway.visa.integration.VISASolicitacaoConferenciaViaHttp;
 import br.com.caelum.stella.gateway.visa.integration.VISATipoSolicitacaoIntegracao;
 
-public class VISATestSolicitacaoDeIntegracaoComComponente {
+public class VISATestSolicitacaoDeIntegracao {
 
 	/*
 	 * Precisa configurar um ambiente correto para testar isso aqui
