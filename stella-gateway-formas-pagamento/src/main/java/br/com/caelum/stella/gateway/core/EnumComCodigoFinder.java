@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.core;
 import net.vidageek.mirror.Mirror;
 
 /**
- * Descobre o tipo de transação pelo codigo
+ * 
  * 
  * @author Alberto Pc
  * @param <T>

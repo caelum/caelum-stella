@@ -3,8 +3,8 @@ package br.com.caelum.stella.gateway.core;
 
 
 /**
- * Interface que as classes responsáveis por criaram objetos a partir da integração
- * com a forma de pagamento, devem implementar.
+ * Interface que deve ser usada quando tiver a necessidade de criar os retornos
+ * a partir da mesma entrada, só que de forma diferentes. Ex:br.com.caelum.stella.gateway.visa.VISASolicitacaoConferenciaViaHttp
  * @author Alberto
  *
  * @param <R> tipo do retorno do metodo
@@ -13,5 +13,5 @@ package br.com.caelum.stella.gateway.core;
  */
 public interface ReturnBuilder<R,T> {
 
-	public R buildRetorno(T source);
+	public R buildReturn(T source);
 }

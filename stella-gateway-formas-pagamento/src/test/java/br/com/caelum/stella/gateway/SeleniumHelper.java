@@ -4,6 +4,7 @@ import org.openqa.selenium.server.SeleniumServer;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.SeleniumLogLevels;
 
 public class SeleniumHelper {
 
@@ -17,9 +18,10 @@ public class SeleniumHelper {
 	}
 	
 	public SeleniumHelper configurarContextoDoTeste(String urlBaseDesejada,String nomeDoContextoDeTeste){
-		selenium = new DefaultSelenium("localhost",4444,"*firefox","file:///"+urlBaseDesejada);
-		selenium.setContext(nomeDoContextoDeTeste);
+		selenium = new DefaultSelenium("localhost",4444,"*firefox",urlBaseDesejada);
 		selenium.start();
+		selenium.setContext(nomeDoContextoDeTeste);		
+		selenium.setBrowserLogLevel(SeleniumLogLevels.DEBUG);
 		return this;
 	}
 	

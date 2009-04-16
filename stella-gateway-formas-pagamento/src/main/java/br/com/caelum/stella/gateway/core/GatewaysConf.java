@@ -25,7 +25,7 @@ public class GatewaysConf {
 	
 	
 	private String getProperty(String key){			
-		return gatewaysProperties.getProperty(key);
+		return gatewaysProperties.getProperty(key).trim();
 	}
 	
 	public String getVISAUrlParaComponenteDeAutorizacao(){
@@ -45,7 +45,7 @@ public class GatewaysConf {
 	}	
 	
 	public String getVISANumeroDeFiliacao(){
-		return getProperty("visa.numeroDeFiliacao").trim();
+		return getProperty("visa.numeroDeFiliacao");
 	}
 	
 	public String getVISANomeDoArquivoDeConfiguracao(){
@@ -57,11 +57,11 @@ public class GatewaysConf {
 	}	
 	
 	public String getRedeCardNumeroDeFiliacao(){
-		return getProperty("redecard.numeroDeFiliacaoFornecedor").trim();
+		return getProperty("redecard.numeroDeFiliacaoFornecedor");
 	}
 	
 	public String getRedeCardNumeroDeFiliacaoDoDistribuidor(){
-		return getProperty("redecard.numeroDeFiliacaoDistribuidor").trim();
+		return getProperty("redecard.numeroDeFiliacaoDistribuidor");
 	}		
 	
 	public String getRedeCardUrlRetornoTransacao(){
@@ -73,11 +73,11 @@ public class GatewaysConf {
 	}
 	
 	public String getBBIdConv(){
-		return getProperty("bb.idConv").trim();
+		return getProperty("bb.idConv");
 	}
 	
 	public String getBBCodigoConvenioDeCobranca(){
-		return getProperty("bb.codigoConvenioDeCobranca").trim();
+		return getProperty("bb.codigoConvenioDeCobranca");
 	}
 	
 	public String getBBUrlInforma(){
@@ -95,4 +95,38 @@ public class GatewaysConf {
 	public String getBBUrlSonda(){
 		return getProperty("bb.urlSonda");
 	}
+	
+	public String getAmexVpcVersion(){
+		return getProperty("amex_vpc_Version");
+	}
+	
+	public String getAmexVpcCommand(){
+		return getProperty("amex_vpc_Command");
+	}
+	
+	public String getAmexVpcAccesCode(){
+		return getProperty("amex_vpc_AccesCode");
+	}
+	
+	public String getAmexVpcLocale(){
+		return getProperty("amex_vpc_Locale");
+	}
+	
+	public String getAmexVpcReturnUrl(){
+		return getProperty("amex_vpc_ReturnUrl");
+	}
+	
+	public String getAmexUrlComponenteDeAutorizacao(){
+		return getProperty("amex_urlComponenteDeAutorizacao");
+	}
+	
+	public String getAmexVpcCard(){
+		return getProperty("amex_vpc_Card");
+	}
+	
+	public String getAmexMerchantId(){
+		return getProperty("amex_merchantId");
+	}
+	
+	
 }

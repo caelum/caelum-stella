@@ -9,25 +9,25 @@ import java.util.Calendar;
  */
 public class CartaoCredito {
 
-	private String ccn;
+	private long ccn;
 	private Calendar exp;
-	private String cvv2;
+	private int cvv2;
 	
 	
 	
-	public CartaoCredito(String ccn, Calendar exp, String cvv2) {
+	public CartaoCredito(long ccn, Calendar exp, int cvv2) {
 		super();
 		this.ccn = ccn;
 		this.exp = exp;
 		this.cvv2 = cvv2;
 	}
-	public String getCcn() {
+	public long getCcn() {
 		return ccn;
 	}
 	public Calendar getExp() {
 		return exp;
 	}
-	public String getCvv2() {
+	public int getCvv2() {
 		return cvv2;
 	}
 	

@@ -6,8 +6,8 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.visa.integration.VISAIntegrationReturn;
-import br.com.caelum.stella.gateway.visa.integration.VISAComponentReturnHandler;
+import br.com.caelum.stella.gateway.visa.VISAComponentReturnHandler;
+import br.com.caelum.stella.gateway.visa.VISAIntegrationReturn;
 
 /**
  * Testa os possiveis de retorno

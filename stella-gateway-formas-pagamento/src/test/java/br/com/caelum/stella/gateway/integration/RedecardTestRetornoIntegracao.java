@@ -9,11 +9,12 @@ import org.jmock.Mockery;
 import org.junit.Test;
 
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardAutorizacaoReturn;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardConfirmacaoSemDadosException;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardConfirmacaoTransacaoReturn;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardVerificaRetornoAutorizacao;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardVerificadorRetornoConfirmacaoTransacao;
+import br.com.caelum.stella.gateway.redecard.RedecardAutorizacaoReturn;
+import br.com.caelum.stella.gateway.redecard.RedecardConfirmacaoSemDadosException;
+import br.com.caelum.stella.gateway.redecard.RedecardConfirmacaoTransacaoReturn;
+import br.com.caelum.stella.gateway.redecard.RedecardIdiomaOperacao;
+import br.com.caelum.stella.gateway.redecard.RedecardVerificaRetornoAutorizacao;
+import br.com.caelum.stella.gateway.redecard.RedecardVerificadorRetornoConfirmacaoTransacao;
 
 public class RedecardTestRetornoIntegracao {
 
@@ -47,7 +48,7 @@ public class RedecardTestRetornoIntegracao {
 			}
 		});
 		RedecardAutorizacaoReturn autorizacaoReturn = new RedecardVerificaRetornoAutorizacao(
-				request).handle();
+				request,RedecardIdiomaOperacao.INGLES).handle();
 		Assert.assertEquals("20090320", autorizacaoReturn.getDataFormatada());
 		Assert.assertEquals(autorizacaoReturn.getCodigoRetorno(), 0);
 	}
@@ -82,7 +83,7 @@ public class RedecardTestRetornoIntegracao {
 			}
 		});
 		try {
-			new RedecardVerificaRetornoAutorizacao(request).handle();
+			new RedecardVerificaRetornoAutorizacao(request,RedecardIdiomaOperacao.INGLES).handle();
 		} catch (ProblematicTransactionException problematicTransactionException) {
 			Assert.assertEquals("TRANSAÇÃO NÃO APROVADA",
 					problematicTransactionException.getMessage());

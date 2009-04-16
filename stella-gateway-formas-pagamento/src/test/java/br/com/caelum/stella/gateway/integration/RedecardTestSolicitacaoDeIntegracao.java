@@ -9,28 +9,31 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.caelum.seleniumdsl.Browser;
-import br.com.caelum.seleniumdsl.DefaultBrowser;
 import br.com.caelum.stella.gateway.HtmlViewerHelper;
 import br.com.caelum.stella.gateway.SeleniumHelper;
 import br.com.caelum.stella.gateway.core.GatewaysConf;
-import br.com.caelum.stella.gateway.redecard.Bandeira;
-import br.com.caelum.stella.gateway.redecard.Checkout;
-import br.com.caelum.stella.gateway.redecard.FormaPagamento;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardDadosAutorizacaoPagamento;
-import br.com.caelum.stella.gateway.redecard.integration.RedecardSolicitacaoAutorizacaoPagamento;
+import br.com.caelum.stella.gateway.redecard.RedecardBandeira;
+import br.com.caelum.stella.gateway.redecard.RedecardCheckout;
+import br.com.caelum.stella.gateway.redecard.RedecardDadosAutorizacaoPagamento;
+import br.com.caelum.stella.gateway.redecard.RedecardFormaPagamento;
+import br.com.caelum.stella.gateway.redecard.RedecardSolicitacaoAutorizacaoPagamento;
 
+/**
+ * Os testes estão gerando paginas html que fazem a comunicação com a forma de pagamento. 
+ * @author Alberto Pc
+ *
+ */
 public class RedecardTestSolicitacaoDeIntegracao {
 
-	private static Checkout checkout;
+	private static RedecardCheckout checkout;
 	private static SeleniumHelper seleniumHelper;
 	private static String pathPastaPagina;
 
 	@BeforeClass
 	public static void setUp() throws Exception {
 		pathPastaPagina = new File("").getAbsolutePath() + File.separator;
-		checkout = new Checkout(BigDecimal.ONE, FormaPagamento
-				.newPagamentoAVista(), Bandeira.MASTERCARD, "123456", "");
+		checkout = new RedecardCheckout(BigDecimal.ONE, RedecardFormaPagamento
+				.newPagamentoAVista(), RedecardBandeira.MASTERCARD, "123456", "");
 		// seleniumHelper.iniciarSelenium().configurarContextoDoTeste("file:///"+pathPastaPagina,"Testando integracao com Komerci");
 
 	}
@@ -81,11 +84,7 @@ public class RedecardTestSolicitacaoDeIntegracao {
 				"post", "teste").createInputsHidden(fields)
 				.criarPaginaTemporariaNoDisco(
 						pathPastaPagina + "post_dados_master.html");
-		Browser browser = new DefaultBrowser(seleniumHelper.getSelenium());
-		browser.open("post_dados_master.html");
-		browser.currentPage().span("txtDescricao").contains(
-				"R$" + dadosAutorizacaoPagamento.getTotalComDuasCasasDecimais()
-						+ " à vista");
+
 
 		// TODO Auto-generated method stub
 

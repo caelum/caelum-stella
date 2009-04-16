@@ -10,12 +10,12 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.gateway.visa.integration.VISAAutorizacaoReturn;
-import br.com.caelum.stella.gateway.visa.integration.VISACancelamentoReturn;
-import br.com.caelum.stella.gateway.visa.integration.VISACapturaReturn;
-import br.com.caelum.stella.gateway.visa.integration.VISAConsultaReturn;
-import br.com.caelum.stella.gateway.visa.integration.VISAHttpReturnBuilder;
-import br.com.caelum.stella.gateway.visa.integration.VISAVerificacaoRetornoIntegracaoViaHttp;
+import br.com.caelum.stella.gateway.visa.VISAAutorizacaoReturn;
+import br.com.caelum.stella.gateway.visa.VISACancelamentoReturn;
+import br.com.caelum.stella.gateway.visa.VISACapturaReturn;
+import br.com.caelum.stella.gateway.visa.VISAConsultaReturn;
+import br.com.caelum.stella.gateway.visa.VISAHttpReturnBuilder;
+import br.com.caelum.stella.gateway.visa.VISAVerificacaoRetornoIntegracaoViaHttp;
 
 public class VISATestRetornoIntegracaoComponente {
 
@@ -33,7 +33,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("tid");will(returnValue("12345678"));
 				one(request).getParameter("arp");will(returnValue("1332"));
 				one(request).getParameter("pan");will(returnValue("4739856348950"));
-				one(request).getParameter("bank");will(returnValue("347"));
+				one(request).getParameter("bank");will(returnValue("3479"));
 			}
 		});
 		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
@@ -86,14 +86,14 @@ public class VISATestRetornoIntegracaoComponente {
 		final HttpServletRequest request = mockery.mock(HttpServletRequest.class);
 		mockery.checking(new Expectations(){
 			{
-				atLeast(2).of(request).getParameter("lr");will(returnValue("00"));
+				one(request).getParameter("lr");will(returnValue("00"));
 				one(request).getParameter("orderid");will(returnValue("123456"));
 				one(request).getParameter("free");will(returnValue("free"));
 				one(request).getParameter("price");will(returnValue("100"));
 				one(request).getParameter("ars");will(returnValue("autorizada"));
 				one(request).getParameter("tid");will(returnValue("12345678"));
 				one(request).getParameter("arp");will(returnValue("1332"));
-				one(request).getParameter("bank");will(returnValue("4739856348950"));
+				one(request).getParameter("bank");will(returnValue("4739"));
 				one(request).getParameter("authent");will(returnValue("0"));
 			}
 		});
