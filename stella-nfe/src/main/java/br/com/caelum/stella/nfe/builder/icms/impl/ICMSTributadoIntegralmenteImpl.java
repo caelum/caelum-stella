@@ -45,8 +45,9 @@ public class ICMSTributadoIntegralmenteImpl implements ICMSTributadoIntegralment
         return this;
     }
 
-    public ICMS00 getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

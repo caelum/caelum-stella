@@ -13,8 +13,9 @@ public final class TransporteImpl implements Transporte, br.com.caelum.stella.nf
         transp = new br.com.caelum.stella.nfe.modelo.Transp();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Transp getInstance() {
-        return transp;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.transp;
     }
 
     public Transporte withModalidadeDoFrete(final ModalidadeDoFrete modalidadeDoFrete) {

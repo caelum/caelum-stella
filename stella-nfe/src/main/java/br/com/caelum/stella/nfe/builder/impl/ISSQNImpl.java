@@ -5,42 +5,42 @@ import java.math.BigDecimal;
 import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.modelo.ISSQN;
 
+public class ISSQNImpl implements br.com.caelum.stella.nfe.builder.ISS, ObjectCreator {
 
-public class ISSQNImpl implements br.com.caelum.stella.nfe.builder.ISS, ObjectCreator{
-
-    private ISSQN issqn;
+    private final ISSQN issqn;
 
     public ISSQNImpl() {
         issqn = new ISSQN();
     }
-    
-    public ISSQNImpl withCodigoListaServicos(int codigoListaServicos) {
+
+    public ISSQNImpl withCodigoListaServicos(final int codigoListaServicos) {
         issqn.setCodigoListaServicos("" + codigoListaServicos);
         return this;
     }
 
-    public ISSQNImpl withCodigoMunicipio(int codigoMunicipio) {
+    public ISSQNImpl withCodigoMunicipio(final int codigoMunicipio) {
         issqn.setCodigoMunicipio("" + codigoMunicipio);
         return this;
     }
 
-    public ISSQNImpl withValor(BigDecimal valor) {
+    public ISSQNImpl withValor(final BigDecimal valor) {
         issqn.setValorISSQN(valor.toString());
         return this;
     }
 
-    public ISSQNImpl withValorDaBaseDeCalculo(BigDecimal valor) {
+    public ISSQNImpl withValorDaBaseDeCalculo(final BigDecimal valor) {
         issqn.setvalorDaBaseDeCalculo(valor.toString());
         return this;
     }
 
-    public ISSQNImpl withAliquota(BigDecimal aliquota) {
+    public ISSQNImpl withAliquota(final BigDecimal aliquota) {
         issqn.setAliquota(aliquota.toString());
         return this;
     }
 
-    public Object getInstance() {
-        return issqn;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) issqn;
     }
-    
+
 }

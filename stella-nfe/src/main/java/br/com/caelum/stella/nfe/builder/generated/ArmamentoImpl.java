@@ -9,8 +9,9 @@ public final class ArmamentoImpl implements Armamento, br.com.caelum.stella.nfe.
         this.arma = new br.com.caelum.stella.nfe.modelo.Arma();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Arma getInstance() {
-        return this.arma;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.arma;
     }
 
     public Armamento withTipo(TipoDeArmamento tipoDeArmamento) {

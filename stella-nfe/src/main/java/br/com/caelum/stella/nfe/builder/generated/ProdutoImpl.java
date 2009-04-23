@@ -13,8 +13,9 @@ public final class ProdutoImpl implements Produto, br.com.caelum.stella.nfe.Obje
         prod = new br.com.caelum.stella.nfe.modelo.Prod();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Prod getInstance() {
-        return prod;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.prod;
     }
 
     public Produto withCodigoDoProduto(final String string) {

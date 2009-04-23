@@ -10,8 +10,9 @@ public final class DadosDoLocalImpl implements DadosDoLocal, br.com.caelum.stell
         tLocal = new br.com.caelum.stella.nfe.modelo.TLocal();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TLocal getInstance() {
-        return tLocal;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tLocal;
     }
 
     public DadosDoLocal withCNPJ(final CNPJ cnpj) {

@@ -9,8 +9,9 @@ public final class AdicoesImpl implements Adicao, br.com.caelum.stella.nfe.Objec
         adi = new br.com.caelum.stella.nfe.modelo.Adi();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Adi getInstance() {
-        return adi;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.adi;
     }
 
     public Adicao withNumeroDaAdicao(final Integer integer) {

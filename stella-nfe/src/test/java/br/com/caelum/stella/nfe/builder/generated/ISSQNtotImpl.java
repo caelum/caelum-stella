@@ -4,8 +4,9 @@ import br.com.caelum.stella.nfe.ObjectCreator;
 
 final public class ISSQNtotImpl implements ISSQNTotal, ObjectCreator {
 
-    public br.com.caelum.stella.nfe.modelo.ISSQNtot getInstance() {
-        return new br.com.caelum.stella.nfe.modelo.ISSQNtot();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) new br.com.caelum.stella.nfe.modelo.ISSQNtot();
     }
 
 }

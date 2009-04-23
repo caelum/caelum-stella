@@ -16,7 +16,7 @@ import br.com.caelum.stella.nfe.modelo.ICMS10;
  * @author jonasabreu
  * 
  */
-public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributadoComST, ObjectCreator  {
+public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributadoComST, ObjectCreator {
 
     private final ICMSBuilderDelegate<ICMS10> delegate;
 
@@ -53,8 +53,7 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withModalidadeST(
-            final ModalidadeST modalidade) {
+    public ICMSTributadoComSubstituicaoTributariaImpl withModalidadeST(final ModalidadeST modalidade) {
         delegate.withModalidadeSubstituicaoTributaria(modalidade);
         return this;
     }
@@ -70,8 +69,7 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMSTributadoComSubstituicaoTributariaImpl withValorDaBaseDeCalculoST(
-            final BigDecimal valorDaBaseDeCalculo) {
+    public ICMSTributadoComSubstituicaoTributariaImpl withValorDaBaseDeCalculoST(final BigDecimal valorDaBaseDeCalculo) {
         delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
@@ -86,8 +84,9 @@ public class ICMSTributadoComSubstituicaoTributariaImpl implements ICMSTributado
         return this;
     }
 
-    public ICMS10 getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

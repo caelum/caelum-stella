@@ -10,8 +10,9 @@ public final class NFReferenciadaImpl implements NFReferenciada, br.com.caelum.s
         refNF.setMod("01"); // This is a xml Fixed value
     }
 
-    public br.com.caelum.stella.nfe.modelo.RefNF getInstance() {
-        return refNF;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.refNF;
     }
 
     public NFReferenciada withCodigoUF(final String string) {

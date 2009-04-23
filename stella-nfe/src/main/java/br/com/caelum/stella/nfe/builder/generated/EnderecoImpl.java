@@ -9,8 +9,9 @@ public final class EnderecoImpl implements Endereco, br.com.caelum.stella.nfe.Ob
         tEndereco = new br.com.caelum.stella.nfe.modelo.TEndereco();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TEndereco getInstance() {
-        return tEndereco;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tEndereco;
     }
 
     public Endereco withLogradouro(final String string) {

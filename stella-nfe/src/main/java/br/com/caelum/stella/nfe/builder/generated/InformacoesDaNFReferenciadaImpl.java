@@ -10,8 +10,9 @@ public final class InformacoesDaNFReferenciadaImpl implements InformacaoDaNFRefe
         nFref = new br.com.caelum.stella.nfe.modelo.NFref();
     }
 
-    public br.com.caelum.stella.nfe.modelo.NFref getInstance() {
-        return nFref;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.nFref;
     }
 
     public InformacaoDaNFReferenciada withChaveDeAcessoDaNFReferenciada(final String string) {

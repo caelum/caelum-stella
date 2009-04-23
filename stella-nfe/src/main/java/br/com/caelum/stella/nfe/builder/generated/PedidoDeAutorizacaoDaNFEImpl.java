@@ -13,8 +13,9 @@ public final class PedidoDeAutorizacaoDaNFEImpl implements PedidoDeAutorizacaoDa
         tEnviNFe = new br.com.caelum.stella.nfe.modelo.TEnviNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TEnviNFe getInstance() {
-        return tEnviNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tEnviNFe;
     }
 
     public PedidoDeAutorizacaoDaNFE withIdDoLote(final String string) {

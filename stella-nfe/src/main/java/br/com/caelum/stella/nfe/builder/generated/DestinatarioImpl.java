@@ -11,8 +11,9 @@ public final class DestinatarioImpl implements Destinatario, br.com.caelum.stell
         dest = new br.com.caelum.stella.nfe.modelo.Dest();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Dest getInstance() {
-        return dest;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.dest;
     }
 
     public Destinatario withCNPJ(final CNPJ cnpj) {

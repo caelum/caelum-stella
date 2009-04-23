@@ -12,8 +12,9 @@ public final class CombustivelImpl implements Combustivel, br.com.caelum.stella.
         comb = new br.com.caelum.stella.nfe.modelo.Comb();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Comb getInstance() {
-        return comb;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.comb;
     }
 
     public Combustivel withCodigoDoProdutoNaANP(final Integer string) {

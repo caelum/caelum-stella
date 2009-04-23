@@ -11,9 +11,9 @@ import br.com.caelum.stella.nfe.modelo.ICMS40;
  * @author jonasabreu
  * 
  */
-public class ICMSNaoTributadoImpl implements ICMSNaoTributado, ObjectCreator  {
+public class ICMSNaoTributadoImpl implements ICMSNaoTributado, ObjectCreator {
 
-    private ICMSBuilderDelegate<ICMS40> delegate;
+    private final ICMSBuilderDelegate<ICMS40> delegate;
 
     public ICMSNaoTributadoImpl() {
         delegate = new ICMSBuilderDelegate<ICMS40>(ICMS40.class);
@@ -23,18 +23,19 @@ public class ICMSNaoTributadoImpl implements ICMSNaoTributado, ObjectCreator  {
         return new ICMSNaoTributadoImpl();
     }
 
-    public ICMSNaoTributadoImpl withOrigem(OrigemICMS origem) {
+    public ICMSNaoTributadoImpl withOrigem(final OrigemICMS origem) {
         delegate.withOrigem(origem);
         return this;
     }
 
-    public ICMSNaoTributadoImpl withTributacao(TributacaoICMS tributacao) {
+    public ICMSNaoTributadoImpl withTributacao(final TributacaoICMS tributacao) {
         delegate.withTributacao(tributacao);
         return this;
     }
 
-    public ICMS40 getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

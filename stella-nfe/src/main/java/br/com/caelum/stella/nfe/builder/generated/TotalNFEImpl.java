@@ -9,8 +9,9 @@ public final class TotalNFEImpl implements TotalNFE, br.com.caelum.stella.nfe.Ob
         total = new br.com.caelum.stella.nfe.modelo.Total();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Total getInstance() {
-        return total;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.total;
     }
 
     public TotalNFE withICMSTotal(final ICMSTotal iCMSTot) {

@@ -2,15 +2,17 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class RetencaoDeTributosFederaisImpl implements RetencaoDeTributosFederais, br.com.caelum.stella.nfe.ObjectCreator {
+public final class RetencaoDeTributosFederaisImpl implements RetencaoDeTributosFederais,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RetTrib retTrib;
 
     public RetencaoDeTributosFederaisImpl() {
         retTrib = new br.com.caelum.stella.nfe.modelo.RetTrib();
     }
 
-    public br.com.caelum.stella.nfe.modelo.RetTrib getInstance() {
-        return retTrib;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.retTrib;
     }
 
     public RetencaoDeTributosFederais withVRetPIS(final BigDecimal string) {

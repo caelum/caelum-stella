@@ -10,8 +10,9 @@ public final class ICMSSobreOperacoesInterestaduaisImpl implements ICMSSobreOper
         iCMSInter = new br.com.caelum.stella.nfe.modelo.ICMSInter();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ICMSInter getInstance() {
-        return iCMSInter;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.iCMSInter;
     }
 
     public ICMSSobreOperacoesInterestaduais withValorDaBaseDeCalculoDoICMSSubstituicaoTributariaDoDestino(

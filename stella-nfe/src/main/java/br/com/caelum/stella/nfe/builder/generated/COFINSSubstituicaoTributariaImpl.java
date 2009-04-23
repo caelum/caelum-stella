@@ -2,15 +2,17 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class COFINSSubstituicaoTributariaImpl implements COFINSSubstituicaoTributaria, br.com.caelum.stella.nfe.ObjectCreator {
+public final class COFINSSubstituicaoTributariaImpl implements COFINSSubstituicaoTributaria,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSST cOFINSST;
 
     public COFINSSubstituicaoTributariaImpl() {
         cOFINSST = new br.com.caelum.stella.nfe.modelo.COFINSST();
     }
 
-    public br.com.caelum.stella.nfe.modelo.COFINSST getInstance() {
-        return cOFINSST;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cOFINSST;
     }
 
     public COFINSSubstituicaoTributaria withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {

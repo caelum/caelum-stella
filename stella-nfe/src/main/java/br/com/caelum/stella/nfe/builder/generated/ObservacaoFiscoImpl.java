@@ -7,8 +7,9 @@ public final class ObservacaoFiscoImpl implements ObservacaoFisco, br.com.caelum
         obsFisco = new br.com.caelum.stella.nfe.modelo.ObsFisco();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ObsFisco getInstance() {
-        return obsFisco;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.obsFisco;
     }
 
     public ObservacaoFisco withDescricaoDoTexto(final String string) {

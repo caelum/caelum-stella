@@ -11,8 +11,9 @@ public final class ICMSSobreConsumoImpl implements ICMSSobreConsumo, br.com.cael
         iCMSCons = new br.com.caelum.stella.nfe.modelo.ICMSCons();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ICMSCons getInstance() {
-        return iCMSCons;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.iCMSCons;
     }
 
     public ICMSSobreConsumo withValorDaBaseDeCalculoDoICMSDeSubstituicaoTributariaSobreConsumo(final BigDecimal string) {

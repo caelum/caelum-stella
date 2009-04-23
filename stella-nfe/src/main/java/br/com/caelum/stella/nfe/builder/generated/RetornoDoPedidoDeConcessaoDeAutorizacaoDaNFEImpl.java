@@ -11,8 +11,9 @@ public final class RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFEImpl implements
         tRetEnviNFe = new br.com.caelum.stella.nfe.modelo.TRetEnviNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TRetEnviNFe getInstance() {
-        return tRetEnviNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tRetEnviNFe;
     }
 
     public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withTipoDoAmbiente(final TipoDoAmbiente string) {

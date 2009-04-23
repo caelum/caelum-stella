@@ -9,8 +9,9 @@ public final class ProcessoReferenciadoImpl implements ProcessoReferenciado, br.
         procRef = new br.com.caelum.stella.nfe.modelo.ProcRef();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ProcRef getInstance() {
-        return procRef;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.procRef;
     }
 
     public ProcessoReferenciado withIdentificadorDoProcesso(final String string) {

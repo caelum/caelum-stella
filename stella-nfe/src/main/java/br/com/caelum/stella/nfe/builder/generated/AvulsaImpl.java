@@ -14,8 +14,9 @@ public final class AvulsaImpl implements Avulsa, br.com.caelum.stella.nfe.Object
         avulsa = new br.com.caelum.stella.nfe.modelo.Avulsa();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Avulsa getInstance() {
-        return avulsa;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.avulsa;
     }
 
     public Avulsa withCnpj(final CNPJ cnpj) {

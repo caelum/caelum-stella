@@ -8,8 +8,9 @@ public final class ObservacaoDoContribuinteImpl implements ObservacaoDoContribui
         obsCont = new br.com.caelum.stella.nfe.modelo.ObsCont();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ObsCont getInstance() {
-        return obsCont;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.obsCont;
     }
 
     public ObservacaoDoContribuinte withTextoDeDescricao(final String string) {

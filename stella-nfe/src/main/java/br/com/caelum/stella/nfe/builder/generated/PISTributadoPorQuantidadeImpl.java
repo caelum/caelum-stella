@@ -2,7 +2,8 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class PISTributadoPorQuantidadeImpl implements PISTributadoPorQuantidade, br.com.caelum.stella.nfe.ObjectCreator {
+public final class PISTributadoPorQuantidadeImpl implements PISTributadoPorQuantidade,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISQtde pISQtde;
 
     public PISTributadoPorQuantidadeImpl() {
@@ -10,8 +11,9 @@ public final class PISTributadoPorQuantidadeImpl implements PISTributadoPorQuant
         pISQtde.setCST("03");
     }
 
-    public br.com.caelum.stella.nfe.modelo.PISQtde getInstance() {
-        return pISQtde;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.pISQtde;
     }
 
     public PISTributadoPorQuantidade withQuantidadeVendida(final BigDecimal string) {

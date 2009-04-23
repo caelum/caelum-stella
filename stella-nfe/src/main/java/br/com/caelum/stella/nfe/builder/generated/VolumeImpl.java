@@ -12,8 +12,9 @@ public final class VolumeImpl implements Volume, br.com.caelum.stella.nfe.Object
         vol = new br.com.caelum.stella.nfe.modelo.Vol();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Vol getInstance() {
-        return vol;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.vol;
     }
 
     public Volume withQuantidade(final Long string) {

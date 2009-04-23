@@ -9,8 +9,9 @@ public final class VeiculoImpl implements Veiculo, br.com.caelum.stella.nfe.Obje
         tVeiculo = new br.com.caelum.stella.nfe.modelo.TVeiculo();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TVeiculo getInstance() {
-        return tVeiculo;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tVeiculo;
     }
 
     public Veiculo withPlaca(final String string) {

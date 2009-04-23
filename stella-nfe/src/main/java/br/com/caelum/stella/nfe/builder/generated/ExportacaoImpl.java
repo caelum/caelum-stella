@@ -9,8 +9,9 @@ public final class ExportacaoImpl implements Exportacao, br.com.caelum.stella.nf
         exporta = new br.com.caelum.stella.nfe.modelo.Exporta();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Exporta getInstance() {
-        return exporta;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.exporta;
     }
 
     public Exportacao withUFDoEmbarque(final UF tUf) {

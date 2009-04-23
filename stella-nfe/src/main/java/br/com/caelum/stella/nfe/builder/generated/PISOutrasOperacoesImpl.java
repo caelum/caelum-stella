@@ -10,8 +10,9 @@ public final class PISOutrasOperacoesImpl implements PISOutrasOperacoes, br.com.
         pISOutr.setCST("99");
     }
 
-    public br.com.caelum.stella.nfe.modelo.PISOutr getInstance() {
-        return pISOutr;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.pISOutr;
     }
 
     public PISOutrasOperacoes withValorDaBaseDeCalculo(final BigDecimal string) {

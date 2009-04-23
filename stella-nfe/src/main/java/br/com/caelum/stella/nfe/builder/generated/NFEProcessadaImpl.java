@@ -9,8 +9,9 @@ public final class NFEProcessadaImpl implements NFEProcessada, br.com.caelum.ste
         tNfeProc = new br.com.caelum.stella.nfe.modelo.TNfeProc();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TNfeProc getInstance() {
-        return tNfeProc;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tNfeProc;
     }
 
     public NFEProcessada withNFE(final NFE tNFe) {

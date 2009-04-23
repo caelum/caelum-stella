@@ -12,8 +12,9 @@ public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.
         infNFe = new br.com.caelum.stella.nfe.modelo.InfNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.InfNFe getInstance() {
-        return infNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.infNFe;
     }
 
     public InformacoesDaNFE withIde(final IdentificacaoDaNFE ide) {

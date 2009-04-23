@@ -7,8 +7,9 @@ public final class CompraImpl implements Compra, br.com.caelum.stella.nfe.Object
         this.compra = new br.com.caelum.stella.nfe.modelo.Compra();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Compra getInstance() {
-        return this.compra;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.compra;
     }
 
     public Compra withInformacoesDaNotaDeEmpenhoDeComprasPublicas(String string) {

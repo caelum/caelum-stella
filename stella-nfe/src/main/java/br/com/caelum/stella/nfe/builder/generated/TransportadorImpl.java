@@ -11,8 +11,9 @@ public final class TransportadorImpl implements Transportador, br.com.caelum.ste
         transporta = new br.com.caelum.stella.nfe.modelo.Transporta();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Transporta getInstance() {
-        return transporta;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.transporta;
     }
 
     public Transportador withCNPJ(final CNPJ cnpj) {

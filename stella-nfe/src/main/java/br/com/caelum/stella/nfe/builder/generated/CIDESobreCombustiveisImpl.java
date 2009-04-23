@@ -9,8 +9,9 @@ public final class CIDESobreCombustiveisImpl implements CIDESobreCombustiveis, b
         cIDE = new br.com.caelum.stella.nfe.modelo.CIDE();
     }
 
-    public br.com.caelum.stella.nfe.modelo.CIDE getInstance() {
-        return cIDE;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cIDE;
     }
 
     public CIDESobreCombustiveis withBaseDeCalculo(final BigDecimal string) {

@@ -10,8 +10,9 @@ public final class DetalheImpl implements Detalhe, br.com.caelum.stella.nfe.Obje
         det = new br.com.caelum.stella.nfe.modelo.Det();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Det getInstance() {
-        return det;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.det;
     }
 
     public Detalhe withProduto(final Produto prod) {

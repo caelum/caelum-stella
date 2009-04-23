@@ -10,8 +10,9 @@ public final class ICMSRetidoPeloTransporteImpl implements ICMSRetidoPeloTranspo
         retTransp = new br.com.caelum.stella.nfe.modelo.RetTransp();
     }
 
-    public br.com.caelum.stella.nfe.modelo.RetTransp getInstance() {
-        return retTransp;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.retTransp;
     }
 
     public ICMSRetidoPeloTransporte withValorDoServico(final BigDecimal string) {

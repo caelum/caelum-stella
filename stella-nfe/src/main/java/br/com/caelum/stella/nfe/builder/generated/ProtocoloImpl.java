@@ -12,8 +12,9 @@ public final class ProtocoloImpl implements Protocolo, br.com.caelum.stella.nfe.
         infProt = new br.com.caelum.stella.nfe.modelo.InfProt();
     }
 
-    public br.com.caelum.stella.nfe.modelo.InfProt getInstance() {
-        return infProt;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.infProt;
     }
 
     public Protocolo withTipoDoAmbiente(final TipoDoAmbiente tipoDoAmbiente) {

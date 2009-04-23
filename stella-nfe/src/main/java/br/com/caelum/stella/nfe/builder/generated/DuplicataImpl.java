@@ -9,8 +9,9 @@ public final class DuplicataImpl implements Duplicata, br.com.caelum.stella.nfe.
         dup = new br.com.caelum.stella.nfe.modelo.Dup();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Dup getInstance() {
-        return dup;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.dup;
     }
 
     public Duplicata withNumero(final String string) {

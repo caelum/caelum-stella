@@ -39,8 +39,9 @@ public class COFINSSubstituicaoTributariaImpl implements ObjectCreator, COFINSSu
         return this;
     }
 
-    public COFINSST getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

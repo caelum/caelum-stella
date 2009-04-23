@@ -7,9 +7,10 @@ import br.com.caelum.stella.nfe.builder.icms.ICMSCobradoAnteriormentePorSubstitu
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.modelo.ICMS60;
 
-public class ICMSCobradoAnteriormentePorSubstituicaoImpl implements ICMSCobradoAnteriormentePorSubstituicao, ObjectCreator  {
+public class ICMSCobradoAnteriormentePorSubstituicaoImpl implements ICMSCobradoAnteriormentePorSubstituicao,
+        ObjectCreator {
 
-    private ICMSBuilderDelegate<ICMS60> delegate;
+    private final ICMSBuilderDelegate<ICMS60> delegate;
 
     public ICMSCobradoAnteriormentePorSubstituicaoImpl() {
         delegate = new ICMSBuilderDelegate<ICMS60>(ICMS60.class);
@@ -19,25 +20,24 @@ public class ICMSCobradoAnteriormentePorSubstituicaoImpl implements ICMSCobradoA
         return new ICMSCobradoAnteriormentePorSubstituicaoImpl();
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withOrigem(OrigemICMS origem) {
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withOrigem(final OrigemICMS origem) {
         delegate.withOrigem(origem);
         return this;
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorDaBaseDeCalculoST(
-            BigDecimal valorDaBaseDeCalculo) {
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorDaBaseDeCalculoST(final BigDecimal valorDaBaseDeCalculo) {
         delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
 
-    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorST(
-            BigDecimal valorSubstituicaoTributaria) {
+    public ICMSCobradoAnteriormentePorSubstituicaoImpl withValorST(final BigDecimal valorSubstituicaoTributaria) {
         delegate.withValorSubstituicaoTributaria(valorSubstituicaoTributaria);
         return this;
     }
 
-    public ICMS60 getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

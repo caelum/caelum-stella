@@ -31,7 +31,8 @@ public class COFINSTributadoPorQuantidadeImpl implements COFINSTributadoPorQuant
         return this;
     }
 
-    public COFINSQtde getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 }

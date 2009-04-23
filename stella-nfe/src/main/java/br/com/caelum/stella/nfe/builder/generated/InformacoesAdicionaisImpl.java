@@ -12,8 +12,9 @@ public final class InformacoesAdicionaisImpl implements InformacoesAdicionais, b
         infAdic = new br.com.caelum.stella.nfe.modelo.InfAdic();
     }
 
-    public br.com.caelum.stella.nfe.modelo.InfAdic getInstance() {
-        return infAdic;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.infAdic;
     }
 
     public InformacoesAdicionais withInformacoesAdicionaisDeInteresseDoFisco(final String string) {

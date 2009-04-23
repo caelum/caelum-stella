@@ -9,8 +9,9 @@ public final class PISImpl implements PIS, br.com.caelum.stella.nfe.ObjectCreato
         pIS = new br.com.caelum.stella.nfe.modelo.PIS();
     }
 
-    public br.com.caelum.stella.nfe.modelo.PIS getInstance() {
-        return pIS;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.pIS;
     }
 
     public PIS withPISTributadoPelaAliquota(final PISTributadoPelaAliquota pISAliq) {

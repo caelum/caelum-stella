@@ -9,9 +9,10 @@ import br.com.caelum.stella.nfe.builder.icms.enums.ModalidadeST;
 import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
 import br.com.caelum.stella.nfe.modelo.ICMS70;
 
-public class ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl implements ICMSComReducaoBaseDeCalculoEST, ObjectCreator  {
+public class ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl implements ICMSComReducaoBaseDeCalculoEST,
+        ObjectCreator {
 
-    private ICMSBuilderDelegate<ICMS70> delegate;
+    private final ICMSBuilderDelegate<ICMS70> delegate;
 
     public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl() {
         delegate = new ICMSBuilderDelegate<ICMS70>(ICMS70.class);
@@ -21,73 +22,73 @@ public class ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl implements I
         return new ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl();
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withOrigem(OrigemICMS origem) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withOrigem(final OrigemICMS origem) {
         delegate.withOrigem(origem);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withModalidade(ModalidadeBaseCalculo modalidade) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withModalidade(final ModalidadeBaseCalculo modalidade) {
         delegate.withModalidade(modalidade);
         return this;
     }
 
     public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withPercentualReducaoBaseCalculo(
-            BigDecimal percentualReducaoBaseCalculo) {
+            final BigDecimal percentualReducaoBaseCalculo) {
         delegate.withPercentualReducaoBaseCalculo(percentualReducaoBaseCalculo);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withBaseDeCalculo(BigDecimal baseCalculo) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withBaseDeCalculo(final BigDecimal baseCalculo) {
         delegate.withBaseDeCalculo(baseCalculo);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withAliquota(BigDecimal aliquota) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withAliquota(final BigDecimal aliquota) {
         delegate.withAliquota(aliquota);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValor(BigDecimal valor) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValor(final BigDecimal valor) {
         delegate.withValor(valor);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withModalidadeST(
-            ModalidadeST modalidade) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withModalidadeST(final ModalidadeST modalidade) {
         delegate.withModalidadeSubstituicaoTributaria(modalidade);
         return this;
     }
 
     public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withPercentualAdicionadoST(
-            BigDecimal percentualAdicionado) {
+            final BigDecimal percentualAdicionado) {
         delegate.withPercentualAdicionadoSubstituicaoTributaria(percentualAdicionado);
         return this;
     }
 
     public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withPercentualReducaoBaseCalculoST(
-            BigDecimal percentualReducao) {
+            final BigDecimal percentualReducao) {
         delegate.withPercentualReducaoBaseCalculoSubstituicaoTributaria(percentualReducao);
         return this;
     }
 
     public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValorDaBaseDeCalculoST(
-            BigDecimal valorDaBaseDeCalculo) {
+            final BigDecimal valorDaBaseDeCalculo) {
         delegate.withValorDaBaseDeCalculoSubstituicaoTributaria(valorDaBaseDeCalculo);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withAliquotaST(BigDecimal aliquota) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withAliquotaST(final BigDecimal aliquota) {
         delegate.withAliquotaSubstituicaoTributaria(aliquota);
         return this;
     }
 
-    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValorST(BigDecimal valor) {
+    public ICMSComReducaoBaseDeCalculoESubstituicaoTributariaImpl withValorST(final BigDecimal valor) {
         delegate.withValorSubstituicaoTributaria(valor);
         return this;
     }
 
-    public ICMS70 getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

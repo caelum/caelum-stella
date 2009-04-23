@@ -9,8 +9,9 @@ public final class FaturaImpl implements Fatura, br.com.caelum.stella.nfe.Object
         fat = new br.com.caelum.stella.nfe.modelo.Fat();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Fat getInstance() {
-        return fat;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.fat;
     }
 
     public Fatura withNumeroDaFatura(final String string) {

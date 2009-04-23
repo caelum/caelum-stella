@@ -12,8 +12,9 @@ public final class CobrancaImpl implements Cobranca, br.com.caelum.stella.nfe.Ob
         cobr = new br.com.caelum.stella.nfe.modelo.Cobr();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Cobr getInstance() {
-        return cobr;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cobr;
     }
 
     public Cobranca withFatura(final Fatura fat) {

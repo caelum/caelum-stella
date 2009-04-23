@@ -10,8 +10,9 @@ public final class PISTributadoPelaAliquotaImpl implements PISTributadoPelaAliqu
         pISAliq = new br.com.caelum.stella.nfe.modelo.PISAliq();
     }
 
-    public br.com.caelum.stella.nfe.modelo.PISAliq getInstance() {
-        return pISAliq;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.pISAliq;
     }
 
     public PISTributadoPelaAliquota withCodigoSituacaoTributaria(final String string) {

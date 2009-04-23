@@ -10,8 +10,9 @@ public final class VeiculoNovoImpl implements VeiculoNovo, br.com.caelum.stella.
         veicProd = new br.com.caelum.stella.nfe.modelo.VeicProd();
     }
 
-    public br.com.caelum.stella.nfe.modelo.VeicProd getInstance() {
-        return veicProd;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.veicProd;
     }
 
     public VeiculoNovo withTipoDeOperacao(final TipoDeOperacao string) {

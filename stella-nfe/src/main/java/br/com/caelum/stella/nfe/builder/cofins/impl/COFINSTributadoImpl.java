@@ -30,8 +30,9 @@ public class COFINSTributadoImpl implements COFINSTributadoPelaAliquota, ObjectC
         return this;
     }
 
-    public COFINSAliq getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

@@ -9,8 +9,9 @@ public final class COFINSOutrasOperacoesImpl implements COFINSOutrasOperacoes, b
         cOFINSOutr = new br.com.caelum.stella.nfe.modelo.COFINSOutr();
     }
 
-    public br.com.caelum.stella.nfe.modelo.COFINSOutr getInstance() {
-        return cOFINSOutr;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cOFINSOutr;
     }
 
     public COFINSOutrasOperacoes withCodigoSituacaoTributaria(final String string) {

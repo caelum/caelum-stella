@@ -10,8 +10,9 @@ public final class PISSubstituicaoTributariaImpl implements PISSubstituicaoTribu
         pISST = new br.com.caelum.stella.nfe.modelo.PISST();
     }
 
-    public br.com.caelum.stella.nfe.modelo.PISST getInstance() {
-        return pISST;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.pISST;
     }
 
     public PISSubstituicaoTributaria withValorDaBaseDeCalculo(final BigDecimal string) {

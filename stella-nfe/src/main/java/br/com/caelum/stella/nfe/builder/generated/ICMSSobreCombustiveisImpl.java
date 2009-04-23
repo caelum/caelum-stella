@@ -9,8 +9,9 @@ public final class ICMSSobreCombustiveisImpl implements ICMSSobreCombustiveis, b
         iCMSComb = new br.com.caelum.stella.nfe.modelo.ICMSComb();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ICMSComb getInstance() {
-        return iCMSComb;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.iCMSComb;
     }
 
     public ICMSSobreCombustiveis withValorDaBaseDeCalculo(final BigDecimal string) {

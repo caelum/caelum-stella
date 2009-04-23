@@ -14,8 +14,9 @@ public final class RetornoDoPedidoDeConsultaDoRecidoDoLoteDeNFEImpl implements
         tRetConsReciNFe = new br.com.caelum.stella.nfe.modelo.TRetConsReciNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TRetConsReciNFe getInstance() {
-        return tRetConsReciNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tRetConsReciNFe;
     }
 
     public RetornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE withTipoDeAmbiente(final TipoDoAmbiente tipoDoAmbiente) {
@@ -48,7 +49,8 @@ public final class RetornoDoPedidoDeConsultaDoRecidoDoLoteDeNFEImpl implements
         return this;
     }
 
-    public RetornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE withProtocoloDoResultadoDeProcessamento(final ProtocoloDoResultadoDeProcessamento... protNFe) {
+    public RetornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE withProtocoloDoResultadoDeProcessamento(
+            final ProtocoloDoResultadoDeProcessamento... protNFe) {
         List<br.com.caelum.stella.nfe.modelo.TProtNFe> list = new ArrayList<br.com.caelum.stella.nfe.modelo.TProtNFe>();
         for (ProtocoloDoResultadoDeProcessamento p : protNFe) {
             list.add((br.com.caelum.stella.nfe.modelo.TProtNFe) ((ObjectCreator) p).getInstance());

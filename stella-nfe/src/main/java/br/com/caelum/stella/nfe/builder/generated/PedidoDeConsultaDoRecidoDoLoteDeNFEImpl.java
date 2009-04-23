@@ -10,8 +10,9 @@ public final class PedidoDeConsultaDoRecidoDoLoteDeNFEImpl implements PedidoDeCo
         tConsReciNFe = new br.com.caelum.stella.nfe.modelo.TConsReciNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TConsReciNFe getInstance() {
-        return tConsReciNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tConsReciNFe;
     }
 
     public PedidoDeConsultaDoRecidoDoLoteDeNFE withTipoDoAmbiente(final TipoDoAmbiente tipoDoAmbiente) {

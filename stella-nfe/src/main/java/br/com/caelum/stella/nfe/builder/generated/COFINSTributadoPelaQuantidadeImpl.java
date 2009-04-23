@@ -2,15 +2,17 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class COFINSTributadoPelaQuantidadeImpl implements COFINSTributadoPelaQuantidade, br.com.caelum.stella.nfe.ObjectCreator {
+public final class COFINSTributadoPelaQuantidadeImpl implements COFINSTributadoPelaQuantidade,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSQtde cOFINSQtde;
 
     public COFINSTributadoPelaQuantidadeImpl() {
         cOFINSQtde = new br.com.caelum.stella.nfe.modelo.COFINSQtde();
     }
 
-    public br.com.caelum.stella.nfe.modelo.COFINSQtde getInstance() {
-        return cOFINSQtde;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cOFINSQtde;
     }
 
     public COFINSTributadoPelaQuantidade withCodigoSituacaoTributaria(final String string) {

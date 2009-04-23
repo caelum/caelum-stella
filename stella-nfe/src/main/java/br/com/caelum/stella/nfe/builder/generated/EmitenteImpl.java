@@ -11,8 +11,9 @@ public final class EmitenteImpl implements Emitente, br.com.caelum.stella.nfe.Ob
         emit = new br.com.caelum.stella.nfe.modelo.Emit();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Emit getInstance() {
-        return emit;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.emit;
     }
 
     public Emitente withCNPJ(final CNPJ cnpj) {

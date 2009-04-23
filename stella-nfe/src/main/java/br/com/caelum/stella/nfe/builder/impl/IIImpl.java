@@ -7,34 +7,35 @@ import br.com.caelum.stella.nfe.modelo.II;
 
 public class IIImpl implements br.com.caelum.stella.nfe.builder.II, ObjectCreator {
 
-    private II ii;
+    private final II ii;
 
     public IIImpl() {
         ii = new II();
     }
 
-    public IIImpl withValorDaBaseDeCalculo(BigDecimal valorDaBaseDeCalculo) {
+    public IIImpl withValorDaBaseDeCalculo(final BigDecimal valorDaBaseDeCalculo) {
         ii.setvalorDaBaseDeCalculo(valorDaBaseDeCalculo.toString());
         return this;
     }
 
-    public IIImpl withValorII(BigDecimal valorII) {
+    public IIImpl withValorII(final BigDecimal valorII) {
         ii.setValorImpostoImportacao(valorII.toString());
         return this;
     }
 
-    public IIImpl withValorIOF(BigDecimal valorIOF) {
+    public IIImpl withValorIOF(final BigDecimal valorIOF) {
         ii.setValorImpostoSobreOperacoesFinanceiras(valorIOF.toString());
         return this;
     }
 
-    public IIImpl withValorAduaneira(BigDecimal valorAduaneira) {
+    public IIImpl withValorAduaneira(final BigDecimal valorAduaneira) {
         ii.setValorDespesaAduaneira(valorAduaneira.toString());
         return this;
     }
-    
-    public Object getInstance() {
-        return ii;
+
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) ii;
     }
 
 }

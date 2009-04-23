@@ -13,8 +13,9 @@ public class COFINSNaoTributadoImpl implements COFINSNaoTributado, ObjectCreator
         delegate = new COFINSBuilderDelegate<COFINSNT>(COFINSNT.class, situacaoTributaria);
     }
 
-    public COFINSNT getInstance() {
-        return delegate.getReference();
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) delegate.getReference();
     }
 
 }

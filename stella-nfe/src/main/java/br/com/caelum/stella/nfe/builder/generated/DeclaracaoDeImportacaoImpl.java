@@ -14,8 +14,9 @@ public final class DeclaracaoDeImportacaoImpl implements DeclaracaoDeImportacao,
         dI = new br.com.caelum.stella.nfe.modelo.DI();
     }
 
-    public br.com.caelum.stella.nfe.modelo.DI getInstance() {
-        return dI;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.dI;
     }
 
     public DeclaracaoDeImportacao withNumeroDoDocumentoDeImportacao(final String string) {

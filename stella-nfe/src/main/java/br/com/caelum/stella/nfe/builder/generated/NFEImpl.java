@@ -10,8 +10,9 @@ public final class NFEImpl implements NFE, br.com.caelum.stella.nfe.ObjectCreato
         tNFe = new br.com.caelum.stella.nfe.modelo.TNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TNFe getInstance() {
-        return tNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tNFe;
     }
 
     public NFE withInformacoesDaNFE(final InformacoesDaNFE infNFe) {

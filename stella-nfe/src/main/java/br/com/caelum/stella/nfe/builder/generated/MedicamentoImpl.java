@@ -10,8 +10,9 @@ public final class MedicamentoImpl implements Medicamento, br.com.caelum.stella.
         med = new br.com.caelum.stella.nfe.modelo.Med();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Med getInstance() {
-        return med;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.med;
     }
 
     public Medicamento withNumeroDoLote(final String string) {
@@ -24,7 +25,7 @@ public final class MedicamentoImpl implements Medicamento, br.com.caelum.stella.
         return this;
     }
 
-    // Isso n‹o deveria estar usando o calendar
+    // Isso nï¿½o deveria estar usando o calendar
     public Medicamento withDataDeFabricacao(final Calendar calendar) {
         med.setDFab(new CalendarToStringConverter().convertDateToString(calendar));
         return this;

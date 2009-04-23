@@ -60,8 +60,9 @@ public class Impostos implements ObjectCreator {
         return this;
     }
 
-    public Imposto getInstance() {
-        return imposto;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) imposto;
     }
 
 }

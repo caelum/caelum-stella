@@ -9,8 +9,9 @@ public final class ReciboDoLoteImpl implements ReciboDoLote, br.com.caelum.stell
         infRec = new br.com.caelum.stella.nfe.modelo.InfRec();
     }
 
-    public br.com.caelum.stella.nfe.modelo.InfRec getInstance() {
-        return infRec;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.infRec;
     }
 
     public ReciboDoLote withNumeroDoRecibo(final String string) {

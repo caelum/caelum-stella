@@ -11,8 +11,9 @@ public final class ProtocoloDoResultadoDeProcessamentoImpl implements ProtocoloD
         tProtNFe = new br.com.caelum.stella.nfe.modelo.TProtNFe();
     }
 
-    public br.com.caelum.stella.nfe.modelo.TProtNFe getInstance() {
-        return tProtNFe;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.tProtNFe;
     }
 
     public ProtocoloDoResultadoDeProcessamento withDadosDoProtocolo(final Protocolo infProt) {

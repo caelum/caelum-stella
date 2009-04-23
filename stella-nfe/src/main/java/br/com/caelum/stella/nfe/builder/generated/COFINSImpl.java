@@ -9,8 +9,9 @@ public final class COFINSImpl implements COFINS, br.com.caelum.stella.nfe.Object
         cOFINS = new br.com.caelum.stella.nfe.modelo.COFINS();
     }
 
-    public br.com.caelum.stella.nfe.modelo.COFINS getInstance() {
-        return cOFINS;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.cOFINS;
     }
 
     public COFINS withTributacaoPelaAliquota(final COFINSTributadoPelaAliquota cOFINSAliq) {

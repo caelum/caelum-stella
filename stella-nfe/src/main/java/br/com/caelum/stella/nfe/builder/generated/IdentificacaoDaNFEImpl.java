@@ -20,8 +20,9 @@ public final class IdentificacaoDaNFEImpl implements IdentificacaoDaNFE, br.com.
         ide = new br.com.caelum.stella.nfe.modelo.Ide();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Ide getInstance() {
-        return ide;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.ide;
     }
 
     public IdentificacaoDaNFE withCodigoUFDoEmitente(final String string) {

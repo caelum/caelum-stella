@@ -9,8 +9,9 @@ public final class ICMSTotalImpl implements ICMSTotal, br.com.caelum.stella.nfe.
         iCMSTot = new br.com.caelum.stella.nfe.modelo.ICMSTot();
     }
 
-    public br.com.caelum.stella.nfe.modelo.ICMSTot getInstance() {
-        return iCMSTot;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.iCMSTot;
     }
 
     public ICMSTotal withValorDaBaseDeCalculo(final BigDecimal string) {

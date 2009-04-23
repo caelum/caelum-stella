@@ -7,45 +7,46 @@ import br.com.caelum.stella.nfe.builder.IPITributacao;
 import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 import br.com.caelum.stella.nfe.modelo.IPITrib;
 
-public class IPITributacaoImpl implements IPITributacao, ObjectCreator{
+public class IPITributacaoImpl implements IPITributacao, ObjectCreator {
 
-    private IPITrib trib;
+    private final IPITrib trib;
 
     public IPITributacaoImpl() {
         trib = new IPITrib();
     }
-    
-    public IPITributacaoImpl withSituacaoTributaria(SituacaoTributaria situacao) {
+
+    public IPITributacaoImpl withSituacaoTributaria(final SituacaoTributaria situacao) {
         trib.setCodigoSituacaoTributaria(situacao.getCodigo());
         return this;
     }
 
-    public IPITributacaoImpl withValorDaBaseDeCalculo(BigDecimal baseDeCalculo) {
+    public IPITributacaoImpl withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
         trib.setvalorDaBaseDeCalculo(baseDeCalculo.toString());
         return this;
     }
 
-    public IPITributacaoImpl withAliquota(BigDecimal aliquota) {
+    public IPITributacaoImpl withAliquota(final BigDecimal aliquota) {
         trib.setAliquotaIPI(aliquota.toString());
         return this;
     }
 
-    public IPITributacaoImpl withQuantidadeTotal(BigDecimal quantidadeTotal) {
+    public IPITributacaoImpl withQuantidadeTotal(final BigDecimal quantidadeTotal) {
         trib.setQuantidade(quantidadeTotal.toString());
         return this;
     }
 
-    public IPITributacaoImpl withValorPorUnidadeTributavel(BigDecimal valorPorUnidade) {
+    public IPITributacaoImpl withValorPorUnidadeTributavel(final BigDecimal valorPorUnidade) {
         trib.setValorUnidade(valorPorUnidade.toString());
         return this;
     }
 
-    public IPITributacaoImpl withValorDoIPI(BigDecimal valor) {
+    public IPITributacaoImpl withValorDoIPI(final BigDecimal valor) {
         trib.setValorIPI(valor.toString());
         return this;
     }
 
-    public Object getInstance() {
-        return trib;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) trib;
     }
 }

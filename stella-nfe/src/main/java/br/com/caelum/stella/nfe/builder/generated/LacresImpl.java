@@ -7,8 +7,9 @@ public final class LacresImpl implements Lacres, br.com.caelum.stella.nfe.Object
         lacres = new br.com.caelum.stella.nfe.modelo.Lacres();
     }
 
-    public br.com.caelum.stella.nfe.modelo.Lacres getInstance() {
-        return lacres;
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance() {
+        return (T) this.lacres;
     }
 
     public Lacres withNumeroDosLacres(final String string) {
