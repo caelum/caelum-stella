@@ -34,21 +34,6 @@ public class AmexTestaSolicitacaoIntegracao {
 
 	private static SeleniumHelper seleniumHelper;
 
-	/*Ainda tentando colocar para funcionar :((
-	 * @BeforeClass
-	public static void setUp() throws Exception {
-		seleniumHelper = new SeleniumHelper();
-		seleniumHelper.iniciarSelenium().configurarContextoDoTeste(
-				"file:///" + new File("").getAbsolutePath() + File.separator,
-				"Testando integracao com Amex");
-
-	}
-
-	@AfterClass
-	public static void shutDown() {
-		seleniumHelper.finalizar();
-	}*/
-
 	@Test
 	public void testSolicitarPagamentoAVista() throws IOException {
 		AmexCheckout amexCheckout = new AmexCheckout("12345678", "12345678",
@@ -64,9 +49,6 @@ public class AmexTestaSolicitacaoIntegracao {
 				.criarPaginaTemporariaNoDisco(
 						new File("").getAbsolutePath() + File.separator
 								+ "/post_dados_amex.html");		
-		/*Browser browser = new DefaultBrowser(seleniumHelper.getSelenium());
-		browser.open("post_dados_amex.html");
-		browser.currentPage().form("pagamento").submit();*/
 
 	}
 

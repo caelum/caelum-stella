@@ -37,7 +37,7 @@ public class RedecardVerificaRetornoAutorizacao implements
 			int codigoRetornoAprovado = 0;
 			String dataDesformatada = request.getParameter("DATA");
 			Calendar dataAutorizacao;
-			dataAutorizacao = CalendarFormatter
+			dataAutorizacao = new CalendarFormatter()
 					.stringToCalendar(dataDesformatada);
 			RedecardAutorizacaoReturn autorizacaoReturn = new RedecardAutorizacaoReturn(
 					codigoRetornoAprovado, mensagemRetorno, dataAutorizacao,

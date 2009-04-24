@@ -7,6 +7,7 @@ public class DadosComprador {
 	private String endereco;
 	private String nome;
 	private String estado;
+	private String pais;
 	
 	
 	
@@ -24,6 +25,18 @@ public class DadosComprador {
 		this.endereco = endereco;
 		this.nome = nome;
 		this.estado = estado;
+	}
+	
+	
+	public DadosComprador(String cep, String cidade, String endereco,
+			String nome, String estado, String pais) {
+		super();
+		this.cep = cep;
+		this.cidade = cidade;
+		this.endereco = endereco;
+		this.nome = nome;
+		this.estado = estado;
+		this.pais = pais;
 	}
 	public String getCep() {
 		return cep;
@@ -55,6 +68,10 @@ public class DadosComprador {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public String getPais() {
+		return pais;
+	}
+	
 	
 	
 }

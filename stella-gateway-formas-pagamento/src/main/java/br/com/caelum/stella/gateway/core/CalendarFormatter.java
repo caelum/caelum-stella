@@ -31,7 +31,7 @@ public class CalendarFormatter {
 	 * @param dataDesformatada no formato yyyymmdd
 	 * @return
 	 */
-	public static Calendar stringToCalendar(String dataDesformatada){
+	public  Calendar stringToCalendar(String dataDesformatada){
 		return stringToCalendar(dataDesformatada,"yyyyMMdd");		
 	}
 	
@@ -41,7 +41,7 @@ public class CalendarFormatter {
 	 * @param pattern padrão para conversão da data para Calendar. Ex: yyyymmdd 
 	 * @return
 	 */
-	public static Calendar stringToCalendar(String dataDesformatada,String pattern){		
+	public Calendar stringToCalendar(String dataDesformatada,String pattern){		
 		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 		Calendar dataAutorizacao = Calendar.getInstance();
 		try {

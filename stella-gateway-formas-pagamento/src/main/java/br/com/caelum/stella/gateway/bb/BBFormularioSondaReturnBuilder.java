@@ -119,7 +119,7 @@ public enum BBFormularioSondaReturnBuilder implements
 								formularioSonda.getTpPagamento()),
 				new EnumComCodigoFinder().descobreAEnumPeloCodigo(
 						BBSituacao.class, formularioSonda.getSituacao()),
-				CalendarFormatter.stringToCalendar(formularioSonda
+				new CalendarFormatter().stringToCalendar(formularioSonda
 						.getDataPagamento(), "ddMMyyyy"));
 	}
 

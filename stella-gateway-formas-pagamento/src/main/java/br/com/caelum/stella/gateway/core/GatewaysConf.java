@@ -23,8 +23,12 @@ public class GatewaysConf {
 		}
 	}
 	
-	
-	private String getProperty(String key){			
+	/**
+	 * Busca o valor da respectiva chave no properties de configuração.
+	 * @param key
+	 * @return
+	 */
+	public String getProperty(String key){			
 		return gatewaysProperties.getProperty(key).trim();
 	}
 	
@@ -127,6 +131,22 @@ public class GatewaysConf {
 	public String getAmexMerchantId(){
 		return getProperty("amex_merchantId");
 	}
+	
+	public String getPagSeguroUrlComponenteDeAutorizacao(){
+		return getProperty("uolPagSeguro.urlComponenteDeAutorizacao");
+	}
+	
+	public String getPagSeguroToken(){
+		return getProperty("uolPagSeguro.token");
+	}	
+	
+	public String getPagSeguroEmailCobranca(){
+		return getProperty("uolPagSeguro.emailCobranca");
+	}
+	
+	public String getPagSeguroUrlVerificacaoToken(){
+		return getProperty("uolPagSeguro.urlVerificacaoToken");
+	}	
 	
 	
 }
