@@ -1,6 +1,11 @@
 package br.com.caelum.stella.gateway.amex;
 
 
+/**
+ * 
+ * @author Alberto Souza
+ *
+ */
 public class AmexFormaPagamento {
 
 	private int numeroDeParcelas;

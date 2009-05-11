@@ -5,21 +5,22 @@ import javax.servlet.http.HttpServletRequest;
 import br.com.caelum.stella.gateway.core.BigDecimalFormatter;
 import br.com.caelum.stella.gateway.core.ReturnBuilder;
 
-public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn,HttpServletRequest> {
+public enum VISAHttpReturnBuilder implements
+		ReturnBuilder<VISAIntegrationReturn, HttpServletRequest> {
 
 	AUTORIZACAO_RETORNO_BUILDER() {
 
 		public VISAAutorizacaoReturn buildReturn(HttpServletRequest request) {
 			// TODO Auto-generated method stub
-			VISACheckout checkout = new VISACheckout(request.getParameter("orderid"),
-					null, request.getParameter("free"), request
-							.getParameter("price"), null, null);
+			VISACheckout checkout = new VISACheckout(request
+					.getParameter("orderid"), null, request
+					.getParameter("free"), request.getParameter("Price"), null);
 			VISAAutorizacaoReturn retornoAutorizacao = new VISAAutorizacaoReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("ars"),
 							request.getParameter("tid")), request
-							.getParameter("arp"), request.getParameter("pan"),
-					Integer.valueOf(request.getParameter("bank")), checkout);
+							.getParameter("arp"), request.getParameter("Pan"),
+					checkout);
 			return retornoAutorizacao;
 		}
 
@@ -30,9 +31,9 @@ public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn
 			VISACapturaReturn retornoCaptura = new VISACapturaReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("tid"),
-							request.getParameter("ars")), new BigDecimalFormatter()
-							.stringInCentsToBigDecimal(request.getParameter("cap")),
-					request.getParameter("free"));
+							request.getParameter("ars")),
+					new BigDecimalFormatter().stringInCentsToBigDecimal(request
+							.getParameter("cap")));
 			return retornoCaptura;
 		}
 	},
@@ -41,10 +42,7 @@ public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn
 			VISACancelamentoReturn retornoCancelamento = new VISACancelamentoReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("tid"),
-							request.getParameter("ars")), new BigDecimalFormatter()
-							.stringInCentsToBigDecimal(request
-									.getParameter("cancel_amount")), request
-							.getParameter("free"));
+							request.getParameter("ars")));
 			return retornoCancelamento;
 		}
 	},
@@ -54,15 +52,15 @@ public enum VISAHttpReturnBuilder implements ReturnBuilder<VISAIntegrationReturn
 			/*
 			 * trecho repetido, mas como é só aqui mesmo, ainda é aceitável.
 			 */
-			VISACheckout checkout = new VISACheckout(request.getParameter("orderid"),
-					null, request.getParameter("free"), request
-							.getParameter("price"), null, null);
+			VISACheckout checkout = new VISACheckout(request
+					.getParameter("orderid"), null, request
+					.getParameter("free"), request.getParameter("price"), null);
 			VISAConsultaReturn retornoConsulta = new VISAConsultaReturn(
 					new VISABasicDataReturn(Integer.valueOf(request
 							.getParameter("lr")), request.getParameter("tid"),
 							request.getParameter("ars")), checkout, Integer
-							.valueOf(request.getParameter("authent")), Integer.valueOf(request
-							.getParameter("bank")));
+							.valueOf(request.getParameter("Authent")), Integer
+							.valueOf(request.getParameter("bank")));
 			return retornoConsulta;
 		}
 	};

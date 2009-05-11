@@ -2,6 +2,11 @@ package br.com.caelum.stella.gateway.amex;
 
 import br.com.caelum.stella.gateway.core.BigDecimalFormatter;
 
+/**
+ * 
+ * @author Alberto Souza
+ *
+ */
 public class AmexDadosAutorizacaoPagamento {
 
 	private AmexCheckout checkout;

@@ -1,7 +1,6 @@
 package br.com.caelum.stella.gateway.integration;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -103,18 +102,15 @@ public class PagSeguroTestSolicitacaoIntegracao {
 			String nomeArquivo) {
 		PagSeguroDadosAutorizacaoPagamento dadosAutorizacaoPagamento = new PagSeguroSolicitaAutorizacaoPagamento(
 				checkout).handle();
-		try {
-			new HtmlViewerHelper().body("").form(
-					configuracao.getUrlComponenteAutorizacao(), "post",
-					"pagamento").createInputsHidden(
-					criarCampos(dadosAutorizacaoPagamento))
-					.criarPaginaTemporariaNoDisco(
-							new File("").getAbsolutePath() + File.separator
-									+ "/" + nomeArquivo);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		new HtmlViewerHelper().body("")
+				.form(configuracao.getUrlComponenteAutorizacao(), "post",
+						"pagamento").createInputsHidden(
+						criarCampos(dadosAutorizacaoPagamento))
+				.criarPaginaTemporariaNoDisco(
+						new File("").getAbsolutePath() + File.separator + "/"
+								+ nomeArquivo);
+
 	}
 
 	private Map<String, Object> criarCampos(

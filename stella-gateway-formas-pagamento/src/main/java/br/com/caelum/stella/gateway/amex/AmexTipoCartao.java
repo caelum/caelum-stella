@@ -1,7 +1,11 @@
 package br.com.caelum.stella.gateway.amex;
 
 import br.com.caelum.stella.gateway.core.DefinedByCode;
-
+/**
+ * 
+ * @author Alberto Souza
+ *
+ */
 public enum AmexTipoCartao implements DefinedByCode {
 
 	AMERICA_EXPRESS("AE"), AMERICA_EXPRESS_CORPORATE_PURCHASE__CARD("AP"), BANK_CARD(

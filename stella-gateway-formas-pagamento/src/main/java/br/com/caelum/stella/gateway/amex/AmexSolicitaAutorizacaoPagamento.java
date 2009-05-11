@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.amex;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Constroi o objeto que deve ser utilizado para realizar a integração.
+ * Constroi o objeto que deve ser utilizado para realizar a integração em 3 partes
  * 
  * @author Alberto Pc
  * 

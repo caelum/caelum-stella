@@ -9,15 +9,14 @@ package br.com.caelum.stella.gateway.visa;
 public class VISAAutorizacaoReturn implements VISAIntegrationReturn {
 
 	private String pan;
-	private VISABasicDataReturn dadosBasicoDeRetorno;
-	private int bank;
+	private VISABasicDataReturn dadosBasicoDeRetorno;	
 	private VISACheckout checkout;
+	
 
 	public VISAAutorizacaoReturn(VISABasicDataReturn dadosBasicoDeRetorno,
-			String arp, String pan, int bank, VISACheckout checkout) {
+			String arp, String pan, VISACheckout checkout) {
 		super();
-		this.pan = pan;
-		this.bank = bank;
+		this.pan = pan;		
 		this.dadosBasicoDeRetorno = dadosBasicoDeRetorno;
 		this.checkout = checkout;
 	}
@@ -30,9 +29,6 @@ public class VISAAutorizacaoReturn implements VISAIntegrationReturn {
 		return checkout;
 	}
 
-	public int getBank() {
-		return bank;
-	}
 	
 	public String getArs() {
 		return dadosBasicoDeRetorno.getArs();

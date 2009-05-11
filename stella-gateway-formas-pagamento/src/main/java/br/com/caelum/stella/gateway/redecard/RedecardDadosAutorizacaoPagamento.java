@@ -76,7 +76,7 @@ public class RedecardDadosAutorizacaoPagamento {
 	}
 
 
-	public RedecardFormaPagamento getParcelamento() {
+	public RedecardFormaPagamento getFormaPagamento() {
 		return checkout.getFormaPagamento();
 	}
 

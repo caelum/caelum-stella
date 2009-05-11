@@ -64,9 +64,9 @@ public class RedecardTestSolicitacaoDeIntegracao {
 		HashMap<String, Object> fields = new HashMap<String, Object>();
 		fields.put("TOTAL", dadosAutorizacaoPagamento
 				.getTotalComDuasCasasDecimais());
-		fields.put("TRANSACAO", dadosAutorizacaoPagamento.getParcelamento()
+		fields.put("TRANSACAO", dadosAutorizacaoPagamento.getFormaPagamento()
 				.getTipoTransacao());
-		fields.put("PARCELAS", dadosAutorizacaoPagamento.getParcelamento()
+		fields.put("PARCELAS", dadosAutorizacaoPagamento.getFormaPagamento()
 				.getNumeroDeParcelasComNoMinimoDoisDigitos());
 		fields.put("FILIACAO", dadosAutorizacaoPagamento.getFiliacao());
 		fields.put("DISTRIBUIDOR", dadosAutorizacaoPagamento

@@ -6,7 +6,7 @@ import br.com.caelum.stella.gateway.core.GatewaysConf;
  * Classe para guardar os dados de configuração que são devolvidos entre
  * transações.
  * 
- * @author Alberto Pc
+ * @author Alberto Souza
  * 
  */
 public class AmexDadosConfiguracao {

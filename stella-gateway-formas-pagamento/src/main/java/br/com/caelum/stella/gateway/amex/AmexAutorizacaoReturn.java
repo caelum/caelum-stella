@@ -3,6 +3,11 @@ package br.com.caelum.stella.gateway.amex;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * 
+ * @author Alberto Souza
+ *
+ */
 public class AmexAutorizacaoReturn {
 
 	private AmexDadosConfiguracao amexDadosConfiguracao;

@@ -28,12 +28,11 @@ public class VISATestRetornoIntegracaoComponente {
 				atLeast(2).of(request).getParameter("lr");will(returnValue("00"));
 				one(request).getParameter("orderid");will(returnValue("123456"));
 				one(request).getParameter("free");will(returnValue("free"));
-				one(request).getParameter("price");will(returnValue("100"));
+				one(request).getParameter("Price");will(returnValue("100"));
 				one(request).getParameter("ars");will(returnValue("autorizada"));
 				one(request).getParameter("tid");will(returnValue("12345678"));
 				one(request).getParameter("arp");will(returnValue("1332"));
-				one(request).getParameter("pan");will(returnValue("4739856348950"));
-				one(request).getParameter("bank");will(returnValue("3479"));
+				one(request).getParameter("Pan");will(returnValue("4739856348950"));				
 			}
 		});
 		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.AUTORIZACAO_RETORNO_BUILDER);
@@ -68,15 +67,14 @@ public class VISATestRetornoIntegracaoComponente {
 		mockery.checking(new Expectations(){
 			{
 				atLeast(2).of(request).getParameter("lr");will(returnValue("00"));				
-				one(request).getParameter("free");will(returnValue("free"));				
+						
 				one(request).getParameter("ars");will(returnValue("autorizada"));
-				one(request).getParameter("tid");will(returnValue("12345678"));
-				one(request).getParameter("cancel_amount");will(returnValue("200"));
+				one(request).getParameter("tid");will(returnValue("12345678"));				
 			}
 		});
 		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CANCELAMENTO_RETORNO_BUILDER);
 		VISACancelamentoReturn cancelamentoReturn = (VISACancelamentoReturn)retornoIntegracaoViaHttp.handle();
-		Assert.assertEquals(new BigDecimal(2).setScale(2),cancelamentoReturn.getCancel_amount());
+		
 		
 	}	
 	
@@ -94,7 +92,7 @@ public class VISATestRetornoIntegracaoComponente {
 				one(request).getParameter("tid");will(returnValue("12345678"));
 				one(request).getParameter("arp");will(returnValue("1332"));
 				one(request).getParameter("bank");will(returnValue("4739"));
-				one(request).getParameter("authent");will(returnValue("0"));
+				one(request).getParameter("Authent");will(returnValue("0"));
 			}
 		});
 		VISAVerificacaoRetornoIntegracaoViaHttp retornoIntegracaoViaHttp = new VISAVerificacaoRetornoIntegracaoViaHttp(request,VISAHttpReturnBuilder.CONSULTA_RETORNO_BUILDER);

@@ -1,19 +1,16 @@
 package br.com.caelum.stella.gateway.visa;
 
-import org.apache.commons.httpclient.methods.PostMethod;
-
-import br.com.caelum.stella.gateway.core.HttpIntegrationRequester;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Classe responsável por fazer as integrações que visam conferir o status da
- * autorização de pagamento
+ * Classe responsável por criar o objeto que deve ser utilizado para realizar 
+ * as possiveis conferências das compras.
  * 
  * @author Alberto Pc
  * 
  */
 public class VISASolicitacaoConferenciaViaHttp implements
-		IntegrationHandler<String> {
+		IntegrationHandler<VISADadosConferencia> {
 	
 	private String tid;
 	private VISATipoSolicitacaoIntegracao solicitacaoConferencia;
@@ -38,13 +35,9 @@ public class VISASolicitacaoConferenciaViaHttp implements
 
 
 
-	public String handle() {
+	public VISADadosConferencia handle() {
 		// TODO Auto-generated method stub
-		PostMethod post = new PostMethod(solicitacaoConferencia
-				.getUrlComponente());
-		post.addParameter("tid", tid);
-		post.addParameter("merchid", dadosConfiguracao.getNomeArquivoConfiguracao());
-		return new HttpIntegrationRequester(post).makeRequest();
+		return new VISADadosConferencia(tid,dadosConfiguracao.getNomeArquivoConfiguracao(),solicitacaoConferencia.getUrlComponente());
 	}
 
 }

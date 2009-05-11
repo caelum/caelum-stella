@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Representa o checkout para o Amex.
  * 
- * @author Alberto Pc
+ * @author Alberto Souza
  * 
  */
 public class AmexCheckout {

@@ -26,12 +26,12 @@ public class TestVisaCheckout {
 
 	@Test
 	public void testValorDaCompraFormatado() {
-		Assert.assertEquals("1234548", new VISACheckout(null,null,null,new BigDecimal(12345.48),null,null).getValorFormatado());
+		Assert.assertEquals("1234548", new VISACheckout(null,null,null,new BigDecimal(12345.48),null).getValorFormatado());
 	}
 	
 	@Test
 	public void testFormatandoParaBigDecimalOValor(){
-		Assert.assertEquals(new BigDecimal(12345.45).setScale(2,RoundingMode.HALF_EVEN), new VISACheckout(null,null,null,"1234545",null,null).getPrice());
+		Assert.assertEquals(new BigDecimal(12345.45).setScale(2,RoundingMode.HALF_EVEN), new VISACheckout(null,null,null,"1234545",null).getPrice());
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class TestVisaCheckout {
 	@Test
 	public void testGeracaoDoTidComDebito() {
 		Calendar dataReferencia = getDataReferencia();
-		Assert.assertEquals("7348940511505254A001",new VISACheckout(null,null,null,BigDecimal.ONE,new VISAFormaPagamento(VISATipoTransacao.DEBITO,1),null).getTid(dataReferencia,NUMERO_FILIACAO_TESTE));		
+		Assert.assertEquals("7348940511505254A001",new TIDGenerator().getTid(new VISAFormaPagamento(VISATipoTransacao.DEBITO,1),dataReferencia,NUMERO_FILIACAO_TESTE));		
 	}	
 
 }
