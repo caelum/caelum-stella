@@ -29,7 +29,7 @@ class BarcodeGenerator {
         bar.setBarHeight(37.00f);
         bar.setFont(null);
         bar.setX(0.73f);
-        bar.setN(3);
+        bar.setN(3);        
         return bar.createAwtImage(Color.BLACK, Color.WHITE);
     }
 }

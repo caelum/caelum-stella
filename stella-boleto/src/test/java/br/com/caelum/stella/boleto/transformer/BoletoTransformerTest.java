@@ -110,21 +110,6 @@ public class BoletoTransformerTest {
 
         class BoletoWriterMock implements BoletoWriter {
 
-            public void write(final float x, final float y, final String text) {
-                Assert.assertNotNull(text);
-            }
-
-            public void writeBold(final float x, final float y,
-                    final String text) {
-                Assert.assertNotNull(text);
-            }
-
-            public void writeImage(final float x, final float y,
-                    final BufferedImage image, final float width,
-                    final float height) {
-                Assert.assertNotNull(image);
-            }
-
             public InputStream toInputStream() {
                 return null;
             }
@@ -132,6 +117,11 @@ public class BoletoTransformerTest {
             public boolean newPage() {
                 return false;
             }
+
+			public void write(Boleto boleto) {
+				// TODO Auto-generated method stub
+				Assert.assertNotNull(boleto);
+			}
         }
 
         BoletoTransformer transformer = new BoletoTransformer(

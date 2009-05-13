@@ -12,6 +12,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.GeracaoBoletoException;
 
 import com.lowagie.text.pdf.BaseFont;
@@ -27,7 +28,7 @@ import com.lowagie.text.pdf.BaseFont;
  * @author Paulo Silveira
  * 
  */
-public class PNGBoletoWriter implements BoletoWriter {
+public class PNGBoletoWriter implements BoletoWriter,TextWriter {
 
     private static final int NORMAL_SIZE = 36;
 
@@ -42,6 +43,8 @@ public class PNGBoletoWriter implements BoletoWriter {
     private InputStream stream;
 
     private final Graphics2D graphics;
+    
+    private PNGPDFTransformerHelper writerHelper;
 
     public PNGBoletoWriter() {
         this(2144f, 1900);
@@ -63,6 +66,8 @@ public class PNGBoletoWriter implements BoletoWriter {
         this.fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
 
         this.fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
+        
+        this.writerHelper = new PNGPDFTransformerHelper(this);        
     }
 
     public InputStream toInputStream() {
@@ -118,4 +123,9 @@ public class PNGBoletoWriter implements BoletoWriter {
     public boolean newPage() {
         throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
     }
+
+	public void write(Boleto boleto) {
+		// TODO Auto-generated method stub
+		this.writerHelper.transform(boleto);
+	}
 }

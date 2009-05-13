@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.GeracaoBoletoException;
 
 import com.lowagie.text.BadElementException;
@@ -30,7 +31,7 @@ import com.lowagie.text.pdf.PdfWriter;
  * @author Paulo Silveira
  * @author Leonardo Bessa
  */
-public class PDFBoletoWriter implements BoletoWriter {
+public class PDFBoletoWriter implements BoletoWriter,TextWriter {
 
     private static final int NORMAL_SIZE = 8;
 
@@ -51,6 +52,8 @@ public class PDFBoletoWriter implements BoletoWriter {
     private final PdfContentByte contentByte;
 
     private final int scale = 1;
+    
+    private PNGPDFTransformerHelper writerHelper;
 
     public PDFBoletoWriter(Rectangle rectangle) {
         this.bytes = new ByteArrayOutputStream();
@@ -71,6 +74,7 @@ public class PDFBoletoWriter implements BoletoWriter {
         this.document.open();
         this.contentByte = this.writer.getDirectContent();
         this.document.newPage();
+        this.writerHelper = new PNGPDFTransformerHelper(this);
     }
 
     public PDFBoletoWriter() {
@@ -131,5 +135,10 @@ public class PDFBoletoWriter implements BoletoWriter {
     public boolean newPage() {
         return document.newPage();
     }
+
+	public void write(Boleto boleto) {
+		// TODO Auto-generated method stub
+		writerHelper.transform(boleto);
+	}
 
 }
