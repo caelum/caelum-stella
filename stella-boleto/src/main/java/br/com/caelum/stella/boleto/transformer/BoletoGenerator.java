@@ -109,42 +109,8 @@ public class BoletoGenerator {
 
 	}
 
-	/**
-	 * Gera um boleto html e grava no caminho indicado. Para as urls dos
-	 * arquivos referenciados no boleto, È usado a url padr„o
-	 * br/com/caelum/stella/boleto/html/img/.
-	 * 
-	 * @param arquivo
-	 */
-	public void toHTML(String arquivo) {
-		File file = new File(arquivo);
-		toHTML(file);
-	}
 
-	/**
-	 * Gera um boleto html e grava no arquivo indicado. Para as urls dos
-	 * arquivos referenciados no boleto, È usado a url padr„o
-	 * br/com/caelum/stella/boleto/html/img/.
-	 * 
-	 * @param arquivo
-	 */
-	public void toHTML(File arquivo) {
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(arquivo);
-			byte[] b = toHTML();
-			fos.write(b);
-		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException(
-					"Erro na gera√ß√£o do boleto em HTML", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na gera√ß√£o do boleto em HTML", e);
-		} finally {
-			tryToClose(fos);
-		}
 
-	}
 
 	/**
 	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
@@ -160,13 +126,6 @@ public class BoletoGenerator {
 		return to(new PNGBoletoWriter());
 	}
 
-	/**
-	 * Devolve um array de bytes representando o HTML desse boleto ja gerado.
-	 */
-	public byte[] toHTML() {
-		return to(new HTMLBoletoWriter(BoletoGenerator.class.getResource(
-				"/br/com/caelum/stella/boleto/html/img/").getFile()));
-	}
 
 	/**
 	 * Devolve o array de bytes do boleto escrito pelo writer indicado.

@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -43,14 +42,13 @@ class PNGPDFTransformerHelper {
 	private static final float LINHA13 = 77;
 	private TextWriter writer;
 	private URL imagemTitulo;
-	private BoletoFormatter formatter;
+
 
 	public PNGPDFTransformerHelper(TextWriter writer) {
 		super();
 		this.writer = writer;
 		this.imagemTitulo = PNGPDFTransformerHelper.class
-				.getResource("/br/com/caelum/stella/boleto/img/template.png");
-		this.formatter = new BoletoFormatter();
+				.getResource("/br/com/caelum/stella/boleto/img/template.png");		
 	}
 
 	/**
@@ -82,7 +80,7 @@ class PNGPDFTransformerHelper {
 		this.writer.write(230, LINHA2, formatDate(boleto.getDatas()
 				.getVencimento()));
 
-		this.writer.write(400, LINHA2, formatter.formatValue(boleto
+		this.writer.write(400, LINHA2, BoletoFormatter.formatValue(boleto
 				.getValorBoleto().doubleValue()));
 
 		this.writer.write(5, LINHA3, boleto.getEmissor().getAgenciaFormatado()
@@ -148,7 +146,7 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
-		this.writer.write(430, LINHA8, formatter.formatValue(boleto
+		this.writer.write(430, LINHA8, BoletoFormatter.formatValue(boleto
 				.getValorBoleto().doubleValue()));
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
@@ -170,7 +168,7 @@ class PNGPDFTransformerHelper {
 
 		Image imagemDoCodigoDeBarras = BarcodeGenerator
 				.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
-						boleto));		
+						boleto),37.00f);		
 
 		try {
 			this.writer.writeImage(40, 10, toBufferedImage(
@@ -192,13 +190,7 @@ class PNGPDFTransformerHelper {
 	 * @param type
 	 */
 	private BufferedImage toBufferedImage(Image image, int type) {
-		int w = image.getWidth(null);
-		int h = image.getHeight(null);
-		BufferedImage result = new BufferedImage(w, h, type);
-		Graphics2D g = result.createGraphics();
-		g.drawImage(image, 0, 0, null);
-		g.dispose();
-		return result;
+		return BufferedImageGenerator.generateBufferedImageFor(image,type);
 	}
 
 	/**
@@ -219,7 +211,7 @@ class PNGPDFTransformerHelper {
 	 * @return
 	 */
 	private String formatDate(Calendar date) {
-		return new BoletoFormatter().formatDate(date);
+		return BoletoFormatter.formatDate(date);
 	}
 
 }

@@ -16,15 +16,15 @@ import br.com.caelum.stella.boleto.CriacaoBoletoException;
  */
 class BoletoFormatter {
 	
-    private final NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
+    private static final NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
             "#,##0.00"));
-    private final String datePattern = "%1$td/%1$tm/%1$tY"; 
+    private static final String datePattern = "%1$td/%1$tm/%1$tY"; 
 
-	public String formatDate(Calendar date){
+	static String formatDate(Calendar date){
 		return String.format(datePattern, date);
 	}
 	
-	public String formatValue(double value){
+	static String formatValue(double value){
 		try {
 			return formatter.valueToString(value);
 		} catch (ParseException e) {

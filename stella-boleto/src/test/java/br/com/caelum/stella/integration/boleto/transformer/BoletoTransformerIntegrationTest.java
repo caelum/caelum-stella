@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -64,7 +62,7 @@ public class BoletoTransformerIntegrationTest {
 
 		generator.toPDF("arquivo.pdf");
 		generator.toPNG("arquivo.png");
-		generator.toHTML("arquivo.html");
+		
 	}
 
 	@Test
@@ -95,35 +93,6 @@ public class BoletoTransformerIntegrationTest {
 	}
 
 	@Test
-	public void testHTMLWriterGeneration() {
-		assertTrue(new File("arquivo.html").exists());
-	}
-
-	@Test
-	public void testHTMLWriterEscreveValorCorreto() throws IOException {
-		FileInputStream fileInputStream = new FileInputStream("arquivo.html");
-		StringBuffer text = new StringBuffer();
-		int c = 0;
-		while ((c = fileInputStream.read()) != -1) {
-			text.append((char) c);
-		}
-		assertTrue(text.toString().contains("40,00"));
-	}
-
-	@Test
-	public void testHTMLWriterEscreveLinhaDigitavelCorreta() throws IOException {
-		FileInputStream fileInputStream = new FileInputStream("arquivo.html");
-		StringBuffer text = new StringBuffer();
-		int c = 0;
-		while ((c = fileInputStream.read()) != -1) {
-			text.append((char) c);
-		}
-
-		assertTrue(text.toString().contains(
-				"00190.00009  01207.113000  09000.206186  5  38600000004000"));
-	}
-
-	@Test
 	public void testPNGWriteGeneration() {
 		assertTrue(new File("arquivo.png").exists());
 	}
@@ -132,11 +101,9 @@ public class BoletoTransformerIntegrationTest {
 	@BeforeClass
 	public static void apagaArquivosGerados() {
 		final File pngFile = new File("arquivo.png");
-		final File pdfFile = new File("arquivo.pdf");
-		final File htmlFile = new File("arquivo.html");
+		final File pdfFile = new File("arquivo.pdf");		
 		apagaArquivoSeExistir(pngFile);
-		apagaArquivoSeExistir(pdfFile);
-		apagaArquivoSeExistir(htmlFile);
+		apagaArquivoSeExistir(pdfFile);		
 	}
 
 	private static void apagaArquivoSeExistir(final File pngFile) {
@@ -144,5 +111,5 @@ public class BoletoTransformerIntegrationTest {
 			(pngFile).delete();
 		}
 	}
-
+	
 }
