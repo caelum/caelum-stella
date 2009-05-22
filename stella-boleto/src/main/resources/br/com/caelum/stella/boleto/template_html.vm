@@ -1,0 +1,260 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Boleto</title>
+<style>
+BODY {
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Arial;
+	BACKGROUND-COLOR: #ffffff
+}
+
+TABLE {
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid
+}
+
+TD {
+	BORDER-RIGHT: #000000 1px solid;
+	BORDER-TOP: #000000 1px solid;
+	FONT-SIZE: 7pt;
+	FONT-FAMILY: Arial
+}
+
+.noborder {
+	BORDER-RIGHT: 0px;
+	BORDER-TOP: 0px;
+	BORDER-LEFT: 0px;
+	BORDER-BOTTOM: 0px;
+}
+
+.campo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 8pt;
+	MARGIN-LEFT: 2px;
+	MARGIN-RIGHT: 2px;
+	FONT-FAMILY: Verdana
+}
+</style>
+<!-- BoletoExibe 1.99 - 15/10/2006 (não remova)-->
+</head>
+<body>
+#foreach ($boleto in $boletos)
+<div align="center"><IMG src="${urlServletBoleto}?type=img&value=corte.png"><br>
+<br>
+<TABLE class="noborder" id="Table1" cellSpacing="0" cellPadding="0"
+	width="640" border="0">
+
+	<tr>
+		<td class="noborder" width="150"><img src="${urlServletBoleto}?type=img&value=${boleto.banco.numeroFormatado}.png"
+			border=0></TD>
+		<td class="noborder" vAlign="bottom">
+		<TABLE class="noborder" id="Table8" height="25" cellSpacing="0"
+			cellPadding="0" width="480" align="right" border="0">
+			<tr>
+				<td class="noborder" style="BORDER-LEFT: #000000 2px solid"
+					align="center" width="60"><font Class=campo
+					style="FONT-SIZE: 10pt">${boleto.banco.numeroFormatado}</font></TD>
+				<td class="noborder" style="BORDER-LEFT: #000000 2px solid"
+					align="right"><font Class=campo>${boleto.linhaDigitavel()}</font></TD>
+			</tr>
+		</TABLE>
+		</TD>
+	</tr>
+</TABLE>
+<TABLE id="Table7" cellSpacing="0" cellPadding="0" width="640"
+	border="0">
+
+	<tr>
+		<td height=27 vAlign="top" width="340" colSpan="3">Cedente<br>
+		<font Class=campo>${boleto.emissor.cedente}</font></TD>
+		<td vAlign="top" width="150">Agência/Código Cedente<br>
+		<DIV align="right" Class=campo>${boleto.emissor.agenciaFormatado}-${boleto.emissor.dvAgencia}/${boleto.contaCorrente()}-${boleto.emissor.dvContaCorrente}</DIV>
+		</TD>
+		<td bgcolor="#dddddd" vAlign="top" width="150">Vencimento<br>
+		<DIV align="right" Class=campo>${boleto.formataData($boleto.datas.vencimento)}</DIV>
+		</TD>
+	</tr>
+	<tr>
+		<td height=27 vAlign="top" colSpan="3">Sacado<br>
+		<font Class=campo>${boleto.sacado.nome}/${boleto.sacado.cpf}</font></TD>
+
+		<td vAlign="top">Número do Documento<br>
+		<DIV align="right" Class=campo>${boleto.noDocumentoFormatado}</DIV>
+		</TD>
+		<td vAlign="top" nowrap>Nosso Número<br>
+		<DIV align="right" Class=campo>${boleto.nossoNumero()}</DIV>
+
+		</TD>
+	</tr>
+	<tr>
+		<td height=27 vAlign="top" bgcolor="#dddddd" width="90">Espécie<br>
+		<DIV align="center" class=campo>${boleto.especieMoeda}</DIV>
+		</TD>
+		<td vAlign="top" width="100">Quantidade <br>
+
+		</TD>
+		<td vAlign="top" width="150">(x) Valor<br>
+		</TD>
+		<td vAlign="top">(-) Descontos / Abatimentos<br>
+		&nbsp;</TD>
+		<td vAlign="top" bgcolor="#dddddd">(=) Valor Documento<br>
+		<DIV align="right" Class=campo>${boleto.formataValor()}</DIV>
+		</TD>
+
+	</tr>
+	<tr>
+		<td height=27 vAlign="bottom" colSpan="3">Demonstrativo:</TD>
+		<td vAlign="top">(+) Outros Acréscimos<br>
+		&nbsp;</TD>
+
+		<td vAlign="top">(=) Valor Cobrado<br>
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td height=70 vAlign="top" colSpan="5"><font class=campo></font></TD>
+	</tr>
+</TABLE>
+<br>
+
+<IMG src="${urlServletBoleto}?type=img&value=corte.png"><br>
+<br>
+<TABLE class="noborder" id="Table10" cellSpacing="0" cellPadding="0"
+	width="640" border="0">
+	<tr>
+		<td class="noborder" width="150"><img src="${urlServletBoleto}?type=img&value=${boleto.banco.numeroFormatado}.png"
+			border=0></TD>
+		<td class="noborder" vAlign="bottom">
+		<TABLE class="noborder" id="Table11" height="25" cellSpacing="0"
+			cellPadding="0" width="480" align="right" border="0">
+			<tr>
+
+				<td class="noborder" style="BORDER-LEFT: #000000 2px solid"
+					align="center" width="60"><font Class=campo
+					style="FONT-SIZE: 10pt">${boleto.banco.numeroFormatado}</font></TD>
+				<td class="noborder" style="BORDER-LEFT: #000000 2px solid"
+					align="right"><font Class=campo>${boleto.linhaDigitavel()}</font></TD>
+			</tr>
+		</TABLE>
+		</TD>
+	</tr>
+
+</TABLE>
+<TABLE id="Table9" cellSpacing="0" cellPadding="0" width="640"
+	border="0">
+	<tr>
+		<td height=27 colSpan="6">Local de Pagamento<br>
+			<font class=campo>
+			#foreach ($localPagamento in $boleto.locaisDePagamento)
+				 ${localPagamento}<br>			
+			#end
+			</font>
+		</TD>
+		<td bgcolor="#dddddd" width="150">Vencimento<br>
+		<DIV align="right" Class=campo>${boleto.formataData($boleto.datas.vencimento)}</DIV>
+		</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27 colSpan="6">Cedente<br>
+		<font Class=campo>${boleto.emissor.cedente}</font></TD>
+
+		<td valign=top>Agência/Código Cedente<br>
+		<DIV align="right" Class=campo>${boleto.emissor.agenciaFormatado}-${boleto.emissor.dvAgencia}/${boleto.contaCorrente()}-${boleto.emissor.dvContaCorrente}</DIV>
+		</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27>Data Documento<br>
+
+		<DIV align="center" Class=campo>${boleto.formataData($boleto.datas.documento)}</DIV>
+		</TD>
+		<td valign=top colSpan="2">Número do Documento<br>
+		<DIV align="center" Class=campo>${boleto.noDocumentoFormatado}</DIV>
+		</TD>
+
+		<td valign=top>Espécie Doc.<br>
+		<DIV align="center" class=campo>${boleto.especieDocumento}</DIV>
+		</TD>
+		<td valign=top>Aceite<br>
+		<DIV align="center" class=campo>${boleto.aceite()}</DIV>
+		</TD>
+		<td valign=top>Data Processamento<br>
+
+		<DIV align="center" Class=campo>${boleto.formataData($boleto.datas.processamento)}</DIV>
+		</TD>
+		<td valign=top nowrap>Nosso Número<br>
+		<DIV align="right" Class=campo>${boleto.nossoNumero()}</DIV>
+		</TD>
+
+	</tr>
+	<tr>
+		<td height=27 valign=top>Uso do Banco<br>
+		</TD>
+		<td valign=top>Carteira<br>
+		<DIV align="center" class=campo>${boleto.carteira()}</DIV>
+
+		</TD>
+		<td valign=top bgcolor="#dddddd">Espécie<br>
+		<DIV align="center" class=campo>${boleto.especieMoeda}</DIV>
+		</TD>
+		<td valign=top colSpan="2">Quantidade<br>
+		</TD>
+		<td valign=top>(x) Valor<br>
+		</TD>
+
+		<td valign=top bgcolor="#dddddd">(=) Valor documento<br>
+		<DIV align="right" Class=campo>${boleto.formataValor()}</DIV>
+		</TD>
+	</tr>
+	<tr>
+		<td vAlign="top" colSpan="6" rowSpan="5"><b>Instruções</b><br>
+			#foreach ($inst in $boleto.instrucoes)
+				 ${inst}<br>			
+			#end
+		<font class=campo>
+		
+		</font></TD>
+		<td valign=top height=27>(-) Descontos / Abatimentos<br>
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27>(-) Outras Deduções<br>
+
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27>(+) Mora / Multa<br>
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27>(+) Outros Acrescimos<br>
+
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td valign=top height=27>(=) Valor<br>
+		&nbsp;</TD>
+	</tr>
+	<tr>
+		<td height=70 valign=top colSpan="7">Sacado<br>
+
+		<font Class=campo> ${boleto.sacado.nome}/${boleto.sacado.cpf}:
+		<br>
+		${boleto.sacado.endereco} <br>
+		${boleto.sacado.bairro} - ${boleto.sacado.cidade} <br>
+		CEP: ${boleto.sacado.cep} ${boleto.sacado.uf}</font></TD>
+	</tr>
+</TABLE>
+<TABLE class="noborder" id="Table12" cellSpacing="0" cellPadding="0"
+	width="640" border="0">
+	<tr>
+		<td class="noborder">
+		<div align=right style="FONT-SIZE: 8pt; FONT-FAMILY: Arial"><small>Autenticação
+		Mecânica/Ficha de Compensação</small></div>
+		<!-- Aqui entra a imagem do boleto --><img src="${urlServletBoleto}?type=barCode&value=${boleto.codigoDeBarras()}" /></TD>
+	</tr>
+</TABLE>
+<br>
+<IMG src="${urlServletBoleto}?type=img&value=corte.png"></div>
+#end
+</body>
+</html>
