@@ -1,0 +1,15 @@
+out
+.classpath
+.project
+*.ipr
+*.iws
+*.iml
+target
+classes
+build
+.settings
+cobertura.ser
+bin
+.DS_Store
+xsite-1.0
+*.class
