@@ -13,3 +13,7 @@ bin
 .DS_Store
 xsite-1.0
 *.class
+*.log
+test.properties
+test.script
+arquivo.html
