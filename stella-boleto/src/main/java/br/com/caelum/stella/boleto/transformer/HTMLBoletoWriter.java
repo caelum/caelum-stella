@@ -30,214 +30,197 @@ import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
 
 public class HTMLBoletoWriter implements BoletoWriter {
 
-	private URL urlServletBoleto;
-	private Template template;
-	private Collection<BoletoTemplateWrapper> boletos;
-	private VelocityEngine velocityEngine;
+    private final URL urlServletBoleto;
+    private Template template;
+    private final Collection<BoletoTemplateWrapper> boletos;
+    private final VelocityEngine velocityEngine;
 
-	/**
-	 * 
-	 * @param urlServletBoleto
-	 *            url de sua app. Ex: http://www.algumsite.com.br/stella-boleto/
-	 */
-	public HTMLBoletoWriter(URL urlServletBoleto) {
-		this.urlServletBoleto = urlServletBoleto;
-		this.boletos = new ArrayList<BoletoTemplateWrapper>();
-		this.velocityEngine = new VelocityEngine();
-		Properties config = new Properties();
-		config
-				.setProperty("file.resource.loader.class",
-						"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-		try {
-			this.velocityEngine.init(config);
-			this.template = velocityEngine
-					.getTemplate("/br/com/caelum/stella/boleto/template_html.vm");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			throw new GeracaoBoletoException(
-					"Não foi possivel iniciar a configuração do Velocity", e);
-		}
-	}
+    /**
+     * 
+     * @param urlServletBoleto
+     *            url de sua app. Ex: http://www.algumsite.com.br/stella-boleto/
+     */
+    public HTMLBoletoWriter(final URL urlServletBoleto) {
+        this.urlServletBoleto = urlServletBoleto;
+        boletos = new ArrayList<BoletoTemplateWrapper>();
+        velocityEngine = new VelocityEngine();
+        Properties config = new Properties();
+        config.setProperty("file.resource.loader.class",
+                "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        try {
+            velocityEngine.init(config);
+            template = velocityEngine.getTemplate("/br/com/caelum/stella/boleto/template_html.vm");
+        } catch (Exception e) {
+            throw new GeracaoBoletoException("NÃ£o foi possivel iniciar a configuraÃ§Ã£o do Velocity", e);
+        }
+    }
 
-	/**
-	 * 
-	 * @param boleto
-	 * 
-	 */
-	public void write(Boleto boleto) {
-		BoletoTemplateWrapper wrapper = new BoletoTemplateWrapper(boleto);
-		this.boletos.add(wrapper);
-	}
+    /**
+     * 
+     * @param boleto
+     * 
+     */
+    public void write(final Boleto boleto) {
+        BoletoTemplateWrapper wrapper = new BoletoTemplateWrapper(boleto);
+        boletos.add(wrapper);
+    }
 
-	public boolean newPage() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    public boolean newPage() {
+        return true;
+    }
 
-	public InputStream toInputStream() {
-		// TODO Auto-generated method stub
+    public InputStream toInputStream() {
 
-		StringWriter writer = new StringWriter();
-		VelocityContext context = new VelocityContext();
-		context.put("boletos", boletos);
-		context.put("urlServletBoleto", urlServletBoleto.toExternalForm());
-		try {
-			template.merge(context, writer);
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new CriacaoBoletoException("Erro na criação do boleto", e);
-		} catch (ParseErrorException e) {
-			// TODO Auto-generated catch block
-			throw new CriacaoBoletoException("Erro na criação do boleto", e);
-		} catch (MethodInvocationException e) {
-			// TODO Auto-generated catch block
-			throw new CriacaoBoletoException("Erro na criação do boleto", e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new CriacaoBoletoException("Erro na criação do boleto", e);
-		}
-		return new ByteArrayInputStream(writer.toString().getBytes());
-	}
+        StringWriter writer = new StringWriter();
+        VelocityContext context = new VelocityContext();
+        context.put("boletos", boletos);
+        context.put("urlServletBoleto", urlServletBoleto.toExternalForm());
+        try {
+            template.merge(context, writer);
+        } catch (ResourceNotFoundException e) {
+            throw new CriacaoBoletoException("Erro na criaÃ§Ã£o do boleto", e);
+        } catch (ParseErrorException e) {
+            throw new CriacaoBoletoException("Erro na criaÃ§Ã£o do boleto", e);
+        } catch (MethodInvocationException e) {
+            throw new CriacaoBoletoException("Erro na criaÃ§Ã£o do boleto", e);
+        } catch (IOException e) {
+            throw new CriacaoBoletoException("Erro na criaÃ§Ã£o do boleto", e);
+        }
+        return new ByteArrayInputStream(writer.toString().getBytes());
+    }
 
-	/**
-	 * Apenas para ajudar com algumas coisas que ficam meio complicadas se
-	 * colocadas diretas no template
-	 * 
-	 * @author Alberto Pc
-	 * 
-	 */
-	public class BoletoTemplateWrapper {
-		private LinhaDigitavelGenerator linhaDigitavelGenerator;
-		private Boleto boleto;
-		private String linhaDigitavel;
-		private String codigoDeBarras;
+    /**
+     * Apenas para ajudar com algumas coisas que ficam meio complicadas se
+     * colocadas diretas no template
+     * 
+     * @author Alberto Pc
+     * 
+     */
+    public class BoletoTemplateWrapper {
+        private final LinhaDigitavelGenerator linhaDigitavelGenerator;
+        private final Boleto boleto;
+        private final String linhaDigitavel;
+        private final String codigoDeBarras;
 
-		/**
-		 * Como a classe tinha que ter visibilidade pública, pois o template
-		 * fica em outro pacote, deixei o construtor privado para não correr o
-		 * risco de alguém usar.
-		 */
-		private BoletoTemplateWrapper(Boleto boleto) {
-			this.boleto = boleto;
-			this.linhaDigitavelGenerator = new LinhaDigitavelGenerator();
-			linhaDigitavel = linhaDigitavelGenerator
-					.geraLinhaDigitavelPara(this.boleto);
-			codigoDeBarras = this.boleto.getBanco().geraCodigoDeBarrasPara(
-					this.boleto);
-		}
+        /**
+         * Como a classe tinha que ter visibilidade pï¿½blica, pois o template
+         * fica em outro pacote, deixei o construtor privado para nï¿½o correr o
+         * risco de alguï¿½m usar.
+         */
+        private BoletoTemplateWrapper(final Boleto boleto) {
+            this.boleto = boleto;
+            linhaDigitavelGenerator = new LinhaDigitavelGenerator();
+            linhaDigitavel = linhaDigitavelGenerator.geraLinhaDigitavelPara(this.boleto);
+            codigoDeBarras = this.boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
+        }
 
-		public char aceite() {
-			return getAceite() ? 'S' : 'N';
-		}
+        public char aceite() {
+            return getAceite() ? 'S' : 'N';
+        }
 
-		public String formataData(Calendar data) {
-			return BoletoFormatter.formatDate(data);
-		}
+        public String formataData(final Calendar data) {
+            return BoletoFormatter.formatDate(data);
+        }
 
-		public String formataValor() {
-			return BoletoFormatter.formatValue(boleto.getValorBoleto()
-					.doubleValue());
-		}
+        public String formataValor() {
+            return BoletoFormatter.formatValue(boleto.getValorBoleto().doubleValue());
+        }
 
-		public String nossoNumero() {
-			return getBanco().getNossoNumeroDoEmissorFormatado(
-					boleto.getEmissor());
-		}
+        public String nossoNumero() {
+            return getBanco().getNossoNumeroDoEmissorFormatado(boleto.getEmissor());
+        }
 
-		public String carteira() {
-			return getBanco()
-					.getCarteiraDoEmissorFormatado(boleto.getEmissor());
-		}
+        public String carteira() {
+            return getBanco().getCarteiraDoEmissorFormatado(boleto.getEmissor());
+        }
 
-		public String contaCorrente() {
-			return getBanco().getContaCorrenteDoEmissorFormatado(
-					boleto.getEmissor());
-		}
+        public String contaCorrente() {
+            return getBanco().getContaCorrenteDoEmissorFormatado(boleto.getEmissor());
+        }
 
-		public String linhaDigitavel() {
-			return linhaDigitavel;
-		}
+        public String linhaDigitavel() {
+            return linhaDigitavel;
+        }
 
-		public String codigoDeBarras() {
-			return codigoDeBarras;
-		}
+        public String codigoDeBarras() {
+            return codigoDeBarras;
+        }
 
-		public boolean getAceite() {
-			return boleto.getAceite();
-		}
+        public boolean getAceite() {
+            return boleto.getAceite();
+        }
 
-		public Banco getBanco() {
-			return boleto.getBanco();
-		}
+        public Banco getBanco() {
+            return boleto.getBanco();
+        }
 
-		public int getCodEspecieMoeda() {
-			return boleto.getCodEspecieMoeda();
-		}
+        public int getCodEspecieMoeda() {
+            return boleto.getCodEspecieMoeda();
+        }
 
-		public Datas getDatas() {
-			return boleto.getDatas();
-		}
+        public Datas getDatas() {
+            return boleto.getDatas();
+        }
 
-		public List<String> getDescricoes() {
-			return boleto.getDescricoes();
-		}
+        public List<String> getDescricoes() {
+            return boleto.getDescricoes();
+        }
 
-		public Emissor getEmissor() {
-			return boleto.getEmissor();
-		}
+        public Emissor getEmissor() {
+            return boleto.getEmissor();
+        }
 
-		public String getEspecieDocumento() {
-			return boleto.getEspecieDocumento();
-		}
+        public String getEspecieDocumento() {
+            return boleto.getEspecieDocumento();
+        }
 
-		public String getEspecieMoeda() {
-			return boleto.getEspecieMoeda();
-		}
+        public String getEspecieMoeda() {
+            return boleto.getEspecieMoeda();
+        }
 
-		public String getFatorVencimento() {
-			return boleto.getFatorVencimento();
-		}
+        public String getFatorVencimento() {
+            return boleto.getFatorVencimento();
+        }
 
-		public List<String> getInstrucoes() {
-			return boleto.getInstrucoes();
-		}
+        public List<String> getInstrucoes() {
+            return boleto.getInstrucoes();
+        }
 
-		public List<String> getLocaisDePagamento() {
-			return boleto.getLocaisDePagamento();
-		}
+        public List<String> getLocaisDePagamento() {
+            return boleto.getLocaisDePagamento();
+        }
 
-		public String getNoDocumento() {
-			return boleto.getNoDocumento();
-		}
+        public String getNoDocumento() {
+            return boleto.getNoDocumento();
+        }
 
-		public String getNoDocumentoFormatado() {
-			return boleto.getNoDocumentoFormatado();
-		}
+        public String getNoDocumentoFormatado() {
+            return boleto.getNoDocumentoFormatado();
+        }
 
-		public BigDecimal getQtdMoeda() {
-			return boleto.getQtdMoeda();
-		}
+        public BigDecimal getQtdMoeda() {
+            return boleto.getQtdMoeda();
+        }
 
-		public Sacado getSacado() {
-			return boleto.getSacado();
-		}
+        public Sacado getSacado() {
+            return boleto.getSacado();
+        }
 
-		public BigDecimal getValorBoleto() {
-			return boleto.getValorBoleto();
-		}
+        public BigDecimal getValorBoleto() {
+            return boleto.getValorBoleto();
+        }
 
-		public String getValorFormatado() {
-			return boleto.getValorFormatado();
-		}
+        public String getValorFormatado() {
+            return boleto.getValorFormatado();
+        }
 
-		public BigDecimal getValorMoeda() {
-			return boleto.getValorMoeda();
-		}
+        public BigDecimal getValorMoeda() {
+            return boleto.getValorMoeda();
+        }
 
-		public String nomeArquivoCodigoDeBarras() {
-			return codigoDeBarras + "_"
-					+ boleto.getBanco().getNumeroFormatado() + ".png";
-		}
+        public String nomeArquivoCodigoDeBarras() {
+            return codigoDeBarras + "_" + boleto.getBanco().getNumeroFormatado() + ".png";
+        }
 
-	}
+    }
 }

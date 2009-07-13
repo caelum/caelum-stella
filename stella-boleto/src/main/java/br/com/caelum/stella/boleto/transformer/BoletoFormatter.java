@@ -9,27 +9,26 @@ import javax.swing.text.NumberFormatter;
 import br.com.caelum.stella.boleto.CriacaoBoletoException;
 
 /**
- * Classe que serve apenas para centralizar alguns metodos comuns na geração dos 
+ * Classe que serve apenas para centralizar alguns metodos comuns na geraï¿½ï¿½o dos
  * boletos.
+ * 
  * @author Alberto
- *
+ * 
  */
 class BoletoFormatter {
-	
-    private static final NumberFormatter formatter = new NumberFormatter(new DecimalFormat(
-            "#,##0.00"));
-    private static final String datePattern = "%1$td/%1$tm/%1$tY"; 
 
-	static String formatDate(Calendar date){
-		return String.format(datePattern, date);
-	}
-	
-	static String formatValue(double value){
-		try {
-			return formatter.valueToString(value);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			throw new CriacaoBoletoException("Erro na formatação do valor",e);
-		}
-	}
+    private static final NumberFormatter formatter = new NumberFormatter(new DecimalFormat("#,##0.00"));
+    private static final String datePattern = "%1$td/%1$tm/%1$tY";
+
+    static String formatDate(final Calendar date) {
+        return String.format(datePattern, date);
+    }
+
+    static String formatValue(final double value) {
+        try {
+            return formatter.valueToString(value);
+        } catch (ParseException e) {
+            throw new CriacaoBoletoException("Erro na formataï¿½ï¿½o do valor", e);
+        }
+    }
 }

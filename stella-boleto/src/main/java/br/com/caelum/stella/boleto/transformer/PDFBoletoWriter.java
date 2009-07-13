@@ -25,13 +25,14 @@ import com.lowagie.text.pdf.PdfWriter;
  * 
  * @see <a
  *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
+
  *      .com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira
  * @author Leonardo Bessa
  */
-public class PDFBoletoWriter implements BoletoWriter,TextWriter {
+public class PDFBoletoWriter implements BoletoWriter, TextWriter {
 
     private static final int NORMAL_SIZE = 8;
 
@@ -52,18 +53,18 @@ public class PDFBoletoWriter implements BoletoWriter,TextWriter {
     private final PdfContentByte contentByte;
 
     private final int scale = 1;
-    
-    private PNGPDFTransformerHelper writerHelper;
 
-    public PDFBoletoWriter(Rectangle rectangle) {
-        this.bytes = new ByteArrayOutputStream();
-        this.document = new Document(rectangle);
+    private final PNGPDFTransformerHelper writerHelper;
+
+    public PDFBoletoWriter(final Rectangle rectangle) {
+        bytes = new ByteArrayOutputStream();
+        document = new Document(rectangle);
 
         try {
-            this.writer = PdfWriter.getInstance(this.document, this.bytes);
+            writer = PdfWriter.getInstance(document, bytes);
 
-            this.fonteSimples = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
-            this.fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.WINANSI, BaseFont.EMBEDDED);
+            fonteSimples = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
+            fonteBold = BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.WINANSI, BaseFont.EMBEDDED);
 
         } catch (DocumentException e) {
             throw new GeracaoBoletoException(e);
@@ -71,10 +72,10 @@ public class PDFBoletoWriter implements BoletoWriter,TextWriter {
             throw new GeracaoBoletoException(e);
         }
 
-        this.document.open();
-        this.contentByte = this.writer.getDirectContent();
-        this.document.newPage();
-        this.writerHelper = new PNGPDFTransformerHelper(this);
+        document.open();
+        contentByte = writer.getDirectContent();
+        document.newPage();
+        writerHelper = new PNGPDFTransformerHelper(this);
     }
 
     public PDFBoletoWriter() {
@@ -82,49 +83,51 @@ public class PDFBoletoWriter implements BoletoWriter,TextWriter {
     }
 
     public InputStream toInputStream() {
-        if (this.stream == null) {
-            this.document.close();
-            this.stream = new ByteArrayInputStream(this.bytes.toByteArray());
+        if (stream == null) {
+            document.close();
+            stream = new ByteArrayInputStream(bytes.toByteArray());
         }
-        return this.stream;
+        return stream;
     }
 
-    public void write(float x, float y, String text) {
-        write(x, y, text, this.fonteSimples, NORMAL_SIZE * this.scale);
+    public void write(final float x, final float y, final String text) {
+        write(x, y, text, fonteSimples, NORMAL_SIZE * scale);
     }
 
-    public void writeBold(float x, float y, String text) {
-        write(x, y, text, this.fonteBold, BIG_SIZE * this.scale);
+    public void writeBold(final float x, final float y, final String text) {
+        write(x, y, text, fonteBold, BIG_SIZE * scale);
     }
 
-    private void write(float x, float y, String text, BaseFont font, int size) {
+    private void write(final float x, final float y, final String text, final BaseFont font, final int size) {
         checkIfDocIsClosed();
-        this.contentByte.beginText();
+        contentByte.beginText();
 
-        this.contentByte.setFontAndSize(font, size);
-        final float leftMargin = this.document.leftMargin();
-        this.contentByte.setTextMatrix(leftMargin + x, y);
-        this.contentByte.showText(text);
+        contentByte.setFontAndSize(font, size);
+        final float leftMargin = document.leftMargin();
+        contentByte.setTextMatrix(leftMargin + x, y);
+        contentByte.showText(text);
 
-        this.contentByte.endText();
+        contentByte.endText();
     }
 
     private void checkIfDocIsClosed() {
-        if (this.stream != null)
+        if (stream != null) {
             throw new IllegalStateException("boleto ja gerado, voce nao pode mais escrever na imagem");
+        }
     }
 
-    public void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException {
+    public void writeImage(final float x, final float y, final BufferedImage image, final float width,
+            final float height) throws IOException {
         checkIfDocIsClosed();
 
         try {
             Image pdfImage = Image.getInstance(image, null);
             pdfImage.setAbsolutePosition(0, 0);
             pdfImage.scaleToFit(width, height);
-            PdfTemplate template = this.contentByte.createTemplate(image.getWidth(), image.getHeight());
+            PdfTemplate template = contentByte.createTemplate(image.getWidth(), image.getHeight());
             template.addImage(pdfImage);
-            final float leftMargin = this.document.leftMargin();
-            this.contentByte.addTemplate(template, leftMargin + x, y);
+            final float leftMargin = document.leftMargin();
+            contentByte.addTemplate(template, leftMargin + x, y);
         } catch (BadElementException e) {
             throw new GeracaoBoletoException(e);
         } catch (DocumentException e) {
@@ -136,9 +139,8 @@ public class PDFBoletoWriter implements BoletoWriter,TextWriter {
         return document.newPage();
     }
 
-	public void write(Boleto boleto) {
-		// TODO Auto-generated method stub
-		writerHelper.transform(boleto);
-	}
+    public void write(final Boleto boleto) {
+        writerHelper.transform(boleto);
+    }
 
 }

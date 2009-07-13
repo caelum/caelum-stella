@@ -22,13 +22,14 @@ import com.lowagie.text.pdf.BaseFont;
  * 
  * @see <a
  *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
+
  *      .com.br/boleto-setup.html</a>
  * 
  * @author Cauê Guerra
  * @author Paulo Silveira
  * 
  */
-public class PNGBoletoWriter implements BoletoWriter,TextWriter {
+public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 
     private static final int NORMAL_SIZE = 36;
 
@@ -43,80 +44,82 @@ public class PNGBoletoWriter implements BoletoWriter,TextWriter {
     private InputStream stream;
 
     private final Graphics2D graphics;
-    
-    private PNGPDFTransformerHelper writerHelper;
+
+    private final PNGPDFTransformerHelper writerHelper;
 
     public PNGBoletoWriter() {
         this(2144f, 1900);
     }
 
-    public PNGBoletoWriter(double w, double h) {
+    public PNGBoletoWriter(final double w, final double h) {
 
-        this.PNGimage = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_RGB);
-        this.graphics = this.PNGimage.createGraphics();
+        PNGimage = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_RGB);
+        graphics = PNGimage.createGraphics();
 
-        this.graphics.setColor(Color.white);
-        this.graphics.fillRect(0, 0, (int) w, (int) h);
-        this.graphics.drawImage(this.PNGimage, 0, 0, null);
+        graphics.setColor(Color.white);
+        graphics.fillRect(0, 0, (int) w, (int) h);
+        graphics.drawImage(PNGimage, 0, 0, null);
 
-        this.graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        this.graphics.setColor(Color.BLACK);
+        graphics.setColor(Color.BLACK);
 
-        this.fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
+        fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
 
-        this.fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
-        
-        this.writerHelper = new PNGPDFTransformerHelper(this);        
+        fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
+
+        writerHelper = new PNGPDFTransformerHelper(this);
     }
 
     public InputStream toInputStream() {
-        if (this.stream == null) {
+        if (stream == null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(this.PNGimage, "PNG", baos);
+                ImageIO.write(PNGimage, "PNG", baos);
             } catch (IOException e) {
                 throw new GeracaoBoletoException(e); // nao esperado
             }
-            this.stream = new ByteArrayInputStream(baos.toByteArray());
+            stream = new ByteArrayInputStream(baos.toByteArray());
         }
-        return this.stream;
+        return stream;
     }
 
-    public void write(float x, float y, String text) {
+    public void write(final float x, final float y, final String text) {
         checkIfDocIsClosed();
-        this.graphics.setFont(this.fonteSimples);
-        this.graphics.drawString(text, scaleX(x), scaleY(y));
+        graphics.setFont(fonteSimples);
+        graphics.drawString(text, scaleX(x), scaleY(y));
     }
 
-    public void writeBold(float x, float y, String text) {
+    public void writeBold(final float x, final float y, final String text) {
         checkIfDocIsClosed();
-        this.graphics.setFont(this.fonteBold);
-        this.graphics.drawString(text, scaleX(x), scaleY(y));
+        graphics.setFont(fonteBold);
+        graphics.drawString(text, scaleX(x), scaleY(y));
     }
 
-    public void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException {
+    public void writeImage(final float x, final float y, final BufferedImage image, final float width,
+            final float height) throws IOException {
 
         checkIfDocIsClosed();
 
-        this.graphics.drawImage(image, (int) x, (int) (this.PNGimage.getHeight() - (height * 4.16f) - (y * 4.16f)),
+        graphics.drawImage(image, (int) x, (int) (PNGimage.getHeight() - (height * 4.16f) - (y * 4.16f)),
                 (int) (width * 4.16f), (int) (height * 4.16f), null);
     }
 
     private void checkIfDocIsClosed() {
-        if (this.stream != null)
+        if (stream != null) {
             throw new IllegalStateException("boleto ja gerado, voce nao pode mais escrever na imagem");
+        }
     }
 
     /*
      * Convertendo coordenadas PDF para PNG
      */
-    private float scaleX(float x) {
+    private float scaleX(final float x) {
         return x * 4.16f;
     }
 
     private float scaleY(float y) {
-        y = this.PNGimage.getHeight() - y;
+        y = PNGimage.getHeight() - y;
         return y * 4.16f - 6005;
     }
 
@@ -124,8 +127,7 @@ public class PNGBoletoWriter implements BoletoWriter,TextWriter {
         throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
     }
 
-	public void write(Boleto boleto) {
-		// TODO Auto-generated method stub
-		this.writerHelper.transform(boleto);
-	}
+    public void write(final Boleto boleto) {
+        writerHelper.transform(boleto);
+    }
 }
