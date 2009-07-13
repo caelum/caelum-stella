@@ -1,6 +1,6 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-//TODO Essa classe deve virar apenas um campo onde ela � neces�ria
+//TODO Essa classe deve virar apenas um campo onde ela é necesária
 public final class PISNaoTributadoImpl implements PISNaoTributado, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISNT pISNT;
 
@@ -10,7 +10,7 @@ public final class PISNaoTributadoImpl implements PISNaoTributado, br.com.caelum
 
     @SuppressWarnings("unchecked")
     public <T> T getInstance() {
-        return (T) this.pISNT;
+        return (T) pISNT;
     }
 
     // TODO Deve ser uma enum
