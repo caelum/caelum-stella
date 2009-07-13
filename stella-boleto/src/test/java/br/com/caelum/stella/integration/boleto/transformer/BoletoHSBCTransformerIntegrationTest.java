@@ -4,9 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.pdfbox.pdmodel.PDDocument;
 import org.pdfbox.util.PDFTextStripper;
@@ -25,88 +26,99 @@ import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
  */
 public class BoletoHSBCTransformerIntegrationTest {
 
-	@BeforeClass
-	public static void setUp() {		
-		Datas datas = Datas.newDatas().withDocumento(03, 7, 2000)
-				.withVencimento(04, 7, 2000);
+    @Before
+    public void setUp() {
+        System.out.println("begin setup: " + Runtime.getRuntime().freeMemory());
+        Locale.setDefault(new Locale("pt", "br"));
 
-		Emissor emissor = Emissor.newEmissor().withCedente("Alberto")
-				.withAgencia(501).withContaCorrente(6703255).withNossoNumero(
-						39104766).withCodFornecidoPelaAgencia(351202)
-				.withCarteira(0).withDvNossoNumero('3');
+        apagaArquivosGerados();
 
-        Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12").withEndereco(
-        "Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111").withCidade("São Paulo")
-        .withUf("SP");
+        Datas datas = Datas.newDatas().withDocumento(03, 7, 2000).withVencimento(04, 7, 2000);
 
-		Banco banco = new HSBC();
+        Emissor emissor = Emissor
+                                 .newEmissor()
+                                 .withCedente("Alberto")
+                                 .withAgencia(501)
+                                 .withContaCorrente(6703255)
+                                 .withNossoNumero(39104766)
+                                 .withCodFornecidoPelaAgencia(351202)
+                                 .withCarteira(0)
+                                 .withDvNossoNumero('3');
 
-		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3",
-				"descricao 4", "descricao 5" };
+        Sacado sacado = Sacado
+                              .newSacado()
+                              .withNome("Fulano da Silva")
+                              .withCpf("111.222.333-12")
+                              .withEndereco("Av dos testes, 111 apto 333")
+                              .withBairro("Bairro Teste")
+                              .withCep("01234-111")
+                              .withCidade("São Paulo")
+                              .withUf("SP");
 
-		String[] locaisDePagamento = { "local 1", "local 2" };
+        Banco banco = new HSBC();
 
-		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3",
-				"instrucao 4", "instrucao 5" };
-		
-		Boleto boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
-		.withSacado(sacado).withValorBoleto("1200.00").withNoDocumento(
-				"39104766").withDescricoes(descricoes).withLocaisDePagamento(locaisDePagamento).withInstrucoes(instrucoes);
-		boleto.withBanco(banco);
+        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
 
-		BoletoGenerator generator = new BoletoGenerator(boleto);
+        String[] locaisDePagamento = { "local 1", "local 2" };
 
-		generator.toPDF("arquivo.pdf");
-		generator.toPNG("arquivo.png");
+        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 
-	}
+        Boleto boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado).withValorBoleto(
+                "1200.00").withNoDocumento("39104766").withDescricoes(descricoes).withLocaisDePagamento(
+                locaisDePagamento).withInstrucoes(instrucoes);
+        boleto.withBanco(banco);
 
-	@Test
-	public void testPDFWriteGeneration() {
-		assertTrue(new File("arquivo.pdf").exists());
-	}
+        BoletoGenerator generator = new BoletoGenerator(boleto);
 
-	@Test
-	public void testPDFWrriteEscreveValorCorreto() throws IOException {
-		PDFTextStripper stripper = new PDFTextStripper();
+        generator.toPDF("arquivo.pdf");
+        generator.toPNG("arquivo.png");
 
-		PDDocument document = PDDocument.load(new File("arquivo.pdf"));
-		String text = stripper.getText(document);
-		document.close();
+    }
 
-		assertTrue(text.contains("1.200,00"));
-	}
+    @Test
+    public void testPDFWriteGeneration() {
+        assertTrue(new File("arquivo.pdf").exists());
+    }
 
-	@Test
-	public void testPDFWrriteEscreveLinhaDigitavelCorreta() throws IOException {
-		PDFTextStripper stripper = new PDFTextStripper();
+    @Test
+    public void testPDFWrriteEscreveValorCorreto() throws IOException {
+        PDFTextStripper stripper = new PDFTextStripper();
 
-		PDDocument document = PDDocument.load(new File("arquivo.pdf"));
-		String text = stripper.getText(document);
-		document.close();
+        PDDocument document = PDDocument.load(new File("arquivo.pdf"));
+        String text = stripper.getText(document);
+        document.close();
 
-		assertTrue(text
-				.contains("39990.35128  02000.003919  04766.186029  3  10010000120000"));
-	}
+        assertTrue(text.contains("1.200,00"));
+    }
 
-	@Test
-	public void testPNGWriteGeneration() {
-		assertTrue(new File("arquivo.png").exists());
-	}
+    @Test
+    public void testPDFWrriteEscreveLinhaDigitavelCorreta() throws IOException {
+        PDFTextStripper stripper = new PDFTextStripper();
 
-	@AfterClass
-	@BeforeClass
-	public static void apagaArquivosGerados() {
-		final File pngFile = new File("arquivo.png");
-		final File pdfFile = new File("arquivo.pdf");
-		apagaArquivoSeExistir(pngFile);
-		apagaArquivoSeExistir(pdfFile);
-	}
+        PDDocument document = PDDocument.load(new File("arquivo.pdf"));
+        String text = stripper.getText(document);
+        document.close();
 
-	private static void apagaArquivoSeExistir(final File pngFile) {
-		if (pngFile.exists()) {
-			(pngFile).delete();
-		}
-	}
+        assertTrue(text.contains("39990.35128  02000.003919  04766.186029  3  10010000120000"));
+    }
+
+    @Test
+    public void testPNGWriteGeneration() {
+        assertTrue(new File("arquivo.png").exists());
+    }
+
+    @After
+    public void apagaArquivosGerados() {
+        final File pngFile = new File("arquivo.png");
+        final File pdfFile = new File("arquivo.pdf");
+        apagaArquivoSeExistir(pngFile);
+        apagaArquivoSeExistir(pdfFile);
+    }
+
+    private void apagaArquivoSeExistir(final File pngFile) {
+        if (pngFile.exists()) {
+            (pngFile).delete();
+        }
+    }
 
 }
