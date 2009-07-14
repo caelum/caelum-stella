@@ -1,6 +1,7 @@
 package br.com.caelum.stella.inwords;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 /**
@@ -9,7 +10,7 @@ import org.junit.Test;
  */
 public class RealNumericToWordsConverterTest {
 
-    private NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeReal());
+    private final NumericToWordsConverter converter = new NumericToWordsConverter(new FormatoDeReal());
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldTransformNegativeLong() {
@@ -49,6 +50,13 @@ public class RealNumericToWordsConverterTest {
         long one = 1;
         String actual = converter.toWords(one);
         assertEquals("um real", actual);
+    }
+
+    @Test
+    public void shouldTransformDoubleOneWithCentsInWords() {
+        double val = 1.65;
+        String actual = converter.toWords(val);
+        assertEquals("um real e sessenta e cinco centavos", actual);
     }
 
     @Test
