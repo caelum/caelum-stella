@@ -132,7 +132,7 @@ public class NumericToWordsConverter {
     private void appendIntegersUnits(double number, StringBuffer result, ThousandBlock[] blocks) {
         if (blocks.length != 1 || !blocks[0].isZero()) {
             result.append(" ");
-            if (number > 1) {
+            if (number >= 2) {
                 int length = blocks.length;
                 if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
                     result.append("de ");
