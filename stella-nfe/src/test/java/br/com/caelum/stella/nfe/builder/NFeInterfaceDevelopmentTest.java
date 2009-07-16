@@ -6,7 +6,7 @@ final public class NFeInterfaceDevelopmentTest {
 
     @Test
     public void test() {
-        new NFe().deCancelamento()
+        NFeDeCancelamento build = new NFe().deCancelamento()
             .withCabecalho()
                 .build()
             .withDados()
@@ -20,7 +20,7 @@ final public class NFeInterfaceDevelopmentTest {
 //                .withDados()
 //                    .build()
 //                .build();
-//        
+        
 //        new NFe().deInutilizacao();
 //        new NFe().deRecepcaoLote();
 //        new NFe().deRetRecepcao();

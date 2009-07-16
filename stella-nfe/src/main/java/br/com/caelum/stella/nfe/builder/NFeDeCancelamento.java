@@ -11,7 +11,7 @@ final public class NFeDeCancelamento implements NFeBuilder<NFeDeCancelamento> {
     }
 
     public NFeDeCancelamento build() {
-        return null;
+        return this;
 
     }
 
