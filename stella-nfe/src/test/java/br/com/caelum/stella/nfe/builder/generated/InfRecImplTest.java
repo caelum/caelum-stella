@@ -2,14 +2,17 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class InfRecImplTest {
     @org.junit.Test
     public void testInfRecInterface() {
-        ReciboDoLote infRec = new ReciboDoLoteImpl().withNumeroDoRecibo("abc").withDataEHoraDoRecebimento(Calendar.getInstance()).withTempoMedioDeResposta("abc");
-        assertModelWasFilled(infRec);
+        ReciboDoLote<Object> infRec = new ReciboDoLoteImpl<Object>(new Object())
+                                                                                .withNumeroDoRecibo("abc")
+                                                                                .withDataEHoraDoRecebimento(
+                                                                                        Calendar.getInstance())
+                                                                                .withTempoMedioDeResposta("abc");
+        BuilderTestHelper.assertModelWasFilled(infRec);
     }
 
-    private void assertModelWasFilled(ReciboDoLote infRec) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(infRec).assertModelWasFilled();
-    }
 }

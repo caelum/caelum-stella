@@ -2,14 +2,16 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface PISSubstituicaoTributaria {
-    public PISSubstituicaoTributaria withValorDaBaseDeCalculo(BigDecimal string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public PISSubstituicaoTributaria withAliquotaDaSubstituicaoTributaria(BigDecimal string);
+public interface PISSubstituicaoTributaria<T> extends NFeBuilder<T> {
+    public PISSubstituicaoTributaria<T> withValorDaBaseDeCalculo(BigDecimal string);
 
-    public PISSubstituicaoTributaria withQuantidadeVendida(BigDecimal string);
+    public PISSubstituicaoTributaria<T> withAliquotaDaSubstituicaoTributaria(BigDecimal string);
 
-    public PISSubstituicaoTributaria withAliquota(BigDecimal string);
+    public PISSubstituicaoTributaria<T> withQuantidadeVendida(BigDecimal string);
 
-    public PISSubstituicaoTributaria withValor(BigDecimal string);
+    public PISSubstituicaoTributaria<T> withAliquota(BigDecimal string);
+
+    public PISSubstituicaoTributaria<T> withValor(BigDecimal string);
 }

@@ -2,40 +2,46 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class COFINSSubstituicaoTributariaImpl implements COFINSSubstituicaoTributaria,
+public final class COFINSSubstituicaoTributariaImpl<T> implements COFINSSubstituicaoTributaria<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSST cOFINSST;
+    private final T parent;
 
-    public COFINSSubstituicaoTributariaImpl() {
+    public COFINSSubstituicaoTributariaImpl(final T parent) {
+        this.parent = parent;
         cOFINSST = new br.com.caelum.stella.nfe.modelo.COFINSST();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.cOFINSST;
+    public T build() {
+        return parent;
     }
 
-    public COFINSSubstituicaoTributaria withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.cOFINSST;
+    }
+
+    public COFINSSubstituicaoTributaria<T> withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
         cOFINSST.setvalorDaBaseDeCalculo(baseDeCalculo.toPlainString());
         return this;
     }
 
-    public COFINSSubstituicaoTributaria withAliquotaEmPercentual(final BigDecimal percentual) {
+    public COFINSSubstituicaoTributaria<T> withAliquotaEmPercentual(final BigDecimal percentual) {
         cOFINSST.setAliquotaEmPercentual(percentual.toPlainString());
         return this;
     }
 
-    public COFINSSubstituicaoTributaria withQuantidadeVendida(final BigDecimal string) {
+    public COFINSSubstituicaoTributaria<T> withQuantidadeVendida(final BigDecimal string) {
         cOFINSST.setQuantidadeVendida(string.toString());
         return this;
     }
 
-    public COFINSSubstituicaoTributaria withAliquota(final BigDecimal string) {
+    public COFINSSubstituicaoTributaria<T> withAliquota(final BigDecimal string) {
         cOFINSST.setAliquota(string.toString());
         return this;
     }
 
-    public COFINSSubstituicaoTributaria withValor(final BigDecimal string) {
+    public COFINSSubstituicaoTributaria<T> withValor(final BigDecimal string) {
         cOFINSST.setValor(string.toString());
         return this;
     }

@@ -2,69 +2,75 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.UF;
 
-public final class EnderecoImpl implements Endereco, br.com.caelum.stella.nfe.ObjectCreator {
+public final class EnderecoImpl<T> implements Endereco<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TEndereco tEndereco;
+    private final T parent;
 
-    public EnderecoImpl() {
+    public EnderecoImpl(final T parent) {
+        this.parent = parent;
         tEndereco = new br.com.caelum.stella.nfe.modelo.TEndereco();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.tEndereco;
+    public T build() {
+        return parent;
     }
 
-    public Endereco withLogradouro(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.tEndereco;
+    }
+
+    public Endereco<T> withLogradouro(final String string) {
         tEndereco.setXLgr(string);
         return this;
     }
 
-    public Endereco withNumero(final String string) {
+    public Endereco<T> withNumero(final String string) {
         tEndereco.setNro(string);
         return this;
     }
 
-    public Endereco withComplemento(final String string) {
+    public Endereco<T> withComplemento(final String string) {
         tEndereco.setXCpl(string);
         return this;
     }
 
-    public Endereco withBairro(final String string) {
+    public Endereco<T> withBairro(final String string) {
         tEndereco.setXBairro(string);
         return this;
     }
 
-    public Endereco withCodigoDoMunicipio(final String string) {
+    public Endereco<T> withCodigoDoMunicipio(final String string) {
         tEndereco.setCMun(string);
         return this;
     }
 
-    public Endereco withNomeDoMunicipio(final String string) {
+    public Endereco<T> withNomeDoMunicipio(final String string) {
         tEndereco.setXMun(string);
         return this;
     }
 
-    public Endereco withUF(final UF tUf) {
+    public Endereco<T> withUF(final UF tUf) {
         tEndereco.setUF(tUf);
         return this;
     }
 
-    public Endereco withCEP(final String string) {
+    public Endereco<T> withCEP(final String string) {
         tEndereco.setCEP(string);
         return this;
     }
 
-    public Endereco withCodigoDoPais(final String string) {
+    public Endereco<T> withCodigoDoPais(final String string) {
         tEndereco.setCPais(string);
         return this;
     }
 
-    public Endereco withNomeDoPais(final String string) {
+    public Endereco<T> withNomeDoPais(final String string) {
         tEndereco.setXPais(string);
         return this;
     }
 
-    public Endereco withTelefone(final String string) {
+    public Endereco<T> withTelefone(final String string) {
         tEndereco.setFone(string);
         return this;
     }

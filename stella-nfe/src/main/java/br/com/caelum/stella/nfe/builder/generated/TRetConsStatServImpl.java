@@ -2,64 +2,70 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public final class TRetConsStatServImpl implements TRetConsStatServ, br.com.caelum.stella.nfe.ObjectCreator {
+public final class TRetConsStatServImpl<T> implements TRetConsStatServ<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TRetConsStatServ tRetConsStatServ;
+    private final T parent;
 
-    public TRetConsStatServImpl() {
+    public TRetConsStatServImpl(final T parent) {
+        this.parent = parent;
         tRetConsStatServ = new br.com.caelum.stella.nfe.modelo.TRetConsStatServ();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.tRetConsStatServ;
+    public T build() {
+        return parent;
     }
 
-    public TRetConsStatServ withTpAmb(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.tRetConsStatServ;
+    }
+
+    public TRetConsStatServ<T> withTpAmb(final String string) {
         tRetConsStatServ.setTpAmb(string);
         return this;
     }
 
-    public TRetConsStatServ withVerAplic(final String string) {
+    public TRetConsStatServ<T> withVerAplic(final String string) {
         tRetConsStatServ.setVerAplic(string);
         return this;
     }
 
-    public TRetConsStatServ withCStat(final String string) {
+    public TRetConsStatServ<T> withCStat(final String string) {
         tRetConsStatServ.setCStat(string);
         return this;
     }
 
-    public TRetConsStatServ withXMotivo(final String string) {
+    public TRetConsStatServ<T> withXMotivo(final String string) {
         tRetConsStatServ.setXMotivo(string);
         return this;
     }
 
-    public TRetConsStatServ withCUF(final String string) {
+    public TRetConsStatServ<T> withCUF(final String string) {
         tRetConsStatServ.setCUF(string);
         return this;
     }
 
-    public TRetConsStatServ withDhRecbto(final Calendar calendar) {
+    public TRetConsStatServ<T> withDhRecbto(final Calendar calendar) {
         tRetConsStatServ.setDhRecbto(calendar.toString());
         return this;
     }
 
-    public TRetConsStatServ withTMed(final String string) {
+    public TRetConsStatServ<T> withTMed(final String string) {
         tRetConsStatServ.setTMed(string);
         return this;
     }
 
-    public TRetConsStatServ withDhRetorno(final Calendar calendar) {
+    public TRetConsStatServ<T> withDhRetorno(final Calendar calendar) {
         tRetConsStatServ.setDhRetorno(calendar.toString());
         return this;
     }
 
-    public TRetConsStatServ withXObs(final String string) {
+    public TRetConsStatServ<T> withXObs(final String string) {
         tRetConsStatServ.setXObs(string);
         return this;
     }
 
-    public TRetConsStatServ withVersao(final String string) {
+    public TRetConsStatServ<T> withVersao(final String string) {
         tRetConsStatServ.setVersao(string);
         return this;
     }

@@ -2,12 +2,14 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface PISTributadoPelaAliquota {
-    public PISTributadoPelaAliquota withCodigoSituacaoTributaria(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public PISTributadoPelaAliquota withValorDaBaseDeCalculo(BigDecimal string);
+public interface PISTributadoPelaAliquota<T> extends NFeBuilder<T> {
+    public PISTributadoPelaAliquota<T> withCodigoSituacaoTributaria(String string);
 
-    public PISTributadoPelaAliquota withAliquotaDoPIS(BigDecimal aliquota);
+    public PISTributadoPelaAliquota<T> withValorDaBaseDeCalculo(BigDecimal string);
 
-    public PISTributadoPelaAliquota withValorDoPIS(BigDecimal string);
+    public PISTributadoPelaAliquota<T> withAliquotaDoPIS(BigDecimal aliquota);
+
+    public PISTributadoPelaAliquota<T> withValorDoPIS(BigDecimal string);
 }

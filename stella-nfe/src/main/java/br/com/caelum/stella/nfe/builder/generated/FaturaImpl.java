@@ -2,34 +2,40 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class FaturaImpl implements Fatura, br.com.caelum.stella.nfe.ObjectCreator {
+public final class FaturaImpl<T> implements Fatura<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Fat fat;
+    private final T parent;
 
-    public FaturaImpl() {
+    public FaturaImpl(final T parent) {
+        this.parent = parent;
         fat = new br.com.caelum.stella.nfe.modelo.Fat();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.fat;
+    public T build() {
+        return parent;
     }
 
-    public Fatura withNumeroDaFatura(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.fat;
+    }
+
+    public Fatura<T> withNumeroDaFatura(final String string) {
         fat.setNFat(string);
         return this;
     }
 
-    public Fatura withValorOriginal(final BigDecimal string) {
+    public Fatura<T> withValorOriginal(final BigDecimal string) {
         fat.setVOrig(string.toString());
         return this;
     }
 
-    public Fatura withValorDeDesconto(final BigDecimal string) {
+    public Fatura<T> withValorDeDesconto(final BigDecimal string) {
         fat.setVDesc(string.toString());
         return this;
     }
 
-    public Fatura withValorLiquido(final BigDecimal string) {
+    public Fatura<T> withValorLiquido(final BigDecimal string) {
         fat.setVLiq(string.toString());
         return this;
     }

@@ -2,35 +2,41 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class COFINSTributadoPelaAliquotaImpl implements COFINSTributadoPelaAliquota,
+public final class COFINSTributadoPelaAliquotaImpl<T> implements COFINSTributadoPelaAliquota<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSAliq cOFINSAliq;
+    private final T parent;
 
-    public COFINSTributadoPelaAliquotaImpl() {
+    public COFINSTributadoPelaAliquotaImpl(final T parent) {
+        this.parent = parent;
         cOFINSAliq = new br.com.caelum.stella.nfe.modelo.COFINSAliq();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.cOFINSAliq;
+    public T build() {
+        return parent;
     }
 
-    public COFINSTributadoPelaAliquota withCodigoSituacaoTributaria(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.cOFINSAliq;
+    }
+
+    public COFINSTributadoPelaAliquota<T> withCodigoSituacaoTributaria(final String string) {
         cOFINSAliq.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public COFINSTributadoPelaAliquota withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+    public COFINSTributadoPelaAliquota<T> withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
         cOFINSAliq.setvalorDaBaseDeCalculo(baseDeCalculo.toPlainString());
         return this;
     }
 
-    public COFINSTributadoPelaAliquota withAliquotaEmPercentual(final BigDecimal percentual) {
+    public COFINSTributadoPelaAliquota<T> withAliquotaEmPercentual(final BigDecimal percentual) {
         cOFINSAliq.setAliquotaEmPercentual(percentual.toPlainString());
         return this;
     }
 
-    public COFINSTributadoPelaAliquota withValor(final String string) {
+    public COFINSTributadoPelaAliquota<T> withValor(final String string) {
         cOFINSAliq.setValor(string);
         return this;
     }

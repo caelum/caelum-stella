@@ -1,1 +1,12 @@
-package br.com.caelum.stella.nfe.builder.generated; public final class TConsStatServImplTest {  @org.junit.Test  public void testTConsStatServInterface()  { TConsStatServ tConsStatServ = new TConsStatServImpl().withTpAmb("abc").withCUF("abc").withXServ("abc").withVersao("abc"); assertModelWasFilled(tConsStatServ); }private void assertModelWasFilled(TConsStatServ tConsStatServ) { new br.com.caelum.stella.nfe.builder.BuilderTestHelper (tConsStatServ).assertModelWasFilled();} }
+package br.com.caelum.stella.nfe.builder.generated;
+
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
+public final class TConsStatServImplTest {
+    @org.junit.Test
+    public void testTConsStatServInterface() {
+        TConsStatServ<Object> tConsStatServ = new TConsStatServImpl<Object>(new Object()).withTpAmb("abc").withCUF(
+                "abc").withXServ("abc").withVersao("abc");
+        BuilderTestHelper.assertModelWasFilled(tConsStatServ);
+    }
+}

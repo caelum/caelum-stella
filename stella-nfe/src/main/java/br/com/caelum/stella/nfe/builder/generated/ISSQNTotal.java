@@ -1,5 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface ISSQNTotal {
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
+
+public interface ISSQNTotal<T> extends NFeBuilder<T> {
 
 }

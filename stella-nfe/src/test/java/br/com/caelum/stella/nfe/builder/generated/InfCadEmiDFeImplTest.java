@@ -5,16 +5,15 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class InfCadEmiDFeImplTest {
 
     @Test
     public void testInfCadEmiDFeInterface() {
-        InfCadEmiDFe infCadEmiDFe = new InfCadEmiDFeImpl().withDPubCad(Calendar.getInstance()).withEmissor(
-                new ArrayList<TEmissor>()).withId("abc");
-        assertModelWasFilled(infCadEmiDFe);
+        InfCadEmiDFe<Object> infCadEmiDFe = new InfCadEmiDFeImpl<Object>(new Object()).withDPubCad(
+                Calendar.getInstance()).withEmissor(new ArrayList<TEmissor<?>>()).withId("abc");
+        BuilderTestHelper.assertModelWasFilled(infCadEmiDFe);
     }
 
-    private void assertModelWasFilled(final InfCadEmiDFe infCadEmiDFe) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(infCadEmiDFe).assertModelWasFilled();
-    }
 }

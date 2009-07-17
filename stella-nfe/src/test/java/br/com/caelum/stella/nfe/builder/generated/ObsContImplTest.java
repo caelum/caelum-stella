@@ -1,13 +1,16 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class ObsContImplTest {
     @org.junit.Test
     public void testObsContInterface() {
-        ObservacaoDoContribuinte obsCont = new ObservacaoDoContribuinteImpl().withTextoDeDescricao("abc").withDescricaoDoCampo("abc");
-        assertModelWasFilled(obsCont);
+        ObservacaoDoContribuinte<Object> obsCont = new ObservacaoDoContribuinteImpl<Object>(new Object())
+                                                                                                         .withTextoDeDescricao(
+                                                                                                                 "abc")
+                                                                                                         .withDescricaoDoCampo(
+                                                                                                                 "abc");
+        BuilderTestHelper.assertModelWasFilled(obsCont);
     }
 
-    private void assertModelWasFilled(ObservacaoDoContribuinte obsCont) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(obsCont).assertModelWasFilled();
-    }
 }

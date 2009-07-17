@@ -2,29 +2,35 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public final class ReciboDoLoteImpl implements ReciboDoLote, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ReciboDoLoteImpl<T> implements ReciboDoLote<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.InfRec infRec;
+    private final T parent;
 
-    public ReciboDoLoteImpl() {
+    public ReciboDoLoteImpl(final T parent) {
+        this.parent = parent;
         infRec = new br.com.caelum.stella.nfe.modelo.InfRec();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.infRec;
+    public T build() {
+        return parent;
     }
 
-    public ReciboDoLote withNumeroDoRecibo(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.infRec;
+    }
+
+    public ReciboDoLote<T> withNumeroDoRecibo(final String string) {
         infRec.setNRec(string);
         return this;
     }
 
-    public ReciboDoLote withDataEHoraDoRecebimento(final Calendar calendar) {
+    public ReciboDoLote<T> withDataEHoraDoRecebimento(final Calendar calendar) {
         infRec.setDhRecbto(calendar);
         return this;
     }
 
-    public ReciboDoLote withTempoMedioDeResposta(final String string) {
+    public ReciboDoLote<T> withTempoMedioDeResposta(final String string) {
         infRec.setTMed(string);
         return this;
     }

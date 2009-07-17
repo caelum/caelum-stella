@@ -2,24 +2,30 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
 
-public final class TRetConsCadImpl implements TRetConsCad, br.com.caelum.stella.nfe.ObjectCreator {
+public final class TRetConsCadImpl<T> implements TRetConsCad<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TRetConsCad tRetConsCad;
+    private final T parent;
 
-    public TRetConsCadImpl() {
+    public TRetConsCadImpl(final T parent) {
+        this.parent = parent;
         tRetConsCad = new br.com.caelum.stella.nfe.modelo.TRetConsCad();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.tRetConsCad;
+    public T build() {
+        return parent;
     }
 
-    public TRetConsCad withInfCons(final InfCons infCons) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.tRetConsCad;
+    }
+
+    public TRetConsCad<T> withInfCons(final InfCons<?> infCons) {
         tRetConsCad.setInfCons((br.com.caelum.stella.nfe.modelo.InfCons) ((ObjectCreator) infCons).getInstance());
         return this;
     }
 
-    public TRetConsCad withVersao(final String string) {
+    public TRetConsCad<T> withVersao(final String string) {
         tRetConsCad.setVersao(string);
         return this;
     }

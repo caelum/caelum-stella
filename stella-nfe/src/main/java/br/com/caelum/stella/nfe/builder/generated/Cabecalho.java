@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Cabecalho {
-    public Cabecalho withVersaoDados(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Cabecalho withVersao(String string);
+public interface Cabecalho<T> extends NFeBuilder<T> {
+    public Cabecalho<T> withVersaoDados(String string);
+
+    public Cabecalho<T> withVersao(String string);
 }

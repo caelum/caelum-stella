@@ -3,34 +3,40 @@ package br.com.caelum.stella.nfe.builder.generated;
 import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.Impostos;
 
-public final class DetalheImpl implements Detalhe, br.com.caelum.stella.nfe.ObjectCreator {
+public final class DetalheImpl<T> implements Detalhe<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Det det;
+    private final T parent;
 
-    public DetalheImpl() {
+    public DetalheImpl(final T parent) {
+        this.parent = parent;
         det = new br.com.caelum.stella.nfe.modelo.Det();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.det;
+    public T build() {
+        return parent;
     }
 
-    public Detalhe withProduto(final Produto prod) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.det;
+    }
+
+    public Detalhe<T> withProduto(final Produto<?> prod) {
         det.setProd((br.com.caelum.stella.nfe.modelo.Prod) ((ObjectCreator) prod).getInstance());
         return this;
     }
 
-    public Detalhe withImposto(final Impostos imposto) {
+    public Detalhe<T> withImposto(final Impostos imposto) {
         det.setImposto((br.com.caelum.stella.nfe.modelo.Imposto) ((ObjectCreator) imposto).getInstance());
         return this;
     }
 
-    public Detalhe withInformacaoAdicionalDoProduto(final String string) {
+    public Detalhe<T> withInformacaoAdicionalDoProduto(final String string) {
         det.setInfAdProd(string);
         return this;
     }
 
-    public Detalhe withNumeroDoItemNaNF(final String string) {
+    public Detalhe<T> withNumeroDoItemNaNF(final String string) {
         det.setNItem(string);
         return this;
     }

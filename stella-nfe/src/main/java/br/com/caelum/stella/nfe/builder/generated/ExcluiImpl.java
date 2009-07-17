@@ -2,24 +2,30 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public final class ExcluiImpl implements Exclui, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ExcluiImpl<T> implements Exclui<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Exclui exclui;
+    private final T parent;
 
-    public ExcluiImpl() {
+    public ExcluiImpl(final T parent) {
+        this.parent = parent;
         this.exclui = new br.com.caelum.stella.nfe.modelo.Exclui();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.exclui;
+    public T build() {
+        return parent;
     }
 
-    public Exclui withUF(TUf tUf) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.exclui;
+    }
+
+    public Exclui<T> withUF(final TUf tUf) {
         this.exclui.setUF(tUf);
         return this;
     }
 
-    public Exclui withCNPJ(Object object) {
+    public Exclui<T> withCNPJ(final Object object) {
         this.exclui.setCNPJ(object);
         return this;
     }

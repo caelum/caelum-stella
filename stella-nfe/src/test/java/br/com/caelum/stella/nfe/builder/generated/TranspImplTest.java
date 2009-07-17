@@ -1,17 +1,29 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.builder.generated.enums.ModalidadeDoFrete;
 
 public final class TranspImplTest {
     @org.junit.Test
     public void testTranspInterface() {
-        Transporte transp = new TransporteImpl().withModalidadeDoFrete(ModalidadeDoFrete.PAGO_PELO_DESTINATARIO)
-                .withTransportador(new TransportadorImpl()).withICMSRetidoPeloTransporte(new ICMSRetidoPeloTransporteImpl()).withVeiculoUsado(
-                        new VeiculoImpl()).withReboque(new VeiculoImpl()).withVolume(new VolumeImpl());
-        assertModelWasFilled(transp);
+        Transporte<Object> transp = new TransporteImpl<Object>(new Object())
+                                                                            .withModalidadeDoFrete(
+                                                                                    ModalidadeDoFrete.PAGO_PELO_DESTINATARIO)
+                                                                            .withTransportador(
+                                                                                    new TransportadorImpl<Object>(
+                                                                                            new Object()))
+                                                                            .withICMSRetidoPeloTransporte(
+                                                                                    new ICMSRetidoPeloTransporteImpl<Object>(
+                                                                                            new Object()))
+                                                                            .withVeiculoUsado(
+                                                                                    new VeiculoImpl<Object>(
+                                                                                            new Object()))
+                                                                            .withReboque(
+                                                                                    new VeiculoImpl<Object>(
+                                                                                            new Object()))
+                                                                            .withVolume(
+                                                                                    new VolumeImpl<Object>(new Object()));
+        BuilderTestHelper.assertModelWasFilled(transp);
     }
 
-    private void assertModelWasFilled(final Transporte transp) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(transp).assertModelWasFilled();
-    }
 }

@@ -1,33 +1,35 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface InformacoesDaNFE {
-    public InformacoesDaNFE withIde(IdentificacaoDaNFE ide);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public InformacoesDaNFE withEmit(Emitente emit);
+public interface InformacoesDaNFE<T> extends NFeBuilder<T> {
+    public InformacoesDaNFE<T> withIde(IdentificacaoDaNFE<?> ide);
 
-    public InformacoesDaNFE withAvulsa(Avulsa avulsa);
+    public InformacoesDaNFE<T> withEmit(Emitente<?> emit);
 
-    public InformacoesDaNFE withDest(Destinatario dest);
+    public InformacoesDaNFE<T> withAvulsa(Avulsa<?> avulsa);
 
-    public InformacoesDaNFE withRetirada(DadosDoLocal tLocal);
+    public InformacoesDaNFE<T> withDest(Destinatario<?> dest);
 
-    public InformacoesDaNFE withEntrega(DadosDoLocal tLocal);
+    public InformacoesDaNFE<T> withRetirada(DadosDoLocal<?> tLocal);
 
-    public InformacoesDaNFE withDet(Detalhe... det);
+    public InformacoesDaNFE<T> withEntrega(DadosDoLocal<?> tLocal);
 
-    public InformacoesDaNFE withTotal(TotalNFE total);
+    public InformacoesDaNFE<T> withDet(Detalhe<?>... det);
 
-    public InformacoesDaNFE withTransp(Transporte transp);
+    public InformacoesDaNFE<T> withTotal(TotalNFE<?> total);
 
-    public InformacoesDaNFE withCobr(Cobranca cobr);
+    public InformacoesDaNFE<T> withTransp(Transporte<?> transp);
 
-    public InformacoesDaNFE withInfAdic(InformacoesAdicionais infAdic);
+    public InformacoesDaNFE<T> withCobr(Cobranca<?> cobr);
 
-    public InformacoesDaNFE withExporta(Exportacao exporta);
+    public InformacoesDaNFE<T> withInfAdic(InformacoesAdicionais<?> infAdic);
 
-    public InformacoesDaNFE withCompra(Compra compra);
+    public InformacoesDaNFE<T> withExporta(Exportacao<?> exporta);
 
-    public InformacoesDaNFE withVersao(String string);
+    public InformacoesDaNFE<T> withCompra(Compra<?> compra);
 
-    public InformacoesDaNFE withId(String string);
+    public InformacoesDaNFE<T> withVersao(String string);
+
+    public InformacoesDaNFE<T> withId(String string);
 }

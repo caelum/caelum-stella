@@ -1,18 +1,21 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.builder.generated.enums.TipoDoAmbiente;
 
 public final class TRetEnviNFeImplTest {
     @org.junit.Test
     public void testTRetEnviNFeInterface() {
-        RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE tRetEnviNFe = new RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFEImpl()
-                .withTipoDoAmbiente(TipoDoAmbiente.HOMOLOGACAO).withVersaoAplicativo("abc").withCodigoDeStatus("abc")
-                .withDescricaoDoStatus("abc").withCodigoDaUF("abc").withReciboDoLote(new ReciboDoLoteImpl()).withVersaoDaNFE(
-                        "abc");
-        assertModelWasFilled(tRetEnviNFe);
+        RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<Object> tRetEnviNFe = new RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFEImpl<Object>(
+                new Object())
+                             .withTipoDoAmbiente(TipoDoAmbiente.HOMOLOGACAO)
+                             .withVersaoAplicativo("abc")
+                             .withCodigoDeStatus("abc")
+                             .withDescricaoDoStatus("abc")
+                             .withCodigoDaUF("abc")
+                             .withReciboDoLote(new ReciboDoLoteImpl<Object>(new Object()))
+                             .withVersaoDaNFE("abc");
+        BuilderTestHelper.assertModelWasFilled(tRetEnviNFe);
     }
 
-    private void assertModelWasFilled(final RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE tRetEnviNFe) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tRetEnviNFe).assertModelWasFilled();
-    }
 }

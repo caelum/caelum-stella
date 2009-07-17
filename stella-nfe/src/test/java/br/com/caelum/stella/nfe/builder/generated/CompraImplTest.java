@@ -1,13 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class CompraImplTest {
     @org.junit.Test
     public void testCompraInterface() {
-        Compra compra = new CompraImpl().withInformacoesDaNotaDeEmpenhoDeComprasPublicas("abc").withInformacaoDoPedido("abc").withInformacaoDoContrato("abc");
-        assertModelWasFilled(compra);
+        Compra<Object> compra = new CompraImpl<Object>(new Object()).withInformacoesDaNotaDeEmpenhoDeComprasPublicas(
+                "abc").withInformacaoDoPedido("abc").withInformacaoDoContrato("abc");
+        BuilderTestHelper.assertModelWasFilled(compra);
     }
 
-    private void assertModelWasFilled(Compra compra) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(compra).assertModelWasFilled();
-    }
 }

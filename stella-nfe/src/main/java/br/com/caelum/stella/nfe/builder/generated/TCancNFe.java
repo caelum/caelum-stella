@@ -1,11 +1,12 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.modelo.SignatureType;
 
-public interface TCancNFe {
-    public TCancNFe withInfCanc(InfCanc infCanc);
+public interface TCancNFe<T> extends NFeBuilder<T> {
+    public TCancNFe<T> withInfCanc(InfCanc<?> infCanc);
 
-    public TCancNFe withSignature(SignatureType signatureType);
+    public TCancNFe<T> withSignature(SignatureType signatureType);
 
-    public TCancNFe withVersao(String string);
+    public TCancNFe<T> withVersao(String string);
 }

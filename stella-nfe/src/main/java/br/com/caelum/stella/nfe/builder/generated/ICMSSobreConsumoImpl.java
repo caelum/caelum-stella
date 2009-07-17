@@ -4,29 +4,36 @@ import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.modelo.UF;
 
-public final class ICMSSobreConsumoImpl implements ICMSSobreConsumo, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ICMSSobreConsumoImpl<T> implements ICMSSobreConsumo<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSCons iCMSCons;
+    private final T parent;
 
-    public ICMSSobreConsumoImpl() {
+    public ICMSSobreConsumoImpl(final T parent) {
+        this.parent = parent;
         iCMSCons = new br.com.caelum.stella.nfe.modelo.ICMSCons();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.iCMSCons;
+    public T build() {
+        return parent;
     }
 
-    public ICMSSobreConsumo withValorDaBaseDeCalculoDoICMSDeSubstituicaoTributariaSobreConsumo(final BigDecimal string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.iCMSCons;
+    }
+
+    public ICMSSobreConsumo<T> withValorDaBaseDeCalculoDoICMSDeSubstituicaoTributariaSobreConsumo(
+            final BigDecimal string) {
         iCMSCons.setVBCICMSSTCons(string.toString());
         return this;
     }
 
-    public ICMSSobreConsumo withValorDoICMSSubstituicaoTributariaSobreConsumo(final BigDecimal string) {
+    public ICMSSobreConsumo<T> withValorDoICMSSubstituicaoTributariaSobreConsumo(final BigDecimal string) {
         iCMSCons.setVICMSSTCons(string.toString());
         return this;
     }
 
-    public ICMSSobreConsumo withUF(final UF tUf) {
+    public ICMSSobreConsumo<T> withUF(final UF tUf) {
         iCMSCons.setUFCons(tUf);
         return this;
     }

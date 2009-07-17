@@ -2,50 +2,52 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface Produto {
-    public Produto withCodigoDoProduto(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Produto withCodigoEAN(String string);
+public interface Produto<T> extends NFeBuilder<T> {
+    public Produto<T> withCodigoDoProduto(String string);
 
-    public Produto withDescricaoDoProduto(String string);
+    public Produto<T> withCodigoEAN(String string);
 
-    public Produto withCodigoNCM(String string);
+    public Produto<T> withDescricaoDoProduto(String string);
 
-    public Produto withCodigoEXTIPI(String string);
+    public Produto<T> withCodigoNCM(String string);
 
-    public Produto withGenero(String string);
+    public Produto<T> withCodigoEXTIPI(String string);
 
-    public Produto withCodigoFiscalDeOperacoesEPrestacoes(String string);
+    public Produto<T> withGenero(String string);
 
-    public Produto withUnidadeComercial(String string);
+    public Produto<T> withCodigoFiscalDeOperacoesEPrestacoes(String string);
 
-    public Produto withQuantidadeComercial(BigDecimal string);
+    public Produto<T> withUnidadeComercial(String string);
 
-    public Produto withValorUnitarioDeComercializacao(BigDecimal string);
+    public Produto<T> withQuantidadeComercial(BigDecimal string);
 
-    public Produto withValorBrutoDoProduto(BigDecimal string);
+    public Produto<T> withValorUnitarioDeComercializacao(BigDecimal string);
 
-    public Produto withCodigoEANDaUnidadeTributavel(String string);
+    public Produto<T> withValorBrutoDoProduto(BigDecimal string);
 
-    public Produto withUnidadeTributavel(String string);
+    public Produto<T> withCodigoEANDaUnidadeTributavel(String string);
 
-    public Produto withQuantidadeTributavel(BigDecimal string);
+    public Produto<T> withUnidadeTributavel(String string);
 
-    public Produto withValorUnitarioDeTributacao(BigDecimal string);
+    public Produto<T> withQuantidadeTributavel(BigDecimal string);
 
-    public Produto withValorDoFrete(BigDecimal string);
+    public Produto<T> withValorUnitarioDeTributacao(BigDecimal string);
 
-    public Produto withValorDoSeguro(BigDecimal string);
+    public Produto<T> withValorDoFrete(BigDecimal string);
 
-    public Produto withValorDeDesconto(BigDecimal string);
+    public Produto<T> withValorDoSeguro(BigDecimal string);
 
-    public Produto withDI(DeclaracaoDeImportacao... di);
+    public Produto<T> withValorDeDesconto(BigDecimal string);
 
-    public Produto withVeiculoNovo(VeiculoNovo veicProd);
+    public Produto<T> withDI(DeclaracaoDeImportacao<?>... di);
 
-    public Produto withMedicamento(Medicamento... meds);
+    public Produto<T> withVeiculoNovo(VeiculoNovo<?> veicProd);
 
-    public Produto withArmamento(Armamento... armas);
+    public Produto<T> withMedicamento(Medicamento<?>... meds);
 
-    public Produto withCombustivel(Combustivel comb);
+    public Produto<T> withArmamento(Armamento<?>... armas);
+
+    public Produto<T> withCombustivel(Combustivel<?> comb);
 }

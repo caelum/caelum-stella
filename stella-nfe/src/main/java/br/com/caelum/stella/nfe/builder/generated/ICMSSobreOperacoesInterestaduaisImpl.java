@@ -2,26 +2,32 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class ICMSSobreOperacoesInterestaduaisImpl implements ICMSSobreOperacoesInterestaduais,
+public final class ICMSSobreOperacoesInterestaduaisImpl<T> implements ICMSSobreOperacoesInterestaduais<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSInter iCMSInter;
+    private final T parent;
 
-    public ICMSSobreOperacoesInterestaduaisImpl() {
+    public ICMSSobreOperacoesInterestaduaisImpl(final T parent) {
+        this.parent = parent;
         iCMSInter = new br.com.caelum.stella.nfe.modelo.ICMSInter();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.iCMSInter;
+    public T build() {
+        return parent;
     }
 
-    public ICMSSobreOperacoesInterestaduais withValorDaBaseDeCalculoDoICMSSubstituicaoTributariaDoDestino(
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.iCMSInter;
+    }
+
+    public ICMSSobreOperacoesInterestaduais<T> withValorDaBaseDeCalculoDoICMSSubstituicaoTributariaDoDestino(
             final BigDecimal string) {
         iCMSInter.setVBCICMSSTDest(string.toString());
         return this;
     }
 
-    public ICMSSobreOperacoesInterestaduais withValorDoICMSSubstituicaoTributariaDoDestino(final BigDecimal string) {
+    public ICMSSobreOperacoesInterestaduais<T> withValorDoICMSSubstituicaoTributariaDoDestino(final BigDecimal string) {
         iCMSInter.setVICMSSTDest(string.toString());
         return this;
     }

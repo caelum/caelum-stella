@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface DFe {
-    public DFe withMod(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public DFe withSit(String string);
+public interface DFe<T> extends NFeBuilder<T> {
+    public DFe<T> withMod(String string);
+
+    public DFe<T> withSit(String string);
 }

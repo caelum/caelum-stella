@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface InformacaoDaNFReferenciada {
-    public InformacaoDaNFReferenciada withChaveDeAcessoDaNFReferenciada(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public InformacaoDaNFReferenciada withNFReferenciada(NFReferenciada refNF);
+public interface InformacaoDaNFReferenciada<T> extends NFeBuilder<T> {
+    public InformacaoDaNFReferenciada<T> withChaveDeAcessoDaNFReferenciada(String string);
+
+    public InformacaoDaNFReferenciada<T> withNFReferenciada(NFReferenciada<?> refNF);
 }

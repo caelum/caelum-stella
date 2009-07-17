@@ -1,13 +1,15 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class CobrImplTest {
     @org.junit.Test
     public void testCobrInterface() {
-        Cobranca cobr = new CobrancaImpl().withFatura(new FaturaImpl()).withDuplicatas(new DuplicataImpl());
-        assertModelWasFilled(cobr);
+        Cobranca<Object> cobr = new CobrancaImpl<Object>(new Object())
+                                                                      .withFatura(new FaturaImpl<Object>(new Object()))
+                                                                      .withDuplicatas(
+                                                                              new DuplicataImpl<Object>(new Object()));
+        BuilderTestHelper.assertModelWasFilled(cobr);
     }
 
-    private void assertModelWasFilled(final Cobranca cobr) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(cobr).assertModelWasFilled();
-    }
 }

@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface ObservacaoFisco {
-    public ObservacaoFisco withDescricaoDoTexto(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public ObservacaoFisco withDescricaoDoCampo(String string);
+public interface ObservacaoFisco<T> extends NFeBuilder<T> {
+    public ObservacaoFisco<T> withDescricaoDoTexto(String string);
+
+    public ObservacaoFisco<T> withDescricaoDoCampo(String string);
 }

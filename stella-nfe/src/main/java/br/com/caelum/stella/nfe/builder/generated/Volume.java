@@ -1,17 +1,19 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Volume {
-    public Volume withQuantidade(Long string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Volume withEspecie(String string);
+public interface Volume<T> extends NFeBuilder<T> {
+    public Volume<T> withQuantidade(Long string);
 
-    public Volume withMarca(String string);
+    public Volume<T> withEspecie(String string);
 
-    public Volume withNumeracao(String string);
+    public Volume<T> withMarca(String string);
 
-    public Volume withPesoLiquido(String string);
+    public Volume<T> withNumeracao(String string);
 
-    public Volume withPesoBruto(String string);
+    public Volume<T> withPesoLiquido(String string);
 
-    public Volume withLacres(Lacres... lacres);
+    public Volume<T> withPesoBruto(String string);
+
+    public Volume<T> withLacres(Lacres<?>... lacres);
 }

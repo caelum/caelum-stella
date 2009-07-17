@@ -1,6 +1,8 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-//TODO inline. Como esse tipo tem apenas um setter, deve ser um mŽtodo do objeto que quer settar um CONFINSNT
-public interface COFINSNaoTributado {
-    public COFINSNaoTributado withCodigoSituacaoTributaria(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
+
+//TODO inline. Como esse tipo tem apenas um setter, deve ser um mï¿½todo do objeto que quer settar um CONFINSNT
+public interface COFINSNaoTributado<T> extends NFeBuilder<T> {
+    public COFINSNaoTributado<T> withCodigoSituacaoTributaria(String string);
 }

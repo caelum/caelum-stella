@@ -2,34 +2,40 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.builder.generated.enums.TipoDeArmamento;
 
-public final class ArmamentoImpl implements Armamento, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ArmamentoImpl<T> implements Armamento<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Arma arma;
+    private final T parent;
 
-    public ArmamentoImpl() {
+    public ArmamentoImpl(final T parent) {
+        this.parent = parent;
         this.arma = new br.com.caelum.stella.nfe.modelo.Arma();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.arma;
+    public T build() {
+        return parent;
     }
 
-    public Armamento withTipo(TipoDeArmamento tipoDeArmamento) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.arma;
+    }
+
+    public Armamento<T> withTipo(final TipoDeArmamento tipoDeArmamento) {
         this.arma.setTpArma(tipoDeArmamento.getCodigo() + "");
         return this;
     }
 
-    public Armamento withNumeroDeSerie(Integer numero) {
+    public Armamento<T> withNumeroDeSerie(final Integer numero) {
         this.arma.setNSerie(numero.toString());
         return this;
     }
 
-    public Armamento withNumeroDeSerieDoCano(Integer numero) {
+    public Armamento<T> withNumeroDeSerieDoCano(final Integer numero) {
         this.arma.setNCano(numero.toString());
         return this;
     }
 
-    public Armamento withDescricao(String string) {
+    public Armamento<T> withDescricao(final String string) {
         this.arma.setDescr(string);
         return this;
     }

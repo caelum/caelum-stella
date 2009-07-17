@@ -2,45 +2,51 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class ICMSRetidoPeloTransporteImpl implements ICMSRetidoPeloTransporte,
+public final class ICMSRetidoPeloTransporteImpl<T> implements ICMSRetidoPeloTransporte<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RetTransp retTransp;
+    private final T parent;
 
-    public ICMSRetidoPeloTransporteImpl() {
+    public ICMSRetidoPeloTransporteImpl(final T parent) {
+        this.parent = parent;
         retTransp = new br.com.caelum.stella.nfe.modelo.RetTransp();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.retTransp;
+    public T build() {
+        return parent;
     }
 
-    public ICMSRetidoPeloTransporte withValorDoServico(final BigDecimal string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.retTransp;
+    }
+
+    public ICMSRetidoPeloTransporte<T> withValorDoServico(final BigDecimal string) {
         retTransp.setVServ(string.toString());
         return this;
     }
 
-    public ICMSRetidoPeloTransporte withValorDaBaseDeCalculoDeRetencaoDoICMS(final BigDecimal string) {
+    public ICMSRetidoPeloTransporte<T> withValorDaBaseDeCalculoDeRetencaoDoICMS(final BigDecimal string) {
         retTransp.setVBCRet(string.toString());
         return this;
     }
 
-    public ICMSRetidoPeloTransporte withAliquotaDaRetencaoDoICMS(final BigDecimal aliquota) {
+    public ICMSRetidoPeloTransporte<T> withAliquotaDaRetencaoDoICMS(final BigDecimal aliquota) {
         retTransp.setPICMSRet(aliquota.toPlainString());
         return this;
     }
 
-    public ICMSRetidoPeloTransporte withValorDoICMSRetido(final BigDecimal string) {
+    public ICMSRetidoPeloTransporte<T> withValorDoICMSRetido(final BigDecimal string) {
         retTransp.setVICMSRet(string.toString());
         return this;
     }
 
-    public ICMSRetidoPeloTransporte withCodigoFiscalDeOperacoesEPrestacoes(final String string) {
+    public ICMSRetidoPeloTransporte<T> withCodigoFiscalDeOperacoesEPrestacoes(final String string) {
         retTransp.setCFOP(string);
         return this;
     }
 
-    public ICMSRetidoPeloTransporte withCodigoDoMunicipio(final String string) {
+    public ICMSRetidoPeloTransporte<T> withCodigoDoMunicipio(final String string) {
         retTransp.setCMunFG(string);
         return this;
     }

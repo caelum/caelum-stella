@@ -6,41 +6,47 @@ import java.util.List;
 import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public final class TEmissorImpl implements TEmissor, br.com.caelum.stella.nfe.ObjectCreator {
+public final class TEmissorImpl<T> implements TEmissor<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TEmissor tEmissor;
+    private final T parent;
 
-    public TEmissorImpl() {
+    public TEmissorImpl(final T parent) {
+        this.parent = parent;
         tEmissor = new br.com.caelum.stella.nfe.modelo.TEmissor();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) tEmissor;
+    public T build() {
+        return parent;
     }
 
-    public TEmissor withUF(final TUf tUf) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) tEmissor;
+    }
+
+    public TEmissor<T> withUF(final TUf tUf) {
         tEmissor.setUF(tUf);
         return this;
     }
 
-    public TEmissor withCNPJ(final String string) {
+    public TEmissor<T> withCNPJ(final String string) {
         tEmissor.setCNPJ(string);
         return this;
     }
 
-    public TEmissor withCNPJMatriz(final String string) {
+    public TEmissor<T> withCNPJMatriz(final String string) {
         tEmissor.setCNPJMatriz(string);
         return this;
     }
 
-    public TEmissor withIE(final String string) {
+    public TEmissor<T> withIE(final String string) {
         tEmissor.setIE(string);
         return this;
     }
 
-    public TEmissor withDFe(final List<DFe> listDFe) {
+    public TEmissor<T> withDFe(final List<DFe<?>> listDFe) {
         List<br.com.caelum.stella.nfe.modelo.DFe> list = new ArrayList<br.com.caelum.stella.nfe.modelo.DFe>();
-        for (DFe fe : listDFe) {
+        for (DFe<?> fe : listDFe) {
             list.add((br.com.caelum.stella.nfe.modelo.DFe) ((ObjectCreator) fe).getInstance());
         }
         tEmissor.setDFe(list);

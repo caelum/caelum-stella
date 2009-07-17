@@ -2,32 +2,34 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface ICMSTotal {
-    public ICMSTotal withValorDaBaseDeCalculo(BigDecimal string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public ICMSTotal withValorTotal(BigDecimal string);
+public interface ICMSTotal<T> extends NFeBuilder<T> {
+    public ICMSTotal<T> withValorDaBaseDeCalculo(BigDecimal string);
 
-    public ICMSTotal withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(BigDecimal string);
+    public ICMSTotal<T> withValorTotal(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoICMSSubstituicaoTributaria(BigDecimal string);
+    public ICMSTotal<T> withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(BigDecimal string);
 
-    public ICMSTotal withValorTotalDosProdutosEServicos(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoICMSSubstituicaoTributaria(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoFrete(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDosProdutosEServicos(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoSeguro(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoFrete(BigDecimal string);
 
-    public ICMSTotal withValorTotalDeDesconto(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoSeguro(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoII(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDeDesconto(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoIPI(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoII(BigDecimal string);
 
-    public ICMSTotal withValorTotalDoPIS(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoIPI(BigDecimal string);
 
-    public ICMSTotal withValor(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDoPIS(BigDecimal string);
 
-    public ICMSTotal withValorTotalDeOutrasDespesas(BigDecimal string);
+    public ICMSTotal<T> withValor(BigDecimal string);
 
-    public ICMSTotal withValorTotalDaNF(BigDecimal string);
+    public ICMSTotal<T> withValorTotalDeOutrasDespesas(BigDecimal string);
+
+    public ICMSTotal<T> withValorTotalDaNF(BigDecimal string);
 }

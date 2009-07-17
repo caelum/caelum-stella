@@ -1,13 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class PISNTImplTest {
     @org.junit.Test
     public void testPISNTInterface() {
-        PISNaoTributado pISNT = new PISNaoTributadoImpl().withCodigoSituacaoTributaria("abc");
-        assertModelWasFilled(pISNT);
+        PISNaoTributado<Object> pISNT = new PISNaoTributadoImpl<Object>(new Object())
+                                                                                     .withCodigoSituacaoTributaria("abc");
+        BuilderTestHelper.assertModelWasFilled(pISNT);
     }
 
-    private void assertModelWasFilled(PISNaoTributado pISNT) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(pISNT).assertModelWasFilled();
-    }
 }

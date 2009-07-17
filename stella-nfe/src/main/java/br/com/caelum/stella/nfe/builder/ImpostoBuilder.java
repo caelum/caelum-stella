@@ -10,12 +10,12 @@ public class ImpostoBuilder {
         return new IIImpl();
     }
 
-    public IPI createIPI() {
-        return new IPIImpl();
+    public IPI<ImpostoBuilder> createIPI() {
+        return new IPIImpl<ImpostoBuilder>(this);
     }
 
-    public ISS createISS() {
-        return new ISSQNImpl();
+    public ISS<ImpostoBuilder> createISS() {
+        return new ISSQNImpl<ImpostoBuilder>(this);
     }
 
     public ICMSBuilder createICMS() {

@@ -1,7 +1,10 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Lacres {
-    public Lacres withNumeroDosLacres(String string);// TODO this must not be a
-                                                     // class.
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
+
+public interface Lacres<T> extends NFeBuilder<T> {
+    public Lacres<T> withNumeroDosLacres(String string);// TODO this must not be
+                                                        // a
+    // class.
     // Just a setter.
 }

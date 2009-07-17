@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface COFINS {
-    public COFINS withTributacaoPelaAliquota(COFINSTributadoPelaAliquota cOFINSAliq);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public COFINS withTributacaoPelaQuantidade(COFINSTributadoPelaQuantidade cOFINSQtde);
+public interface COFINS<T> extends NFeBuilder<T> {
+    public COFINS<T> withTributacaoPelaAliquota(COFINSTributadoPelaAliquota<?> cOFINSAliq);
 
-    public COFINS withNaoTributado(COFINSNaoTributado cOFINSNT);
+    public COFINS<T> withTributacaoPelaQuantidade(COFINSTributadoPelaQuantidade<?> cOFINSQtde);
 
-    public COFINS withTributacaoDeOutrasOperacoes(COFINSOutrasOperacoes cOFINSOutr);
+    public COFINS<T> withNaoTributado(COFINSNaoTributado<?> cOFINSNT);
+
+    public COFINS<T> withTributacaoDeOutrasOperacoes(COFINSOutrasOperacoes<?> cOFINSOutr);
 }

@@ -1,21 +1,22 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.modelo.UF;
 import br.com.caelum.stella.tinytype.CNPJ;
 import br.com.caelum.stella.tinytype.CPF;
 
-public interface Transportador {
-    public Transportador withCNPJ(CNPJ cnpj);
+public interface Transportador<T> extends NFeBuilder<T> {
+    public Transportador<T> withCNPJ(CNPJ cnpj);
 
-    public Transportador withCPF(CPF cpf);
+    public Transportador<T> withCPF(CPF cpf);
 
-    public Transportador withNome(String string);
+    public Transportador<T> withNome(String string);
 
-    public Transportador withInscricaoEstadual(String string);
+    public Transportador<T> withInscricaoEstadual(String string);
 
-    public Transportador withEnderecoCompleto(String string);
+    public Transportador<T> withEnderecoCompleto(String string);
 
-    public Transportador withNomeDoMunicipio(String string);
+    public Transportador<T> withNomeDoMunicipio(String string);
 
-    public Transportador withUF(UF tUf);
+    public Transportador<T> withUF(UF tUf);
 }

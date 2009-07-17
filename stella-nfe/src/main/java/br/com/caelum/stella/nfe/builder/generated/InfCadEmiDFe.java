@@ -3,10 +3,12 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.util.Calendar;
 import java.util.List;
 
-public interface InfCadEmiDFe {
-    public InfCadEmiDFe withDPubCad(Calendar calendar);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public InfCadEmiDFe withEmissor(List<TEmissor> list);
+public interface InfCadEmiDFe<T> extends NFeBuilder<T> {
+    public InfCadEmiDFe<T> withDPubCad(Calendar calendar);
 
-    public InfCadEmiDFe withId(String string);
+    public InfCadEmiDFe<T> withEmissor(List<TEmissor<?>> list);
+
+    public InfCadEmiDFe<T> withId(String string);
 }

@@ -2,84 +2,90 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class ICMSTotalImpl implements ICMSTotal, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ICMSTotalImpl<T> implements ICMSTotal<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ICMSTot iCMSTot;
+    private final T parent;
 
-    public ICMSTotalImpl() {
+    public ICMSTotalImpl(final T parent) {
+        this.parent = parent;
         iCMSTot = new br.com.caelum.stella.nfe.modelo.ICMSTot();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.iCMSTot;
+    public T build() {
+        return parent;
     }
 
-    public ICMSTotal withValorDaBaseDeCalculo(final BigDecimal string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.iCMSTot;
+    }
+
+    public ICMSTotal<T> withValorDaBaseDeCalculo(final BigDecimal string) {
         iCMSTot.setVBC(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotal(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotal(final BigDecimal string) {
         iCMSTot.setVICMS(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(final BigDecimal string) {
+    public ICMSTotal<T> withValorDaBaseDeCalculoDoICMSSubstituicaoTributaria(final BigDecimal string) {
         iCMSTot.setVBCST(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoICMSSubstituicaoTributaria(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoICMSSubstituicaoTributaria(final BigDecimal string) {
         iCMSTot.setVST(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDosProdutosEServicos(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDosProdutosEServicos(final BigDecimal string) {
         iCMSTot.setVProd(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoFrete(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoFrete(final BigDecimal string) {
         iCMSTot.setVFrete(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoSeguro(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoSeguro(final BigDecimal string) {
         iCMSTot.setVSeg(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDeDesconto(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDeDesconto(final BigDecimal string) {
         iCMSTot.setVDesc(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoII(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoII(final BigDecimal string) {
         iCMSTot.setVII(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoIPI(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoIPI(final BigDecimal string) {
         iCMSTot.setVIPI(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDoPIS(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDoPIS(final BigDecimal string) {
         iCMSTot.setVPIS(string.toString());
         return this;
     }
 
-    public ICMSTotal withValor(final BigDecimal string) {
+    public ICMSTotal<T> withValor(final BigDecimal string) {
         iCMSTot.setVCOFINS(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDeOutrasDespesas(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDeOutrasDespesas(final BigDecimal string) {
         iCMSTot.setVOutro(string.toString());
         return this;
     }
 
-    public ICMSTotal withValorTotalDaNF(final BigDecimal string) {
+    public ICMSTotal<T> withValorTotalDaNF(final BigDecimal string) {
         iCMSTot.setVNF(string.toString());
         return this;
     }

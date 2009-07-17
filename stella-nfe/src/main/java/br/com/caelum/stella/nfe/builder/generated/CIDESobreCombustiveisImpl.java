@@ -2,29 +2,36 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class CIDESobreCombustiveisImpl implements CIDESobreCombustiveis, br.com.caelum.stella.nfe.ObjectCreator {
+public final class CIDESobreCombustiveisImpl<T> implements CIDESobreCombustiveis<T>,
+        br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.CIDE cIDE;
+    private final T parent;
 
-    public CIDESobreCombustiveisImpl() {
+    public CIDESobreCombustiveisImpl(final T parent) {
+        this.parent = parent;
         cIDE = new br.com.caelum.stella.nfe.modelo.CIDE();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.cIDE;
+    public T build() {
+        return parent;
     }
 
-    public CIDESobreCombustiveis withBaseDeCalculo(final BigDecimal string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.cIDE;
+    }
+
+    public CIDESobreCombustiveis<T> withBaseDeCalculo(final BigDecimal string) {
         cIDE.setQBCProd(string.toString());
         return this;
     }
 
-    public CIDESobreCombustiveis withAliquota(final BigDecimal string) {
+    public CIDESobreCombustiveis<T> withAliquota(final BigDecimal string) {
         cIDE.setVAliqProd(string.toString());
         return this;
     }
 
-    public CIDESobreCombustiveis withValor(final BigDecimal string) {
+    public CIDESobreCombustiveis<T> withValor(final BigDecimal string) {
         cIDE.setVCIDE(string.toString());
         return this;
     }

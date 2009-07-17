@@ -2,31 +2,37 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class PISTributadoPorQuantidadeImpl implements PISTributadoPorQuantidade,
+public final class PISTributadoPorQuantidadeImpl<T> implements PISTributadoPorQuantidade<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.PISQtde pISQtde;
+    private final T parent;
 
-    public PISTributadoPorQuantidadeImpl() {
+    public PISTributadoPorQuantidadeImpl(final T parent) {
+        this.parent = parent;
         pISQtde = new br.com.caelum.stella.nfe.modelo.PISQtde();
         pISQtde.setCST("03");
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.pISQtde;
+    public T build() {
+        return parent;
     }
 
-    public PISTributadoPorQuantidade withQuantidadeVendida(final BigDecimal string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.pISQtde;
+    }
+
+    public PISTributadoPorQuantidade<T> withQuantidadeVendida(final BigDecimal string) {
         pISQtde.setQBCProd(string.toString());
         return this;
     }
 
-    public PISTributadoPorQuantidade withAliquota(final BigDecimal string) {
+    public PISTributadoPorQuantidade<T> withAliquota(final BigDecimal string) {
         pISQtde.setVAliqProd(string.toString());
         return this;
     }
 
-    public PISTributadoPorQuantidade withValorDoPIS(final BigDecimal string) {
+    public PISTributadoPorQuantidade<T> withValorDoPIS(final BigDecimal string) {
         pISQtde.setVPIS(string.toString());
         return this;
     }

@@ -1,13 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class TRetConsCadImplTest {
     @org.junit.Test
     public void testTRetConsCadInterface() {
-        TRetConsCad tRetConsCad = new TRetConsCadImpl().withInfCons(new InfConsImpl()).withVersao("abc");
-        assertModelWasFilled(tRetConsCad);
+        TRetConsCad<Object> tRetConsCad = new TRetConsCadImpl<Object>(new Object()).withInfCons(
+                new InfConsImpl<Object>(new Object())).withVersao("abc");
+        BuilderTestHelper.assertModelWasFilled(tRetConsCad);
     }
 
-    private void assertModelWasFilled(final TRetConsCad tRetConsCad) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tRetConsCad).assertModelWasFilled();
-    }
 }

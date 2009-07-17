@@ -1,3 +1,28 @@
 package br.com.caelum.stella.nfe.builder.generated;
+
 import java.util.Calendar;
- public final class TRetConsStatServImplTest {  @org.junit.Test  public void testTRetConsStatServInterface()  { TRetConsStatServ tRetConsStatServ = new TRetConsStatServImpl().withTpAmb("abc").withVerAplic("abc").withCStat("abc").withXMotivo("abc").withCUF("abc").withDhRecbto(Calendar.getInstance()).withTMed("abc").withDhRetorno(Calendar.getInstance()).withXObs("abc").withVersao("abc"); assertModelWasFilled(tRetConsStatServ); }private void assertModelWasFilled(TRetConsStatServ tRetConsStatServ) { new br.com.caelum.stella.nfe.builder.BuilderTestHelper (tRetConsStatServ).assertModelWasFilled();} }
+
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
+public final class TRetConsStatServImplTest {
+    @org.junit.Test
+    public void testTRetConsStatServInterface() {
+        TRetConsStatServ<Object> tRetConsStatServ = new TRetConsStatServImpl<Object>(new Object())
+                                                                                                  .withTpAmb("abc")
+                                                                                                  .withVerAplic("abc")
+                                                                                                  .withCStat("abc")
+                                                                                                  .withXMotivo("abc")
+                                                                                                  .withCUF("abc")
+                                                                                                  .withDhRecbto(
+                                                                                                          Calendar
+                                                                                                                  .getInstance())
+                                                                                                  .withTMed("abc")
+                                                                                                  .withDhRetorno(
+                                                                                                          Calendar
+                                                                                                                  .getInstance())
+                                                                                                  .withXObs("abc")
+                                                                                                  .withVersao("abc");
+        BuilderTestHelper.assertModelWasFilled(tRetConsStatServ);
+    }
+
+}

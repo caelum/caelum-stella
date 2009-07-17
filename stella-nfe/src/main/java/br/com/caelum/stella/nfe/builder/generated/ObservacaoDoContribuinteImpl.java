@@ -1,24 +1,30 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public final class ObservacaoDoContribuinteImpl implements ObservacaoDoContribuinte,
+public final class ObservacaoDoContribuinteImpl<T> implements ObservacaoDoContribuinte<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.ObsCont obsCont;
+    private final T parent;
 
-    public ObservacaoDoContribuinteImpl() {
+    public ObservacaoDoContribuinteImpl(final T parent) {
+        this.parent = parent;
         obsCont = new br.com.caelum.stella.nfe.modelo.ObsCont();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.obsCont;
+    public T build() {
+        return parent;
     }
 
-    public ObservacaoDoContribuinte withTextoDeDescricao(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.obsCont;
+    }
+
+    public ObservacaoDoContribuinte<T> withTextoDeDescricao(final String string) {
         obsCont.setXTexto(string);
         return this;
     }
 
-    public ObservacaoDoContribuinte withDescricaoDoCampo(final String string) {
+    public ObservacaoDoContribuinte<T> withDescricaoDoCampo(final String string) {
         obsCont.setXCampo(string);
         return this;
     }

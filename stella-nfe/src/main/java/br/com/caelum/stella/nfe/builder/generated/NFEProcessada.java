@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface NFEProcessada {
-    public NFEProcessada withNFE(NFE tNFe);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public NFEProcessada withProtocoloDoResultadoDeProcessamento(ProtocoloDoResultadoDeProcessamento tProtNFe);
+public interface NFEProcessada<T> extends NFeBuilder<T> {
+    public NFEProcessada<T> withNFE(NFE<?> tNFe);
 
-    public NFEProcessada withVersao(String string);
+    public NFEProcessada<T> withProtocoloDoResultadoDeProcessamento(ProtocoloDoResultadoDeProcessamento<?> tProtNFe);
+
+    public NFEProcessada<T> withVersao(String string);
 }

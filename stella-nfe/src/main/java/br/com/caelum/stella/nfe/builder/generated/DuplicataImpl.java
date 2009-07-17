@@ -2,29 +2,35 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public final class DuplicataImpl implements Duplicata, br.com.caelum.stella.nfe.ObjectCreator {
+public final class DuplicataImpl<T> implements Duplicata<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Dup dup;
+    private final T parent;
 
-    public DuplicataImpl() {
+    public DuplicataImpl(final T parent) {
+        this.parent = parent;
         dup = new br.com.caelum.stella.nfe.modelo.Dup();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.dup;
+    public T build() {
+        return parent;
     }
 
-    public Duplicata withNumero(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.dup;
+    }
+
+    public Duplicata<T> withNumero(final String string) {
         dup.setNDup(string);
         return this;
     }
 
-    public Duplicata withDataDeVencimento(final Calendar calendar) {
+    public Duplicata<T> withDataDeVencimento(final Calendar calendar) {
         dup.setDVenc(calendar);
         return this;
     }
 
-    public Duplicata withValorDaDuplicata(final String string) {
+    public Duplicata<T> withValorDaDuplicata(final String string) {
         dup.setVDup(string);
         return this;
     }

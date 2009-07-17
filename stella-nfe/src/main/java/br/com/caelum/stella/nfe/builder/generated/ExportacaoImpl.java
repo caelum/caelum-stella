@@ -2,24 +2,30 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.UF;
 
-public final class ExportacaoImpl implements Exportacao, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ExportacaoImpl<T> implements Exportacao<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Exporta exporta;
+    private final T parent;
 
-    public ExportacaoImpl() {
+    public ExportacaoImpl(final T parent) {
+        this.parent = parent;
         exporta = new br.com.caelum.stella.nfe.modelo.Exporta();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.exporta;
+    public T build() {
+        return parent;
     }
 
-    public Exportacao withUFDoEmbarque(final UF tUf) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.exporta;
+    }
+
+    public Exportacao<T> withUFDoEmbarque(final UF tUf) {
         exporta.setUFEmbarq(tUf);
         return this;
     }
 
-    public Exportacao withLocalDoEmbarque(final String string) {
+    public Exportacao<T> withLocalDoEmbarque(final String string) {
         exporta.setXLocEmbarq(string);
         return this;
     }

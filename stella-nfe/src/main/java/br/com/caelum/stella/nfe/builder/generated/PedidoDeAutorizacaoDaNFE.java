@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface PedidoDeAutorizacaoDaNFE {
-    public PedidoDeAutorizacaoDaNFE withIdDoLote(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public PedidoDeAutorizacaoDaNFE withNFE(NFE... nfes);
+public interface PedidoDeAutorizacaoDaNFE<T> extends NFeBuilder<T> {
+    public PedidoDeAutorizacaoDaNFE<T> withIdDoLote(String string);
 
-    public PedidoDeAutorizacaoDaNFE withVersao(String string);
+    public PedidoDeAutorizacaoDaNFE<T> withNFE(NFE<?>... nfes);
+
+    public PedidoDeAutorizacaoDaNFE<T> withVersao(String string);
 }

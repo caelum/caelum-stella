@@ -1,13 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class TConsCadImplTest {
     @org.junit.Test
     public void testTConsCadInterface() {
-        TConsCad tConsCad = new TConsCadImpl().withInfCons(new InfConsImpl()).withVersao("abc");
-        assertModelWasFilled(tConsCad);
+        TConsCad<Object> tConsCad = new TConsCadImpl<Object>(new Object()).withInfCons(
+                new InfConsImpl<Object>(new Object())).withVersao("abc");
+        BuilderTestHelper.assertModelWasFilled(tConsCad);
     }
 
-    private void assertModelWasFilled(final TConsCad tConsCad) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tConsCad).assertModelWasFilled();
-    }
 }

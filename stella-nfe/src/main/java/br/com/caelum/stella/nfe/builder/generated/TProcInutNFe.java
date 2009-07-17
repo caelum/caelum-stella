@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface TProcInutNFe {
-    public TProcInutNFe withInutNFe(TInutNFe tInutNFe);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public TProcInutNFe withRetInutNFe(TRetInutNFe tRetInutNFe);
+public interface TProcInutNFe<T> extends NFeBuilder<T> {
+    public TProcInutNFe<T> withInutNFe(TInutNFe<?> tInutNFe);
 
-    public TProcInutNFe withVersao(String string);
+    public TProcInutNFe<T> withRetInutNFe(TRetInutNFe<?> tRetInutNFe);
+
+    public TProcInutNFe<T> withVersao(String string);
 }

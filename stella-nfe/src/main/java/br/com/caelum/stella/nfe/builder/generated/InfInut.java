@@ -2,32 +2,34 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public interface InfInut {
-    public InfInut withTpAmb(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public InfInut withVerAplic(String string);
+public interface InfInut<T> extends NFeBuilder<T> {
+    public InfInut<T> withTpAmb(String string);
 
-    public InfInut withCStat(String string);
+    public InfInut<T> withVerAplic(String string);
 
-    public InfInut withXMotivo(String string);
+    public InfInut<T> withCStat(String string);
 
-    public InfInut withCUF(String string);
+    public InfInut<T> withXMotivo(String string);
 
-    public InfInut withAno(String string);
+    public InfInut<T> withCUF(String string);
 
-    public InfInut withCNPJ(String string);
+    public InfInut<T> withAno(String string);
 
-    public InfInut withMod(String string);
+    public InfInut<T> withCNPJ(String string);
 
-    public InfInut withSerie(String string);
+    public InfInut<T> withMod(String string);
 
-    public InfInut withNNFIni(String string);
+    public InfInut<T> withSerie(String string);
 
-    public InfInut withNNFFin(String string);
+    public InfInut<T> withNNFIni(String string);
 
-    public InfInut withDhRecbto(Calendar calendar);
+    public InfInut<T> withNNFFin(String string);
 
-    public InfInut withNProt(String string);
+    public InfInut<T> withDhRecbto(Calendar calendar);
 
-    public InfInut withId(String string);
+    public InfInut<T> withNProt(String string);
+
+    public InfInut<T> withId(String string);
 }

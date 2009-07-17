@@ -1,28 +1,34 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public final class CompraImpl implements Compra, br.com.caelum.stella.nfe.ObjectCreator {
+public final class CompraImpl<T> implements Compra<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Compra compra;
+    private final T parent;
 
-    public CompraImpl() {
+    public CompraImpl(final T parent) {
+        this.parent = parent;
         this.compra = new br.com.caelum.stella.nfe.modelo.Compra();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.compra;
+    public T build() {
+        return parent;
     }
 
-    public Compra withInformacoesDaNotaDeEmpenhoDeComprasPublicas(String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.compra;
+    }
+
+    public Compra<T> withInformacoesDaNotaDeEmpenhoDeComprasPublicas(final String string) {
         this.compra.setXNEmp(string);
         return this;
     }
 
-    public Compra withInformacaoDoPedido(String string) {
+    public Compra<T> withInformacaoDoPedido(final String string) {
         this.compra.setXPed(string);
         return this;
     }
 
-    public Compra withInformacaoDoContrato(String string) {
+    public Compra<T> withInformacaoDoContrato(final String string) {
         this.compra.setXCont(string);
         return this;
     }

@@ -5,34 +5,40 @@ import java.util.List;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
 
-public final class PedidoDeAutorizacaoDaNFEImpl implements PedidoDeAutorizacaoDaNFE,
+public final class PedidoDeAutorizacaoDaNFEImpl<T> implements PedidoDeAutorizacaoDaNFE<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TEnviNFe tEnviNFe;
+    private final T parent;
 
-    public PedidoDeAutorizacaoDaNFEImpl() {
+    public PedidoDeAutorizacaoDaNFEImpl(final T parent) {
+        this.parent = parent;
         tEnviNFe = new br.com.caelum.stella.nfe.modelo.TEnviNFe();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.tEnviNFe;
+    public T build() {
+        return parent;
     }
 
-    public PedidoDeAutorizacaoDaNFE withIdDoLote(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.tEnviNFe;
+    }
+
+    public PedidoDeAutorizacaoDaNFE<T> withIdDoLote(final String string) {
         tEnviNFe.setIdLote(string);
         return this;
     }
 
-    public PedidoDeAutorizacaoDaNFE withNFE(final NFE... nfes) {
+    public PedidoDeAutorizacaoDaNFE<T> withNFE(final NFE<?>... nfes) {
         List<br.com.caelum.stella.nfe.modelo.TNFe> list = new ArrayList<br.com.caelum.stella.nfe.modelo.TNFe>();
-        for (NFE p : nfes) {
+        for (NFE<?> p : nfes) {
             list.add((br.com.caelum.stella.nfe.modelo.TNFe) ((ObjectCreator) p).getInstance());
         }
         tEnviNFe.setNFe(list);
         return this;
     }
 
-    public PedidoDeAutorizacaoDaNFE withVersao(final String string) {
+    public PedidoDeAutorizacaoDaNFE<T> withVersao(final String string) {
         tEnviNFe.setVersao(string);
         return this;
     }

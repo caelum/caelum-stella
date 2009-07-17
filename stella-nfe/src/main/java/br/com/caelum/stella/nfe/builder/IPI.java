@@ -2,19 +2,19 @@ package br.com.caelum.stella.nfe.builder;
 
 import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 
-public interface IPI {
+public interface IPI<T> extends NFeBuilder<T> {
 
-    public IPI withClasseDeEnquadramento(String classeDeEnquadramento);
+    public IPI<T> withClasseDeEnquadramento(String classeDeEnquadramento);
 
-    public IPI withCnpjDoProdutor(String cnpj);
+    public IPI<T> withCnpjDoProdutor(String cnpj);
 
-    public IPI withCodigoDoSelo(String seloDeControle);
+    public IPI<T> withCodigoDoSelo(String seloDeControle);
 
-    public IPI withQuantidadeDeSelos(long quantidadeDeSelos);
+    public IPI<T> withQuantidadeDeSelos(long quantidadeDeSelos);
 
-    public IPI withCodigoDeEnquadramento(String codigoDeEnquadramento);
+    public IPI<T> withCodigoDeEnquadramento(String codigoDeEnquadramento);
 
-    public IPI withTributacao(IPITributacao ipiTrib);
+    public IPI<T> withTributacao(IPITributacao<?> ipiTrib);
 
-    public IPI withIPIInt(SituacaoTributaria situacaoTributaria);
+    public IPI<T> withIPIInt(SituacaoTributaria situacaoTributaria);
 }

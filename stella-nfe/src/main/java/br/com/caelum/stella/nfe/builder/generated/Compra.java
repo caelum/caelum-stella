@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Compra {
-    public Compra withInformacoesDaNotaDeEmpenhoDeComprasPublicas(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Compra withInformacaoDoPedido(String string);
+public interface Compra<T> extends NFeBuilder<T> {
+    public Compra<T> withInformacoesDaNotaDeEmpenhoDeComprasPublicas(String string);
 
-    public Compra withInformacaoDoContrato(String string);
+    public Compra<T> withInformacaoDoPedido(String string);
+
+    public Compra<T> withInformacaoDoContrato(String string);
 }

@@ -1,16 +1,17 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.builder.Impostos;
 
 public final class DetImplTest {
     @org.junit.Test
     public void testDetInterface() {
-        Detalhe det = new DetalheImpl().withProduto(new ProdutoImpl()).withImposto(new Impostos()).withInformacaoAdicionalDoProduto("abc").withNumeroDoItemNaNF(
-                "abc");
-        assertModelWasFilled(det);
+        Detalhe<Object> det = new DetalheImpl<Object>(new Object())
+                                                                   .withProduto(new ProdutoImpl<Object>(new Object()))
+                                                                   .withImposto(new Impostos())
+                                                                   .withInformacaoAdicionalDoProduto("abc")
+                                                                   .withNumeroDoItemNaNF("abc");
+        BuilderTestHelper.assertModelWasFilled(det);
     }
 
-    private void assertModelWasFilled(final Detalhe det) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(det).assertModelWasFilled();
-    }
 }

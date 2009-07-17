@@ -1,13 +1,15 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface InformacoesAdicionais {
-    public InformacoesAdicionais withInformacoesAdicionaisDeInteresseDoFisco(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public InformacoesAdicionais withInformacoesComplementares(String string);
+public interface InformacoesAdicionais<T> extends NFeBuilder<T> {
+    public InformacoesAdicionais<T> withInformacoesAdicionaisDeInteresseDoFisco(String string);
 
-    public InformacoesAdicionais withObservacoesDoContribuinte(ObservacaoDoContribuinte... obsConts);
+    public InformacoesAdicionais<T> withInformacoesComplementares(String string);
 
-    public InformacoesAdicionais withObsFisco(ObservacaoFisco... obsFiscos);
+    public InformacoesAdicionais<T> withObservacoesDoContribuinte(ObservacaoDoContribuinte<?>... obsConts);
 
-    public InformacoesAdicionais withProcRef(ProcessoReferenciado... procRefs);
+    public InformacoesAdicionais<T> withObsFisco(ObservacaoFisco<?>... obsFiscos);
+
+    public InformacoesAdicionais<T> withProcRef(ProcessoReferenciado<?>... procRefs);
 }

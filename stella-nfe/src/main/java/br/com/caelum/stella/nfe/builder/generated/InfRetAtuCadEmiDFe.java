@@ -1,15 +1,16 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public interface InfRetAtuCadEmiDFe {
-    public InfRetAtuCadEmiDFe withUF(TUf tUf);
+public interface InfRetAtuCadEmiDFe<T> extends NFeBuilder<T> {
+    public InfRetAtuCadEmiDFe<T> withUF(TUf tUf);
 
-    public InfRetAtuCadEmiDFe withCNPJ(Object object);
+    public InfRetAtuCadEmiDFe<T> withCNPJ(Object object);
 
-    public InfRetAtuCadEmiDFe withOpe(String string);
+    public InfRetAtuCadEmiDFe<T> withOpe(String string);
 
-    public InfRetAtuCadEmiDFe withResOpe(String string);
+    public InfRetAtuCadEmiDFe<T> withResOpe(String string);
 
-    public InfRetAtuCadEmiDFe withId(String string);
+    public InfRetAtuCadEmiDFe<T> withId(String string);
 }

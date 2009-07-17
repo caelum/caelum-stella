@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface PIS {
-    public PIS withPISTributadoPelaAliquota(PISTributadoPelaAliquota pISAliq);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public PIS withPISTributadoPorQuantidade(PISTributadoPorQuantidade pISQtde);
+public interface PIS<T> extends NFeBuilder<T> {
+    public PIS<T> withPISTributadoPelaAliquota(PISTributadoPelaAliquota<?> pISAliq);
 
-    public PIS withPISNaoTributado(PISNaoTributado pISNT);
+    public PIS<T> withPISTributadoPorQuantidade(PISTributadoPorQuantidade<?> pISQtde);
 
-    public PIS withPISOutrasOperacoes(PISOutrasOperacoes pISOutr);
+    public PIS<T> withPISNaoTributado(PISNaoTributado<?> pISNT);
+
+    public PIS<T> withPISOutrasOperacoes(PISOutrasOperacoes<?> pISOutr);
 }

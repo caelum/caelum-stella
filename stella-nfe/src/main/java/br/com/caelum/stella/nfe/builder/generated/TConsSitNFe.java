@@ -1,11 +1,13 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface TConsSitNFe {
-    public TConsSitNFe withTpAmb(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public TConsSitNFe withXServ(String string);
+public interface TConsSitNFe<T> extends NFeBuilder<T> {
+    public TConsSitNFe<T> withTpAmb(String string);
 
-    public TConsSitNFe withChNFe(String string);
+    public TConsSitNFe<T> withXServ(String string);
 
-    public TConsSitNFe withVersao(String string);
+    public TConsSitNFe<T> withChNFe(String string);
+
+    public TConsSitNFe<T> withVersao(String string);
 }

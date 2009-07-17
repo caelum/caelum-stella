@@ -2,12 +2,14 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface COFINSTributadoPelaAliquota {
-    public COFINSTributadoPelaAliquota withCodigoSituacaoTributaria(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public COFINSTributadoPelaAliquota withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
+public interface COFINSTributadoPelaAliquota<T> extends NFeBuilder<T> {
+    public COFINSTributadoPelaAliquota<T> withCodigoSituacaoTributaria(String string);
 
-    public COFINSTributadoPelaAliquota withAliquotaEmPercentual(BigDecimal percentual);
+    public COFINSTributadoPelaAliquota<T> withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public COFINSTributadoPelaAliquota withValor(String string);
+    public COFINSTributadoPelaAliquota<T> withAliquotaEmPercentual(BigDecimal percentual);
+
+    public COFINSTributadoPelaAliquota<T> withValor(String string);
 }

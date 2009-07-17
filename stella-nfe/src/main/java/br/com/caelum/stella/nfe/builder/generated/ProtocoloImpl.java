@@ -4,60 +4,66 @@ import java.util.Calendar;
 
 import br.com.caelum.stella.nfe.builder.generated.enums.TipoDoAmbiente;
 
-public final class ProtocoloImpl implements Protocolo, br.com.caelum.stella.nfe.ObjectCreator {
+public final class ProtocoloImpl<T> implements Protocolo<T>, br.com.caelum.stella.nfe.ObjectCreator {
 
     private final br.com.caelum.stella.nfe.modelo.InfProt infProt;
+    private final T parent;
 
-    public ProtocoloImpl() {
+    public ProtocoloImpl(final T parent) {
+        this.parent = parent;
         infProt = new br.com.caelum.stella.nfe.modelo.InfProt();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.infProt;
+    public T build() {
+        return parent;
     }
 
-    public Protocolo withTipoDoAmbiente(final TipoDoAmbiente tipoDoAmbiente) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.infProt;
+    }
+
+    public Protocolo<T> withTipoDoAmbiente(final TipoDoAmbiente tipoDoAmbiente) {
         infProt.setTpAmb(tipoDoAmbiente.getCode());
         return this;
     }
 
-    public Protocolo withVersaoDoAplicativo(final String string) {
+    public Protocolo<T> withVersaoDoAplicativo(final String string) {
         infProt.setVerAplic(string);
         return this;
     }
 
-    public Protocolo withChaveDeAcessoDaNFE(final String string) {
+    public Protocolo<T> withChaveDeAcessoDaNFE(final String string) {
         infProt.setChNFe(string);
         return this;
     }
 
-    public Protocolo withDataEHoraDoProcessamento(final Calendar calendar) {
+    public Protocolo<T> withDataEHoraDoProcessamento(final Calendar calendar) {
         infProt.setDhRecbto(calendar);
         return this;
     }
 
-    public Protocolo withNumeroDoProtocoloDeStatusDaNFE(final String string) {
+    public Protocolo<T> withNumeroDoProtocoloDeStatusDaNFE(final String string) {
         infProt.setNProt(string);
         return this;
     }
 
-    public Protocolo withDigestValue(final byte[] b) {
+    public Protocolo<T> withDigestValue(final byte[] b) {
         infProt.setDigVal(b);
         return this;
     }
 
-    public Protocolo withCodigoDeStatus(final String string) {
+    public Protocolo<T> withCodigoDeStatus(final String string) {
         infProt.setCStat(string);
         return this;
     }
 
-    public Protocolo withDescricaoDoMotivo(final String string) {
+    public Protocolo<T> withDescricaoDoMotivo(final String string) {
         infProt.setXMotivo(string);
         return this;
     }
 
-    public Protocolo withId(final String string) {
+    public Protocolo<T> withId(final String string) {
         infProt.setId(string);
         return this;
     }

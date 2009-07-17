@@ -2,24 +2,26 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public interface TRetConsStatServ {
-    public TRetConsStatServ withTpAmb(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public TRetConsStatServ withVerAplic(String string);
+public interface TRetConsStatServ<T> extends NFeBuilder<T> {
+    public TRetConsStatServ<T> withTpAmb(String string);
 
-    public TRetConsStatServ withCStat(String string);
+    public TRetConsStatServ<T> withVerAplic(String string);
 
-    public TRetConsStatServ withXMotivo(String string);
+    public TRetConsStatServ<T> withCStat(String string);
 
-    public TRetConsStatServ withCUF(String string);
+    public TRetConsStatServ<T> withXMotivo(String string);
 
-    public TRetConsStatServ withDhRecbto(Calendar calendar);
+    public TRetConsStatServ<T> withCUF(String string);
 
-    public TRetConsStatServ withTMed(String string);
+    public TRetConsStatServ<T> withDhRecbto(Calendar calendar);
 
-    public TRetConsStatServ withDhRetorno(Calendar calendar);
+    public TRetConsStatServ<T> withTMed(String string);
 
-    public TRetConsStatServ withXObs(String string);
+    public TRetConsStatServ<T> withDhRetorno(Calendar calendar);
 
-    public TRetConsStatServ withVersao(String string);
+    public TRetConsStatServ<T> withXObs(String string);
+
+    public TRetConsStatServ<T> withVersao(String string);
 }

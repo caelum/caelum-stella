@@ -2,29 +2,35 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.UF;
 
-public final class VeiculoImpl implements Veiculo, br.com.caelum.stella.nfe.ObjectCreator {
+public final class VeiculoImpl<T> implements Veiculo<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.TVeiculo tVeiculo;
+    private final T parent;
 
-    public VeiculoImpl() {
+    public VeiculoImpl(final T parent) {
+        this.parent = parent;
         tVeiculo = new br.com.caelum.stella.nfe.modelo.TVeiculo();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.tVeiculo;
+    public T build() {
+        return parent;
     }
 
-    public Veiculo withPlaca(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.tVeiculo;
+    }
+
+    public Veiculo<T> withPlaca(final String string) {
         tVeiculo.setPlaca(string);
         return this;
     }
 
-    public Veiculo withUF(final UF tUf) {
+    public Veiculo<T> withUF(final UF tUf) {
         tVeiculo.setUF(tUf);
         return this;
     }
 
-    public Veiculo withRegistroNacionalDoTransportadorDeCarga(final String string) {
+    public Veiculo<T> withRegistroNacionalDoTransportadorDeCarga(final String string) {
         tVeiculo.setRNTC(string);
         return this;
     }

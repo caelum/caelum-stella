@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 
-public interface IPITributacao {
+public interface IPITributacao<T> extends NFeBuilder<T> {
 
-    public IPITributacao withSituacaoTributaria(SituacaoTributaria situacao);
+    public IPITributacao<T> withSituacaoTributaria(SituacaoTributaria situacao);
 
-    public IPITributacao withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
+    public IPITributacao<T> withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public IPITributacao withAliquota(BigDecimal aliquota);
+    public IPITributacao<T> withAliquota(BigDecimal aliquota);
 
-    public IPITributacao withQuantidadeTotal(BigDecimal quantidadeTotal);
+    public IPITributacao<T> withQuantidadeTotal(BigDecimal quantidadeTotal);
 
-    public IPITributacao withValorPorUnidadeTributavel(BigDecimal valorPorUnidade);
+    public IPITributacao<T> withValorPorUnidadeTributavel(BigDecimal valorPorUnidade);
 
-    public IPITributacao withValorDoIPI(BigDecimal valor);
+    public IPITributacao<T> withValorDoIPI(BigDecimal valor);
 }

@@ -2,40 +2,46 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.tinytype.CNPJ;
 
-public final class NFReferenciadaImpl implements NFReferenciada, br.com.caelum.stella.nfe.ObjectCreator {
+public final class NFReferenciadaImpl<T> implements NFReferenciada<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.RefNF refNF;
+    private final T parent;
 
-    public NFReferenciadaImpl() {
+    public NFReferenciadaImpl(final T parent) {
+        this.parent = parent;
         refNF = new br.com.caelum.stella.nfe.modelo.RefNF();
         refNF.setMod("01"); // This is a xml Fixed value
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.refNF;
+    public T build() {
+        return parent;
     }
 
-    public NFReferenciada withCodigoUF(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.refNF;
+    }
+
+    public NFReferenciada<T> withCodigoUF(final String string) {
         refNF.setCUF(string);
         return this;
     }
 
-    public NFReferenciada withAAMM(final String string) {
+    public NFReferenciada<T> withAAMM(final String string) {
         refNF.setAAMM(string);
         return this;
     }
 
-    public NFReferenciada withCNPJ(final CNPJ cnpj) {
+    public NFReferenciada<T> withCNPJ(final CNPJ cnpj) {
         refNF.setCNPJ(cnpj.getNumero());
         return this;
     }
 
-    public NFReferenciada withSerie(final String string) {
+    public NFReferenciada<T> withSerie(final String string) {
         refNF.setSerie(string);
         return this;
     }
 
-    public NFReferenciada withNumero(final String string) {
+    public NFReferenciada<T> withNumero(final String string) {
         refNF.setNNF(string);
         return this;
     }

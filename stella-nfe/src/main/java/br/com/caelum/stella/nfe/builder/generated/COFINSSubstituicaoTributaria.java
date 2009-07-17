@@ -2,14 +2,16 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface COFINSSubstituicaoTributaria {
-    public COFINSSubstituicaoTributaria withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public COFINSSubstituicaoTributaria withAliquotaEmPercentual(BigDecimal percentual);
+public interface COFINSSubstituicaoTributaria<T> extends NFeBuilder<T> {
+    public COFINSSubstituicaoTributaria<T> withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
-    public COFINSSubstituicaoTributaria withQuantidadeVendida(BigDecimal string);
+    public COFINSSubstituicaoTributaria<T> withAliquotaEmPercentual(BigDecimal percentual);
 
-    public COFINSSubstituicaoTributaria withAliquota(BigDecimal string);
+    public COFINSSubstituicaoTributaria<T> withQuantidadeVendida(BigDecimal string);
 
-    public COFINSSubstituicaoTributaria withValor(BigDecimal string);
+    public COFINSSubstituicaoTributaria<T> withAliquota(BigDecimal string);
+
+    public COFINSSubstituicaoTributaria<T> withValor(BigDecimal string);
 }

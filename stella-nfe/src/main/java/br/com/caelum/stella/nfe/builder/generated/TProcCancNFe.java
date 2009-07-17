@@ -1,9 +1,11 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface TProcCancNFe {
-    public TProcCancNFe withCancNFe(TCancNFe tCancNFe);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public TProcCancNFe withRetCancNFe(TRetCancNFe tRetCancNFe);
+public interface TProcCancNFe<T> extends NFeBuilder<T> {
+    public TProcCancNFe<T> withCancNFe(TCancNFe<?> tCancNFe);
 
-    public TProcCancNFe withVersao(String string);
+    public TProcCancNFe<T> withRetCancNFe(TRetCancNFe<?> tRetCancNFe);
+
+    public TProcCancNFe<T> withVersao(String string);
 }

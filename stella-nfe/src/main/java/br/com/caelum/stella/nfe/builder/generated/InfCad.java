@@ -2,37 +2,38 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.modelo.TEndereco;
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public interface InfCad {
-    public InfCad withIE(String string);
+public interface InfCad<T> extends NFeBuilder<T> {
+    public InfCad<T> withIE(String string);
 
-    public InfCad withCNPJ(String string);
+    public InfCad<T> withCNPJ(String string);
 
-    public InfCad withCPF(String string);
+    public InfCad<T> withCPF(String string);
 
-    public InfCad withUF(TUf tUf);
+    public InfCad<T> withUF(TUf tUf);
 
-    public InfCad withCSit(String string);
+    public InfCad<T> withCSit(String string);
 
-    public InfCad withXNome(String string);
+    public InfCad<T> withXNome(String string);
 
-    public InfCad withXFant(String string);
+    public InfCad<T> withXFant(String string);
 
-    public InfCad withXRegApur(String string);
+    public InfCad<T> withXRegApur(String string);
 
-    public InfCad withCNAE(String string);
+    public InfCad<T> withCNAE(String string);
 
-    public InfCad withDIniAtiv(Calendar calendar);
+    public InfCad<T> withDIniAtiv(Calendar calendar);
 
-    public InfCad withDUltSit(Calendar calendar);
+    public InfCad<T> withDUltSit(Calendar calendar);
 
-    public InfCad withDBaixa(Calendar calendar);
+    public InfCad<T> withDBaixa(Calendar calendar);
 
-    public InfCad withIEUnica(String string);
+    public InfCad<T> withIEUnica(String string);
 
-    public InfCad withIEAtual(String string);
+    public InfCad<T> withIEAtual(String string);
 
-    public InfCad withEnder(TEndereco tEndereco);
+    public InfCad<T> withEnder(TEndereco tEndereco);
 }

@@ -15,7 +15,7 @@ public class Impostos implements ObjectCreator {
         imposto = new Imposto();
     }
 
-    public Impostos withIPI(final IPI ipi) {
+    public Impostos withIPI(final IPI<?> ipi) {
         imposto.setIPI((br.com.caelum.stella.nfe.modelo.IPI) ((ObjectCreator) ipi).getInstance());
         return this;
     }
@@ -41,7 +41,7 @@ public class Impostos implements ObjectCreator {
         return this;
     }
 
-    public Impostos withISSQN(final ISS issqn) {
+    public Impostos withISSQN(final ISS<?> issqn) {
         imposto.setISSQN((br.com.caelum.stella.nfe.modelo.ISSQN) ((ObjectCreator) issqn).getInstance());
         return this;
     }

@@ -1,1 +1,11 @@
-package br.com.caelum.stella.nfe.builder.generated; public final class CabecMsgImplTest {  @org.junit.Test  public void testCabecMsgInterface()  { Cabecalho cabecMsg = new CabecalhoImpl().withVersaoDados("abc").withVersao("abc"); assertModelWasFilled(cabecMsg); }private void assertModelWasFilled(Cabecalho cabecMsg) { new br.com.caelum.stella.nfe.builder.BuilderTestHelper (cabecMsg).assertModelWasFilled();} }
+package br.com.caelum.stella.nfe.builder.generated;
+
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
+public final class CabecMsgImplTest {
+    @org.junit.Test
+    public void testCabecMsgInterface() {
+        Cabecalho<Object> cabecMsg = new CabecalhoImpl<Object>(new Object()).withVersaoDados("abc").withVersao("abc");
+        BuilderTestHelper.assertModelWasFilled(cabecMsg);
+    }
+}

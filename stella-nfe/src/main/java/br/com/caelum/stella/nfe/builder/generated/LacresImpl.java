@@ -1,18 +1,24 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public final class LacresImpl implements Lacres, br.com.caelum.stella.nfe.ObjectCreator {
+public final class LacresImpl<T> implements Lacres<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Lacres lacres;
+    private final T parent;
 
-    public LacresImpl() {
+    public LacresImpl(final T parent) {
+        this.parent = parent;
         lacres = new br.com.caelum.stella.nfe.modelo.Lacres();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.lacres;
+    public T build() {
+        return parent;
     }
 
-    public Lacres withNumeroDosLacres(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.lacres;
+    }
+
+    public Lacres<T> withNumeroDosLacres(final String string) {
         lacres.setNLacre(string);
         return this;
     }

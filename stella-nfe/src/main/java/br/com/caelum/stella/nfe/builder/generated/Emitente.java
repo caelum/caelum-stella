@@ -1,33 +1,35 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.tinytype.CNPJ;
 import br.com.caelum.stella.tinytype.CPF;
 
-public interface Emitente {
-    public Emitente withCNPJ(CNPJ cnpj);
+public interface Emitente<T> extends NFeBuilder<T> {
 
-    public Emitente withCPF(CPF cpf);
+    public Emitente<T> withCNPJ(CNPJ cnpj);
+
+    public Emitente<T> withCPF(CPF cpf);
 
     /**
-     * Este mŽtodo atribui ao mesmo campo que {@link Emitente#withNome(String)}
+     * Este mï¿½todo atribui ao mesmo campo que {@link Emitente#withNome(String)}
      */
-    public Emitente withRazaoSocial(String string);
+    public Emitente<T> withRazaoSocial(String string);
 
     /**
-     * Este mŽtodo atribui ao mesmo campo que
+     * Este mï¿½todo atribui ao mesmo campo que
      * {@link Emitente#withRazaoSocial(String)}
      */
-    public Emitente withNome(String string);
+    public Emitente<T> withNome(String string);
 
-    public Emitente withNomeFantasia(String string);
+    public Emitente<T> withNomeFantasia(String string);
 
-    public Emitente withEnderecoDoEmitente(Endereco tEndereco);
+    public Emitente<T> withEnderecoDoEmitente(Endereco<?> tEndereco);
 
-    public Emitente withInscricaoEstadual(String string);
+    public Emitente<T> withInscricaoEstadual(String string);
 
-    public Emitente withInscricaoEstadualDoSubstitutoTributario(String string);
+    public Emitente<T> withInscricaoEstadualDoSubstitutoTributario(String string);
 
-    public Emitente withInscricaoMunicipal(String string);
+    public Emitente<T> withInscricaoMunicipal(String string);
 
-    public Emitente withCNAEFiscal(String string);
+    public Emitente<T> withCNAEFiscal(String string);
 }

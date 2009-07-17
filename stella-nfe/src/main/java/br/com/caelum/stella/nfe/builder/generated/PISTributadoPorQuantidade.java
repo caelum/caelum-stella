@@ -2,10 +2,12 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface PISTributadoPorQuantidade {
-    public PISTributadoPorQuantidade withQuantidadeVendida(BigDecimal bigDecimal);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public PISTributadoPorQuantidade withAliquota(BigDecimal string);
+public interface PISTributadoPorQuantidade<T> extends NFeBuilder<T> {
+    public PISTributadoPorQuantidade<T> withQuantidadeVendida(BigDecimal bigDecimal);
 
-    public PISTributadoPorQuantidade withValorDoPIS(BigDecimal string);
+    public PISTributadoPorQuantidade<T> withAliquota(BigDecimal string);
+
+    public PISTributadoPorQuantidade<T> withValorDoPIS(BigDecimal string);
 }

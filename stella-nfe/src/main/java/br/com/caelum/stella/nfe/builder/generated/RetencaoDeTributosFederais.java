@@ -2,18 +2,20 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface RetencaoDeTributosFederais {
-    public RetencaoDeTributosFederais withVRetPIS(BigDecimal string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public RetencaoDeTributosFederais withVRetCOFINS(BigDecimal string);
+public interface RetencaoDeTributosFederais<T> extends NFeBuilder<T> {
+    public RetencaoDeTributosFederais<T> withVRetPIS(BigDecimal string);
 
-    public RetencaoDeTributosFederais withVRetCSLL(BigDecimal string);
+    public RetencaoDeTributosFederais<T> withVRetCOFINS(BigDecimal string);
 
-    public RetencaoDeTributosFederais withVBCIRRF(BigDecimal string);
+    public RetencaoDeTributosFederais<T> withVRetCSLL(BigDecimal string);
 
-    public RetencaoDeTributosFederais withVIRRF(BigDecimal string);
+    public RetencaoDeTributosFederais<T> withVBCIRRF(BigDecimal string);
 
-    public RetencaoDeTributosFederais withVBCRetPrev(BigDecimal string);
+    public RetencaoDeTributosFederais<T> withVIRRF(BigDecimal string);
 
-    public RetencaoDeTributosFederais withVRetPrev(BigDecimal string);
+    public RetencaoDeTributosFederais<T> withVBCRetPrev(BigDecimal string);
+
+    public RetencaoDeTributosFederais<T> withVRetPrev(BigDecimal string);
 }

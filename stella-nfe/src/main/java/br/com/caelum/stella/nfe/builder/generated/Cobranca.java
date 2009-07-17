@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface Cobranca {
-    public Cobranca withFatura(Fatura fat);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Cobranca withDuplicatas(Duplicata... dups);
+public interface Cobranca<T> extends NFeBuilder<T> {
+    public Cobranca<T> withFatura(Fatura<?> fat);
+
+    public Cobranca<T> withDuplicatas(Duplicata<?>... dups);
 }

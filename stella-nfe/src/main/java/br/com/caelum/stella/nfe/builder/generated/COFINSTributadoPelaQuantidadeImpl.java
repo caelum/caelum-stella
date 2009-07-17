@@ -2,35 +2,41 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public final class COFINSTributadoPelaQuantidadeImpl implements COFINSTributadoPelaQuantidade,
+public final class COFINSTributadoPelaQuantidadeImpl<T> implements COFINSTributadoPelaQuantidade<T>,
         br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.COFINSQtde cOFINSQtde;
+    private final T parent;
 
-    public COFINSTributadoPelaQuantidadeImpl() {
+    public COFINSTributadoPelaQuantidadeImpl(final T parent) {
+        this.parent = parent;
         cOFINSQtde = new br.com.caelum.stella.nfe.modelo.COFINSQtde();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.cOFINSQtde;
+    public T build() {
+        return parent;
     }
 
-    public COFINSTributadoPelaQuantidade withCodigoSituacaoTributaria(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.cOFINSQtde;
+    }
+
+    public COFINSTributadoPelaQuantidade<T> withCodigoSituacaoTributaria(final String string) {
         cOFINSQtde.setCodigoSituacaoTributaria(string);
         return this;
     }
 
-    public COFINSTributadoPelaQuantidade withQuantidadeVendida(final BigDecimal string) {
+    public COFINSTributadoPelaQuantidade<T> withQuantidadeVendida(final BigDecimal string) {
         cOFINSQtde.setQuantidadeVendida(string.toString());
         return this;
     }
 
-    public COFINSTributadoPelaQuantidade withAliquota(final BigDecimal string) {
+    public COFINSTributadoPelaQuantidade<T> withAliquota(final BigDecimal string) {
         cOFINSQtde.setAliquota(string.toString());
         return this;
     }
 
-    public COFINSTributadoPelaQuantidade withValor(final BigDecimal string) {
+    public COFINSTributadoPelaQuantidade<T> withValor(final BigDecimal string) {
         cOFINSQtde.setValor(string.toString());
         return this;
     }

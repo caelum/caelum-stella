@@ -1,19 +1,20 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.builder.generated.enums.TipoDoAmbiente;
 
-public interface RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE {
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withTipoDoAmbiente(TipoDoAmbiente tipoDoAmbiente);
+public interface RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> extends NFeBuilder<T> {
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withTipoDoAmbiente(TipoDoAmbiente tipoDoAmbiente);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withVersaoAplicativo(String string);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withVersaoAplicativo(String string);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withCodigoDeStatus(String string);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withCodigoDeStatus(String string);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withDescricaoDoStatus(String string);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withDescricaoDoStatus(String string);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withCodigoDaUF(String string);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withCodigoDaUF(String string);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withReciboDoLote(ReciboDoLote infRec);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withReciboDoLote(ReciboDoLote<?> infRec);
 
-    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE withVersaoDaNFE(String string);
+    public RetornoDoPedidoDeConcessaoDeAutorizacaoDaNFE<T> withVersaoDaNFE(String string);
 }

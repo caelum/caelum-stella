@@ -7,46 +7,52 @@ import br.com.caelum.stella.nfe.builder.IPITributacao;
 import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
 import br.com.caelum.stella.nfe.modelo.IPITrib;
 
-public class IPITributacaoImpl implements IPITributacao, ObjectCreator {
+public class IPITributacaoImpl<T> implements IPITributacao<T>, ObjectCreator {
 
     private final IPITrib trib;
+    private final T parent;
 
-    public IPITributacaoImpl() {
+    public IPITributacaoImpl(final T parent) {
+        this.parent = parent;
         trib = new IPITrib();
     }
 
-    public IPITributacaoImpl withSituacaoTributaria(final SituacaoTributaria situacao) {
+    public T build() {
+        return parent;
+    }
+
+    public IPITributacao<T> withSituacaoTributaria(final SituacaoTributaria situacao) {
         trib.setCodigoSituacaoTributaria(situacao.getCodigo());
         return this;
     }
 
-    public IPITributacaoImpl withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
+    public IPITributacao<T> withValorDaBaseDeCalculo(final BigDecimal baseDeCalculo) {
         trib.setvalorDaBaseDeCalculo(baseDeCalculo.toString());
         return this;
     }
 
-    public IPITributacaoImpl withAliquota(final BigDecimal aliquota) {
+    public IPITributacao<T> withAliquota(final BigDecimal aliquota) {
         trib.setAliquotaIPI(aliquota.toString());
         return this;
     }
 
-    public IPITributacaoImpl withQuantidadeTotal(final BigDecimal quantidadeTotal) {
+    public IPITributacao<T> withQuantidadeTotal(final BigDecimal quantidadeTotal) {
         trib.setQuantidade(quantidadeTotal.toString());
         return this;
     }
 
-    public IPITributacaoImpl withValorPorUnidadeTributavel(final BigDecimal valorPorUnidade) {
+    public IPITributacao<T> withValorPorUnidadeTributavel(final BigDecimal valorPorUnidade) {
         trib.setValorUnidade(valorPorUnidade.toString());
         return this;
     }
 
-    public IPITributacaoImpl withValorDoIPI(final BigDecimal valor) {
+    public IPITributacao<T> withValorDoIPI(final BigDecimal valor) {
         trib.setValorIPI(valor.toString());
         return this;
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) trib;
+    public <M> M getInstance() {
+        return (M) trib;
     }
 }

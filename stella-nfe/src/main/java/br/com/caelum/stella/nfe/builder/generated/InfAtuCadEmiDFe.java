@@ -1,13 +1,14 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public interface InfAtuCadEmiDFe {
-    public InfAtuCadEmiDFe withUF(TUf tUf);
+public interface InfAtuCadEmiDFe<T> extends NFeBuilder<T> {
+    public InfAtuCadEmiDFe<T> withUF(TUf tUf);
 
-    public InfAtuCadEmiDFe withInclui(TEmissor tEmissor);
+    public InfAtuCadEmiDFe<T> withInclui(TEmissor<?> tEmissor);
 
-    public InfAtuCadEmiDFe withExclui(Exclui exclui);
+    public InfAtuCadEmiDFe<T> withExclui(Exclui<?> exclui);
 
-    public InfAtuCadEmiDFe withId(String string);
+    public InfAtuCadEmiDFe<T> withId(String string);
 }

@@ -5,93 +5,99 @@ import java.util.List;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
 
-public final class InfNFeImpl implements InformacoesDaNFE, br.com.caelum.stella.nfe.ObjectCreator {
+public final class InfNFeImpl<T> implements InformacoesDaNFE<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.InfNFe infNFe;
+    private final T parent;
 
-    public InfNFeImpl() {
+    public InfNFeImpl(final T parent) {
+        this.parent = parent;
         infNFe = new br.com.caelum.stella.nfe.modelo.InfNFe();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.infNFe;
+    public T build() {
+        return parent;
     }
 
-    public InformacoesDaNFE withIde(final IdentificacaoDaNFE ide) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.infNFe;
+    }
+
+    public InformacoesDaNFE<T> withIde(final IdentificacaoDaNFE<?> ide) {
         infNFe.setIde((br.com.caelum.stella.nfe.modelo.Ide) ((ObjectCreator) ide).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withEmit(final Emitente emit) {
+    public InformacoesDaNFE<T> withEmit(final Emitente<?> emit) {
         infNFe.setEmit((br.com.caelum.stella.nfe.modelo.Emit) ((ObjectCreator) emit).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withAvulsa(final Avulsa avulsa) {
+    public InformacoesDaNFE<T> withAvulsa(final Avulsa<?> avulsa) {
         infNFe.setAvulsa((br.com.caelum.stella.nfe.modelo.Avulsa) ((ObjectCreator) avulsa).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withDest(final Destinatario dest) {
+    public InformacoesDaNFE<T> withDest(final Destinatario<?> dest) {
         infNFe.setDest((br.com.caelum.stella.nfe.modelo.Dest) ((ObjectCreator) dest).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withRetirada(final DadosDoLocal tLocal) {
+    public InformacoesDaNFE<T> withRetirada(final DadosDoLocal<?> tLocal) {
         infNFe.setRetirada((br.com.caelum.stella.nfe.modelo.TLocal) ((ObjectCreator) tLocal).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withEntrega(final DadosDoLocal tLocal) {
+    public InformacoesDaNFE<T> withEntrega(final DadosDoLocal<?> tLocal) {
         infNFe.setEntrega((br.com.caelum.stella.nfe.modelo.TLocal) ((ObjectCreator) tLocal).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withDet(final Detalhe... det) {
+    public InformacoesDaNFE<T> withDet(final Detalhe<?>... det) {
         List<br.com.caelum.stella.nfe.modelo.Det> list = new ArrayList<br.com.caelum.stella.nfe.modelo.Det>();
-        for (Detalhe p : det) {
+        for (Detalhe<?> p : det) {
             list.add((br.com.caelum.stella.nfe.modelo.Det) ((ObjectCreator) p).getInstance());
         }
         infNFe.setDet(list);
         return this;
     }
 
-    public InformacoesDaNFE withTotal(final TotalNFE total) {
+    public InformacoesDaNFE<T> withTotal(final TotalNFE<?> total) {
         infNFe.setTotal((br.com.caelum.stella.nfe.modelo.Total) ((ObjectCreator) total).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withTransp(final Transporte transp) {
+    public InformacoesDaNFE<T> withTransp(final Transporte<?> transp) {
         infNFe.setTransp((br.com.caelum.stella.nfe.modelo.Transp) ((ObjectCreator) transp).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withCobr(final Cobranca cobr) {
+    public InformacoesDaNFE<T> withCobr(final Cobranca<?> cobr) {
         infNFe.setCobr((br.com.caelum.stella.nfe.modelo.Cobr) ((ObjectCreator) cobr).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withInfAdic(final InformacoesAdicionais infAdic) {
+    public InformacoesDaNFE<T> withInfAdic(final InformacoesAdicionais<?> infAdic) {
         infNFe.setInfAdic((br.com.caelum.stella.nfe.modelo.InfAdic) ((ObjectCreator) infAdic).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withExporta(final Exportacao exporta) {
+    public InformacoesDaNFE<T> withExporta(final Exportacao<?> exporta) {
         infNFe.setExporta((br.com.caelum.stella.nfe.modelo.Exporta) ((ObjectCreator) exporta).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withCompra(final Compra compra) {
+    public InformacoesDaNFE<T> withCompra(final Compra<?> compra) {
         infNFe.setCompra((br.com.caelum.stella.nfe.modelo.Compra) ((ObjectCreator) compra).getInstance());
         return this;
     }
 
-    public InformacoesDaNFE withVersao(final String string) {
+    public InformacoesDaNFE<T> withVersao(final String string) {
         infNFe.setVersao(string);
         return this;
     }
 
-    public InformacoesDaNFE withId(final String string) {
+    public InformacoesDaNFE<T> withId(final String string) {
         infNFe.setId(string);
         return this;
     }

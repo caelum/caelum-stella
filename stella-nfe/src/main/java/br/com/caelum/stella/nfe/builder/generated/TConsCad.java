@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface TConsCad {
-    public TConsCad withInfCons(InfCons infCons);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public TConsCad withVersao(String string);
+public interface TConsCad<T> extends NFeBuilder<T> {
+    public TConsCad<T> withInfCons(InfCons<?> infCons);
+
+    public TConsCad<T> withVersao(String string);
 }

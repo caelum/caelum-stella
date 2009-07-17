@@ -1,14 +1,19 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class VolImplTest {
     @org.junit.Test
     public void testVolInterface() {
-        Volume vol = new VolumeImpl().withQuantidade(1l).withEspecie("abc").withMarca("abc").withNumeracao("abc").withPesoLiquido("abc")
-                .withPesoBruto("abc").withLacres(new LacresImpl());
-        assertModelWasFilled(vol);
+        Volume<Object> vol = new VolumeImpl<Object>(new Object())
+                                                                 .withQuantidade(1l)
+                                                                 .withEspecie("abc")
+                                                                 .withMarca("abc")
+                                                                 .withNumeracao("abc")
+                                                                 .withPesoLiquido("abc")
+                                                                 .withPesoBruto("abc")
+                                                                 .withLacres(new LacresImpl<Object>(new Object()));
+        BuilderTestHelper.assertModelWasFilled(vol);
     }
 
-    private void assertModelWasFilled(final Volume vol) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(vol).assertModelWasFilled();
-    }
 }

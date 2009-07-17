@@ -1,7 +1,9 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
-public interface ObservacaoDoContribuinte {
-    public ObservacaoDoContribuinte withTextoDeDescricao(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public ObservacaoDoContribuinte withDescricaoDoCampo(String string);
+public interface ObservacaoDoContribuinte<T> extends NFeBuilder<T> {
+    public ObservacaoDoContribuinte<T> withTextoDeDescricao(String string);
+
+    public ObservacaoDoContribuinte<T> withDescricaoDoCampo(String string);
 }

@@ -3,40 +3,46 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public final class MedicamentoImpl implements Medicamento, br.com.caelum.stella.nfe.ObjectCreator {
+public final class MedicamentoImpl<T> implements Medicamento<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Med med;
+    private final T parent;
 
-    public MedicamentoImpl() {
+    public MedicamentoImpl(final T parent) {
+        this.parent = parent;
         med = new br.com.caelum.stella.nfe.modelo.Med();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) this.med;
+    public T build() {
+        return parent;
     }
 
-    public Medicamento withNumeroDoLote(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) this.med;
+    }
+
+    public Medicamento<T> withNumeroDoLote(final String string) {
         med.setNLote(string);
         return this;
     }
 
-    public Medicamento withQuantidadeDoLote(final String string) {
+    public Medicamento<T> withQuantidadeDoLote(final String string) {
         med.setQLote(string);
         return this;
     }
 
     // Isso n�o deveria estar usando o calendar
-    public Medicamento withDataDeFabricacao(final Calendar calendar) {
+    public Medicamento<T> withDataDeFabricacao(final Calendar calendar) {
         med.setDFab(new CalendarToStringConverter().convertDateToString(calendar));
         return this;
     }
 
-    public Medicamento withDataDeValidade(final Calendar calendar) {
+    public Medicamento<T> withDataDeValidade(final Calendar calendar) {
         med.setDVal(calendar);
         return this;
     }
 
-    public Medicamento withPrecoMaximoAoConsumidor(final BigDecimal string) {
+    public Medicamento<T> withPrecoMaximoAoConsumidor(final BigDecimal string) {
         med.setVPMC(string.toString());
         return this;
     }

@@ -3,14 +3,16 @@ package br.com.caelum.stella.nfe.builder.generated;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public interface Medicamento {
-    public Medicamento withNumeroDoLote(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Medicamento withQuantidadeDoLote(String string);
+public interface Medicamento<T> extends NFeBuilder<T> {
+    public Medicamento<T> withNumeroDoLote(String string);
 
-    public Medicamento withDataDeFabricacao(Calendar calendar);
+    public Medicamento<T> withQuantidadeDoLote(String string);
 
-    public Medicamento withDataDeValidade(Calendar calendar);
+    public Medicamento<T> withDataDeFabricacao(Calendar calendar);
 
-    public Medicamento withPrecoMaximoAoConsumidor(BigDecimal string);
+    public Medicamento<T> withDataDeValidade(Calendar calendar);
+
+    public Medicamento<T> withPrecoMaximoAoConsumidor(BigDecimal string);
 }

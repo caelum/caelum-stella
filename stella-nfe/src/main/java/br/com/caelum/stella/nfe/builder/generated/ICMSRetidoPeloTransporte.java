@@ -2,16 +2,18 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface ICMSRetidoPeloTransporte {
-    public ICMSRetidoPeloTransporte withValorDoServico(BigDecimal string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public ICMSRetidoPeloTransporte withValorDaBaseDeCalculoDeRetencaoDoICMS(BigDecimal string);
+public interface ICMSRetidoPeloTransporte<T> extends NFeBuilder<T> {
+    public ICMSRetidoPeloTransporte<T> withValorDoServico(BigDecimal string);
 
-    public ICMSRetidoPeloTransporte withAliquotaDaRetencaoDoICMS(BigDecimal aliquota);
+    public ICMSRetidoPeloTransporte<T> withValorDaBaseDeCalculoDeRetencaoDoICMS(BigDecimal string);
 
-    public ICMSRetidoPeloTransporte withValorDoICMSRetido(BigDecimal string);
+    public ICMSRetidoPeloTransporte<T> withAliquotaDaRetencaoDoICMS(BigDecimal aliquota);
 
-    public ICMSRetidoPeloTransporte withCodigoFiscalDeOperacoesEPrestacoes(String string);
+    public ICMSRetidoPeloTransporte<T> withValorDoICMSRetido(BigDecimal string);
 
-    public ICMSRetidoPeloTransporte withCodigoDoMunicipio(String string);
+    public ICMSRetidoPeloTransporte<T> withCodigoFiscalDeOperacoesEPrestacoes(String string);
+
+    public ICMSRetidoPeloTransporte<T> withCodigoDoMunicipio(String string);
 }

@@ -5,89 +5,95 @@ import java.util.Calendar;
 import br.com.caelum.stella.nfe.modelo.TEndereco;
 import br.com.caelum.stella.nfe.modelo.TUf;
 
-public final class InfCadImpl implements InfCad, br.com.caelum.stella.nfe.ObjectCreator {
+public final class InfCadImpl<T> implements InfCad<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.InfCad infCad;
+    private final T parent;
 
-    public InfCadImpl() {
+    public InfCadImpl(final T parent) {
+        this.parent = parent;
         infCad = new br.com.caelum.stella.nfe.modelo.InfCad();
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) infCad;
+    public T build() {
+        return parent;
     }
 
-    public InfCad withIE(final String string) {
+    @SuppressWarnings("unchecked")
+    public <M> M getInstance() {
+        return (M) infCad;
+    }
+
+    public InfCad<T> withIE(final String string) {
         infCad.setIE(string);
         return this;
     }
 
-    public InfCad withCNPJ(final String string) {
+    public InfCad<T> withCNPJ(final String string) {
         infCad.setCNPJ(string);
         return this;
     }
 
-    public InfCad withCPF(final String string) {
+    public InfCad<T> withCPF(final String string) {
         infCad.setCPF(string);
         return this;
     }
 
-    public InfCad withUF(final TUf tUf) {
+    public InfCad<T> withUF(final TUf tUf) {
         infCad.setUF(tUf);
         return this;
     }
 
-    public InfCad withCSit(final String string) {
+    public InfCad<T> withCSit(final String string) {
         infCad.setCSit(string);
         return this;
     }
 
-    public InfCad withXNome(final String string) {
+    public InfCad<T> withXNome(final String string) {
         infCad.setXNome(string);
         return this;
     }
 
-    public InfCad withXFant(final String string) {
+    public InfCad<T> withXFant(final String string) {
         infCad.setXFant(string);
         return this;
     }
 
-    public InfCad withXRegApur(final String string) {
+    public InfCad<T> withXRegApur(final String string) {
         infCad.setXRegApur(string);
         return this;
     }
 
-    public InfCad withCNAE(final String string) {
+    public InfCad<T> withCNAE(final String string) {
         infCad.setCNAE(string);
         return this;
     }
 
-    public InfCad withDIniAtiv(final Calendar calendar) {
+    public InfCad<T> withDIniAtiv(final Calendar calendar) {
         infCad.setDIniAtiv(calendar.toString());
         return this;
     }
 
-    public InfCad withDUltSit(final Calendar calendar) {
+    public InfCad<T> withDUltSit(final Calendar calendar) {
         infCad.setDUltSit(calendar.toString());
         return this;
     }
 
-    public InfCad withDBaixa(final Calendar calendar) {
+    public InfCad<T> withDBaixa(final Calendar calendar) {
         infCad.setDBaixa(calendar.toString());
         return this;
     }
 
-    public InfCad withIEUnica(final String string) {
+    public InfCad<T> withIEUnica(final String string) {
         infCad.setIEUnica(string);
         return this;
     }
 
-    public InfCad withIEAtual(final String string) {
+    public InfCad<T> withIEAtual(final String string) {
         infCad.setIEAtual(string);
         return this;
     }
 
-    public InfCad withEnder(final TEndereco tEndereco) {
+    public InfCad<T> withEnder(final TEndereco tEndereco) {
         infCad.setEnder(tEndereco);
         return this;
     }

@@ -1,1 +1,11 @@
-package br.com.caelum.stella.nfe.builder.generated; public final class DFeImplTest {  @org.junit.Test  public void testDFeInterface()  { DFe dFe = new DFeImpl().withMod("abc").withSit("abc"); assertModelWasFilled(dFe); }private void assertModelWasFilled(DFe dFe) { new br.com.caelum.stella.nfe.builder.BuilderTestHelper (dFe).assertModelWasFilled();} }
+package br.com.caelum.stella.nfe.builder.generated;
+
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
+public final class DFeImplTest {
+    @org.junit.Test
+    public void testDFeInterface() {
+        DFe<Object> dFe = new DFeImpl<Object>(new Object()).withMod("abc").withSit("abc");
+        BuilderTestHelper.assertModelWasFilled(dFe);
+    }
+}

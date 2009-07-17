@@ -1,51 +1,57 @@
 package br.com.caelum.stella.nfe.builder.impl;
 
 import br.com.caelum.stella.nfe.ObjectCreator;
+import br.com.caelum.stella.nfe.builder.IPI;
 import br.com.caelum.stella.nfe.builder.IPITributacao;
 import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
-import br.com.caelum.stella.nfe.modelo.IPI;
 import br.com.caelum.stella.nfe.modelo.IPINT;
 import br.com.caelum.stella.nfe.modelo.IPITrib;
 
-public class IPIImpl implements br.com.caelum.stella.nfe.builder.IPI, ObjectCreator {
+public class IPIImpl<T> implements IPI<T>, ObjectCreator {
 
-    private final IPI ipi;
+    private final br.com.caelum.stella.nfe.modelo.IPI ipi;
+    private final T parent;
 
-    public IPIImpl() {
-        ipi = new IPI();
+    public IPIImpl(final T parent) {
+        this.parent = parent;
+        ipi = new br.com.caelum.stella.nfe.modelo.IPI();
     }
 
-    public IPIImpl withClasseDeEnquadramento(final String classeDeEnquadramento) {
+    public T build() {
+        return parent;
+    }
+
+    public IPI<T> withClasseDeEnquadramento(final String classeDeEnquadramento) {
         ipi.setClasseEnquadramento(classeDeEnquadramento);
         return this;
     }
 
-    public IPIImpl withCnpjDoProdutor(final String cnpj) {
+    public IPI<T> withCnpjDoProdutor(final String cnpj) {
         ipi.setCnpjProdutor(cnpj);
         return this;
     }
 
-    public IPIImpl withCodigoDoSelo(final String seloDeControle) {
+    public IPI<T> withCodigoDoSelo(final String seloDeControle) {
         ipi.setCodigoSelo(seloDeControle);
         return this;
     }
 
-    public IPIImpl withQuantidadeDeSelos(final long quantidadeDeSelos) {
+    public IPI<T> withQuantidadeDeSelos(final long quantidadeDeSelos) {
         ipi.setQuantidadeSelo("" + quantidadeDeSelos);
         return this;
     }
 
-    public IPIImpl withCodigoDeEnquadramento(final String codigoDeEnquadramento) {
+    public IPI<T> withCodigoDeEnquadramento(final String codigoDeEnquadramento) {
         ipi.setCodigoEnquadramento(codigoDeEnquadramento);
         return this;
     }
 
-    public IPIImpl withTributacao(final IPITributacao ipiTrib) {
+    public IPI<T> withTributacao(final IPITributacao<?> ipiTrib) {
         ipi.setIpiTributacao((IPITrib) ((ObjectCreator) ipiTrib).getInstance());
         return this;
     }
 
-    public IPIImpl withIPIInt(final SituacaoTributaria situacaoTributaria) {
+    public IPI<T> withIPIInt(final SituacaoTributaria situacaoTributaria) {
         IPINT ipint = new IPINT();
         ipint.setCodigoSituacaoTributaria("" + situacaoTributaria.getCodigo());
         ipi.setIpint(ipint);
@@ -53,8 +59,8 @@ public class IPIImpl implements br.com.caelum.stella.nfe.builder.IPI, ObjectCrea
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getInstance() {
-        return (T) ipi;
+    public <M> M getInstance() {
+        return (M) ipi;
     }
 
 }

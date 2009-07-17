@@ -2,10 +2,12 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.util.Calendar;
 
-public interface Duplicata {
-    public Duplicata withNumero(String string);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Duplicata withDataDeVencimento(Calendar calendar);
+public interface Duplicata<T> extends NFeBuilder<T> {
+    public Duplicata<T> withNumero(String string);
 
-    public Duplicata withValorDaDuplicata(String string);
+    public Duplicata<T> withDataDeVencimento(Calendar calendar);
+
+    public Duplicata<T> withValorDaDuplicata(String string);
 }

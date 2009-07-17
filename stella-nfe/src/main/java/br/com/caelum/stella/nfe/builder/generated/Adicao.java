@@ -2,12 +2,14 @@ package br.com.caelum.stella.nfe.builder.generated;
 
 import java.math.BigDecimal;
 
-public interface Adicao {
-    public Adicao withNumeroDaAdicao(Integer integer);
+import br.com.caelum.stella.nfe.builder.NFeBuilder;
 
-    public Adicao withNumeroSequencialDoItemDaAdicao(Integer integer);
+public interface Adicao<T> extends NFeBuilder<T> {
+    public Adicao<T> withNumeroDaAdicao(Integer integer);
 
-    public Adicao withCodigoDoFabricanteEstrangeiro(String string);
+    public Adicao<T> withNumeroSequencialDoItemDaAdicao(Integer integer);
 
-    public Adicao withValorDeDescontoDoItemDaDI(BigDecimal bigDecimal);
+    public Adicao<T> withCodigoDoFabricanteEstrangeiro(String string);
+
+    public Adicao<T> withValorDeDescontoDoItemDaDI(BigDecimal bigDecimal);
 }

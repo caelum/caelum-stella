@@ -1,13 +1,19 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
+
 public final class TEnviNFeImplTest {
     @org.junit.Test
     public void testTEnviNFeInterface() {
-        PedidoDeAutorizacaoDaNFE tEnviNFe = new PedidoDeAutorizacaoDaNFEImpl().withIdDoLote("abc").withNFE(new NFEImpl()).withVersao("abc");
-        assertModelWasFilled(tEnviNFe);
+        PedidoDeAutorizacaoDaNFE<Object> tEnviNFe = new PedidoDeAutorizacaoDaNFEImpl<Object>(new Object())
+                                                                                                          .withIdDoLote(
+                                                                                                                  "abc")
+                                                                                                          .withNFE(
+                                                                                                                  new NFEImpl<Object>(
+                                                                                                                          new Object()))
+                                                                                                          .withVersao(
+                                                                                                                  "abc");
+        BuilderTestHelper.assertModelWasFilled(tEnviNFe);
     }
 
-    private void assertModelWasFilled(final PedidoDeAutorizacaoDaNFE tEnviNFe) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tEnviNFe).assertModelWasFilled();
-    }
 }

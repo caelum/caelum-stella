@@ -1,15 +1,15 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
+import br.com.caelum.stella.nfe.builder.BuilderTestHelper;
 import br.com.caelum.stella.nfe.modelo.SignatureType;
 
 public final class TNFeImplTest {
     @org.junit.Test
     public void testTNFeInterface() {
-        NFE tNFe = new NFEImpl().withInformacoesDaNFE(new InfNFeImpl()).withSignature(new SignatureType());
-        assertModelWasFilled(tNFe);
+        NFE<Object> tNFe = new NFEImpl<Object>(new Object())
+                                                            .withInformacoesDaNFE(new InfNFeImpl<Object>(new Object()))
+                                                            .withSignature(new SignatureType());
+        BuilderTestHelper.assertModelWasFilled(tNFe);
     }
 
-    private void assertModelWasFilled(final NFE tNFe) {
-        new br.com.caelum.stella.nfe.builder.BuilderTestHelper(tNFe).assertModelWasFilled();
-    }
 }
