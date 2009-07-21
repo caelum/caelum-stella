@@ -12,19 +12,25 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "InfRec ", propOrder = { "nRec", "dhRecbto", "tMed" })
+@FluidName("ReciboDoLote")
 public class InfRec {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeroDoRecibo")
     protected String nRec;
 
     @XmlElement(required = true)
+    @FluidName("dataEHoraDoRecebimento")
     protected String dhRecbto;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tempoMedioDeResposta")
     protected String tMed;
 
     public String getNRec() {

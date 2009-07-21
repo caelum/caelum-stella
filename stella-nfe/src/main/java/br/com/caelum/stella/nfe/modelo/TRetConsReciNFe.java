@@ -18,38 +18,49 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TRetConsReciNFe", propOrder = { "tpAmb", "verAplic", "nRec", "cStat", "xMotivo", "cuf", "protNFe" })
+@FluidName("retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE")
 public class TRetConsReciNFe {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDeAmbiente")
     protected String tpAmb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoDaAplicativo")
     protected String verAplic;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeroDoReciboConsultado")
     protected String nRec;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDeStatus")
     protected String cStat;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("descricaoDoStatus")
     protected String xMotivo;
 
     @XmlElement(name = "cUF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDaUF")
     protected String cuf;
 
+    @FluidName("protocoloDoResultadoDeProcessamento")
     protected List<TProtNFe> protNFe;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoNFE")
     protected String versao;
 
     public String getTpAmb() {

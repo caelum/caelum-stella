@@ -14,43 +14,49 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TVeiculo", propOrder = { "placa", "uf", "rntc" })
+@FluidName("Veiculo")
 public class TVeiculo {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("placa")
     protected String placa;
 
     @XmlElement(name = "UF", required = true)
+    @FluidName("UF")
     protected UF uf;
 
     @XmlElement(name = "RNTC")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("registroNacionalDoTransportadorDeCarga")
     protected String rntc;
 
     public String getPlaca() {
         return placa;
     }
 
-    public void setPlaca(String value) {
-        this.placa = value;
+    public void setPlaca(final String value) {
+        placa = value;
     }
 
     public UF getUF() {
         return uf;
     }
 
-    public void setUF(UF value) {
-        this.uf = value;
+    public void setUF(final UF value) {
+        uf = value;
     }
 
     public String getRNTC() {
         return rntc;
     }
 
-    public void setRNTC(String value) {
-        this.rntc = value;
+    public void setRNTC(final String value) {
+        rntc = value;
     }
 
 }

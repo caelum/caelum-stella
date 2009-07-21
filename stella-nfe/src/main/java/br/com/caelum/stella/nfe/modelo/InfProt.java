@@ -15,42 +15,55 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "InfProt ", propOrder = { "tpAmb", "verAplic", "chNFe", "dhRecbto", "nProt", "digVal", "cStat",
         "xMotivo" })
+@FluidName("Protocolo")
 public class InfProt {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDoAmbiente")
     protected String tpAmb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoDoAplicativo")
     protected String verAplic;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("chaveDeAcessoDaNFE")
     protected String chNFe;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("dataEHoraDoProcessamento")
     protected String dhRecbto;
+
+    @FluidName("numeroDoProtocoloDeStatusDaNFE")
     protected String nProt;
 
+    @FluidName("digestValue")
     protected byte[] digVal;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDeStatus")
     protected String cStat;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("descricaoDoMotivo")
     protected String xMotivo;
 
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
+    @FluidName("id")
     protected String id;
 
     public String getTpAmb() {

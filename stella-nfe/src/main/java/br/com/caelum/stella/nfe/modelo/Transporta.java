@@ -10,85 +10,95 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Transporta ", propOrder = { "cnpj", "cpf", "xNome", "ie", "xEnder", "xMun", "uf" })
+@FluidName("transportador")
 public class Transporta {
 
     @XmlElement(name = "CNPJ")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("CNPJ")
     protected String cnpj;
 
     @XmlElement(name = "CPF")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("CPF")
     protected String cpf;
 
+    @FluidName("nome")
     protected String xNome;
 
     @XmlElement(name = "IE")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("inscricaoEstadual")
     protected String ie;
 
+    @FluidName("enderecoCompleto")
     protected String xEnder;
 
+    @FluidName("nomeDoMunicipio")
     protected String xMun;
 
     @XmlElement(name = "UF")
+    @FluidName("UF")
     protected UF uf;
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
-        this.cnpj = value;
+    public void setCNPJ(final String value) {
+        cnpj = value;
     }
 
     public String getCPF() {
         return cpf;
     }
 
-    public void setCPF(String value) {
-        this.cpf = value;
+    public void setCPF(final String value) {
+        cpf = value;
     }
 
     public String getXNome() {
         return xNome;
     }
 
-    public void setXNome(String value) {
-        this.xNome = value;
+    public void setXNome(final String value) {
+        xNome = value;
     }
 
     public String getIE() {
         return ie;
     }
 
-    public void setIE(String value) {
-        this.ie = value;
+    public void setIE(final String value) {
+        ie = value;
     }
 
     public String getXEnder() {
         return xEnder;
     }
 
-    public void setXEnder(String value) {
-        this.xEnder = value;
+    public void setXEnder(final String value) {
+        xEnder = value;
     }
 
     public String getXMun() {
         return xMun;
     }
 
-    public void setXMun(String value) {
-        this.xMun = value;
+    public void setXMun(final String value) {
+        xMun = value;
     }
 
     public UF getUF() {
         return uf;
     }
 
-    public void setUF(UF value) {
-        this.uf = value;
+    public void setUF(final UF value) {
+        uf = value;
     }
 
 }

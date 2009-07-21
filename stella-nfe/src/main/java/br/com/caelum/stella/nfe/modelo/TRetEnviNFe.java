@@ -15,90 +15,100 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TRetEnviNFe", propOrder = { "tpAmb", "verAplic", "cStat", "xMotivo", "cuf", "infRec" })
+@FluidName("retornoDoPedidoDeConcessaoDeAutorizacaoDaNFE")
 public class TRetEnviNFe {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDoAmbiente")
     protected String tpAmb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoAplicativo")
     protected String verAplic;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDeStatus")
     protected String cStat;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("descricaoDoStatus")
     protected String xMotivo;
 
     @XmlElement(name = "cUF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDaUF")
     protected String cuf;
 
+    @FluidName("reciboDoLote")
     protected InfRec infRec;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoDaNFE")
     protected String versao;
 
     public String getTpAmb() {
         return tpAmb;
     }
 
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
     public String getVerAplic() {
         return verAplic;
     }
 
-    public void setVerAplic(String value) {
-        this.verAplic = value;
+    public void setVerAplic(final String value) {
+        verAplic = value;
     }
 
     public String getCStat() {
         return cStat;
     }
 
-    public void setCStat(String value) {
-        this.cStat = value;
+    public void setCStat(final String value) {
+        cStat = value;
     }
 
     public String getXMotivo() {
         return xMotivo;
     }
 
-    public void setXMotivo(String value) {
-        this.xMotivo = value;
+    public void setXMotivo(final String value) {
+        xMotivo = value;
     }
 
     public String getCUF() {
         return cuf;
     }
 
-    public void setCUF(String value) {
-        this.cuf = value;
+    public void setCUF(final String value) {
+        cuf = value;
     }
 
     public InfRec getInfRec() {
         return infRec;
     }
 
-    public void setInfRec(InfRec value) {
-        this.infRec = value;
+    public void setInfRec(final InfRec value) {
+        infRec = value;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

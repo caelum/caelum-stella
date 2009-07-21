@@ -15,42 +15,48 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TProtNFe", propOrder = { "infProt", "signature" })
+@FluidName("ProtocoloDoResultadoDeProcessamento")
 public class TProtNFe {
 
     @XmlElement(required = true)
+    @FluidName("dadosDoProtocolo")
     protected InfProt infProt;
 
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#")
+    @FluidName("signature")
     protected SignatureType signature;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versao")
     protected String versao;
 
     public InfProt getInfProt() {
         return infProt;
     }
 
-    public void setInfProt(InfProt value) {
-        this.infProt = value;
+    public void setInfProt(final InfProt value) {
+        infProt = value;
     }
 
     public SignatureType getSignature() {
         return signature;
     }
 
-    public void setSignature(SignatureType value) {
-        this.signature = value;
+    public void setSignature(final SignatureType value) {
+        signature = value;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

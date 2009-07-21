@@ -12,26 +12,36 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Vol ", propOrder = { "qVol", "esp", "marca", "nVol", "pesoL", "pesoB", "lacres" })
+@FluidName("Volume")
 public class Vol {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("quantidade")
     protected String qVol;
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("especie")
     protected String esp;
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("marca")
     protected String marca;
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeracao")
     protected String nVol;
 
+    @FluidName("pesoLiquido")
     protected String pesoL;
 
+    @FluidName("pesoBruto")
     protected String pesoB;
 
+    @FluidName("lacres")
     protected List<Lacres> lacres;
 
     public String getQVol() {

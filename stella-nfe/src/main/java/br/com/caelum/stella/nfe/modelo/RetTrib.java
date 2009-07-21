@@ -8,13 +8,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RetTrib ", propOrder = { "vRetPIS", "vRetCOFINS", "vRetCSLL", "vbcirrf", "virrf", "vbcRetPrev",
         "vRetPrev" })
+@FluidName("RetencaoDeTributosFederais")
 public class RetTrib {
 
+    @FluidName("valorRetencaoPIS")
     protected String vRetPIS;
 
+    @FluidName("valorRetencaoCOFINS")
     protected String vRetCOFINS;
 
     protected String vRetCSLL;
@@ -34,56 +39,56 @@ public class RetTrib {
         return vRetPIS;
     }
 
-    public void setVRetPIS(String value) {
-        this.vRetPIS = value;
+    public void setVRetPIS(final String value) {
+        vRetPIS = value;
     }
 
     public String getVRetCOFINS() {
         return vRetCOFINS;
     }
 
-    public void setVRetCOFINS(String value) {
-        this.vRetCOFINS = value;
+    public void setVRetCOFINS(final String value) {
+        vRetCOFINS = value;
     }
 
     public String getVRetCSLL() {
         return vRetCSLL;
     }
 
-    public void setVRetCSLL(String value) {
-        this.vRetCSLL = value;
+    public void setVRetCSLL(final String value) {
+        vRetCSLL = value;
     }
 
     public String getVBCIRRF() {
         return vbcirrf;
     }
 
-    public void setVBCIRRF(String value) {
-        this.vbcirrf = value;
+    public void setVBCIRRF(final String value) {
+        vbcirrf = value;
     }
 
     public String getVIRRF() {
         return virrf;
     }
 
-    public void setVIRRF(String value) {
-        this.virrf = value;
+    public void setVIRRF(final String value) {
+        virrf = value;
     }
 
     public String getVBCRetPrev() {
         return vbcRetPrev;
     }
 
-    public void setVBCRetPrev(String value) {
-        this.vbcRetPrev = value;
+    public void setVBCRetPrev(final String value) {
+        vbcRetPrev = value;
     }
 
     public String getVRetPrev() {
         return vRetPrev;
     }
 
-    public void setVRetPrev(String value) {
-        this.vRetPrev = value;
+    public void setVRetPrev(final String value) {
+        vRetPrev = value;
     }
 
 }
