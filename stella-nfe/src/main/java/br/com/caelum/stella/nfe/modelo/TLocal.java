@@ -14,97 +14,112 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+import br.com.caelum.stella.tinytype.CNPJ;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TLocal", propOrder = { "cnpj", "xLgr", "nro", "xCpl", "xBairro", "cMun", "xMun", "uf" })
+@FluidName("DadosDoLocal")
 public class TLocal {
 
     @XmlElement(name = "CNPJ", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("CNPJ")
+    @FluidDataType(CNPJ.class)
     protected String cnpj;
 
     @XmlElement(required = true)
+    @FluidName("logradouro")
     protected String xLgr;
 
     @XmlElement(required = true)
+    @FluidName("numero")
     protected String nro;
 
+    @FluidName("complemento")
     protected String xCpl;
 
     @XmlElement(required = true)
+    @FluidName("bairro")
     protected String xBairro;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDoMunicipio")
     protected String cMun;
 
     @XmlElement(required = true)
+    @FluidName("nomeDoMunicipio")
     protected String xMun;
 
     @XmlElement(name = "UF", required = true)
+    @FluidName("UF")
+    @FluidDataType(UF.class)
     protected UF uf;
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
-        this.cnpj = value;
+    public void setCNPJ(final String value) {
+        cnpj = value;
     }
 
     public String getXLgr() {
         return xLgr;
     }
 
-    public void setXLgr(String value) {
-        this.xLgr = value;
+    public void setXLgr(final String value) {
+        xLgr = value;
     }
 
     public String getNro() {
         return nro;
     }
 
-    public void setNro(String value) {
-        this.nro = value;
+    public void setNro(final String value) {
+        nro = value;
     }
 
     public String getXCpl() {
         return xCpl;
     }
 
-    public void setXCpl(String value) {
-        this.xCpl = value;
+    public void setXCpl(final String value) {
+        xCpl = value;
     }
 
     public String getXBairro() {
         return xBairro;
     }
 
-    public void setXBairro(String value) {
-        this.xBairro = value;
+    public void setXBairro(final String value) {
+        xBairro = value;
     }
 
     public String getCMun() {
         return cMun;
     }
 
-    public void setCMun(String value) {
-        this.cMun = value;
+    public void setCMun(final String value) {
+        cMun = value;
     }
 
     public String getXMun() {
         return xMun;
     }
 
-    public void setXMun(String value) {
-        this.xMun = value;
+    public void setXMun(final String value) {
+        xMun = value;
     }
 
     public UF getUF() {
         return uf;
     }
 
-    public void setUF(UF value) {
-        this.uf = value;
+    public void setUF(final UF value) {
+        uf = value;
     }
 
 }

@@ -10,32 +10,40 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+import br.com.caelum.stella.nfe.builder.generated.enums.OrigemDoProcesso;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProcRef ", propOrder = { "nProc", "indProc" })
+@FluidName("ProcessoReferenciado")
 public class ProcRef {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("identificadorDoProcesso")
     protected String nProc;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("origemDoProcesso")
+    @FluidDataType(OrigemDoProcesso.class)
     protected String indProc;
 
     public String getNProc() {
         return nProc;
     }
 
-    public void setNProc(String value) {
-        this.nProc = value;
+    public void setNProc(final String value) {
+        nProc = value;
     }
 
     public String getIndProc() {
         return indProc;
     }
 
-    public void setIndProc(String value) {
-        this.indProc = value;
+    public void setIndProc(final String value) {
+        indProc = value;
     }
 
 }

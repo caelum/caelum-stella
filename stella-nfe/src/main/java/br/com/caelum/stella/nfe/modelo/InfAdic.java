@@ -10,14 +10,20 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "InfAdic ", propOrder = { "infAdFisco", "infCpl", "obsCont", "obsFisco", "procRef" })
+@FluidName("InformacoesAdicionais")
 public class InfAdic {
 
+    @FluidName("InformacoesAdicionaisDeInteresseDoFisco")
     protected String infAdFisco;
 
+    @FluidName("informacoesComplementares")
     protected String infCpl;
 
+    @FluidName("observacoesDoContribuinte")
     protected List<ObsCont> obsCont;
 
     protected List<ObsFisco> obsFisco;

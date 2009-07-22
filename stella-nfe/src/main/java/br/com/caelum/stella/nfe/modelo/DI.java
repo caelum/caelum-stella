@@ -14,32 +14,46 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DI ", propOrder = { "ndi", "ddi", "xLocDesemb", "ufDesemb", "dDesemb", "cExportador", "adi" })
+@FluidName("DeclaracaoDeImportacao")
 public class DI {
 
     @XmlElement(name = "nDI", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeroDoDocumentoDeImportacao")
     protected String ndi;
 
     @XmlElement(name = "dDI", required = true)
+    @FluidName("dataDaDeclaracaoDeImportacao")
+    @FluidDataType(Calendar.class)
     protected String ddi;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("localDeDesenbaraco")
     protected String xLocDesemb;
 
     @XmlElement(name = "UFDesemb", required = true)
+    @FluidName("UFDoDesembaraco")
+    @FluidDataType(UF.class)
     protected UF ufDesemb;
 
     @XmlElement(required = true)
+    @FluidName("dataDoDeembaraco")
+    @FluidDataType(Calendar.class)
     protected String dDesemb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDoExportador")
     protected String cExportador;
 
     @XmlElement(required = true)
+    @FluidName("adicao")
     protected List<Adi> adi;
 
     public String getNDI() {

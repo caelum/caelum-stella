@@ -15,44 +15,50 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TConsReciNFe", propOrder = { "tpAmb", "nRec" })
+@FluidName("PedidoDeConsultaDoRecidoDoLoteDeNFE")
 public class TConsReciNFe {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDoAmbiente")
     protected String tpAmb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeroDoRecibo")
     protected String nRec;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versao")
     protected String versao;
 
     public String getTpAmb() {
         return tpAmb;
     }
 
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
     public String getNRec() {
         return nRec;
     }
 
-    public void setNRec(String value) {
-        this.nRec = value;
+    public void setNRec(final String value) {
+        nRec = value;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

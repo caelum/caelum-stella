@@ -9,8 +9,11 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "NFref ", propOrder = { "refNFe", "refNF" })
+@FluidName("InformacaoDaNFReferenciada")
 public class NFref {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -22,16 +25,16 @@ public class NFref {
         return refNFe;
     }
 
-    public void setRefNFe(String value) {
-        this.refNFe = value;
+    public void setRefNFe(final String value) {
+        refNFe = value;
     }
 
     public RefNF getRefNF() {
         return refNF;
     }
 
-    public void setRefNF(RefNF value) {
-        this.refNF = value;
+    public void setRefNF(final RefNF value) {
+        refNF = value;
     }
 
 }

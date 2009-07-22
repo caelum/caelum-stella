@@ -16,9 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "InfNFe ", propOrder = { "ide", "emit", "avulsa", "dest", "retirada", "entrega", "det", "total",
         "transp", "cobr", "infAdic", "exporta", "compra" })
+@FluidName("InformacoesDaNFE")
 public class InfNFe {
 
     @XmlElement(required = true)

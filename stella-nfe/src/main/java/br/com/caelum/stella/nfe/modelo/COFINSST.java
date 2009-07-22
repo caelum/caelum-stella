@@ -3,28 +3,44 @@
  */
 package br.com.caelum.stella.nfe.modelo;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "COFINSST ", propOrder = { "vbc", "pcofins", "qbcProd", "vAliqProd", "vcofins" })
+@FluidName("COFINSSubstituicaoTributaria")
 public class COFINSST {
 
     @XmlElement(name = "vBC")
+    @FluidName("valorDaBaseDeCalculo")
+    @FluidDataType(BigDecimal.class)
     protected String valorDaBaseDeCalculo;
 
     @XmlElement(name = "pCOFINS")
+    @FluidName("aliquotaEmPercentual")
+    @FluidDataType(BigDecimal.class)
     protected String aliquotaEmPercentual;
 
     @XmlElement(name = "qBCProd")
+    @FluidName("quantidadeVendida")
+    @FluidDataType(BigDecimal.class)
     protected String quantidadeVendida;
 
     @XmlElement(name = "vAliqProd")
+    @FluidName("aliquota")
+    @FluidDataType(BigDecimal.class)
     protected String aliquota;
 
     @XmlElement(name = "vCOFINS", required = true)
+    @FluidName("valor")
+    @FluidDataType(BigDecimal.class)
     protected String valor;
 
     public String getvalorDaBaseDeCalculo() {
@@ -56,7 +72,7 @@ public class COFINSST {
     }
 
     public void setAliquota(final String aliquotaEmReais) {
-        this.aliquota = aliquotaEmReais;
+        aliquota = aliquotaEmReais;
     }
 
     public String getValor() {

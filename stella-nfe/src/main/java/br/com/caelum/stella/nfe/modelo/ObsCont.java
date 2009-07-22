@@ -11,32 +11,37 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ObsCont ", propOrder = { "xTexto" })
+@FluidName("ObservacaoDoContribuinte")
 public class ObsCont {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("textoDeDescricao")
     protected String xTexto;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("descricaoDoCampo")
     protected String xCampo;
 
     public String getXTexto() {
         return xTexto;
     }
 
-    public void setXTexto(String value) {
-        this.xTexto = value;
+    public void setXTexto(final String value) {
+        xTexto = value;
     }
 
     public String getXCampo() {
         return xCampo;
     }
 
-    public void setXCampo(String value) {
-        this.xCampo = value;
+    public void setXCampo(final String value) {
+        xCampo = value;
     }
 
 }

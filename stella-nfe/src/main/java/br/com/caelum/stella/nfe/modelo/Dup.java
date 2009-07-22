@@ -11,15 +11,21 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Dup ", propOrder = { "nDup", "dVenc", "vDup" })
+@FluidName("Duplicata")
 public class Dup {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numero")
     protected String nDup;
 
+    @FluidName("dataDeVencimento")
     protected String dVenc;
 
+    @FluidName("valorDaDuplicata")
     protected String vDup;
 
     public String getNDup() {

@@ -1,6 +1,7 @@
 package br.com.caelum.stella.nfe.builder.generated;
 
 import br.com.caelum.stella.nfe.modelo.TUf;
+import br.com.caelum.stella.tinytype.CNPJ;
 
 public final class ExcluiImpl<T> implements Exclui<T>, br.com.caelum.stella.nfe.ObjectCreator {
     private final br.com.caelum.stella.nfe.modelo.Exclui exclui;
@@ -25,7 +26,7 @@ public final class ExcluiImpl<T> implements Exclui<T>, br.com.caelum.stella.nfe.
         return this;
     }
 
-    public Exclui<T> withCNPJ(final Object object) {
+    public Exclui<T> withCNPJ(final CNPJ object) {
         this.exclui.setCNPJ(object);
         return this;
     }

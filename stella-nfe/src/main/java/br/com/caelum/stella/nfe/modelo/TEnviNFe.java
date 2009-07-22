@@ -18,19 +18,25 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TEnviNFe", propOrder = { "idLote", "nFe" })
+@FluidName("PedidoDeAutorizacaoDaNFE")
 public class TEnviNFe {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("idDoLote")
     protected String idLote;
 
     @XmlElement(name = "NFe", required = true)
+    @FluidName("NFE")
     protected List<TNFe> nFe;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versao")
     protected String versao;
 
     public String getIdLote() {

@@ -14,81 +14,109 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+import br.com.caelum.stella.nfe.builder.generated.enums.TipoDoAmbiente;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ide ", propOrder = { "cuf", "cnf", "natOp", "indPag", "mod", "serie", "nnf", "dEmi", "dSaiEnt",
         "tpNF", "cMunFG", "nFref", "tpImp", "tpEmis", "cdv", "tpAmb", "finNFe", "procEmi", "verProc" })
+@FluidName("IdentificacaoDaNFE")
 public class Ide {
 
     @XmlElement(name = "cUF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoUFDoEmitente")
     protected String cuf;
 
     @XmlElement(name = "cNF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDaNF")
+    @FluidDataType(Integer.class)
     protected String cnf;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("descricaoDaNaturezaDaOperacao")
     protected String natOp;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("formaDePagamento")
     protected String indPag;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("modeloDoDocumentoFiscal")
     protected String mod;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("serie")
     protected String serie;
 
     @XmlElement(name = "nNF", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("numeroDoDocumentoFiscal")
     protected String nnf;
 
     @XmlElement(required = true)
+    @FluidName("dataDeEmissao")
+    @FluidDataType(Calendar.class)
     protected String dEmi;
 
+    @FluidName("dataDeSaidaOuEntrada")
+    @FluidDataType(Calendar.class)
     protected String dSaiEnt;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDoDocumentoFiscal")
     protected String tpNF;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDoMunicipioDeOcorrenciaDoFatoGerador")
     protected String cMunFG;
 
     @XmlElement(name = "NFref")
+    @FluidName("informacoesDaNFReferenciada")
     protected List<NFref> nFref;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("formatoDeImpressao")
     protected String tpImp;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("formaDeEmissao")
     protected String tpEmis;
 
     @XmlElement(name = "cDV", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("digitoVerificadorDaChaveDeAcessoDaNFE")
     protected String cdv;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("tipoDoAmbiente")
+    @FluidDataType(TipoDoAmbiente.class)
     protected String tpAmb;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("finalidadeDaEmissaoDaNFE")
     protected String finNFe;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("processoDeEmissao")
     protected String procEmi;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoDoAplicativoUsadoNaEmissao")
     protected String verProc;
 
     public String getCUF() {

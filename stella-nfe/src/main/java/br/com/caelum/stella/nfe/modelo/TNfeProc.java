@@ -15,42 +15,48 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TNfeProc", propOrder = { "nFe", "protNFe" })
+@FluidName("NFEProcessada")
 public class TNfeProc {
 
     @XmlElement(name = "NFe", required = true)
+    @FluidName("NFE")
     protected TNFe nFe;
 
     @XmlElement(required = true)
+    @FluidName("protocoloDoResultadoDeProcessamento")
     protected TProtNFe protNFe;
 
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versao")
     protected String versao;
 
     public TNFe getNFe() {
         return nFe;
     }
 
-    public void setNFe(TNFe value) {
-        this.nFe = value;
+    public void setNFe(final TNFe value) {
+        nFe = value;
     }
 
     public TProtNFe getProtNFe() {
         return protNFe;
     }
 
-    public void setProtNFe(TProtNFe value) {
-        this.protNFe = value;
+    public void setProtNFe(final TProtNFe value) {
+        protNFe = value;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

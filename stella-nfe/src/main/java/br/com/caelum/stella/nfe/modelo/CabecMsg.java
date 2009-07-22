@@ -16,16 +16,22 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "versaoDados" })
 @XmlRootElement(name = "cabecMsg")
+@FluidName("Cabecalho")
 public class CabecMsg {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versaoDados")
     protected String versaoDados;
+
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("versao")
     protected String versao;
 
     public String getVersaoDados() {

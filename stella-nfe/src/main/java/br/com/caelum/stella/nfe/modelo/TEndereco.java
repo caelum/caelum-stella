@@ -14,130 +14,146 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TEndereco", propOrder = { "xLgr", "nro", "xCpl", "xBairro", "cMun", "xMun", "uf", "cep", "cPais",
         "xPais", "fone" })
+@FluidName("Endereco")
 public class TEndereco {
 
     @XmlElement(required = true)
+    @FluidName("Logradouro")
     protected String xLgr;
 
     @XmlElement(required = true)
+    @FluidName("numero")
     protected String nro;
 
+    @FluidName("complemento")
     protected String xCpl;
 
     @XmlElement(required = true)
+    @FluidName("bairro")
     protected String xBairro;
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDoMunicipio")
     protected String cMun;
 
     @XmlElement(required = true)
+    @FluidName("nomeDoMunicipio")
     protected String xMun;
 
     @XmlElement(name = "UF", required = true)
+    @FluidName("UF")
+    @FluidDataType(UF.class)
     protected UF uf;
 
     @XmlElement(name = "CEP")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("CEP")
     protected String cep;
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("codigoDoPais")
     protected String cPais;
 
+    @FluidName("nomeDoPais")
     protected String xPais;
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @FluidName("telefone")
     protected String fone;
 
     public String getXLgr() {
         return xLgr;
     }
 
-    public void setXLgr(String value) {
-        this.xLgr = value;
+    public void setXLgr(final String value) {
+        xLgr = value;
     }
 
     public String getNro() {
         return nro;
     }
 
-    public void setNro(String value) {
-        this.nro = value;
+    public void setNro(final String value) {
+        nro = value;
     }
 
     public String getXCpl() {
         return xCpl;
     }
 
-    public void setXCpl(String value) {
-        this.xCpl = value;
+    public void setXCpl(final String value) {
+        xCpl = value;
     }
 
     public String getXBairro() {
         return xBairro;
     }
 
-    public void setXBairro(String value) {
-        this.xBairro = value;
+    public void setXBairro(final String value) {
+        xBairro = value;
     }
 
     public String getCMun() {
         return cMun;
     }
 
-    public void setCMun(String value) {
-        this.cMun = value;
+    public void setCMun(final String value) {
+        cMun = value;
     }
 
     public String getXMun() {
         return xMun;
     }
 
-    public void setXMun(String value) {
-        this.xMun = value;
+    public void setXMun(final String value) {
+        xMun = value;
     }
 
     public UF getUF() {
         return uf;
     }
 
-    public void setUF(UF value) {
-        this.uf = value;
+    public void setUF(final UF value) {
+        uf = value;
     }
 
     public String getCEP() {
         return cep;
     }
 
-    public void setCEP(String value) {
-        this.cep = value;
+    public void setCEP(final String value) {
+        cep = value;
     }
 
     public String getCPais() {
         return cPais;
     }
 
-    public void setCPais(String value) {
-        this.cPais = value;
+    public void setCPais(final String value) {
+        cPais = value;
     }
 
     public String getXPais() {
         return xPais;
     }
 
-    public void setXPais(String value) {
-        this.xPais = value;
+    public void setXPais(final String value) {
+        xPais = value;
     }
 
     public String getFone() {
         return fone;
     }
 
-    public void setFone(String value) {
-        this.fone = value;
+    public void setFone(final String value) {
+        fone = value;
     }
 
 }

@@ -12,30 +12,35 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import net.vidageek.fluid.annotations.FluidName;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TNFe", propOrder = { "infNFe", "signature" })
+@FluidName("NFE")
 public class TNFe {
 
     @XmlElement(required = true)
+    @FluidName("informacoesDaNFE")
     protected InfNFe infNFe;
 
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
+    @FluidName("signature")
     protected SignatureType signature;
 
     public InfNFe getInfNFe() {
         return infNFe;
     }
 
-    public void setInfNFe(InfNFe value) {
-        this.infNFe = value;
+    public void setInfNFe(final InfNFe value) {
+        infNFe = value;
     }
 
     public SignatureType getSignature() {
         return signature;
     }
 
-    public void setSignature(SignatureType value) {
-        this.signature = value;
+    public void setSignature(final SignatureType value) {
+        signature = value;
     }
 
 }
