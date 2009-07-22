@@ -2,13 +2,10 @@ package br.com.caelum.stella.nfe.builder;
 
 final public class NFe {
 
-    public NFeDeCancelamento deCancelamento() {
-        return new NFeDeCancelamento();
+    public void deCancelamento() {
     }
 
-    public NFeDeConsulta deConsulta() {
-        return new NFeDeConsulta();
-
+    public void deConsulta() {
     }
 
     public void deInutilizacao() {
