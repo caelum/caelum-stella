@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.caelum.stella.nfe.builder.icms.enums;
+package br.com.caelum.stella.nfe.builder.enums;
 
 /**
  * @author jonasabreu

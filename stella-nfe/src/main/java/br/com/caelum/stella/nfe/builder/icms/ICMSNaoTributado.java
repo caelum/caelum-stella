@@ -1,7 +1,7 @@
 package br.com.caelum.stella.nfe.builder.icms;
 
-import br.com.caelum.stella.nfe.builder.icms.enums.OrigemICMS;
-import br.com.caelum.stella.nfe.builder.icms.enums.TributacaoICMS;
+import br.com.caelum.stella.nfe.builder.enums.OrigemICMS;
+import br.com.caelum.stella.nfe.builder.enums.TributacaoICMS;
 
 /**
  * 
