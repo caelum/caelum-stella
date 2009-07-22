@@ -1,6 +1,6 @@
 package br.com.caelum.stella.nfe.builder;
 
-import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
+import br.com.caelum.stella.nfe.builder.enums.ICMSSituacaoTributaria;
 
 public interface IPI<T> extends NFeBuilder<T> {
 
@@ -16,5 +16,5 @@ public interface IPI<T> extends NFeBuilder<T> {
 
     public IPI<T> withTributacao(IPITributacao<?> ipiTrib);
 
-    public IPI<T> withIPIInt(SituacaoTributaria situacaoTributaria);
+    public IPI<T> withIPIInt(ICMSSituacaoTributaria situacaoTributaria);
 }

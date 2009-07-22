@@ -2,11 +2,11 @@ package br.com.caelum.stella.nfe.builder;
 
 import java.math.BigDecimal;
 
-import br.com.caelum.stella.nfe.builder.enums.SituacaoTributaria;
+import br.com.caelum.stella.nfe.builder.enums.ICMSSituacaoTributaria;
 
 public interface IPITributacao<T> extends NFeBuilder<T> {
 
-    public IPITributacao<T> withSituacaoTributaria(SituacaoTributaria situacao);
+    public IPITributacao<T> withSituacaoTributaria(ICMSSituacaoTributaria situacao);
 
     public IPITributacao<T> withValorDaBaseDeCalculo(BigDecimal baseDeCalculo);
 
