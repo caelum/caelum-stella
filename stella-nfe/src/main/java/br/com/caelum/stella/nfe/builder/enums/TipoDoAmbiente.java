@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.generated.enums;
+package br.com.caelum.stella.nfe.builder.enums;
 
 public enum TipoDoAmbiente {
     PRODUCAO("1"), HOMOLOGACAO("2");

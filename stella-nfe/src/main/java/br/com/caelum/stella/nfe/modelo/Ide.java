@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import net.vidageek.fluid.annotations.FluidDataType;
 import net.vidageek.fluid.annotations.FluidName;
-import br.com.caelum.stella.nfe.builder.generated.enums.TipoDoAmbiente;
+import br.com.caelum.stella.nfe.builder.enums.TipoDoAmbiente;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ide ", propOrder = { "cuf", "cnf", "natOp", "indPag", "mod", "serie", "nnf", "dEmi", "dSaiEnt",
