@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.builder.generator;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.caelum.stella.nfe.ObjectCreator;
+import net.vidageek.fluid.proxy.ObjectCreator;
 
 /**
  * @author jonasabreu

@@ -2,12 +2,12 @@ package br.com.caelum.stella.nfe.builder;
 
 import java.lang.reflect.Field;
 
+import net.vidageek.fluid.proxy.ObjectCreator;
 import net.vidageek.mirror.Mirror;
-import br.com.caelum.stella.nfe.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.icms.ICMS;
 import br.com.caelum.stella.nfe.modelo.Imposto;
 
-public class Impostos implements ObjectCreator {
+public class Impostos {
 
     private final Imposto imposto;
 
