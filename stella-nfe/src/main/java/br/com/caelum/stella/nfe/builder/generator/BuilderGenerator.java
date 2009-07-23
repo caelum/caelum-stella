@@ -43,15 +43,39 @@ final public class BuilderGenerator {
 
         set.addAll(Arrays.asList(classes));
 
+        String datapoints = "";
+        datapoints += "package " + PACKAGE + ".datapoints;\n\n";
+        datapoints += "import org.junit.experimental.theories.DataPoint;\n\n";
+        datapoints += "public interface BuilderDataPoints {\n\n";
+
         for (Class<?> type : set) {
             String code = new Fluid(type, PACKAGE).generateInterface(set);
-            System.out.println("Writing interface " + getInterfaceName(code));
+
+            String interfaceName = getInterfaceName(code);
+
+            System.out.println("Writing interface " + interfaceName);
+
             PrintWriter writer = new PrintWriter("stella-nfe/src/main/java/" + PACKAGE.replaceAll("\\.", "\\/") + "/"
-                    + getInterfaceName(code) + ".java");
+                    + interfaceName + ".java");
             writer.print(code);
             writer.close();
+
+            datapoints += "    @DataPoint\n";
+            datapoints += "    public Class<?> " + lowerCase(interfaceName) + " = " + PACKAGE + "." + interfaceName
+                    + ".class;\n\n";
         }
 
+        datapoints += "}\n";
+        System.out.println("Writing Datapoint Definition");
+        PrintWriter writer = new PrintWriter("stella-nfe/src/test/java/" + PACKAGE.replaceAll("\\.", "\\/")
+                + "/datapoints/BuilderDataPoints.java");
+        writer.print(datapoints);
+        writer.close();
+
+    }
+
+    private static String lowerCase(final String interfaceName) {
+        return Character.toLowerCase(interfaceName.charAt(0)) + interfaceName.substring(1);
     }
 
     private static String getInterfaceName(final String code) {
