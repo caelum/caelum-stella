@@ -38,8 +38,8 @@ final public class BuilderGenerator {
                 TInutNFe.class, TLocal.class, TNFe.class, TNfeProc.class, Total.class, TProcCancNFe.class,
                 TProcInutNFe.class, TProtNFe.class, TransformsType.class, TransformType.class, Transp.class,
                 Transporta.class, TRetAtuCadEmiDFe.class, TRetCancNFe.class, TRetConsCad.class, TRetConsReciNFe.class,
-                TRetConsSitNFe.class, TRetConsStatServ.class, TRetEnviNFe.class, TRetInutNFe.class, TUfCons.class,
-                TVeiculo.class, VeicProd.class, Vol.class, X509DataType.class };
+                TRetConsSitNFe.class, TRetConsStatServ.class, TRetEnviNFe.class, TRetInutNFe.class, TVeiculo.class,
+                VeicProd.class, Vol.class, X509DataType.class };
 
         set.addAll(Arrays.asList(classes));
 
