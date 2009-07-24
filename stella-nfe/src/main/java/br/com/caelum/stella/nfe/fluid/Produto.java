@@ -58,16 +58,16 @@ public interface Produto<T> extends net.vidageek.fluid.FluidInterface<T> {
     Produto<T> withValorDeDesconto(java.math.BigDecimal ValorDeDesconto);
 
     @net.vidageek.fluid.annotations.FluidField("di")
-    Produto<T> addDI();
+    DeclaracaoDeImportacao<Produto<T>> addDI();
 
     @net.vidageek.fluid.annotations.FluidField("veicProd")
     VeiculoNovo<Produto<T>> withVeiculoNovo();
 
     @net.vidageek.fluid.annotations.FluidField("med")
-    Produto<T> addMedicamento();
+    Medicamento<Produto<T>> addMedicamento();
 
     @net.vidageek.fluid.annotations.FluidField("arma")
-    Produto<T> addArmamento();
+    Armamento<Produto<T>> addArmamento();
 
     @net.vidageek.fluid.annotations.FluidField("comb")
     Combustivel<Produto<T>> withCombustivel();

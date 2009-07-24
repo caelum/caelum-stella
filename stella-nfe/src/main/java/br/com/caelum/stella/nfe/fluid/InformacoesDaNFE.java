@@ -22,7 +22,7 @@ public interface InformacoesDaNFE<T> extends net.vidageek.fluid.FluidInterface<T
     DadosDoLocal<InformacoesDaNFE<T>> withEntrega();
 
     @net.vidageek.fluid.annotations.FluidField("det")
-    InformacoesDaNFE<T> addDet();
+    Detalhe<InformacoesDaNFE<T>> addDet();
 
     @net.vidageek.fluid.annotations.FluidField("total")
     TotalNFE<InformacoesDaNFE<T>> withTotal();

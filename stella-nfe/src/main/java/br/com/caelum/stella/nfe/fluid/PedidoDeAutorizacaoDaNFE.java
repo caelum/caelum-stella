@@ -7,7 +7,7 @@ public interface PedidoDeAutorizacaoDaNFE<T> extends net.vidageek.fluid.FluidInt
     PedidoDeAutorizacaoDaNFE<T> withIdDoLote(java.lang.String idDoLote);
 
     @net.vidageek.fluid.annotations.FluidField("nFe")
-    PedidoDeAutorizacaoDaNFE<T> addNFE();
+    NFE<PedidoDeAutorizacaoDaNFE<T>> addNFE();
 
     @net.vidageek.fluid.annotations.FluidField("versao")
     PedidoDeAutorizacaoDaNFE<T> withVersao(java.lang.String versao);

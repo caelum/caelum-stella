@@ -16,6 +16,6 @@ public interface TEmissor<T> extends net.vidageek.fluid.FluidInterface<T> {
     TEmissor<T> withIe(java.lang.String ie);
 
     @net.vidageek.fluid.annotations.FluidField("dFe")
-    TEmissor<T> addDFe();
+    DFe<TEmissor<T>> addDFe();
 
 }

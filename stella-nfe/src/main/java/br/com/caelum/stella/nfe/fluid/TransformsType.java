@@ -4,6 +4,6 @@ package br.com.caelum.stella.nfe.fluid;
 public interface TransformsType<T> extends net.vidageek.fluid.FluidInterface<T> {
 
     @net.vidageek.fluid.annotations.FluidField("transform")
-    TransformsType<T> addTransform();
+    TransformType<TransformsType<T>> addTransform();
 
 }

@@ -37,7 +37,7 @@ public interface IdentificacaoDaNFE<T> extends net.vidageek.fluid.FluidInterface
     IdentificacaoDaNFE<T> withCodigoDoMunicipioDeOcorrenciaDoFatoGerador(java.lang.String codigoDoMunicipioDeOcorrenciaDoFatoGerador);
 
     @net.vidageek.fluid.annotations.FluidField("nFref")
-    IdentificacaoDaNFE<T> addInformacoesDaNFReferenciada();
+    InformacaoDaNFReferenciada<IdentificacaoDaNFE<T>> addInformacoesDaNFReferenciada();
 
     @net.vidageek.fluid.annotations.FluidField("tpImp")
     IdentificacaoDaNFE<T> withFormatoDeImpressao(java.lang.String formatoDeImpressao);

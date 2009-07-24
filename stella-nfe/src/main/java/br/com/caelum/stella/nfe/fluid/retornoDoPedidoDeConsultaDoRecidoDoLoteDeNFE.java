@@ -22,7 +22,7 @@ public interface retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE<T> extends net.vid
     retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE<T> withCodigoDaUF(java.lang.String codigoDaUF);
 
     @net.vidageek.fluid.annotations.FluidField("protNFe")
-    retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE<T> addProtocoloDoResultadoDeProcessamento();
+    ProtocoloDoResultadoDeProcessamento<retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE<T>> addProtocoloDoResultadoDeProcessamento();
 
     @net.vidageek.fluid.annotations.FluidField("versao")
     retornoDoPedidoDeConsultaDoRecidoDoLoteDeNFE<T> withVersaoNFE(java.lang.String versaoNFE);

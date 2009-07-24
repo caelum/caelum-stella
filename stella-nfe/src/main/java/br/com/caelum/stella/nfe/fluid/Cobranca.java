@@ -7,6 +7,6 @@ public interface Cobranca<T> extends net.vidageek.fluid.FluidInterface<T> {
     Fatura<Cobranca<T>> withFatura();
 
     @net.vidageek.fluid.annotations.FluidField("dup")
-    Cobranca<T> addDuplicata();
+    Duplicata<Cobranca<T>> addDuplicata();
 
 }

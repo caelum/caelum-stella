@@ -31,6 +31,6 @@ public interface InfCons<T> extends net.vidageek.fluid.FluidInterface<T> {
     InfCons<T> withCuf(java.lang.String cuf);
 
     @net.vidageek.fluid.annotations.FluidField("infCad")
-    InfCons<T> addInfCad();
+    InfCad<InfCons<T>> addInfCad();
 
 }

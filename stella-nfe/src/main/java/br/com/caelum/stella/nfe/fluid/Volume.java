@@ -22,6 +22,6 @@ public interface Volume<T> extends net.vidageek.fluid.FluidInterface<T> {
     Volume<T> withPesoBruto(java.lang.String pesoBruto);
 
     @net.vidageek.fluid.annotations.FluidField("lacres")
-    Volume<T> addLacres();
+    Lacres<Volume<T>> addLacres();
 
 }

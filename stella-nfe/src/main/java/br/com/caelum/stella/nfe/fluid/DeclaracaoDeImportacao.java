@@ -22,6 +22,6 @@ public interface DeclaracaoDeImportacao<T> extends net.vidageek.fluid.FluidInter
     DeclaracaoDeImportacao<T> withCodigoDoExportador(java.lang.String codigoDoExportador);
 
     @net.vidageek.fluid.annotations.FluidField("adi")
-    DeclaracaoDeImportacao<T> addAdicao();
+    Adicao<DeclaracaoDeImportacao<T>> addAdicao();
 
 }

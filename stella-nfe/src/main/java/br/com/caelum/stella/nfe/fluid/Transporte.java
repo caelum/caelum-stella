@@ -16,9 +16,9 @@ public interface Transporte<T> extends net.vidageek.fluid.FluidInterface<T> {
     Veiculo<Transporte<T>> withVeiculoUsado();
 
     @net.vidageek.fluid.annotations.FluidField("reboque")
-    Transporte<T> addReboque();
+    Veiculo<Transporte<T>> addReboque();
 
     @net.vidageek.fluid.annotations.FluidField("vol")
-    Transporte<T> addVolume();
+    Volume<Transporte<T>> addVolume();
 
 }

@@ -10,12 +10,12 @@ public interface InformacoesAdicionais<T> extends net.vidageek.fluid.FluidInterf
     InformacoesAdicionais<T> withInformacoesComplementares(java.lang.String informacoesComplementares);
 
     @net.vidageek.fluid.annotations.FluidField("obsCont")
-    InformacoesAdicionais<T> addObservacoesDoContribuinte();
+    ObservacaoDoContribuinte<InformacoesAdicionais<T>> addObservacoesDoContribuinte();
 
     @net.vidageek.fluid.annotations.FluidField("obsFisco")
-    InformacoesAdicionais<T> addObsFisco();
+    ObservacaoFisco<InformacoesAdicionais<T>> addObsFisco();
 
     @net.vidageek.fluid.annotations.FluidField("procRef")
-    InformacoesAdicionais<T> addProcRef();
+    ProcessoReferenciado<InformacoesAdicionais<T>> addProcRef();
 
 }

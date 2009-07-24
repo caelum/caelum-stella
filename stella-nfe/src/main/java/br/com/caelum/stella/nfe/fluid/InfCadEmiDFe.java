@@ -7,7 +7,7 @@ public interface InfCadEmiDFe<T> extends net.vidageek.fluid.FluidInterface<T> {
     InfCadEmiDFe<T> withDPubCad(java.lang.String dPubCad);
 
     @net.vidageek.fluid.annotations.FluidField("emissor")
-    InfCadEmiDFe<T> addEmissor();
+    TEmissor<InfCadEmiDFe<T>> addEmissor();
 
     @net.vidageek.fluid.annotations.FluidField("id")
     InfCadEmiDFe<T> withId(java.lang.String id);
