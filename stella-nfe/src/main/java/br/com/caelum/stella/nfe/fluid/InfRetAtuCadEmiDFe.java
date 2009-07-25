@@ -7,7 +7,7 @@ public interface InfRetAtuCadEmiDFe<T> extends net.vidageek.fluid.FluidInterface
     InfRetAtuCadEmiDFe<T> withUf(br.com.caelum.stella.nfe.modelo.TUf uf);
 
     @net.vidageek.fluid.annotations.FluidField("cnpj")
-    InfRetAtuCadEmiDFe<T> withCnpj(java.lang.Object cnpj);
+    InfRetAtuCadEmiDFe<T> withCnpj(br.com.caelum.stella.tinytype.CNPJ cnpj);
 
     @net.vidageek.fluid.annotations.FluidField("ope")
     InfRetAtuCadEmiDFe<T> withOpe(java.lang.String ope);

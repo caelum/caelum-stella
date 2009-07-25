@@ -1,4 +1,3 @@
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,18 +10,17 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import net.vidageek.fluid.annotations.FluidDataType;
+import br.com.caelum.stella.tinytype.CNPJ;
+
 final @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "uf",
-    "cnpj",
-    "ope",
-    "resOpe"
-})
+@XmlType(name = "", propOrder = { "uf", "cnpj", "ope", "resOpe" })
 public class InfRetAtuCadEmiDFe {
 
     @XmlElement(name = "UF", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
     protected TUf uf;
     @XmlElement(name = "CNPJ", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @FluidDataType(CNPJ.class)
     protected Object cnpj;
     @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -36,54 +34,44 @@ public class InfRetAtuCadEmiDFe {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    
     public TUf getUF() {
         return uf;
     }
 
-    
-    public void setUF(TUf value) {
-        this.uf = value;
+    public void setUF(final TUf value) {
+        uf = value;
     }
 
-    
     public Object getCNPJ() {
         return cnpj;
     }
 
-    
-    public void setCNPJ(Object value) {
-        this.cnpj = value;
+    public void setCNPJ(final Object value) {
+        cnpj = value;
     }
 
-    
     public String getOpe() {
         return ope;
     }
 
-    
-    public void setOpe(String value) {
-        this.ope = value;
+    public void setOpe(final String value) {
+        ope = value;
     }
 
-    
     public String getResOpe() {
         return resOpe;
     }
 
-    
-    public void setResOpe(String value) {
-        this.resOpe = value;
+    public void setResOpe(final String value) {
+        resOpe = value;
     }
 
-    
     public String getId() {
         return id;
     }
 
-    
-    public void setId(String value) {
-        this.id = value;
+    public void setId(final String value) {
+        id = value;
     }
 
 }
