@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import net.vidageek.fluid.annotations.FluidDataType;
 import net.vidageek.fluid.annotations.FluidName;
-import br.com.caelum.stella.nfe.builder.enums.OrigemDoProcesso;
+import br.com.caelum.stella.nfe.fluid.enums.OrigemDoProcesso;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProcRef ", propOrder = { "nProc", "indProc" })

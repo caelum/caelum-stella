@@ -23,6 +23,7 @@ import net.vidageek.fluid.annotations.FluidName;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TEnviNFe", propOrder = { "idLote", "nFe" })
 @FluidName("PedidoDeAutorizacaoDaNFE")
+// Precisa de um fluid name beeeeem melhor
 public class TEnviNFe {
 
     @XmlElement(required = true)

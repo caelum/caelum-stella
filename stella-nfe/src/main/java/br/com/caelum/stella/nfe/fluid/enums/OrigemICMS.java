@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum OrigemICMS {
     NACIONAL("0"), ESTRANGEIRA_IMPORTACAO("1"), ESTRANGEIRA_MERCADO_INTERNO("2");

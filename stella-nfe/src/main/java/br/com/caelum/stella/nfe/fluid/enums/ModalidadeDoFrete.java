@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum ModalidadeDoFrete {
     PAGO_PELO_EMITENTE("0"), PAGO_PELO_DESTINATARIO("1");

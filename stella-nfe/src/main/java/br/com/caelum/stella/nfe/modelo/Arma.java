@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import net.vidageek.fluid.annotations.FluidDataType;
 import net.vidageek.fluid.annotations.FluidName;
-import br.com.caelum.stella.nfe.builder.enums.TipoDeArmamento;
+import br.com.caelum.stella.nfe.fluid.enums.TipoDeArmamento;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Arma ", propOrder = { "tpArma", "nSerie", "nCano", "descr" })

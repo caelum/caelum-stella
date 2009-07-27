@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum ICMSSituacaoTributaria {
     ENTRADA_COM_RECUPERACAO_DE_CREDITO("00"), ENTRADA_TRIBUTADA_COM_ALIQUOTA_ZERO("01"), ENTRADA_ISENTA("02"), ENTRADA_NAO_TRIBUTADA(

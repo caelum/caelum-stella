@@ -49,7 +49,7 @@ public interface IdentificacaoDaNFE<T> extends net.vidageek.fluid.FluidInterface
     IdentificacaoDaNFE<T> withDigitoVerificadorDaChaveDeAcessoDaNFE(java.lang.String digitoVerificadorDaChaveDeAcessoDaNFE);
 
     @net.vidageek.fluid.annotations.FluidField("tpAmb")
-    IdentificacaoDaNFE<T> withTipoDoAmbiente(br.com.caelum.stella.nfe.builder.enums.TipoDoAmbiente tipoDoAmbiente);
+    IdentificacaoDaNFE<T> withTipoDoAmbiente(br.com.caelum.stella.nfe.fluid.enums.TipoDoAmbiente tipoDoAmbiente);
 
     @net.vidageek.fluid.annotations.FluidField("finNFe")
     IdentificacaoDaNFE<T> withFinalidadeDaEmissaoDaNFE(java.lang.String finalidadeDaEmissaoDaNFE);

@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum COFINSSituacaoTributaria {
     ALIQUOTA_NORMAL("01"), ALIQUOTA_DIFERENCIADA("02"), QUANTIDADE_VENDIDA_VERSUS_ALIQUOTA_POR_UNIDADE_DE_PRODUTO("03"), TRIBUTACAO_MONOFASTICA(

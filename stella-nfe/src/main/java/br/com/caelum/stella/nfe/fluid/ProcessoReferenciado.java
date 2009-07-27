@@ -7,6 +7,6 @@ public interface ProcessoReferenciado<T> extends net.vidageek.fluid.FluidInterfa
     ProcessoReferenciado<T> withIdentificadorDoProcesso(java.lang.String identificadorDoProcesso);
 
     @net.vidageek.fluid.annotations.FluidField("indProc")
-    ProcessoReferenciado<T> withOrigemDoProcesso(br.com.caelum.stella.nfe.builder.enums.OrigemDoProcesso origemDoProcesso);
+    ProcessoReferenciado<T> withOrigemDoProcesso(br.com.caelum.stella.nfe.fluid.enums.OrigemDoProcesso origemDoProcesso);
 
 }

@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum ModalidadeBaseCalculo {
     MARGEM_VALOR_AGREGADO("0"), PAUTA("1"), PRECO_TABELADO_MAXIMO("2"), VALOR_OPERACAO("3");

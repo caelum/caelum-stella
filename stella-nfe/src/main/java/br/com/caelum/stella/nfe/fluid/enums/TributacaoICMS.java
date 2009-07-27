@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.builder.enums;
+package br.com.caelum.stella.nfe.fluid.enums;
 
 public enum TributacaoICMS {
     ISENTO("40"), NAO_TRIBUTADA("41"), SUSPENSAO("50");
