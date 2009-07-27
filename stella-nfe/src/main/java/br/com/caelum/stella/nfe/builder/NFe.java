@@ -1,27 +1,33 @@
 package br.com.caelum.stella.nfe.builder;
 
+import br.com.caelum.stella.nfe.fluid.PedidoDeAutorizacaoDaNFE;
+import br.com.caelum.stella.nfe.fluid.TAtuCadEmiDFe;
+import br.com.caelum.stella.nfe.fluid.TCadEmiDFe;
+
 final public class NFe {
 
-    public void deCancelamento() {
+    public NFeDeConsulta<NFe> deConsulta() {
+        return null;
     }
 
-    public void deConsulta() {
+    public TCadEmiDFe<NFe> deCadastroDeEmissor() {
+        return null;
     }
 
-    public void deInutilizacao() {
-
+    public NFeDeCancelamento<NFe> deCancelamento() {
+        return null;
     }
 
-    public void deRecepcaoLote() {
-
+    public TAtuCadEmiDFe<NFe> deAtualizacaoDeEmissor() {
+        return null;
     }
 
-    public void deRetRecepcao() {
-
+    public NFeDeInutilizacao<NFe> deInutilizacao() {
+        return null;
     }
 
-    public void deStatusServico() {
-
+    public PedidoDeAutorizacaoDaNFE<NFe> deEnvioDeLote() {
+        return null;
     }
 
 }
