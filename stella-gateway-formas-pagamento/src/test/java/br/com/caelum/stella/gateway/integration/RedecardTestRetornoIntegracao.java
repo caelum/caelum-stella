@@ -44,7 +44,7 @@ public class RedecardTestRetornoIntegracao {
 				one(request).getParameter("CODRET");
 				will(returnValue(null));
 				one(request).getParameter("MSGRET");
-				will(returnValue("TRANSAÇÃO APROVADA"));
+				will(returnValue("TRANSAï¿½ï¿½O APROVADA"));
 			}
 		});
 		RedecardAutorizacaoReturn autorizacaoReturn = new RedecardVerificaRetornoAutorizacao(
@@ -79,13 +79,13 @@ public class RedecardTestRetornoIntegracao {
 				one(request).getParameter("CODRET");
 				will(returnValue("55"));
 				one(request).getParameter("MSGRET");
-				will(returnValue("TRANSAÇÃO NÃO APROVADA"));
+				will(returnValue("TRANSAï¿½ï¿½O Nï¿½O APROVADA"));
 			}
 		});
 		try {
 			new RedecardVerificaRetornoAutorizacao(request,RedecardIdiomaOperacao.INGLES).handle();
 		} catch (ProblematicTransactionException problematicTransactionException) {
-			Assert.assertEquals("TRANSAÇÃO NÃO APROVADA",
+			Assert.assertEquals("TRANSAï¿½ï¿½O Nï¿½O APROVADA",
 					problematicTransactionException.getMessage());
 		}
 	}
@@ -101,7 +101,7 @@ public class RedecardTestRetornoIntegracao {
 	}
 
 	@Test(expected = RedecardConfirmacaoSemDadosException.class)
-	public void testVerificadorDeRetornoDaConfirmacaoDaTransacaoCasoOsDadosDeRetornoNãoSejamRetornados() {
+	public void testVerificadorDeRetornoDaConfirmacaoDaTransacaoCasoOsDadosDeRetornoNaoSejamRetornados() {
 		String retorno = "";
 		RedecardConfirmacaoTransacaoReturn confirmacaoTransacaoReturn = new RedecardVerificadorRetornoConfirmacaoTransacao(
 				retorno).verificaRetorno();

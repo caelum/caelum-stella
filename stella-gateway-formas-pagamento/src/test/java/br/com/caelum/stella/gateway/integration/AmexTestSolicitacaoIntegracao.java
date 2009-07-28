@@ -6,12 +6,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.caelum.seleniumdsl.Browser;
-import br.com.caelum.seleniumdsl.DefaultBrowser;
 import br.com.caelum.stella.gateway.HtmlViewerHelper;
 import br.com.caelum.stella.gateway.SeleniumHelper;
 import br.com.caelum.stella.gateway.amex.AmexCheckout;
@@ -24,13 +20,13 @@ import br.com.caelum.stella.gateway.amex.AmexTipoCartao;
 import br.com.caelum.stella.gateway.amex.AmexTipoTransacao;
 
 /**
- * Os testes na verdade estão apenas gerando paginas html que quando abertas
- * fazem comunicação com o Amex.
+ * Os testes na verdade estï¿½o apenas gerando paginas html que quando abertas
+ * fazem comunicaï¿½ï¿½o com o Amex.
  * 
  * @author Alberto Pc
  * 
  */
-public class AmexTestaSolicitacaoIntegracao {
+public class AmexTestSolicitacaoIntegracao {
 
 	private static SeleniumHelper seleniumHelper;
 

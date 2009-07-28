@@ -4,7 +4,7 @@ import br.com.caelum.stella.gateway.core.DefinedByCode;
 
 public enum AmexLocale implements DefinedByCode {
 
-	EN("en");
+	EN("en"),PT_BR("pt_BR");
 
 	private String codigo;
 
