@@ -45,15 +45,29 @@
 			<version>0.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.vidageek</groupId>
 			<artifactId>mirror</artifactId>
 			<version>1.3</version>
 			<scope>compile</scope>
-		</dependency>		
-				
+		</dependency>
+
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+	         <groupId>org.apache.maven.plugins</groupId>
+	         <artifactId>maven-jar-plugin</artifactId>
+	         <configuration>
+	           <excludes>
+	             <exclude>**/*.properties</exclude>
+	           </excludes>
+	         </configuration>
+	       </plugin> 
+       </plugins>		
+	</build>
+
 	<repositories>
 		<repository>
 			<url>http://nexus.openqa.org/content/repositories/releases/</url>
@@ -62,7 +76,7 @@
 		<repository>
 			<id>vidageek.net</id>
 			<url>http://maven.vidageek.net/</url>
-		</repository>		
+		</repository>
 	</repositories>
 
 
