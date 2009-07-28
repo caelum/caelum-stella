@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 
 /**
- * Classe que contém todas as informações que são necessárias para serem passadas para o ambiente da redecard.
+ * Classe que contÃ©m todas as informaÃ§Ãµes que sÃ£o necessÃ¡rias para serem passadas para o ambiente da redecard.
  * @author Alberto Pc
  *
  */

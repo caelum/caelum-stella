@@ -6,7 +6,7 @@ import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
 /**
- * Classe que verifica os possiveis retornos das integraÁıes.
+ * Classe que verifica os possiveis retornos das integra√ß√µes.
  * 
  * @author Alberto Pc
  * 
@@ -20,9 +20,9 @@ public class VISAVerificacaoRetornoIntegracaoViaHttp implements
 	/**
 	 * 
 	 * @param request
-	 *            request que contem as informaÁıes
+	 *            request que contem as informa√ß√µes
 	 * @param httpRetornoBuilder
-	 *            builder especifico para a ocasi„o.
+	 *            builder especifico para a ocasi√£o.
 	 */
 	public VISAVerificacaoRetornoIntegracaoViaHttp(HttpServletRequest request,
 			VISAHttpReturnBuilder httpRetornoBuilder) {
@@ -34,7 +34,7 @@ public class VISAVerificacaoRetornoIntegracaoViaHttp implements
 	/**
 	 * @return RetornoIntegracao
 	 * @throws ProblematicTransactionException
-	 *             caso a resposta n„o contenha cÛdigo v·lido.
+	 *             caso a resposta n√£o contenha c√≥digo v√°lido.
 	 */
 	public VISAIntegrationReturn handle() {
 		// TODO Auto-generated method stub

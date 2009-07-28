@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.visa;
 
 /**
- * Essa classe contém informações que sempre são retornadas depois da integração.
+ * Essa classe contÃ©m informaÃ§Ãµes que sempre sÃ£o retornadas depois da integraÃ§Ã£o.
  * @author Alberto Pc
  *
  */

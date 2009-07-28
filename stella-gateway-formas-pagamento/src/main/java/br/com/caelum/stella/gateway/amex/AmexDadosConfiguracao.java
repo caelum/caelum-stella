@@ -3,8 +3,8 @@ package br.com.caelum.stella.gateway.amex;
 import br.com.caelum.stella.gateway.core.GatewaysConf;
 
 /**
- * Classe para guardar os dados de configuração que são devolvidos entre
- * transações.
+ * Classe para guardar os dados de configuraÃ§Ã£o que sÃ£o devolvidos entre
+ * transaÃ§Ãµes.
  * 
  * @author Alberto Souza
  * 

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Classe utilitaria apenas para formatar os valores que chegam das integrações do VISA.
+ * Classe utilitaria apenas para formatar os valores que chegam das integraÃ§Ãµes do VISA.
  * 
  * @author Alberto
  * 

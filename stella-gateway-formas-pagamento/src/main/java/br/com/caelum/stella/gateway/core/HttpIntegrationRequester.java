@@ -8,7 +8,7 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
 
 /**
- * Classe responsável por fazer as requisições http para as integrações.
+ * Classe responsÃ¡vel por fazer as requisiÃ§Ãµes http para as integraÃ§Ãµes.
  * @author Alberto
  *
  */
@@ -36,11 +36,11 @@ public class HttpIntegrationRequester {
 				return httpMethod.getResponseBodyAsString();
 			}
 			else{
-				throw new IntegrationFailedException("O status de retorno da comunicação com a url "+httpMethod.getPath()+" não foi o esperado(200). "+status);
+				throw new IntegrationFailedException("O status de retorno da comunicaÃ§Ã£o com a url "+httpMethod.getPath()+" nÃ£o foi o esperado(200). "+status);
 			}
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
-			throw new IntegrationFailedException("Problema para fazer a requisição para a url "+httpMethod.getPath(),e);
+			throw new IntegrationFailedException("Problema para fazer a requisiÃ§Ã£o para a url "+httpMethod.getPath(),e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new IntegrationFailedException(e.getMessage(),e);

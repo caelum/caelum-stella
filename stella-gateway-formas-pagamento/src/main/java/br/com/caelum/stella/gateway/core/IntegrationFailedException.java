@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.core;
 
 /**
- * Exception que deve ser lançada, quando, por algum motivo, a integração falhar
+ * Exception que deve ser lanÃ§ada, quando, por algum motivo, a integraÃ§Ã£o falhar
  * @author Alberto Pc
  *
  */

@@ -38,7 +38,7 @@ public class CalendarFormatter {
 	/**
 	 * 
 	 * @param dataDesformatada 
-	 * @param pattern padr„o para convers„o da data para Calendar. Ex: yyyymmdd 
+	 * @param pattern padr√£o para convers√£o da data para Calendar. Ex: yyyymmdd 
 	 * @return
 	 */
 	public Calendar stringToCalendar(String dataDesformatada,String pattern){		
@@ -48,7 +48,7 @@ public class CalendarFormatter {
 			dataAutorizacao.setTime(formatter.parse(dataDesformatada));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			throw new IntegrationFailedException("A convers„o da data "+dataDesformatada+" falhou",e);
+			throw new IntegrationFailedException("A convers√£o da data "+dataDesformatada+" falhou",e);
 		}		
 		return dataAutorizacao;		
 	}	

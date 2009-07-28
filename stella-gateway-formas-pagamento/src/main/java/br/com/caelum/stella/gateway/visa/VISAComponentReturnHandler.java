@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.visa;
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
 /**
- * Respons·vel por verificar o retorno dado pelos componentes.
+ * Respons√°vel por verificar o retorno dado pelos componentes.
  * @author Alberto Pc
  *
  */
@@ -27,8 +27,8 @@ public class VISAComponentReturnHandler {
 
 
 	/**
-	 * Verifica se a resposta de determinado componente para a solicitaÁ„o indica
-	 * sucesso ou n„o.
+	 * Verifica se a resposta de determinado componente para a solicita√ß√£o indica
+	 * sucesso ou n√£o.
 	 * @throws ProblematicTransactionException caso o retorno indique problema
 	 */
 	public VISAIntegrationReturn check(){			

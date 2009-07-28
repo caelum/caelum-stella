@@ -9,7 +9,7 @@ import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
 /**
- * Classe respons·vel por verificar o retorno da solicitaÁ„o de autorizaÁ„o da
+ * Classe respons√°vel por verificar o retorno da solicita√ß√£o de autoriza√ß√£o da
  * Redecard.
  * 
  * @author Alberto e Rafael

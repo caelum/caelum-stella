@@ -1,8 +1,8 @@
 package br.com.caelum.stella.gateway.pagseguro;
 
 /**
- * Exception que È lanÁada quando a requisiÁ„o È feita diretamente pelo browser
- * e n„o pelo Robo da PagSeguro.
+ * Exception que √© lan√ßada quando a requisi√ß√£o √© feita diretamente pelo browser
+ * e n√£o pelo Robo da PagSeguro.
  * @author Alberto Pc
  *
  */

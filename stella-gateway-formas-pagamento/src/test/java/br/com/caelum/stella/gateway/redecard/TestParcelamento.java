@@ -17,7 +17,7 @@ public class TestParcelamento {
 		}
 		catch (InvalidCheckoutException e) {
 			// TODO: handle exception
-			Assert.assertEquals("Para transação a vista o número de parcelas deve ser igual a 0",e.getMessage());
+			Assert.assertEquals("Para transaÃ§Ã£o a vista o nÃºmero de parcelas deve ser igual a 0",e.getMessage());
 		}
 	}
 	
@@ -28,7 +28,7 @@ public class TestParcelamento {
 		}
 		catch (InvalidCheckoutException e) {
 			// TODO: handle exception
-			Assert.assertEquals("Para transação a vista o número de parcelas deve ser igual a 0",e.getMessage());
+			Assert.assertEquals("Para transaÃ§Ã£o a vista o nÃºmero de parcelas deve ser igual a 0",e.getMessage());
 		}
 	}	
 	

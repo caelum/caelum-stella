@@ -4,7 +4,7 @@ package br.com.caelum.stella.gateway.core;
 
 /**
  * Interface que deve ser usada quando tiver a necessidade de criar os retornos
- * a partir da mesma entrada, só que de forma diferentes. Ex:br.com.caelum.stella.gateway.visa.VISASolicitacaoConferenciaViaHttp
+ * a partir da mesma entrada, sÃ³ que de forma diferentes. Ex:br.com.caelum.stella.gateway.visa.VISASolicitacaoConferenciaViaHttp
  * @author Alberto
  *
  * @param <R> tipo do retorno do metodo

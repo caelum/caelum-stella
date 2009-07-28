@@ -8,7 +8,7 @@ public class TestNormalizarString {
 
 	@Test
 	public void testRetiraCaracteresEspeciais(){
-		String nome = "Cart„o de CrÈdito";
+		String nome = "Cart√£o de Cr√©dito";
 		Assert.assertEquals(new RemoverAcentos().remover(nome),"Cartao de Credito");
 	}
 }

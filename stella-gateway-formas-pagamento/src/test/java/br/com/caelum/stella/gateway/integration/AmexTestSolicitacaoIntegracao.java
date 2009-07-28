@@ -20,8 +20,8 @@ import br.com.caelum.stella.gateway.amex.AmexTipoCartao;
 import br.com.caelum.stella.gateway.amex.AmexTipoTransacao;
 
 /**
- * Os testes na verdade est�o apenas gerando paginas html que quando abertas
- * fazem comunica��o com o Amex.
+ * Os testes na verdade estão apenas gerando paginas html que quando abertas
+ * fazem comunicação com o Amex.
  * 
  * @author Alberto Pc
  * 

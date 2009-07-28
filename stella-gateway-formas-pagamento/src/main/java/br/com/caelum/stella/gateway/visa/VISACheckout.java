@@ -6,7 +6,7 @@ import br.com.caelum.stella.gateway.core.BigDecimalFormatter;
 import br.com.caelum.stella.gateway.core.CartaoCredito;
 
 /**
- * Contém as informações necessárias para processar uma compra através do VISA
+ * ContÃ©m as informaÃ§Ãµes necessÃ¡rias para processar uma compra atravÃ©s do VISA
  * 
  * @author Alberto
  * 
@@ -54,7 +54,7 @@ public class VISACheckout {
 
 	/**
 	 * 
-	 * @return preço formatado em centésimos.
+	 * @return preÃ§o formatado em centavos.
 	 */
 	public String getValorFormatado() {
 		return new BigDecimalFormatter().bigDecimalToStringInCents(this.price);

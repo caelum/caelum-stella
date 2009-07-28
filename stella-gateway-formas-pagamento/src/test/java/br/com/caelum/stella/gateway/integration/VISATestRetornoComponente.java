@@ -47,7 +47,7 @@ public class VISATestRetornoComponente {
 
 			public String getArs() {
 				// TODO Auto-generated method stub
-				return "Não deve ser utilizado";
+				return "NÃ£o deve ser utilizado";
 			}
 
 			public int getLr() {

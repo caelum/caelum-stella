@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.bb;
 
 /**
- * Classe que contem atributos que sempre são retornados nas integrações
+ * Classe que contem atributos que sempre sÃ£o retornados nas integraÃ§Ãµes
  * @author Alberto Pc
  *
  */

@@ -1,14 +1,16 @@
 package br.com.caelum.stella.gateway.pagseguro;
 
 /**
- * Classe utilizada para remover os acentos :), ainda preciso saber como fazer
- * com expressões regulares.
+ * Classe utilizada para remover os acentos :) .
  * 
  * @author Alberto Pc
  * 
  */
 class RemoverAcentos {
-	private static String acentuado = "çÇáéíóúıÁÉÍÓÚİàèìòùÀÈÌÒÙãõñäëïöüÿÄËÏÖÜÃÕÑâêîôûÂÊÎÔÛ";
+	/*
+	 * TODO consertar o lance dos acentos
+	 */
+	private static String acentuado = "Ã§Ã‡Ã¡Ã©Ã­Ã³ÃºÃ½ÃÃ‰ÃÃ“ÃšÃÃ Ã¨Ã¬Ã²Ã¹Ã€ÃˆÃŒÃ’Ã™Ã£ÃµÃ±Ã¤Ã«Ã¯Ã¶Ã¼Ã¿Ã„Ã‹ÃÃ–ÃœÃƒÃ•Ã‘Ã¢ÃªÃ®Ã´Ã»Ã‚ÃŠÃÃ”Ã›";
 	private static String semAcento = "cCaeiouyAEIOUYaeiouAEIOUaonaeiouyAEIOUAONaeiouAEIOU";
 	private static char[] tabela;
 	static {

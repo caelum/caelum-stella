@@ -44,7 +44,7 @@ public class RedecardTestRetornoIntegracao {
 				one(request).getParameter("CODRET");
 				will(returnValue(null));
 				one(request).getParameter("MSGRET");
-				will(returnValue("TRANSA��O APROVADA"));
+				will(returnValue("TRANSAÇÃO APROVADA"));
 			}
 		});
 		RedecardAutorizacaoReturn autorizacaoReturn = new RedecardVerificaRetornoAutorizacao(
@@ -79,13 +79,13 @@ public class RedecardTestRetornoIntegracao {
 				one(request).getParameter("CODRET");
 				will(returnValue("55"));
 				one(request).getParameter("MSGRET");
-				will(returnValue("TRANSA��O N�O APROVADA"));
+				will(returnValue("TRANSAÇÃO NÃO APROVADA"));
 			}
 		});
 		try {
 			new RedecardVerificaRetornoAutorizacao(request,RedecardIdiomaOperacao.INGLES).handle();
 		} catch (ProblematicTransactionException problematicTransactionException) {
-			Assert.assertEquals("TRANSA��O N�O APROVADA",
+			Assert.assertEquals("TRANSAÇÃO NÃO APROVADA",
 					problematicTransactionException.getMessage());
 		}
 	}

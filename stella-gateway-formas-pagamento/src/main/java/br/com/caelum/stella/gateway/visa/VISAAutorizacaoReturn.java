@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.visa;
 
 /**
- * Contém as informações de retorno da verificacao de autorizacao de pagamento.
+ * ContÃ©m as informaÃ§Ãµes de retorno da verificacao de autorizacao de pagamento.
  * 
  * @author Alberto Pc
  * 

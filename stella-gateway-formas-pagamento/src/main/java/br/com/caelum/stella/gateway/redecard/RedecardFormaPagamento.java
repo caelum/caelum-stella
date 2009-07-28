@@ -12,26 +12,26 @@ public class RedecardFormaPagamento {
 	 * @param tipoTransacao
 	 * @param numeroDeParcelas
 	 * @throws InvalidCheckoutException
-	 *             caso a combinação tipoTransacao e numeroDeParcelas esteja
+	 *             caso a combinaÃ§Ã£o tipoTransacao e numeroDeParcelas esteja
 	 *             errada.
 	 */
 	public RedecardFormaPagamento(RedecardTipoTransacao tipoTransacao,
 			int numeroDeParcelas) {
 		if (numeroDeParcelas < 0) {
 			throw new InvalidCheckoutException(
-					"O número de parcelas não pode ser igual ou menor que 0");
+					"O nÃºmero de parcelas nÃ£o pode ser igual ou menor que 0");
 		} else {
 			if (tipoTransacao.equals(RedecardTipoTransacao.A_VISTA)) {
 				if (numeroDeParcelas > 0) {
 					throw new InvalidCheckoutException(
-							"Para transação a vista o número de parcelas deve ser igual a 0");
+							"Para transaÃ§Ã£o a vista o nÃºmero de parcelas deve ser igual a 0");
 				}
 
 			} else {
 				if (numeroDeParcelas == 0) {
-					throw new InvalidCheckoutException("Para transações com "
+					throw new InvalidCheckoutException("Para transaÃ§Ãµes com "
 							+ numeroDeParcelas
-							+ " parcela(s), use o tipo de transação a vista");
+							+ " parcela(s), use o tipo de transaÃ§Ã£o a vista");
 				}
 			}
 			this.tipoTransacao = tipoTransacao;
@@ -41,7 +41,7 @@ public class RedecardFormaPagamento {
 
 	/**
 	 * 
-	 * @return Parcelamento já configurado para transacao a vista.
+	 * @return Parcelamento jÃ¡ configurado para transacao a vista.
 	 */
 	public static RedecardFormaPagamento newPagamentoAVista() {
 		return new RedecardFormaPagamento(RedecardTipoTransacao.A_VISTA, 0);

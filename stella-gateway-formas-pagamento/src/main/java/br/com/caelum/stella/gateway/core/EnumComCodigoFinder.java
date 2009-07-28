@@ -37,6 +37,6 @@ public class EnumComCodigoFinder {
 		}
 
 		throw new IntegrationFailedException(
-				"O parametro codigo n„o foi encontrado(" + codigo + ")");
+				"O parametro codigo n√£o foi encontrado(" + codigo + ")");
 	}
 }

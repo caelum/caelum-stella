@@ -19,7 +19,7 @@ import br.com.caelum.stella.gateway.core.DadosComprador;
 import br.com.caelum.stella.gateway.core.GatewaysConf;
 
 /**
- * Os testes est„o gerando paginas html que fazem a comunicaÁ„o com a forma de pagamento. 
+ * Os testes est√£o gerando paginas html que fazem a comunica√ß√£o com a forma de pagamento. 
  * @author Alberto Pc
  *
  */

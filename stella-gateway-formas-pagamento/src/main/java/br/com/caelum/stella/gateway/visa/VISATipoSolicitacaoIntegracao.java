@@ -2,7 +2,7 @@ package br.com.caelum.stella.gateway.visa;
 
 
 /**
- * Enum respons·vel por indicar as urls de integraÁ„o de cada componente do visa.
+ * Enum respons√°vel por indicar as urls de integra√ß√£o de cada componente do visa.
  * @author Alberto Pc
  *
  */

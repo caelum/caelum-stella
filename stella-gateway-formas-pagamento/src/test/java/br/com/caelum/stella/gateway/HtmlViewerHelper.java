@@ -49,7 +49,7 @@ public class HtmlViewerHelper {
 	/**
 	 * 
 	 * @param path
-	 * @throws RuntimeException caso n„o consiga gerar o arquivo.
+	 * @throws RuntimeException caso n√£o consiga gerar o arquivo.
 	 */
 	public void criarPaginaTemporariaNoDisco(String path) {
 		pagina.append("</form>").append("</body>").append("</html>");

@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.redecard;
 import java.util.Date;
 
 /**
- * Classe temporaria achada na net para fazer calculo de um numero da master. Apenas est· alterada para ter um metod que calcula
+ * Classe temporaria achada na net para fazer calculo de um numero da master. Apenas est√° alterada para ter um metod que calcula
  * o tal do numero, antes ficava tudo no metodo main escrevendo em um arquivo.
  * @author Alberto Pc
  *

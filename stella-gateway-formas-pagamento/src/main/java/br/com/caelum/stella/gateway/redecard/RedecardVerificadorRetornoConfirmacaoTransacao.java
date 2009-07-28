@@ -16,11 +16,11 @@ public class RedecardVerificadorRetornoConfirmacaoTransacao {
 			String mensagemRetorno = params[1].split("=")[1];
 			RedecardConfirmacaoTransacaoReturn confirmacaoTransacaoReturn = new RedecardConfirmacaoTransacaoReturn(codigoRetorno,mensagemRetorno);
 			if(codigoRetorno!=0){
-				throw new ProblematicTransactionException("A transaÁ„o n„o pode ser confirmada ("+confirmacaoTransacaoReturn.getMensagemRetorno()+")",confirmacaoTransacaoReturn);
+				throw new ProblematicTransactionException("A transa√ß√£o n√£o pode ser confirmada ("+confirmacaoTransacaoReturn.getMensagemRetorno()+")",confirmacaoTransacaoReturn);
 			}
 			return confirmacaoTransacaoReturn;
 		}
-		throw new RedecardConfirmacaoSemDadosException("Os dados de retorno n„o foram enviados, solicite novamente",new RedecardConfirmacaoTransacaoReturn(-1,"Dados n„o foram retornados"));		
+		throw new RedecardConfirmacaoSemDadosException("Os dados de retorno n√£o foram enviados, solicite novamente",new RedecardConfirmacaoTransacaoReturn(-1,"Dados n√£o foram retornados"));		
 	}
 
 }

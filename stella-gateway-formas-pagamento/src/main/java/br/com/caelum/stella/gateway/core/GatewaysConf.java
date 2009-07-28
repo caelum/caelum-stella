@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Classe no estilo helper que carrega as configurações que não devem estar no código
+ * Classe no estilo helper que carrega as configuraÃ§Ãµes que nÃ£o devem estar no cÃ³digo
  * para acessar os gateways. 
  * @author Alberto Pc
  *
@@ -19,12 +19,12 @@ public class GatewaysConf {
 			gatewaysProperties.load(GatewaysConf.class.getResourceAsStream("/gateways.properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException("Não foi possivel carregar o arquivo de configuração dos gateways",e);
+			throw new RuntimeException("NÃ£o foi possivel carregar o arquivo de configuraÃ§Ã£o dos gateways",e);
 		}
 	}
 	
 	/**
-	 * Busca o valor da respectiva chave no properties de configuração.
+	 * Busca o valor da respectiva chave no properties de configuraÃ§Ã£o.
 	 * @param key
 	 * @return
 	 */

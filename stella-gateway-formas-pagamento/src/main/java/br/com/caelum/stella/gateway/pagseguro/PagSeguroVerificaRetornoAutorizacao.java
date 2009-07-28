@@ -13,7 +13,7 @@ import br.com.caelum.stella.gateway.core.EnumComCodigoFinder;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Classe para montar o retorno baseado na requisição do PagSeguro.
+ * Classe para montar o retorno baseado na requisiÃ§Ã£o do PagSeguro.
  * 
  * @author Alberto Pc
  * 
@@ -80,11 +80,11 @@ public class PagSeguroVerificaRetornoAutorizacao implements
 
 			} else {
 				throw new PagSeguroRequisicaoInvalidaException(
-						"Provavelmente foi realizada uma requisição maliciosa para aprovar a compra ");
+						"Provavelmente foi realizada uma requisiÃ§Ã£o maliciosa para aprovar a compra ");
 			}
 
 		}
-		throw new NaoEhRoboPagSeguroException("A requisição foi feita a partir do browser.");
+		throw new NaoEhRoboPagSeguroException("A requisiÃ§Ã£o foi feita a partir do browser.");
 
 	}
 

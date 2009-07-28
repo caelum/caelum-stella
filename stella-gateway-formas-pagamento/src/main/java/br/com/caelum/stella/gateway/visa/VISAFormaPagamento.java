@@ -13,11 +13,11 @@ public class VISAFormaPagamento {
 			 int numeroDeParcelas) {
 		super();
 		if(numeroDeParcelas<=0){
-			throw new InvalidCheckoutException("O n˙mero de parcelas n„o pode ser igual ou menor que 0");
+			throw new InvalidCheckoutException("O n√∫mero de parcelas n√£o pode ser igual ou menor que 0");
 		}
 		else{
 			if((formaParcelamento.equals(VISATipoTransacao.DEBITO) || formaParcelamento.equals(VISATipoTransacao.CREDITO_A_VISTA)) && numeroDeParcelas>1){
-				throw new InvalidCheckoutException("Com dÈbito ou crÈdito a vista sÛ pode pagar em 1 parcela");
+				throw new InvalidCheckoutException("Com d√©bito ou cr√©dito a vista s√≥ pode pagar em 1 parcela");
 			}
 		}		
 		this.tipoTransacao = formaParcelamento;
@@ -52,7 +52,7 @@ public class VISAFormaPagamento {
 	/**
 	 * Retorna o codigo levando em consideracao a forma do parcelamento e o numero de parcelas
 	 * @return
-	 * @throws InvalidCheckoutException caso algum atributo do parcelamento esteja em estado inv·lido
+	 * @throws InvalidCheckoutException caso algum atributo do parcelamento esteja em estado inv√°lido
 	 */
 	public String getCodigoDePagamento(){
 		String numeroDeParcelasFormatadoParaTresDigitos = String.format("%03d",numeroDeParcelas);

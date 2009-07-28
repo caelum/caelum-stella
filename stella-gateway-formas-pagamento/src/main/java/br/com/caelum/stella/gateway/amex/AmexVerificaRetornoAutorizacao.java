@@ -10,7 +10,7 @@ import br.com.caelum.stella.gateway.core.IntegrationHandler;
 import br.com.caelum.stella.gateway.core.ProblematicTransactionException;
 
 /**
- * Verifica o retorno da transação realizada através da interface do Amex
+ * Verifica o retorno da transaÃ§Ã£o realizada atravÃ©s da interface do Amex
  * 
  * @author Alberto Pc
  * 

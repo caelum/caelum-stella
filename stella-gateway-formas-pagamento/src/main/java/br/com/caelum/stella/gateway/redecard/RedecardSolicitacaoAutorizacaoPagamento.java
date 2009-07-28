@@ -3,7 +3,7 @@ package br.com.caelum.stella.gateway.redecard;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Classe respons·vel por criar o objeto, cujo os atributos devem ser enviados
+ * Classe respons√°vel por criar o objeto, cujo os atributos devem ser enviados
  * via formulario para o master.
  * 
  * @author Alberto Pc

@@ -24,8 +24,8 @@ public class AmexFormaPagamento {
 	
 	
 	/**
-	 * Construtor usado de forma controlada, quando n„o se tiver todas as
-	 * informaÁıes necess·rias sobre a forma de pagamento.
+	 * Construtor usado de forma controlada, quando n√£o se tiver todas as
+	 * informa√ß√µes necess√°rias sobre a forma de pagamento.
 	 * 
 	 * @param tipoCartao
 	 */

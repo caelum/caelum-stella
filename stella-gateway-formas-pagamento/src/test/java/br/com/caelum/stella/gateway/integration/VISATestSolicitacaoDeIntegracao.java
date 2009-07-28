@@ -66,12 +66,7 @@ public class VISATestSolicitacaoDeIntegracao {
 								+ nomePagina);
 	}
 	
-	/**
-	 * Configurar o test aqui vai ser uma arte... tem que ter ip fixo e não sei
-	 * o que lá... Para testar mockado, eu teria que criar uma classe que se
-	 * comportasse como o componente... vou pensar no assunto
-	 * 
-	 */
+
 	@Test
 	public void testSolicitacaoDeAutorizacaoDePagamento() {
 		VISADadosAutorizacao dadosAutorizacao = new VISASolicitaAutorizacaoPagamentoViaHttp(

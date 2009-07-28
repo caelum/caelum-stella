@@ -19,7 +19,7 @@ import br.com.caelum.stella.gateway.redecard.RedecardFormaPagamento;
 import br.com.caelum.stella.gateway.redecard.RedecardSolicitacaoAutorizacaoPagamento;
 
 /**
- * Os testes est„o gerando paginas html que fazem a comunicaÁ„o com a forma de pagamento. 
+ * Os testes est√£o gerando paginas html que fazem a comunica√ß√£o com a forma de pagamento. 
  * @author Alberto Pc
  *
  */
@@ -47,7 +47,7 @@ public class RedecardTestSolicitacaoDeIntegracao {
 	public void testSolicitaDeAberturaDeTelaParaAutorizacaoDePagamento()
 			throws Exception {
 		/*
-		 * talvez esse teste n„o devesse ficar aqui, mas como ele apenas testa
+		 * talvez esse teste n√£o devesse ficar aqui, mas como ele apenas testa
 		 * se a tela foi aberta com sucesso...
 		 */
 		RedecardDadosAutorizacaoPagamento dadosAutorizacaoPagamento = new RedecardSolicitacaoAutorizacaoPagamento(

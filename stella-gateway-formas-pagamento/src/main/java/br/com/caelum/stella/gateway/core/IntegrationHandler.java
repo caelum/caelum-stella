@@ -2,10 +2,10 @@ package br.com.caelum.stella.gateway.core;
 
 /**
  * Interface que deve ser implementada por toda classe que queira
- * fazer uma integração.
+ * fazer uma integraÃ§Ã£o.
  * @author Alberto Pc
  *
- * @param <T> Como as integrações podem gerar diferentes retornos, o mesmo é especificado pela classe que implementa
+ * @param <T> Como as integraÃ§Ãµes podem gerar diferentes retornos, o mesmo Ã© especificado pela classe que implementa
  */
 public interface IntegrationHandler<T> {
 	

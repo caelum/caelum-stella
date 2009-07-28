@@ -38,7 +38,7 @@ public class PagSeguroItem {
 	}
 	
 	/**
-	 * Usado para itens que n„o precisam de frete
+	 * Usado para itens que n√£o precisam de frete
 	 * @param id
 	 * @param descricao
 	 * @param quantidade

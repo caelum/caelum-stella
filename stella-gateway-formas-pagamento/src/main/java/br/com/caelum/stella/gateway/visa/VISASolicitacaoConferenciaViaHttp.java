@@ -3,8 +3,8 @@ package br.com.caelum.stella.gateway.visa;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Classe responsável por criar o objeto que deve ser utilizado para realizar 
- * as possiveis conferências das compras.
+ * Classe responsÃ¡vel por criar o objeto que deve ser utilizado para realizar 
+ * as possiveis conferÃªncias das compras.
  * 
  * @author Alberto Pc
  * 

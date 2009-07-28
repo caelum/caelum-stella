@@ -16,19 +16,19 @@ public class TestParcelamento {
 	@Test
 	public void testFormatacaoCodigoParcelamentoComVisaElectronOuCreditoAVisaEMaisDeUmaParcela(){
 		/*
-		 * nao sei direito como testar as exceptions j· que por enquanto sÛ tem um tipo... esse n„o È o melhor jeito, mas fica como soluÁ„o temporaria...
+		 * nao sei direito como testar as exceptions j√° que por enquanto s√≥ tem um tipo... esse n√£o √© o melhor jeito, mas fica como solu√ß√£o temporaria...
 		 */
 		try{
 			new VISAFormaPagamento(VISATipoTransacao.DEBITO,2);
 		}
 		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){			
-			Assert.assertEquals("Com dÈbito ou crÈdito a vista sÛ pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
+			Assert.assertEquals("Com d√©bito ou cr√©dito a vista s√≥ pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}
 		try{
 			new VISAFormaPagamento(VISATipoTransacao.CREDITO_A_VISTA,2);
 		}
 		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){
-			Assert.assertEquals("Com dÈbito ou crÈdito a vista sÛ pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
+			Assert.assertEquals("Com d√©bito ou cr√©dito a vista s√≥ pode pagar em 1 parcela",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}		
 	}
 	
@@ -38,7 +38,7 @@ public class TestParcelamento {
 			new VISAFormaPagamento(VISATipoTransacao.CREDITO_A_VISTA,0);
 		}
 		catch(InvalidCheckoutException numeroDeParcelasMaiorQuePermitidoException){
-			Assert.assertEquals("O n˙mero de parcelas n„o pode ser igual ou menor que 0",numeroDeParcelasMaiorQuePermitidoException.getMessage());
+			Assert.assertEquals("O n√∫mero de parcelas n√£o pode ser igual ou menor que 0",numeroDeParcelasMaiorQuePermitidoException.getMessage());
 		}		
 	}
 	

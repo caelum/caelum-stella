@@ -27,7 +27,7 @@ public enum BBFormularioSondaReturnBuilder implements
 		public BBFormularioSondaReturn buildReturn(String source) {
 			// TODO Auto-generated method stub
 			throw new IntegrationFailedException(
-					"Essa forma ainda n„o esta implementada");
+					"Essa forma ainda n√£o esta implementada");
 		}
 
 	},
@@ -44,7 +44,7 @@ public enum BBFormularioSondaReturnBuilder implements
 				source = source.replace("lojavirtual.dtd",new File(BBFormularioSondaReturnBuilder.class.getResource("/lojavirtual.dtd").toURI()).getPath());
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
-				throw new IntegrationFailedException("N„o foi possivel substituir o caminho para a lojavirtual.dtd",e);
+				throw new IntegrationFailedException("N√£o foi possivel substituir o caminho para a lojavirtual.dtd",e);
 			}
 			return createFormularioSondaReturn(parseaXMLEMontaFormularioInicialSondaAPartirDosAtributos(source));
 
@@ -53,7 +53,7 @@ public enum BBFormularioSondaReturnBuilder implements
 		private RespostaInicialFormularioSonda parseaXMLEMontaFormularioInicialSondaAPartirDosAtributos(
 				String source) {
 			/*
-			 * implementado do jeito mais b·sico, n„o achei valido jogar o Jaxb sÛ para isso.
+			 * implementado do jeito mais b√°sico, n√£o achei valido jogar o Jaxb s√≥ para isso.
 			 */
 			try {				
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -69,7 +69,7 @@ public enum BBFormularioSondaReturnBuilder implements
 				return formularioSonda;
 				
 			} catch (Exception e) {
-				// como so vou lanÁar a exception, caso ela ocorra, n„o vale a pena tratar uma por uma.
+				// como so vou lan√ßar a exception, caso ela ocorra, n√£o vale a pena tratar uma por uma.
 				throw new IntegrationFailedException(e);
 			}
 		}

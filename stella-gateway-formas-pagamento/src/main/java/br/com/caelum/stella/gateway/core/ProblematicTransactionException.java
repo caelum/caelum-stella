@@ -3,8 +3,8 @@ package br.com.caelum.stella.gateway.core;
 
 
 /**
- * Exception que deve ser lanÁada quando o retorno da integraÁ„o n„o
- * for o que deveria ser. Ex: a transaÁ„o falhou...
+ * Exception que deve ser lan√ßada quando o retorno da integra√ß√£o n√£o
+ * for o que deveria ser. Ex: a transa√ß√£o falhou...
  * @author Alberto Pc
  *
  */
@@ -32,7 +32,7 @@ public class ProblematicTransactionException extends RuntimeException {
 
 	/**
 	 * 
-	 * @return gerado pela tentativa de transaÁ„o.
+	 * @return gerado pela tentativa de transa√ß√£o.
 	 */
 	public Object getSomeReturn() {
 		return someReturn;

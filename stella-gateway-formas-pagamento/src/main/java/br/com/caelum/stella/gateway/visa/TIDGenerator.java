@@ -5,7 +5,7 @@ import java.util.Calendar;
 import br.com.caelum.stella.gateway.core.InvalidCheckoutException;
 
 /**
- * Classe respons·vel por gerar o TID, t· isolado para facilitar os testes e
+ * Classe respons√°vel por gerar o TID, t√° isolado para facilitar os testes e
  * para que possa ser usada em outro contexto.
  * 
  * @author Alberto Pc
@@ -23,7 +23,7 @@ public class TIDGenerator {
 	 *            numeroDeAfiliacao que serve de base para o calculo.
 	 * @return
 	 * @throws InvalidCheckoutException
-	 *             caso o parcelamento n„o tenha sido definido
+	 *             caso o parcelamento n√£o tenha sido definido
 	 */
 	public String getTid(VISAFormaPagamento parcelamento, Calendar data,
 			long numeroDeFiliacao) {

@@ -50,7 +50,7 @@ public enum VISAHttpReturnBuilder implements
 
 		public VISAConsultaReturn buildReturn(HttpServletRequest request) {
 			/*
-			 * trecho repetido, mas como È sÛ aqui mesmo, ainda È aceit·vel.
+			 * trecho repetido, mas como √© s√≥ aqui mesmo, ainda √© aceit√°vel.
 			 */
 			VISACheckout checkout = new VISACheckout(request
 					.getParameter("orderid"), null, request

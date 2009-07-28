@@ -5,8 +5,8 @@ import java.util.Calendar;
 import br.com.caelum.stella.gateway.core.IntegrationHandler;
 
 /**
- * Classe responsável por gerar o objeto que deve ser usado
- * para mandar as informações para o VISA.
+ * Classe responsÃ¡vel por gerar o objeto que deve ser usado
+ * para mandar as informaÃ§Ãµes para o VISA.
  * 
  * @author Alberto Pc
  * 

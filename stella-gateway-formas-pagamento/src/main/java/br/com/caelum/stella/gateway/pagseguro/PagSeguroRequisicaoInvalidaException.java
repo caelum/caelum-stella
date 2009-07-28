@@ -1,7 +1,7 @@
 package br.com.caelum.stella.gateway.pagseguro;
 
 /**
- * Exception que deve ser lançada quando for enviado uma requisição maliciosa tentando
+ * Exception que deve ser lanÃ§ada quando for enviado uma requisiÃ§Ã£o maliciosa tentando
  * burlar o pagamento
  * @author Alberto Pc
  *
