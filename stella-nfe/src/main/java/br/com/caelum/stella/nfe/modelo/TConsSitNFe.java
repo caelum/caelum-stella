@@ -5,25 +5,21 @@
 // Generated on: 2009.04.23 at 03:29:31 PM BRT 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TConsSitNFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = {
-    "tpAmb",
-    "xServ",
-    "chNFe"
-})
+@XmlType(name = "TConsSitNFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = { "tpAmb", "xServ",
+        "chNFe" })
+@XmlRootElement
 public class TConsSitNFe {
 
     @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
@@ -39,44 +35,36 @@ public class TConsSitNFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public String getTpAmb() {
         return tpAmb;
     }
 
-    
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
-    
     public String getXServ() {
         return xServ;
     }
 
-    
-    public void setXServ(String value) {
-        this.xServ = value;
+    public void setXServ(final String value) {
+        xServ = value;
     }
 
-    
     public String getChNFe() {
         return chNFe;
     }
 
-    
-    public void setChNFe(String value) {
-        this.chNFe = value;
+    public void setChNFe(final String value) {
+        chNFe = value;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

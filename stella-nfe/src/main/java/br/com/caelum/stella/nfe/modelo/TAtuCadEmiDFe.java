@@ -5,24 +5,21 @@
 // Generated on: 2009.04.23 at 03:29:23 PM BRT 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TAtuCadEmiDFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = {
-    "infAtuCadEmiDFe",
-    "signature"
-})
+@XmlType(name = "TAtuCadEmiDFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = { "infAtuCadEmiDFe",
+        "signature" })
+@XmlRootElement
 public class TAtuCadEmiDFe {
 
     @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
@@ -33,34 +30,28 @@ public class TAtuCadEmiDFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public InfAtuCadEmiDFe getInfAtuCadEmiDFe() {
         return infAtuCadEmiDFe;
     }
 
-    
-    public void setInfAtuCadEmiDFe(InfAtuCadEmiDFe value) {
-        this.infAtuCadEmiDFe = value;
+    public void setInfAtuCadEmiDFe(final InfAtuCadEmiDFe value) {
+        infAtuCadEmiDFe = value;
     }
 
-    
     public SignatureType getSignature() {
         return signature;
     }
 
-    
-    public void setSignature(SignatureType value) {
-        this.signature = value;
+    public void setSignature(final SignatureType value) {
+        signature = value;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

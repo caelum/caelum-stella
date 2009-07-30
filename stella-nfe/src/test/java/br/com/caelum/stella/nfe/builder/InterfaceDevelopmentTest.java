@@ -10,7 +10,6 @@ final public class InterfaceDevelopmentTest {
 
     @Test
     public void test() {
-
     }
 
 }

@@ -5,25 +5,20 @@
 // Generated on: 2009.04.23 at 03:29:32 PM BRT 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TConsStatServ", propOrder = {
-    "tpAmb",
-    "cuf",
-    "xServ"
-})
+@XmlType(name = "TConsStatServ", propOrder = { "tpAmb", "cuf", "xServ" })
+@XmlRootElement
 public class TConsStatServ {
 
     @XmlElement(required = true)
@@ -39,44 +34,36 @@ public class TConsStatServ {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public String getTpAmb() {
         return tpAmb;
     }
 
-    
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public void setTpAmb(final String value) {
+        tpAmb = value;
     }
 
-    
     public String getCUF() {
         return cuf;
     }
 
-    
-    public void setCUF(String value) {
-        this.cuf = value;
+    public void setCUF(final String value) {
+        cuf = value;
     }
 
-    
     public String getXServ() {
         return xServ;
     }
 
-    
-    public void setXServ(String value) {
-        this.xServ = value;
+    public void setXServ(final String value) {
+        xServ = value;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }

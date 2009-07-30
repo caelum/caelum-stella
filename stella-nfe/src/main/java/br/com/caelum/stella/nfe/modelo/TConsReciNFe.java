@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -19,6 +20,7 @@ import net.vidageek.fluid.annotations.FluidName;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TConsReciNFe", propOrder = { "tpAmb", "nRec" })
+@XmlRootElement
 @FluidName("PedidoDeConsultaDoRecidoDoLoteDeNFE")
 public class TConsReciNFe {
 

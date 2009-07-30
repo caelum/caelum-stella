@@ -5,24 +5,20 @@
 // Generated on: 2009.04.23 at 03:29:26 PM BRT 
 //
 
-
 package br.com.caelum.stella.nfe.modelo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TCancNFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = {
-    "infCanc",
-    "signature"
-})
+@XmlType(name = "TCancNFe", namespace = "http://www.portalfiscal.inf.br/nfe", propOrder = { "infCanc", "signature" })
+@XmlRootElement
 public class TCancNFe {
 
     @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
@@ -33,34 +29,28 @@ public class TCancNFe {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String versao;
 
-    
     public InfCanc getInfCanc() {
         return infCanc;
     }
 
-    
-    public void setInfCanc(InfCanc value) {
-        this.infCanc = value;
+    public void setInfCanc(final InfCanc value) {
+        infCanc = value;
     }
 
-    
     public SignatureType getSignature() {
         return signature;
     }
 
-    
-    public void setSignature(SignatureType value) {
-        this.signature = value;
+    public void setSignature(final SignatureType value) {
+        signature = value;
     }
 
-    
     public String getVersao() {
         return versao;
     }
 
-    
-    public void setVersao(String value) {
-        this.versao = value;
+    public void setVersao(final String value) {
+        versao = value;
     }
 
 }
