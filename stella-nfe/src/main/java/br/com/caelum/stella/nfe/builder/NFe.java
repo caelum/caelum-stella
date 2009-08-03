@@ -22,10 +22,10 @@ final public class NFe {
         return creator;
     }
 
-    public TCadEmiDFe<NFe> deCadastroDeEmissor() {
+    public NFeWebServiceWrapper<TCadEmiDFe<NFe>> deCadastroDeEmissor() {
         TCadEmiDFe<NFe> creator = new NFeProxyFactory().createProxyFor(TCadEmiDFe.class);
         this.creator = (ObjectCreator) creator;
-        return creator;
+        return null;
     }
 
     public NFeDeCancelamento<NFe> deCancelamento() {
@@ -34,10 +34,10 @@ final public class NFe {
         return creator;
     }
 
-    public TAtuCadEmiDFe<NFe> deAtualizacaoDeEmissor() {
+    public NFeWebServiceWrapper<TAtuCadEmiDFe<NFe>> deAtualizacaoDeEmissor() {
         TAtuCadEmiDFe<NFe> creator = new NFeProxyFactory().createProxyFor(TAtuCadEmiDFe.class);
         this.creator = (ObjectCreator) creator;
-        return creator;
+        return null;
     }
 
     public NFeDeInutilizacao<NFe> deInutilizacao() {
@@ -46,10 +46,10 @@ final public class NFe {
         return creator;
     }
 
-    public PedidoDeAutorizacaoDaNFE<NFe> deEnvioDeLote() {
+    public NFeWebServiceWrapper<PedidoDeAutorizacaoDaNFE<NFe>> deEnvioDeLote() {
         PedidoDeAutorizacaoDaNFE<NFe> creator = new NFeProxyFactory().createProxyFor(PedidoDeAutorizacaoDaNFE.class);
         this.creator = (ObjectCreator) creator;
-        return creator;
+        return null;
     }
 
     public NFe from(final InputStream stream) {

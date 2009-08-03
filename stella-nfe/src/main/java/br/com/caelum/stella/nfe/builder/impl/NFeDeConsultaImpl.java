@@ -3,6 +3,7 @@ package br.com.caelum.stella.nfe.builder.impl;
 import net.vidageek.fluid.proxy.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.NFe;
 import br.com.caelum.stella.nfe.builder.NFeDeConsulta;
+import br.com.caelum.stella.nfe.builder.NFeWebServiceWrapper;
 import br.com.caelum.stella.nfe.fluid.PedidoDeConsultaDoRecidoDoLoteDeNFE;
 import br.com.caelum.stella.nfe.fluid.TConsCad;
 import br.com.caelum.stella.nfe.fluid.TConsSitNFe;
@@ -22,29 +23,29 @@ final public class NFeDeConsultaImpl implements NFeDeConsulta<NFe>, ObjectCreato
         this.nfe = nfe;
     }
 
-    public TConsCad<NFeDeConsulta<NFe>> deCadastro() {
+    public NFeWebServiceWrapper<TConsCad<NFe>> deCadastro() {
         TConsCad creator = new NFeProxyFactory().createProxyFor(TConsCad.class);
         this.creator = creator;
-        return creator;
+        return null;
     }
 
-    public PedidoDeConsultaDoRecidoDoLoteDeNFE<NFeDeConsulta<NFe>> deRecibo() {
+    public NFeWebServiceWrapper<PedidoDeConsultaDoRecidoDoLoteDeNFE<NFe>> deRecibo() {
         PedidoDeConsultaDoRecidoDoLoteDeNFE creator = new NFeProxyFactory()
             .createProxyFor(PedidoDeConsultaDoRecidoDoLoteDeNFE.class);
         this.creator = creator;
-        return creator;
+        return null;
     }
 
-    public TConsSitNFe<NFeDeConsulta<NFe>> deSituacao() {
+    public NFeWebServiceWrapper<TConsSitNFe<NFe>> deSituacao() {
         TConsSitNFe creator = new NFeProxyFactory().createProxyFor(TConsSitNFe.class);
         this.creator = creator;
-        return creator;
+        return null;
     }
 
-    public TConsStatServ<NFeDeConsulta<NFe>> deStatusDeServico() {
+    public NFeWebServiceWrapper<TConsStatServ<NFe>> deStatusDeServico() {
         TConsStatServ creator = new NFeProxyFactory().createProxyFor(TConsStatServ.class);
         this.creator = creator;
-        return creator;
+        return null;
     }
 
     public NFe build() {

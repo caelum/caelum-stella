@@ -10,8 +10,8 @@ import br.com.caelum.stella.nfe.fluid.TProcCancNFe;
  */
 public interface NFeDeCancelamento<T> extends FluidInterface<T> {
 
-    TProcCancNFe<NFeDeCancelamento<T>> deNotaProcessada();
+    NFeWebServiceWrapper<TProcCancNFe<T>> deNotaProcessada();
 
-    TCancNFe<NFeDeCancelamento<T>> deNota();
+    NFeWebServiceWrapper<TCancNFe<T>> deNota();
 
 }

@@ -12,12 +12,12 @@ import br.com.caelum.stella.nfe.fluid.TConsStatServ;
  */
 public interface NFeDeConsulta<T> extends FluidInterface<T> {
 
-    TConsSitNFe<NFeDeConsulta<T>> deSituacao();
+    NFeWebServiceWrapper<TConsSitNFe<T>> deSituacao();
 
-    TConsStatServ<NFeDeConsulta<T>> deStatusDeServico();
+    NFeWebServiceWrapper<TConsStatServ<T>> deStatusDeServico();
 
-    PedidoDeConsultaDoRecidoDoLoteDeNFE<NFeDeConsulta<T>> deRecibo();
+    NFeWebServiceWrapper<PedidoDeConsultaDoRecidoDoLoteDeNFE<T>> deRecibo();
 
-    TConsCad<NFeDeConsulta<T>> deCadastro();
+    NFeWebServiceWrapper<TConsCad<T>> deCadastro();
 
 }

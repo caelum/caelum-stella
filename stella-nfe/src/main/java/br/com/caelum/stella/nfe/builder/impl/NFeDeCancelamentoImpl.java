@@ -3,6 +3,7 @@ package br.com.caelum.stella.nfe.builder.impl;
 import net.vidageek.fluid.proxy.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.NFe;
 import br.com.caelum.stella.nfe.builder.NFeDeCancelamento;
+import br.com.caelum.stella.nfe.builder.NFeWebServiceWrapper;
 import br.com.caelum.stella.nfe.fluid.TCancNFe;
 import br.com.caelum.stella.nfe.fluid.TProcCancNFe;
 
@@ -15,11 +16,11 @@ final public class NFeDeCancelamentoImpl implements NFeDeCancelamento<NFe>, Obje
     public NFeDeCancelamentoImpl(final NFe nfe) {
     }
 
-    public TCancNFe<NFeDeCancelamento<NFe>> deNota() {
+    public NFeWebServiceWrapper<TCancNFe<NFe>> deNota() {
         return null;
     }
 
-    public TProcCancNFe<NFeDeCancelamento<NFe>> deNotaProcessada() {
+    public NFeWebServiceWrapper<TProcCancNFe<NFe>> deNotaProcessada() {
         return null;
     }
 
@@ -28,7 +29,6 @@ final public class NFeDeCancelamentoImpl implements NFeDeCancelamento<NFe>, Obje
     }
 
     public Object getInstance() {
-        // TODO Auto-generated method stub
         return null;
     }
 

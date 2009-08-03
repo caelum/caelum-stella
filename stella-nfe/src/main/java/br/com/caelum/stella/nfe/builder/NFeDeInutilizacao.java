@@ -10,8 +10,8 @@ import br.com.caelum.stella.nfe.fluid.TProcInutNFe;
  */
 public interface NFeDeInutilizacao<T> extends FluidInterface<T> {
 
-    TProcInutNFe<NFeDeInutilizacao<T>> deNotaProcessada();
+    NFeWebServiceWrapper<TProcInutNFe<T>> deNotaProcessada();
 
-    TInutNFe<NFeDeInutilizacao<T>> deNota();
+    NFeWebServiceWrapper<TInutNFe<T>> deNota();
 
 }
