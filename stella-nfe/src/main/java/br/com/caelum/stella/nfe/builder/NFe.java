@@ -1,8 +1,5 @@
 package br.com.caelum.stella.nfe.builder;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import net.vidageek.fluid.proxy.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.impl.NFeDeCancelamentoImpl;
 import br.com.caelum.stella.nfe.builder.impl.NFeDeConsultaImpl;
@@ -50,13 +47,6 @@ final public class NFe {
         PedidoDeAutorizacaoDaNFE<NFe> creator = new NFeProxyFactory().createProxyFor(PedidoDeAutorizacaoDaNFE.class);
         this.creator = (ObjectCreator) creator;
         return null;
-    }
-
-    public NFe from(final InputStream stream) {
-        return null;
-    }
-
-    public void to(final OutputStream stream) {
     }
 
     public void send() {// deve receber o estado
