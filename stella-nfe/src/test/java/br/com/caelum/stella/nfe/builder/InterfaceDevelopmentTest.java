@@ -16,6 +16,7 @@ final public class InterfaceDevelopmentTest {
                     .build()
                 .withCorpo()
                     .withInfCanc()
+                        .withChNFe("")
                         .build()
                     .build();
     }

@@ -8,7 +8,6 @@ import br.com.caelum.stella.nfe.fluid.PedidoDeConsultaDoRecidoDoLoteDeNFE;
 import br.com.caelum.stella.nfe.fluid.TConsCad;
 import br.com.caelum.stella.nfe.fluid.TConsSitNFe;
 import br.com.caelum.stella.nfe.fluid.TConsStatServ;
-import br.com.caelum.stella.nfe.proxy.NFeProxyFactory;
 
 /**
  * @author jonasabreu
@@ -17,35 +16,30 @@ import br.com.caelum.stella.nfe.proxy.NFeProxyFactory;
 final public class NFeDeConsultaImpl implements NFeDeConsulta<NFe>, ObjectCreator {
 
     private final NFe nfe;
-    private Object creator;
+    private NFeWebServiceWrapper wrapper;
 
     public NFeDeConsultaImpl(final NFe nfe) {
         this.nfe = nfe;
     }
 
     public NFeWebServiceWrapper<TConsCad<NFe>> deCadastro() {
-        TConsCad creator = new NFeProxyFactory().createProxyFor(TConsCad.class);
-        this.creator = creator;
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsCad.class);
+        return wrapper;
     }
 
     public NFeWebServiceWrapper<PedidoDeConsultaDoRecidoDoLoteDeNFE<NFe>> deRecibo() {
-        PedidoDeConsultaDoRecidoDoLoteDeNFE creator = new NFeProxyFactory()
-            .createProxyFor(PedidoDeConsultaDoRecidoDoLoteDeNFE.class);
-        this.creator = creator;
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(PedidoDeConsultaDoRecidoDoLoteDeNFE.class);
+        return wrapper;
     }
 
     public NFeWebServiceWrapper<TConsSitNFe<NFe>> deSituacao() {
-        TConsSitNFe creator = new NFeProxyFactory().createProxyFor(TConsSitNFe.class);
-        this.creator = creator;
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsSitNFe.class);
+        return wrapper;
     }
 
     public NFeWebServiceWrapper<TConsStatServ<NFe>> deStatusDeServico() {
-        TConsStatServ creator = new NFeProxyFactory().createProxyFor(TConsStatServ.class);
-        this.creator = creator;
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsStatServ.class);
+        return wrapper;
     }
 
     public NFe build() {
@@ -53,7 +47,7 @@ final public class NFeDeConsultaImpl implements NFeDeConsulta<NFe>, ObjectCreato
     }
 
     public Object getInstance() {
-        return ((ObjectCreator) creator).getInstance();
+        return wrapper;
     }
 
 }

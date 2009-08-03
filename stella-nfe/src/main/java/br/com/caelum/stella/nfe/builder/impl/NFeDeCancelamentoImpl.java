@@ -13,23 +13,29 @@ import br.com.caelum.stella.nfe.fluid.TProcCancNFe;
  */
 final public class NFeDeCancelamentoImpl implements NFeDeCancelamento<NFe>, ObjectCreator {
 
+    private NFeWebServiceWrapper wrapper;
+    private final NFe nfe;
+
     public NFeDeCancelamentoImpl(final NFe nfe) {
+        this.nfe = nfe;
     }
 
     public NFeWebServiceWrapper<TCancNFe<NFe>> deNota() {
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TCancNFe.class);
+        return wrapper;
     }
 
     public NFeWebServiceWrapper<TProcCancNFe<NFe>> deNotaProcessada() {
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TProcCancNFe.class);
+        return wrapper;
     }
 
     public NFe build() {
-        return null;
+        return nfe;
     }
 
     public Object getInstance() {
-        return null;
+        return wrapper;
     }
 
 }

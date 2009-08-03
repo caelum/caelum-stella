@@ -13,23 +13,29 @@ import br.com.caelum.stella.nfe.fluid.TProcInutNFe;
  */
 final public class NFeDeInutilizacaoImpl implements NFeDeInutilizacao<NFe>, ObjectCreator {
 
-    public NFeDeInutilizacaoImpl(final NFe fe) {
+    private final NFe nfe;
+    private NFeWebServiceWrapperImpl wrapper;
+
+    public NFeDeInutilizacaoImpl(final NFe nfe) {
+        this.nfe = nfe;
     }
 
     public NFeWebServiceWrapper<TInutNFe<NFe>> deNota() {
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TInutNFe.class);
+        return wrapper;
     }
 
     public NFeWebServiceWrapper<TProcInutNFe<NFe>> deNotaProcessada() {
-        return null;
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TProcInutNFe.class);
+        return wrapper;
     }
 
     public NFe build() {
-        return null;
+        return nfe;
     }
 
     public Object getInstance() {
-        return null;
+        return wrapper;
     }
 
 }
