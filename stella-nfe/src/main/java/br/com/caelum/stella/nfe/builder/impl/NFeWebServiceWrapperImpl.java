@@ -3,6 +3,8 @@ package br.com.caelum.stella.nfe.builder.impl;
 import net.vidageek.fluid.proxy.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.NFeWebServiceWrapper;
 import br.com.caelum.stella.nfe.fluid.Cabecalho;
+import br.com.caelum.stella.nfe.xml.JAXBXmlBinder;
+import br.com.caelum.stella.nfe.xml.XmlBinder;
 
 /**
  * @author jonasabreu
@@ -32,6 +34,11 @@ final public class NFeWebServiceWrapperImpl<T> implements NFeWebServiceWrapper<T
 
     public Object getInstance() {
         return this;
+    }
+
+    public String getXml() {
+        XmlBinder binder = new JAXBXmlBinder();
+        return binder.marshal(body);
     }
 
 }

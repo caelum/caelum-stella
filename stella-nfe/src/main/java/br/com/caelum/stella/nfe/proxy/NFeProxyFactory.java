@@ -18,13 +18,13 @@ import br.com.caelum.stella.tinytype.CPF;
  */
 final public class NFeProxyFactory {
 
-    public <T> T createProxyFor(final Class<T> type) {
+    public <T> T createProxyFor(final Class<T> type, final Object parent) {
         DataConverterManager manager = new DataConverterManager();
         manager.registerConverter(Calendar.class, String.class, new CalendarToStringConverter());
         manager.registerConverter(CPF.class, String.class, new CPFToStringConverter());
         manager.registerConverter(CNPJ.class, String.class, new CNPJToStringConverter());
 
-        Object proxy = new FluidProxyCreator(type, new ArrayList<MethodHandler>(), manager).createProxy();
+        Object proxy = new FluidProxyCreator(type, new ArrayList<MethodHandler>(), manager).createProxy(parent);
 
         return type.cast(proxy);
     }

@@ -1,7 +1,6 @@
 package br.com.caelum.stella.nfe.builder.impl;
 
 import br.com.caelum.stella.nfe.builder.NFe;
-import br.com.caelum.stella.nfe.fluid.TProcCancNFe;
 import br.com.caelum.stella.nfe.proxy.NFeProxyFactory;
 
 /**
@@ -10,10 +9,9 @@ import br.com.caelum.stella.nfe.proxy.NFeProxyFactory;
  */
 final public class NFeWebServiceWrapperFactory {
 
-    public <T> NFeWebServiceWrapperImpl createWrapper(final Class<T> type) {
-        T creator = new NFeProxyFactory().createProxyFor(type);
-        NFeWebServiceWrapperImpl<TProcCancNFe<NFe>> nfeWrapper = new NFeWebServiceWrapperImpl(creator);
-        return nfeWrapper;
+    public NFeWebServiceWrapperImpl createWrapper(final Class type, final NFe parent) {
+        Object creator = new NFeProxyFactory().createProxyFor(type, parent);
+        return new NFeWebServiceWrapperImpl(creator);
     }
 
 }

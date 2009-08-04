@@ -41,7 +41,7 @@ final public class FillsAllModelTest implements BuilderDataPoints {
         manager.registerConverter(CPF.class, String.class, new CPFToStringConverter());
         manager.registerConverter(CNPJ.class, String.class, new CNPJToStringConverter());
 
-        Object proxy = new FluidProxyCreator(builderClass, new ArrayList<MethodHandler>(), manager).createProxy();
+        Object proxy = new FluidProxyCreator(builderClass, new ArrayList<MethodHandler>(), manager).createProxy(null);
         Mirror mirror = new Mirror();
 
         for (Method method : mirror.on(builderClass).reflectAll().methods()) {

@@ -21,12 +21,12 @@ final public class NFeDeInutilizacaoImpl implements NFeDeInutilizacao<NFe>, Obje
     }
 
     public NFeWebServiceWrapper<TInutNFe<NFe>> deNota() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TInutNFe.class);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TInutNFe.class, nfe);
         return wrapper;
     }
 
     public NFeWebServiceWrapper<TProcInutNFe<NFe>> deNotaProcessada() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TProcInutNFe.class);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TProcInutNFe.class, nfe);
         return wrapper;
     }
 
