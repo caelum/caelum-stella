@@ -23,9 +23,9 @@ final public class GetInstanceReturnsNFeWebServiceWrapperImplTest {
     
     @DataPoint public NFe cancelamentoDeNotaProcessada = new NFe().deCancelamento().deNotaProcessada().withCabecalho().build().withCorpo().build();
     
-    @DataPoint public NFe atualizacaoDeEmissor = new NFe().deAtualizacaoDeEmissor().withCabecalho().build().withCorpo().build();
+//    @DataPoint public NFe atualizacaoDeEmissor = new NFe().deAtualizacaoDeEmissor().withCabecalho().build().withCorpo().build();
     
-    @DataPoint public NFe cadastroDeEmissor = new NFe().deCadastroDeEmissor().withCabecalho().build().withCorpo().build();
+//    @DataPoint public NFe cadastroDeEmissor = new NFe().deCadastroDeEmissor().withCabecalho().build().withCorpo().build();
     
     @DataPoint public NFe consultaDeCadastro = new NFe().deConsulta().deCadastro().withCabecalho().build().withCorpo().build();
     
