@@ -23,22 +23,22 @@ final public class NFeDeConsultaImpl implements NFeDeConsulta<NFe>, ObjectCreato
     }
 
     public NFeWebServiceWrapper<TConsCad<NFe>> deCadastro() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsCad.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CONSULTA_CADASTRO, nfe);
         return wrapper;
     }
 
     public NFeWebServiceWrapper<PedidoDeConsultaDoRecidoDoLoteDeNFE<NFe>> deRecibo() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(PedidoDeConsultaDoRecidoDoLoteDeNFE.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CONSULTA_RECIBO_LOTE, nfe);
         return wrapper;
     }
 
     public NFeWebServiceWrapper<TConsSitNFe<NFe>> deSituacao() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsSitNFe.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CONSULTA_SITUACAO, nfe);
         return wrapper;
     }
 
     public NFeWebServiceWrapper<TConsStatServ<NFe>> deStatusDeServico() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TConsStatServ.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CONSULTA_STATUS_SERVICO, nfe);
         return wrapper;
     }
 

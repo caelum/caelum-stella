@@ -9,9 +9,9 @@ import br.com.caelum.stella.nfe.proxy.NFeProxyFactory;
  */
 final public class NFeWebServiceWrapperFactory {
 
-    public NFeWebServiceWrapperImpl createWrapper(final Class type, final NFe parent) {
-        Object creator = new NFeProxyFactory().createProxyFor(type, parent);
-        return new NFeWebServiceWrapperImpl(creator);
+    public NFeWebServiceWrapperImpl createWrapper(final NFeWebServiceType wsType, final NFe parent) {
+        Object creator = new NFeProxyFactory().createProxyFor(wsType.getBuilderType(), parent);
+        return new NFeWebServiceWrapperImpl(wsType, creator);
     }
 
 }

@@ -21,7 +21,7 @@ public class InfRetAtuCadEmiDFe {
     protected TUf uf;
     @XmlElement(name = "CNPJ", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
     @FluidDataType(CNPJ.class)
-    protected Object cnpj;
+    protected String cnpj;
     @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String ope;
@@ -42,11 +42,11 @@ public class InfRetAtuCadEmiDFe {
         uf = value;
     }
 
-    public Object getCNPJ() {
+    public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(final Object value) {
+    public void setCNPJ(final String value) {
         cnpj = value;
     }
 

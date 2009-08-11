@@ -35,7 +35,7 @@ final public class InterfaceDevelopmentTest {
                     .build();
     }
     
-    @Test
+    @Test(expected=RuntimeException.class)
     public void testInterfaceForAtualizacaoDeEmissor() {
         NFe nfe = new NFe().deAtualizacaoDeEmissor()
                 .withCabecalho()
@@ -47,7 +47,7 @@ final public class InterfaceDevelopmentTest {
                     .build();
     }
     
-    @Test
+    @Test(expected=RuntimeException.class)
     public void testInterfaceForCadastroDeEmissor() {
         NFe nfe = new NFe().deCadastroDeEmissor()
                 .withCabecalho()

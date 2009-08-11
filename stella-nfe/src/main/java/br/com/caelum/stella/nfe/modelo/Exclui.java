@@ -23,7 +23,7 @@ public class Exclui {
     @XmlElement(name = "CNPJ", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
     @FluidName("CNPJ")
     @FluidDataType(CNPJ.class)
-    protected CNPJ cnpj;
+    protected String cnpj;
 
     public TUf getUF() {
         return uf;
@@ -33,11 +33,11 @@ public class Exclui {
         uf = value;
     }
 
-    public CNPJ getCNPJ() {
+    public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(final CNPJ value) {
+    public void setCNPJ(final String value) {
         cnpj = value;
     }
 

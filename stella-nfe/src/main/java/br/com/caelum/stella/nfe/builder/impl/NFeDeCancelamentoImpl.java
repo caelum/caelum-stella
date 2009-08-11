@@ -21,12 +21,12 @@ final public class NFeDeCancelamentoImpl implements NFeDeCancelamento<NFe>, Obje
     }
 
     public NFeWebServiceWrapper<TCancNFe<NFe>> deNota() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TCancNFe.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CANCELAMENTO_NOTA, nfe);
         return wrapper;
     }
 
     public NFeWebServiceWrapper<TProcCancNFe<NFe>> deNotaProcessada() {
-        wrapper = new NFeWebServiceWrapperFactory().createWrapper(TProcCancNFe.class, nfe);
+        wrapper = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CANCELAMENTO_NOTA_PROCESSADA, nfe);
         return wrapper;
     }
 

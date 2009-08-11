@@ -4,6 +4,7 @@ import net.vidageek.fluid.proxy.ObjectCreator;
 import br.com.caelum.stella.nfe.builder.impl.NFeDeCancelamentoImpl;
 import br.com.caelum.stella.nfe.builder.impl.NFeDeConsultaImpl;
 import br.com.caelum.stella.nfe.builder.impl.NFeDeInutilizacaoImpl;
+import br.com.caelum.stella.nfe.builder.impl.NFeWebServiceType;
 import br.com.caelum.stella.nfe.builder.impl.NFeWebServiceWrapperFactory;
 import br.com.caelum.stella.nfe.builder.impl.NFeWebServiceWrapperImpl;
 import br.com.caelum.stella.nfe.fluid.PedidoDeAutorizacaoDaNFE;
@@ -21,8 +22,11 @@ final public class NFe {
     }
 
     public NFeWebServiceWrapper<TCadEmiDFe<NFe>> deCadastroDeEmissor() {
-        creator = new NFeWebServiceWrapperFactory().createWrapper(TCadEmiDFe.class, this);
-        return (NFeWebServiceWrapper<TCadEmiDFe<NFe>>) creator;
+        throw new RuntimeException("There is no web service registered for this kind of NFe");
+        // creator = new
+        // NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.CADASTRO_EMISSOR,
+        // this);
+        // return (NFeWebServiceWrapper<TCadEmiDFe<NFe>>) creator;
     }
 
     public NFeDeCancelamento<NFe> deCancelamento() {
@@ -32,8 +36,11 @@ final public class NFe {
     }
 
     public NFeWebServiceWrapper<TAtuCadEmiDFe<NFe>> deAtualizacaoDeEmissor() {
-        creator = new NFeWebServiceWrapperFactory().createWrapper(TAtuCadEmiDFe.class, this);
-        return (NFeWebServiceWrapper<TAtuCadEmiDFe<NFe>>) creator;
+        throw new RuntimeException("There is no web service registered for this kind of NFe");
+        // creator = new
+        // NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.ATUALIZACAO_EMISSOR,
+        // this);
+        // return (NFeWebServiceWrapper<TAtuCadEmiDFe<NFe>>) creator;
     }
 
     public NFeDeInutilizacao<NFe> deInutilizacao() {
@@ -43,7 +50,7 @@ final public class NFe {
     }
 
     public NFeWebServiceWrapper<PedidoDeAutorizacaoDaNFE<NFe>> deEnvioDeLote() {
-        creator = new NFeWebServiceWrapperFactory().createWrapper(PedidoDeAutorizacaoDaNFE.class, this);
+        creator = new NFeWebServiceWrapperFactory().createWrapper(NFeWebServiceType.ENVIO_LOTE, this);
         return (NFeWebServiceWrapper<PedidoDeAutorizacaoDaNFE<NFe>>) creator;
     }
 
@@ -56,9 +63,9 @@ final public class NFe {
     }
 
     public static void main(final String[] args) {
-        NFe nfe = new NFe().deAtualizacaoDeEmissor().withCabecalho().withVersao("versao").withVersaoDados(
-                "versão dados").build().withCorpo().withInfAtuCadEmiDFe().withId("id infcad").withInclui().withCnpj(
-                "cnpj").build().build().build();
+        NFe nfe = new NFe().deCancelamento().deNota().withCabecalho().withVersao("versao").withVersaoDados(
+                "versão dados").build().withCorpo().withInfCanc().withId("id infcad").build().build();
+
         NFeWebServiceWrapperImpl wrapper = (NFeWebServiceWrapperImpl) nfe.creator.getInstance();
         System.out.println(wrapper.getXml());
 
