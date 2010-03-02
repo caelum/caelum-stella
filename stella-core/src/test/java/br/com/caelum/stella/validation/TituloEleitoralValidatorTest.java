@@ -10,10 +10,12 @@ import org.junit.Test;
  */
 public class TituloEleitoralValidatorTest {
 
-    private final String[] validStrings = { "543275360116", "142501480248", "557833330370", "013785610434",
+    private final String[] validStrings = { "543275360116","142501480248", "557833330370", "013785610434",
             "253346440540", "033734180663", "585353130710", "884328631058", "553505611201", "028565701333",
             "245770031481", "713782341503", "403374181694", "452083221724" };
-
+    private final String[] validStrings2 = { "5432753601/16","1425014802/48", "5578333303/70", "0137856104/34",
+            "2533464405/40", "0337341806/63", "5853531307/10", "8843286310/58", "5535056112/01", "0285657013/33",
+            "2457700314/81", "7137823415/03", "4033741816/94", "4520832217/24"};
     private final String[] invalidFirstDigitStrings = { "543275360106", "452083221714", "253346440520", "553505611231",
             "884328631048" };
 
@@ -21,17 +23,27 @@ public class TituloEleitoralValidatorTest {
             "553505611206", "884328631055" };
 
     private Validator<String> validator;
+    private Validator<String> validator2;
 
     @Before
     public void setup() {
-        validator = new TituloEleitoralValidator();
+        validator = new TituloEleitoralValidator(false);
+        validator2 = new TituloEleitoralValidator(true);
+   
     }
-
+    
     @Test
     public void shouldValidateCorrectString() {
         for (String validString : validStrings) {
             validator.assertValid(validString);
         }
+    }
+    
+    @Test
+    public void shouldValidateCorrectString2() {
+    	for (String validString : validStrings2) {
+    		validator2.assertValid(validString);
+    	}
     }
 
     @Test

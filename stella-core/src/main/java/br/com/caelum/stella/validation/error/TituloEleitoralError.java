@@ -9,5 +9,5 @@ import br.com.caelum.stella.validation.InvalidValue;
  * @author Leonardo Bessa
  */
 public enum TituloEleitoralError implements InvalidValue {
-    INVALID_CHECK_DIGITS, INVALID_FORMAT, INVALID_CODIGO_DE_ESTADO
+    INVALID_CHECK_DIGITS, INVALID_FORMAT,INVALID_DIGITS, INVALID_CODIGO_DE_ESTADO
 }
