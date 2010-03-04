@@ -128,7 +128,7 @@ public class TituloEleitoralValidator implements Validator<String> {
     	this(false);
     }
 
-
+ 
     /**
      * <p>
      * Construtor do Validador de Titulo de Eleitor.
