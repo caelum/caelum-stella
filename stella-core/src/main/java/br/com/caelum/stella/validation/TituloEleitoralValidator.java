@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.format.TituloEleitoralFormatter;
 import br.com.caelum.stella.validation.error.TituloEleitoralError;
 
 /**
@@ -74,6 +75,8 @@ import br.com.caelum.stella.validation.error.TituloEleitoralError;
 public class TituloEleitoralValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;
+    
+    private final boolean isFormatted;
 
     private static final int MOD = 11;
 
@@ -85,7 +88,9 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     private static final Integer[] DV2_MULTIPLIERS = { 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2 };
 
-    public static final Pattern TITULO_DE_ELEITOR_PATTERN = Pattern.compile("(\\d{12})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{10})/(\\d{2})");
+
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})(\\d{2})");
 
     private enum Rotina implements RotinaDeDigitoVerificador {
         POS_PRODUTO_INTERNO {
@@ -115,10 +120,15 @@ public class TituloEleitoralValidator implements Validator<String> {
     /**
      * Utiliza um {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
-    public TituloEleitoralValidator() {
+    public TituloEleitoralValidator(boolean isFormatted) {
         this.baseValidator = new BaseValidator();
+        this.isFormatted = isFormatted;
+    }
+    public TituloEleitoralValidator(){
+    	this(false);
     }
 
+ 
     /**
      * <p>
      * Construtor do Validador de Titulo de Eleitor.
@@ -127,23 +137,44 @@ public class TituloEleitoralValidator implements Validator<String> {
      * @param messageProducer
      *            produtor de mensagem de erro.
      */
+    public TituloEleitoralValidator(MessageProducer messageProducer,boolean isFormatted) {
+        this.baseValidator = new BaseValidator(messageProducer);
+        this.isFormatted = isFormatted;
+    }
+    
     public TituloEleitoralValidator(MessageProducer messageProducer) {
         this.baseValidator = new BaseValidator(messageProducer);
+        this.isFormatted = false;
     }
+    
 
     private List<InvalidValue> getInvalidValues(String tituloDeEleitor) {
         List<InvalidValue> errors = new ArrayList<InvalidValue>();
         errors.clear();
-        if (tituloDeEleitor != null) {
-            if (!isEligible(tituloDeEleitor)) {
-                errors.add(TituloEleitoralError.INVALID_FORMAT);
-            } else if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
-                errors.add(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO);
-            } else {
+        if (tituloDeEleitor != null) { 
+        	
+        	if (!isEligible(tituloDeEleitor)) {
+                 if (isFormatted) {
+                     errors.add(TituloEleitoralError.INVALID_FORMAT);
+                 } else {
+                     errors.add(TituloEleitoralError.INVALID_DIGITS);
+                 }
+        	}
+        	
+            else {
                 String unformated;
-                unformated = tituloDeEleitor;
+                if(isFormatted){
+                	 TituloEleitoralFormatter formatter = new TituloEleitoralFormatter();
+                     unformated = formatter.unformat(tituloDeEleitor);
+                }
+                else {
+                    unformated = tituloDeEleitor;
+                }
                 if (!hasValidCheckDigits(unformated)) {
                     errors.add(TituloEleitoralError.INVALID_CHECK_DIGITS);
+                }
+                if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
+                    errors.add(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO);
                 }
             }
         }
@@ -152,7 +183,13 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
         final int length = tituloDeEleitor.length();
-        int codigo = Integer.parseInt(tituloDeEleitor.substring(length - 4, length - 2));
+        int codigo;
+        if(isFormatted){
+        	codigo = Integer.parseInt(tituloDeEleitor.substring(length - 5, length - 3));
+        }
+        else{
+        	codigo= Integer.parseInt(tituloDeEleitor.substring(length - 4, length - 2));
+        }
         return !(codigo >= 01 && codigo <= 28);
     }
 
@@ -161,9 +198,13 @@ public class TituloEleitoralValidator implements Validator<String> {
     }
 
     public boolean isEligible(String value) {
-        boolean result;
-        result = TITULO_DE_ELEITOR_PATTERN.matcher(value).matches();
-        return result;
+    	 boolean result;
+         if (isFormatted) {
+             result = FORMATED.matcher(value).matches();
+         } else {
+             result = UNFORMATED.matcher(value).matches();
+         }
+         return result;
     }
 
     public void assertValid(String tituloDeEleitor) {
