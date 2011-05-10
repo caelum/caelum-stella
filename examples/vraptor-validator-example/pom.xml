@@ -38,7 +38,7 @@
   <dependencies>
     <dependency>
       <groupId>${pom.groupId}</groupId>
-      <artifactId>caelum-stella-hibernate-validator</artifactId>
+      <artifactId>caelum-stella-bean-validation</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
