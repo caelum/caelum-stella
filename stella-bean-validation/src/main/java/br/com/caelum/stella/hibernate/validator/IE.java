@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
 
@@ -20,15 +20,17 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { TYPE })
-@ValidatorClass(StellaIEValidator.class)
+@Target({ TYPE })
+@Constraint(validatedBy = StellaIEValidator.class)
 public @interface IE {
-    String message() default "{ie_invalid}";
+	String message() default "{ie_invalid}";
 
-    String ieField() default "ie";
+	Class<?>[] groups() default {};
 
-    String estadoField() default "estado";
+	String ieField() default "ie";
 
-    boolean formatted() default false;
+	String estadoField() default "estado";
+
+	boolean formatted() default false;
 
 }
