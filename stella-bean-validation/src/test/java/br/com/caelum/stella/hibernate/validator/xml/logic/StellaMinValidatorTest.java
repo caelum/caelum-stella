@@ -1,51 +1,49 @@
 package br.com.caelum.stella.hibernate.validator.xml.logic;
 
+import javax.validation.ConstraintValidatorContext;
+
 import junit.framework.Assert;
-import net.vidageek.mirror.Mirror;
+import net.vidageek.mirror.dsl.Mirror;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import br.com.caelum.stella.hibernate.validator.xml.Min;
 
 final public class StellaMinValidatorTest {
+	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 
     @Test
     public void testThatNullIsValid() {
         StellaMinValidator validator = new StellaMinValidator();
-        Assert.assertTrue(validator.isValid(null));
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void testThatThrowsExceptionIfFieldIsNotAnIntegerType() {
-        StellaMinValidator validator = new StellaMinValidator();
-        Assert.assertTrue(validator.isValid(""));
+        Assert.assertTrue(validator.isValid(null,context));
     }
 
     @Test
     public void testThatAcceptsOnlyByteShortIntegerAndLong() {
         StellaMinValidator validator = new StellaMinValidator();
 
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
-        Assert.assertTrue(validator.isValid((byte) 20));
-        Assert.assertTrue(validator.isValid((short) 20));
-        Assert.assertTrue(validator.isValid(20));
-        Assert.assertTrue(validator.isValid((long) 20));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
+        Assert.assertTrue(validator.isValid((byte) 20,context));
+        Assert.assertTrue(validator.isValid((short) 20,context));
+        Assert.assertTrue(validator.isValid(20,context));
+        Assert.assertTrue(validator.isValid((long) 20,context));
     }
 
     @Test
     public void testThatIsInvalidIfValueIsLessThanAnnotatedValue() {
         StellaMinValidator validator = new StellaMinValidator();
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
 
-        Assert.assertFalse(validator.isValid(9));
+        Assert.assertFalse(validator.isValid(9,context));
     }
 
     @Test
     public void testThatIsValidIfValueIsEqualToAnnotatedValue() {
         StellaMinValidator validator = new StellaMinValidator();
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Min.class).atField("b"));
 
-        Assert.assertTrue(validator.isValid(10));
+        Assert.assertTrue(validator.isValid(10,context));
     }
 
     public static class AnnotatedModel {
