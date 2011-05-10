@@ -1,6 +1,7 @@
 package br.com.caelum.stella.hibernate.validator.logic;
 
-import org.hibernate.validator.Validator;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.hibernate.validator.CNPJ;
 import br.com.caelum.stella.validation.CNPJValidator;
@@ -11,31 +12,25 @@ import br.com.caelum.stella.validation.CNPJValidator;
  * 
  * @author Fabio Kung
  * @author Leonardo Bessa
+ * @author David Paniz
  */
-public class StellaCNPJValidator implements Validator<CNPJ> {
-    private CNPJValidator stellaValidator;
+public class StellaCNPJValidator implements ConstraintValidator<CNPJ, String> {
+	private CNPJValidator stellaValidator;
 
-    /**
-     * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
-     */
-    public void initialize(CNPJ cnpj) {
-        AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cnpj);
-        stellaValidator = new CNPJValidator(messageProducer, cnpj.formatted());
-    }
+	public void initialize(CNPJ cnpj) {
+		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cnpj);
+		stellaValidator = new CNPJValidator(messageProducer, cnpj.formatted());
+	}
 
-    /**
-     * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
-     */
-    public boolean isValid(Object o) {
-        if (o != null) {
-            String cnpj = o.toString();
-            if (cnpj.trim().length() == 0) {
-                return true;
-            } else {
-                return stellaValidator.invalidMessagesFor(cnpj).isEmpty();
-            }
-        } else {
-            return true;
-        }
-    }
+	public boolean isValid(String cnpj, ConstraintValidatorContext context) {
+		if (cnpj != null) {
+			if (cnpj.trim().length() == 0) {
+				return true;
+			} else {
+				return stellaValidator.invalidMessagesFor(cnpj).isEmpty();
+			}
+		} else {
+			return true;
+		}
+	}
 }

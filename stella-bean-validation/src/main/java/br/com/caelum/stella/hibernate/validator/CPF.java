@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaCPFValidator;
 
@@ -18,13 +18,14 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaCPFValidator;
  * 
  * @author Fabio Kung
  * @author Leonardo Bessa
+ * @author David Paniz
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { FIELD, METHOD })
-@ValidatorClass(StellaCPFValidator.class)
+@Target({ FIELD, METHOD })
+@Constraint(validatedBy = StellaCPFValidator.class)
 public @interface CPF {
-    String message() default "{cpf_invalid}";
+	String message() default "{cpf_invalid}";
 
-    boolean formatted() default false;
+	boolean formatted() default false;
 }

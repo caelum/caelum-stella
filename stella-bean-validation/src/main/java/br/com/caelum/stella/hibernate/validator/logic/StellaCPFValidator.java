@@ -1,6 +1,7 @@
 package br.com.caelum.stella.hibernate.validator.logic;
 
-import org.hibernate.validator.Validator;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.hibernate.validator.CPF;
 import br.com.caelum.stella.validation.CPFValidator;
@@ -11,31 +12,25 @@ import br.com.caelum.stella.validation.CPFValidator;
  * 
  * @author Fabio Kung
  * @author Leonardo Bessa
+ * @author David Paniz
  */
-public class StellaCPFValidator implements Validator<CPF> {
-    private CPFValidator stellaValidator;
+public class StellaCPFValidator implements ConstraintValidator<CPF, String> {
+	private CPFValidator stellaValidator;
 
-    /**
-     * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
-     */
-    public void initialize(CPF cpf) {
-        AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cpf);
-        stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
-    }
+	public void initialize(CPF cpf) {
+		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cpf);
+		stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
+	}
 
-    /**
-     * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
-     */
-    public boolean isValid(Object o) {
-        if (o != null) {
-            String cpf = o.toString();
-            if (cpf.trim().length() == 0) {
-                return true;
-            } else {
-                return stellaValidator.invalidMessagesFor(cpf).isEmpty();
-            }
-        } else {
-            return true;
-        }
-    }
+	public boolean isValid(String cpf, ConstraintValidatorContext context) {
+		if (cpf != null) {
+			if (cpf.trim().length() == 0) {
+				return true;
+			} else {
+				return stellaValidator.invalidMessagesFor(cpf).isEmpty();
+			}
+		} else {
+			return true;
+		}
+	}
 }

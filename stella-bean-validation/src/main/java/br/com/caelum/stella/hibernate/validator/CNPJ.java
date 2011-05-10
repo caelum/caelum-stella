@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaCNPJValidator;
 
@@ -17,11 +17,12 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaCNPJValidator;
  * {@linkplain #toString()} represente um CNPJ.
  * 
  * @author Leonardo Bessa
+ * @author David Paniz
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { FIELD, METHOD })
-@ValidatorClass(StellaCNPJValidator.class)
+@Constraint(validatedBy = StellaCNPJValidator.class)
 public @interface CNPJ {
     String message() default "{cnpj_invalid}";
 
