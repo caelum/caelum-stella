@@ -3,11 +3,12 @@ package br.com.caelum.stella.hibernate.validator.xml.logic;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
-import org.hibernate.validator.Validator;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.hibernate.validator.xml.MinElements;
 
-public class StellaMinElementsValidator implements Validator<MinElements> {
+public class StellaMinElementsValidator implements ConstraintValidator<MinElements, Object> {
 
     private MinElements annotation;
 
@@ -19,24 +20,24 @@ public class StellaMinElementsValidator implements Validator<MinElements> {
 
     }
 
-    public boolean isValid(final Object object) {
-        if (object == null) {
-            return true;
-        }
-        if (!Collection.class.isAssignableFrom(object.getClass()) && !object.getClass().isArray()) {
-            throw new IllegalStateException(MinElements.class.getSimpleName()
-                    + " can only be used to annotate a java.util.Collection or an Array.");
-        }
-        if (Collection.class.isAssignableFrom(object.getClass())
-                && (Collection.class.cast(object).size() >= annotation.value())) {
-            return true;
-        }
-
-        if (object.getClass().isArray() && (nonNullArrayElements(object) >= annotation.value())) {
-            return true;
-        }
-
-        return false;
+    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    	if (value == null) {
+    		return true;
+    	}
+    	if (!Collection.class.isAssignableFrom(value.getClass()) && !value.getClass().isArray()) {
+    		throw new IllegalStateException(MinElements.class.getSimpleName()
+    				+ " can only be used to annotate a java.util.Collection or an Array.");
+    	}
+    	if (Collection.class.isAssignableFrom(value.getClass())
+    			&& (Collection.class.cast(value).size() >= annotation.value())) {
+    		return true;
+    	}
+    	
+    	if (value.getClass().isArray() && (nonNullArrayElements(value) >= annotation.value())) {
+    		return true;
+    	}
+    	
+    	return false;
     }
 
     private long nonNullArrayElements(final Object arg0) {
@@ -52,4 +53,5 @@ public class StellaMinElementsValidator implements Validator<MinElements> {
         }
         return cont;
     }
+
 }
