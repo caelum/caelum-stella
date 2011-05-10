@@ -12,10 +12,10 @@ import br.com.caelum.stella.hibernate.validator.xml.logic.StellaMinValidator;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { ElementType.FIELD })
-@Constraint(validatedBy= StellaMinValidator.class)
+@Target({ ElementType.FIELD })
+@Constraint(validatedBy = StellaMinValidator.class)
 public @interface Min {
 
-    long value();
+	long value();
 
 }
