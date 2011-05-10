@@ -1,10 +1,11 @@
 package br.com.caelum.stella.hibernate.validator.xml.logic;
 
-import org.hibernate.validator.Validator;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.hibernate.validator.xml.Pattern;
 
-public class StellaPatternValidator implements Validator<Pattern> {
+public class StellaPatternValidator implements ConstraintValidator<Pattern, String> {
 
     private String pattern;
 
@@ -12,16 +13,11 @@ public class StellaPatternValidator implements Validator<Pattern> {
         pattern = annotation.value();
     }
 
-    public boolean isValid(final Object toMatch) {
+	public boolean isValid(String toMatch, ConstraintValidatorContext arg1) {
         if (toMatch == null) {
             return true;
         }
-        if (!String.class.equals(toMatch.getClass())) {
-            throw new IllegalStateException(Pattern.class.getName()
-                    + " can only be used to annotate a field of type java.lang.String. Cannot aply pattern to "
-                    + toMatch.getClass().getName());
-        }
-        return java.util.regex.Pattern.compile(pattern).matcher(toMatch.toString()).matches();
-    }
+        return java.util.regex.Pattern.compile(pattern).matcher(toMatch).matches();
+	}
 
 }
