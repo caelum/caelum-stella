@@ -6,14 +6,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.xml.logic.StellaLengthValidator;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.FIELD })
-@ValidatorClass(StellaLengthValidator.class)
+@Constraint(validatedBy = StellaLengthValidator.class)
 public @interface Length {
 
     long max() default Long.MAX_VALUE;
