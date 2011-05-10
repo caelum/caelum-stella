@@ -12,8 +12,10 @@ import br.com.caelum.stella.hibernate.validator.xml.logic.StellaRequiredValidato
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { ElementType.FIELD })
-@Constraint(validatedBy=StellaRequiredValidator.class)
+@Target({ ElementType.FIELD })
+@Constraint(validatedBy = StellaRequiredValidator.class)
 public @interface Required {
+
+	Class<?>[] groups() default {};
 
 }

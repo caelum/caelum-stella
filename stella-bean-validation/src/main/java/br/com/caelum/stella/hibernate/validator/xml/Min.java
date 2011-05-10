@@ -18,4 +18,6 @@ public @interface Min {
 
 	long value();
 
+	Class<?>[] groups() default {};
+	
 }

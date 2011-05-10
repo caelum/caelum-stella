@@ -18,4 +18,6 @@ public @interface Pattern {
 
 	String value();
 
+	Class<?>[] groups() default {};
+
 }
