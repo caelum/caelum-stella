@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaTituloEleitoralValidator;
 
@@ -20,9 +20,11 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaTituloEleitoralValid
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { FIELD, METHOD })
-@ValidatorClass(StellaTituloEleitoralValidator.class)
+@Target({ FIELD, METHOD })
+@Constraint(validatedBy = StellaTituloEleitoralValidator.class)
 public @interface TituloEleitoral {
-    String message() default "{tituloEleitoral_invalid}";
+	String message() default "{tituloEleitoral_invalid}";
+
+	Class<?>[] groups() default {};
 
 }

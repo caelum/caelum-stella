@@ -1,6 +1,7 @@
 package br.com.caelum.stella.hibernate.validator.logic;
 
-import org.hibernate.validator.Validator;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.hibernate.validator.TituloEleitoral;
 import br.com.caelum.stella.validation.TituloEleitoralValidator;
@@ -11,30 +12,25 @@ import br.com.caelum.stella.validation.TituloEleitoralValidator;
  * 
  * @author Leonardo Bessa
  */
-public class StellaTituloEleitoralValidator implements Validator<TituloEleitoral> {
-    private TituloEleitoralValidator stellaValidator;
+public class StellaTituloEleitoralValidator implements
+		ConstraintValidator<TituloEleitoral, String> {
+	private TituloEleitoralValidator stellaValidator;
 
-    /**
-     * @see org.hibernate.validator.Validator#initialize(java.lang.annotation.Annotation)
-     */
-    public void initialize(TituloEleitoral tituloEleitoral) {
-        AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(tituloEleitoral);
-        stellaValidator = new TituloEleitoralValidator(messageProducer);
-    }
+	public void initialize(TituloEleitoral tituloEleitoral) {
+		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(
+				tituloEleitoral);
+		stellaValidator = new TituloEleitoralValidator(messageProducer);
+	}
 
-    /**
-     * @see org.hibernate.validator.Validator#isValid(java.lang.Object)
-     */
-    public boolean isValid(Object o) {
-        if (o != null) {
-            String tituloEleitoral = o.toString();
-            if (tituloEleitoral.trim().length() == 0) {
-                return true;
-            } else {
-                return stellaValidator.invalidMessagesFor(tituloEleitoral).isEmpty();
-            }
-        } else {
-            return true;
-        }
-    }
+	public boolean isValid(String value, ConstraintValidatorContext context) {
+		if (value != null) {
+			if (value.trim().length() == 0) {
+				return true;
+			} else {
+				return stellaValidator.invalidMessagesFor(value).isEmpty();
+			}
+		} else {
+			return true;
+		}
+	}
 }
