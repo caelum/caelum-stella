@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaNITValidator;
 
@@ -20,11 +20,13 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaNITValidator;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { FIELD, METHOD })
-@ValidatorClass(StellaNITValidator.class)
+@Target({ FIELD, METHOD })
+@Constraint(validatedBy = StellaNITValidator.class)
 public @interface NIT {
-    String message() default "{nit_invalid}";
+	String message() default "{nit_invalid}";
 
-    boolean formatted() default false;
+	Class<?>[] groups() default {};
+
+	boolean formatted() default false;
 
 }
