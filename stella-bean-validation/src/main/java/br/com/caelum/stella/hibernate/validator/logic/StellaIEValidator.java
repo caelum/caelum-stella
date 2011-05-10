@@ -14,13 +14,13 @@ import br.com.caelum.stella.type.Estado;
  * 
  * @author Leonardo Bessa
  */
-public class StellaIEValidator implements ConstraintValidator<IE, String> {
+public class StellaIEValidator implements ConstraintValidator<IE, Object> {
 
 	private br.com.caelum.stella.validation.Validator<String> stellaValidator;
 
 	private IE ie;	
 
-	public boolean isValid(String value, ConstraintValidatorContext context) {
+	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		if (value != null) {
 			String ieValue = getIEValue(value);
 			String estadoValue = getEstadoValue(value);
@@ -43,7 +43,7 @@ public class StellaIEValidator implements ConstraintValidator<IE, String> {
 		}
 	}
 
-	public void initialize(IE arg0) {
+	public void initialize(IE ie) {
 		this.ie = ie;
 	}
 

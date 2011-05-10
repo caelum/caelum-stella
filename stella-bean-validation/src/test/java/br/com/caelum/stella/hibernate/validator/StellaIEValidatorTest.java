@@ -3,8 +3,11 @@ package br.com.caelum.stella.hibernate.validator;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import javax.validation.ConstraintValidatorContext;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
 
@@ -12,6 +15,7 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
  * @author Leonardo Bessa
  */
 public class StellaIEValidatorTest {
+	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
     private StellaIEValidator validator;
 
     @IE
@@ -44,7 +48,7 @@ public class StellaIEValidatorTest {
     @Test(expected = RuntimeException.class)
     public void shouldThrowExceptionWhenCantFindFielsInObject() {
         {
-            boolean valid = validator.isValid(new Object());
+            boolean valid = validator.isValid(new Object(),context);
             assertFalse(valid);
         }
     }
@@ -52,7 +56,7 @@ public class StellaIEValidatorTest {
     @Test(expected = RuntimeException.class)
     public void shouldThrowExceptionWhenValueIsNotAnObject() {
         {
-            boolean valid = validator.isValid(14);
+            boolean valid = validator.isValid(14,context);
             assertFalse(valid);
         }
     }
@@ -61,32 +65,32 @@ public class StellaIEValidatorTest {
     public void shouldValidateObjectWithEstadoAndIE() {
         {
             boolean valid;
-            valid = validator.isValid(new ObjectWithIE("P011004243002", "SP"));
+            valid = validator.isValid(new ObjectWithIE("P011004243002", "SP"),context);
             assertTrue(valid);
-            valid = validator.isValid(new ObjectWithIE("2243658792", "RS"));
+            valid = validator.isValid(new ObjectWithIE("2243658792", "RS"),context);
             assertTrue(valid);
-            valid = validator.isValid(new ObjectWithIE("78045302", "RJ"));
+            valid = validator.isValid(new ObjectWithIE("78045302", "RJ"),context);
             assertTrue(valid);
-            valid = validator.isValid(new ObjectWithIE("041939808", "AM"));
+            valid = validator.isValid(new ObjectWithIE("041939808", "AM"),context);
             assertTrue(valid);
         }
     }
 
     @Test
     public void shouldValidateNull() {
-        boolean valid = validator.isValid(null);
+        boolean valid = validator.isValid(null,context);
         assertTrue(valid);
     }
 
     @Test
     public void shouldNotValidateWhenEstadoIsMissing() {
-        boolean valid = validator.isValid(new ObjectWithIE("P011004243002", ""));
+        boolean valid = validator.isValid(new ObjectWithIE("P011004243002", ""),context);
         assertFalse(valid);
     }
 
     @Test
     public void shouldValidateEmpty() {
-        boolean valid = validator.isValid(new ObjectWithIE("", "SP"));
+        boolean valid = validator.isValid(new ObjectWithIE("", "SP"),context);
         assertTrue(valid);
     }
 
