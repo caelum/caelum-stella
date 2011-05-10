@@ -3,11 +3,8 @@ package br.com.caelum.stella.hibernate.validator.xml.logic;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import org.hibernate.validator.Validator;
 
 import br.com.caelum.stella.hibernate.validator.xml.Min;
 
