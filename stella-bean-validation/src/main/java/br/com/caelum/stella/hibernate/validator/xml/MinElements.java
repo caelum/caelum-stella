@@ -18,4 +18,6 @@ public @interface MinElements {
 
 	long value();
 
+	Class<?>[] groups() default {};
+
 }
