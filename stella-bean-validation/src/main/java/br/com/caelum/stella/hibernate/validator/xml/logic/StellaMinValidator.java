@@ -12,7 +12,7 @@ import org.hibernate.validator.Validator;
 import br.com.caelum.stella.hibernate.validator.xml.Min;
 
 final public class StellaMinValidator implements
-		ConstraintValidator<Min, Object> {
+		ConstraintValidator<Min, Number> {
 
 	private Min annotation;
 
@@ -25,7 +25,7 @@ final public class StellaMinValidator implements
 
 	}
 
-	public boolean isValid(Object value, ConstraintValidatorContext context) {
+	public boolean isValid(Number value, ConstraintValidatorContext context) {
 		if (value == null) {
 			return true;
 		}
