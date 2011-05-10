@@ -3,38 +3,46 @@ package br.com.caelum.stella.hibernate.validator.xml.logic;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import org.hibernate.validator.Validator;
 
 import br.com.caelum.stella.hibernate.validator.xml.Min;
 
-final public class StellaMinValidator implements Validator<Min> {
+final public class StellaMinValidator implements
+		ConstraintValidator<Min, Object> {
 
-    private Min annotation;
+	private Min annotation;
 
-    @SuppressWarnings("unchecked")
-    private final List<Class<?>> acceptedTypes = (List) Arrays.asList(Byte.class, Short.class, Integer.class,
-            Long.class);
+	@SuppressWarnings("unchecked")
+	private final List<Class<?>> acceptedTypes = (List) Arrays.asList(
+			Byte.class, Short.class, Integer.class, Long.class);
 
-    public void initialize(final Min annotation) {
-        this.annotation = annotation;
+	public void initialize(final Min annotation) {
+		this.annotation = annotation;
 
-    }
+	}
 
-    public boolean isValid(final Object object) {
-        if (object == null) {
-            return true;
-        }
-        if (!acceptedTypes.contains(object.getClass())) {
-            throw new IllegalStateException(Min.class.getSimpleName() + " cannot be used to annotate a field of type "
-                    + object.getClass().getName() + ". Only Byte, Short, Integer and Long are accepted.");
-        }
+	public boolean isValid(Object value, ConstraintValidatorContext context) {
+		if (value == null) {
+			return true;
+		}
 
-        Long val = new Long(object.toString());
+		if (!acceptedTypes.contains(value.getClass())) {
+			throw new IllegalStateException(Min.class.getSimpleName()
+					+ " cannot be used to annotate a field of type "
+					+ value.getClass().getName()
+					+ ". Only Byte, Short, Integer and Long are accepted.");
+		}
 
-        if (val < annotation.value()) {
-            return false;
-        }
+		Long val = new Long(value.toString());
 
-        return true;
-    }
+		if (val < annotation.value()) {
+			return false;
+		}
+
+		return true;
+	}
 }
