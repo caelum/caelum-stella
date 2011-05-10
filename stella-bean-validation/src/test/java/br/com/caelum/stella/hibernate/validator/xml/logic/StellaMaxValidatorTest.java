@@ -3,7 +3,7 @@ package br.com.caelum.stella.hibernate.validator.xml.logic;
 import javax.validation.ConstraintValidatorContext;
 
 import junit.framework.Assert;
-import net.vidageek.mirror.Mirror;
+import net.vidageek.mirror.dsl.Mirror;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -23,7 +23,7 @@ final public class StellaMaxValidatorTest {
     public void testThatAcceptsOnlyByteShortIntegerAndLong() {
         StellaMaxValidator validator = new StellaMaxValidator();
 
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
         Assert.assertTrue(validator.isValid((byte) 10,context));
         Assert.assertTrue(validator.isValid((short) 10,context));
         Assert.assertTrue(validator.isValid(10,context));
@@ -33,7 +33,7 @@ final public class StellaMaxValidatorTest {
     @Test
     public void testThatIsInvalidIfValueIsBiggerThanAnnotatedValue() {
         StellaMaxValidator validator = new StellaMaxValidator();
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
 
         Assert.assertFalse(validator.isValid(21,context));
     }
@@ -41,7 +41,7 @@ final public class StellaMaxValidatorTest {
     @Test
     public void testThatIsValidIfValueIsEqualToAnnotatedValue() {
         StellaMaxValidator validator = new StellaMaxValidator();
-        validator.initialize(Mirror.on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
+        validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(Max.class).atField("b"));
 
         Assert.assertTrue(validator.isValid(10,context));
     }
