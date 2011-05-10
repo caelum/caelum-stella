@@ -6,14 +6,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 import br.com.caelum.stella.hibernate.validator.xml.logic.StellaChoiceValidator;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.TYPE })
-@ValidatorClass(StellaChoiceValidator.class)
+@Constraint(validatedBy = StellaChoiceValidator.class)
 public @interface Choice {
 
 }
