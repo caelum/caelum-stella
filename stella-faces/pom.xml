@@ -15,9 +15,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>caelum-stella-core</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.faces</groupId>
@@ -45,6 +45,7 @@
 				<plugin>
 					<groupId>net.sourceforge.maven-taglib</groupId>
 					<artifactId>maven-taglib-plugin</artifactId>
+                                        <version>2.4</version>
 					<executions>
 						<execution>
 							<goals>

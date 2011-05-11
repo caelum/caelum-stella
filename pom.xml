@@ -25,13 +25,13 @@
     <module>stella-hibernate-user-types</module>
     <module>stella-faces</module>
     <module>stella-boleto</module>
-    <module>stella-distribution</module>
+    <!--module>stella-distribution</module-->
     <module>examples/boleto-example</module>
     <module>examples/core-example</module>
     <module>examples/faces-example</module>
-    <module>examples/vraptor-validator-example</module>
+    <!--module>examples/vraptor-validator-example</module>
     <module>examples/hibernate-persistence-example</module>
-    <module>examples/hibernate-seam-example</module>
+    <module>examples/hibernate-seam-example</module-->
   </modules>
 
   <dependencyManagement>
@@ -165,6 +165,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.3-INTERNAL-r489210</version>
         <configuration>
           <workspace>${basedir}</workspace>
           <workspaceCodeStylesURL>
@@ -176,6 +177,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -184,10 +186,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
       </plugin>
 
       <plugin>
