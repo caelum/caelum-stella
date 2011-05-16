@@ -24,7 +24,7 @@
     </dependency>
     <dependency>
       <groupId>${pom.groupId}</groupId>
-      <artifactId>caelum-stella-hibernate-validator</artifactId>
+      <artifactId>caelum-stella-bean-validation</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
@@ -143,19 +143,19 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
             </configuration>
           </execution>
           <execution>
-            <id>unpack-javadoc-hibernate-validator</id>
+            <id>unpack-javadoc-bean-validation</id>
             <phase>install</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/docs/javadoc/hibernate-validator</outputDirectory>
+              <outputDirectory>${project.build.directory}/docs/javadoc/bean-validation</outputDirectory>
               <overWriteReleases>true</overWriteReleases>
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
                 <artifactItem>
                   <groupId>${pom.groupId}</groupId>
-                  <artifactId>caelum-stella-hibernate-validator</artifactId>
+                  <artifactId>caelum-stella-bean-validation</artifactId>
                   <version>${pom.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>

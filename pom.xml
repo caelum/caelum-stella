@@ -25,8 +25,8 @@
     <module>stella-hibernate-user-types</module>
     <module>stella-faces</module>
     <module>stella-boleto</module>
-    <!--module>stella-distribution</module>
-    <module>examples/boleto-example</module>
+    <module>stella-distribution</module>
+    <!--module>examples/boleto-example</module>
     <module>examples/core-example</module>
     <module>examples/faces-example</module>
     <module>examples/vraptor-validator-example</module>

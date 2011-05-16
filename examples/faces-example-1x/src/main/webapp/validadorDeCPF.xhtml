@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:stella="http://stella.caelum.com.br/faces">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Validando CPF usando o Componente do Stella Faces</title>
+</head>
+<body>
+<f:view>
+	<h1>Validando CPF usando o Componente do Stella Faces</h1>
+	<h2>Versão com Facelets</h2>
+	<h:form>
+		<h:panelGrid>
+			<h:outputLabel for="cpf" value="cpf sem formatacao:" />
+			<h:inputText id="cpf" value="#{UsuarioBean.cpf}">
+				<stella:validateCPF />
+			</h:inputText>
+			<h:message for="cpf" />
+
+			<h:outputLabel for="cpfFormatado" value="cpf com formatacao:" />
+			<h:inputText id="cpfFormatado" value="#{UsuarioBean.cpfFormatado}">
+				<stella:validateCPF formatted="true" />
+			</h:inputText>
+			<h:message for="cpfFormatado" />
+		</h:panelGrid>
+		<h:commandButton value="Enviar" />
+		<h:messages />
+	</h:form>
+</f:view>
+</body>
+</html>
