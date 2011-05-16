@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaTituloEleitoralValidator;
 
@@ -25,6 +26,9 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaTituloEleitoralValid
 public @interface TituloEleitoral {
 	String message() default "{tituloEleitoral_invalid}";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 
 }

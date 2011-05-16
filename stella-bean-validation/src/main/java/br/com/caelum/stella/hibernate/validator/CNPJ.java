@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaCNPJValidator;
 
@@ -27,5 +28,9 @@ public @interface CNPJ {
     String message() default "{cnpj_invalid}";
 
     boolean formatted() default false;
+    
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

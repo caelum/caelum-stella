@@ -8,6 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
 
@@ -25,12 +26,15 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaIEValidator;
 public @interface IE {
 	String message() default "{ie_invalid}";
 
-	Class<?>[] groups() default {};
-
 	String ieField() default "ie";
 
 	String estadoField() default "estado";
 
 	boolean formatted() default false;
+	
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 
 }

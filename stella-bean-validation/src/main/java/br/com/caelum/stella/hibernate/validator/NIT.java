@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaNITValidator;
 
@@ -25,8 +26,11 @@ import br.com.caelum.stella.hibernate.validator.logic.StellaNITValidator;
 public @interface NIT {
 	String message() default "{nit_invalid}";
 
-	Class<?>[] groups() default {};
-
 	boolean formatted() default false;
+	
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 
 }

@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaAcceptAnyValidator;
 import br.com.caelum.stella.validation.AcceptAnyValidator.Documento;
@@ -31,5 +32,9 @@ public @interface AcceptAny {
 	boolean formatted() default false;
 
 	Documento[] documentos();
+	
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

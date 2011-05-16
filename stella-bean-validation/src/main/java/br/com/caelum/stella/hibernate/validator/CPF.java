@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.hibernate.validator.logic.StellaCPFValidator;
 
@@ -28,4 +29,8 @@ public @interface CPF {
 	String message() default "{cpf_invalid}";
 
 	boolean formatted() default false;
+    
+	Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

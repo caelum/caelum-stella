@@ -1,18 +1,31 @@
 package br.com.caelum.stella.hibernate.example;
 
-import org.hibernate.classic.Session;
-import org.hibernate.validator.InvalidStateException;
-import org.hibernate.validator.InvalidValue;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
+import org.hibernate.classic.Session;
+
+import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.hibernate.example.util.HibernateUtil;
 
 public class HibernatePersistenceExample {
+	
+	private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
 
     public static void main(String[] args) {
         Modelo valido = criaModeloValido();
+//        Set<ConstraintViolation<Modelo>> violationsForValido = validator.validate(valido);
+
+//        System.out.println(violationsForValido);
+        
         save(valido);
         Modelo invalido = criaModeloInvalido();
         save(invalido);
+//        Set<ConstraintViolation<Modelo>> violationsForInvalido = validator.validate(invalido);
+//        System.out.println(violationsForInvalido);
         listaModelosPersistidos();
     }
 
@@ -47,12 +60,12 @@ public class HibernatePersistenceExample {
             dao.save(modelo);
             System.out.println("Modelo válido: " + modelo);
             session.getTransaction().commit();
-        } catch (InvalidStateException e) {
+        } catch (ConstraintViolationException e) {
             System.out.println("Modelo inválido: " + modelo);
             System.out
                     .println("Listagem das mensagens de validação (obtidas do arquivo ValidatorMessages.properties):");
-            for (InvalidValue invalidValue : e.getInvalidValues()) {
-                System.out.println("\t" + invalidValue.getMessage());
+            for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
+                System.out.println("\t" + violation.getMessage());
             }
             session.getTransaction().rollback();
         } finally {
