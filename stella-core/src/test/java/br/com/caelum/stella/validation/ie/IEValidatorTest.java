@@ -18,21 +18,21 @@ import br.com.caelum.stella.validation.error.IEError;
 public abstract class IEValidatorTest {
 	private final MessageProducer messageProducer = Mockito.mock(MessageProducer.class);
 
-	private final String genericWrongCheckDigitUnformattedNewString;
+	private final String wrongCheckDigitUnformattedIE;
 
-	private final String genericValidUnformattedNewString;
+	private final String validUnformattedIE;
 
-	private final String genericValidFormattedNewString;
+	private final String validFormattedIE;
 
-	private final String[] genericValidFormattedValues;
+	private final String[] validFormattedValues;
 
 	public IEValidatorTest(String wrongCheckDigitUnformattedNewString, String validUnformattedNewString,
 			String validFormattedNewString, String[] validValues) {
 		super();
-		this.genericWrongCheckDigitUnformattedNewString = wrongCheckDigitUnformattedNewString;
-		this.genericValidUnformattedNewString = validUnformattedNewString;
-		this.genericValidFormattedNewString = validFormattedNewString;
-		this.genericValidFormattedValues = validValues;
+		this.wrongCheckDigitUnformattedIE = wrongCheckDigitUnformattedNewString;
+		this.validUnformattedIE = validUnformattedNewString;
+		this.validFormattedIE = validFormattedNewString;
+		this.validFormattedValues = validValues;
 	}
 
 
@@ -40,10 +40,10 @@ public abstract class IEValidatorTest {
 
 	@Test
 	public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-		getValidator(messageProducer, true).assertValid(genericValidFormattedNewString);
+		getValidator(messageProducer, true).assertValid(validFormattedIE);
 
 		try {
-			getValidator(messageProducer, true).assertValid(genericValidFormattedNewString);
+			getValidator(messageProducer, true).assertValid(validFormattedIE);
 		} catch (InvalidStateException ie) {
 			String expected = "IEError : INVALID CHECK DIGITS";
 			assertEquals(expected, ie.getInvalidMessages().get(0).getMessage());
@@ -56,7 +56,7 @@ public abstract class IEValidatorTest {
 	public void shouldNotValidateIEWithInvalidCharacter() {
 		Validator<String> validator = getValidator(messageProducer, false);
 		try {
-			validator.assertValid(genericValidUnformattedNewString.replaceFirst(".", "&"));
+			validator.assertValid(validUnformattedIE.replaceFirst(".", "&"));
 			fail();
 		} catch (InvalidStateException e) {
 			assertTrue(e.getInvalidMessages().size() == 1);
@@ -69,7 +69,7 @@ public abstract class IEValidatorTest {
 	public void shouldNotValidateIEWithLessDigitsThanAllowed() {
 		Validator<String> validator = getValidator(messageProducer, false);
 		try {
-			validator.assertValid(genericValidUnformattedNewString.replaceFirst(".", ""));
+			validator.assertValid(validUnformattedIE.replaceFirst(".", ""));
 			fail();
 		} catch (InvalidStateException e) {
 			assertTrue(e.getInvalidMessages().size() == 1);
@@ -79,10 +79,11 @@ public abstract class IEValidatorTest {
 	}
 
 	@Test
+	// IEMatoGrosso sobreescreve!
 	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
 		Validator<String> validator = getValidator(messageProducer, false);
 
-		String value = genericValidUnformattedNewString + "5";
+		String value = validUnformattedIE + "5";
 		try {
 			validator.assertValid(value);
 			fail();
@@ -90,14 +91,13 @@ public abstract class IEValidatorTest {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
 		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_DIGITS);
-
 	}
 
 	@Test
 	public void shouldNotValidateIEsWithCheckDigitWrong() {
 		Validator<String> validator = getValidator(messageProducer, false);
 
-		String value = genericWrongCheckDigitUnformattedNewString;
+		String value = wrongCheckDigitUnformattedIE;
 		try {
 			validator.assertValid(value);
 			fail();
@@ -112,7 +112,7 @@ public abstract class IEValidatorTest {
 	public void shouldValidateValidIE() {
 		Validator<String> validator = getValidator(messageProducer, true);
 
-		for (String validValue : genericValidFormattedValues) {
+		for (String validValue : validFormattedValues) {
 			try {
 				validator.assertValid(validValue);
 			} catch (InvalidStateException e) {
@@ -130,7 +130,7 @@ public abstract class IEValidatorTest {
 	public void shouldValidateValidFormattedNovaIE() {
 		Validator<String> validator = getValidator(messageProducer, true);
 
-		String[] validValues = { genericValidFormattedNewString };
+		String[] validValues = { validFormattedIE };
 		for (String validValue : validValues) {
 			try {
 				validator.assertValid(validValue);
@@ -166,7 +166,8 @@ public abstract class IEValidatorTest {
 
 		Validator<String> validator = getValidator(messageProducer, true);
 
-		String value = genericValidFormattedNewString.replace('-', ':');
+		String value = validFormattedIE.replace('-', ':');
+		 value = value.replace('/', ':');
 		try {
 			validator.assertValid(value);
 			fail();
