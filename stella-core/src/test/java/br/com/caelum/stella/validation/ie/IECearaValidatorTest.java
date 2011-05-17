@@ -1,20 +1,7 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.junit.Test;
-
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
-import br.com.caelum.stella.validation.error.IEError;
 
 public class IECearaValidatorTest extends IEValidatorTest {
 
@@ -23,6 +10,10 @@ public class IECearaValidatorTest extends IEValidatorTest {
 	 * 
 	 * Exemplo: CGF número 06.000.001-5 Exemplo Formatado: 06.998.161-2
 	 */
+
+	public IECearaValidatorTest() {
+		super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
+	}
 
 	private static final String wrongCheckDigitUnformattedString = "060000010";
 
