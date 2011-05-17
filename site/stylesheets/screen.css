@@ -305,6 +305,7 @@ a#signature:hover{color:#C90;}
 .box {
     float: left;
     margin-right: 16px;
+    height: 500px;
 }
 
 .wrap{

@@ -126,8 +126,8 @@ public class IEEspiritoSantoValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;
 
-    public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
+    public void assertValid(String ie) {
+        baseValidator.assertValid(getInvalidValues(ie));
     }
 
     public List<ValidationMessage> invalidMessagesFor(String cpf) {
