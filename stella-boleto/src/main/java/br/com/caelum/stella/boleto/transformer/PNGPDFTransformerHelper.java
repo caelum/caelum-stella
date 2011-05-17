@@ -156,15 +156,15 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 
-		this.writer.write(100, LINHA11, boleto.getSacado().getNome() + " "
-				+ boleto.getSacado().getCpf());
+		this.writer.write(100, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "") + " "
+				+ (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));
 
-		this.writer.write(100, LINHA12, boleto.getSacado().getEndereco());
+		this.writer.write(100, LINHA12, (boleto.getSacado().getEndereco() != null ? boleto.getSacado().getEndereco() : ""));
 
-		this.writer.write(100, LINHA13, boleto.getSacado().getCep() + " "
-				+ boleto.getSacado().getBairro() + " - "
-				+ boleto.getSacado().getCidade() + " "
-				+ boleto.getSacado().getUf());
+		this.writer.write(100, LINHA13, (boleto.getSacado().getCep() != null ? boleto.getSacado().getCep() : "") + " "
+				+ (boleto.getSacado().getBairro() != null ? boleto.getSacado().getBairro() : "") + " - "
+				+ (boleto.getSacado().getCidade() != null ? boleto.getSacado().getCidade() : "") + " "
+				+ (boleto.getSacado().getUf() != null ? boleto.getSacado().getUf() : ""));
 
 		Image imagemDoCodigoDeBarras = BarcodeGenerator
 				.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
