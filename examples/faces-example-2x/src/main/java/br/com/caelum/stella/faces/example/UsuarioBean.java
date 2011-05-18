@@ -9,8 +9,6 @@ import javax.faces.bean.RequestScoped;
  * @author Fabio Kung
  * @author Leonardo Bessa
  */
-@ManagedBean
-@RequestScoped
 public class UsuarioBean {
 
     private String cpf;

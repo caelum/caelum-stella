@@ -18,13 +18,13 @@
 <h:form>
   <h:panelGrid>
     <h:outputLabel for="CNPJ" value="CNPJ sem formatacao:"/>
-    <h:inputText id="CNPJ" value="#{UsuarioBean.cnpj}">
+    <h:inputText id="CNPJ" value="#{usuarioBean.cnpj}">
       <stella:validateCNPJ/>
     </h:inputText>
     <h:message for="CNPJ"/>
 
     <h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:"/>
-    <h:inputText id="CNPJFormatado" value="#{UsuarioBean.cnpjFormatado}">
+    <h:inputText id="CNPJFormatado" value="#{usuarioBean.cnpjFormatado}">
       <stella:validateCNPJ formatted="true"/>
     </h:inputText>
     <h:message for="CNPJFormatado"/>

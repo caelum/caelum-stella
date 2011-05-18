@@ -19,6 +19,22 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<version>6.1.7</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<strong>
+						<archiveClasses>false</archiveClasses>
+					</strong>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 	</build>
 
