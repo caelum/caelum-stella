@@ -17,8 +17,6 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * href="http://www.sintegra.gov.br/Cad_Estados/cad_AP.html">SINTEGRA - ROTEIRO
  * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
- * @author Leonardo Bessa
- * 
  */
 public class IEAmapaValidator extends AbstractIEValidator {
 

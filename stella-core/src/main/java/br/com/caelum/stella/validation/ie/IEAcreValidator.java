@@ -18,7 +18,6 @@ import br.com.caelum.stella.validation.Validator;
  * href="http://www.sintegra.gov.br/Cad_Estados/cad_AC.html">SINTEGRA - ROTEIRO
  * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
- * 
  */
 public class IEAcreValidator extends AbstractIEValidator {
 

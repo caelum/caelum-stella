@@ -24,8 +24,6 @@ import br.com.caelum.stella.validation.error.IEError;
  * href="http://www.sintegra.gov.br/Cad_Estados/cad_ES.html">SINTEGRA - ROTEIRO
  * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
- * @author Leonardo Bessa
- * 
  */
 public class IEEspiritoSantoValidator implements Validator<String> {
 
