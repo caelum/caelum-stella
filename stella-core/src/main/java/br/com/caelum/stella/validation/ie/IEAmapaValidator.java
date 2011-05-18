@@ -1,19 +1,12 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
-import br.com.caelum.stella.validation.Validator;
-import br.com.caelum.stella.validation.error.IEError;
 
 /**
  * <p>
@@ -27,7 +20,7 @@ import br.com.caelum.stella.validation.error.IEError;
  * @author Leonardo Bessa
  * 
  */
-public class IEAmapaValidator implements Validator<String> {
+public class IEAmapaValidator extends AbstractIEValidator {
 
     private static final int MOD = 11;
 
@@ -58,68 +51,44 @@ public class IEAmapaValidator implements Validator<String> {
 
     private static final ValidadorDeDV DVX_CHECKER_CASO3 = new ValidadorDeDV(DVX_INFO_CASO3);
 
-    private final boolean isFormatted;
-
     public static final Pattern FORMATED = Pattern.compile("(03)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(03)(\\d{3})(\\d{3})(\\d{1})");
+	/**
+	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
+	 */
+	public IEAmapaValidator() {
+		super(true);
+	}
 
-    /**
-     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
-     * {@linkplain SimpleMessageProducer} para geração de mensagens.
-     */
-    public IEAmapaValidator() {
-        this(true);
-    }
+	/**
+	 * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+	 * mensagens.
+	 * 
+	 * @param isFormatted
+	 *            considerar cadeia formatada quando <code>true</code>
+	 */
+	public IEAmapaValidator(boolean isFormatted) {
+		super(isFormatted);
+	}
 
-    /**
-     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
-     * mensagens.
-     * 
-     * @param isFormatted
-     *            considerar cadeia formatada quando <code>true</code>
-     */
-    public IEAmapaValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
-    }
+	public IEAmapaValidator(MessageProducer messageProducer, boolean isFormatted) {
+		super(messageProducer, isFormatted);
+	}
 
-    public IEAmapaValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = isFormatted;
-    }
 
-    private List<InvalidValue> getInvalidValues(String IE) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        errors.clear();
-        if (IE != null) {
-            String unformatedIE = checkForCorrectFormat(IE, errors);
-            if (errors.isEmpty()) {
-                if (!hasValidCheckDigits(unformatedIE)) {
-                    errors.add(IEError.INVALID_CHECK_DIGITS);
-                }
-            }
-        }
-        return errors;
-    }
+	@Override
+	protected Pattern getUnformattedPattern() {
+		return UNFORMATED;
+	}
 
-    private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
-        String unformatedIE = null;
-        if (isFormatted) {
-            if (!(FORMATED.matcher(ie).matches())) {
-                errors.add(IEError.INVALID_FORMAT);
-            }
-            unformatedIE = ie.replaceAll("\\D", "");
-        } else {
-            if (!UNFORMATED.matcher(ie).matches()) {
-                errors.add(IEError.INVALID_DIGITS);
-            }
-            unformatedIE = ie;
-        }
-        return unformatedIE;
-    }
-
-    private boolean hasValidCheckDigits(String value) {
+	@Override
+	protected Pattern getFormattedPattern() {
+		return FORMATED;
+	}
+	
+    protected boolean hasValidCheckDigits(String value) {
         int ie = Integer.parseInt(value) / 10;
         boolean result;
         /*
@@ -145,24 +114,5 @@ public class IEAmapaValidator implements Validator<String> {
         return result;
     }
 
-    public boolean isEligible(String value) {
-        boolean result;
-        if (isFormatted) {
-            result = FORMATED.matcher(value).matches();
-        } else {
-            result = UNFORMATED.matcher(value).matches();
-        }
-        return result;
-    }
-
-    private final BaseValidator baseValidator;
-
-    public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
-    }
-
-    public List<ValidationMessage> invalidMessagesFor(String cpf) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
-    }
 
 }

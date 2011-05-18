@@ -20,8 +20,7 @@ import br.com.caelum.stella.validation.Validator;
  * 
  * 
  */
-public class IEAcreValidator extends AbstractIEValidator implements
-		Validator<String> {
+public class IEAcreValidator extends AbstractIEValidator {
 
 	public static final Pattern FORMATED = Pattern.compile("(01)[.](\\d{3})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
 
@@ -83,6 +82,7 @@ public class IEAcreValidator extends AbstractIEValidator implements
 	protected Pattern getFormattedPattern() {
 		return FORMATED;
 	}
+	
 	@Override
 	protected boolean hasValidCheckDigits(String value) {
 		String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER
