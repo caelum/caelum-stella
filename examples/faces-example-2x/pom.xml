@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -8,9 +7,9 @@
 		<artifactId>caelum-stella</artifactId>
 		<version>2.0-beta1</version>
 	</parent>
-	<artifactId>faces-example</artifactId>
+	<artifactId>faces-example-2x</artifactId>
 	<packaging>war</packaging>
-	<name>Example: Stella Faces</name>
+	<name>Example: Stella Faces 2x</name>
 	<url>http://stella.caelum.com.br/</url>
 
 	<build>
@@ -29,11 +28,6 @@
 			<artifactId>caelum-stella-faces</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.sun.facelets</groupId>
-			<artifactId>jsf-facelets</artifactId>
-			<version>1.1.11</version>
-		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -44,44 +38,26 @@
 			</activation>
 			<dependencies>
 				<dependency>
-					<groupId>javax.faces</groupId>
+					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
-					<version>1.2_02</version>
+					<version>2.0.2</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.faces</groupId>
+					<artifactId>jsf-impl</artifactId>
+					<version>2.0.2</version>
 				</dependency>
 				<dependency>
 					<groupId>javax.servlet</groupId>
 					<artifactId>jstl</artifactId>
 					<version>1.2</version>
 				</dependency>
-				<dependency>
-					<groupId>javax.faces</groupId>
-					<artifactId>jsf-impl</artifactId>
-					<version>1.2-b19</version>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>myfaces</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.apache.myfaces.core</groupId>
-					<artifactId>myfaces-api</artifactId>
-					<version>1.2.3</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.myfaces.core</groupId>
-					<artifactId>myfaces-impl</artifactId>
-					<version>1.2.3</version>
-				</dependency>
 			</dependencies>
 			<repositories>
-				<!-- repository for tomahawk -->
 				<repository>
-					<id>ibiblio-repo</id>
-					<name>ibiblio-repo</name>
-					<url>
-						http://mirrors.ibiblio.org/pub/mirrors/maven2/
-					</url>
+					<id>maven2-repository.dev.java.net</id>
+					<name>Java.net Repository for Maven</name>
+					<url>http://download.java.net/maven/2</url>
 				</repository>
 			</repositories>
 		</profile>
