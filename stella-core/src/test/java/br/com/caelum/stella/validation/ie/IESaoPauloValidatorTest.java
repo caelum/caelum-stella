@@ -1,181 +1,121 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@RunWith(value = Suite.class)
+@SuiteClasses(value = { IESaoPauloValidatorTest.IESaoPauloComercioIndustria.class,
+		IESaoPauloValidatorTest.IESaoPauloProdutorRural.class })
 public class IESaoPauloValidatorTest {
+	/*
+	 * Este teste é um dos mais complexos. Este IESaoPauloValidator suporta o
+	 * equivalente ao IESaoPauloProdutorRuralValidator E
+	 * IESaoPauloComercioIndustriaValidator utilizando o
+	 * LogicOrComposedValidator internamente.
+	 * 
+	 * O que eu fiz foi criar 2 classes internas que copiam os exemplos do
+	 * IESaoPauloProdutorRuralValidatorTest e
+	 * IESaoPauloComercioIndustriaValidatorTest e ambos usam o
+	 * IESaoPauloValidatorTest. Esta abordagem não funcionou para 3 métodos de
+	 * teste genérico que foram sbreescritos:
+	 * shouldNotValidateIEWithLessDigitsThanAllowed e
+	 * shouldNotValidateIEWithMoreDigitsThanAlowed que não fazem sentido pois os
+	 * limites de caracter são muito distantes e o terceiro método
+	 * shouldNotValidateIEWithInvalidCharacter que ao inves de lançar
+	 * IEError.INVALID_DIGITS lança IEError.INVALID_FORMAT por causa da
+	 * utilização do LogicOrComposedValidator
+	 */
 
-    private final String validString = "P-01100424.3/002";
+	public static IESaoPauloValidator newValidator(MessageProducer messageProducer, boolean isFormatted) {
+		return new IESaoPauloValidator(messageProducer, isFormatted);
+	}
 
-    private final String wrongCheckDigitString = "P-01100424.0/002";
+	public static class IESaoPauloComercioIndustria extends IEValidatorTest {
 
-    private Validator<String> newValidator() {
-        return new IESaoPauloValidator();
-    }
+		public IESaoPauloComercioIndustria() {
+			super(wrongCheckDigitString, validUnformattedString, validString, validValues);
+		}
 
-    @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        newValidator().assertValid(validString);
+		private static final String wrongCheckDigitString = "110042490104";
+		private static final String validUnformattedString = "110042490114";
+		private static final String validString = "110.042.490.114";
+		// TODO adicionar mais IE validos para São Paulo
+		private static final String[] validValues = { validString };
 
-        try {
-            newValidator().assertValid(wrongCheckDigitString);
-        } catch (RuntimeException e) {
-            if (e instanceof InvalidStateException) {
-                InvalidStateException invalidStateException = (InvalidStateException) e;
-                String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
-            } else {
-                fail();
-            }
-        }
-    }
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIERural() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(messageProducer, false);
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-        List<ValidationMessage> errors;
-        // VALID IE = P-01100424.3/002
-        String value = "P011004243002";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
 
-    @SuppressWarnings("unchecked")
-    @Test(expected = InvalidStateException.class)
-    public void shouldNotValidateValidIERuralWithWrongFormat() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IESaoPauloValidator(messageProducer, false);
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
+	}
 
-        // VALID IE = P-01100424.3/002
-        try {
-            String value = "L011004243002";
-            validator.assertValid(value);
-            fail();
-        } catch (RuntimeException e) {
-            throw e;
-        } finally {
-            mockery.assertIsSatisfied();
-        }
-    }
+	public static class IESaoPauloProdutorRural extends IEValidatorTest {
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIEParaComercioIndustria() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(messageProducer, false);
+		public IESaoPauloProdutorRural() {
+			super(wrongCheckDigitString, validUnformattedString, validString, validValues);
+		}
 
-        List<ValidationMessage> errors;
+		private static final String wrongCheckDigitString = "P011004245002";
+		private static final String validUnformattedString = "P011004243002";
+		private static final String validString = "P-01100424.3/002";
+		// TODO adicionar mais IE validos para São Paulo
+		private static final String[] validValues = { validString };
 
-        String value = "110042490114";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIERural() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
 
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(messageProducer, true);
-        List<ValidationMessage> errors;
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
 
-        // VALID IE = P-01100424.3/002
-        String value = "P-01100424.3/002";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIEParaComercioIndustria() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(messageProducer, true);
-        List<ValidationMessage> errors;
-
-        // VALID IE = 110.042.490.114
-        String value = "110.042.490.114";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateNullIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-        String value = null;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
+	}
 }

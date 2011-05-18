@@ -2,7 +2,6 @@ package br.com.caelum.stella.validation.ie;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -107,7 +106,6 @@ public class IERondoniaValidatorTest {
 		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
 			return newValidator(messageProducer, isFormatted);
 		}
-		
 
 		@Override
 		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
