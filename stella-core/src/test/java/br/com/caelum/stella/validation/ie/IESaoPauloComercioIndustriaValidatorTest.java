@@ -1,229 +1,47 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
 import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IESaoPauloComercioIndustriaValidatorTest {
+public class IESaoPauloComercioIndustriaValidatorTest extends IEValidatorTest {
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithInvalidCharacter() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+	public IESaoPauloComercioIndustriaValidatorTest() {
+		super(wrongCheckDigitString, validUnformattedString, validString, validValues);
+	}
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-        try {
-            validator.assertValid("1234567a9012");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+	private static final String wrongCheckDigitString = "110042490104";
+	private static final String wrongSecondCheckDigitString = "110042490115";
+	private static final String validUnformattedString = "110042490114";
+	private static final String validString = "110.042.490.114";
+	// TODO adicionar mais IE validos para São Paulo
+	private static final String[] validValues = { validString };
 
-        mockery.assertIsSatisfied();
-    }
+	@Override
+	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+		return new IESaoPauloComercioIndustriaValidator(messageProducer, isFormatted);
+	}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithLessDigitsThanAllowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+	@Test
+	public void shouldNotValidateIEsWithSecondCheckDigitWrong() {
+		Validator<String> validator = getValidator(messageProducer, false);
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-        try {
-            validator.assertValid("12345678901");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+		try {
+			validator.assertValid(wrongSecondCheckDigitString);
+			fail();
+		} catch (InvalidStateException e) {
+			assertEquals(1, e.getInvalidMessages().size());
+		}
 
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-
-        String value = "1234567890123";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithCheckDigitsWithFirstCheckDigitWrong() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-
-        // VALID IE = 110.042.490.114
-        String value = "110042490104";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithCheckDigitsWithSecondCheckDigitWrong() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-
-        // VALID IE = 110.042.490.114
-        String value = "110042490118";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-
-        String value = "110042490114";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateNullIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-        String value = null;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, true);
-        List<ValidationMessage> errors;
-
-        // VALID IE = 110.042.490.114
-        String value = "110.042.490.114";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateValidUnformattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IESaoPauloComercioIndustriaValidator(messageProducer, true);
-
-        // VALID IE = 110.042.490.114
-        String value = "110.0424.490.114";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_CHECK_DIGITS);
+	}
 
 }

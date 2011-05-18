@@ -70,8 +70,6 @@ public class IEMatoGrossoValidatorTest extends IEValidatorTest {
 	@Test
 	@Override
 	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-		MessageProducer messageProducer = Mockito.mock(MessageProducer.class);
-
 		Validator<String> validator = getValidator(messageProducer, false);
 
 		String value = validUnformattedString + "578";

@@ -77,7 +77,6 @@ public class IEPernambucoValidatorTest {
 
 		@Override
 		public void shouldNotValidateIEWithInvalidCharacter() {
-			MessageProducer messageProducer = mock(MessageProducer.class);
 			Validator<String> validator = getValidator(messageProducer, false);
 			try {
 				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
@@ -126,7 +125,6 @@ public class IEPernambucoValidatorTest {
 
 		@Override
 		public void shouldNotValidateIEWithInvalidCharacter() {
-			MessageProducer messageProducer = mock(MessageProducer.class);
 			Validator<String> validator = getValidator(messageProducer, false);
 			try {
 				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));

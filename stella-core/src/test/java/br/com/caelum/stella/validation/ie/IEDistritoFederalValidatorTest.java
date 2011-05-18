@@ -39,7 +39,6 @@ public class IEDistritoFederalValidatorTest extends IEValidatorTest {
 
 	@Test
 	public void shouldNotValidateIEWithSecondCheckDigitWrong() {
-		MessageProducer messageProducer = Mockito.mock(MessageProducer.class);
 		Validator<String> validator = getValidator(messageProducer, false);
 
 		try {

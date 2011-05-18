@@ -14,7 +14,7 @@ import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 public abstract class IEValidatorTest {
-	private final MessageProducer messageProducer = mock(MessageProducer.class);
+	protected final MessageProducer messageProducer = mock(MessageProducer.class);
 
 	private final String wrongCheckDigitUnformattedIE;
 
@@ -157,8 +157,6 @@ public abstract class IEValidatorTest {
 
 	@Test
 	public void shouldNotValidateValidUnformattedIE() {
-		MessageProducer messageProducer = mock(MessageProducer.class);
-
 		Validator<String> validator = getValidator(messageProducer, true);
 
 		String value = validFormattedIE.replace('-', ':');

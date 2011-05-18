@@ -25,7 +25,6 @@ public class IERioGrandeDoSulValidatorTest extends IEValidatorTest {
 
 	@Test
 	public void shouldNotValidateIEWithInvalidMunicipalityWithZeros() {
-		MessageProducer messageProducer = mock(MessageProducer.class);
 		Validator<String> validator = getValidator(messageProducer, false);
 
 		// VALID IE = 224/3658792

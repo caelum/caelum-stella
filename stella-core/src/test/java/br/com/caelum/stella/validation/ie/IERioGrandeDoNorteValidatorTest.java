@@ -44,7 +44,6 @@ public class IERioGrandeDoNorteValidatorTest extends IEValidatorTest {
 	@Test
 	@Override
 	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-		MessageProducer messageProducer = mock(MessageProducer.class);
 		Validator<String> validator = getValidator(messageProducer, false);
 
 		String value = validUnformattedStringWithTenDigits + "5";
