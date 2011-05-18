@@ -9,8 +9,6 @@ import br.com.caelum.stella.faces.validation.StellaIEValidator;
 /**
  * @author Fabio Kung
  */
-@ManagedBean
-@RequestScoped
 public class EmpresaBean {
 
     private StellaIEValidator ieValidator;
