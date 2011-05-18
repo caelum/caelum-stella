@@ -39,7 +39,7 @@ public class IEAlagoasValidatorTest extends IEValidatorTest {
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
-		return IEValidators.ALAGOAS.build(messageProducer, isFormatted);
+		return new IEAlagoasValidator(messageProducer, isFormatted);
 	}
 
 }

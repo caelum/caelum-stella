@@ -34,7 +34,7 @@ public class IEAcreValidatorTest extends IEValidatorTest {
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
-		return IEValidators.ACRE.build(messageProducer, isFormatted);
+		return new IEAcreValidator(messageProducer, isFormatted);
 	}
 
 }
