@@ -17,18 +17,18 @@ import br.com.caelum.stella.validation.error.NITError;
 /**
  * @author Fabio Kung
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class StellaMessagesTest {
-    @SuppressWarnings("unchecked")
-    private static final Class[] ERROR_CLASSES = { CNPJError.class, CPFError.class, IEError.class, NITError.class };
+	private static final Class[] ERROR_CLASSES = { CNPJError.class, CPFError.class, IEError.class, NITError.class };
 
     @Test
-    @SuppressWarnings("unchecked")
     public void deveConterMensagensPadraoParaTodosOsErrosPossiveis() throws Exception {
         Locale locale = new Locale("pt", "BR");
         ResourceBundle messages = ResourceBundle.getBundle("StellaMessages", locale);
         ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(messages);
+        
         for (Class c : ERROR_CLASSES) {
-            InvalidValue[] errors = (InvalidValue[]) c.getMethod("values").invoke(null);
+			InvalidValue[] errors = (InvalidValue[]) c.getMethod("values").invoke(null);
             for (InvalidValue error : errors) {
                 String errorKey = producer.messageKeyFor(locale, c, error);
                 assertNotNull(messages.getString(errorKey));
