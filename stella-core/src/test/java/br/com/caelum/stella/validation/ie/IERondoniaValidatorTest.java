@@ -1,247 +1,136 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@RunWith(value = Suite.class)
+@SuiteClasses(value = { IERondoniaValidatorTest.IERondoniaValidatorFormatoUm.class,
+		IERondoniaValidatorTest.IERondoniaValidatorFormatoDois.class })
 public class IERondoniaValidatorTest {
 
-    /*
-     * IE validas 00000001721593 00000001721585 00000001721577 00000001721097
-     * 00000001721569 00000001721551 00000001721542 00000001721534
-     * 00000001721526 00000001721518 00000001721283 00000001721267
-     * 00000001721500 00000001721496 00000001721488 00000001721470
-     * 00000001721461 00000001721453 00000001721411 00000001721313
-     * 00000001721445 00000001721437
-     */
+	/*
+	 * Este teste é um dos mais complexos. Este IERondoniaValidatorTest suporta
+	 * o equivalente ao IERondoniaValidatorCasoUmTest E
+	 * IERondoniaValidatorCasoDoisTest utilizando o LogicOrComposedValidator
+	 * internamente.
+	 * 
+	 * O que eu fiz foi criar 2 classes internas que copiam os exemplos do
+	 * IERondoniaValidatorCasoUmTest e IERondoniaValidatorCasoDoisTest e ambos
+	 * usam o IERondoniaValidator. Esta abordagem não funcionou para 3 métodos
+	 * de teste genérico que foram sbreescritos:
+	 * shouldNotValidateIEWithLessDigitsThanAllowed e
+	 * shouldNotValidateIEWithMoreDigitsThanAlowed que não fazem sentido pois os
+	 * limites de caracter são muito distantes e o terceiro método
+	 * shouldNotValidateIEWithInvalidCharacter que ao inves de lançar
+	 * IEError.INVALID_DIGITS lança IEError.INVALID_FORMAT por causa da
+	 * utilização do LogicOrComposedValidator
+	 */
 
-    private final String validString = "101.62521-3";
+	public static IERondoniaValidator newValidator(MessageProducer messageProducer, boolean isFormatted) {
+		return new IERondoniaValidator(messageProducer, isFormatted);
+	}
 
-    private final String wrongCheckDigitString = "101.62521-8";
+	public static class IERondoniaValidatorFormatoUm extends IEValidatorTest {
+		public IERondoniaValidatorFormatoUm() {
+			super(wrongCheckDigitUnformatted, validUnformattedString, validFormattedString, validValues);
+		}
 
-    private Validator<String> newValidator() {
-        return new IERondoniaValidator();
-    }
+		private static final String wrongCheckDigitUnformatted = "200400403";
 
-    @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        newValidator().assertValid(validString);
+		private static final String validUnformattedString = "200400401";
 
-        try {
-            newValidator().assertValid(wrongCheckDigitString);
-        } catch (RuntimeException e) {
-            if (e instanceof InvalidStateException) {
-                InvalidStateException invalidStateException = (InvalidStateException) e;
-                String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
-            } else {
-                fail();
-            }
-        }
-    }
+		private static final String validFormattedString = "101.62521-3";
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithInvalidCharacter() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		private static final String[] validValues = { "101.62521-3", "101.20010-7", "101.91080-5", "101.54055-2",
+				"203.01019-7", "403.51417-9", "209.49504-2", "109.47520-3", "401.51033-5", "203.40481-1" };
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IERondoniaValidator(messageProducer, false);
-        try {
-            validator.assertValid("172j518");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithLessDigitsThanAllowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IERondoniaValidator(messageProducer, false);
-        try {
-            validator.assertValid("172151");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			MessageProducer messageProducer = mock(MessageProducer.class);
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
 
-        mockery.assertIsSatisfied();
-    }
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+	}
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IERondoniaValidator(messageProducer, false);
+	public static class IERondoniaValidatorFormatoDois extends IEValidatorTest {
 
-        String value = "17215184";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+		public IERondoniaValidatorFormatoDois() {
+			super(wrongCheckDigitUnformatted, validUnformattedString, validFormattedString, validValues);
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		private static final String wrongCheckDigitUnformatted = "00000001721489";
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		private static final String validUnformattedString = "00000001721488";
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
-            }
-        });
-        Validator validator = new IERondoniaValidator(messageProducer, false);
+		private static final String validFormattedString = "0000000172159-3";
 
-        // VALID IE = 00000001721593
-        String value = "00000001721597";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
+		private static final String[] validValues = { "0000000172159-3", "0000000172158-5", "0000000172157-7",
+				"0000000172109-7", "0000000172156-9", "0000000172154-2", "0000000172155-1", "0000000172153-4",
+				"0000000172152-6", "0000000172151-8", "0000000172128-3", "0000000172126-7", "0000000172150-0",
+				"0000000172149-6", "0000000172148-8", "0000000172147-0", "0000000172146-1", "0000000172145-3",
+				"0000000058712-5", "0000000172131-3", "0000000043700-0", "0000000050046-1", "0000000058712-5",
+				"0000000172131-3", "0000000172144-5", "0000000172143-7" };
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
+		
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(messageProducer, false);
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-        List<ValidationMessage> errors;
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
 
-        String[] validValues = { "101625213", "00000001721593", "00000001721585", "00000001721577", "00000001721097",
-                "00000001721569", "00000001721542", "00000001721551", "00000001721534", "00000001721526",
-                "00000001721518", "00000001721283", "00000001721267", "00000001721500", "00000001721496",
-                "00000001721488", "00000001721470", "00000001721461", "00000001721453", "00000000587125",
-                "00000001721313", "00000000437000", "00000000500461", "00000000587125", "00000001721313",
-                "00000001721445", "00000001721437", "101200107", "101910805", "101540552", "203010197", "403514179",
-                "209495042", "109475203", "401510335", "203404811", "00000001721411" };
-        for (String validValue : validValues) {
-            try {
-                validator.assertValid(validValue);
-            } catch (InvalidStateException e) {
-                fail();
-            }
-            errors = validator.invalidMessagesFor(validValue);
-            assertTrue(errors.isEmpty());
-        }
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			MessageProducer messageProducer = mock(MessageProducer.class);
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
 
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateNullIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-        String value = null;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IERondoniaValidator(messageProducer, true);
-        List<ValidationMessage> errors;
-
-        // VALID IE = 101.62521-3
-        String value = "101.62521-3";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateValidUnformattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IERondoniaValidator(messageProducer, true);
-
-        // VALID IE = 101.62521-3
-        String value = "101.62521*3";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
+	}
 
 }

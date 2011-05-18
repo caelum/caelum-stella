@@ -24,13 +24,13 @@ public abstract class IEValidatorTest {
 
 	private final String[] validFormattedValues;
 
-	public IEValidatorTest(String wrongCheckDigitUnformattedNewString, String validUnformattedNewString,
-			String validFormattedNewString, String[] validValues) {
+	public IEValidatorTest(String wrongCheckDigitUnformattedIE, String validUnformattedIE,
+			String validFormattedIE, String[] validFormattedValues) {
 		super();
-		this.wrongCheckDigitUnformattedIE = wrongCheckDigitUnformattedNewString;
-		this.validUnformattedIE = validUnformattedNewString;
-		this.validFormattedIE = validFormattedNewString;
-		this.validFormattedValues = validValues;
+		this.wrongCheckDigitUnformattedIE = wrongCheckDigitUnformattedIE;
+		this.validUnformattedIE = validUnformattedIE;
+		this.validFormattedIE = validFormattedIE;
+		this.validFormattedValues = validFormattedValues;
 	}
 
 	protected abstract Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted);
@@ -54,7 +54,7 @@ public abstract class IEValidatorTest {
 			validator.assertValid(validUnformattedIE.replaceFirst(".", "&"));
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
+			assertEquals(1, e.getInvalidMessages().size());
 		}
 
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
@@ -67,14 +67,14 @@ public abstract class IEValidatorTest {
 			validator.assertValid(validUnformattedIE.replaceFirst(".", ""));
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
+			assertEquals(1, e.getInvalidMessages().size());
 		}
 
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
 	}
 
 	@Test
-	// IEMatoGrosso sobreescreve!
+	// IEMatoGrosso e IERioGrandeDoNorte sobreescrevem
 	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
 		Validator<String> validator = getValidator(messageProducer, false);
 
@@ -83,7 +83,7 @@ public abstract class IEValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
+			assertEquals(1, e.getInvalidMessages().size());
 		}
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
 	}
@@ -97,7 +97,7 @@ public abstract class IEValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
+			assertEquals(1, e.getInvalidMessages().size());
 		}
 
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_CHECK_DIGITS);
@@ -172,7 +172,7 @@ public abstract class IEValidatorTest {
 			validator.assertValid(value);
 			fail();
 		} catch (InvalidStateException e) {
-			assertTrue(e.getInvalidMessages().size() == 1);
+			assertEquals(1, e.getInvalidMessages().size());
 		}
 
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);

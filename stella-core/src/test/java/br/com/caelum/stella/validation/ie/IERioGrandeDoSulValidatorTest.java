@@ -1,281 +1,55 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
 import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
-public class IERioGrandeDoSulValidatorTest {
+public class IERioGrandeDoSulValidatorTest extends IEValidatorTest {
 
-    private final String validString = "224/3658792";
+	public IERioGrandeDoSulValidatorTest() {
+		super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
+	}
 
-    private final String wrongCheckDigitString = "224/3658793";
+	private static final String validFormattedString = "224/3658792";
+	private static final String validUnformattedString = "2243658792";
+	private static final String wrongCheckDigitUnformattedString = "2243658791";
+	private static final String[] validValues = { validFormattedString };
 
-    private Validator<String> newValidator() {
-        return new IERioGrandeDoSulValidator();
-    }
+	@Test
+	public void shouldNotValidateIEWithInvalidMunicipalityWithZeros() {
+		MessageProducer messageProducer = mock(MessageProducer.class);
+		Validator<String> validator = getValidator(messageProducer, false);
 
-    @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        newValidator().assertValid(validString);
+		// VALID IE = 224/3658792
+		String value1 = "0003658791";
+		try {
+			validator.assertValid(value1);
+			fail();
+		} catch (InvalidStateException e) {
+			assertEquals(1, e.getInvalidMessages().size());
+		}
 
-        try {
-            newValidator().assertValid(wrongCheckDigitString);
-        } catch (RuntimeException e) {
-            if (e instanceof InvalidStateException) {
-                InvalidStateException invalidStateException = (InvalidStateException) e;
-                String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
-            } else {
-                fail();
-            }
-        }
-    }
+		String value2 = "0003658792";
+		try {
+			validator.assertValid(value2);
+			fail();
+		} catch (InvalidStateException e) {
+			assertEquals(2, e.getInvalidMessages().size());
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithInvalidCharacter() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		verify(messageProducer, times(2)).getMessage(IEError.INVALID_MUNICIPALITY);
+	}
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-        try {
-            validator.assertValid("1234-67890");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithLessDigitsThanAllowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-        try {
-            validator.assertValid("123456789");
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_DIGITS);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        String value = "12345678901";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithCheckDigitsWithCheckDigitWrong() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_CHECK_DIGITS);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        // VALID IE = 224/3658792
-        String value = "2243658793";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithInvalidMunicipality() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_MUNICIPALITY);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        // VALID IE = 224/3658792
-        String value = "4683658797";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateIEWithInvalidMunicipalityWithZeros() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_MUNICIPALITY);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        // VALID IE = 224/3658792
-        String value = "0003658791";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-
-        // VALID IE = 224/3658792
-        String value = "2243658792";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateNullIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, false);
-
-        List<ValidationMessage> errors;
-        String value = null;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations());
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, true);
-        List<ValidationMessage> errors;
-
-        // VALID IE = 224/3658792
-        String value = "224/3658792";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
-
-        mockery.assertIsSatisfied();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotValidateValidUnformattedIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(IEError.INVALID_FORMAT);
-            }
-        });
-        Validator validator = new IERioGrandeDoSulValidator(messageProducer, true);
-
-        // VALID IE = 224/3658792
-        String value = "224*3658792";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
-    }
-
+	@Override
+	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+		return new IERioGrandeDoSulValidator(messageProducer, isFormatted);
+	}
 }
