@@ -1,13 +1,11 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -16,7 +14,7 @@ import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 public abstract class IEValidatorTest {
-	private final MessageProducer messageProducer = Mockito.mock(MessageProducer.class);
+	private final MessageProducer messageProducer = mock(MessageProducer.class);
 
 	private final String wrongCheckDigitUnformattedIE;
 
@@ -35,13 +33,10 @@ public abstract class IEValidatorTest {
 		this.validFormattedValues = validValues;
 	}
 
-
 	protected abstract Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted);
 
 	@Test
 	public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-		getValidator(messageProducer, true).assertValid(validFormattedIE);
-
 		try {
 			getValidator(messageProducer, true).assertValid(validFormattedIE);
 		} catch (InvalidStateException ie) {
@@ -62,7 +57,7 @@ public abstract class IEValidatorTest {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
 
-		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_DIGITS);
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
 	}
 
 	@Test
@@ -75,7 +70,7 @@ public abstract class IEValidatorTest {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
 
-		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_DIGITS);
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
 	}
 
 	@Test
@@ -90,7 +85,7 @@ public abstract class IEValidatorTest {
 		} catch (InvalidStateException e) {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
-		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_DIGITS);
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_DIGITS);
 	}
 
 	@Test
@@ -105,7 +100,7 @@ public abstract class IEValidatorTest {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
 
-		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_CHECK_DIGITS);
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_CHECK_DIGITS);
 	}
 
 	@Test
@@ -122,7 +117,7 @@ public abstract class IEValidatorTest {
 			assertTrue(errors.isEmpty());
 		}
 
-		Mockito.verify(messageProducer, Mockito.never()).getMessage(Mockito.any(IEError.class));
+		verify(messageProducer, never()).getMessage(any(IEError.class));
 
 	}
 
@@ -141,7 +136,7 @@ public abstract class IEValidatorTest {
 			assertTrue(errors.isEmpty());
 		}
 
-		Mockito.verify(messageProducer, Mockito.never()).getMessage(Mockito.any(IEError.class));
+		verify(messageProducer, never()).getMessage(any(IEError.class));
 	}
 
 	@Test
@@ -157,17 +152,22 @@ public abstract class IEValidatorTest {
 		errors = validator.invalidMessagesFor(value);
 		assertTrue(errors.isEmpty());
 
-		Mockito.verify(messageProducer, Mockito.never()).getMessage(Mockito.any(IEError.class));
+		verify(messageProducer, never()).getMessage(any(IEError.class));
 	}
 
 	@Test
 	public void shouldNotValidateValidUnformattedIE() {
-		MessageProducer messageProducer = Mockito.mock(MessageProducer.class);
+		MessageProducer messageProducer = mock(MessageProducer.class);
 
 		Validator<String> validator = getValidator(messageProducer, true);
 
 		String value = validFormattedIE.replace('-', ':');
-		 value = value.replace('/', ':');
+		if(value.equals(validFormattedIE)) {
+			value = value.replace('/', ':');
+			if(value.equals(validFormattedIE)) {
+				value = value.replace('.', ':');
+			}
+		}
 		try {
 			validator.assertValid(value);
 			fail();
@@ -175,7 +175,7 @@ public abstract class IEValidatorTest {
 			assertTrue(e.getInvalidMessages().size() == 1);
 		}
 
-		Mockito.verify(messageProducer, Mockito.times(1)).getMessage(IEError.INVALID_FORMAT);
+		verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
 	}
 
 }

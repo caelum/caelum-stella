@@ -1,156 +1,142 @@
 package br.com.caelum.stella.validation.ie;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 import br.com.caelum.stella.MessageProducer;
-import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.caelum.stella.validation.Validator;
+import br.com.caelum.stella.validation.error.IEError;
 
+@RunWith(value = Suite.class)
+@SuiteClasses(value = { IEPernambucoValidatorTest.IEPernambucoValidatorAntigoFormato.class,
+		IEPernambucoValidatorTest.IEPernambucoValidatorNovoFormato.class })
 public class IEPernambucoValidatorTest {
+	
+	/*
+	 * Este teste é um dos mais complexos. Este IEPernambucoValidator suporta o equivalente ao
+	 * IEPernambucoAntigaValidator E IEPernambucoNovaValidator utilizando o LogicOrComposedValidator
+	 * internamente.
+	 * 
+	 * O que eu fiz foi criar 2 classes internas que copiam os exemplos do IEPernambucoAntigaValidatorTest
+	 * e IEPernambucoNovaValidatorTest e ambos usam o IEPernambucoValidator.
+	 * Esta abordagem não funcionou para 3 métodos de teste genérico que foram sbreescritos:
+	 * shouldNotValidateIEWithLessDigitsThanAllowed e shouldNotValidateIEWithMoreDigitsThanAlowed 
+	 * que não fazem sentido pois os limites de caracter são muito distantes
+	 * e o terceiro método shouldNotValidateIEWithInvalidCharacter que ao inves de lançar
+	 * IEError.INVALID_DIGITS lança IEError.INVALID_FORMAT por causa da utilização do LogicOrComposedValidator
+	 * 
+	 */
+	
+	
 
-    private final String validString = "18.1.001.0000004-9";
+	public static IEPernambucoValidator newValidator(MessageProducer messageProducer, boolean isFormatted) {
+		return new IEPernambucoValidator(messageProducer, isFormatted);
+	}
 
-    private final String wrongCheckDigitString = "18.1.001.0000004-3";
+	public static class IEPernambucoValidatorAntigoFormato extends IEValidatorTest {
 
-    private Validator<String> newValidator() {
-        return new IEPernambucoValidator();
-    }
+		/*
+		 * IE validas
+		 * 
+		 * 18.1.001.0000004-9 18100100000049
+		 */
 
-    @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        newValidator().assertValid(validString);
+		public IEPernambucoValidatorAntigoFormato() {
+			super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
+		}
 
-        try {
-            newValidator().assertValid(wrongCheckDigitString);
-        } catch (RuntimeException e) {
-            if (e instanceof InvalidStateException) {
-                InvalidStateException invalidStateException = (InvalidStateException) e;
-                String expected = "IEError : INVALID CHECK DIGITS";
-                assertEquals(expected, invalidStateException.getInvalidMessages().get(0).getMessage());
-            } else {
-                fail();
-            }
-        }
-    }
+		private static final String wrongCheckDigitUnformattedString = "18100100000048";
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIEAntiga() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(messageProducer, false);
+		private static final String validUnformattedString = "18100100000049";
 
-        List<ValidationMessage> errors;
-        // VALID IE = 18100100000049
-        String value = "18100100000049";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		private static final String validFormattedString = "18.1.001.0000004-9";
 
-        mockery.assertIsSatisfied();
-    }
+		// TODO Adicionar mais IE validas
+		private static final String[] validValues = { validFormattedString };
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidIENova() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(messageProducer, false);
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
 
-        List<ValidationMessage> errors;
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-        String value = "032141840";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			MessageProducer messageProducer = mock(MessageProducer.class);
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIEAntiga() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
+	}
 
-        mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(messageProducer, true);
-        List<ValidationMessage> errors;
+	public static class IEPernambucoValidatorNovoFormato extends IEValidatorTest {
 
-        // VALID IE = 18.1.001.0000004-9
-        String value = "18.1.001.0000004-9";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		/*
+		 * IE validas
+		 * 
+		 * 0321418-40 032141840
+		 */
 
-        mockery.assertIsSatisfied();
-    }
+		public IEPernambucoValidatorNovoFormato() {
+			super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
+		}
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateValidFormattedIENova() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+		private static final String wrongCheckDigitUnformattedString = "032141849";
 
-        mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(messageProducer, true);
-        List<ValidationMessage> errors;
+		private static final String validUnformattedString = "032141840";
 
-        // VALID IE = 0321418-40
-        String value = "0321418-40";
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		private static final String validFormattedString = "0321418-40";
 
-        mockery.assertIsSatisfied();
-    }
+		// TODO Adicionar mais IE validas
+		private static final String[] validValues = { validFormattedString };
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldValidateNullIE() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
-        mockery.checking(new Expectations());
-        Validator validator = new IEPernambucoValidator(messageProducer, false);
+		@Override
+		protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+			return newValidator(messageProducer, isFormatted);
+		}
 
-        List<ValidationMessage> errors;
-        String value = null;
-        try {
-            validator.assertValid(value);
-        } catch (InvalidStateException e) {
-            fail();
-        }
-        errors = validator.invalidMessagesFor(value);
-        assertTrue(errors.isEmpty());
+		@Override
+		public void shouldNotValidateIEWithLessDigitsThanAllowed() {
+		}
 
-        mockery.assertIsSatisfied();
-    }
+		@Override
+		public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
+		}
+
+		@Override
+		public void shouldNotValidateIEWithInvalidCharacter() {
+			MessageProducer messageProducer = mock(MessageProducer.class);
+			Validator<String> validator = getValidator(messageProducer, false);
+			try {
+				validator.assertValid(validUnformattedString.replaceFirst(".", "&"));
+				fail();
+			} catch (InvalidStateException e) {
+				assertTrue(e.getInvalidMessages().size() == 1);
+			}
+
+			verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
+		}
+	}
 
 }
