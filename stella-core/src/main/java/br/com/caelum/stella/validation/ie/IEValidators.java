@@ -17,18 +17,20 @@ public enum IEValidators {
 	ACRE(Pattern.compile("(01)[.](\\d{3})[.](\\d{3})[/](\\d{3})[-](\\d{2})"), 
 			Pattern.compile("(01)(\\d{3})(\\d{3})(\\d{3})(\\d{2})"),
 			IEConstraints.Acre.DVX_CHECKER, 
-			IEConstraints.Acre.DVY_CHECKER);
+			IEConstraints.Acre.DVY_CHECKER),
+	ALAGOAS(Pattern.compile("([2][4])[.](\\d{3})[.](\\d{3})[-](\\d{1})"),
+			Pattern.compile("([2][4])(\\d{3})(\\d{3})(\\d{1})"),
+			IEConstraints.Alagoas.DVX_CHECKER);
+	
 
 	private final Pattern formatted;
 	private final Pattern unformatted;
-	private final ValidadorDeDV validadorX;
-	private final ValidadorDeDV validadorY;
+	private final ValidadorDeDV[] validadores;
 
-	IEValidators(Pattern formatted, Pattern unformatted, ValidadorDeDV validadorX, ValidadorDeDV validadorY) {
+	IEValidators(Pattern formatted, Pattern unformatted, ValidadorDeDV ... validadores) {
 		this.formatted = formatted;
 		this.unformatted = unformatted;
-		this.validadorX = validadorX;
-		this.validadorY = validadorY;
+		this.validadores = validadores;
 	}
 	
 	public Validator<String> build() {
@@ -94,7 +96,10 @@ public enum IEValidators {
 
 	    private boolean hasValidCheckDigits(String value) {
 	        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
-	        return validadorX.isDVValid(testedValue) && validadorY.isDVValid(testedValue);
+	        for (ValidadorDeDV validador : validadores) {
+	        	if (!validador.isDVValid(testedValue)) return false;
+			}
+	        return true;
 	    }
 
 	    public boolean isEligible(String value) {

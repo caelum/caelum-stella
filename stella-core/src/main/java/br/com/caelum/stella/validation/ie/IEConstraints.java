@@ -138,4 +138,22 @@ public class IEConstraints {
 
     	    public static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
     }
+    
+    
+    static public class Alagoas {
+    	
+    	private static final int MOD = 11;
+
+        private static final int DVX_POSITION = 5 + 9;
+
+        private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
+
+        private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.B, IEConstraints.Rotina.D,
+                IEConstraints.Rotina.POS_IE };
+
+        private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
+                DVX_POSITION);
+
+        public static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
+    }
 }
