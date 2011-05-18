@@ -27,7 +27,7 @@ public class IESaoPauloValidatorTest {
 	 * O que eu fiz foi criar 2 classes internas que copiam os exemplos do
 	 * IESaoPauloProdutorRuralValidatorTest e
 	 * IESaoPauloComercioIndustriaValidatorTest e ambos usam o
-	 * IESaoPauloValidatorTest. Esta abordagem não funcionou para 3 métodos de
+	 * IESaoPauloValidator. Esta abordagem não funcionou para 3 métodos de
 	 * teste genérico que foram sbreescritos:
 	 * shouldNotValidateIEWithLessDigitsThanAllowed e
 	 * shouldNotValidateIEWithMoreDigitsThanAlowed que não fazem sentido pois os

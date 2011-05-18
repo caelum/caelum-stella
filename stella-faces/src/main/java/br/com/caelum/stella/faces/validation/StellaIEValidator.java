@@ -9,6 +9,7 @@ import javax.faces.component.StateHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
@@ -25,6 +26,7 @@ import br.com.caelum.stella.validation.error.IEError;
  * 
  * @author Leonardo Bessa
  */
+@FacesValidator(StellaIEValidator.VALIDATOR_ID)
 public class StellaIEValidator implements Validator, StateHolder {
 
     /**

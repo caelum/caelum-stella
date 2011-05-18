@@ -7,7 +7,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:stella="http://stella.caelum.com.br/faces">
+      xmlns:stella="http://stella.caelum.com.br/faces2">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Validando CNPJ usando o Componente do Stella Faces</title>
@@ -18,13 +18,13 @@
 <h:form>
   <h:panelGrid>
     <h:outputLabel for="CNPJ" value="CNPJ sem formatacao:"/>
-    <h:inputText id="CNPJ" value="#{UsuarioBean.cnpj}">
+    <h:inputText id="CNPJ" value="#{usuarioBean.cnpj}">
       <stella:validateCNPJ/>
     </h:inputText>
     <h:message for="CNPJ"/>
 
     <h:outputLabel for="CNPJFormatado" value="CNPJ com formatacao:"/>
-    <h:inputText id="CNPJFormatado" value="#{UsuarioBean.cnpjFormatado}">
+    <h:inputText id="CNPJFormatado" value="#{usuarioBean.cnpjFormatado}">
       <stella:validateCNPJ formatted="true"/>
     </h:inputText>
     <h:message for="CNPJFormatado"/>
