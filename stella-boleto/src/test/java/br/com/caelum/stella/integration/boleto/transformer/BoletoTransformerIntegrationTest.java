@@ -40,10 +40,10 @@ public class BoletoTransformerIntegrationTest {
                                  .newEmissor()
                                  .withCedente("Caue")
                                  .withAgencia(1824)
-                                 .withDvAgencia('4')
+                                 .withDigitoAgencia('4')
                                  .withContaCorrente(76000)
-                                 .withNumConvenio(1207113)
-                                 .withDvContaCorrente('5')
+                                 .withNumeroConvenio(1207113)
+                                 .withDigitoContaCorrente('5')
                                  .withCarteira(18)
                                  .withNossoNumero(9000206);
 

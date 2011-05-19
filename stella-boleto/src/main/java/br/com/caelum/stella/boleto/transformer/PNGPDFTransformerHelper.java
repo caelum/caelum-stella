@@ -85,11 +85,11 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(5, LINHA3, boleto.getEmissor().getAgenciaFormatado()
 				+ "-"
-				+ boleto.getEmissor().getDvAgencia()
+				+ boleto.getEmissor().getDigitoAgencia()
 				+ " / "
 				+ boleto.getBanco().getContaCorrenteDoEmissorFormatado(
 						boleto.getEmissor()) + "-"
-				+ boleto.getEmissor().getDvContaCorrente());
+				+ boleto.getEmissor().getDigitoContaCorrente());
 
 		this.writer.write(146, LINHA3, boleto.getBanco()
 				.getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
@@ -114,12 +114,12 @@ class PNGPDFTransformerHelper {
 		this.writer.write(420, LINHA6, boleto.getEmissor()
 				.getAgenciaFormatado()
 				+ " - "
-				+ boleto.getEmissor().getDvAgencia()
+				+ boleto.getEmissor().getDigitoAgencia()
 				+ " / "
 				+ boleto.getBanco().getContaCorrenteDoEmissorFormatado(
 						boleto.getEmissor())
 				+ "-"
-				+ boleto.getEmissor().getDvContaCorrente());
+				+ boleto.getEmissor().getDigitoContaCorrente());
 
 		this.writer.write(5, LINHA7, formatDate(boleto.getDatas()
 				.getDocumento()));

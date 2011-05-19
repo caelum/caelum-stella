@@ -41,9 +41,9 @@ public class BoletoHSBCTransformerIntegrationTest {
                                  .withAgencia(501)
                                  .withContaCorrente(6703255)
                                  .withNossoNumero(39104766)
-                                 .withCodFornecidoPelaAgencia(351202)
+                                 .withCodigoFornecidoPelaAgencia(351202)
                                  .withCarteira(0)
-                                 .withDvNossoNumero('3');
+                                 .withDigitoNossoNumero('3');
 
         Sacado sacado = Sacado
                               .newSacado()

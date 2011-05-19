@@ -22,8 +22,8 @@ public class ItauTest {
                 .withProcessamento(31, 5, 2006).withVencimento(10, 6, 2006);
 
         this.emissor = Emissor.newEmissor().withCedente("Caue Guerra")
-                .withAgencia(2949).withDvAgencia('1').withContaCorrente(6580)
-                .withNumConvenio(1207113).withDvContaCorrente('3')
+                .withAgencia(2949).withDigitoAgencia('1').withContaCorrente(6580)
+                .withNumeroConvenio(1207113).withDigitoContaCorrente('3')
                 .withCarteira(6).withNossoNumero(3);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");

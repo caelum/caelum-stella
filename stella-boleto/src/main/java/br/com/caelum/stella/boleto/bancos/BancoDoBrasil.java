@@ -33,7 +33,7 @@ public class BancoDoBrasil implements Banco {
 
         Emissor emissor = boleto.getEmissor();
         // CAMPO LIVRE
-        if (emissor.getNumConvenio() < 1000000) {
+        if (emissor.getNumeroConvenio() < 1000000) {
             if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
                 codigoDeBarras
                         .append(getNumConvenioDoEmissorFormatado(emissor));
@@ -84,10 +84,10 @@ public class BancoDoBrasil implements Banco {
     }
 
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        if (emissor.getNumConvenio() < 1000000) {
-            return String.format("%06d", emissor.getNumConvenio());
+        if (emissor.getNumeroConvenio() < 1000000) {
+            return String.format("%06d", emissor.getNumeroConvenio());
         } else {
-            return String.format("%07d", emissor.getNumConvenio());
+            return String.format("%07d", emissor.getNumeroConvenio());
         }
     }
 

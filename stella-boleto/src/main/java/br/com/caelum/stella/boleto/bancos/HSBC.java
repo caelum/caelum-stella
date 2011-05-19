@@ -40,7 +40,7 @@ public class HSBC implements Banco {
         long codigo = Long.valueOf("" + codigoDoDocumento
                 + getPrimeiroDigitoVerificador(boleto)
                 + tipo);
-        int codigoDoCedente = boleto.getEmissor().getCodFornecidoPelaAgencia();
+        int codigoDoCedente = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
 
         int resultado;
         String soma;
@@ -92,7 +92,7 @@ public class HSBC implements Banco {
            * codigo do cedente
            */
         codigoDeBarras.append(String.format("%07d", boleto.getEmissor()
-                .getCodFornecidoPelaAgencia()));
+                .getCodigoFornecidoPelaAgencia()));
         /*
            * codigo do documento.
            */

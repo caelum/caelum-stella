@@ -22,10 +22,10 @@ public class CaixaTest {
                 .withProcessamento(31, 5, 2006).withVencimento(31, 5, 2006);
 
         this.emissor = Emissor.newEmissor().withCedente("Caue Guerra")
-                .withAgencia(2949).withDvAgencia('1').withContaCorrente(6580)
-                .withNumConvenio(1207113).withDvContaCorrente('3')
+                .withAgencia(2949).withDigitoAgencia('1').withContaCorrente(6580)
+                .withNumeroConvenio(1207113).withDigitoContaCorrente('3')
                 .withCarteira(9).withNossoNumero(1200200)
-                .withCodFornecidoPelaAgencia(789).withCodOperacao(123);
+                .withCodigoFornecidoPelaAgencia(789).withCodigoOperacao(123);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");
 
@@ -38,7 +38,7 @@ public class CaixaTest {
 
     @Test
     public void codFornecidoPelaAgenciaDeveTerOitoDigitos() {
-        Emissor emissor = Emissor.newEmissor().withCodFornecidoPelaAgencia(2);
+        Emissor emissor = Emissor.newEmissor().withCodigoFornecidoPelaAgencia(2);
         String numeroFormatado = this.banco
                 .getCodFornecidoPelaAgenciaFormatado(emissor);
         assertEquals(8, numeroFormatado.length());
@@ -47,7 +47,7 @@ public class CaixaTest {
 
     @Test
     public void codOperacaoDeveTerTresDigitos() {
-        Emissor emissor = Emissor.newEmissor().withCodOperacao(2);
+        Emissor emissor = Emissor.newEmissor().withCodigoOperacao(2);
         String numeroFormatado = this.banco.getCodOperacaoFormatado(emissor);
         assertEquals(3, numeroFormatado.length());
         assertEquals("002", numeroFormatado);

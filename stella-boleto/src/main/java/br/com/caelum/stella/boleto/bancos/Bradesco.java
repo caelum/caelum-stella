@@ -67,7 +67,7 @@ public class Bradesco implements Banco {
     }
 
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        return String.format("%07d", emissor.getNumConvenio());
+        return String.format("%07d", emissor.getNumeroConvenio());
     }
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {

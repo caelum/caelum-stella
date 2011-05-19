@@ -25,7 +25,7 @@ public class HSBCComTipoIdentificador4Test {
 
         Emissor emissor = Emissor.newEmissor().withCedente("Alberto")
                 .withAgencia(501).withContaCorrente(6703255).withNossoNumero(
-                        39104766).withCodFornecidoPelaAgencia(351202)
+                        39104766).withCodigoFornecidoPelaAgencia(351202)
                 .withCarteira(carteiraSimbolica);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano").withCidade(

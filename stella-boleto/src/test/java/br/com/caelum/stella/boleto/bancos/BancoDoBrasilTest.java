@@ -23,8 +23,8 @@ public class BancoDoBrasilTest {
                 .withProcessamento(4, 5, 2008).withVencimento(2, 5, 2008);
 
         this.emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(
-                1824).withDvAgencia('4').withContaCorrente(76000)
-                .withNumConvenio(1207113).withDvContaCorrente('5')
+                1824).withDigitoAgencia('4').withContaCorrente(76000)
+                .withNumeroConvenio(1207113).withDigitoContaCorrente('5')
                 .withCarteira(18).withNossoNumero(9000206);
 
         Sacado sacado = Sacado.newSacado().withNome("Fulano");
@@ -38,7 +38,7 @@ public class BancoDoBrasilTest {
 
     @Test
     public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
-        Emissor emissor = Emissor.newEmissor().withNumConvenio(1234);
+        Emissor emissor = Emissor.newEmissor().withNumeroConvenio(1234);
         String numeroFormatado = this.banco
                 .getNumConvenioDoEmissorFormatado(emissor);
         assertEquals(6, numeroFormatado.length());

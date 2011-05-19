@@ -54,11 +54,11 @@ public class Caixa implements Banco {
     }
 
     String getCodFornecidoPelaAgenciaFormatado(Emissor emissor) {
-        return String.format("%08d", emissor.getCodFornecidoPelaAgencia());
+        return String.format("%08d", emissor.getCodigoFornecidoPelaAgencia());
     }
 
     String getCodOperacaoFormatado(Emissor emissor) {
-        return String.format("%03d", emissor.getCodOperacao());
+        return String.format("%03d", emissor.getCodigoOperacao());
     }
 
     public URL getImage() {
