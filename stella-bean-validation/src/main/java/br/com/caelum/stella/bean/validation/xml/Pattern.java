@@ -7,6 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaPatternValidator;
 
@@ -18,6 +19,9 @@ public @interface Pattern {
 
 	String value();
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 
 }
