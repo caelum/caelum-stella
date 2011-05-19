@@ -7,7 +7,6 @@ import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
-import br.com.caelum.stella.validation.Validator;
 
 /**
  * <p>

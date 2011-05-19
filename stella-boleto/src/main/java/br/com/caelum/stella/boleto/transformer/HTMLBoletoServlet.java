@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class HTMLBoletoServlet extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = 2942118702706573802L;
+
+	@Override
     protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException,
             IOException {
         String tipoRecurso = request.getParameter("type");

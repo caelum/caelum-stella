@@ -5,7 +5,6 @@ import br.com.caelum.stella.format.LeftSideZerosFormatter;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.RotinaParameters;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 /**
  * Documentação que pode ser consultada: <a
