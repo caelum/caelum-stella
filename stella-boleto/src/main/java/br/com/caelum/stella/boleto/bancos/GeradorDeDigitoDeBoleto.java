@@ -1,8 +1,8 @@
 package br.com.caelum.stella.boleto.bancos;
 
-class DVGenerator {
+public class GeradorDeDigitoDeBoleto {
 
-    int geraDVMod11(String codigoDeBarras) {
+    public int geraDigitoMod11(String codigoDeBarras) {
         int soma = 0;
         for (int i = codigoDeBarras.length() - 1, multiplicador = 2; i >= 0; i--, multiplicador++) {
             if (multiplicador == 10) {
@@ -23,7 +23,7 @@ class DVGenerator {
         }
     }
 
-    int geraDVMod10(String campo) {
+    public int geraDigitoMod10(String campo) {
         int soma = 0;
         for (int i = campo.length() - 1; i >= 0; i--) {
             int multiplicador = (campo.length() - i) % 2 + 1;
@@ -34,7 +34,8 @@ class DVGenerator {
         }
 
         int resto = soma % 10;
-        return (10 - resto) % 10;
+        int resultado = (10 - resto) % 10;
+		return resultado;
     }
 
 }

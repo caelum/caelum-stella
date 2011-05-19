@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto;
+package br.com.caelum.stella.boleto.exception;
 
 /**
  * Representa um erro ao gerar um boleto para PNG, JPEG, PDF, etc. Normalmente

@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto;
+package br.com.caelum.stella.boleto.exception;
 
 /**
  * Define as Exceptions de um boleto

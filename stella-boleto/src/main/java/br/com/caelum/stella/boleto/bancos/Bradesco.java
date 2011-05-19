@@ -2,8 +2,8 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
  * Gera dados de um boleto relativos ao Banco Bradesco.
@@ -23,7 +23,7 @@ public class Bradesco implements Banco {
 
     private static final String NUMERO_BRADESCO = "237";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -43,7 +43,7 @@ public class Bradesco implements Banco {
         codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
         codigoDeBarras.append("0");
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
 
         String result = codigoDeBarras.toString();
@@ -66,8 +66,13 @@ public class Bradesco implements Banco {
                         getNumeroFormatado()));
     }
 
+    @Deprecated
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        return String.format("%07d", emissor.getNumeroConvenio());
+        return getNumeroConvenioDoEmissorFormatado(emissor);
+    }
+    
+    public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
+    	return String.format("%07d", emissor.getNumeroConvenio());
     }
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {

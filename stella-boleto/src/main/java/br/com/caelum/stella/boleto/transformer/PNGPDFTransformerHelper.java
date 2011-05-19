@@ -9,12 +9,12 @@ import java.util.Calendar;
 import javax.imageio.ImageIO;
 
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
-import br.com.caelum.stella.boleto.GeracaoBoletoException;
 import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 /**
- * Classe que centraliza a cria��o dos boletos que tem como template o
+ * Classe que centraliza a criação dos boletos que tem como template o
  * template.png e antes ficava no BoletoTransformer
  * 
  * 

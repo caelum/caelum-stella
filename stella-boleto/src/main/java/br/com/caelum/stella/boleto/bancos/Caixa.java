@@ -4,14 +4,14 @@ import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class Caixa implements Banco {
 
     private static final String NUMERO_CAIXA = "104";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -28,10 +28,10 @@ public class Caixa implements Banco {
         codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
 
         codigoDeBarras.append(emissor.getAgenciaFormatado());
-        codigoDeBarras.append(getCodOperacaoFormatado(emissor));
-        codigoDeBarras.append(getCodFornecidoPelaAgenciaFormatado(emissor));
+        codigoDeBarras.append(getCodigoOperacaoFormatado(emissor));
+        codigoDeBarras.append(getCodigoFornecidoPelaAgenciaFormatado(emissor));
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
 
         String result = codigoDeBarras.toString();
@@ -53,11 +53,11 @@ public class Caixa implements Banco {
         return String.format("%05d", emissor.getContaCorrente());
     }
 
-    String getCodFornecidoPelaAgenciaFormatado(Emissor emissor) {
+    public String getCodigoFornecidoPelaAgenciaFormatado(Emissor emissor) {
         return String.format("%08d", emissor.getCodigoFornecidoPelaAgencia());
     }
 
-    String getCodOperacaoFormatado(Emissor emissor) {
+    public String getCodigoOperacaoFormatado(Emissor emissor) {
         return String.format("%03d", emissor.getCodigoOperacao());
     }
 

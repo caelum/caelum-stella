@@ -2,8 +2,8 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
  * Gera dados de um boleto relativos ao Banco do Brasil.
@@ -20,7 +20,7 @@ public class BancoDoBrasil implements Banco {
 
     private static final String NUMERO_BB = "001";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -36,7 +36,7 @@ public class BancoDoBrasil implements Banco {
         if (emissor.getNumeroConvenio() < 1000000) {
             if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
                 codigoDeBarras
-                        .append(getNumConvenioDoEmissorFormatado(emissor));
+                        .append(getNumeroConvenioDoEmissorFormatado(emissor));
                 codigoDeBarras
                         .append(getNossoNumeroDoEmissorFormatado(emissor));
                 codigoDeBarras.append("21");
@@ -50,7 +50,7 @@ public class BancoDoBrasil implements Banco {
             }
         } else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
             codigoDeBarras.append("000000");
-            codigoDeBarras.append(getNumConvenioDoEmissorFormatado(emissor));
+            codigoDeBarras.append(getNumeroConvenioDoEmissorFormatado(emissor));
             codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor)
                     .substring(7));
             codigoDeBarras.append(boleto.getBanco()
@@ -60,7 +60,7 @@ public class BancoDoBrasil implements Banco {
                     "Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
         }
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
 
         String result = codigoDeBarras.toString();
@@ -83,12 +83,17 @@ public class BancoDoBrasil implements Banco {
                         getNumeroFormatado()));
     }
 
+    @Deprecated
     public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        if (emissor.getNumeroConvenio() < 1000000) {
-            return String.format("%06d", emissor.getNumeroConvenio());
-        } else {
-            return String.format("%07d", emissor.getNumeroConvenio());
-        }
+    	return getNumeroConvenioDoEmissorFormatado(emissor);
+    }
+    
+    public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
+    	if (emissor.getNumeroConvenio() < 1000000) {
+    		return String.format("%06d", emissor.getNumeroConvenio());
+    	} else {
+    		return String.format("%07d", emissor.getNumeroConvenio());
+    	}
     }
 
     public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {

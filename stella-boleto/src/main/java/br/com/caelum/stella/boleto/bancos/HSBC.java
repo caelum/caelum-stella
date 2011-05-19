@@ -26,7 +26,7 @@ public class HSBC implements Banco {
       */
     public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em ag�ncia do HSBC";
     private static final String NUMERO_HSBC = "399";
-    private DVGenerator dvGenerator = new DVGenerator();
+    private GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
     private static final String CODIGO_APLICATIVO = "2";
 
     private int getSegundoDigitoVerificador(Boleto boleto) {
@@ -71,7 +71,7 @@ public class HSBC implements Banco {
 
     private int getPrimeiroDigitoVerificador(Boleto boleto) {
         return dvGenerator
-                .geraDVMod11(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
+                .geraDigitoMod11(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
     }
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
@@ -106,7 +106,7 @@ public class HSBC implements Banco {
         codigoDeBarras.append(getDataFormatoJuliano(boleto.getDatas()
                 .getVencimento(), tipo));
         codigoDeBarras.append(HSBC.CODIGO_APLICATIVO);
-        codigoDeBarras.insert(4, dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
         return codigoDeBarras.toString();
     }

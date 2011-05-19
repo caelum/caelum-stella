@@ -8,13 +8,13 @@ package br.com.caelum.stella.boleto;
  * 
  */
 public class Sacado {
-    private String nome;
-    private String cpf;
-    private String endereco;
-    private String cep;
-    private String bairro;
-    private String cidade;
-    private String uf;
+    private String nome = "";
+    private String cpf = "";
+    private String endereco = "";
+    private String cep = "";
+    private String bairro = "";
+    private String cidade = "";
+    private String uf = "";
 
     private Sacado() {
     }
@@ -167,5 +167,4 @@ public class Sacado {
         this.uf = uf;
         return this;
     }
-
 }

@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+
 /**
  * Bean que representa os dados de um boleto.
  * 

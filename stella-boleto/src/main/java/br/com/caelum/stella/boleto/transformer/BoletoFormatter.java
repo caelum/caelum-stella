@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 import javax.swing.text.NumberFormatter;
 
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
  * Classe que serve apenas para centralizar alguns metodos comuns na gera��o dos

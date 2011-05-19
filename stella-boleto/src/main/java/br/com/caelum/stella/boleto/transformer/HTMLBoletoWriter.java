@@ -21,12 +21,12 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.GeracaoBoletoException;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 public class HTMLBoletoWriter implements BoletoWriter {
 

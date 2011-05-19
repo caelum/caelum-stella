@@ -4,14 +4,14 @@ import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class Itau implements Banco {
 
     private static final String NUMERO_ITAU = "341";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -34,13 +34,13 @@ public class Itau implements Banco {
 
         codigoDeBarras.append("000");
 
-        codigoDeBarras.insert(38, this.dvGenerator.geraDVMod10(codigoDeBarras
+        codigoDeBarras.insert(38, this.dvGenerator.geraDigitoMod10(codigoDeBarras
                 .substring(30, 38)));
 
-        codigoDeBarras.insert(29, this.dvGenerator.geraDVMod10(codigoDeBarras
+        codigoDeBarras.insert(29, this.dvGenerator.geraDigitoMod10(codigoDeBarras
                 .substring(30, 38).concat(codigoDeBarras.substring(18, 28))));
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
 
         String result = codigoDeBarras.toString();

@@ -40,7 +40,7 @@ public class BancoDoBrasilTest {
     public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
         Emissor emissor = Emissor.newEmissor().withNumeroConvenio(1234);
         String numeroFormatado = this.banco
-                .getNumConvenioDoEmissorFormatado(emissor);
+                .getNumeroConvenioDoEmissorFormatado(emissor);
         assertEquals(6, numeroFormatado.length());
         assertEquals("001234", numeroFormatado);
     }

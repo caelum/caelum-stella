@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Essa classe tem como objetivo renderizar as imagens relativas ao boleto.
- * Dessa forma o usuario n�o precisa colocar nenhuma imagem ou coisa relativa na
+ * Dessa forma o usuario não precisa colocar nenhuma imagem ou coisa relativa na
  * estrutura dele.
  * 
  * @author Alberto

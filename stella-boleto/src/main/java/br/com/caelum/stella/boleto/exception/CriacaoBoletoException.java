@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto;
+package br.com.caelum.stella.boleto.exception;
 
 /**
  * Representa um erro ao pegar dados de um boleto.

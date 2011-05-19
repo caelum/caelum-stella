@@ -10,7 +10,7 @@ public class Real implements Banco {
 
     private final static String NUMERO_REAL = "356";
 
-    private final DVGenerator dvGenerator = new DVGenerator();
+    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -30,7 +30,7 @@ public class Real implements Banco {
 
         codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDVMod11(codigoDeBarras
+        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
                 .toString()));
 
         return codigoDeBarras.toString();
@@ -44,7 +44,7 @@ public class Real implements Banco {
      */
     private int calculaDigitaoDeCobranca(Emissor emissor) {
         return this.dvGenerator
-                .geraDVMod10(getNossoNumeroDoEmissorFormatado(emissor)
+                .geraDigitoMod10(getNossoNumeroDoEmissorFormatado(emissor)
                         + emissor.getAgenciaFormatado()
                         + getContaCorrenteDoEmissorFormatado(emissor));
     }
