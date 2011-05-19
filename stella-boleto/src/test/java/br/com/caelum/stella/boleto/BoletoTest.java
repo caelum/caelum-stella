@@ -13,7 +13,7 @@ public class BoletoTest {
     public void novoBoletoDeveTerAlgunsValoresPadrao() {
         Boleto b = Boleto.newBoleto();
         assertEquals("R$", b.getEspecieMoeda());
-        assertEquals(9, b.getCodEspecieMoeda());
+        assertEquals(9, b.getCodigoEspecieMoeda());
         assertEquals(false, b.getAceite());
         assertEquals("DV", b.getEspecieDocumento());
     }
@@ -132,8 +132,8 @@ public class BoletoTest {
     @Test
     public void numeroDoDocumentoFormatadoDeveTerQuatroDigitos() {
         Boleto b = Boleto.newBoleto();
-        b.withNoDocumento("232");
-        String numeroFormatado = b.getNoDocumentoFormatado();
+        b.withNumeroDoDocumento("232");
+        String numeroFormatado = b.getNumeroDoDocumentoFormatado();
         assertEquals(4, numeroFormatado.length());
         assertEquals("0232", numeroFormatado);
     }

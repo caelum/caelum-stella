@@ -66,7 +66,7 @@ public class HSBC implements Banco {
     }
 
     public String getCodigoDoDocumentoFinalComDigitosVerificadores(Boleto boleto) {
-        return String.format("%s%d%d%d", boleto.getNoDocumento(), getPrimeiroDigitoVerificador(boleto), getTipoIdentificador(boleto), getSegundoDigitoVerificador(boleto));
+        return String.format("%s%d%d%d", boleto.getNumeroDoDocumento(), getPrimeiroDigitoVerificador(boleto), getTipoIdentificador(boleto), getSegundoDigitoVerificador(boleto));
     }
 
     private int getPrimeiroDigitoVerificador(Boleto boleto) {
@@ -85,7 +85,7 @@ public class HSBC implements Banco {
 
         StringBuilder codigoDeBarras = new StringBuilder();
         codigoDeBarras.append(getNumeroFormatado());
-        codigoDeBarras.append(boleto.getCodEspecieMoeda());
+        codigoDeBarras.append(boleto.getCodigoEspecieMoeda());
         codigoDeBarras.append(boleto.getFatorVencimento());
         codigoDeBarras.append(boleto.getValorFormatado());
         /*

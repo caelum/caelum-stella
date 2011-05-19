@@ -64,7 +64,7 @@ public class BoletoHSBCTransformerIntegrationTest {
         String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 
         Boleto boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado).withValorBoleto(
-                "1200.00").withNoDocumento("39104766").withDescricoes(descricoes).withLocaisDePagamento(
+                "1200.00").withNumeroDoDocumento("39104766").withDescricoes(descricoes).withLocaisDePagamento(
                 locaisDePagamento).withInstrucoes(instrucoes);
         boleto.withBanco(banco);
 

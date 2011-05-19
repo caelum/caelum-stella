@@ -28,7 +28,7 @@ public class Bradesco implements Banco {
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
         codigoDeBarras.append(getNumeroFormatado());
-        codigoDeBarras.append(String.valueOf(boleto.getCodEspecieMoeda()));
+        codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
         // Digito Verificador sera inserido aqui.
 
         codigoDeBarras.append(boleto.getFatorVencimento());

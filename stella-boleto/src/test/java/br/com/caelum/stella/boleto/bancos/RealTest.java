@@ -29,7 +29,7 @@ public class RealTest {
         banco = new Real();
 
         boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado).withValorBoleto("35.00")
-                .withNoDocumento("0000000003020");
+                .withNumeroDoDocumento("0000000003020");
     }
 
     @Test

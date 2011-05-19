@@ -32,7 +32,7 @@ public class ItauTest {
 
         this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(
                 this.emissor).withSacado(sacado).withValorBoleto("1.00")
-                .withNoDocumento("4323");
+                .withNumeroDoDocumento("4323");
     }
 
     @Test

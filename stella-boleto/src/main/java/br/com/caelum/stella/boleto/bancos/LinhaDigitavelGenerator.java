@@ -13,7 +13,7 @@ public class LinhaDigitavelGenerator {
 
         StringBuilder bloco1 = new StringBuilder();
         bloco1.append(banco.getNumeroFormatado());
-        bloco1.append(String.valueOf(boleto.getCodEspecieMoeda()));
+        bloco1.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
         bloco1.append(codigoDeBarras.substring(19, 24));
         bloco1.append(this.dvGenerator.geraDVMod10(bloco1.toString()));
 

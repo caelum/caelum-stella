@@ -30,8 +30,9 @@ public class Datas {
      * 
      */
     public static Datas newDatas() {
-        return new Datas().withDocumento(Calendar.getInstance())
-                .withProcessamento(Calendar.getInstance());
+        Calendar data = Calendar.getInstance();
+		return new Datas().withDocumento(data)
+                .withProcessamento(data);
     }
 
     /**

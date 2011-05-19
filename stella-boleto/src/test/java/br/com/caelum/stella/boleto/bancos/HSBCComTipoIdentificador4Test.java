@@ -36,7 +36,7 @@ public class HSBCComTipoIdentificador4Test {
         this.banco = new HSBC();
 
         this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
-                .withSacado(sacado).withValorBoleto("1200.00").withNoDocumento(
+                .withSacado(sacado).withValorBoleto("1200.00").withNumeroDoDocumento(
                         "39104766");
     }
 

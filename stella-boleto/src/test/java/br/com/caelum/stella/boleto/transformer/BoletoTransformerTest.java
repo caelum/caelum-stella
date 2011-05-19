@@ -62,7 +62,7 @@ public class BoletoTransformerTest {
                        .withEmissor(emissor)
                        .withSacado(sacado)
                        .withValorBoleto("40.00")
-                       .withNoDocumento("4323")
+                       .withNumeroDoDocumento("4323")
                        .withInstrucoes(instrucoes)
                        .withLocaisDePagamento(locaisDePagamento);
     }

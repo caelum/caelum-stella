@@ -14,7 +14,7 @@ import br.com.caelum.stella.boleto.GeracaoBoletoException;
 import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
 
 /**
- * Classe que centraliza a criação dos boletos que tem como template o
+ * Classe que centraliza a criaï¿½ï¿½o dos boletos que tem como template o
  * template.png e antes ficava no BoletoTransformer
  * 
  * 
@@ -125,8 +125,8 @@ class PNGPDFTransformerHelper {
 				.getDocumento()));
 
 		this.writer.write(70, LINHA7,
-				!boleto.getNoDocumento().equals("") ? boleto
-						.getNoDocumentoFormatado() : boleto.getBanco()
+				!boleto.getNumeroDoDocumento().equals("") ? boleto
+						.getNumeroDoDocumentoFormatado() : boleto.getBanco()
 						.getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 
 		this.writer.write(180, LINHA7, boleto.getEspecieDocumento());

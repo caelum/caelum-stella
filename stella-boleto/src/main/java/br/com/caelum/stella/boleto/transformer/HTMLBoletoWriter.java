@@ -154,8 +154,9 @@ public class HTMLBoletoWriter implements BoletoWriter {
             return boleto.getBanco();
         }
 
+        //TODO arrumar nomes dos metodos aqui também
         public int getCodEspecieMoeda() {
-            return boleto.getCodEspecieMoeda();
+            return boleto.getCodigoEspecieMoeda();
         }
 
         public Datas getDatas() {
@@ -191,15 +192,15 @@ public class HTMLBoletoWriter implements BoletoWriter {
         }
 
         public String getNoDocumento() {
-            return boleto.getNoDocumento();
+            return boleto.getNumeroDoDocumento();
         }
 
         public String getNoDocumentoFormatado() {
-            return boleto.getNoDocumentoFormatado();
+            return boleto.getNumeroDoDocumentoFormatado();
         }
 
         public BigDecimal getQtdMoeda() {
-            return boleto.getQtdMoeda();
+            return boleto.getQuantidadeDeMoeda();
         }
 
         public Sacado getSacado() {
