@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import br.com.caelum.stella.hibernate.validator.CNPJ;
-import br.com.caelum.stella.hibernate.validator.CPF;
+import br.com.caelum.stella.bean.validation.CNPJ;
+import br.com.caelum.stella.bean.validation.CPF;
 
 @Entity
 public class Modelo {

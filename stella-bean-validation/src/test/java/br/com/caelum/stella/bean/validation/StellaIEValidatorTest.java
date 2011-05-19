@@ -19,27 +19,6 @@ public class StellaIEValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
     private StellaIEValidator validator;
 
-    @IE
-    @SuppressWarnings("unused")
-    private static class ObjectWithIE {
-        private final String ie;
-
-        private final String estado;
-
-        private ObjectWithIE(String ie, String estado) {
-            this.ie = ie;
-            this.estado = estado;
-        }
-
-        public String getIe() {
-            return ie;
-        }
-
-		public String getEstado() {
-            return estado;
-        }
-    }
-
     @Before
     public void createValidator() throws Exception {
         IE ieAnnotation = ObjectWithIE.class.getAnnotation(IE.class);
