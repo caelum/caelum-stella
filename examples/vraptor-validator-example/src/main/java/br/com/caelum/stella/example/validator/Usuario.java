@@ -1,6 +1,6 @@
 package br.com.caelum.stella.example.validator;
 
-import br.com.caelum.stella.hibernate.validator.CPF;
+import br.com.caelum.stella.bean.validation.CPF;
 
 public class Usuario {
     @CPF
