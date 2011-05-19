@@ -44,7 +44,7 @@ public class Boleto {
      * 
      */
     public static Boleto newBoleto() {
-        return new Boleto().withEspecieMoeda("R$").withCodEspecieMoeda(9)
+        return new Boleto().withEspecieMoeda("R$").withCodigoEspecieMoeda(9)
                 .withAceite(false).withEspecieDocumento("DV");
     }
 
@@ -263,15 +263,6 @@ public class Boleto {
     	return this.codigoEspecieMoeda;
     }
 
-    /**
-     * @deprecated
-     * @see Boleto#withCodigoEspecieMoeda(int)
-     */
-    @Deprecated
-    private Boleto withCodEspecieMoeda(int codEspecieMoeda) {
-        return withCodigoEspecieMoeda(codEspecieMoeda);
-    }
-    
     /**
      * Associa um código da espécie da moeda ao boleto. Valor padrão: '9' (para
      * R$)
