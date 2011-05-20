@@ -66,7 +66,7 @@ public class CpfUserType implements UserType {
 		return original;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Class returnedClass() {
 		return CPF.class;
 	}
