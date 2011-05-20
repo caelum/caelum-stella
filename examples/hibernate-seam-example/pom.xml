@@ -30,9 +30,9 @@
 	<!-- Project dependencies -->
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>caelum-stella-hibernate-validator</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- Hibernate Commons Annotations -->
 		<dependency>

@@ -13,24 +13,24 @@
 
   <dependencies>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>caelum-stella-core</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>caelum-stella-faces</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>caelum-stella-bean-validation</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>caelum-stella-boleto</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
@@ -39,6 +39,7 @@
       <plugin>
         <groupId>org.codehaus.xsite</groupId>
         <artifactId>xsite-maven-plugin</artifactId>
+        <version>1.1.2</version>
         <configuration>
           <sourceDirectoryPath>${basedir}/src/main/site/</sourceDirectoryPath>
           <sitemapPath>content/sitemap.xml</sitemapPath>
@@ -57,8 +58,9 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>dependency-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.2</version>
         <executions>
           <execution>
             <id>unpack-javadoc-core</id>
@@ -72,9 +74,9 @@
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${pom.groupId}</groupId>
+                  <groupId>${project.groupId}</groupId>
                   <artifactId>caelum-stella-core</artifactId>
-                  <version>${pom.version}</version>
+                  <version>${project.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>
               </artifactItems>
@@ -94,9 +96,9 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
           <!--              <overWriteSnapshots>true</overWriteSnapshots>-->
           <!--              <artifactItems>-->
           <!--                <artifactItem>-->
-          <!--                  <groupId>${pom.groupId}</groupId>-->
+          <!--                  <groupId>${project.groupId}</groupId>-->
           <!--                  <artifactId>caelum-stella-faces</artifactId>-->
-          <!--                  <version>${pom.version}</version>-->
+          <!--                  <version>${project.version}</version>-->
           <!--                  <classifier>tlddoc</classifier>-->
           <!--                </artifactItem>-->
           <!--              </artifactItems>-->
@@ -114,9 +116,9 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${pom.groupId}</groupId>
+                  <groupId>${project.groupId}</groupId>
                   <artifactId>caelum-stella-faces</artifactId>
-                  <version>${pom.version}</version>
+                  <version>${project.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>
               </artifactItems>
@@ -134,9 +136,9 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${pom.groupId}</groupId>
+                  <groupId>${project.groupId}</groupId>
                   <artifactId>caelum-stella-boleto</artifactId>
-                  <version>${pom.version}</version>
+                  <version>${project.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>
               </artifactItems>
@@ -154,9 +156,9 @@ nao sejam executadas. Provalvelmente isto é um bug do plugin.   -->
               <overWriteSnapshots>true</overWriteSnapshots>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${pom.groupId}</groupId>
+                  <groupId>${project.groupId}</groupId>
                   <artifactId>caelum-stella-bean-validation</artifactId>
-                  <version>${pom.version}</version>
+                  <version>${project.version}</version>
                   <classifier>javadoc</classifier>
                 </artifactItem>
               </artifactItems>

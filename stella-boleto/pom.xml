@@ -53,8 +53,9 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>net.sourceforge.maven-taglib</groupId>
+                                        <groupId>net.sourceforge.maven-taglib</groupId>
 					<artifactId>maven-taglib-plugin</artifactId>
+                                        <version>2.4</version>
 					<executions>
 						<execution>
 							<goals>
@@ -68,8 +69,9 @@
 
 		<plugins>
 			<plugin>
-				<groupId>net.sourceforge.maven-taglib</groupId>
+                                <groupId>net.sourceforge.maven-taglib</groupId>
 				<artifactId>maven-taglib-plugin</artifactId>
+                                <version>2.4</version>
 			</plugin>
 		</plugins>
 	</build>
