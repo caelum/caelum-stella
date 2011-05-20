@@ -45,7 +45,7 @@ public abstract class AbstractIEValidator implements Validator<String> {
 	    return errors;
 	}
 
-	private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
+	protected String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
 	    String unformatedIE = null;
 	    if (isFormatted) {
 	        if (!(getFormattedPattern().matcher(ie).matches())) {

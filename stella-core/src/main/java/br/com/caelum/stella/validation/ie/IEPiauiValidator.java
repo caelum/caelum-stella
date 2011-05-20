@@ -1,19 +1,12 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
-import br.com.caelum.stella.validation.Validator;
-import br.com.caelum.stella.validation.error.IEError;
 
 /**
  * <p>
@@ -27,7 +20,7 @@ import br.com.caelum.stella.validation.error.IEError;
  * @author Leonardo Bessa
  * 
  */
-public class IEPiauiValidator implements Validator<String> {
+public class IEPiauiValidator extends AbstractIEValidator {
 
     private static final int MOD = 11;
 
@@ -42,8 +35,6 @@ public class IEPiauiValidator implements Validator<String> {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-    private final boolean isFormatted;
-
     /*
      * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 19.301.656-7
      */
@@ -52,83 +43,45 @@ public class IEPiauiValidator implements Validator<String> {
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{8})(\\d{1})");
 
+	
     /**
-     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
-     * {@linkplain SimpleMessageProducer} para geração de mensagens.
-     */
-    public IEPiauiValidator() {
-        this(true);
-    }
+	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
+	 */
+	public IEPiauiValidator() {
+		super(true);
+	}
 
-    /**
-     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
-     * mensagens.
-     * 
-     * @param isFormatted
-     *            considerar cadeia formatada quando <code>true</code>
-     */
-    public IEPiauiValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
-    }
+	/**
+	 * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+	 * mensagens.
+	 * 
+	 * @param isFormatted
+	 *            considerar cadeia formatada quando <code>true</code>
+	 */
+	public IEPiauiValidator(boolean isFormatted) {
+		super(isFormatted);
+	}
 
-    public IEPiauiValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = isFormatted;
-    }
+	public IEPiauiValidator(MessageProducer messageProducer, boolean isFormatted) {
+		super(messageProducer, isFormatted);
+	}
 
-    private List<InvalidValue> getInvalidValues(String IE) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        errors.clear();
-        if (IE != null) {
-            String unformatedIE = checkForCorrectFormat(IE, errors);
-            if (errors.isEmpty()) {
-                if (!hasValidCheckDigits(unformatedIE)) {
-                    errors.add(IEError.INVALID_CHECK_DIGITS);
-                }
-            }
-        }
-        return errors;
-    }
 
-    private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
-        String unformatedIE = null;
-        if (isFormatted) {
-            if (!(FORMATED.matcher(ie).matches())) {
-                errors.add(IEError.INVALID_FORMAT);
-            }
-            unformatedIE = ie.replaceAll("\\D", "");
-        } else {
-            if (!UNFORMATED.matcher(ie).matches()) {
-                errors.add(IEError.INVALID_DIGITS);
-            }
-            unformatedIE = ie;
-        }
-        return unformatedIE;
-    }
+	@Override
+	protected Pattern getUnformattedPattern() {
+		return UNFORMATED;
+	}
 
-    private boolean hasValidCheckDigits(String value) {
+	@Override
+	protected Pattern getFormattedPattern() {
+		return FORMATED;
+	}
+
+
+    protected boolean hasValidCheckDigits(String value) {
         String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
 
-    public boolean isEligible(String value) {
-        boolean result;
-        if (isFormatted) {
-            result = FORMATED.matcher(value).matches();
-        } else {
-            result = UNFORMATED.matcher(value).matches();
-        }
-        return result;
-    }
-
-    private final BaseValidator baseValidator;
-
-    public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
-    }
-
-    public List<ValidationMessage> invalidMessagesFor(String cpf) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
-    }
 }

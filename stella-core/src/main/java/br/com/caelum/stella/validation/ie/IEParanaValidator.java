@@ -1,22 +1,15 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
-import br.com.caelum.stella.validation.Validator;
-import br.com.caelum.stella.validation.error.IEError;
 
-public class IEParanaValidator implements Validator<String> {
+public class IEParanaValidator extends AbstractIEValidator {
 
     private static final int DVX_MOD = 11;
 
@@ -49,70 +42,48 @@ public class IEParanaValidator implements Validator<String> {
 
     private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
-    private final boolean isFormatted;
-
     public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[-](\\d{2})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})");
 
     private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3";
 
+	
     /**
-     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
-     * {@linkplain SimpleMessageProducer} para geração de mensagens.
-     */
-    public IEParanaValidator() {
-        this(true);
-    }
+	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
+	 */
+	public IEParanaValidator() {
+		super(true);
+	}
 
-    /**
-     * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
-     * mensagens.
-     * 
-     * @param isFormatted
-     *            considerar cadeia formatada quando <code>true</code>
-     */
-    public IEParanaValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
-    }
+	/**
+	 * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
+	 * mensagens.
+	 * 
+	 * @param isFormatted
+	 *            considerar cadeia formatada quando <code>true</code>
+	 */
+	public IEParanaValidator(boolean isFormatted) {
+		super(isFormatted);
+	}
 
-    public IEParanaValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = isFormatted;
-    }
+	public IEParanaValidator(MessageProducer messageProducer, boolean isFormatted) {
+		super(messageProducer, isFormatted);
+	}
 
-    private List<InvalidValue> getInvalidValues(String IE) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        errors.clear();
-        if (IE != null) {
-            String unformatedIE = checkForCorrectFormat(IE, errors);
-            if (errors.isEmpty()) {
-                if (!hasValidCheckDigits(unformatedIE)) {
-                    errors.add(IEError.INVALID_CHECK_DIGITS);
-                }
-            }
-        }
-        return errors;
-    }
 
-    private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
-        String unformatedIE = null;
-        if (isFormatted) {
-            if (!(FORMATED.matcher(ie).matches())) {
-                errors.add(IEError.INVALID_FORMAT);
-            }
-            unformatedIE = ie.replaceAll("\\D", "");
-        } else {
-            if (!UNFORMATED.matcher(ie).matches()) {
-                errors.add(IEError.INVALID_DIGITS);
-            }
-            unformatedIE = ie;
-        }
-        return unformatedIE;
-    }
+	@Override
+	protected Pattern getUnformattedPattern() {
+		return UNFORMATED;
+	}
 
-    private boolean hasValidCheckDigits(String value) {
+	@Override
+	protected Pattern getFormattedPattern() {
+		return FORMATED;
+	}
+
+    protected boolean hasValidCheckDigits(String value) {
         String testedValue = null;
         Matcher matcher = UNFORMATED.matcher(value);
         if (matcher.matches()) {
@@ -123,23 +94,4 @@ public class IEParanaValidator implements Validator<String> {
         return (DVXisValid) && (DVYisValid);
     }
 
-    public boolean isEligible(String value) {
-        boolean result;
-        if (isFormatted) {
-            result = FORMATED.matcher(value).matches();
-        } else {
-            result = UNFORMATED.matcher(value).matches();
-        }
-        return result;
-    }
-
-    private final BaseValidator baseValidator;
-
-    public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
-    }
-
-    public List<ValidationMessage> invalidMessagesFor(String cpf) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
-    }
 }

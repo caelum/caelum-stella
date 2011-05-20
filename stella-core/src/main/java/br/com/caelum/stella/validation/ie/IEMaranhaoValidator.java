@@ -42,7 +42,8 @@ public class IEMaranhaoValidator extends AbstractIEValidator {
     public static final Pattern FORMATED = Pattern.compile("(12)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(12)(\\d{3})(\\d{3})(\\d{1})");
-	/**
+	
+    /**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
