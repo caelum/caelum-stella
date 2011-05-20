@@ -13,7 +13,8 @@ import org.junit.Test;
 public class StellaTituloEleitoralBeanValidationTest {
 	
 	private static Validator	validator;
-
+	
+	@SuppressWarnings("unused")
 	private static class Modelo {
 		@TituloEleitoral
 		private String tituloEleitoral;

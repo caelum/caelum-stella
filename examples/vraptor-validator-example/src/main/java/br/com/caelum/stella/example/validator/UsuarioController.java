@@ -1,9 +1,7 @@
 package br.com.caelum.stella.example.validator;
 
 import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.view.Results;
 
 /**
  * @author Mario Amaral

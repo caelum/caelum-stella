@@ -14,8 +14,8 @@ public class StellaNITBeanValidationTest {
 	
 	private static Validator	validator;
 
+	@SuppressWarnings("unused")
 	private static class Modelo {
-		@SuppressWarnings("unused")
 		@NIT
 		private String nit;
 
