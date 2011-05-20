@@ -11,6 +11,14 @@ import javax.validation.Payload;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaChoiceValidator;
 
+/**
+ * Valida se o objeto anotado só tem um atributo (não primitivo)
+ * diferente de null.
+ * 
+ * Valida todos os atributos, ou apenas os que estiverem anotados com 
+ * {@linkplain ChoiceItem} 
+ *
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.TYPE })

@@ -7,6 +7,11 @@ import java.lang.annotation.Target;
 
 import javax.validation.Payload;
 
+
+/**
+ * Marca um atributo para ser verificado pelo 
+ * {@linkplain Choice} 
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.FIELD })
 public @interface ChoiceItem {

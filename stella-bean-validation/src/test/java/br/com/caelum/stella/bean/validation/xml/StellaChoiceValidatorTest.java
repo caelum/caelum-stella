@@ -45,4 +45,39 @@ public class StellaChoiceValidatorTest {
 		validator.initialize(new Mirror().on(AnnotatedModel2.class).reflect().annotation(Choice.class).atClass());
 		Assert.assertTrue(validator.isValid(new AnnotatedModel2(), context));
 	}
+
+	@Choice
+	public static class AnnotatedModel3 {
+		@ChoiceItem
+		private final String bar = "a bar";
+		@ChoiceItem
+		private final Integer i = 0;
+		private final String foo = "a foo";
+	}
+	
+	@Test
+	public void testThatMultipleChoiceWithMoreThanOneItenNotNullShoudNotPass() {
+		StellaChoiceValidator validator = new StellaChoiceValidator();
+		validator.initialize(new Mirror().on(AnnotatedModel3.class).reflect().annotation(Choice.class).atClass());
+		Assert.assertFalse(validator.isValid(new AnnotatedModel3(), context));
+	}
+	
+	@Choice
+	public static class AnnotatedModel4 {
+		@ChoiceItem
+		private final String bar = null;
+		@ChoiceItem
+		private final Integer i = 0;
+		private final String foo = "a foo";
+	}
+	
+	@Test
+	public void testThatMultipleChoiceWithOnlyOneItenNotNullShoudPass() {
+		StellaChoiceValidator validator = new StellaChoiceValidator();
+		validator.initialize(new Mirror().on(AnnotatedModel4.class).reflect().annotation(Choice.class).atClass());
+		Assert.assertTrue(validator.isValid(new AnnotatedModel4(), context));
+	}
+	
+	
+	
 }
