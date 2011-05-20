@@ -11,6 +11,11 @@ import javax.validation.Payload;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMinValidator;
 
+/**
+ * @deprecated Use {@linkplain javax.validation.constraints.Min} no lugar desta annotação
+ */
+@Deprecated
+
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD })

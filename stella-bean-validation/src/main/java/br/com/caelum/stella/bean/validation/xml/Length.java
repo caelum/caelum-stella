@@ -8,8 +8,14 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.constraints.Size;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaLengthValidator;
+
+/**
+ * @deprecated Use {@linkplain Size} no lugar desta annotação
+ */
+@Deprecated
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

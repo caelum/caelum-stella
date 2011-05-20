@@ -14,13 +14,14 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.MinElements;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMinElementsValidator;
 
+@SuppressWarnings("deprecation")
 public class StellaMinElementsValidatorTest {
 	
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 
     @Test
     public void testThatNullIsValid() {
-        StellaMinElementsValidator validator = new StellaMinElementsValidator();
+		StellaMinElementsValidator validator = new StellaMinElementsValidator();
         validator.initialize(new Mirror().on(AnnotatedModel.class).reflect().annotation(MinElements.class).atField("c"));
         Assert.assertTrue(validator.isValid(null,context));
     }

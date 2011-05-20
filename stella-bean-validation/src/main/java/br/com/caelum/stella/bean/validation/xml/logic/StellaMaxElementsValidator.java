@@ -8,6 +8,11 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.MaxElements;
 
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
+
 public class StellaMaxElementsValidator implements ConstraintValidator<MaxElements, Object> {
 
     private MaxElements annotation;

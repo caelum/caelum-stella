@@ -5,6 +5,11 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.Required;
 
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
+
 public class StellaRequiredValidator implements
 		ConstraintValidator<Required, Object> {
 

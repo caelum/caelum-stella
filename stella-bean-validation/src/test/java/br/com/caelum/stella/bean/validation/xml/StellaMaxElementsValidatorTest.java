@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.MaxElements;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMaxElementsValidator;
 
+@SuppressWarnings("deprecation")
 public class StellaMaxElementsValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 

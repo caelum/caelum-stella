@@ -8,12 +8,17 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.Min;
 
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
+
 final public class StellaMinValidator implements
 		ConstraintValidator<Min, Number> {
 
 	private Min annotation;
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private final List<Class<?>> acceptedTypes = (List) Arrays.asList(
 			Byte.class, Short.class, Integer.class, Long.class);
 

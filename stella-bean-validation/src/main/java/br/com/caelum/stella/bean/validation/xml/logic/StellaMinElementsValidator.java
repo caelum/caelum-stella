@@ -7,6 +7,10 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.MinElements;
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
 
 public class StellaMinElementsValidator implements ConstraintValidator<MinElements, Object> {
 

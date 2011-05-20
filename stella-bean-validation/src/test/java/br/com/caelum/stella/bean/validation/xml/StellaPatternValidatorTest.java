@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.Pattern;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaPatternValidator;
 
+@SuppressWarnings("deprecation")
 public class StellaPatternValidatorTest {
 	private ConstraintValidatorContext context = Mockito
 			.mock(ConstraintValidatorContext.class);

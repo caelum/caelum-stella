@@ -11,6 +11,11 @@ import javax.validation.Payload;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMaxValidator;
 
+/**
+ * @deprecated Use {@linkplain javax.validation.constraints.Max} no lugar desta annotação
+ */
+@Deprecated
+
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { ElementType.FIELD })

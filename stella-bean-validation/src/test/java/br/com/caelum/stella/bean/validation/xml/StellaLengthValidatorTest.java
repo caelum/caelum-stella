@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.Length;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaLengthValidator;
 
+@SuppressWarnings("deprecation")
 public class StellaLengthValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 

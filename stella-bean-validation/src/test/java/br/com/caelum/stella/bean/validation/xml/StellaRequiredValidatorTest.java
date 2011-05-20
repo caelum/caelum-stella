@@ -9,12 +9,13 @@ import org.mockito.Mockito;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaRequiredValidator;
 
+@SuppressWarnings("deprecation")
 public class StellaRequiredValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 
     @Test
     public void testThatNullIsInvalid() {
-        StellaRequiredValidator validator = new StellaRequiredValidator();
+		StellaRequiredValidator validator = new StellaRequiredValidator();
         Assert.assertFalse(validator.isValid(null,context));
     }
 

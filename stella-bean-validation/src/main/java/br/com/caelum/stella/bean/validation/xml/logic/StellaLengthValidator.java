@@ -4,6 +4,10 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.Length;
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
 
 public class StellaLengthValidator implements ConstraintValidator<Length, String> {
 

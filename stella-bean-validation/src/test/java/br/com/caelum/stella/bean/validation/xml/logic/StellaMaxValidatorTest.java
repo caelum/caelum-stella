@@ -11,12 +11,13 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.Max;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMaxValidator;
 
+@SuppressWarnings("deprecation")
 final public class StellaMaxValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 
     @Test
     public void testThatNullIsValid() {
-        StellaMaxValidator validator = new StellaMaxValidator();
+		StellaMaxValidator validator = new StellaMaxValidator();
         Assert.assertTrue(validator.isValid(null,context));
     }
 

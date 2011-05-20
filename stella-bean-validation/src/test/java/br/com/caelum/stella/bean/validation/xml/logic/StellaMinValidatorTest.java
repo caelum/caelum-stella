@@ -11,12 +11,14 @@ import org.mockito.Mockito;
 import br.com.caelum.stella.bean.validation.xml.Min;
 import br.com.caelum.stella.bean.validation.xml.logic.StellaMinValidator;
 
+
+@SuppressWarnings("deprecation")
 final public class StellaMinValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 
     @Test
     public void testThatNullIsValid() {
-        StellaMinValidator validator = new StellaMinValidator();
+		StellaMinValidator validator = new StellaMinValidator();
         Assert.assertTrue(validator.isValid(null,context));
     }
 

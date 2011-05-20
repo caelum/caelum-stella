@@ -11,6 +11,11 @@ import javax.validation.Payload;
 
 import br.com.caelum.stella.bean.validation.xml.logic.StellaPatternValidator;
 
+/**
+ * @deprecated Use {@linkplain javax.validation.constraints.Pattern} no lugar desta annotação
+ */
+@Deprecated
+
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD })

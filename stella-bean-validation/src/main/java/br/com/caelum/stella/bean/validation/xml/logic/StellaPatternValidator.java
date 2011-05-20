@@ -5,6 +5,11 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.Pattern;
 
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
+
 public class StellaPatternValidator implements ConstraintValidator<Pattern, String> {
 
     private String pattern;

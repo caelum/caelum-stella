@@ -8,6 +8,11 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.com.caelum.stella.bean.validation.xml.Max;
 
+/**
+ * @deprecated Anotação deste validador está obsoleta
+ */
+@Deprecated
+
 final public class StellaMaxValidator implements ConstraintValidator<Max, Number> {
 
 	private Max annotation;
