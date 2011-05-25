@@ -15,10 +15,10 @@ public class BoletoBancoDoBrasilExample {
 
 		Emissor emissor = Emissor.newEmissor()
 		        .withCedente("Fulano de Tal")
-		        .withAgencia(1824).withDvAgencia('4')
+		        .withAgencia(1824).withDigitoAgencia('4')
                 .withContaCorrente(76000)
-                .withNumConvenio(1207113)
-                .withDvContaCorrente('5')
+                .withNumeroConvenio(1207113)
+                .withDigitoContaCorrente('5')
                 .withCarteira(18)
                 .withNossoNumero(9000206);
 
@@ -41,11 +41,11 @@ public class BoletoBancoDoBrasilExample {
 			.withEmissor(emissor)
 			.withSacado(sacado)
 			.withValorBoleto("200.00")
-			.withNoDocumento("1234")
+			.withNumeroDoDocumento("1234")
 			.withInstrucoes("instrucao 1", "instrucao 2",
 						"instrucao 3", "instrucao 4", "instrucao 5")
 			.withLocaisDePagamento("local 1", "local 2")
-			.withNoDocumento("4343");
+			.withNumeroDoDocumento("4343");
 
 		BoletoGenerator gerador = new BoletoGenerator(boleto);
 

@@ -27,10 +27,10 @@ public class BoletosToPdfExample {
         Emissor emissor = Emissor.newEmissor()
             .withCedente("Fulano de Tal")
             .withAgencia(2345)
-            .withDvAgencia('6')
+            .withDigitoAgencia('6')
             .withContaCorrente(12345)
-            .withNumConvenio(1234567)
-            .withDvContaCorrente('1')
+            .withNumeroConvenio(1234567)
+            .withDigitoContaCorrente('1')
             .withCarteira(22)
             .withNossoNumero(9050987);
 
@@ -53,11 +53,11 @@ public class BoletosToPdfExample {
             .withEmissor(emissor)
             .withSacado(sacado)
             .withValorBoleto("200.00")
-            .withNoDocumento("1234")
+            .withNumeroDoDocumento("1234")
             .withInstrucoes("instrucao 1", "instrucao 2",
                         "instrucao 3", "instrucao 4", "instrucao 5")
             .withLocaisDePagamento("local 1", "local 2")
-            .withNoDocumento("4343");
+            .withNumeroDoDocumento("4343");
         return boleto;
     }
 
@@ -70,10 +70,10 @@ public class BoletosToPdfExample {
         Emissor emissor = Emissor.newEmissor()
             .withCedente("Fulano de Tal")
             .withAgencia(2345)
-            .withDvAgencia('6')
+            .withDigitoAgencia('6')
             .withContaCorrente(12345)
-            .withNumConvenio(1234567)
-            .withDvContaCorrente('1')
+            .withNumeroConvenio(1234567)
+            .withDigitoContaCorrente('1')
             .withCarteira(22)
             .withNossoNumero(9050987);
 
@@ -96,11 +96,11 @@ public class BoletosToPdfExample {
             .withEmissor(emissor)
             .withSacado(sacado)
             .withValorBoleto("200.00")
-            .withNoDocumento("1234")
+            .withNumeroDoDocumento("1234")
             .withInstrucoes("instrucao 1", "instrucao 2",
                         "instrucao 3", "instrucao 4", "instrucao 5")
             .withLocaisDePagamento("local 1", "local 2")
-            .withNoDocumento("4343");
+            .withNumeroDoDocumento("4343");
         return boleto;
     }
 }
