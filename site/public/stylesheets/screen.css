@@ -319,6 +319,7 @@ a#signature:hover{color:#C90;}
 .wrap{
     width: 960px;
     margin: 0 auto;
+    margin-left: 220px;
 }
 
 .language {
