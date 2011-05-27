@@ -17,7 +17,13 @@
   <organization>
     <name>Caelum</name>
     <url>http://www.caelum.com.br</url>
-  </organization>
+	</organization>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>3</version>
+	</parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
