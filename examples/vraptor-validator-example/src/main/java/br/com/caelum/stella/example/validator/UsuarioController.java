@@ -30,8 +30,5 @@ public class UsuarioController {
     	
     }
     
-    public void ok(){
-    	
-    }
-    
+   
 }

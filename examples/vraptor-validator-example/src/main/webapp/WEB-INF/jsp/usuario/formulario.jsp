@@ -13,7 +13,7 @@
 		${error.category} - ${error.message}<br />
 	</c:forEach>
 
-	<form action="usario/cadastra">
+	<form action="cadastra">
 		<label for="cpf">CPF:</label> <input id="cpf" type="text"
 			name="usuario.cpf" /> <input type="submit" value="Cadastrar" />
 	</form>
