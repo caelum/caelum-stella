@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.2.GA</version>
+			<version>4.1.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -35,21 +35,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.4.GA</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
