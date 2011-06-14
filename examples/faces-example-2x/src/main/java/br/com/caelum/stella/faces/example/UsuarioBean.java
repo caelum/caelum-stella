@@ -1,5 +1,7 @@
 package br.com.caelum.stella.faces.example;
 
+import javax.faces.bean.ManagedBean;
+
 
 /**
  * Managed bean que recebe o cpf do formulario
@@ -7,6 +9,7 @@ package br.com.caelum.stella.faces.example;
  * @author Fabio Kung
  * @author Leonardo Bessa
  */
+@ManagedBean
 public class UsuarioBean {
 
     private String cpf;

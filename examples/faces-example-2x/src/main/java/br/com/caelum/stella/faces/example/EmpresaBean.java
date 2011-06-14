@@ -1,5 +1,6 @@
 package br.com.caelum.stella.faces.example;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.event.ValueChangeEvent;
 
 import br.com.caelum.stella.faces.validation.StellaIEValidator;
@@ -7,6 +8,7 @@ import br.com.caelum.stella.faces.validation.StellaIEValidator;
 /**
  * @author Fabio Kung
  */
+@ManagedBean
 public class EmpresaBean {
 
     private StellaIEValidator ieValidator;
