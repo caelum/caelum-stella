@@ -4,6 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
 	version="2.0">
 	<namespace>http://stella.caelum.com.br/faces2</namespace>
+	
+	<tag>
+		<tag-name>inputCPF</tag-name>
+		<component>
+			<component-type>br.com.caelum.stella.faces.validation.InputCPF</component-type>
+		</component>
+	</tag>
 
 	<tag>
 		<tag-name>validateCPF</tag-name>
@@ -43,11 +50,6 @@
 			<validator-id>StellaNITValidator</validator-id>
 			<handler-class>javax.faces.view.facelets.ValidatorHandler</handler-class>
 		</validator>
-	</tag>
-
-	<tag>
-		<tag-name>inputCPF</tag-name>
-		<source>inputCPF.xhtml</source>
 	</tag>
 
 	<tag>
