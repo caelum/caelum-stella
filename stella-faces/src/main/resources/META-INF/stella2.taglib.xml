@@ -7,9 +7,12 @@
 	
 	<tag>
 		<tag-name>inputCPF</tag-name>
-		<component>
-			<component-type>br.com.caelum.stella.faces.validation.InputCPF</component-type>
-		</component>
+		<source>inputCPF.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>inputCNPJ</tag-name>
+		<source>inputCNPJ.xhtml</source>
 	</tag>
 
 	<tag>
