@@ -23,7 +23,7 @@ public class StellaCPFValidatorTest {
 
     private Mockery mockery;
     private StellaCPFValidator validator;
-    private FacesContextMocker facesContextMocker;
+    private FacesContextMocker facesContextMocker; 
 
     @Before
     public void init() {
