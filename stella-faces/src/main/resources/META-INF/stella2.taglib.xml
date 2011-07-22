@@ -8,8 +8,8 @@
 	<tag>
 		<tag-name>inputCPF</tag-name>
 		<component>
-			<component-type>br.com.caelum.stella.faces.validation.InputCPF</component-type>
-			<renderer-type>br.com.caelum.stella.faces.validation.InputCPFRenderer</renderer-type>
+			<component-type>br.com.caelum.stella.faces.component.InputCPF</component-type>
+			<renderer-type>br.com.caelum.stella.faces.component.InputCPFRenderer</renderer-type>
 		</component>
 		<attribute>
 			<name>mask</name>
