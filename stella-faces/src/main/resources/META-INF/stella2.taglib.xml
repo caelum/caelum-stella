@@ -4,16 +4,25 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
 	version="2.0">
 	<namespace>http://stella.caelum.com.br/faces2</namespace>
-	
+
 	<tag>
 		<tag-name>inputCPF</tag-name>
-<!-- 		<source>inputCPF.xhtml</source> -->
-	<component>
-		<component-type>br.com.caelum.stella.faces.validation.InputCPF</component-type>
-		<renderer-type>br.com.caelum.stella.faces.validation.InputCPFRenderer</renderer-type>
-	</component>
+		<component>
+			<component-type>br.com.caelum.stella.faces.validation.InputCPF</component-type>
+			<renderer-type>br.com.caelum.stella.faces.validation.InputCPFRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>mask</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>placeHolder</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
-	
+
 	<tag>
 		<tag-name>inputCNPJ</tag-name>
 		<source>inputCNPJ.xhtml</source>
