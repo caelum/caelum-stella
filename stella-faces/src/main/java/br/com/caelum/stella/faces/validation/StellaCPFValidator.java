@@ -25,15 +25,7 @@ import br.com.caelum.stella.validation.InvalidStateException;
  */
 @FacesValidator(StellaCPFValidator.VALIDATOR_ID)
 public class StellaCPFValidator implements Validator, StateHolder {
-    
-	
-	public StellaCPFValidator(boolean formatted) {
-		this.formatted = formatted;
-	}
-
-	public StellaCPFValidator() {
-	}
-	/**
+    /**
      * Identificador do Validador JSF.
      */
     public static final String VALIDATOR_ID = "StellaCPFValidator";
@@ -42,6 +34,14 @@ public class StellaCPFValidator implements Validator, StateHolder {
 
     private boolean formatted;
     private boolean transientValue = false;
+
+    public StellaCPFValidator(boolean formatted) {
+		this.formatted = formatted;
+	}
+
+    
+    public StellaCPFValidator() {
+	}
 
     /**
      * Atribui se a regra de validação deve considerar, ou não, a cadeia no

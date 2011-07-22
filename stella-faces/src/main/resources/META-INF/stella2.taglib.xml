@@ -10,7 +10,6 @@
 		<component>
 			<component-type>br.com.caelum.stella.faces.component.InputCPF</component-type>
 			<renderer-type>br.com.caelum.stella.faces.component.InputCPFRenderer</renderer-type>
-			
 		</component>
 		<attribute>
 			<name>mask</name>
