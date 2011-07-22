@@ -8,10 +8,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:stella="http://stella.caelum.com.br/faces2">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Validando CPF usando o Componente do Stella Faces</title>
-</head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Validando CPF usando o Componente do Stella Faces</title>
+</h:head>
 <body>
 <f:view>
 	<h1>Validando CPF usando o Componente do Stella Faces</h1>
@@ -19,20 +19,10 @@
 	<h:form>
 		<h:panelGrid>
 		
-		
 			<h:outputLabel for="cpf" value="cpf sem formatacao:" />
 			<stella:inputCPF id="cpf" />
-			
-<!-- 			<h:inputText id="cpf" value="#{usuarioBean.cpf}"> -->
-<!-- 				<stella:validateCPF /> -->
-<!-- 			</h:inputText> -->
 			<h:message for="cpf" />
 
-<!-- 			<h:outputLabel for="cpfFormatado" value="cpf com formatacao:" /> -->
-<!-- 			<h:inputText id="cpfFormatado" value="#{usuarioBean.cpfFormatado}"> -->
-<!-- 				<stella:validateCPF formatted="t#{usuarioBean.cpf}rue" /> -->
-<!-- 			</h:inputText> -->
-<!-- 			<h:message for="cpfFormatado" /> -->
 		</h:panelGrid>
 		<h:commandButton value="Enviar" />
 		<h:messages />
