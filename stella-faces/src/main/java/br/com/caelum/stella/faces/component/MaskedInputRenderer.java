@@ -12,17 +12,17 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 
-@FacesRenderer(componentFamily = "javax.faces.Input", rendererType = "br.com.caelum.stella.faces.component.InputCPFRenderer")
+@FacesRenderer(componentFamily = "javax.faces.Input", rendererType = "br.com.caelum.stella.faces.component.MaskedInputRenderer")
 @ResourceDependencies({
 	@ResourceDependency(library="jquery",name="jquery.js"),
 	@ResourceDependency(library="mask",name="mask.js")
 })
-public class InputCPFRenderer extends Renderer {
+public class MaskedInputRenderer extends Renderer {
 	
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		
-		InputCPF input = (InputCPF) component; 
+		MaskedInput input = (MaskedInput) component; 
 
 		Map<String, String> requestMap = context.getExternalContext().getRequestParameterMap();
 
@@ -37,24 +37,23 @@ public class InputCPFRenderer extends Renderer {
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component)
 			throws IOException {
-		InputCPF input = (InputCPF) component;
+		MaskedInput input = (MaskedInput) component;
 
 		encodeMarkup(context, input);
-		encodeScript(context, input);
+			encodeScript(context, input);
 
 	}
 
-	private void encodeScript(FacesContext context, InputCPF input) throws IOException {
+	private void encodeScript(FacesContext context, MaskedInput input) throws IOException {
 		
 		ResponseWriter writer = context.getResponseWriter();
-		String clientId = input.getClientId(context);
 		
 		writer.startElement("script", null);
 		writer.writeAttribute("type", "text/javascript", null);
 		
 		writer.write("jQuery(function($){");
 		
-        writer.write("$(Stella.escapeJQueryId('" + clientId + "')).mask('" + input.getMask() + "',{placeholder:'"+input.getPlaceHolder()+"'});");
+        writer.write("$('."+input.getDefaultClass()+"').mask('" + input.getMaskFormat() + "',{placeholder:'"+input.getPlaceHolder()+"'});");
 
         writer.write("});");
         
@@ -63,11 +62,11 @@ public class InputCPFRenderer extends Renderer {
 		
 	}
 
-	private void encodeMarkup(FacesContext context, InputCPF input)
+	private void encodeMarkup(FacesContext context, MaskedInput input)
 			throws IOException {
 		
 		String clientId = input.getClientId(context);
-        String defaultClass = InputCPF.DEFAULT_CLASS;
+        String defaultClass = input.getDefaultClass();
         String styleClass = input.getStyleClass();
         styleClass = styleClass == null ? defaultClass : defaultClass + " " + styleClass;
 

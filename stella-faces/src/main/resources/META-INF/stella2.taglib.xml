@@ -9,17 +9,12 @@
 		<tag-name>inputCPF</tag-name>
 		<component>
 			<component-type>br.com.caelum.stella.faces.component.InputCPF</component-type>
-			<renderer-type>br.com.caelum.stella.faces.component.InputCPFRenderer</renderer-type>
+			<renderer-type>br.com.caelum.stella.faces.component.MaskedInputRenderer</renderer-type>
 		</component>
 		<attribute>
-			<name>mask</name>
+			<name>masked</name>
 			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>placeHolder</name>
-			<required>false</required>
-			<type>java.lang.String</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
 
