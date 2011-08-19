@@ -70,7 +70,7 @@ public class VISATestSolicitacaoDeIntegracao {
 	@Test
 	public void testSolicitacaoDeAutorizacaoDePagamento() {
 		VISADadosAutorizacao dadosAutorizacao = new VISASolicitaAutorizacaoPagamentoViaHttp(
-				checkout, null).handle();
+				checkout, dadosConfiguracao).handle();
 		Map<String,Object> fields = new HashMap<String, Object>();
 		fields.put("tid",tid);
 		fields.put("order",dadosAutorizacao.getOrder());
