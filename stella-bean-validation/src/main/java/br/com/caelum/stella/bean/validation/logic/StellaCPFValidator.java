@@ -19,7 +19,7 @@ public class StellaCPFValidator implements ConstraintValidator<CPF, String> {
 
 	public void initialize(CPF cpf) {
 		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cpf);
-		stellaValidator = new CPFValidator(messageProducer, cpf.formatted());
+		stellaValidator = new CPFValidator(messageProducer, cpf.formatted(),false);
 	}
 
 	public boolean isValid(String cpf, ConstraintValidatorContext context) {

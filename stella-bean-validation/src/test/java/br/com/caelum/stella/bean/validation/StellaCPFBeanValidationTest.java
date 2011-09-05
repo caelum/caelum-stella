@@ -51,7 +51,16 @@ public class StellaCPFBeanValidationTest {
 		
 		Set<ConstraintViolation<Modelo>> violations = validator.validate(modelo);
 		Assert.assertEquals(1, violations.size()); 
+	}
+	
+	@Test
+	public void testCpfComTodosDigitosIguaisDeveRetornar1Erro(){
+
+		Modelo modelo = new Modelo();
+		modelo.setCpf("11111111111");
 		
+		Set<ConstraintViolation<Modelo>> violations = validator.validate(modelo);
+		Assert.assertEquals(1, violations.size()); 
 	}
 
 }
