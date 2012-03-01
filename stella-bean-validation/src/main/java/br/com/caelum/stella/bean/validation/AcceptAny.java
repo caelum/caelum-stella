@@ -27,7 +27,7 @@ import br.com.caelum.stella.validation.AcceptAnyValidator.Documento;
 @Target({ FIELD, METHOD })
 @Constraint(validatedBy = StellaAcceptAnyValidator.class)
 public @interface AcceptAny {
-	String message() default "{document_invalid}";
+	String message() default "{br.com.caelum.stella.bean.validation.AcceptAny.message}";
 
 	boolean formatted() default false;
 

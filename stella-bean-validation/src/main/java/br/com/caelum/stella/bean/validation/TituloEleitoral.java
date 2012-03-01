@@ -24,7 +24,7 @@ import br.com.caelum.stella.bean.validation.logic.StellaTituloEleitoralValidator
 @Target({ FIELD, METHOD })
 @Constraint(validatedBy = StellaTituloEleitoralValidator.class)
 public @interface TituloEleitoral {
-	String message() default "{tituloEleitoral_invalid}";
+	String message() default "{br.com.caelum.stella.bean.validation.TituloEleitoral.message}";
 
     Class<?>[] groups() default {};
 

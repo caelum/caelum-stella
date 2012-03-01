@@ -26,7 +26,7 @@ import br.com.caelum.stella.bean.validation.logic.StellaCPFValidator;
 @Target({ FIELD, METHOD })
 @Constraint(validatedBy = StellaCPFValidator.class)
 public @interface CPF {
-	String message() default "{cpf_invalid}";
+	String message() default "{br.com.caelum.stella.bean.validation.CPF.message}";
 
 	boolean formatted() default false;
     

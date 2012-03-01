@@ -24,7 +24,7 @@ import br.com.caelum.stella.bean.validation.logic.StellaNITValidator;
 @Target({ FIELD, METHOD })
 @Constraint(validatedBy = StellaNITValidator.class)
 public @interface NIT {
-	String message() default "{nit_invalid}";
+	String message() default "{br.com.caelum.stella.bean.validation.NIT.message}";
 
 	boolean formatted() default false;
 	

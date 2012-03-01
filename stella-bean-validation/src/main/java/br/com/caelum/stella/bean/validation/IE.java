@@ -24,7 +24,7 @@ import br.com.caelum.stella.bean.validation.logic.StellaIEValidator;
 @Target({ TYPE })
 @Constraint(validatedBy = StellaIEValidator.class)
 public @interface IE {
-	String message() default "{ie_invalid}";
+	String message() default "{br.com.caelum.stella.bean.validation.IE.message}";
 
 	String ieField() default "ie";
 

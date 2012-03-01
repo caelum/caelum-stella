@@ -25,7 +25,7 @@ import br.com.caelum.stella.bean.validation.logic.StellaCNPJValidator;
 @Target( { FIELD, METHOD })
 @Constraint(validatedBy = StellaCNPJValidator.class)
 public @interface CNPJ {
-    String message() default "{cnpj_invalid}";
+    String message() default "{br.com.caelum.stella.bean.validation.CNPJ.message}";
 
     boolean formatted() default false;
     
