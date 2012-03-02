@@ -1,5 +1,13 @@
 ChangeLog
 
+V2.0-beta2
+
+* Stella Core
+    Fix #22, #24
+
+* Stella Bean Validation
+    Alteração das chaves das mensagens padrão para FQL da annotation + .message
+
 V2.0-beta1
 
 * Stella Core
