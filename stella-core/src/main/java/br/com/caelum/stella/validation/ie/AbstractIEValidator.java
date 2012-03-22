@@ -33,7 +33,6 @@ public abstract class AbstractIEValidator implements Validator<String> {
 
 	private List<InvalidValue> getInvalidValues(String IE) {
 	    List<InvalidValue> errors = new ArrayList<InvalidValue>();
-	    errors.clear();
 	    if (IE != null) {
 	        String unformatedIE = checkForCorrectFormat(IE, errors);
 	        if (errors.isEmpty()) {

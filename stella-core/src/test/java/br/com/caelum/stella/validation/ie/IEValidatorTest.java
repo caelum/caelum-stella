@@ -111,7 +111,7 @@ public abstract class IEValidatorTest {
 			try {
 				validator.assertValid(validValue);
 			} catch (InvalidStateException e) {
-				fail();
+				fail("IE inválida: " + validValue);
 			}
 			List<ValidationMessage> errors = validator.invalidMessagesFor(validValue);
 			assertTrue(errors.isEmpty());
@@ -130,7 +130,7 @@ public abstract class IEValidatorTest {
 			try {
 				validator.assertValid(validValue);
 			} catch (InvalidStateException e) {
-				fail();
+				fail("IE inválida: " + validValue);
 			}
 			List<ValidationMessage> errors = validator.invalidMessagesFor(validValue);
 			assertTrue(errors.isEmpty());

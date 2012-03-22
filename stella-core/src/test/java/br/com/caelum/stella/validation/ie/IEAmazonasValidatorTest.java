@@ -6,7 +6,8 @@ import br.com.caelum.stella.validation.Validator;
 public class IEAmazonasValidatorTest extends IEValidatorTest {
 
 	public IEAmazonasValidatorTest() {
-		super(wrongCheckDigitUnformattedString, validUnformattedString, validString, validValues);
+		super(wrongCheckDigitUnformattedString, validUnformattedString,
+				validString, validValues);
 	}
 
 	private static final String wrongCheckDigitUnformattedString = "041939800";
@@ -15,10 +16,12 @@ public class IEAmazonasValidatorTest extends IEValidatorTest {
 
 	private static final String validString = "04.193.980-8";
 
-	private static final String[] validValues = { "04.345.678-2", "04.193.980-8", "04.133.047-1" };
+	private static final String[] validValues = { "04.345.678-2",
+			"04.193.980-8", "06.200.021-7",	"07.000.507-9" };
 
 	@Override
-	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
+	protected Validator<String> getValidator(MessageProducer messageProducer,
+			boolean isFormatted) {
 		return new IEAmazonasValidator(messageProducer, isFormatted);
 	}
 }

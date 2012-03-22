@@ -26,9 +26,9 @@ public class IEAmazonasValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("([0][47])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{2})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("([0][47])(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{1})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
