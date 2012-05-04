@@ -1,8 +1,12 @@
 package br.com.caelum.stella.nfe.ws.sp;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.ws.Holder;
 
+import org.w3c.dom.Node;
+
 import br.com.caelum.stella.nfe.Estados;
+import br.com.caelum.stella.nfe.JaxBHelper;
 import br.com.caelum.stella.nfe.VersaoNFE;
 import br.com.caelum.stella.nfe.xsd.schema.generated.TConsStatServ;
 import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
@@ -16,7 +20,7 @@ public class ConsultaStatusSaoPauloHomolog {
 		this.versao = versao;
 	}
 
-	public NfeStatusServicoNF2Result consulta() {
+	public StatusServico consulta() {
 
 		ObjectFactory objectFactoryWS = new ObjectFactory();
 		br.com.caelum.stella.nfe.xsd.schema.generated.ObjectFactory objectFactoryXSD = new br.com.caelum.stella.nfe.xsd.schema.generated.ObjectFactory();
@@ -36,9 +40,12 @@ public class ConsultaStatusSaoPauloHomolog {
 
 		dados.getContent().add(objectFactoryXSD.createConsStatServ(status));
 		NfeStatusServico2Soap12 servico = new NfeStatusServico2().getNfeStatusServico2Soap12();
-		return servico.nfeStatusServicoNF2(dados, holderCab);
+		NfeStatusServicoNF2Result result = servico.nfeStatusServicoNF2(dados, holderCab);
 		
-//		return (TRetConsStatServ) result.getContent().get(0);
+		TRetConsStatServ object = new JaxBHelper().unmarshalNode(result.getContent().get(0),TRetConsStatServ.class);
+		
+		return new StatusServico(object);
+
 	}
 
 }
