@@ -105,8 +105,8 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <source>1.5</source>
-            <target>1.5</target>
+            <source>1.6</source>
+            <target>1.6</target>
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
@@ -325,6 +325,17 @@
       <id>caueguerra</id>
       <name>Caue Haucke Porta Guerra</name>
       <email>caue.guerra@caelum.com.br</email>
+      <organization>Caelum</organization>
+      <organizationUrl>http://www.caelum.com.br</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>-3</timezone>
+    </developer>
+	<developer>
+      <id>mariofts</id>
+      <name>Mario do Amaral Gonçalves</name>
+      <email>mario.amaral@caelum.com.br</email>
       <organization>Caelum</organization>
       <organizationUrl>http://www.caelum.com.br</organizationUrl>
       <roles>

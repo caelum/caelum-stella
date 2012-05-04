@@ -1,0 +1,13 @@
+Nota Fiscal Eletrônica
+======================
+
+Implementação de NFE do Stella. Em desenvolvimento.
+
+
+Para gerar os webservices, o comando eh o seguinte
+
+wsimport -s src -d bin -p br.com.caelum.stella.nfe.ws.SIGLA_DO_ESTADO -XadditionalHeaders -extension wsdl/SIGLA_DO_ESTADO/ARQUIVO_WSDL
+
+para gerar as classes baseadas nos xsds:
+
+xjc PATH_PARA_ARQUIVO_XSD -d src -p br.com.caelum.stella.nfe.xsd.schema.generated
