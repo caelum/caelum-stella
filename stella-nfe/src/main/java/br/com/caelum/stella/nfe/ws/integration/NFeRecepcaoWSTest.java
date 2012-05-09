@@ -20,15 +20,25 @@ import javax.xml.ws.handler.Handler;
 
 import org.w3c.dom.Node;
 
+import br.com.caelum.stella.nfe.Estados;
 import br.com.caelum.stella.nfe.JaxBHelper;
 import br.com.caelum.stella.nfe.SOAPLoggingHandler;
 import br.com.caelum.stella.nfe.VersaoNFE;
 import br.com.caelum.stella.nfe.config.NFEProperties;
 import br.com.caelum.stella.nfe.security.TokenAlgorithm;
 import br.com.caelum.stella.nfe.security.TokenKeyStoreForWindows;
+import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeCabecMsg;
+import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeDadosMsg;
+import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeRecepcao2;
+import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeRecepcao2Soap12;
+import br.com.caelum.stella.nfe.ws.sp.recepcao.ObjectFactory;
 import br.com.caelum.stella.nfe.ws.sp.status.ConsultaStatusSaoPauloHomolog;
 import br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServicoNF2Result;
 import br.com.caelum.stella.nfe.ws.sp.status.StatusServico;
+import br.com.caelum.stella.nfe.xsd.recepcao.TEnviNFe;
+import br.com.caelum.stella.nfe.xsd.recepcao.TNFe;
+import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe;
+import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe.Ide;
 import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class NFeRecepcaoWSTest {
@@ -49,15 +59,61 @@ public class NFeRecepcaoWSTest {
 			senhaDoCertificado = prop.getProperty("certificado.senha");
 			alias = prop.getProperty("certificado.alias");
 
-			TokenKeyStoreForWindows ks = new TokenKeyStoreForWindows(tokenConfigFile, TokenAlgorithm.PKCS11,
-					senhaDoCertificado);
+			TokenKeyStoreForWindows ks = new TokenKeyStoreForWindows(tokenConfigFile, TokenAlgorithm.PKCS11, senhaDoCertificado);
 			ks.getCertificateFor(alias).enableSSLForServer();
 
-			StatusServico consulta = new ConsultaStatusSaoPauloHomolog(VersaoNFE.V_2_00).consulta();
+			ObjectFactory factoryWS = new ObjectFactory();
+			br.com.caelum.stella.nfe.xsd.recepcao.ObjectFactory factoryXSD = new br.com.caelum.stella.nfe.xsd.recepcao.ObjectFactory();
+		
+			NfeRecepcao2Soap12 envioLote = new NfeRecepcao2().getNfeRecepcao2Soap12();
+			
+			NfeCabecMsg cabecMsg = factoryWS.createNfeCabecMsg();
+			cabecMsg.setCUF(Estados.SP.name());
+			cabecMsg.setVersaoDados(VersaoNFE.V_2_00.getVersao());
 
-			System.out.println("Serviço ativo: " + consulta.isAtivo());
-			System.out.println(new JaxBHelper().toXML(consulta.getResponse()));
+			NfeDadosMsg dadosMsg = factoryWS.createNfeDadosMsg();
+			
+			//lote de nfe
+			TEnviNFe enviNFe = factoryXSD.createTEnviNFe();
+			
+			enviNFe.setIdLote("1");
+			enviNFe.setVersao(VersaoNFE.V_2_00.getVersao());
 
+			//um wrapper de nota do lote...
+			TNFe tnFe = factoryXSD.createTNFe();
+			
+			//uma nota do lote...
+			InfNFe infNFe = factoryXSD.createTNFeInfNFe();
+			
+			Ide ide = factoryXSD.createTNFeInfNFeIde();
+			
+			// 3 cnpj (14)
+			// 4 modelo (2)
+			// 5 serie (3)
+			// 6 numero nfe (9) 
+			// 7 forma de emissão (1)
+			// 8 codigo numerico (8)
+			
+			ide.setCUF(Estados.SP.getCodigo()); //dv 1 (2)
+			ide.setCNF("00000001");
+			ide.setNatOp("venda");
+			ide.setIndPag("0"); 
+			ide.setMod("55");
+			ide.setSerie("0");
+			ide.setNNF("1");
+			ide.setDEmi("2012-05-09"); //dv2 (4-AAMM)
+//			ide.setDSaiEnt("2012-05-09");
+//			ide.setHSaiEnt("00:00:00");
+			ide.setTpNF("1");
+			ide.setCMunFG("3550308");
+			ide.setTpImp("1");
+			ide.setTpEmis("1");
+			ide.setCDV(""); // dv...
+			
+			
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
