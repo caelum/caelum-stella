@@ -6,19 +6,19 @@
 //
 
 
-package br.com.caelum.stella.nfe.xsd.schema.generated;
+package br.com.caelum.stella.nfe.xsd.status;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for TUfEmi.
+ * <p>Java class for TUf.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="TUfEmi">
+ * &lt;simpleType name="TUf">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;whiteSpace value="preserve"/>
  *     &lt;enumeration value="AC"/>
@@ -48,14 +48,15 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="SE"/>
  *     &lt;enumeration value="SP"/>
  *     &lt;enumeration value="TO"/>
+ *     &lt;enumeration value="EX"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "TUfEmi")
+@XmlType(name = "TUf")
 @XmlEnum
-public enum TUfEmi {
+public enum TUf {
 
     AC,
     AL,
@@ -83,13 +84,14 @@ public enum TUfEmi {
     SC,
     SE,
     SP,
-    TO;
+    TO,
+    EX;
 
     public String value() {
         return name();
     }
 
-    public static TUfEmi fromValue(String v) {
+    public static TUf fromValue(String v) {
         return valueOf(v);
     }
 

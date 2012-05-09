@@ -8,8 +8,8 @@ import org.w3c.dom.Node;
 import br.com.caelum.stella.nfe.Estados;
 import br.com.caelum.stella.nfe.JaxBHelper;
 import br.com.caelum.stella.nfe.VersaoNFE;
-import br.com.caelum.stella.nfe.xsd.schema.generated.TConsStatServ;
-import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class ConsultaStatusSaoPauloHomolog {
 
@@ -23,7 +23,7 @@ public class ConsultaStatusSaoPauloHomolog {
 	public StatusServico consulta() {
 
 		ObjectFactory objectFactoryWS = new ObjectFactory();
-		br.com.caelum.stella.nfe.xsd.schema.generated.ObjectFactory objectFactoryXSD = new br.com.caelum.stella.nfe.xsd.schema.generated.ObjectFactory();
+		br.com.caelum.stella.nfe.xsd.status.ObjectFactory objectFactoryXSD = new br.com.caelum.stella.nfe.xsd.status.ObjectFactory();
 
 		NfeCabecMsg cabec = objectFactoryWS.createNfeCabecMsg();
 		cabec.setCUF(sp.getCodigo());

@@ -1,6 +1,6 @@
 package br.com.caelum.stella.nfe.ws.sp.status;
 
-import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class StatusServico {
 

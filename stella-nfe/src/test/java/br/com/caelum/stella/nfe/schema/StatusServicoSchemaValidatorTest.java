@@ -15,7 +15,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class StatusServicoSchemaValidatorTest {
 

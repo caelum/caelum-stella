@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
-import br.com.caelum.stella.nfe.xsd.schema.generated.TConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TConsStatServ;
 
 
 /**

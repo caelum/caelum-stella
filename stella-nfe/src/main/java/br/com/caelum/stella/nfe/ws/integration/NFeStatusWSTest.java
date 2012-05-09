@@ -29,7 +29,7 @@ import br.com.caelum.stella.nfe.security.TokenKeyStoreForWindows;
 import br.com.caelum.stella.nfe.ws.sp.status.ConsultaStatusSaoPauloHomolog;
 import br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServicoNF2Result;
 import br.com.caelum.stella.nfe.ws.sp.status.StatusServico;
-import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
+import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class NFeStatusWSTest {
 	private static final boolean DEBUG_ENABLE = true;

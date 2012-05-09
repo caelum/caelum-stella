@@ -7,7 +7,7 @@
 
 //@XmlSchema(namespace = "http://www.portalfiscal.inf.br/nfe", 
 //	elementFormDefault = XmlNsForm.QUALIFIED)
-package br.com.caelum.stella.nfe.xsd.schema.generated;
+package br.com.caelum.stella.nfe.xsd.status;
 
 import javax.xml.bind.annotation.XmlNsForm;
 import javax.xml.bind.annotation.XmlSchema;

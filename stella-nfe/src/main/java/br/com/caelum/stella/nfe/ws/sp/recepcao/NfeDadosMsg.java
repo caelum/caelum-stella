@@ -1,5 +1,5 @@
 
-package br.com.caelum.stella.nfe.ws.sp.status;
+package br.com.caelum.stella.nfe.ws.sp.recepcao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-
-import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 
 /**
@@ -37,9 +34,8 @@ import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 @XmlType(name = "", propOrder = {
     "content"
 })
-@XmlRootElement(name = "nfeStatusServicoNF2Result")
-//@XmlSeeAlso(TRetConsStatServ.class)
-public class NfeStatusServicoNF2Result {
+@XmlRootElement(name = "nfeDadosMsg")
+public class NfeDadosMsg {
 
     @XmlMixed
     @XmlAnyElement(lax = true)
@@ -63,8 +59,8 @@ public class NfeStatusServicoNF2Result {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
      * {@link Object }
+     * {@link String }
      * 
      * 
      */

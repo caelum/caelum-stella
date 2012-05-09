@@ -6,7 +6,7 @@
 //
 
 
-package br.com.caelum.stella.nfe.xsd.schema.generated;
+package br.com.caelum.stella.nfe.xsd.status;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
