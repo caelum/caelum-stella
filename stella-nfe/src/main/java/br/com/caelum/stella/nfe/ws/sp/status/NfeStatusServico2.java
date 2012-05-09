@@ -1,5 +1,5 @@
 
-package br.com.caelum.stella.nfe.ws.sp;
+package br.com.caelum.stella.nfe.ws.sp.status;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,13 +26,13 @@ public class NfeStatusServico2
 {
 
     private final static URL NFESTATUSSERVICO2_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(br.com.caelum.stella.nfe.ws.sp.NfeStatusServico2 .class.getName());
+    private final static Logger logger = Logger.getLogger(br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServico2 .class.getName());
 
     static {
         URL url = null;
         try {
             URL baseUrl;
-            baseUrl = br.com.caelum.stella.nfe.ws.sp.NfeStatusServico2 .class.getResource(".");
+            baseUrl = br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServico2 .class.getResource(".");
             url = new URL( "https://homologacao.nfe.fazenda.sp.gov.br/nfeweb/services/NfeStatusServico2.asmx?WSDL");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'https://homologacao.nfe.fazenda.sp.gov.br/nfeweb/services/NfeStatusServico2.asmx?WSDL', retrying as a local file");

@@ -1,4 +1,4 @@
-package br.com.caelum.stella.nfe.ws.sp;
+package br.com.caelum.stella.nfe.ws.sp.status;
 
 import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
 

@@ -1,5 +1,5 @@
 
-package br.com.caelum.stella.nfe.ws.sp;
+package br.com.caelum.stella.nfe.ws.sp.status;
 
 import java.util.HashMap;
 import java.util.Map;

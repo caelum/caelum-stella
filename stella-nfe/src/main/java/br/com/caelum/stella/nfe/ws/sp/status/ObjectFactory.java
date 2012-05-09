@@ -1,5 +1,5 @@
 
-package br.com.caelum.stella.nfe.ws.sp;
+package br.com.caelum.stella.nfe.ws.sp.status;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

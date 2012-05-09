@@ -26,9 +26,9 @@ import br.com.caelum.stella.nfe.VersaoNFE;
 import br.com.caelum.stella.nfe.config.NFEProperties;
 import br.com.caelum.stella.nfe.security.TokenAlgorithm;
 import br.com.caelum.stella.nfe.security.TokenKeyStoreForWindows;
-import br.com.caelum.stella.nfe.ws.sp.ConsultaStatusSaoPauloHomolog;
-import br.com.caelum.stella.nfe.ws.sp.NfeStatusServicoNF2Result;
-import br.com.caelum.stella.nfe.ws.sp.StatusServico;
+import br.com.caelum.stella.nfe.ws.sp.status.ConsultaStatusSaoPauloHomolog;
+import br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServicoNF2Result;
+import br.com.caelum.stella.nfe.ws.sp.status.StatusServico;
 import br.com.caelum.stella.nfe.xsd.schema.generated.TRetConsStatServ;
 
 public class NFeStatusWSTest {
