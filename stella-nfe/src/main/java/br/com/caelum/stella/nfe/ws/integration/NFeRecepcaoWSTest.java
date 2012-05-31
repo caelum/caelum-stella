@@ -1,27 +1,15 @@
 package br.com.caelum.stella.nfe.ws.integration;
 
-import java.io.File;
-import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
-import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventHandler;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.handler.Handler;
 
-import org.w3c.dom.Node;
+import org.apache.commons.lang.StringUtils;
 
 import br.com.caelum.stella.nfe.Estados;
-import br.com.caelum.stella.nfe.JaxBHelper;
 import br.com.caelum.stella.nfe.SOAPLoggingHandler;
 import br.com.caelum.stella.nfe.VersaoNFE;
 import br.com.caelum.stella.nfe.config.NFEProperties;
@@ -32,14 +20,13 @@ import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeDadosMsg;
 import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeRecepcao2;
 import br.com.caelum.stella.nfe.ws.sp.recepcao.NfeRecepcao2Soap12;
 import br.com.caelum.stella.nfe.ws.sp.recepcao.ObjectFactory;
-import br.com.caelum.stella.nfe.ws.sp.status.ConsultaStatusSaoPauloHomolog;
-import br.com.caelum.stella.nfe.ws.sp.status.NfeStatusServicoNF2Result;
-import br.com.caelum.stella.nfe.ws.sp.status.StatusServico;
 import br.com.caelum.stella.nfe.xsd.recepcao.TEnviNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe.Ide;
-import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
+import br.com.caelum.stella.validation.DigitoVerificadorInfo;
+import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
+import br.com.caelum.stella.validation.ValidadorDeDV;
 
 public class NFeRecepcaoWSTest {
 	private static final boolean DEBUG_ENABLE = true;
@@ -48,9 +35,14 @@ public class NFeRecepcaoWSTest {
 	private static String tokenConfigFile = null;
 	private static String senhaDoCertificado = null;
 	private static String alias = null;
+	
+	private static final DigitoVerificadorInfo DV_MOD_11 = new DigitoVerificadorInfo(0,
+            new RotinaDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV1_MULTIPLIERS,
+            DV1_POSITION);
 
 	public static void main(String[] args) {
 		try {
+			
 
 			NFEProperties prop = new NFEProperties();
 
@@ -94,24 +86,58 @@ public class NFeRecepcaoWSTest {
 			// 7 forma de emissão (1)
 			// 8 codigo numerico (8)
 			
-			ide.setCUF(Estados.SP.getCodigo()); //dv 1 (2)
+			//dados do emitente / nota
+			SimpleDateFormat dfAmerican = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat dfAnooMes = new SimpleDateFormat("yyMM");
+			Calendar dataEmissao = Calendar.getInstance();
+			String cnpj = "09661762000103";
+			
+			ide.setCUF(Estados.SP.getCodigo());
 			ide.setCNF("00000001");
 			ide.setNatOp("venda");
 			ide.setIndPag("0"); 
 			ide.setMod("55");
 			ide.setSerie("0");
 			ide.setNNF("1");
-			ide.setDEmi("2012-05-09"); //dv2 (4-AAMM)
+			ide.setDEmi(dfAmerican.format(dataEmissao.getTime())); 
 //			ide.setDSaiEnt("2012-05-09");
 //			ide.setHSaiEnt("00:00:00");
 			ide.setTpNF("1");
 			ide.setCMunFG("3550308");
 			ide.setTpImp("1");
 			ide.setTpEmis("1");
-			ide.setCDV(""); // dv...
+			ide.setTpAmb("2") // ambiente
+			ide.setFinNFe("1");
+			ide.setProcEmi("0");
+			ide.setVerProc(VersaoNFE.V_2_00.getVersao());
+
+			String baseCdv = ide.getCUF()
+					+ dfAnooMes.format(dataEmissao.getTime())
+					+ cnpj
+					+ StringUtils.leftPad(ide.getMod(), 2, '0')    
+					+ StringUtils.leftPad(ide.getSerie(), 3, '0')    
+					+ StringUtils.leftPad(ide.getNNF(), 9, '0')    
+					+ StringUtils.leftPad(ide.getNNF(), 9, '0')
+					+ ide.getTpEmis()
+					+ StringUtils.leftPad(ide.getCNF(), 8, '0');
+			
+			ValidadorDeDv mod = new ValidadorDeDV(new DigitoVerificadorInfo(null, null, null, null, null))
 			
 			
+			ide.setCDV(cdv); 
+			/*
+			cUF - Código da UF do emitente do Documento Fiscal
+			• AAMM - Ano e Mês de emissão da NF-e
+			• CNPJ - CNPJ do emitente
+			• mod - Modelo do Documento Fiscal
+			• serie - Série do Documento Fiscal
+			• nNF - Número do Documento Fiscal
+			• tpEmis – forma de emissão da NF-e
+			• cNF - Código Numérico que compõe a Chave de Acesso
+			• cDV - Dígito Verificador da Chave de Acesso
+			*/
 			
+			infNFe.setIde(ide);
 			
 			
 		} catch (Exception e) {
