@@ -7,7 +7,7 @@ import br.com.caelum.stella.boleto.Boleto;
 public interface BoletoWriter {
 	
 	/**
-	 * Escreve as informações do boleto no writer.
+	 * Escreve as informaÃ§Ãµes do boleto no writer.
 	 * @param boleto
 	 */
 	void write(Boleto boleto);
