@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-		<version>2.0-beta1</version>
-                <relativePath>../../pom.xml</relativePath>
+		<version>2.1</version>
+        <relativePath>../../pom.xml</relativePath>
 	</parent>
 	<artifactId>hibernate-seam-example</artifactId>
 	<packaging>war</packaging>

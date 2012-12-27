@@ -4,8 +4,8 @@
 	<parent>
 		<groupId>br.com.caelum.stella</groupId>
 		<artifactId>caelum-stella</artifactId>
-		<version>2.0-beta2-SNAPSHOT</version>
-                <relativePath>../../pom.xml</relativePath>
+		<version>2.1</version>
+        <relativePath>../../pom.xml</relativePath>
 	</parent>
 	<artifactId>faces-example-1x</artifactId>
 	<packaging>war</packaging>
