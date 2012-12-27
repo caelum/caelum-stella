@@ -6,8 +6,11 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
+
 public class GeradorDeDigitoDeBoletoTest {
-	private GeradorDeDigitoDeBoleto gerador = new GeradorDeDigitoDeBoleto();
+	private GeradorDeDigito gerador = new GeradorDeDigitoPadrao();
 
 	@Test
 	public void testeGeracaoDeDigitoMod11() {

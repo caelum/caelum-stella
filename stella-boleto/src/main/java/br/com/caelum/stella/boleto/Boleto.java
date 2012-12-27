@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
@@ -454,12 +455,10 @@ public class Boleto {
         dataBase.set(Calendar.MILLISECOND, 0);
 
         Calendar vencimentoSemHoras = Calendar.getInstance();
-        vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, this.datas
-                .getVencimento().get(Calendar.DAY_OF_MONTH));
-        vencimentoSemHoras.set(Calendar.MONTH, this.datas.getVencimento().get(
-                Calendar.MONTH));
-        vencimentoSemHoras.set(Calendar.YEAR, this.datas.getVencimento().get(
-                Calendar.YEAR));
+
+        vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, this.datas.getVencimento().get(Calendar.DAY_OF_MONTH));
+        vencimentoSemHoras.set(Calendar.MONTH, this.datas.getVencimento().get(Calendar.MONTH));
+        vencimentoSemHoras.set(Calendar.YEAR, this.datas.getVencimento().get(Calendar.YEAR));
         vencimentoSemHoras.set(Calendar.HOUR_OF_DAY, 0);
         vencimentoSemHoras.set(Calendar.MINUTE, 0);
         vencimentoSemHoras.set(Calendar.SECOND, 0);
@@ -483,8 +482,7 @@ public class Boleto {
      * @return
      */
     public String getValorFormatado() {
-        return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]",
-                "");
+        return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]","");
     }
 
     /**

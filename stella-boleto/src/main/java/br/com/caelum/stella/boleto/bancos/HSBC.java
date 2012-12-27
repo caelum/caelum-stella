@@ -3,6 +3,8 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -26,7 +28,7 @@ public class HSBC implements Banco {
       */
     public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em ag�ncia do HSBC";
     private static final String NUMERO_HSBC = "399";
-    private GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
+    private GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
     private static final String CODIGO_APLICATIVO = "2";
 
     private int getSegundoDigitoVerificador(Boleto boleto) {
@@ -64,6 +66,16 @@ public class HSBC implements Banco {
         return resultado;
 
     }
+    
+    @Override
+	public String getNumeroFormatadoComDigito() {
+		return NUMERO_HSBC;
+	}
+
+	@Override
+	public GeradorDeDigito getGeradorDeDigito() {
+		return dvGenerator;
+	}
 
     public String getCodigoDoDocumentoFinalComDigitosVerificadores(Boleto boleto) {
         return String.format("%s%d%d%d", boleto.getNumeroDoDocumento(), getPrimeiroDigitoVerificador(boleto), getTipoIdentificador(boleto), getSegundoDigitoVerificador(boleto));

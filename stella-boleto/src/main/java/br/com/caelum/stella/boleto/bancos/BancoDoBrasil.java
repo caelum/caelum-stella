@@ -3,6 +3,8 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
@@ -20,7 +22,7 @@ public class BancoDoBrasil implements Banco {
 
     private static final String NUMERO_BB = "001";
 
-    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
+    private final GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -111,5 +113,15 @@ public class BancoDoBrasil implements Banco {
             return String.format("%011d", emissor.getNossoNumero());
         }
     }
+
+	@Override
+	public String getNumeroFormatadoComDigito() {
+		return NUMERO_BB;
+	}
+
+	@Override
+	public GeradorDeDigito getGeradorDeDigito() {
+		return dvGenerator;
+	}
 
 }

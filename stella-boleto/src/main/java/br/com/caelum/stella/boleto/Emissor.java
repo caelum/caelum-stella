@@ -257,7 +257,14 @@ public class Emissor {
 	 * @return
 	 */
 	public String getAgenciaFormatado() {
-		return String.format("%04d", this.agencia);
+		String valor = String.valueOf(this.agencia);
+		
+		if(this.digitoAgencia != 0){
+			valor += digitoAgencia;
+		}
+		
+		return String.format("%04d", Integer.parseInt(valor));
+		
 	}
 
 	/**

@@ -2,29 +2,30 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 public class LinhaDigitavelGenerator {
-    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
 
     public String geraLinhaDigitavelPara(Boleto boleto) {
         Banco banco = boleto.getBanco();
+        GeradorDeDigito dvGenerator = banco.getGeradorDeDigito();
 
         String codigoDeBarras = banco.geraCodigoDeBarrasPara(boleto);
-
+        System.out.println(codigoDeBarras);
         StringBuilder bloco1 = new StringBuilder();
         bloco1.append(banco.getNumeroFormatado());
         bloco1.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
         bloco1.append(codigoDeBarras.substring(19, 24));
-        bloco1.append(this.dvGenerator.geraDigitoMod10(bloco1.toString()));
+        bloco1.append(dvGenerator.geraDigitoBloco1(bloco1.toString()));
 
         StringBuilder bloco2 = new StringBuilder();
         bloco2.append(codigoDeBarras.substring(24, 34));
-        bloco2.append(this.dvGenerator.geraDigitoMod10(bloco2.toString()));
+        bloco2.append(dvGenerator.geraDigitoBloco2(bloco2.toString()));
 
         StringBuilder bloco3 = new StringBuilder();
         bloco3.append(codigoDeBarras.substring(34, 44));
-        bloco3.append(this.dvGenerator.geraDigitoMod10(bloco3.toString()));
-
+        bloco3.append(dvGenerator.geraDigitoBloco3(bloco3.toString()));
         StringBuilder bloco4 = new StringBuilder();
         bloco4.append(codigoDeBarras.charAt(4));
         bloco4.append(codigoDeBarras.substring(5, 9));

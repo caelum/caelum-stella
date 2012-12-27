@@ -94,8 +94,7 @@ class PNGPDFTransformerHelper {
 		this.writer.write(146, LINHA3, boleto.getBanco()
 				.getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 
-		this.writer.writeBold(125, LINHA4, boleto.getBanco()
-				.getNumeroFormatado());
+		this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito());
 
 		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
 		this.writer.writeBold(175, LINHA4, linhaDigitavelGenerator
@@ -138,8 +137,7 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(410, LINHA7, boleto.getEmissor().getCarteira()
 				+ " / "
-				+ boleto.getBanco().getNossoNumeroDoEmissorFormatado(
-						boleto.getEmissor()));
+				+ boleto.getBanco().getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 
 		this.writer.write(122, LINHA8, boleto.getBanco()
 				.getCarteiraDoEmissorFormatado(boleto.getEmissor()));

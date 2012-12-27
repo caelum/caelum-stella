@@ -5,12 +5,14 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 public class Real implements Banco {
 
     private final static String NUMERO_REAL = "356";
 
-    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
+    private final GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -35,6 +37,16 @@ public class Real implements Banco {
 
         return codigoDeBarras.toString();
     }
+    
+    @Override
+	public String getNumeroFormatadoComDigito() {
+		return NUMERO_REAL;
+	}
+
+	@Override
+	public GeradorDeDigito getGeradorDeDigito() {
+		return dvGenerator;
+	}
 
     /**
      * Calculo relacionado apenas ao Banco Real

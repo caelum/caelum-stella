@@ -5,13 +5,15 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class Itau implements Banco {
 
     private static final String NUMERO_ITAU = "341";
 
-    private final GeradorDeDigitoDeBoleto dvGenerator = new GeradorDeDigitoDeBoleto();
+    private final GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -52,6 +54,16 @@ public class Itau implements Banco {
 
         return result;
     }
+    
+    @Override
+	public String getNumeroFormatadoComDigito() {
+		return NUMERO_ITAU;
+	}
+
+	@Override
+	public GeradorDeDigito getGeradorDeDigito() {
+		return dvGenerator;
+	}
 
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {
         return String.format("%03d", emissor.getCarteira());

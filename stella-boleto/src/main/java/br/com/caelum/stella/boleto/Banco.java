@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto;
 
 import java.net.URL;
 
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+
 /**
  * Interface que define métodos específicos ao funcionamento de cada banco para
  * gerar o código de barras e a linha digitável.<br/>
@@ -53,4 +55,8 @@ public interface Banco {
     String getCarteiraDoEmissorFormatado(Emissor emissor);
 
     String getNossoNumeroDoEmissorFormatado(Emissor emissor);
+    
+    String getNumeroFormatadoComDigito();
+    
+    GeradorDeDigito getGeradorDeDigito();
 }

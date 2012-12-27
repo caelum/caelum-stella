@@ -30,7 +30,7 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 public class HTMLBoletoWriter implements BoletoWriter {
 
-    private final URL urlServletBoleto;
+    private final String urlServletBoleto;
     private Template template;
     private final Collection<BoletoTemplateWrapper> boletos;
     private final VelocityEngine velocityEngine;
@@ -40,7 +40,8 @@ public class HTMLBoletoWriter implements BoletoWriter {
      * @param urlServletBoleto
      *            url de sua app. Ex: http://www.algumsite.com.br/stella-boleto/
      */
-    public HTMLBoletoWriter(final URL urlServletBoleto) {
+    public HTMLBoletoWriter(final String urlServletBoleto) {
+    	
         this.urlServletBoleto = urlServletBoleto;
         boletos = new ArrayList<BoletoTemplateWrapper>();
         velocityEngine = new VelocityEngine();
@@ -74,7 +75,7 @@ public class HTMLBoletoWriter implements BoletoWriter {
         StringWriter writer = new StringWriter();
         VelocityContext context = new VelocityContext();
         context.put("boletos", boletos);
-        context.put("urlServletBoleto", urlServletBoleto.toExternalForm());
+        context.put("urlServletBoleto", urlServletBoleto);
         try {
             template.merge(context, writer);
         } catch (ResourceNotFoundException e) {
