@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Bean que representa os dados do emissor de um Boleto.
  * 
@@ -263,7 +265,8 @@ public class Emissor {
 			valor += digitoAgencia;
 		}
 		
-		return String.format("%04d", Integer.parseInt(valor));
+		valor = String.format("%04d", Integer.parseInt(valor));
+		return valor.substring(0,4);
 		
 	}
 

@@ -3,7 +3,6 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 public class LinhaDigitavelGenerator {
 
@@ -12,7 +11,6 @@ public class LinhaDigitavelGenerator {
         GeradorDeDigito dvGenerator = banco.getGeradorDeDigito();
 
         String codigoDeBarras = banco.geraCodigoDeBarrasPara(boleto);
-        System.out.println(codigoDeBarras);
         StringBuilder bloco1 = new StringBuilder();
         bloco1.append(banco.getNumeroFormatado());
         bloco1.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
@@ -38,7 +36,6 @@ public class LinhaDigitavelGenerator {
         linhaDigitavel.append(bloco4);
 
         linhaDigitavel = linhaDigitavelFormatter(linhaDigitavel);
-
         return linhaDigitavel.toString();
     }
 
