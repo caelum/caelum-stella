@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -81,10 +80,11 @@ public class BoletoHTMLTransformerIntegrationTest {
                        .withInstrucoes(instrucoes)
                        .withLocaisDePagamento(locaisDePagamento);
 
-        BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(new URL(
-                "http://localhost:8080/caelum-stella-boleto/stella-boleto/")));
+        BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(
+                "http://localhost:8080/caelum-stella-boleto/stella-boleto/"));
         InputStream is = transformer.transform(boleto);
-        FileOutputStream arquivo = new FileOutputStream("arquivo.html");
+        @SuppressWarnings("resource")
+		FileOutputStream arquivo = new FileOutputStream("arquivo.html");
         byte[] bytes = new byte[is.available()];
         is.read(bytes);
         arquivo.write(bytes);
@@ -109,7 +109,8 @@ public class BoletoHTMLTransformerIntegrationTest {
 
     private String lerArquivo() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File("arquivo.html"));
+            @SuppressWarnings("resource")
+			FileInputStream fileInputStream = new FileInputStream(new File("arquivo.html"));
             int c = 0;
             StringBuffer boleto = new StringBuffer();
             while ((c = fileInputStream.read()) != -1) {
