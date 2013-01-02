@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Boleto</title>
 <style>
 BODY {
@@ -39,7 +39,7 @@ TD {
 	width : 150px;
 }
 </style>
-<!-- BoletoExibe 1.99 - 15/10/2006 (não remova)-->
+<!-- BoletoExibe 1.99 - 15/10/2006 (nao remova)-->
 </head>
 <body>
 #foreach ($boleto in $boletos)
@@ -71,7 +71,7 @@ TD {
 	<tr>
 		<td height=27 vAlign="top" width="340" colSpan="3">Cedente<br>
 		<font Class=campo>${boleto.emissor.cedente}</font></TD>
-		<td vAlign="top" width="150">Agência/Código Cedente<br>
+		<td vAlign="top" width="150">Agencia/Codigo Cedente<br>
 		<DIV align="right" Class=campo>${boleto.emissor.agenciaFormatado}-${boleto.emissor.dvAgencia}/${boleto.contaCorrente()}-${boleto.emissor.dvContaCorrente}</DIV>
 		</TD>
 		<td bgcolor="#dddddd" vAlign="top" width="150">Vencimento<br>
@@ -82,16 +82,16 @@ TD {
 		<td height=27 vAlign="top" colSpan="3">Sacado<br>
 		<font Class=campo>${boleto.sacado.nome}/${boleto.sacado.cpf}</font></TD>
 
-		<td vAlign="top">Número do Documento<br>
+		<td vAlign="top">Numero do Documento<br>
 		<DIV align="right" Class=campo>${boleto.noDocumentoFormatado}</DIV>
 		</TD>
-		<td vAlign="top" nowrap>Nosso Número<br>
+		<td vAlign="top" nowrap>Nosso Numero<br>
 		<DIV align="right" Class=campo>${boleto.nossoNumero()}</DIV>
 
 		</TD>
 	</tr>
 	<tr>
-		<td height=27 vAlign="top" bgcolor="#dddddd" width="90">Espécie<br>
+		<td height=27 vAlign="top" bgcolor="#dddddd" width="90">Especie<br>
 		<DIV align="center" class=campo>${boleto.especieMoeda}</DIV>
 		</TD>
 		<td vAlign="top" width="100">Quantidade <br>
@@ -108,7 +108,7 @@ TD {
 	</tr>
 	<tr>
 		<td height=27 vAlign="bottom" colSpan="3">Demonstrativo:</TD>
-		<td vAlign="top">(+) Outros Acréscimos<br>
+		<td vAlign="top">(+) Outros Acrescimos<br>
 		&nbsp;</TD>
 
 		<td vAlign="top">(=) Valor Cobrado<br>
@@ -161,7 +161,7 @@ TD {
 		<td valign=top height=27 colSpan="6">Cedente<br>
 		<font Class=campo>${boleto.emissor.cedente}</font></TD>
 
-		<td valign=top>Agência/Código Cedente<br>
+		<td valign=top>Agência/Codigo Cedente<br>
 		<DIV align="right" Class=campo>${boleto.emissor.agenciaFormatado}-${boleto.emissor.dvAgencia}/${boleto.contaCorrente()}-${boleto.emissor.dvContaCorrente}</DIV>
 		</TD>
 	</tr>
@@ -170,11 +170,11 @@ TD {
 
 		<DIV align="center" Class=campo>${boleto.formataData($boleto.datas.documento)}</DIV>
 		</TD>
-		<td valign=top colSpan="2">Número do Documento<br>
+		<td valign=top colSpan="2">Numero do Documento<br>
 		<DIV align="center" Class=campo>${boleto.noDocumentoFormatado}</DIV>
 		</TD>
 
-		<td valign=top>Espécie Doc.<br>
+		<td valign=top>Especie Doc.<br>
 		<DIV align="center" class=campo>${boleto.especieDocumento}</DIV>
 		</TD>
 		<td valign=top>Aceite<br>
@@ -184,7 +184,7 @@ TD {
 
 		<DIV align="center" Class=campo>${boleto.formataData($boleto.datas.processamento)}</DIV>
 		</TD>
-		<td valign=top nowrap>Nosso Número<br>
+		<td valign=top nowrap>Nosso Numero<br>
 		<DIV align="right" Class=campo>${boleto.nossoNumero()}</DIV>
 		</TD>
 
@@ -196,7 +196,7 @@ TD {
 		<DIV align="center" class=campo>${boleto.carteira()}</DIV>
 
 		</TD>
-		<td valign=top bgcolor="#dddddd">Espécie<br>
+		<td valign=top bgcolor="#dddddd">Especie<br>
 		<DIV align="center" class=campo>${boleto.especieMoeda}</DIV>
 		</TD>
 		<td valign=top colSpan="2">Quantidade<br>
@@ -209,9 +209,11 @@ TD {
 		</TD>
 	</tr>
 	<tr>
-		<td vAlign="top" colSpan="6" rowSpan="5"><b>Instruções</b><br>
+		<td vAlign="top" colSpan="6" rowSpan="5"><b>Instrucoes</b><br>
 			#foreach ($inst in $boleto.instrucoes)
+				#if ((! ${inst}) && (!"${inst}" == ""))
 				 ${inst}<br>			
+				#end
 			#end
 		<font class=campo>
 		
@@ -220,7 +222,7 @@ TD {
 		&nbsp;</TD>
 	</tr>
 	<tr>
-		<td valign=top height=27>(-) Outras Deduções<br>
+		<td valign=top height=27>(-) Outras Deducoes<br>
 
 		&nbsp;</TD>
 	</tr>
@@ -251,8 +253,8 @@ TD {
 	width="640" border="0">
 	<tr>
 		<td class="noborder">
-		<div align=right style="FONT-SIZE: 8pt; FONT-FAMILY: Arial"><small>Autenticação
-		Mecânica/Ficha de Compensação</small></div>
+		<div align=right style="FONT-SIZE: 8pt; FONT-FAMILY: Arial"><small>Autenticacao
+		Mecanica/Ficha de Compensacao</small></div>
 		<!-- Aqui entra a imagem do boleto --><img src="${urlServletBoleto}?type=barCode&value=${boleto.codigoDeBarras()}" /></TD>
 	</tr>
 </TABLE>
