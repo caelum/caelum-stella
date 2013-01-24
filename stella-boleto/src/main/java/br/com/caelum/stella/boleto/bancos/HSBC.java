@@ -26,8 +26,9 @@ public class HSBC implements Banco {
       *
       * OBS: Data de processamento deve ser nulo(nessa sem registro)
       */
-    public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em ag�ncia do HSBC";
+    public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em agência do HSBC";
     private static final String NUMERO_HSBC = "399";
+    private static final String NUMERO_HSBC_COM_DIGITO = "399-9";
     private GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
     private static final String CODIGO_APLICATIVO = "2";
 
@@ -69,7 +70,7 @@ public class HSBC implements Banco {
     
     @Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_HSBC;
+		return NUMERO_HSBC_COM_DIGITO;
 	}
 
 	@Override
@@ -112,7 +113,7 @@ public class HSBC implements Banco {
                 .getEmissor()));
 
         /*
-           * n�o sei o que � retorno de tres digitos
+           * não sei o que é retorno de tres digitos
            */
 
         codigoDeBarras.append(getDataFormatoJuliano(boleto.getDatas()
@@ -141,8 +142,8 @@ public class HSBC implements Banco {
      */
     public String getDataFormatoJuliano(Calendar vencimento, int tipo) {
         /*
-           * aqui tem outra verifica��o, que � o tal de um retorno de 3 d�gitos
-           * que ainda n�o identifiquei. Por enquanto, � tipo 4 eu estou
+           * aqui tem outra verificação, que é o tal de um retorno de 3 dígitos
+           * que ainda não identifiquei. Por enquanto, é tipo 4 eu estou
            * calculando.
            */
         String result;
@@ -162,7 +163,7 @@ public class HSBC implements Banco {
                      * leap years every four years, whereas the Gregorian calendar
                      * omits century years which are not divisible by 400.
                      *
-                     * A linha abaixo n�o funcionar� corretamente apenas no ano de 2100.
+                     * A linha abaixo não funcionará corretamente apenas no ano de 2100.
                      */
                 int diaDoAno = vencimento.get(Calendar.DAY_OF_YEAR);
                 int digitoDoAno = vencimento.get(Calendar.YEAR) % 10;
@@ -172,7 +173,7 @@ public class HSBC implements Banco {
             } else if (tipo == 5) {
                 result = "0000";
             } else {
-                throw new IllegalArgumentException("Tipo inv�lido");
+                throw new IllegalArgumentException("Tipo inválido");
             }
         }
         return result;
