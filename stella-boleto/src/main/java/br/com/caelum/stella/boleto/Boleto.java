@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
@@ -499,6 +501,6 @@ public class Boleto {
      * @return
      */
     public String getNumeroDoDocumentoFormatado() {
-    	return String.format("%04d", Integer.parseInt(this.numeroDocumento));
+    	return StringUtils.leftPad(this.numeroDocumento, 4, '0');
     }
 }
