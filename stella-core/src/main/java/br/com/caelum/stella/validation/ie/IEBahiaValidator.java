@@ -56,9 +56,9 @@ public class IEBahiaValidator extends AbstractIEValidator {
      * 
      * 123456-63
      */
-    public static final Pattern FORMATED = Pattern.compile("(\\d{6})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{6,7})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{6})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{6,7})(\\d{2})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -97,7 +97,15 @@ public class IEBahiaValidator extends AbstractIEValidator {
     protected boolean hasValidCheckDigits(String value) {
         String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         boolean result = false;
-        switch (value.charAt(0)) {
+        char charToCheck;
+        
+        if(value.length() == 8){
+        	charToCheck= value.charAt(0);
+        }else{
+        	charToCheck= value.charAt(1);
+        }
+        
+		switch (charToCheck) {
         case '6':
         case '7':
         case '9':

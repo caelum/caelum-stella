@@ -74,7 +74,7 @@ public abstract class IEValidatorTest {
 	}
 
 	@Test
-	// IEMatoGrosso e IERioGrandeDoNorte sobreescrevem
+	// IEMatoGrosso, IERioGrandeDoNorte e IEBahia sobreescrevem
 	public void shouldNotValidateIEWithMoreDigitsThanAlowed() {
 		Validator<String> validator = getValidator(messageProducer, false);
 
