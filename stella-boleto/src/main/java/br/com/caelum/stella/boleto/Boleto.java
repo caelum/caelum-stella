@@ -503,4 +503,8 @@ public class Boleto {
     public String getNumeroDoDocumentoFormatado() {
     	return StringUtils.leftPad(this.numeroDocumento, 4, '0');
     }
+    
+    public String getAgenciaECodigoCedente() {
+    	return this.banco.getAgenciaECodigoCedente(this.emissor);
+    }
 }

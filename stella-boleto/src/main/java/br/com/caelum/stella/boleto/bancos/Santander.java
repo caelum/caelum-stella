@@ -8,7 +8,7 @@ import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoSantander;
 
-public class Santander implements Banco {
+public class Santander extends AbstractBanco implements Banco {
 
 	private final static String NUMERO_SANTANDER = "033";
 	private final static String NUMERO_SANTANDER_COM_DIGITO = "033-7";

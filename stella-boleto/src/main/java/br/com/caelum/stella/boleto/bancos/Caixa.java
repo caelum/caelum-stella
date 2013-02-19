@@ -5,15 +5,11 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
-public class Caixa implements Banco {
+public class Caixa extends AbstractBanco implements Banco {
 
     private static final String NUMERO_CAIXA = "104";
-
-    private final GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -50,11 +46,6 @@ public class Caixa implements Banco {
     @Override
 	public String getNumeroFormatadoComDigito() {
 		return NUMERO_CAIXA;
-	}
-
-	@Override
-	public GeradorDeDigito getGeradorDeDigito() {
-		return dvGenerator;
 	}
 
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {

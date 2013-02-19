@@ -56,6 +56,8 @@ public interface Banco {
 
     String getNossoNumeroDoEmissorFormatado(Emissor emissor);
     
+    String getAgenciaECodigoCedente(Emissor emissor);
+    
     String getNumeroFormatadoComDigito();
     
     GeradorDeDigito getGeradorDeDigito();

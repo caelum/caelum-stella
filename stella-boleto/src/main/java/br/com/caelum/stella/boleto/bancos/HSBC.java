@@ -1,18 +1,16 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import java.net.URL;
+import java.util.Calendar;
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
-
-import java.net.URL;
-import java.util.Calendar;
 
 /**
  * @author Alberto Pc
  */
-public class HSBC implements Banco {
+public class HSBC extends AbstractBanco implements Banco {
     /*
       * codigo cedente - Codigo do cedente fornecido pela empresa. - Campo numero
       * do documento - CNR(ate 13 posicoes) ou CNRFacil(ate 6 posicoes) - Campo
@@ -29,7 +27,6 @@ public class HSBC implements Banco {
     public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em agência do HSBC";
     private static final String NUMERO_HSBC = "399";
     private static final String NUMERO_HSBC_COM_DIGITO = "399-9";
-    private GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
     private static final String CODIGO_APLICATIVO = "2";
 
     private int getSegundoDigitoVerificador(Boleto boleto) {
@@ -71,11 +68,6 @@ public class HSBC implements Banco {
     @Override
 	public String getNumeroFormatadoComDigito() {
 		return NUMERO_HSBC_COM_DIGITO;
-	}
-
-	@Override
-	public GeradorDeDigito getGeradorDeDigito() {
-		return dvGenerator;
 	}
 
     public String getCodigoDoDocumentoFinalComDigitosVerificadores(Boleto boleto) {
@@ -200,5 +192,10 @@ public class HSBC implements Banco {
     public String getNumeroFormatado() {
         return HSBC.NUMERO_HSBC;
     }
+    
+	@Override
+	public String getAgenciaECodigoCedente(Emissor emissor) {
+		return String.format("%07d", emissor.getCodigoFornecidoPelaAgencia());
+	}
 
 }

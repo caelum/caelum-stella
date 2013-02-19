@@ -162,7 +162,7 @@ TD {
 		<font Class=campo>${boleto.emissor.cedente}</font></TD>
 
 		<td valign=top>Agência/Codigo Cedente<br>
-		<DIV align="right" Class=campo>${boleto.emissor.agenciaFormatado}-${boleto.emissor.dvAgencia}/${boleto.contaCorrente()}-${boleto.emissor.dvContaCorrente}</DIV>
+		<DIV align="right" Class=campo>${boleto.agenciaECodigoCedente}</DIV>
 		</TD>
 	</tr>
 	<tr>
