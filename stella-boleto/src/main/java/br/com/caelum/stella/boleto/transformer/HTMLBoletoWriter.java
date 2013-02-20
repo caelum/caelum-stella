@@ -224,5 +224,9 @@ public class HTMLBoletoWriter implements BoletoWriter {
             return codigoDeBarras + "_" + boleto.getBanco().getNumeroFormatado() + ".png";
         }
 
+		public String getAgenciaECodigoCedente() {
+			return boleto.getAgenciaECodigoCedente();
+		}
+        
     }
 }
