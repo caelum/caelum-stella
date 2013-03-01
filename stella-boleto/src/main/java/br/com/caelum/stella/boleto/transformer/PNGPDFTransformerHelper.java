@@ -28,8 +28,8 @@ class PNGPDFTransformerHelper {
 	public static final double BOLETO_TEMPLATE_SCALE = 1 / 2d;
 
 	private static final float LINHA1 = 434;
-	private static final float LINHA_ENDERECO_CEDENTE = 423;
-	private static final float LINHA_ENDERECO = 122;
+	private static final float LINHA_ENDERECO_CEDENTE = 423; // parte de cima
+	private static final float LINHA_ENDERECO = 122; // parte de baixo
 	
 	private static final float LINHA2 = 400;
 	private static final float LINHA3 = 378;
@@ -74,8 +74,7 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(50, LINHA1, boleto.getEmissor().getCedente());
 		
-		//TODO REMOVER  VALOR FIXO
-		this.writer.write(50, LINHA_ENDERECO_CEDENTE, "RODOVIA SC 401, KM 1 - EDIFÍCIO CELTA, PARQTEC ALFA 88030-000 | FLORIANÓPOLIS");
+		this.writer.write(50, LINHA_ENDERECO_CEDENTE, boleto.getEmissor().getEndereco());
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 
@@ -189,8 +188,8 @@ class PNGPDFTransformerHelper {
 		}
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
-		//TODO REMOVER INFO FIXA
-		this.writer.write(5, LINHA_ENDERECO, "RODOVIA SC 401, KM 1 - EDIFÍCIO CELTA, PARQTEC ALFA 88030-000 | FLORIANÓPOLIS");
+
+		this.writer.write(5, LINHA_ENDERECO, boleto.getEmissor().getEndereco());
 
 		this.writer.write(100, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "") + " "
 				+ (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));

@@ -21,6 +21,7 @@ public class Emissor {
 	private String digitoNossoNumero;
 	private int codigoOperacao;
 	private int codigoFornecidoPelaAgencia;
+	private String endereco;
 
 	private Emissor() {
 	}
@@ -32,6 +33,25 @@ public class Emissor {
 	 */
 	public static Emissor newEmissor() {
 		return new Emissor();
+	}
+	
+	
+	/**
+	 * Associa um endereço ao emissor
+	 * @param endereco
+	 * @return este emissor
+	 */
+	public Emissor withEndereco(String endereco) {
+		this.endereco = endereco;
+		return this;
+	}
+
+	/**
+	 * Retorna o endereço do Emissor.
+	 * @return
+	 */
+	public String getEndereco() {
+		return endereco;
 	}
 
 	/**
