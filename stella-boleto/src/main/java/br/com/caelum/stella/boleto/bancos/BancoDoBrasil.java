@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import org.apache.commons.lang.StringUtils;
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -19,6 +21,8 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 public class BancoDoBrasil extends AbstractBanco implements Banco {
 
     private static final String NUMERO_BB = "001";
+    
+    private static final String DIGITO_NUMERO_BB = "9";
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -49,10 +53,8 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
         } else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
             codigoDeBarras.append("000000");
             codigoDeBarras.append(getNumeroConvenioDoEmissorFormatado(emissor));
-            codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor)
-                    .substring(7));
-            codigoDeBarras.append(boleto.getBanco()
-                    .getCarteiraDoEmissorFormatado(emissor));
+            codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
+            codigoDeBarras.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
         } else {
             throw new CriacaoBoletoException(
                     "Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
@@ -113,6 +115,16 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	@Override
 	public String getNumeroFormatadoComDigito() {
 		return NUMERO_BB;
+	}
+
+	@Override
+	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		return StringUtils.EMPTY;
+	}
+
+	@Override
+	public String getDigitoNumeroBanco() {
+		return DIGITO_NUMERO_BB;
 	}
 
 }

@@ -1,11 +1,15 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import java.net.URL;
-import java.util.Calendar;
-
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
+
+import java.net.URL;
+import java.util.Calendar;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Alberto Pc
@@ -192,10 +196,21 @@ public class HSBC extends AbstractBanco implements Banco {
     public String getNumeroFormatado() {
         return HSBC.NUMERO_HSBC;
     }
-    
+
+
 	@Override
 	public String getAgenciaECodigoCedente(Emissor emissor) {
 		return String.format("%07d", emissor.getCodigoFornecidoPelaAgencia());
+	}
+
+	@Override
+	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		return StringUtils.EMPTY;
+	}
+
+	@Override
+	public String getDigitoNumeroBanco() {
+		return StringUtils.EMPTY;
 	}
 
 }

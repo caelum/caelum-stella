@@ -47,7 +47,7 @@ public class BradescoTest {
 
     @Test
     public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-        Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206);
+        Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206).withDigitoNossoNumero("7");
         String numeroFormatado = this.banco
                 .getNossoNumeroDoEmissorFormatado(emissor);
         assertEquals(11, numeroFormatado.length());

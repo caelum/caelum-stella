@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto;
 
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Bean que representa os dados do emissor de um Boleto.
@@ -19,7 +18,7 @@ public class Emissor {
 	private long nossoNumero;
 	private String cedente;
 	private char digitoContaCorrente;
-	private char digitoNossoNumero;
+	private String digitoNossoNumero;
 	private int codigoOperacao;
 	private int codigoFornecidoPelaAgencia;
 
@@ -261,9 +260,9 @@ public class Emissor {
 	public String getAgenciaFormatado() {
 		String valor = String.valueOf(this.agencia);
 		
-		if(this.digitoAgencia != 0){
-			valor += digitoAgencia;
-		}
+//		if(this.digitoAgencia != 0){
+//			valor += digitoAgencia;
+//		}
 		
 		valor = String.format("%04d", Integer.parseInt(valor));
 		return valor.substring(0,4);
@@ -351,7 +350,7 @@ public class Emissor {
 	 * @see Emissor#withDigitoNossoNumero(char)
 	 */
 	@Deprecated
-	public Emissor withDvNossoNumero(char dvNossoNumero) {
+	public Emissor withDvNossoNumero(String dvNossoNumero) {
 		return withDigitoNossoNumero(dvNossoNumero);
 	}
 
@@ -360,8 +359,8 @@ public class Emissor {
 	 * 
 	 * @param dvNossoNumero
 	 */
-	public Emissor withDigitoNossoNumero(char dvNossoNumero) {
-		this.digitoNossoNumero = dvNossoNumero;
+	public Emissor withDigitoNossoNumero(String digitoNossoNumero) {
+		this.digitoNossoNumero = digitoNossoNumero;
 		return this;
 	}
 
@@ -370,7 +369,7 @@ public class Emissor {
 	 * @see Emissor#getDigitoNossoNumero()
 	 */
 	@Deprecated
-	public char getDvNossoNumero() {
+	public String getDvNossoNumero() {
 		return getDigitoNossoNumero();
 	}
 
@@ -379,7 +378,7 @@ public class Emissor {
 	 * 
 	 * @return
 	 */
-	public char getDigitoNossoNumero() {
+	public String getDigitoNossoNumero() {
 		return this.digitoNossoNumero;
 	}
 }

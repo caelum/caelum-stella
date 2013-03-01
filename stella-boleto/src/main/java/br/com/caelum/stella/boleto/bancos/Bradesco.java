@@ -22,6 +22,8 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 public class Bradesco extends AbstractBanco implements Banco {
 
     private static final String NUMERO_BRADESCO = "237";
+    
+    private static final String DIGITO_NUMERO_BRADESCO = "2";
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -89,5 +91,14 @@ public class Bradesco extends AbstractBanco implements Banco {
     public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
         return String.format("%011d", emissor.getNossoNumero());
     }
+    
+    public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
+        return String.valueOf(emissor.getDigitoNossoNumero());
+    }
+
+	@Override
+	public String getDigitoNumeroBanco() {
+		return DIGITO_NUMERO_BRADESCO;
+	}
 
 }

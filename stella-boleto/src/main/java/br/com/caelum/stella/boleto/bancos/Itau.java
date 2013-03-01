@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
+import org.apache.commons.lang.StringUtils;
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -77,5 +79,15 @@ public class Itau extends AbstractBanco implements Banco {
     public String getNumeroFormatado() {
         return NUMERO_ITAU;
     }
+
+	@Override
+	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		return StringUtils.EMPTY;
+	}
+
+	@Override
+	public String getDigitoNumeroBanco() {
+		return StringUtils.EMPTY;
+	}
 
 }

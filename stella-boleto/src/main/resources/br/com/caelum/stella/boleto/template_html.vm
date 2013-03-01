@@ -71,8 +71,9 @@ TD {
 	<tr>
 		<td height=27 vAlign="top" width="340" colSpan="3">Cedente<br>
 		<font Class=campo>${boleto.emissor.cedente}</font></TD>
-		<td vAlign="top" width="150">Agência/Codigo Cedente<br>
+		<td vAlign="top" width="150">Agencia/Codigo Cedente<br>
 		<DIV align="right" Class=campo>${boleto.agenciaECodigoCedente}</DIV>
+
 		</TD>
 		<td bgcolor="#dddddd" vAlign="top" width="150">Vencimento<br>
 		<DIV align="right" Class=campo>${boleto.formataData($boleto.datas.vencimento)}</DIV>
@@ -163,6 +164,7 @@ TD {
 
 		<td valign=top>Agência/Codigo Cedente<br>
 		<DIV align="right" Class=campo>${boleto.agenciaECodigoCedente}</DIV>
+
 		</TD>
 	</tr>
 	<tr>

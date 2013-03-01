@@ -34,7 +34,7 @@ public class BoletoTransformerTest {
                          .withNumeroConvenio(1207113)
                          .withDigitoContaCorrente('5')
                          .withCarteira(18)
-                         .withNossoNumero(9000206);
+                         .withNossoNumero(9000206).withDigitoNossoNumero("7");
 
         sacado = Sacado
                        .newSacado()

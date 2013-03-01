@@ -61,4 +61,9 @@ public interface Banco {
     String getNumeroFormatadoComDigito();
     
     GeradorDeDigito getGeradorDeDigito();
+
+    public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor);
+    
+    public String getDigitoNumeroBanco();
+    
 }
