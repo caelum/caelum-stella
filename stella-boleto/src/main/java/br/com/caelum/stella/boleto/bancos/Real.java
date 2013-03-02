@@ -2,8 +2,6 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
-import org.apache.commons.lang.StringUtils;
-
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -11,6 +9,7 @@ import br.com.caelum.stella.boleto.Emissor;
 public class Real extends AbstractBanco implements Banco {
 
     private final static String NUMERO_REAL = "356";
+    private final static String DIGITO_REAL = "5";
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -38,7 +37,7 @@ public class Real extends AbstractBanco implements Banco {
     
     @Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_REAL;
+		return NUMERO_REAL + "-" + DIGITO_REAL;
 	}
 
     /**
@@ -76,13 +75,4 @@ public class Real extends AbstractBanco implements Banco {
         return String.format("%013d", emissor.getNossoNumero());
     }
 
-	@Override
-	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return StringUtils.EMPTY;
-	}
-
-	@Override
-	public String getDigitoNumeroBanco() {
-		return StringUtils.EMPTY;
-	}
 }

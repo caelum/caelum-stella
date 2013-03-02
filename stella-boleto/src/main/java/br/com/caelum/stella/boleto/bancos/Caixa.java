@@ -2,8 +2,6 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
-import org.apache.commons.lang.StringUtils;
-
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -12,6 +10,7 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 public class Caixa extends AbstractBanco implements Banco {
 
     private static final String NUMERO_CAIXA = "104";
+    private static final String DIGITO_CAIXA = "0";
 
     public String geraCodigoDeBarrasPara(Boleto boleto) {
         StringBuilder codigoDeBarras = new StringBuilder();
@@ -47,7 +46,7 @@ public class Caixa extends AbstractBanco implements Banco {
     
     @Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_CAIXA;
+		return NUMERO_CAIXA + "-" + DIGITO_CAIXA;
 	}
 
     public String getCarteiraDoEmissorFormatado(Emissor emissor) {
@@ -81,15 +80,5 @@ public class Caixa extends AbstractBanco implements Banco {
     public String getNumeroFormatado() {
         return NUMERO_CAIXA;
     }
-
-	@Override
-	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return StringUtils.EMPTY;
-	}
-
-	@Override
-	public String getDigitoNumeroBanco() {
-		return StringUtils.EMPTY;
-	}
-
+    
 }

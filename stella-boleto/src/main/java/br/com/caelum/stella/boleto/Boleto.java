@@ -506,4 +506,8 @@ public class Boleto {
     public String getAgenciaECodigoCedente() {
     	return this.banco.getAgenciaECodigoCedente(this.emissor);
     }
+
+	public String getNossoNumeroECodDocumento() {
+		return banco.getNossoNumeroECodDocumento(this.emissor);
+	}
 }

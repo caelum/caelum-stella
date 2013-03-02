@@ -8,6 +8,10 @@ import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang.StringUtils;
+
+import sun.swing.StringUIClientPropertyKey;
+
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
@@ -74,7 +78,7 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(50, LINHA1, boleto.getEmissor().getCedente());
 		
-		this.writer.write(50, LINHA_ENDERECO_CEDENTE, boleto.getEmissor().getEndereco());
+		this.writer.write(50, LINHA_ENDERECO_CEDENTE, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 
@@ -84,48 +88,12 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(5, LINHA3, boleto.getAgenciaECodigoCedente());
 
-		String nossoNumeroDoEmissorFormatado = boleto.getBanco().getNossoNumeroDoEmissorFormatado(boleto.getEmissor());
+		this.writer.write(146, LINHA3, boleto.getNossoNumeroECodDocumento());
 		
-		String nossoDigitoNumeroDoEmissorFormatado = boleto.getBanco().getDigitoNossoNumeroDoEmissorFormatado(boleto.getEmissor());
-
+		this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito());
 		
-		//TODO POLIMORFISMO AQUI
-		
-		if (boleto.getBanco().getNumeroFormatado().equals("237")){
-			if (nossoDigitoNumeroDoEmissorFormatado.isEmpty()){
-				this.writer.write(146, LINHA3, boleto.getEmissor().getCarteira()+ " / "+ nossoNumeroDoEmissorFormatado);
-			} else {
-				this.writer.write(146, LINHA3, boleto.getEmissor().getCarteira()+ " / "	+ nossoNumeroDoEmissorFormatado+"-"+nossoDigitoNumeroDoEmissorFormatado);
-			}
-			
-		}
-		if (boleto.getBanco().getNumeroFormatado().equals("001")){
-			if (nossoDigitoNumeroDoEmissorFormatado.isEmpty()){
-				this.writer.write(146, LINHA3, nossoNumeroDoEmissorFormatado);
-			} else {
-				this.writer.write(146, LINHA3,  nossoNumeroDoEmissorFormatado+"-"+nossoDigitoNumeroDoEmissorFormatado);
-			}
-		}
-		
-		
-		 String digitoNumeroBanco = boleto.getBanco().getDigitoNumeroBanco();
-		 
-		if (boleto.getBanco().getNumeroFormatado().equals("237")){
-			 if (digitoNumeroBanco.isEmpty()){
-				 this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito());
-			 } else{
-				 this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito()+"-"+digitoNumeroBanco);
-			 }
-		}
-		if (boleto.getBanco().getNumeroFormatado().equals("001")){
-			 this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito()+"-"+digitoNumeroBanco);
-		}
-		 
-
-
 		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
-		this.writer.writeBold(175, LINHA4, linhaDigitavelGenerator
-				.geraLinhaDigitavelPara(boleto));
+		this.writer.writeBold(175, LINHA4, linhaDigitavelGenerator.geraLinhaDigitavelPara(boleto));
 
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
 			this.writer.write(5, LINHA5 - (i - 1) * 10, boleto
@@ -153,26 +121,7 @@ class PNGPDFTransformerHelper {
 		this.writer.write(300, LINHA7, formatDate(boleto.getDatas()
 				.getProcessamento()));
 
-		
-		
-		
-		// TODO POLIMORFISMO AQUI
-		if (boleto.getBanco().getNumeroFormatado().equals("237")){
-			if (nossoDigitoNumeroDoEmissorFormatado.isEmpty()){
-				this.writer.write(410, LINHA7, boleto.getEmissor().getCarteira()+ " / "+ nossoNumeroDoEmissorFormatado);
-			} else {
-				this.writer.write(410, LINHA7, boleto.getEmissor().getCarteira()+ " / "	+ nossoNumeroDoEmissorFormatado+"-"+nossoDigitoNumeroDoEmissorFormatado);
-			}
-			
-		}
-		if (boleto.getBanco().getNumeroFormatado().equals("001")){
-			if (nossoDigitoNumeroDoEmissorFormatado.isEmpty()){
-				this.writer.write(410, LINHA7, nossoNumeroDoEmissorFormatado);
-			} else {
-				this.writer.write(410, LINHA7,  nossoNumeroDoEmissorFormatado+"-"+nossoDigitoNumeroDoEmissorFormatado);
-			}
-		}
-		
+		this.writer.write(410, LINHA7, boleto.getNossoNumeroECodDocumento());		
 		
 		this.writer.write(122, LINHA8, boleto.getBanco()
 				.getCarteiraDoEmissorFormatado(boleto.getEmissor()));
@@ -189,7 +138,7 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 
-		this.writer.write(5, LINHA_ENDERECO, boleto.getEmissor().getEndereco());
+		this.writer.write(5, LINHA_ENDERECO, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
 
 		this.writer.write(100, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "") + " "
 				+ (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));

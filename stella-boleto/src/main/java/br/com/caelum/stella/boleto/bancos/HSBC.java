@@ -1,15 +1,11 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import br.com.caelum.stella.boleto.Banco;
-import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
-
 import java.net.URL;
 import java.util.Calendar;
 
-import org.apache.commons.lang.StringUtils;
+import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Emissor;
 
 /**
  * @author Alberto Pc
@@ -30,7 +26,7 @@ public class HSBC extends AbstractBanco implements Banco {
       */
     public static final String LOCAL_PAGAMENTO = "Pagar preferencialmente em agência do HSBC";
     private static final String NUMERO_HSBC = "399";
-    private static final String NUMERO_HSBC_COM_DIGITO = "399-9";
+    private static final String DIGITO_HSBC = "9";
     private static final String CODIGO_APLICATIVO = "2";
 
     private int getSegundoDigitoVerificador(Boleto boleto) {
@@ -71,7 +67,7 @@ public class HSBC extends AbstractBanco implements Banco {
     
     @Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_HSBC_COM_DIGITO;
+		return NUMERO_HSBC + "-" + DIGITO_HSBC;
 	}
 
     public String getCodigoDoDocumentoFinalComDigitosVerificadores(Boleto boleto) {
@@ -201,16 +197,6 @@ public class HSBC extends AbstractBanco implements Banco {
 	@Override
 	public String getAgenciaECodigoCedente(Emissor emissor) {
 		return String.format("%07d", emissor.getCodigoFornecidoPelaAgencia());
-	}
-
-	@Override
-	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return StringUtils.EMPTY;
-	}
-
-	@Override
-	public String getDigitoNumeroBanco() {
-		return StringUtils.EMPTY;
 	}
 
 }

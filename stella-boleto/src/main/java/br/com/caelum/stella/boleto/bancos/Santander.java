@@ -2,8 +2,6 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
-import org.apache.commons.lang.StringUtils;
-
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -13,7 +11,7 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoSantander;
 public class Santander extends AbstractBanco implements Banco {
 
 	private final static String NUMERO_SANTANDER = "033";
-	private final static String NUMERO_SANTANDER_COM_DIGITO = "033-7";
+	private final static String DIGITO_SANTANDER = "7";
 
 	private final GeradorDeDigito dvGenerator = new GeradorDeDigitoSantander();
 
@@ -134,7 +132,7 @@ public class Santander extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_SANTANDER_COM_DIGITO;
+		return NUMERO_SANTANDER + "-" + DIGITO_SANTANDER;
 	}
 
 	@Override
@@ -142,13 +140,4 @@ public class Santander extends AbstractBanco implements Banco {
 		return dvGenerator;
 	}
 
-	@Override
-	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return StringUtils.EMPTY;
-	}
-
-	@Override
-	public String getDigitoNumeroBanco() {
-		return StringUtils.EMPTY;
-	}
 }

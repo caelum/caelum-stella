@@ -58,7 +58,7 @@ public class Bradesco extends AbstractBanco implements Banco {
     
     @Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_BRADESCO;
+		return NUMERO_BRADESCO + "-" + DIGITO_NUMERO_BRADESCO;
 	}
 
     public String getNumeroFormatado() {
@@ -95,10 +95,18 @@ public class Bradesco extends AbstractBanco implements Banco {
     public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
         return String.valueOf(emissor.getDigitoNossoNumero());
     }
+    
+    @Override
+    public String getNossoNumeroECodDocumento(Emissor emissor) {
+    	return emissor.getCarteira()+ " / "	+ getNossoNumeroDoEmissorFormatado(emissor) + getDigitoNossoNumero(emissor); 
+    			
+    }
 
-	@Override
-	public String getDigitoNumeroBanco() {
-		return DIGITO_NUMERO_BRADESCO;
+	private String getDigitoNossoNumero(Emissor emissor) {
+		return emissor.getDigitoNossoNumero() != null && !emissor.getDigitoNossoNumero().isEmpty() ?
+			"-" + emissor.getDigitoNossoNumero() :
+			"";
+				
 	}
 
 }
