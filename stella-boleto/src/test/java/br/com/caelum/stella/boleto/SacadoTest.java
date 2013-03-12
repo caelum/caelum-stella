@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class SacadoTest {
 	private Sacado sacado = Sacado.newSacado();
-	
+
 	@Test
 	public void attributesShouldNotBeNull() {
 		Assert.assertNotNull(sacado.getBairro());

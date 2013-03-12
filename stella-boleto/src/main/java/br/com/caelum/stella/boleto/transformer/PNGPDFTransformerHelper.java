@@ -25,7 +25,7 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  */
 
 class PNGPDFTransformerHelper {
-	/*Ainda precisa de um nome melhor!!*/
+	/* Ainda precisa de um nome melhor!! */
 
 	public static final float IMAGEM_BOLETO_WIDTH = 2144;
 	public static final float IMAGEM_BOLETO_HEIGHT = 1604;
@@ -34,7 +34,7 @@ class PNGPDFTransformerHelper {
 	private static final float LINHA1 = 434;
 	private static final float LINHA_ENDERECO_CEDENTE = 423; // parte de cima
 	private static final float LINHA_ENDERECO = 122; // parte de baixo
-	
+
 	private static final float LINHA2 = 400;
 	private static final float LINHA3 = 378;
 	private static final float LINHA4 = 319;
@@ -50,11 +50,10 @@ class PNGPDFTransformerHelper {
 	private TextWriter writer;
 	private URL imagemTitulo;
 
-
 	public PNGPDFTransformerHelper(TextWriter writer) {
 		super();
 		this.writer = writer;
-		this.imagemTitulo = PNGPDFTransformerHelper.class.getResource("/br/com/caelum/stella/boleto/img/template.png");		
+		this.imagemTitulo = PNGPDFTransformerHelper.class.getResource("/br/com/caelum/stella/boleto/img/template.png");
 	}
 
 	/**
@@ -65,9 +64,8 @@ class PNGPDFTransformerHelper {
 	public TextWriter transform(Boleto boleto) {
 		// gera template com o fundo do boleto
 		try {
-			this.writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f,
-					385.109f);
-			this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco()	.getImage()), 100, 23);
+			this.writer.writeImage(0, 55, imageFor(imagemTitulo), 514.22f, 385.109f);
+			this.writer.writeImage(0, 805 - 486, imageFor(boleto.getBanco().getImage()), 100, 23);
 		} catch (IOException e) {
 			throw new GeracaoBoletoException("Erro na leitura das imagens do boleto", e);
 		}
@@ -77,9 +75,9 @@ class PNGPDFTransformerHelper {
 		}
 
 		this.writer.write(50, LINHA1, boleto.getEmissor().getCedente());
-		
+
 		this.writer.write(50, LINHA_ENDERECO_CEDENTE, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
-		
+
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 
 		this.writer.write(290, LINHA2, formatDate(boleto.getDatas().getVencimento()));
@@ -89,15 +87,14 @@ class PNGPDFTransformerHelper {
 		this.writer.write(5, LINHA3, boleto.getAgenciaECodigoCedente());
 
 		this.writer.write(146, LINHA3, boleto.getNossoNumeroECodDocumento());
-		
+
 		this.writer.writeBold(125, LINHA4, boleto.getBanco().getNumeroFormatadoComDigito());
-		
+
 		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
 		this.writer.writeBold(175, LINHA4, linhaDigitavelGenerator.geraLinhaDigitavelPara(boleto));
 
 		for (int i = 0; i < boleto.getLocaisDePagamento().size(); i++) {
-			this.writer.write(5, LINHA5 - (i - 1) * 10, boleto
-					.getLocaisDePagamento().get(i));
+			this.writer.write(5, LINHA5 - (i - 1) * 10, boleto.getLocaisDePagamento().get(i));
 		}
 
 		this.writer.write(425, LINHA5, formatDate(boleto.getDatas().getVencimento()));
@@ -106,62 +103,53 @@ class PNGPDFTransformerHelper {
 
 		this.writer.write(420, LINHA6, boleto.getAgenciaECodigoCedente());
 
-		this.writer.write(5, LINHA7, formatDate(boleto.getDatas()
-				.getDocumento()));
+		this.writer.write(5, LINHA7, formatDate(boleto.getDatas().getDocumento()));
 
 		this.writer.write(70, LINHA7,
-				!boleto.getNumeroDoDocumento().equals("") ? boleto
-						.getNumeroDoDocumentoFormatado() : boleto.getBanco()
+				!boleto.getNumeroDoDocumento().equals("") ? boleto.getNumeroDoDocumentoFormatado() : boleto.getBanco()
 						.getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 
 		this.writer.write(180, LINHA7, boleto.getEspecieDocumento());
 
 		this.writer.write(250, LINHA7, boleto.getAceite() ? "S" : "N");
 
-		this.writer.write(300, LINHA7, formatDate(boleto.getDatas()
-				.getProcessamento()));
+		this.writer.write(300, LINHA7, formatDate(boleto.getDatas().getProcessamento()));
 
-		this.writer.write(410, LINHA7, boleto.getNossoNumeroECodDocumento());		
-		
-		this.writer.write(122, LINHA8, boleto.getBanco()
-				.getCarteiraDoEmissorFormatado(boleto.getEmissor()));
+		this.writer.write(410, LINHA7, boleto.getNossoNumeroECodDocumento());
+
+		this.writer.write(122, LINHA8, boleto.getBanco().getCarteiraDoEmissorFormatado(boleto.getEmissor()));
 
 		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
 
-		this.writer.write(430, LINHA8, BoletoFormatter.formatValue(boleto
-				.getValorBoleto().doubleValue()));
+		this.writer.write(430, LINHA8, BoletoFormatter.formatValue(boleto.getValorBoleto().doubleValue()));
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-			this.writer
-					.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
+			this.writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
 		}
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 
 		this.writer.write(5, LINHA_ENDERECO, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
 
-		this.writer.write(100, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "") + " "
-				+ (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));
+		this.writer.write(100, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "")
+				+ " " + (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));
 
-		this.writer.write(100, LINHA12, (boleto.getSacado().getEndereco() != null ? boleto.getSacado().getEndereco() : ""));
+		this.writer.write(100, LINHA12, (boleto.getSacado().getEndereco() != null ? boleto.getSacado().getEndereco()
+				: ""));
 
 		this.writer.write(100, LINHA13, (boleto.getSacado().getCep() != null ? boleto.getSacado().getCep() : "") + " "
 				+ (boleto.getSacado().getBairro() != null ? boleto.getSacado().getBairro() : "") + " - "
 				+ (boleto.getSacado().getCidade() != null ? boleto.getSacado().getCidade() : "") + " "
 				+ (boleto.getSacado().getUf() != null ? boleto.getSacado().getUf() : ""));
 
-		Image imagemDoCodigoDeBarras = BarcodeGenerator
-				.generateBarcodeFor(boleto.getBanco().geraCodigoDeBarrasPara(
-						boleto),37.00f);		
+		Image imagemDoCodigoDeBarras = BarcodeGenerator.generateBarcodeFor(
+				boleto.getBanco().geraCodigoDeBarrasPara(boleto), 37.00f);
 
 		try {
-			this.writer.writeImage(40, 10, toBufferedImage(
-					imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
-					imagemDoCodigoDeBarras.getWidth(null),
-					imagemDoCodigoDeBarras.getHeight(null));
+			this.writer.writeImage(40, 10, toBufferedImage(imagemDoCodigoDeBarras, BufferedImage.TYPE_INT_ARGB),
+					imagemDoCodigoDeBarras.getWidth(null), imagemDoCodigoDeBarras.getHeight(null));
 		} catch (IOException e) {
-			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras", e);
+			throw new CriacaoBoletoException("Erro na geração do código de barras", e);
 		}
 		return writer;
 
@@ -174,7 +162,7 @@ class PNGPDFTransformerHelper {
 	 * @param type
 	 */
 	private BufferedImage toBufferedImage(Image image, int type) {
-		return BufferedImageGenerator.generateBufferedImageFor(image,type);
+		return BufferedImageGenerator.generateBufferedImageFor(image, type);
 	}
 
 	/**

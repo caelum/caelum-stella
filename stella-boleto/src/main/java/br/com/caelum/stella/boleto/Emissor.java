@@ -1,6 +1,5 @@
 package br.com.caelum.stella.boleto;
 
-
 /**
  * Bean que representa os dados do emissor de um Boleto.
  * 
@@ -34,10 +33,10 @@ public class Emissor {
 	public static Emissor newEmissor() {
 		return new Emissor();
 	}
-	
-	
+
 	/**
 	 * Associa um endereço ao emissor
+	 * 
 	 * @param endereco
 	 * @return este emissor
 	 */
@@ -48,6 +47,7 @@ public class Emissor {
 
 	/**
 	 * Retorna o endereço do Emissor.
+	 * 
 	 * @return
 	 */
 	public String getEndereco() {
@@ -279,14 +279,14 @@ public class Emissor {
 	 */
 	public String getAgenciaFormatado() {
 		String valor = String.valueOf(this.agencia);
-		
-//		if(this.digitoAgencia != 0){
-//			valor += digitoAgencia;
-//		}
-		
+
+		// if(this.digitoAgencia != 0){
+		// valor += digitoAgencia;
+		// }
+
 		valor = String.format("%04d", Integer.parseInt(valor));
-		return valor.substring(0,4);
-		
+		return valor.substring(0, 4);
+
 	}
 
 	/**

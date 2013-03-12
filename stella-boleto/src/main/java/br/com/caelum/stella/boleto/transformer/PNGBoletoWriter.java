@@ -31,103 +31,109 @@ import com.lowagie.text.pdf.BaseFont;
  */
 public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 
-    private static final int NORMAL_SIZE = 36;
+	private static final int NORMAL_SIZE = 36;
 
-    private static final int BIG_SIZE = 45;
+	private static final int BIG_SIZE = 45;
 
-    private final Font fonteSimples;
+	private final Font fonteSimples;
 
-    private final Font fonteBold;
+	private final Font fonteBold;
 
-    private final BufferedImage PNGimage;
+	private final BufferedImage PNGimage;
 
-    private InputStream stream;
+	private InputStream stream;
 
-    private final Graphics2D graphics;
+	private final Graphics2D graphics;
 
-    private final PNGPDFTransformerHelper writerHelper;
+	private final PNGPDFTransformerHelper writerHelper;
 
-    public PNGBoletoWriter() {
-        this(2144f, 1900);
-    }
+	public PNGBoletoWriter() {
+		this(2144f, 1900);
+	}
 
-    public PNGBoletoWriter(final double w, final double h) {
+	public PNGBoletoWriter(final double w, final double h) {
 
-        PNGimage = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_RGB);
-        graphics = PNGimage.createGraphics();
+		PNGimage = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_RGB);
+		graphics = PNGimage.createGraphics();
 
-        graphics.setColor(Color.white);
-        graphics.fillRect(0, 0, (int) w, (int) h);
-        graphics.drawImage(PNGimage, 0, 0, null);
+		graphics.setColor(Color.white);
+		graphics.fillRect(0, 0, (int) w, (int) h);
+		graphics.drawImage(PNGimage, 0, 0, null);
 
-        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        graphics.setColor(Color.BLACK);
+		graphics.setColor(Color.BLACK);
 
-        fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
+		fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
 
-        fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
+		fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
 
-        writerHelper = new PNGPDFTransformerHelper(this);
-    }
+		writerHelper = new PNGPDFTransformerHelper(this);
+	}
 
-    public InputStream toInputStream() {
-        if (stream == null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            try {
-                ImageIO.write(PNGimage, "PNG", baos);
-            } catch (IOException e) {
-                throw new GeracaoBoletoException(e); // nao esperado
-            }
-            stream = new ByteArrayInputStream(baos.toByteArray());
-        }
-        return stream;
-    }
+	@Override
+	public InputStream toInputStream() {
+		if (stream == null) {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			try {
+				ImageIO.write(PNGimage, "PNG", baos);
+			} catch (IOException e) {
+				throw new GeracaoBoletoException(e); // nao esperado
+			}
+			stream = new ByteArrayInputStream(baos.toByteArray());
+		}
+		return stream;
+	}
 
-    public void write(final float x, final float y, final String text) {
-        checkIfDocIsClosed();
-        graphics.setFont(fonteSimples);
-        graphics.drawString(text, scaleX(x), scaleY(y));
-    }
+	@Override
+	public void write(final float x, final float y, final String text) {
+		checkIfDocIsClosed();
+		graphics.setFont(fonteSimples);
+		graphics.drawString(text, scaleX(x), scaleY(y));
+	}
 
-    public void writeBold(final float x, final float y, final String text) {
-        checkIfDocIsClosed();
-        graphics.setFont(fonteBold);
-        graphics.drawString(text, scaleX(x), scaleY(y));
-    }
+	@Override
+	public void writeBold(final float x, final float y, final String text) {
+		checkIfDocIsClosed();
+		graphics.setFont(fonteBold);
+		graphics.drawString(text, scaleX(x), scaleY(y));
+	}
 
-    public void writeImage(final float x, final float y, final BufferedImage image, final float width,
-            final float height) throws IOException {
+	@Override
+	public void writeImage(final float x, final float y, final BufferedImage image, final float width,
+			final float height) throws IOException {
 
-        checkIfDocIsClosed();
+		checkIfDocIsClosed();
 
-        graphics.drawImage(image, (int) x, (int) (PNGimage.getHeight() - (height * 4.16f) - (y * 4.16f)),
-                (int) (width * 4.16f), (int) (height * 4.16f), null);
-    }
+		graphics.drawImage(image, (int) x, (int) (PNGimage.getHeight() - (height * 4.16f) - (y * 4.16f)),
+				(int) (width * 4.16f), (int) (height * 4.16f), null);
+	}
 
-    private void checkIfDocIsClosed() {
-        if (stream != null) {
-            throw new IllegalStateException("boleto ja gerado, voce nao pode mais escrever na imagem");
-        }
-    }
+	private void checkIfDocIsClosed() {
+		if (stream != null) {
+			throw new IllegalStateException("boleto ja gerado, voce nao pode mais escrever na imagem");
+		}
+	}
 
-    /*
-     * Convertendo coordenadas PDF para PNG
-     */
-    private float scaleX(final float x) {
-        return x * 4.16f;
-    }
+	/*
+	 * Convertendo coordenadas PDF para PNG
+	 */
+	private float scaleX(final float x) {
+		return x * 4.16f;
+	}
 
-    private float scaleY(float y) {
-        y = PNGimage.getHeight() - y;
-        return y * 4.16f - 6005;
-    }
+	private float scaleY(float y) {
+		y = PNGimage.getHeight() - y;
+		return y * 4.16f - 6005;
+	}
 
-    public boolean newPage() {
-        throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
-    }
+	@Override
+	public boolean newPage() {
+		throw new IllegalStateException("Nao é possivel criar uma nova pagina em um arquivo png.");
+	}
 
-    public void write(final Boleto boleto) {
-        writerHelper.transform(boleto);
-    }
+	@Override
+	public void write(final Boleto boleto) {
+		writerHelper.transform(boleto);
+	}
 }

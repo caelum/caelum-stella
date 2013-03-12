@@ -17,18 +17,18 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  */
 class BoletoFormatter {
 
-    private static final NumberFormatter formatter = new NumberFormatter(new DecimalFormat("#,##0.00"));
-    private static final String datePattern = "%1$td/%1$tm/%1$tY";
+	private static final NumberFormatter formatter = new NumberFormatter(new DecimalFormat("#,##0.00"));
+	private static final String datePattern = "%1$td/%1$tm/%1$tY";
 
-    static String formatDate(final Calendar date) {
-        return String.format(datePattern, date);
-    }
+	static String formatDate(final Calendar date) {
+		return String.format(datePattern, date);
+	}
 
-    static String formatValue(final double value) {
-        try {
-            return formatter.valueToString(value);
-        } catch (ParseException e) {
-            throw new CriacaoBoletoException("Erro na formata��o do valor", e);
-        }
-    }
+	static String formatValue(final double value) {
+		try {
+			return formatter.valueToString(value);
+		} catch (ParseException e) {
+			throw new CriacaoBoletoException("Erro na formata��o do valor", e);
+		}
+	}
 }

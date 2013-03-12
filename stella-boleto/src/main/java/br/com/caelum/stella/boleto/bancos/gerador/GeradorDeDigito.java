@@ -7,9 +7,11 @@ public interface GeradorDeDigito {
 	int geraDigitoMod(String codigoDeBarras, int inicio, int fim, int numMOD);
 
 	int geraDigitoMod10(String campo);
-	
+
 	int geraDigitoBloco1(String bloco);
+
 	int geraDigitoBloco2(String bloco);
+
 	int geraDigitoBloco3(String bloco);
 
 }

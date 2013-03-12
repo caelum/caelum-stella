@@ -23,8 +23,7 @@ public class GeradorDeDigitoSantander extends GeradorDeDigitoPadrao {
 			if (multiplicador == 0) {
 				multiplicador = 2;
 			}
-			int parcial = Integer.parseInt(String.valueOf(bloco.charAt(i)))
-					* multiplicador;
+			int parcial = Integer.parseInt(String.valueOf(bloco.charAt(i))) * multiplicador;
 
 			if (parcial > 9) {
 				parcial = parcial - 9;

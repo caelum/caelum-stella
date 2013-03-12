@@ -6,8 +6,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * Gerador de BufferedImage a partir de Image
+ * 
  * @author Alberto Pc
- *
+ * 
  */
 class BufferedImageGenerator {
 

@@ -31,37 +31,37 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
  */
 public interface Banco {
 
-    /**
-     * Retorna o número desse banco, formatado com 3 dígitos
-     * 
-     * @return
-     */
-    String getNumeroFormatado();
+	/**
+	 * Retorna o número desse banco, formatado com 3 dígitos
+	 * 
+	 * @return
+	 */
+	String getNumeroFormatado();
 
-    /**
-     * Pega a URL com a imagem de um banco
-     * 
-     * @return
-     */
-    URL getImage();
+	/**
+	 * Pega a URL com a imagem de um banco
+	 * 
+	 * @return
+	 */
+	URL getImage();
 
-    /**
-     * Gera o código de barras para determinado boleto
-     */
-    String geraCodigoDeBarrasPara(Boleto boleto);
+	/**
+	 * Gera o código de barras para determinado boleto
+	 */
+	String geraCodigoDeBarrasPara(Boleto boleto);
 
-    String getContaCorrenteDoEmissorFormatado(Emissor emissor);
+	String getContaCorrenteDoEmissorFormatado(Emissor emissor);
 
-    String getCarteiraDoEmissorFormatado(Emissor emissor);
+	String getCarteiraDoEmissorFormatado(Emissor emissor);
 
-    String getNossoNumeroDoEmissorFormatado(Emissor emissor);
-    
-    String getAgenciaECodigoCedente(Emissor emissor);
-    
-    String getNumeroFormatadoComDigito();
-    
-    GeradorDeDigito getGeradorDeDigito();
-    
-    String getNossoNumeroECodDocumento(Emissor emissor);
-    
+	String getNossoNumeroDoEmissorFormatado(Emissor emissor);
+
+	String getAgenciaECodigoCedente(Emissor emissor);
+
+	String getNumeroFormatadoComDigito();
+
+	GeradorDeDigito getGeradorDeDigito();
+
+	String getNossoNumeroECodDocumento(Emissor emissor);
+
 }

@@ -24,7 +24,7 @@ public class GeradorDeDigitoDeBoletoTest {
 			Assert.assertEquals(codigos.get(codigo).intValue(), gerador.geraDigitoMod11(codigo));
 		}
 	}
-	
+
 	@Test
 	public void testeGeracaoDeDigitoMod10() {
 		Map<String, Integer> codigos = new HashMap<String, Integer>();
@@ -32,7 +32,7 @@ public class GeradorDeDigitoDeBoletoTest {
 		codigos.put("6000000000", 4);
 		codigos.put("0300065800", 9);
 		codigos.put("399903512", 8);
-		
+
 		for (String codigo : codigos.keySet()) {
 			Assert.assertEquals(codigos.get(codigo).intValue(), gerador.geraDigitoMod10(codigo));
 		}

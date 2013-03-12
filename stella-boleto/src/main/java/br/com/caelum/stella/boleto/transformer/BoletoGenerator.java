@@ -11,9 +11,8 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 /**
- * Geração do boleto em arquivos. Essa é uma classe utilitária, dessa
- * maneira você não precisa trabalhar com InputStream, byte[], BoletoWriters,
- * etc.
+ * Geração do boleto em arquivos. Essa é uma classe utilitária, dessa maneira
+ * você não precisa trabalhar com InputStream, byte[], BoletoWriters, etc.
  * 
  * Basta passar um Boleto para o construtor e usar o método adequado para gerar
  * um PDF, PNG, etc e grava-lo como o arquivo desejado.
@@ -53,14 +52,11 @@ public class BoletoGenerator {
 			fos.write(b);
 			fos.close();
 		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
 		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
 		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PDF", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
 		} finally {
 			tryToClose(fos);
 		}
@@ -98,19 +94,14 @@ public class BoletoGenerator {
 
 			fos.write(b);
 		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PNG", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
 		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em PNG", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
 		} finally {
 			tryToClose(fos);
 		}
 
 	}
-
-
-
 
 	/**
 	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
@@ -126,9 +117,9 @@ public class BoletoGenerator {
 		return to(new PNGBoletoWriter());
 	}
 
-
 	/**
 	 * Devolve o array de bytes do boleto escrito pelo writer indicado.
+	 * 
 	 * @param writer
 	 * @return
 	 */
@@ -143,11 +134,9 @@ public class BoletoGenerator {
 			is.read(b);
 
 		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em HTML", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
 		} catch (IOException e) {
-			throw new GeracaoBoletoException(
-					"Erro na geração do boleto em HTML", e);
+			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
 		} finally {
 			tryToClose(is);
 		}

@@ -13,42 +13,42 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class RealTest {
-    private Boleto boleto;
-    private Banco banco;
+	private Boleto boleto;
+	private Banco banco;
 
-    @Before
-    public void setUp() {
-        Datas datas = Datas.newDatas().withDocumento(28, 9, 2001).withProcessamento(30, 9, 2001).withVencimento(2, 10,
-                2001);
+	@Before
+	public void setUp() {
+		Datas datas = Datas.newDatas().withDocumento(28, 9, 2001).withProcessamento(30, 9, 2001)
+				.withVencimento(2, 10, 2001);
 
-        Emissor emissor = Emissor.newEmissor().withCedente("Alberto").withAgencia(501).withContaCorrente(6703255)
-                .withNossoNumero(3020).withCarteira(20);
+		Emissor emissor = Emissor.newEmissor().withCedente("Alberto").withAgencia(501).withContaCorrente(6703255)
+				.withNossoNumero(3020).withCarteira(20);
 
-        Sacado sacado = Sacado.newSacado().withNome("Fulano");
+		Sacado sacado = Sacado.newSacado().withNome("Fulano");
 
-        banco = new Real();
+		banco = new Real();
 
-        boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado).withValorBoleto("35.00")
-                .withNumeroDoDocumento("0000000003020");
-    }
+		boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado).withValorBoleto("35.00")
+				.withNumeroDoDocumento("0000000003020");
+	}
 
-    @Test
-    public void testLinhaDoBancoReal() {
-        boleto = boleto.withBanco(banco);
+	@Test
+	public void testLinhaDoBancoReal() {
+		boleto = boleto.withBanco(banco);
 
-        assertEquals("35690.50168  70325.510009  00000.030205  9  14560000003500", new LinhaDigitavelGenerator()
-                .geraLinhaDigitavelPara(boleto));
-    }
+		assertEquals("35690.50168  70325.510009  00000.030205  9  14560000003500",
+				new LinhaDigitavelGenerator().geraLinhaDigitavelPara(boleto));
+	}
 
-    @Test
-    public void testCodigoDeBarraDoBancoReal() {
-        boleto = boleto.withBanco(banco);
-        assertEquals("35699145600000035000501670325510000000003020", banco.geraCodigoDeBarrasPara(boleto));
-    }
+	@Test
+	public void testCodigoDeBarraDoBancoReal() {
+		boleto = boleto.withBanco(banco);
+		assertEquals("35699145600000035000501670325510000000003020", banco.geraCodigoDeBarrasPara(boleto));
+	}
 
-    @Test
-    public void testGetImage() {
-        assertNotNull(banco.getImage());
-    }
+	@Test
+	public void testGetImage() {
+		assertNotNull(banco.getImage());
+	}
 
 }

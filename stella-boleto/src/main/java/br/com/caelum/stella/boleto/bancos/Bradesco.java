@@ -21,92 +21,95 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  */
 public class Bradesco extends AbstractBanco implements Banco {
 
-    private static final String NUMERO_BRADESCO = "237";
-    
-    private static final String DIGITO_NUMERO_BRADESCO = "2";
+	private static final String NUMERO_BRADESCO = "237";
 
-    public String geraCodigoDeBarrasPara(Boleto boleto) {
-        StringBuilder codigoDeBarras = new StringBuilder();
-        codigoDeBarras.append(getNumeroFormatado());
-        codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-        // Digito Verificador sera inserido aqui.
+	private static final String DIGITO_NUMERO_BRADESCO = "2";
 
-        codigoDeBarras.append(boleto.getFatorVencimento());
-        codigoDeBarras.append(boleto.getValorFormatado());
+	@Override
+	public String geraCodigoDeBarrasPara(Boleto boleto) {
+		StringBuilder codigoDeBarras = new StringBuilder();
+		codigoDeBarras.append(getNumeroFormatado());
+		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
+		// Digito Verificador sera inserido aqui.
 
-        Emissor emissor = boleto.getEmissor();
+		codigoDeBarras.append(boleto.getFatorVencimento());
+		codigoDeBarras.append(boleto.getValorFormatado());
 
-        // CAMPO LIVRE
-        codigoDeBarras.append(emissor.getAgenciaFormatado());
-        codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
-        codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-        codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
-        codigoDeBarras.append("0");
+		Emissor emissor = boleto.getEmissor();
 
-        codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras
-                .toString()));
+		// CAMPO LIVRE
+		codigoDeBarras.append(emissor.getAgenciaFormatado());
+		codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
+		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
+		codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
+		codigoDeBarras.append("0");
 
-        String result = codigoDeBarras.toString();
+		codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
 
-        if (result.length() != 44) {
-            throw new CriacaoBoletoException(
-                    "Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
-        }
+		String result = codigoDeBarras.toString();
 
-        return result;
-    }
-    
-    @Override
+		if (result.length() != 44) {
+			throw new CriacaoBoletoException(
+					"Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
+		}
+
+		return result;
+	}
+
+	@Override
 	public String getNumeroFormatadoComDigito() {
 		return NUMERO_BRADESCO + "-" + DIGITO_NUMERO_BRADESCO;
 	}
 
-    public String getNumeroFormatado() {
-        return NUMERO_BRADESCO;
-    }
+	@Override
+	public String getNumeroFormatado() {
+		return NUMERO_BRADESCO;
+	}
 
-    public java.net.URL getImage() {
-        return getClass().getResource(
-                String.format("/br/com/caelum/stella/boleto/img/%s.png",
-                        getNumeroFormatado()));
-    }
+	@Override
+	public java.net.URL getImage() {
+		return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
+	}
 
-    @Deprecated
-    public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-        return getNumeroConvenioDoEmissorFormatado(emissor);
-    }
-    
-    public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
-    	return String.format("%07d", emissor.getNumeroConvenio());
-    }
+	@Deprecated
+	public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
+		return getNumeroConvenioDoEmissorFormatado(emissor);
+	}
 
-    public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-        return String.format("%07d", emissor.getContaCorrente());
-    }
+	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
+		return String.format("%07d", emissor.getNumeroConvenio());
+	}
 
-    public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-        return String.format("%02d", emissor.getCarteira());
-    }
+	@Override
+	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
+		return String.format("%07d", emissor.getContaCorrente());
+	}
 
-    public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-        return String.format("%011d", emissor.getNossoNumero());
-    }
-    
-    public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-        return String.valueOf(emissor.getDigitoNossoNumero());
-    }
-    
-    @Override
-    public String getNossoNumeroECodDocumento(Emissor emissor) {
-    	return emissor.getCarteira()+ " / "	+ getNossoNumeroDoEmissorFormatado(emissor) + getDigitoNossoNumero(emissor); 
-    			
-    }
+	@Override
+	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
+		return String.format("%02d", emissor.getCarteira());
+	}
+
+	@Override
+	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		return String.format("%011d", emissor.getNossoNumero());
+	}
+
+	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		return String.valueOf(emissor.getDigitoNossoNumero());
+	}
+
+	@Override
+	public String getNossoNumeroECodDocumento(Emissor emissor) {
+		return emissor.getCarteira() + " / " + getNossoNumeroDoEmissorFormatado(emissor)
+				+ getDigitoNossoNumero(emissor);
+
+	}
 
 	private String getDigitoNossoNumero(Emissor emissor) {
-		return emissor.getDigitoNossoNumero() != null && !emissor.getDigitoNossoNumero().isEmpty() ?
-			"-" + emissor.getDigitoNossoNumero() :
-			"";
-				
+		return emissor.getDigitoNossoNumero() != null && !emissor.getDigitoNossoNumero().isEmpty() ? "-"
+				+ emissor.getDigitoNossoNumero() : "";
+
 	}
 
 }

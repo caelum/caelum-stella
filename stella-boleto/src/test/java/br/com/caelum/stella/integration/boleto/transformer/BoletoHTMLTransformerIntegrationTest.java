@@ -31,97 +31,76 @@ import br.com.caelum.stella.boleto.transformer.HTMLBoletoWriter;
  */
 public class BoletoHTMLTransformerIntegrationTest {
 
-    @Before
-    public void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
-        Locale.setDefault(new Locale("pt", "br"));
+		Locale.setDefault(new Locale("pt", "br"));
 
-        Boleto boleto;
-        Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008).withVencimento(2, 5,
-                2008);
-        Emissor emissor = Emissor
-                                 .newEmissor()
-                                 .withCedente("Caue")
-                                 .withAgencia(1824)
-                                 .withDigitoAgencia('4')
-                                 .withContaCorrente(76000)
-                                 .withNumeroConvenio(1207113)
-                                 .withDigitoContaCorrente('5')
-                                 .withCarteira(18)
-                                 .withNossoNumero(9000206);
+		Boleto boleto;
+		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008)
+				.withVencimento(2, 5, 2008);
+		Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDigitoAgencia('4')
+				.withContaCorrente(76000).withNumeroConvenio(1207113).withDigitoContaCorrente('5').withCarteira(18)
+				.withNossoNumero(9000206);
 
-        Sacado sacado = Sacado
-                              .newSacado()
-                              .withNome("Fulano da Silva")
-                              .withCpf("111.222.333-12")
-                              .withEndereco("Av dos testes, 111 apto 333")
-                              .withBairro("Bairro Teste")
-                              .withCep("01234-111")
-                              .withCidade("São Paulo")
-                              .withUf("SP");
+		Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12")
+				.withEndereco("Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111")
+				.withCidade("São Paulo").withUf("SP");
 
-        String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
+		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
 
-        String[] locaisDePagamento = { "local 1", "local 2" };
+		String[] locaisDePagamento = { "local 1", "local 2" };
 
-        String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
+		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 
-        Banco banco = new BancoDoBrasil();
+		Banco banco = new BancoDoBrasil();
 
-        boleto = Boleto
-                       .newBoleto()
-                       .withBanco(banco)
-                       .withDatas(datas)
-                       .withDescricoes(descricoes)
-                       .withEmissor(emissor)
-                       .withSacado(sacado)
-                       .withValorBoleto("40.00")
-                       .withNumeroDoDocumento("4323")
-                       .withInstrucoes(instrucoes)
-                       .withLocaisDePagamento(locaisDePagamento);
+		boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas).withDescricoes(descricoes).withEmissor(emissor)
+				.withSacado(sacado).withValorBoleto("40.00").withNumeroDoDocumento("4323").withInstrucoes(instrucoes)
+				.withLocaisDePagamento(locaisDePagamento);
 
-        BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(
-                "http://localhost:8080/caelum-stella-boleto/stella-boleto/"));
-        InputStream is = transformer.transform(boleto);
-        @SuppressWarnings("resource")
+		BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(
+				"http://localhost:8080/caelum-stella-boleto/stella-boleto/"));
+		InputStream is = transformer.transform(boleto);
+		@SuppressWarnings("resource")
 		FileOutputStream arquivo = new FileOutputStream("arquivo.html");
-        byte[] bytes = new byte[is.available()];
-        is.read(bytes);
-        arquivo.write(bytes);
+		byte[] bytes = new byte[is.available()];
+		is.read(bytes);
+		arquivo.write(bytes);
 
-    }
+	}
 
-    @Test
-    public void testHTMLWriterGeneration() {
-        assertTrue(new File("arquivo.html").exists());
-    }
+	@Test
+	public void testHTMLWriterGeneration() {
+		assertTrue(new File("arquivo.html").exists());
+	}
 
-    @Test
-    public void testHTMLWriterEscreveValorCorreto() {
-        System.out.println(lerArquivo());
-        assertTrue(lerArquivo().contains("40,00"));
-    }
+	@Test
+	public void testHTMLWriterEscreveValorCorreto() {
+		System.out.println(lerArquivo());
+		assertTrue(lerArquivo().contains("40,00"));
+	}
 
-    @Test
-    public void testHTMLWriterEscreveLinhaDigitavelCorreta() {
-        assertTrue(lerArquivo().contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
-    }
+	@Test
+	public void testHTMLWriterEscreveLinhaDigitavelCorreta() {
+		assertTrue(lerArquivo().contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
+	}
 
-    private String lerArquivo() {
-        try {
-            @SuppressWarnings("resource")
+	private String lerArquivo() {
+		try {
+			@SuppressWarnings("resource")
 			FileInputStream fileInputStream = new FileInputStream(new File("arquivo.html"));
-            int c = 0;
-            StringBuffer boleto = new StringBuffer();
-            while ((c = fileInputStream.read()) != -1) {
-                boleto.append((char) c);
-            }
-            return boleto.toString();
-        } catch (FileNotFoundException fileNotFoundException) {
-            throw new RuntimeException(fileNotFoundException);
-        } catch (IOException ioException) {
-            throw new RuntimeException(ioException);
-        }
-    }
+			int c = 0;
+			StringBuffer boleto = new StringBuffer();
+			while ((c = fileInputStream.read()) != -1) {
+				boleto.append((char) c);
+			}
+			return boleto.toString();
+		} catch (FileNotFoundException fileNotFoundException) {
+			throw new RuntimeException(fileNotFoundException);
+		} catch (IOException ioException) {
+			throw new RuntimeException(ioException);
+		}
+	}
 
 }
