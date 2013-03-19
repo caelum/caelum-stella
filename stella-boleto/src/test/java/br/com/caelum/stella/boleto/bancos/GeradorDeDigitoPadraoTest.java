@@ -4,16 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
-public class GeradorDeDigitoDeBoletoTest {
-	private GeradorDeDigito gerador = new GeradorDeDigitoPadrao();
+public class GeradorDeDigitoPadraoTest {
 
+	private GeradorDeDigito gerador;
+
+	@Before
+	public void setUp() {
+		this.gerador = new GeradorDeDigitoPadrao();
+	}
+	
 	@Test
-	public void testeGeracaoDeDigitoMod11() {
+	public void geracaoDeDigitoMod11() {
 		Map<String, Integer> codigos = new HashMap<String, Integer>();
 		codigos.put("0019386000000040000000001207113000900020618", 5);
 		codigos.put("2379316800000001002949060000000000300065800", 6);
@@ -26,7 +33,7 @@ public class GeradorDeDigitoDeBoletoTest {
 	}
 
 	@Test
-	public void testeGeracaoDeDigitoMod10() {
+	public void geracaoDeDigitoMod10() {
 		Map<String, Integer> codigos = new HashMap<String, Integer>();
 		codigos.put("237929490", 9);
 		codigos.put("6000000000", 4);
