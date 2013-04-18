@@ -42,7 +42,7 @@ public class IEParanaValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.]?(\\d{5})[-](\\d{2})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})");
 

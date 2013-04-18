@@ -26,7 +26,7 @@ public class IEBahiaValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedNewString = "612345-57";
 
-	private static final String[] validValues = { validFormattedNewString, "123456-63", "1000003-06","1057652-04", "0635718-30" };
+	private static final String[] validValues = { validFormattedNewString, "123456-63", "1000003-06","1057652-04", "0635718-30", "0770288-84", "77.028.884" };
 
 	protected Validator<String> newValidator() {
 		return new IEBahiaValidator();

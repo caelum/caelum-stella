@@ -56,9 +56,9 @@ public class IEBahiaValidator extends AbstractIEValidator {
      * 
      * 123456-63
      */
-    public static final Pattern FORMATED = Pattern.compile("(\\d{6,7})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("(\\d{6,7}-\\d{2})|(\\d{2,3}\\.\\d{3}\\.\\d{3})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{6,7})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("\\d{8,9}");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um

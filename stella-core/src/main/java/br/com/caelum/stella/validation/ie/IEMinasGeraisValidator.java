@@ -42,11 +42,11 @@ public class IEMinasGeraisValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})[/](\\d{4})");
+    public static final Pattern FORMATED = Pattern.compile("(((\\d{3})\\.){2}\\d{3}/\\d{4})|(\\d{9}\\.\\d{2}-\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{4})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{13})");
 
-    private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3$4";
+    private static final String REPLACEMENT = MISSING_ZEROS + "$1";
 
 	
     /**

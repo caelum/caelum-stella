@@ -22,7 +22,7 @@ public class IEParanaValidatorTest extends IEValidatorTest {
 	private static final String validUnformattedString = "1234567850";
 	private static final String validFormattedString = "099.00004-09";
 	private static final String[] validValues = { "099.00004-09", "123.45678-50", "826.01749-09", "902.33203-01",
-			"738.00291-16", "738.00294-69", "738.00302-03", "738.00313-66", "738.00338-14", "738.00348-96" };
+		"738.00291-16", "738.00294-69", "738.00302-03", "738.00313-66", "738.00338-14", "738.00348-96", "90258216-93" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
