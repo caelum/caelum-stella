@@ -38,170 +38,172 @@ import br.com.caelum.stella.validation.ie.IETocantinsValidator;
  */
 public enum Estado {
 
-    AC {
+    AC(12) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAcreValidator(messageProducer, isFormatted);
         }
-
+        
     },
-    AL {
+    AL(27) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAlagoasValidator(messageProducer, isFormatted);
         }
 
     },
-    AP {
+    AP(16) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAmapaValidator(messageProducer, isFormatted);
         }
 
     },
-    AM {
+    AM(13) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAmazonasValidator(messageProducer, isFormatted);
         }
 
     },
-    BA {
+    BA(29) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEBahiaValidator(messageProducer, isFormatted);
         }
 
     },
-    CE {
+    CE(23) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IECearaValidator(messageProducer, isFormatted);
         }
 
     },
-    DF {
+    DF(53) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEDistritoFederalValidator(messageProducer, isFormatted);
         }
 
     },
-    ES {
+    ES(32) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEEspiritoSantoValidator(messageProducer, isFormatted);
         }
 
     },
-    GO {
+    GO(52) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEGoiasValidator(messageProducer, isFormatted);
         }
 
     },
-    MA {
+    MA(21) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMaranhaoValidator(messageProducer, isFormatted);
         }
 
     },
-    MT {
+    MT(51) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMatoGrossoValidator(messageProducer, isFormatted);
         }
 
     },
-    MS {
+    MS(50) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMatoGrossoDoSulValidator(messageProducer, isFormatted);
         }
 
     },
-    MG {
+    MG(31) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMinasGeraisValidator(messageProducer, isFormatted);
         }
 
     },
-    PA {
+    PA(15) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParaValidator(messageProducer, isFormatted);
         }
 
     },
-    PB {
+    PB(25) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParaibaValidator(messageProducer, isFormatted);
         }
 
     },
-    PR {
+    PR(41) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParanaValidator(messageProducer, isFormatted);
         }
 
     },
-    PE {
+    PE(26) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEPernambucoValidator(messageProducer, isFormatted);
         }
 
     },
-    PI {
+    PI(22) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEPiauiValidator(messageProducer, isFormatted);
         }
 
     },
-    RJ {
+    RJ(33) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioDeJaneiroValidator(messageProducer, isFormatted);
         }
 
     },
-    RN {
+    RN(24) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioGrandeDoNorteValidator(messageProducer, isFormatted);
         }
 
     },
-    RS {
+    RS(43) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioGrandeDoSulValidator(messageProducer, isFormatted);
         }
 
     },
-    RO {
+    RO(11) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERondoniaValidator(messageProducer, isFormatted);
         }
 
     },
-    RR {
+    RR(14) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERoraimaValidator(messageProducer, isFormatted);
         }
 
     },
-    SC {
+    SC(42) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESantaCatarinaValidator(messageProducer, isFormatted);
         }
 
     },
-    SP {
+    SP(35) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESaoPauloValidator(messageProducer, isFormatted);
         }
 
     },
-    SE {
+    SE(28) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESergipeValidator(messageProducer, isFormatted);
         }
 
     },
-    TO {
+    TO(17) {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IETocantinsValidator(messageProducer, isFormatted);
         }
 
     };
 
-    /**
+    private final int codigoIBGE;
+
+	/**
      * Retorna um validador de Inscrição Estadual.
      * 
      * @param messageProducer
@@ -212,4 +214,12 @@ public enum Estado {
      * @return Validador de Inscrição Estudual correspondente.
      */
     public abstract Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted);
+    
+    private Estado(int codigoIBGE) {
+    	this.codigoIBGE = codigoIBGE;
+	}
+    
+    public int getCodigoIBGE() {
+		return codigoIBGE;
+	}
 }
