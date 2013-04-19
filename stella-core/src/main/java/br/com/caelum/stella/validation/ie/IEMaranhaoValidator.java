@@ -39,9 +39,9 @@ public class IEMaranhaoValidator extends AbstractIEValidator {
      * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo:
      */
 
-    public static final Pattern FORMATED = Pattern.compile("(12)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("12\\.\\d{3}\\.?\\d{3}-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(12)(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(12)\\d{7}");
 	
     /**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -77,7 +77,8 @@ public class IEMaranhaoValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-    protected boolean hasValidCheckDigits(String value) {
+    @Override
+	protected boolean hasValidCheckDigits(String value) {
         String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }

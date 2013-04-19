@@ -21,7 +21,7 @@ public class IEMaranhaoValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedString = "12.000.038-5";
 
-	private static final String[] validValues = { validFormattedString };
+	private static final String[] validValues = { validFormattedString , "12.074072-9"};
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
