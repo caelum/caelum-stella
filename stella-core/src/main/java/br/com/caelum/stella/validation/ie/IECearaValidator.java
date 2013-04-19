@@ -41,9 +41,9 @@ public class IECearaValidator extends AbstractIEValidator {
      * Exemplo: CGF número 06000001-5 Exemplo Formatado: 06.998.161-2
      */
 
-    public static final Pattern FORMATED = Pattern.compile("([0]\\d{1})[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("\\d{2}\\.\\d{3}\\.?\\d{3}-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("([0]\\d{1})(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("\\d{9}");
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
@@ -79,7 +79,8 @@ public class IECearaValidator extends AbstractIEValidator {
 	}
 	
 
-    protected boolean hasValidCheckDigits(String value) {
+    @Override
+	protected boolean hasValidCheckDigits(String value) {
         String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
         return DVX_CHECKER.isDVValid(testedValue);
     }
