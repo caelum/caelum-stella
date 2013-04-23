@@ -20,7 +20,7 @@ public class IECearaValidatorTest extends IEValidatorTest {
 	private static final String validUnformattedString = "060000015";
 
 	private static final String validFormattedString = "06.000.001-5";
-	private static final String[] validValues = { "06.998.161-2", "06.864.509-0", "06.031.909-7" };
+	private static final String[] validValues = { "06.998.161-2", "06.864.509-0", "06.031.909-7", "06.000001-5" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {

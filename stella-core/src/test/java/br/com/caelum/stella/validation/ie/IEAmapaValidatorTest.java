@@ -15,7 +15,7 @@ public class IEAmapaValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedString = "03.012.345-9";
 
-	private static final String[] validValues = { validFormattedString };
+	private static final String[] validValues = { validFormattedString, "03.002.547-3", "03.002547-3" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {

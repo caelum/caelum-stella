@@ -49,7 +49,7 @@ public class IEAmapaValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER_CASO3 = new ValidadorDeDV(DVX_INFO_CASO3);
 
-    public static final Pattern FORMATED = Pattern.compile("(03)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("(03)[.](\\d{3})\\.?(\\d{3})[-](\\d{1})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(03)(\\d{3})(\\d{3})(\\d{1})");
 	/**
@@ -86,7 +86,8 @@ public class IEAmapaValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 	
-    protected boolean hasValidCheckDigits(String value) {
+    @Override
+	protected boolean hasValidCheckDigits(String value) {
         int ie = Integer.parseInt(value) / 10;
         boolean result;
         /*
