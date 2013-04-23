@@ -12,8 +12,7 @@ public class IESantaCatarinaValidatorTest extends IEValidatorTest {
 	private static final String wrongCheckDigitString = "251040858";
 	private static final String validUnformattedString = "251040852";
 	private static final String validString = "251.040.852";
-	// TODO adicionar mais IE validos para SantaCatarina
-	private static final String[] validValues = { validString };
+	private static final String[] validValues = { validString, "251040852", "214562549", "241603331"};
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
