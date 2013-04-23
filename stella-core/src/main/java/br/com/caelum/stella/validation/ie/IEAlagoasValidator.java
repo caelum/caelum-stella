@@ -34,25 +34,9 @@ public class IEAlagoasValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-    /*
-     * FORMAÇÃO: 24XNNNNND, sendo:
-     * 
-     * 24 – Código do Estado
-     * 
-     * X – Tipo de empresa (0-Normal, 3-Produtor Rural,5-Substituta, 7-
-     * Micro-Empresa Ambulante, 8-Micro-Empresa)
-     * 
-     * NNNNN – Número da empresa
-     * 
-     * D – Dígito de verificação calculado pelo Módulo11,pêsos 2 à 9 da direita
-     * para a esquerda, exceto D
-     * 
-     * Exemplo: 2 4 0 0 0 0 0 4 8
-     */
+    public static final Pattern FORMATED = Pattern.compile("24(\\.\\d{3}){2}\\-\\d{1}");
 
-    public static final Pattern FORMATED = Pattern.compile("([2][4])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
-
-    public static final Pattern UNFORMATED = Pattern.compile("([2][4])(\\d{3})(\\d{3})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("24\\d{7}");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um

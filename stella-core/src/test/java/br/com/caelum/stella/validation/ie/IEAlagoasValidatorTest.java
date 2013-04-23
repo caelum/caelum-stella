@@ -5,22 +5,6 @@ import br.com.caelum.stella.validation.Validator;
 
 public class IEAlagoasValidatorTest extends IEValidatorTest {
 
-	/*
-	 * FORMAÇÃO: 24XNNNNND, sendo:
-	 * 
-	 * 24 – Código do Estado
-	 * 
-	 * X – Tipo de empresa (0-Normal, 3-Produtor Rural,5-Substituta, 7-
-	 * Micro-Empresa Ambulante, 8-Micro-Empresa)
-	 * 
-	 * NNNNN – Número da empresa
-	 * 
-	 * D – Dígito de verificação calculado pelo Módulo11,pêsos 2 à 9 da direita
-	 * para a esquerda, exceto D
-	 * 
-	 * Exemplo: 2 4 0 0 0 0 0 4 8
-	 */
-
 	public IEAlagoasValidatorTest() {
 		super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
 	}
