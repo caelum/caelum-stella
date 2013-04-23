@@ -12,7 +12,6 @@ public class IERoraimaValidator extends AbstractIEValidator {
 
     private static final int MOD = 9;
 
-    // TAMANHO = 9
     private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
@@ -24,9 +23,9 @@ public class IERoraimaValidator extends AbstractIEValidator {
     private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, ROTINAS, MOD, DVX_MULTIPLIERS,
             DVX_POSITION);
 
-    public static final Pattern FORMATED = Pattern.compile("([2][4])(\\d{6})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("24\\d{6}\\-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("([2][4])(\\d{6})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("24\\d{7}");
 
     private final ValidadorDeDV validadorDeDV = new ValidadorDeDV(DVX_INFO);
 
