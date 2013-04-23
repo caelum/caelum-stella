@@ -21,8 +21,7 @@ public class IEMinasGeraisValidatorTest extends IEValidatorTest {
 	private static final String wrongSecondCheckDigitUnformattedString = "0623079040085";
 	private static final String validUnformattedString = "0623079040081";
 	private static final String validFormattedString = "062.307.904/0081";
-	//TODO adicionar mais exemplo de IE validos
-	private static final String[] validValues = { "062.307.904/0081", "702.985.547/0002", "702985547.00-02"};
+	private static final String[] validValues = { "062.307.904/0081", "702.985.547/0002", "702985547.00-02", "063543834.68-78"};
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
