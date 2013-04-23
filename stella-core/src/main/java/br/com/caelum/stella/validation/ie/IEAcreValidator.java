@@ -20,9 +20,9 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  */
 public class IEAcreValidator extends AbstractIEValidator {
 
-	public static final Pattern FORMATED = Pattern.compile("(01)[.](\\d{3})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
+	public static final Pattern FORMATED = Pattern.compile("01(\\.\\d{3}){2}\\/\\d{3}\\-\\d{2}");
 
-	public static final Pattern UNFORMATED = Pattern.compile("(01)(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("01\\d{11}");
 
 	private static final int MOD = 11;
 
