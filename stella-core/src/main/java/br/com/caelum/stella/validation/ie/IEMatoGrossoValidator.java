@@ -23,10 +23,9 @@ public class IEMatoGrossoValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
+    public static final Pattern FORMATED = Pattern.compile("\\d{8,10}\\-\\d{1}");
 
-    public static final Pattern FORMATED = Pattern.compile("(\\d{8,10})[-](\\d{1})");
-
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{8,10})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("\\d{9,11}");
 	
     /**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
