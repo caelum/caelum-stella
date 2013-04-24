@@ -14,10 +14,6 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public class IERioGrandeDoNorteValidatorTest extends IEValidatorTest {
 
-	/*
-	 * IE validas 20.040.040-1(9 dígitos) ou 20.0.040.040-0(10 dígitos)
-	 */
-
 	public IERioGrandeDoNorteValidatorTest() {
 		super(wrongCheckDigitUnformattedStringWithTenDigits, validUnformattedStringWithNineDigits,
 				validFormattedStringWithTenDigits, validValues);
@@ -33,7 +29,8 @@ public class IERioGrandeDoNorteValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedStringWithTenDigits = "20.0.040.040-0";
 
-	private static final String[] validValues = { validFormattedStringWithTenDigits, validFormattedStringWithNineDigits };
+	private static final String[] validValues = { validFormattedStringWithTenDigits, validFormattedStringWithNineDigits,
+		"20.3.615.641-0", "20.5.276.231-0", "20.3.756.176-8", "20.3.355.678-6", "20.2.249.717-1", "20.8.745.500-7"};
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
