@@ -12,8 +12,8 @@ public class IESergipeValidatorTest extends IEValidatorTest {
 	private static final String wrongCheckDigitUnformattedString = "271234564";
 	private static final String validUnformattedString = "271234563";
 	private static final String validString = "27123456-3";
-	// TODO adicionar mais IE validos para Sergipe
-	private static final String[] validValues = { validString };
+	
+	private static final String[] validValues = { validString, "44.250.767-4", "67.893.465-7" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
