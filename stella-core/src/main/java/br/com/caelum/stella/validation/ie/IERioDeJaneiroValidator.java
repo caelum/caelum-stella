@@ -12,7 +12,6 @@ public class IERioDeJaneiroValidator extends AbstractIEValidator {
 
     private static final int MOD = 11;
 
-    // TAMANHO = 8;
     private static final String MISSING_LEFT_SIDE_ZEROS = "000000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 8;
@@ -26,9 +25,9 @@ public class IERioDeJaneiroValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("([1789]\\d{1})[.](\\d{3})[.](\\d{3})");
+    public static final Pattern FORMATED = Pattern.compile("\\d{2}(\\.\\d{3}){2}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("([1789]\\d{1})(\\d{3})(\\d{3})");
+    public static final Pattern UNFORMATED = Pattern.compile("\\d{8}");
 
 	
     /**
