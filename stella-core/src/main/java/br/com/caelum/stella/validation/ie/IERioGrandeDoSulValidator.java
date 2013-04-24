@@ -20,7 +20,6 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
 
     private static final int MOD = 11;
 
-    // TAMANHO = 10;
     private static final String MISSING_LEFT_SIDE_ZEROS = "0000";
 
     private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 10;
@@ -36,9 +35,9 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern.compile("([0-4]\\d{2})[/](\\d{6})(\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("[0-4]\\d{2}\\/\\d{7}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("([0-4]\\d{2})(\\d{6})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("([0-4]\\d{2})\\d{7}");
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
