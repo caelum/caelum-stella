@@ -15,7 +15,6 @@ public class IEParanaValidator extends AbstractIEValidator {
 
     private static final int DVY_MOD = 11;
 
-    // TAMANHO = 10;
     private static final String MISSING_ZEROS = "0000";
 
     private static final int DVX_POSITION = MISSING_ZEROS.length() + 9;
@@ -42,11 +41,11 @@ public class IEParanaValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.]?(\\d{5})[-](\\d{2})");
+    public static final Pattern FORMATED = Pattern.compile("\\d{3}\\.?\\d{5}\\-\\d{2}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})");
 
-    private static final String REPLACEMENT = MISSING_ZEROS + "$1$2$3";
+    private static final String REPLACEMENT = MISSING_ZEROS + "$1";
 
 	
     /**
