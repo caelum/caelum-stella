@@ -9,16 +9,11 @@ import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
 
 /**
- * <p>
- * Documentação de referência:
- * </p>
- * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
- * Fazenda do Estado de São Paulo</a> <a
- * href="http://www.sintegra.gov.br/Cad_Estados/cad_PA.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
+ * <p> Documentação de referência: </p>
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_PA.html">
+ * SINTEGRA - ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
  * @author Leonardo Bessa
- * 
  */
 public class IEParaValidator extends AbstractIEValidator {
 
@@ -35,13 +30,9 @@ public class IEParaValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
+    public static final Pattern FORMATED = Pattern.compile("15(\\.\\d{3}){2}\\-\\d{1}");
 
-    /*
-     * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
-     */
-    public static final Pattern FORMATED = Pattern.compile("(15)[.](\\d{3})[.](\\d{3})[-](\\d{1})");
-
-    public static final Pattern UNFORMATED = Pattern.compile("(15)(\\d{6})(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("15\\d{7}");
 
 	
     /**

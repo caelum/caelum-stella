@@ -5,10 +5,6 @@ import br.com.caelum.stella.validation.Validator;
 
 public class IEParaValidatorTest extends IEValidatorTest {
 
-	/*
-	 * Formato: 8 dígitos (empresa)+1 dígito verificador Exemplo: 15.999.999-5
-	 */
-
 	public IEParaValidatorTest() {
 		super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
 	}
@@ -20,7 +16,7 @@ public class IEParaValidatorTest extends IEValidatorTest {
 	private static final String validFormattedString = "15.999.999-5";
 
 	private static final String[] validValues = { validFormattedString, "15.229.851-7", "15.133.081-6", "15.143.772-6",
-			"15.191.809-0", "15.133.081-6", "15.105.561-0", "15.069.510-1", "15.002.934-9", "15.133.041-7" };
+		"15.191.809-0", "15.133.081-6", "15.105.561-0", "15.069.510-1", "15.002.934-9", "15.133.041-7", "15.887.063-8" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
