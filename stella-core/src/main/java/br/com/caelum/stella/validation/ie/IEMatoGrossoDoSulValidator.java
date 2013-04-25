@@ -31,7 +31,7 @@ public class IEMatoGrossoDoSulValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-    public static final Pattern FORMATED = Pattern.compile("28\\(.\\d{3}){2}\\-\\d{1}");
+    public static final Pattern FORMATED = Pattern.compile("28(\\.\\d{3}){2}\\-\\d{1}");
 
     public static final Pattern UNFORMATED = Pattern.compile("28\\d{7}");
 	
