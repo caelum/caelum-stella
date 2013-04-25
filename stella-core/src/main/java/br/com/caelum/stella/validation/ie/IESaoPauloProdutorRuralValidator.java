@@ -34,9 +34,9 @@ class IESaoPauloProdutorRuralValidator implements Validator<String> {
 
     private final boolean isFormatted;
 
-    public static final Pattern FORMATED = Pattern.compile("P-(\\d{8})[.](\\d{1})[/](\\d{3})");
+    public static final Pattern FORMATED = Pattern.compile("P-\\d{8}\\.\\d{1}/\\d{3}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("P(\\d{8})(\\d{1})(\\d{3})");
+    public static final Pattern UNFORMATED = Pattern.compile("P\\d{12}");
 
     public IESaoPauloProdutorRuralValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.baseValidator = new BaseValidator(messageProducer);
