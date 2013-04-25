@@ -24,9 +24,6 @@ import br.com.caelum.stella.nfe.xsd.recepcao.TEnviNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe;
 import br.com.caelum.stella.nfe.xsd.recepcao.TNFe.InfNFe.Ide;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 public class NFeRecepcaoWSTest {
 	private static final boolean DEBUG_ENABLE = true;
@@ -36,10 +33,6 @@ public class NFeRecepcaoWSTest {
 	private static String senhaDoCertificado = null;
 	private static String alias = null;
 	
-	private static final DigitoVerificadorInfo DV_MOD_11 = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV1_MULTIPLIERS,
-            DV1_POSITION);
-
 	public static void main(String[] args) {
 		try {
 			
@@ -106,7 +99,7 @@ public class NFeRecepcaoWSTest {
 			ide.setCMunFG("3550308");
 			ide.setTpImp("1");
 			ide.setTpEmis("1");
-			ide.setTpAmb("2") // ambiente
+			ide.setTpAmb("2"); // ambiente
 			ide.setFinNFe("1");
 			ide.setProcEmi("0");
 			ide.setVerProc(VersaoNFE.V_2_00.getVersao());
@@ -121,10 +114,10 @@ public class NFeRecepcaoWSTest {
 					+ ide.getTpEmis()
 					+ StringUtils.leftPad(ide.getCNF(), 8, '0');
 			
-			ValidadorDeDv mod = new ValidadorDeDV(new DigitoVerificadorInfo(null, null, null, null, null))
+//			ValidadorDeDv mod = new ValidadorDeDV(new DigitoVerificadorInfo(null, null, null, null, null))
 			
 			
-			ide.setCDV(cdv); 
+//			ide.setCDV(cdv); 
 			/*
 			cUF - Código da UF do emitente do Documento Fiscal
 			• AAMM - Ano e Mês de emissão da NF-e
