@@ -3,7 +3,7 @@ package br.com.caelum.stella.nfe.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
+ 
 public class NFEProperties {
 
 	Properties prop = new Properties();

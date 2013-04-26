@@ -25,7 +25,7 @@ public interface NfeRecepcao2Soap12 {
 
 
     /**
-     * Transmissão de Lote de NF-e
+     * Transmiss√£o de Lote de NF-e
      * 
      * @param nfeCabecMsg
      * @param nfeDadosMsg
