@@ -29,6 +29,8 @@ public @interface CPF {
 	String message() default "{br.com.caelum.stella.bean.validation.CPF.message}";
 
 	boolean formatted() default false;
+	
+	boolean ignoreRepeated() default false;
     
 	Class<?>[] groups() default {};
 

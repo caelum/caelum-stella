@@ -17,11 +17,13 @@ import br.com.caelum.stella.validation.CPFValidator;
 public class StellaCPFValidator implements ConstraintValidator<CPF, String> {
 	private CPFValidator stellaValidator;
 
+	@Override
 	public void initialize(CPF cpf) {
 		AnnotationMessageProducer messageProducer = new AnnotationMessageProducer(cpf);
-		stellaValidator = new CPFValidator(messageProducer, cpf.formatted(),false);
+		stellaValidator = new CPFValidator(messageProducer, cpf.formatted(),cpf.ignoreRepeated());
 	}
 
+	@Override
 	public boolean isValid(String cpf, ConstraintValidatorContext context) {
 		if (cpf != null) {
 			if (cpf.trim().length() == 0) {
