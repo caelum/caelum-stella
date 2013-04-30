@@ -60,10 +60,11 @@ public class ItauTest {
 	public void testLinhaDoBancoItau() {
 		this.banco = new Itau();
 		this.boleto = this.boleto.withBanco(this.banco);
-		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
+		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
 		assertEquals("34190.06006  00000.332940  90658.090007  9  31680000000100",
-				linhaDigitavelGenerator.geraLinhaDigitavelPara(this.boleto));
+				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
 	}
 
 	@Test

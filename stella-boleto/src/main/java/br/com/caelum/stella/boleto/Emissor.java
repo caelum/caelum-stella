@@ -9,6 +9,7 @@ package br.com.caelum.stella.boleto;
  * 
  */
 public class Emissor {
+	
 	private int agencia;
 	private char digitoAgencia;
 	private long contaCorrente;
@@ -21,6 +22,7 @@ public class Emissor {
 	private int codigoOperacao;
 	private int codigoFornecidoPelaAgencia;
 	private String endereco;
+	private String codigoCliente;
 
 	private Emissor() {
 	}
@@ -279,14 +281,8 @@ public class Emissor {
 	 */
 	public String getAgenciaFormatado() {
 		String valor = String.valueOf(this.agencia);
-
-		// if(this.digitoAgencia != 0){
-		// valor += digitoAgencia;
-		// }
-
 		valor = String.format("%04d", Integer.parseInt(valor));
 		return valor.substring(0, 4);
-
 	}
 
 	/**
@@ -400,5 +396,15 @@ public class Emissor {
 	 */
 	public String getDigitoNossoNumero() {
 		return this.digitoNossoNumero;
+	}
+
+	public String getCodigoCliente() {
+		return codigoCliente;
+	}
+
+	public Emissor withCodigoCliente(String codigoCliente) {
+		String cod = String.format("%7s", codigoCliente);
+		this.codigoCliente = cod.replaceAll(" ", "0");
+		return this;
 	}
 }

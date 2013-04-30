@@ -23,7 +23,7 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
-import br.com.caelum.stella.boleto.bancos.LinhaDigitavelGenerator;
+import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
@@ -100,7 +100,7 @@ public class HTMLBoletoWriter implements BoletoWriter {
 	 * 
 	 */
 	public class BoletoTemplateWrapper {
-		private final LinhaDigitavelGenerator linhaDigitavelGenerator;
+		private final GeradorDeLinhaDigitavel linhaDigitavelGenerator;
 		private final Boleto boleto;
 		private final String linhaDigitavel;
 		private final String codigoDeBarras;
@@ -112,9 +112,9 @@ public class HTMLBoletoWriter implements BoletoWriter {
 		 */
 		private BoletoTemplateWrapper(final Boleto boleto) {
 			this.boleto = boleto;
-			linhaDigitavelGenerator = new LinhaDigitavelGenerator();
-			linhaDigitavel = linhaDigitavelGenerator.geraLinhaDigitavelPara(this.boleto);
+			linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 			codigoDeBarras = this.boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
+			linhaDigitavel = linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras);
 		}
 
 		public char aceite() {

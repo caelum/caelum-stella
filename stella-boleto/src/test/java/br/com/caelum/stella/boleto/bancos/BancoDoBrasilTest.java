@@ -165,10 +165,11 @@ public class BancoDoBrasilTest {
 	public void testLinhaDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
 		this.boleto = this.boleto.withBanco(this.banco);
-		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
+		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
 		assertEquals("00190.00009  01207.113000  09000.206186  5  38600000004000",
-				linhaDigitavelGenerator.geraLinhaDigitavelPara(this.boleto));
+				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
 	}
 
 	@Test

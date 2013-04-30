@@ -68,10 +68,12 @@ public class CaixaTest {
 	public void testLinhaDoBancoCaixa() {
 		this.banco = new Caixa();
 		this.boleto = this.boleto.withBanco(this.banco);
-		LinhaDigitavelGenerator linhaDigitavelGenerator = new LinhaDigitavelGenerator();
+		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
+
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
 		assertEquals("10499.00127  00200.294916  23000.007890  8  31580000000100",
-				linhaDigitavelGenerator.geraLinhaDigitavelPara(this.boleto));
+				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
 	}
 
 	@Test

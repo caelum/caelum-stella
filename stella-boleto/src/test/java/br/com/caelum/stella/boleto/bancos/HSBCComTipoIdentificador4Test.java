@@ -1,13 +1,19 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import br.com.caelum.stella.boleto.*;
-import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.io.IOException;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
+import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Datas;
+import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.Sacado;
 
 public class HSBCComTipoIdentificador4Test {
 	private Boleto boleto;
@@ -43,9 +49,10 @@ public class HSBCComTipoIdentificador4Test {
 	@Test
 	public void testLinhaDoBancoHSBC() {
 		this.boleto = this.boleto.withBanco(this.banco);
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
 		assertEquals("39990.35128  02000.003919  04766.186029  3  10010000120000",
-				new LinhaDigitavelGenerator().geraLinhaDigitavelPara(this.boleto));
+				new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(codigoDeBarras));
 	}
 
 	@Test
