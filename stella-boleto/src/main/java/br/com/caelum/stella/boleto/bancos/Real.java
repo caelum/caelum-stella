@@ -6,6 +6,7 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
 
+@Deprecated
 public class Real extends AbstractBanco implements Banco {
 
 	private final static String NUMERO_REAL = "356";
