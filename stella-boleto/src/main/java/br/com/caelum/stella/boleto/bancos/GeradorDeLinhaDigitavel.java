@@ -23,6 +23,11 @@ public class GeradorDeLinhaDigitavel {
 	 * @return linha digitavel já formatada de acordo com padrao
 	 */
 	public String geraLinhaDigitavelPara(String codigoDeBarras) {
+		
+		if (codigoDeBarras.length()!= 44){
+			throw new IllegalArgumentException("O código de barras" +
+				" precisa ter 44 digitos");
+		}
 				
 		StringBuilder builder = new StringBuilder();
 		builder.append(codigoDeBarras.substring(0, 3));
