@@ -15,11 +15,12 @@ public class GeradorDeLinhaDigitavel {
 	private GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
 
 	/**
-	 * Gera a linha digitavel do boleto de acordo com as normas do 
-	 * carta circular 2926 do banco central do Brasil.
+	 * Gera a linha digitavel do boleto de acordo com normas 
+	 * da carta circular n. 2926 do banco central do Brasil.
+	 * Disponível para consulta em caelum.stella.boleto.doc
 	 * 
 	 * @param codigoDeBarras gerado pelo boleto
-	 * @return linha digitavel formatada
+	 * @return linha digitavel já formatada de acordo com padrao
 	 */
 	public String geraLinhaDigitavelPara(String codigoDeBarras) {
 				
@@ -36,10 +37,10 @@ public class GeradorDeLinhaDigitavel {
 		builder.append(codigoDeBarras.substring(5, 9));
 		builder.append(codigoDeBarras.substring(9, 19));
 		
-		return linhaDigitavelFormatter(builder).toString();
+		return formata(builder).toString();
 	}
 
-	private StringBuilder linhaDigitavelFormatter(StringBuilder linhaDigitavel) {
+	private StringBuilder formata(StringBuilder linhaDigitavel) {
 		linhaDigitavel.insert(5, '.');
 		linhaDigitavel.insert(11, "  ");
 		linhaDigitavel.insert(18, '.');
@@ -47,7 +48,6 @@ public class GeradorDeLinhaDigitavel {
 		linhaDigitavel.insert(32, '.');
 		linhaDigitavel.insert(39, "  ");
 		linhaDigitavel.insert(42, "  ");
-
 		return linhaDigitavel;
 	}
 }
