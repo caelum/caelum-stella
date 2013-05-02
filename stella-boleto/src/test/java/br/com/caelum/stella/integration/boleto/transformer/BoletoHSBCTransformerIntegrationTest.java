@@ -87,7 +87,7 @@ public class BoletoHSBCTransformerIntegrationTest {
 		String text = stripper.getText(document);
 		document.close();
 
-		assertTrue(text.contains("39990.35128  02000.003919  04766.186029  3  10010000120000"));
+		assertTrue(text.contains("39990.35128  02000.000006  39104.186026  2  10010000120000"));
 	}
 
 	@Test
