@@ -1,5 +1,6 @@
 package br.com.caelum.stella.bean.validation;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import javax.validation.ConstraintValidatorContext;
@@ -8,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import br.com.caelum.stella.bean.validation.CPF;
 import br.com.caelum.stella.bean.validation.logic.StellaCPFValidator;
 
 /**
@@ -20,8 +20,12 @@ public class StellaCPFValidatorTest {
 	private StellaCPFValidator validator;
 
 	private static class ObjectWithCPF {
-		@SuppressWarnings("unused")
 		@CPF
+		private String cpf;
+	}
+	
+	private static class ObjectWithCPFConfigured {
+		@CPF(ignoreRepeated=true)
 		private String cpf;
 	}
 
@@ -30,6 +34,22 @@ public class StellaCPFValidatorTest {
 		CPF cpfAnnotation = ObjectWithCPF.class.getDeclaredField("cpf").getAnnotation(CPF.class);
 		validator = new StellaCPFValidator();
 		validator.initialize(cpfAnnotation);
+	}
+	
+	@Test
+	public void shouldNotValidateCPFWithRepeatedDigitsByDefault() {
+		boolean valid = validator.isValid("00000000000", context);
+		assertFalse(valid);
+	}
+	
+	@Test
+	public void shouldValidateCPFWithRepeatedDigitsIfConfigured() throws Exception{
+		CPF cpfAnnotation = ObjectWithCPFConfigured.class.getDeclaredField("cpf").getAnnotation(CPF.class);
+		StellaCPFValidator anotherValidator = new StellaCPFValidator();
+		anotherValidator.initialize(cpfAnnotation);
+		
+		boolean valid = anotherValidator.isValid("00000000000", context);
+		assertTrue(valid);
 	}
 
 	@Test

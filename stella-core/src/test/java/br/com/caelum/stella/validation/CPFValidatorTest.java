@@ -250,13 +250,27 @@ public class CPFValidatorTest {
 
         mockery.assertIsSatisfied();
     }
+    
+    @Test
+    public void shouldNotValidateCPFWithAllRepeatedDigitsFaulByDefault() {
+        CPFValidator validator = new CPFValidator();
+
+        String value = "44444444444";
+        try {
+            validator.assertValid(value);
+            fail();
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+        }
+    }
+    
 
     @Test
     public void shouldValidateCPFWithAllRepeatedDigitsFaulWhenIgnoringIt() {
         Mockery mockery = new Mockery();
         final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
         mockery.checking(new Expectations());
-        CPFValidator validator = new CPFValidator(messageProducer, false);
+        CPFValidator validator = new CPFValidator(messageProducer, false,true);
         List<ValidationMessage> errors;
 
         String value = "44444444444";

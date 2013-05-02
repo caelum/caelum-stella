@@ -65,7 +65,21 @@ public class CPFValidator implements Validator<String> {
     public CPFValidator(boolean isFormatted) {
         this.baseValidator = new BaseValidator();
         this.isFormatted = isFormatted;
-        this.isIgnoringRepeatedDigits = true;
+        this.isIgnoringRepeatedDigits = false;
+    }
+    
+    /**
+     * Construtor de validador de CPF. O validador utiliza um
+     * @param isFormatted indica se o CPF está formatado.
+     *  @param isIgnoringRepeatedDigits
+     *            condição para ignorar cadeias de CPF com todos os dígitos
+     *            repetidos.
+     * {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public CPFValidator(boolean isFormatted, boolean isIgnoringRepeatedDigits) {
+        this.baseValidator = new BaseValidator();
+        this.isFormatted = isFormatted;
+        this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
     }
 
     /**
@@ -73,11 +87,11 @@ public class CPFValidator implements Validator<String> {
      * Construtor do Validador de CPF.
      * </p>
      * <p>
-     * Por padrão o validador criado aceita cadeias de CPF com todos os dígitos
+     * Por padrão o validador criado não aceita cadeias de CPF com todos os dígitos
      * repetidos, quando todas as outras condições de validação são aceitas.
-     * Para considerar estes documentos inválidos use o construtor
+     * Para considerar estes documentos válidos use o construtor
      * {@link #CPFValidator(MessageProducer, boolean, boolean)} com a váriavel
-     * {@linkplain #isIgnoringRepeatedDigits} em <code>false</code>.
+     * {@linkplain #isIgnoringRepeatedDigits} em <code>true</code>.
      * </p>
      * 
      * @param messageProducer
@@ -87,7 +101,7 @@ public class CPFValidator implements Validator<String> {
      *            é um dígito decimal.
      */
     public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this(messageProducer, isFormatted, true);
+        this(messageProducer, isFormatted, false);
     }
 
     /**
@@ -159,7 +173,8 @@ public class CPFValidator implements Validator<String> {
         return true;
     }
 
-    public boolean isEligible(String value) {
+    @Override
+	public boolean isEligible(String value) {
         boolean result;
         if (isFormatted) {
             result = FORMATED.matcher(value).matches();
@@ -169,11 +184,13 @@ public class CPFValidator implements Validator<String> {
         return result;
     }
 
-    public void assertValid(String cpf) {
+    @Override
+	public void assertValid(String cpf) {
         baseValidator.assertValid(getInvalidValues(cpf));
     }
 
-    public List<ValidationMessage> invalidMessagesFor(String cpf) {
+    @Override
+	public List<ValidationMessage> invalidMessagesFor(String cpf) {
         return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
 
