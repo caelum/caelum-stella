@@ -12,25 +12,26 @@ import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 
 public class ItauTest {
+	
 	private Boleto boleto;
-	private Itau banco;
+	private Itau banco = new Itau();
 	private Emissor emissor;
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().withDocumento(31, 5, 2006).withProcessamento(31, 5, 2006)
-				.withVencimento(10, 6, 2006);
+		
+	    Datas datas = Datas.newDatas().withDocumento(20, 03, 2013)
+	            .withProcessamento(20, 03, 2013).withVencimento(01, 04, 2013);  
 
-		this.emissor = Emissor.newEmissor().withCedente("Caue Guerra").withAgencia(2949).withDigitoAgencia('1')
-				.withContaCorrente(6580).withNumeroConvenio(1207113).withDigitoContaCorrente('3').withCarteira(6)
-				.withNossoNumero(3);
+		    this.emissor = Emissor.newEmissor().withCedente("Rodrigo Turini")
+	            .withAgencia(167).withCarteira(157).withContaCorrente(45145)
+	            .withNossoNumero(21897666l).withDigitoNossoNumero("6");  
 
-		Sacado sacado = Sacado.newSacado().withNome("Fulano");
-
-		this.banco = new Itau();
-
-		this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(this.emissor).withSacado(sacado)
-				.withValorBoleto("1.00").withNumeroDoDocumento("4323");
+		    Sacado sacado = Sacado.newSacado().withNome("Paulo Silveira");
+		    
+		    this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
+		    	.withBanco(banco).withSacado(sacado).withValorBoleto(2680.16)
+		    	.withNumeroDoDocumento("575");
 	}
 
 	@Test
@@ -53,26 +54,22 @@ public class ItauTest {
 	public void contaCorrenteFormatadaDeveTerCincoDigitos() {
 		String numeroFormatado = this.banco.getContaCorrenteDoEmissorFormatado(this.emissor);
 		assertEquals(5, numeroFormatado.length());
-		assertEquals("06580", numeroFormatado);
+		assertEquals("45145", numeroFormatado);
 	}
 
 	@Test
 	public void testLinhaDoBancoItau() {
-		this.banco = new Itau();
 		this.boleto = this.boleto.withBanco(this.banco);
-		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
+		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
-
-		assertEquals("34190.06006  00000.332940  90658.090007  9  31680000000100",
-				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
+		String linha = "34191.57213  89766.660164  74514.590004  6  56550000268016";
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras));
 	}
 
 	@Test
 	public void testCodigoDeBarraDoBancoItau() {
-		this.banco = new Itau();
-		this.boleto = this.boleto.withBanco(this.banco);
-
-		assertEquals("34199316800000001000060000000332949065809000", this.banco.geraCodigoDeBarrasPara(this.boleto));
+		String codigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
+		assertEquals("34196565500002680161572189766660167451459000", codigoDeBarras);
 	}
 
 	@Test
