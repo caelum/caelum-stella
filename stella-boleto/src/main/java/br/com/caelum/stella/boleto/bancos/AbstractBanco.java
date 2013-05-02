@@ -21,8 +21,12 @@ public abstract class AbstractBanco implements Banco {
 
 	@Override
 	public String getAgenciaECodigoCedente(Emissor emissor) {
-		return emissor.getAgenciaFormatado() + "-" + emissor.getDigitoAgencia() + " / "
-				+ this.getContaCorrenteDoEmissorFormatado(emissor) + "-" + emissor.getDigitoContaCorrente();
+		StringBuilder builder = new StringBuilder();
+		builder.append(emissor.getAgenciaFormatado());
+		builder.append("-").append(emissor.getDigitoAgencia());
+		builder.append(getContaCorrenteDoEmissorFormatado(emissor));
+		builder.append("-").append(emissor.getDigitoContaCorrente());
+		return builder.toString();
 	}
 
 }
