@@ -13,16 +13,36 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
+		
 		Emissor emissor = boleto.getEmissor();
+		int carteiraDoEmissor = emissor.getCarteira();
 		StringBuilder codigoDeBarras = new StringBuilder();
 		codigoDeBarras.append(getNumeroFormatado());
 		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
 		codigoDeBarras.append(boleto.getFatorVencimento());
 		codigoDeBarras.append(boleto.getValorFormatado());
-		codigoDeBarras.append(emissor.getCarteira());
-		codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
-		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-		codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
+		
+		if (carteiraDoEmissor == 1) {
+			codigoDeBarras.append(carteiraDoEmissor);
+			codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
+			codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
+		}
+		else if (carteiraDoEmissor == 2) {
+			String nossoNumeroCompleto = getNossoNumeroDoEmissorFormatado(emissor);
+			codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
+			codigoDeBarras.append(emissor.getDigitoContaCorrente());
+			codigoDeBarras.append(nossoNumeroCompleto.substring(2, 5));
+			codigoDeBarras.append(nossoNumeroCompleto.substring(0, 1));
+			codigoDeBarras.append(nossoNumeroCompleto.substring(5 ,8));
+			codigoDeBarras.append(nossoNumeroCompleto.substring(1, 2));
+			codigoDeBarras.append(nossoNumeroCompleto.substring(8));
+			codigoDeBarras.append(dvGenerator.geraDigitoMod11(codigoDeBarras.substring(18)));
+		}
+		else {
+			throw new IllegalArgumentException("A carteira digitada não é suportada");
+		}
+		
+		codigoDeBarras.insert(4, dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
 		return codigoDeBarras.toString();
 	}
 
@@ -66,5 +86,18 @@ public class Caixa extends AbstractBanco implements Banco {
 	@Override
 	public String getNumeroFormatado() {
 		return NUMERO_CAIXA;
+	}
+	
+	@Override
+	public String getNossoNumeroECodDocumento(Emissor emissor) {
+		
+		String nn = getNossoNumeroDoEmissorFormatado(emissor);
+		StringBuilder builder = new StringBuilder(nn);
+		
+		if(emissor.getDigitoNossoNumero() != null 
+				&& !emissor.getDigitoNossoNumero().isEmpty()){
+			builder.append("-").append(emissor.getDigitoNossoNumero());
+		}
+		return builder.toString();
 	}
 }
