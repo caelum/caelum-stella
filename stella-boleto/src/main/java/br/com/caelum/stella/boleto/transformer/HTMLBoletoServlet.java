@@ -46,7 +46,7 @@ public class HTMLBoletoServlet extends HttpServlet {
 		} else {
 			// ainda tem que ajeitar a altura e talvez o tamanho da imagem
 			// gerada. Pode receber como parametro tb...
-			image = BufferedImageGenerator.generateBufferedImageFor(BarcodeGenerator.generateBarcodeFor(value, 37.00f),
+			image = BufferedImageGenerator.generateBufferedImageFor(GeradorDeCodigoDeBarras.geraCodigoDeBarrasPara(value, 37.00f),
 					BufferedImage.TYPE_INT_ARGB);
 		}
 		return image;

@@ -20,11 +20,11 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  * @author Cauê Guerra
  * 
  */
-public class BoletoGenerator {
+public class GeradorDeBoleto {
 
 	private final Boleto[] boletos;
 
-	public BoletoGenerator(Boleto... boletos) {
+	public GeradorDeBoleto(Boleto... boletos) {
 		this.boletos = boletos;
 	}
 
@@ -33,9 +33,9 @@ public class BoletoGenerator {
 	 * 
 	 * @param arquivo
 	 */
-	public void toPDF(String arquivo) {
+	public void geraPDF(String arquivo) {
 		File file = new File(arquivo);
-		toPDF(file);
+		geraPDF(file);
 	}
 
 	/**
@@ -43,26 +43,22 @@ public class BoletoGenerator {
 	 * 
 	 * @param arquivo
 	 */
-	public void toPDF(File arquivo) {
+	public void geraPDF(File arquivo) {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(arquivo);
-			byte[] b = toPDF();
+			byte[] b = geraPDF();
 
 			fos.write(b);
 			fos.close();
-		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
-		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
 		} finally {
-			tryToClose(fos);
+			tentaFecharOFileOutput(fos);
 		}
 	}
 
-	private void tryToClose(Closeable c) {
+	private void tentaFecharOFileOutput(Closeable c) {
 		try {
 			c.close();
 		} catch (IOException e) {
@@ -75,9 +71,9 @@ public class BoletoGenerator {
 	 * 
 	 * @param arquivo
 	 */
-	public void toPNG(String arquivo) {
+	public void geraPNG(String arquivo) {
 		File file = new File(arquivo);
-		toPNG(file);
+		geraPNG(file);
 	}
 
 	/**
@@ -85,12 +81,12 @@ public class BoletoGenerator {
 	 * 
 	 * @param arquivo
 	 */
-	public void toPNG(File arquivo) {
+	public void geraPNG(File arquivo) {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(arquivo);
 
-			byte[] b = toPNG();
+			byte[] b = geraPNG();
 
 			fos.write(b);
 		} catch (FileNotFoundException e) {
@@ -98,7 +94,7 @@ public class BoletoGenerator {
 		} catch (IOException e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
 		} finally {
-			tryToClose(fos);
+			tentaFecharOFileOutput(fos);
 		}
 
 	}
@@ -106,15 +102,15 @@ public class BoletoGenerator {
 	/**
 	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
 	 */
-	public byte[] toPDF() {
-		return to(new PDFBoletoWriter());
+	public byte[] geraPDF() {
+		return gera(new PDFBoletoWriter());
 	}
 
 	/**
 	 * Devolve um array de bytes representando o PNG desse boleto ja gerado.
 	 */
-	public byte[] toPNG() {
-		return to(new PNGBoletoWriter());
+	public byte[] geraPNG() {
+		return gera(new PNGBoletoWriter());
 	}
 
 	/**
@@ -123,7 +119,7 @@ public class BoletoGenerator {
 	 * @param writer
 	 * @return
 	 */
-	private byte[] to(BoletoWriter writer) {
+	private byte[] gera(BoletoWriter writer) {
 		BoletoTransformer transformer = new BoletoTransformer(writer);
 
 		InputStream is = transformer.transform(this.boletos);
@@ -138,7 +134,7 @@ public class BoletoGenerator {
 		} catch (IOException e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
 		} finally {
-			tryToClose(is);
+			tentaFecharOFileOutput(is);
 		}
 		return b;
 	}

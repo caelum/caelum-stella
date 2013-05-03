@@ -45,9 +45,9 @@ public class Boleto {
 	 * Cria um novo boleto com valores padrão.
 	 * 
 	 */
-	public static Boleto newBoleto() {
-		return new Boleto().withEspecieMoeda("R$").withCodigoEspecieMoeda(9).withAceite(false)
-				.withEspecieDocumento("DV");
+	public static Boleto novoBoleto() {
+		return new Boleto().comEspecieMoeda("R$").comCodigoEspecieMoeda(9).comAceite(false)
+				.comEspecieDocumento("DV");
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Boleto {
 	 * 
 	 * @param aceite
 	 */
-	public Boleto withAceite(boolean aceite) {
+	public Boleto comAceite(boolean aceite) {
 		this.aceite = aceite;
 		return this;
 	}
@@ -84,7 +84,7 @@ public class Boleto {
 	 * @param datas
 	 * 
 	 */
-	public Boleto withDatas(Datas datas) {
+	public Boleto comDatas(Datas datas) {
 		this.datas = datas;
 		return this;
 	}
@@ -103,18 +103,9 @@ public class Boleto {
 	 * 
 	 * @param especieDocumento
 	 */
-	public Boleto withEspecieDocumento(String especieDocumento) {
+	public Boleto comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Boleto#getNumeroDocumento();
-	 */
-	@Deprecated
-	public String getNoDocumento() {
-		return getNumeroDoDocumento();
 	}
 
 	/**
@@ -127,31 +118,13 @@ public class Boleto {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Boleto#withNumeroDoDocumento(String)
-	 */
-	@Deprecated
-	public Boleto withNoDocumento(String noDocumento) {
-		return withNumeroDoDocumento(noDocumento);
-	}
-
-	/**
 	 * Associa o número do documento ao boleto Código informado pelo banco.
 	 * 
 	 * @param noDocumento
 	 */
-	public Boleto withNumeroDoDocumento(String noDocumento) {
+	public Boleto comNumeroDoDocumento(String noDocumento) {
 		this.numeroDocumento = noDocumento;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Boleto#getQuantidadeDeMoeda()
-	 */
-	@Deprecated
-	public BigDecimal getQtdMoeda() {
-		return getQuantidadeDeMoeda();
 	}
 
 	/**
@@ -164,21 +137,12 @@ public class Boleto {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Boleto#withQuantidadeMoeda(BigDecimal)
-	 */
-	@Deprecated
-	public Boleto withQtdMoeda(BigDecimal qtdMoeda) {
-		return withQuantidadeMoeda(qtdMoeda);
-	}
-
-	/**
 	 * Associa a quantidade de moeda ao boleto
 	 * 
 	 * @param quantidadeMoeda
 	 * @return
 	 */
-	public Boleto withQuantidadeMoeda(BigDecimal quantidadeMoeda) {
+	public Boleto comQuantidadeMoeda(BigDecimal quantidadeMoeda) {
 		this.quantidadeMoeda = quantidadeMoeda;
 		return this;
 	}
@@ -194,25 +158,25 @@ public class Boleto {
 	 * Associa um valor ao boleto, convertendo o double em string para evitar o
 	 * bug de casa decimal
 	 * 
-	 * @see Boleto#withValorBoleto(String)
+	 * @see Boleto#comValorBoleto(String)
 	 * @param valorBoleto
 	 * @return
 	 */
 
-	public Boleto withValorBoleto(double valorBoleto) {
-		return withValorBoleto(Double.toString(valorBoleto));
+	public Boleto comValorBoleto(double valorBoleto) {
+		return comValorBoleto(Double.toString(valorBoleto));
 	}
 
 	/**
 	 * Associa um valor ao boleto, convertendo a String para BigDecimal
 	 * utilizando o Locale da JVM
 	 * 
-	 * @see Boleto#withValorBoleto(BigDecimal)
+	 * @see Boleto#comValorBoleto(BigDecimal)
 	 * @param valorBoleto
 	 * @return
 	 */
-	public Boleto withValorBoleto(String valorBoleto) {
-		return withValorBoleto(new BigDecimal(valorBoleto));
+	public Boleto comValorBoleto(String valorBoleto) {
+		return comValorBoleto(new BigDecimal(valorBoleto));
 
 	}
 
@@ -222,7 +186,7 @@ public class Boleto {
 	 * @param valorBoleto
 	 * @return
 	 */
-	public Boleto withValorBoleto(BigDecimal valorBoleto) {
+	public Boleto comValorBoleto(BigDecimal valorBoleto) {
 		this.valorBoleto = valorBoleto;
 		return this;
 	}
@@ -242,18 +206,9 @@ public class Boleto {
 	 * @param especieMoeda
 	 * @return
 	 */
-	private Boleto withEspecieMoeda(String especieMoeda) {
+	private Boleto comEspecieMoeda(String especieMoeda) {
 		this.especieMoeda = especieMoeda;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Boleto#codigoEspecieMoeda
-	 */
-	@Deprecated
-	public int getCodEspecieMoeda() {
-		return getCodigoEspecieMoeda();
 	}
 
 	/**
@@ -272,7 +227,7 @@ public class Boleto {
 	 * @param codEspecieMoeda
 	 * @return
 	 */
-	private Boleto withCodigoEspecieMoeda(int codEspecieMoeda) {
+	private Boleto comCodigoEspecieMoeda(int codEspecieMoeda) {
 		this.codigoEspecieMoeda = codEspecieMoeda;
 		return this;
 	}
@@ -290,7 +245,7 @@ public class Boleto {
 	 * Associa um valor de moeda ao boleto
 	 * 
 	 */
-	public Boleto withValorMoeda(BigDecimal valorMoeda) {
+	public Boleto comValorMoeda(BigDecimal valorMoeda) {
 		this.valorMoeda = valorMoeda;
 		return this;
 	}
@@ -310,7 +265,7 @@ public class Boleto {
 	 * @param banco
 	 * @return
 	 */
-	public Boleto withBanco(Banco banco) {
+	public Boleto comBanco(Banco banco) {
 		this.banco = banco;
 		return this;
 	}
@@ -330,7 +285,7 @@ public class Boleto {
 	 * @param sacado
 	 * @return
 	 */
-	public Boleto withSacado(Sacado sacado) {
+	public Boleto comSacado(Sacado sacado) {
 		this.sacado = sacado;
 		return this;
 	}
@@ -350,7 +305,7 @@ public class Boleto {
 	 * @param emissor
 	 * @return
 	 */
-	public Boleto withEmissor(Emissor emissor) {
+	public Boleto comEmissor(Emissor emissor) {
 		this.emissor = emissor;
 		return this;
 	}
@@ -375,7 +330,7 @@ public class Boleto {
 	 *             instruções tiver mais de 5 elementos
 	 * 
 	 */
-	public Boleto withInstrucoes(String... instrucoes) {
+	public Boleto comInstrucoes(String... instrucoes) {
 		if (instrucoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 instrucoes permitidas");
 		}
@@ -404,7 +359,7 @@ public class Boleto {
 	 * @throws IllegalArgumentException
 	 *             descricoes tiver mais de 5 elementos
 	 */
-	public Boleto withDescricoes(String... descricoes) {
+	public Boleto comDescricoes(String... descricoes) {
 		if (descricoes.length > 5) {
 			throw new IllegalArgumentException("maximo de 5 descricoes permitidas");
 		}
@@ -431,7 +386,7 @@ public class Boleto {
 	 * @throws IllegalArgumentException
 	 *             locaisDePagamento tiver mais de 2 elementos
 	 */
-	public Boleto withLocaisDePagamento(String... locaisDePagamento) {
+	public Boleto comLocaisDePagamento(String... locaisDePagamento) {
 		if (locaisDePagamento.length > 2) {
 			throw new IllegalArgumentException("maximo de 2 locais de pagamento permitidos");
 		}
@@ -482,15 +437,6 @@ public class Boleto {
 	 */
 	public String getValorFormatado() {
 		return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]", "");
-	}
-
-	/**
-	 * @deprecated
-	 * @see Boleto#getNumeroDoDocumentoFormatado()
-	 */
-	@Deprecated
-	public String getNoDocumentoFormatado() {
-		return getNumeroDoDocumentoFormatado();
 	}
 
 	/**

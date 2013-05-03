@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SacadoTest {
-	private Sacado sacado = Sacado.newSacado();
+	private Sacado sacado = Sacado.novoSacado();
 
 	@Test
 	public void attributesShouldNotBeNull() {

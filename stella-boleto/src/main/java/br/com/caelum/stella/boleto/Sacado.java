@@ -24,7 +24,7 @@ public class Sacado {
      * 
      * @return
      */
-    public static Sacado newSacado() {
+    public static Sacado novoSacado() {
         return new Sacado();
     }
 
@@ -43,7 +43,7 @@ public class Sacado {
      * @param nome
      * @return
      */
-    public Sacado withNome(String nome) {
+    public Sacado comNome(String nome) {
         this.nome = nome;
         return this;
     }
@@ -63,7 +63,7 @@ public class Sacado {
      * @param cpf
      * @return
      */
-    public Sacado withCpf(String cpf) {
+    public Sacado comCpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
@@ -83,7 +83,7 @@ public class Sacado {
      * @param endereco
      * @return
      */
-    public Sacado withEndereco(String endereco) {
+    public Sacado comEndereco(String endereco) {
         this.endereco = endereco;
         return this;
     }
@@ -103,7 +103,7 @@ public class Sacado {
      * @param cep
      * @return
      */
-    public Sacado withCep(String cep) {
+    public Sacado comCep(String cep) {
         this.cep = cep;
         return this;
     }
@@ -123,7 +123,7 @@ public class Sacado {
      * @param bairro
      * @return
      */
-    public Sacado withBairro(String bairro) {
+    public Sacado comBairro(String bairro) {
         this.bairro = bairro;
         return this;
     }
@@ -143,7 +143,7 @@ public class Sacado {
      * @param cidade
      * @return
      */
-    public Sacado withCidade(String cidade) {
+    public Sacado comCidade(String cidade) {
         this.cidade = cidade;
         return this;
     }
@@ -163,7 +163,7 @@ public class Sacado {
      * @param uf
      * @return
      */
-    public Sacado withUf(String uf) {
+    public Sacado comUf(String uf) {
         this.uf = uf;
 		return this;
 	}

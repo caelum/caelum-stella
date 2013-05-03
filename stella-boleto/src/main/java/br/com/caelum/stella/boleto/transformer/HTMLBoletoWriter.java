@@ -106,9 +106,9 @@ public class HTMLBoletoWriter implements BoletoWriter {
 		private final String codigoDeBarras;
 
 		/**
-		 * Como a classe tinha que ter visibilidade p�blica, pois o template
-		 * fica em outro pacote, deixei o construtor privado para n�o correr o
-		 * risco de algu�m usar.
+		 * Como a classe tinha que ter visibilidade pública, pois o template
+		 * fica em outro pacote, deixei o construtor privado para não correr o
+		 * risco de alguém usar.
 		 */
 		private BoletoTemplateWrapper(final Boleto boleto) {
 			this.boleto = boleto;
@@ -122,11 +122,11 @@ public class HTMLBoletoWriter implements BoletoWriter {
 		}
 
 		public String formataData(final Calendar data) {
-			return BoletoFormatter.formatDate(data);
+			return FormatadorDeBoleto.formataData(data);
 		}
 
 		public String formataValor() {
-			return BoletoFormatter.formatValue(boleto.getValorBoleto().doubleValue());
+			return FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue());
 		}
 
 		public String nossoNumero() {

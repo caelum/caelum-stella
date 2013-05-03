@@ -19,24 +19,24 @@ public class BancoDoBrasilTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008)
-				.withVencimento(2, 5, 2008);
+		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
+				.comVencimento(2, 5, 2008);
 
-		this.emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDigitoAgencia('4')
-				.withContaCorrente(76000).withNumeroConvenio(1207113).withDigitoContaCorrente('5').withCarteira(18)
-				.withNossoNumero(9000206);
+		this.emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia(1824).comDigitoAgencia('4')
+				.comContaCorrente(76000).comNumeroConvenio(1207113).comDigitoContaCorrente('5').comCarteira(18)
+				.comNossoNumero(9000206);
 
-		Sacado sacado = Sacado.newSacado().withNome("Fulano");
+		Sacado sacado = Sacado.novoSacado().comNome("Fulano");
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(this.emissor).withSacado(sacado)
-				.withValorBoleto("40.00").withNumeroDoDocumento("4323");
+		this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(this.emissor).comSacado(sacado)
+				.comValorBoleto("40.00").comNumeroDoDocumento("4323");
 	}
 
 	@Test
 	public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
-		Emissor emissor = Emissor.newEmissor().withNumeroConvenio(1234);
+		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio(1234);
 		String numeroFormatado = this.banco.getNumeroConvenioDoEmissorFormatado(emissor);
 		assertEquals(6, numeroFormatado.length());
 		assertEquals("001234", numeroFormatado);
@@ -44,7 +44,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206).withCarteira(11);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206).comCarteira(11);
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(11, numeroFormatado.length());
 		assertEquals("00009000206", numeroFormatado);
@@ -52,7 +52,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
-		Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206).withCarteira(18);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206).comCarteira(18);
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(17, numeroFormatado.length());
 		assertEquals("00000000009000206", numeroFormatado);
@@ -60,7 +60,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.newEmissor().withCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);
@@ -76,7 +76,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testNumeroFormatadoNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("001", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(0, 3));
 	}
@@ -84,7 +84,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testCodEspecieMoedaNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("9", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(3, 4));
 	}
@@ -92,7 +92,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testDigitoVerificadorNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("5", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(4, 5));
 	}
@@ -100,7 +100,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testFatorVencimentoNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("3860", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(5, 9));
 	}
@@ -108,7 +108,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testValorNominalNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("0000004000", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(9, 19));
 	}
@@ -116,7 +116,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("0000001207113000900020618", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(19, 44));
 	}
@@ -124,7 +124,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testZerosNoCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("000000", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(19, 25));
 	}
@@ -132,7 +132,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testNumConvenioFormatadoNoCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("1207113", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(25, 32));
 	}
@@ -140,7 +140,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testNossoNumeroFormatadoNoCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("0009000206", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(32, 42));
 	}
@@ -148,7 +148,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testCarteiraNoCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("18", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(42, 44));
 	}
@@ -156,7 +156,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("00195386000000040000000001207113000900020618", this.banco.geraCodigoDeBarrasPara(this.boleto));
 	}
@@ -164,7 +164,7 @@ public class BancoDoBrasilTest {
 	@Test
 	public void testLinhaDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 

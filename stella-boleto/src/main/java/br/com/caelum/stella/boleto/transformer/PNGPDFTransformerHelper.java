@@ -89,7 +89,7 @@ class PNGPDFTransformerHelper {
 	 * @return
 	 */
 	private String formatDate(Calendar date) {
-		return BoletoFormatter.formatDate(date);
+		return FormatadorDeBoleto.formataData(date);
 	}
 
 	private void geraTemplateComOFundoDoBoleto(Boleto boleto) {
@@ -116,7 +116,7 @@ class PNGPDFTransformerHelper {
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 		this.writer.write(290, LINHA2, formatDate(boleto.getDatas().getVencimento()));
-		this.writer.write(377, LINHA2, BoletoFormatter.formatValue(boleto.getValorBoleto().doubleValue()));
+		this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
 		
 		this.writer.write(5, LINHA3, boleto.getAgenciaECodigoCedente());
 		this.writer.write(146, LINHA3, boleto.getNossoNumeroECodDocumento());
@@ -160,7 +160,7 @@ class PNGPDFTransformerHelper {
 		final float LINHA8 = 227;
 		this.writer.write(122, LINHA8, boleto.getBanco().getCarteiraDoEmissorFormatado(boleto.getEmissor()));
 		this.writer.write(190, LINHA8, boleto.getEspecieMoeda());
-		this.writer.write(430, LINHA8, BoletoFormatter.formatValue(boleto.getValorBoleto().doubleValue()));
+		this.writer.write(430, LINHA8, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
 	}
 	
 	private void imprimeInstrucoesDePagamento(Boleto boleto) {
@@ -197,7 +197,7 @@ class PNGPDFTransformerHelper {
 	}
 
 	private void geraEImprimeCodigoDeBarras(Boleto boleto) {
-		Image imagemDoCodigoDeBarras = BarcodeGenerator.generateBarcodeFor(
+		Image imagemDoCodigoDeBarras = GeradorDeCodigoDeBarras.geraCodigoDeBarrasPara(
 				boleto.getBanco().geraCodigoDeBarrasPara(boleto), 39.00f);
 		
 		try {

@@ -11,7 +11,7 @@ public class BoletoTest {
 
 	@Test
 	public void novoBoletoDeveTerAlgunsValoresPadrao() {
-		Boleto b = Boleto.newBoleto();
+		Boleto b = Boleto.novoBoleto();
 		assertEquals("R$", b.getEspecieMoeda());
 		assertEquals(9, b.getCodigoEspecieMoeda());
 		assertEquals(false, b.getAceite());
@@ -20,7 +20,7 @@ public class BoletoTest {
 
 	@Test
 	public void regraDoFatorVencimentoParaDataDaManha() {
-		Boleto b = Boleto.newBoleto();
+		Boleto b = Boleto.novoBoleto();
 
 		Calendar data = Calendar.getInstance();
 		data.set(Calendar.DAY_OF_MONTH, 2);
@@ -29,23 +29,23 @@ public class BoletoTest {
 
 		data.set(Calendar.HOUR_OF_DAY, 1);
 
-		b.withDatas(Datas.newDatas().withVencimento(data));
+		b.comDatas(Datas.novasDatas().comVencimento(data));
 
 		assertEquals("3860", b.getFatorVencimento());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void fatorVencimentoComDataMuitoAntiga() {
-		Datas.newDatas().withDocumento(01, 01, 1996).withProcessamento(01, 1, 1996).withVencimento(1, 2, 1996);
+		Datas.novasDatas().comDocumento(01, 01, 1996).comProcessamento(01, 1, 1996).comVencimento(1, 2, 1996);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void fatorVencimentoComDataMaiorQueOPermitido() {
-		Datas.newDatas().withDocumento(01, 01, 2025).withProcessamento(01, 1, 2025).withVencimento(1, 2, 2025);
+		Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 2, 2025);
 	}
 
 	public void regraDoFatorVencimentoParaDataDaNoite() {
-		Boleto b = Boleto.newBoleto();
+		Boleto b = Boleto.novoBoleto();
 
 		Calendar data = Calendar.getInstance();
 		data.set(Calendar.DAY_OF_MONTH, 2);
@@ -54,14 +54,14 @@ public class BoletoTest {
 
 		data.set(Calendar.HOUR_OF_DAY, 23);
 
-		b.withDatas(Datas.newDatas().withVencimento(data));
+		b.comDatas(Datas.novasDatas().comVencimento(data));
 
 		assertEquals("3860", b.getFatorVencimento());
 	}
 
 	@Test
 	public void regraDoFatorVencimentoParaDataDaExtremaNoite() {
-		Boleto b = Boleto.newBoleto();
+		Boleto b = Boleto.novoBoleto();
 
 		Calendar data = Calendar.getInstance();
 		data.set(Calendar.DAY_OF_MONTH, 2);
@@ -73,14 +73,14 @@ public class BoletoTest {
 		data.set(Calendar.SECOND, 59);
 		data.set(Calendar.MILLISECOND, 999);
 
-		b.withDatas(Datas.newDatas().withVencimento(data));
+		b.comDatas(Datas.novasDatas().comVencimento(data));
 
 		assertEquals("3860", b.getFatorVencimento());
 	}
 
 	@Test
 	public void regraDoFatorVencimentoParaDataDoExtremaManha() {
-		Boleto b = Boleto.newBoleto();
+		Boleto b = Boleto.novoBoleto();
 
 		Calendar data = Calendar.getInstance();
 		data.set(Calendar.DAY_OF_MONTH, 2);
@@ -92,15 +92,15 @@ public class BoletoTest {
 		data.set(Calendar.SECOND, 0);
 		data.set(Calendar.MILLISECOND, 0);
 
-		b.withDatas(Datas.newDatas().withVencimento(data));
+		b.comDatas(Datas.novasDatas().comVencimento(data));
 
 		assertEquals("3860", b.getFatorVencimento());
 	}
 
 	@Test
 	public void valorFormatadoPorStringDeveTerDezDigitos() {
-		Boleto b = Boleto.newBoleto();
-		b.withValorBoleto("3.00");
+		Boleto b = Boleto.novoBoleto();
+		b.comValorBoleto("3.00");
 		String valorFormatado = b.getValorFormatado();
 		assertEquals(10, valorFormatado.length());
 		assertEquals("0000000300", valorFormatado);
@@ -108,29 +108,29 @@ public class BoletoTest {
 
 	@Test
 	public void valorFormatadoPorStringSemPontos() {
-		Boleto b = Boleto.newBoleto();
-		b.withValorBoleto("300");
+		Boleto b = Boleto.novoBoleto();
+		b.comValorBoleto("300");
 		assertEquals("0000030000", b.getValorFormatado());
 	}
 
 	@Test
 	public void valorFormatadoPorDouble() {
-		Boleto b = Boleto.newBoleto();
-		b.withValorBoleto(3d);
+		Boleto b = Boleto.novoBoleto();
+		b.comValorBoleto(3d);
 		assertEquals("0000000300", b.getValorFormatado());
 	}
 
 	@Test
 	public void valorFormatadoPorBigDecimal() {
-		Boleto b = Boleto.newBoleto();
-		b.withValorBoleto(new BigDecimal(3));
+		Boleto b = Boleto.novoBoleto();
+		b.comValorBoleto(new BigDecimal(3));
 		assertEquals("0000000300", b.getValorFormatado());
 	}
 
 	@Test
 	public void numeroDoDocumentoFormatadoDeveTerQuatroDigitos() {
-		Boleto b = Boleto.newBoleto();
-		b.withNumeroDoDocumento("232");
+		Boleto b = Boleto.novoBoleto();
+		b.comNumeroDoDocumento("232");
 		String numeroFormatado = b.getNumeroDoDocumentoFormatado();
 		assertEquals(4, numeroFormatado.length());
 		assertEquals("0232", numeroFormatado);
@@ -138,40 +138,40 @@ public class BoletoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void boletoNaoDeveAceitarMaisDeCincoInstrucoes() {
-		Boleto b = Boleto.newBoleto();
-		b.withInstrucoes("", "", "", "", "", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comInstrucoes("", "", "", "", "", "");
 	}
 
 	@Test
 	public void boletoDeveAceitarNoMaximoCincoInstrucoes() {
-		Boleto b = Boleto.newBoleto();
-		b.withInstrucoes("", "", "", "", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comInstrucoes("", "", "", "", "");
 		assertEquals(5, b.getInstrucoes().size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void boletoNaoDeveAceitarMaisDeCincoDescricoes() {
-		Boleto b = Boleto.newBoleto();
-		b.withDescricoes("", "", "", "", "", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comDescricoes("", "", "", "", "", "");
 	}
 
 	@Test
 	public void boletoDeveAceitarNoMaximoCincoDescricoes() {
-		Boleto b = Boleto.newBoleto();
-		b.withDescricoes("", "", "", "", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comDescricoes("", "", "", "", "");
 		assertEquals(5, b.getDescricoes().size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void boletoNaoDeveAceitarMaisDeDoisLocais() {
-		Boleto b = Boleto.newBoleto();
-		b.withLocaisDePagamento("", "", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comLocaisDePagamento("", "", "");
 	}
 
 	@Test
 	public void boletoDeveAceitarNoMaximoDoisLocais() {
-		Boleto b = Boleto.newBoleto();
-		b.withLocaisDePagamento("", "");
+		Boleto b = Boleto.novoBoleto();
+		b.comLocaisDePagamento("", "");
 		assertEquals(2, b.getLocaisDePagamento().size());
 	}
 

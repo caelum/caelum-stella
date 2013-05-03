@@ -20,23 +20,23 @@ public class ItauTest {
 	@Before
 	public void setUp() {
 		
-	    Datas datas = Datas.newDatas().withDocumento(20, 03, 2013)
-	            .withProcessamento(20, 03, 2013).withVencimento(01, 04, 2013);  
+	    Datas datas = Datas.novasDatas().comDocumento(20, 03, 2013)
+	            .comProcessamento(20, 03, 2013).comVencimento(01, 04, 2013);  
 
-		    this.emissor = Emissor.newEmissor().withCedente("Rodrigo Turini")
-	            .withAgencia(167).withCarteira(157).withContaCorrente(45145)
-	            .withNossoNumero(21897666l).withDigitoNossoNumero("6");  
+		    this.emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
+	            .comAgencia(167).comCarteira(157).comContaCorrente(45145)
+	            .comNossoNumero(21897666l).comDigitoNossoNumero("6");  
 
-		    Sacado sacado = Sacado.newSacado().withNome("Paulo Silveira");
+		    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
 		    
-		    this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
-		    	.withBanco(banco).withSacado(sacado).withValorBoleto(2680.16)
-		    	.withNumeroDoDocumento("575");
+		    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
+		    	.comBanco(banco).comSacado(sacado).comValorBoleto(2680.16)
+		    	.comNumeroDoDocumento("575");
 	}
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOitoDigitos() {
-		Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206);
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(8, numeroFormatado.length());
 		assertEquals("09000206", numeroFormatado);
@@ -44,7 +44,7 @@ public class ItauTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerTresDigitos() {
-		Emissor emissor = Emissor.newEmissor().withCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(3, numeroFormatado.length());
 		assertEquals("001", numeroFormatado);
@@ -59,7 +59,7 @@ public class ItauTest {
 
 	@Test
 	public void testLinhaDoBancoItau() {
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 		String linha = "34191.57213  89766.660164  74514.590004  6  56550000268016";

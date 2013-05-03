@@ -25,44 +25,44 @@ public class CaixaTest {
 		// SET UP de boleto com carteira SINCO
 		///////////////////////////////////////////////////////////////////
 
-		Datas datas = Datas.newDatas().withDocumento(22, 04, 2013)
-			.withProcessamento(22, 04, 2013).withVencimento(29, 04, 2013);
+		Datas datas = Datas.novasDatas().comDocumento(22, 04, 2013)
+			.comProcessamento(22, 04, 2013).comVencimento(29, 04, 2013);
 
-		this.emissor = Emissor.newEmissor().withCedente("Rodrigo Turini")
-			.withAgencia(2873).withCarteira(1)
-			.withContaCorrente(2359).withNossoNumero(990000000003994458l)
-			.withDigitoNossoNumero("0");
+		this.emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
+			.comAgencia(2873).comCarteira(1)
+			.comContaCorrente(2359).comNossoNumero(990000000003994458l)
+			.comDigitoNossoNumero("0");
 
-		Sacado sacado = Sacado.newSacado().withNome("Mario Amaral");
+		Sacado sacado = Sacado.novoSacado().comNome("Mario Amaral");
 
-		this.boleto = Boleto.newBoleto().withDatas(datas)
-			.withEmissor(emissor).withBanco(this.banco).withSacado(sacado)
-			.withValorBoleto(4016.10).withNumeroDoDocumento("3084373");
+		this.boleto = Boleto.novoBoleto().comDatas(datas)
+			.comEmissor(emissor).comBanco(this.banco).comSacado(sacado)
+			.comValorBoleto(4016.10).comNumeroDoDocumento("3084373");
 		
 		///////////////////////////////////////////////////////////////////
 		// SET UP de boleto com carteira Sem Registro e Registrada no SIGCB
 		///////////////////////////////////////////////////////////////////
 		
-		Datas datasOutroBoleto = Datas.newDatas().withDocumento(21, 8, 2012)
-				.withProcessamento(21, 8, 2012).withVencimento(04, 9, 2012);
+		Datas datasOutroBoleto = Datas.novasDatas().comDocumento(21, 8, 2012)
+				.comProcessamento(21, 8, 2012).comVencimento(04, 9, 2012);
 
-		Emissor emissor = Emissor.newEmissor().withCedente("Guilherme")
-			.withAgencia(589).withCarteira(2)
-			.withContaCorrente(290274).withDigitoContaCorrente('5')
-			.withNossoNumero(24900000000000132l)
-			.withDigitoNossoNumero("3");
+		Emissor emissor = Emissor.novoEmissor().comCedente("Guilherme")
+			.comAgencia(589).comCarteira(2)
+			.comContaCorrente(290274).comDigitoContaCorrente('5')
+			.comNossoNumero(24900000000000132l)
+			.comDigitoNossoNumero("3");
 
-		Sacado sacadoOutroBoleto = Sacado.newSacado().withNome("Paulo");
+		Sacado sacadoOutroBoleto = Sacado.novoSacado().comNome("Paulo");
 
-		this.outroBoleto = Boleto.newBoleto().withDatas(datasOutroBoleto)
-			.withEmissor(emissor).withBanco(banco).withSacado(sacadoOutroBoleto)
-			.withValorBoleto(80.00).withNumeroDoDocumento("00000000132");
+		this.outroBoleto = Boleto.novoBoleto().comDatas(datasOutroBoleto)
+			.comEmissor(emissor).comBanco(banco).comSacado(sacadoOutroBoleto)
+			.comValorBoleto(80.00).comNumeroDoDocumento("00000000132");
 	}
 
 	@Test
 	public void codFornecidoPelaAgenciaDeveTerOitoDigitos() {
-		Emissor emissor = Emissor.newEmissor()
-				.withCodigoFornecidoPelaAgencia(2);
+		Emissor emissor = Emissor.novoEmissor()
+				.comCodigoFornecidoPelaAgencia(2);
 		String numeroFormatado = this.banco
 				.getCodigoFornecidoPelaAgenciaFormatado(emissor);
 		assertEquals(8, numeroFormatado.length());
@@ -71,7 +71,7 @@ public class CaixaTest {
 
 	@Test
 	public void codOperacaoDeveTerTresDigitos() {
-		Emissor emissor = Emissor.newEmissor().withCodigoOperacao(2);
+		Emissor emissor = Emissor.novoEmissor().comCodigoOperacao(2);
 		String numeroFormatado = this.banco.getCodigoOperacaoFormatado(emissor);
 		assertEquals(3, numeroFormatado.length());
 		assertEquals("002", numeroFormatado);
@@ -79,7 +79,7 @@ public class CaixaTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.newEmissor().withCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
 		String numeroFormatado = this.banco
 				.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
@@ -124,7 +124,7 @@ public class CaixaTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveLancarExceptionSeCarteiraNaoForSuportada() throws Exception {
-		this.outroBoleto.getEmissor().withCarteira(3);
+		this.outroBoleto.getEmissor().comCarteira(3);
 		assertEquals("10499544600000080002902745900200040000001322",
 				this.banco.geraCodigoDeBarrasPara(this.outroBoleto));
 	}

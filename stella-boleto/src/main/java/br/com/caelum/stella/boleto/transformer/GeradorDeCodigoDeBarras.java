@@ -13,19 +13,19 @@ import com.lowagie.text.pdf.BarcodeInter25;
  * @author Paulo Silveira
  * 
  */
-class BarcodeGenerator {
+class GeradorDeCodigoDeBarras {
 
 	/**
 	 * Retorna uma imagem com o código de barras para uma determinada String
 	 * 
-	 * @param code
+	 * @param codigo
 	 */
-	static Image generateBarcodeFor(String code, float barHeight) {
+	static Image geraCodigoDeBarrasPara(String codigo, float altura) {
 		BarcodeInter25 bar = new BarcodeInter25();
-		bar.setCode(code);
+		bar.setCode(codigo);
 		bar.setExtended(true);
 		bar.setTextAlignment(Element.ALIGN_LEFT);
-		bar.setBarHeight(barHeight);
+		bar.setBarHeight(altura);
 		bar.setFont(null);
 		bar.setX(0.73f);
 		bar.setN(3);

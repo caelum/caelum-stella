@@ -20,21 +20,21 @@ public class SantanderTest {
 	@Before
 	public void setUp() {
 		
-	    Datas datas = Datas.newDatas().withDocumento(29, 04, 2013)
-            .withProcessamento(29, 04, 2013).withVencimento(8, 05, 2013);  
+	    Datas datas = Datas.novasDatas().comDocumento(29, 04, 2013)
+            .comProcessamento(29, 04, 2013).comVencimento(8, 05, 2013);  
 
-	    this.emissor = Emissor.newEmissor().withCedente("PETROBRAS")
-            .withAgencia(6790).withDigitoAgencia('0').withCarteira(102)
-            .withCodigoCliente("5260965").withNossoNumero(1056137495014l);  
+	    this.emissor = Emissor.novoEmissor().comCedente("PETROBRAS")
+            .comAgencia(6790).comDigitoAgencia('0').comCarteira(102)
+            .comCodigoCliente("5260965").comNossoNumero(1056137495014l);  
 
-	    Sacado sacado = Sacado.newSacado().withNome("PAULO SILVEIRA") ; 
+	    Sacado sacado = Sacado.novoSacado().comNome("PAULO SILVEIRA") ; 
 	    
-	    boleto = Boleto.newBoleto().withEspecieDocumento("DM")
-    		.withBanco(banco).withDatas(datas).withEmissor(emissor)
-    		.withSacado(sacado).withValorBoleto(219.50).withAceite(Boolean.FALSE)
-    		.withInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4")
-    		.withLocaisDePagamento("local 1", "local 2")
-    		.withNumeroDoDocumento("105613749501");
+	    boleto = Boleto.novoBoleto().comEspecieDocumento("DM")
+    		.comBanco(banco).comDatas(datas).comEmissor(emissor)
+    		.comSacado(sacado).comValorBoleto(219.50).comAceite(Boolean.FALSE)
+    		.comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4")
+    		.comLocaisDePagamento("local 1", "local 2")
+    		.comNumeroDoDocumento("105613749501");
 	}
 
 	@Test 

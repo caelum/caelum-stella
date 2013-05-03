@@ -18,7 +18,7 @@ import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.HSBC;
-import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
+import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 
 /**
  * Teste de INTEGRACAO apesar de estar no de unidade FIXME
@@ -33,15 +33,15 @@ public class BoletoHSBCTransformerIntegrationTest {
 
 		apagaArquivosGerados();
 
-		Datas datas = Datas.newDatas().withDocumento(03, 7, 2000).withVencimento(04, 7, 2000);
+		Datas datas = Datas.novasDatas().comDocumento(03, 7, 2000).comVencimento(04, 7, 2000);
 
-		Emissor emissor = Emissor.newEmissor().withCedente("Alberto").withAgencia(501).withContaCorrente(6703255)
-				.withNossoNumero(39104766).withCodigoFornecidoPelaAgencia(351202).withCarteira(0)
-				.withDigitoNossoNumero("3");
+		Emissor emissor = Emissor.novoEmissor().comCedente("Alberto").comAgencia(501).comContaCorrente(6703255)
+				.comNossoNumero(39104766).comCodigoFornecidoPelaAgencia(351202).comCarteira(0)
+				.comDigitoNossoNumero("3");
 
-		Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12")
-				.withEndereco("Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111")
-				.withCidade("São Paulo").withUf("SP");
+		Sacado sacado = Sacado.novoSacado().comNome("Fulano da Silva").comCpf("111.222.333-12")
+				.comEndereco("Av dos testes, 111 apto 333").comBairro("Bairro Teste").comCep("01234-111")
+				.comCidade("São Paulo").comUf("SP");
 
 		Banco banco = new HSBC();
 
@@ -51,15 +51,15 @@ public class BoletoHSBCTransformerIntegrationTest {
 
 		String[] instrucoes = { "instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5" };
 
-		Boleto boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor).withSacado(sacado)
-				.withValorBoleto("1200.00").withNumeroDoDocumento("39104766").withDescricoes(descricoes)
-				.withLocaisDePagamento(locaisDePagamento).withInstrucoes(instrucoes);
-		boleto.withBanco(banco);
+		Boleto boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor).comSacado(sacado)
+				.comValorBoleto("1200.00").comNumeroDoDocumento("39104766").comDescricoes(descricoes)
+				.comLocaisDePagamento(locaisDePagamento).comInstrucoes(instrucoes);
+		boleto.comBanco(banco);
 
-		BoletoGenerator generator = new BoletoGenerator(boleto);
+		GeradorDeBoleto generator = new GeradorDeBoleto(boleto);
 
-		generator.toPDF("arquivo.pdf");
-		generator.toPNG("arquivo.png");
+		generator.geraPDF("arquivo.pdf");
+		generator.geraPNG("arquivo.png");
 
 	}
 

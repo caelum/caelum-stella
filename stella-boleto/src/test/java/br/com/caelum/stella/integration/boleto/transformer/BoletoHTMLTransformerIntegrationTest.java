@@ -37,15 +37,15 @@ public class BoletoHTMLTransformerIntegrationTest {
 		Locale.setDefault(new Locale("pt", "br"));
 
 		Boleto boleto;
-		Datas datas = Datas.newDatas().withDocumento(4, 5, 2008).withProcessamento(4, 5, 2008)
-				.withVencimento(2, 5, 2008);
-		Emissor emissor = Emissor.newEmissor().withCedente("Caue").withAgencia(1824).withDigitoAgencia('4')
-				.withContaCorrente(76000).withNumeroConvenio(1207113).withDigitoContaCorrente('5').withCarteira(18)
-				.withNossoNumero(9000206);
+		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
+				.comVencimento(2, 5, 2008);
+		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia(1824).comDigitoAgencia('4')
+				.comContaCorrente(76000).comNumeroConvenio(1207113).comDigitoContaCorrente('5').comCarteira(18)
+				.comNossoNumero(9000206);
 
-		Sacado sacado = Sacado.newSacado().withNome("Fulano da Silva").withCpf("111.222.333-12")
-				.withEndereco("Av dos testes, 111 apto 333").withBairro("Bairro Teste").withCep("01234-111")
-				.withCidade("São Paulo").withUf("SP");
+		Sacado sacado = Sacado.novoSacado().comNome("Fulano da Silva").comCpf("111.222.333-12")
+				.comEndereco("Av dos testes, 111 apto 333").comBairro("Bairro Teste").comCep("01234-111")
+				.comCidade("São Paulo").comUf("SP");
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
 
@@ -55,9 +55,9 @@ public class BoletoHTMLTransformerIntegrationTest {
 
 		Banco banco = new BancoDoBrasil();
 
-		boleto = Boleto.newBoleto().withBanco(banco).withDatas(datas).withDescricoes(descricoes).withEmissor(emissor)
-				.withSacado(sacado).withValorBoleto("40.00").withNumeroDoDocumento("4323").withInstrucoes(instrucoes)
-				.withLocaisDePagamento(locaisDePagamento);
+		boleto = Boleto.novoBoleto().comBanco(banco).comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)
+				.comSacado(sacado).comValorBoleto("40.00").comNumeroDoDocumento("4323").comInstrucoes(instrucoes)
+				.comLocaisDePagamento(locaisDePagamento);
 
 		BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(
 				"http://localhost:8080/caelum-stella-boleto/stella-boleto/"));

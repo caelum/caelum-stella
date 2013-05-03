@@ -19,24 +19,24 @@ public class BradescoTest {
 
 	@Before
 	public void setUp() {
-		Datas datas = Datas.newDatas().withDocumento(31, 5, 2006).withProcessamento(31, 5, 2006)
-				.withVencimento(10, 6, 2006);
+		Datas datas = Datas.novasDatas().comDocumento(31, 5, 2006).comProcessamento(31, 5, 2006)
+				.comVencimento(10, 6, 2006);
 
-		this.emissor = Emissor.newEmissor().withCedente("Leonardo Bessa").withAgencia(2949).withDigitoAgencia('1')
-				.withContaCorrente(6580).withNumeroConvenio(1207113).withDigitoContaCorrente('3').withCarteira(6)
-				.withNossoNumero(3);
+		this.emissor = Emissor.novoEmissor().comCedente("Leonardo Bessa").comAgencia(2949).comDigitoAgencia('1')
+				.comContaCorrente(6580).comNumeroConvenio(1207113).comDigitoContaCorrente('3').comCarteira(6)
+				.comNossoNumero(3);
 
-		Sacado sacado = Sacado.newSacado().withNome("Fulano");
+		Sacado sacado = Sacado.novoSacado().comNome("Fulano");
 
 		this.banco = new Bradesco();
 
-		this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(this.emissor).withSacado(sacado)
-				.withValorBoleto("1.00").withNumeroDoDocumento("4323");
+		this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(this.emissor).comSacado(sacado)
+				.comValorBoleto("1.00").comNumeroDoDocumento("4323");
 	}
 
 	@Test
 	public void numeroDoConvenioFormatadoDeveTerSeteDigitos() {
-		Emissor emissor = Emissor.newEmissor().withNumeroConvenio(1234);
+		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio(1234);
 		String numeroFormatado = this.banco.getNumeroConvenioDoEmissorFormatado(emissor);
 		assertEquals(7, numeroFormatado.length());
 		assertEquals("0001234", numeroFormatado);
@@ -44,7 +44,7 @@ public class BradescoTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Emissor emissor = Emissor.newEmissor().withNossoNumero(9000206).withDigitoNossoNumero("7");
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206).comDigitoNossoNumero("7");
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(11, numeroFormatado.length());
 		assertEquals("00009000206", numeroFormatado);
@@ -52,7 +52,7 @@ public class BradescoTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.newEmissor().withCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);
@@ -68,7 +68,7 @@ public class BradescoTest {
 	@Test
 	public void testLinhaDoBancoBradesco() {
 		this.banco = new Bradesco();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
@@ -79,7 +79,7 @@ public class BradescoTest {
 	@Test
 	public void testCodigoDeBarraDoBancoBradesco() {
 		this.banco = new Bradesco();
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 
 		assertEquals("23796316800000001002949060000000000300065800", this.banco.geraCodigoDeBarrasPara(this.boleto));
 	}

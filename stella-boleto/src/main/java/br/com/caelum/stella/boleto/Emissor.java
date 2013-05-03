@@ -32,7 +32,7 @@ public class Emissor {
 	 * 
 	 * @return
 	 */
-	public static Emissor newEmissor() {
+	public static Emissor novoEmissor() {
 		return new Emissor();
 	}
 
@@ -42,7 +42,7 @@ public class Emissor {
 	 * @param endereco
 	 * @return este emissor
 	 */
-	public Emissor withEndereco(String endereco) {
+	public Emissor comEndereco(String endereco) {
 		this.endereco = endereco;
 		return this;
 	}
@@ -69,7 +69,7 @@ public class Emissor {
 	 * 
 	 * @param agencia
 	 */
-	public Emissor withAgencia(int agencia) {
+	public Emissor comAgencia(int agencia) {
 		this.agencia = agencia;
 		return this;
 	}
@@ -87,7 +87,7 @@ public class Emissor {
 	 * 
 	 * @param contaCorrente
 	 */
-	public Emissor withContaCorrente(long contaCorrente) {
+	public Emissor comContaCorrente(long contaCorrente) {
 		this.contaCorrente = contaCorrente;
 		return this;
 	}
@@ -107,18 +107,9 @@ public class Emissor {
 	 * 
 	 * @param carteira
 	 */
-	public Emissor withCarteira(int carteira) {
+	public Emissor comCarteira(int carteira) {
 		this.carteira = carteira;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#getNumeroConvenio()
-	 */
-	@Deprecated
-	public long getNumConvenio() {
-		return getNumeroConvenio();
 	}
 
 	/**
@@ -133,15 +124,6 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#withNumeroConvenio(long)
-	 */
-	@Deprecated
-	public Emissor withNumConvenio(long numConvenio) {
-		return withNumeroConvenio(numConvenio);
-	}
-
-	/**
 	 * Associa um número de convênio ao emissor<br/>
 	 * Valor que identifica um emissor junto ao seu banco para associar seus
 	 * boletos<br/>
@@ -149,7 +131,7 @@ public class Emissor {
 	 * 
 	 * @param numConvenio
 	 */
-	public Emissor withNumeroConvenio(long numConvenio) {
+	public Emissor comNumeroConvenio(long numConvenio) {
 		this.numeroConvenio = numConvenio;
 		return this;
 	}
@@ -175,7 +157,7 @@ public class Emissor {
 	 * 
 	 * @param nossoNumero
 	 */
-	public Emissor withNossoNumero(long nossoNumero) {
+	public Emissor comNossoNumero(long nossoNumero) {
 		this.nossoNumero = nossoNumero;
 		return this;
 	}
@@ -193,18 +175,9 @@ public class Emissor {
 	 * 
 	 * @param cedente
 	 */
-	public Emissor withCedente(String cedente) {
+	public Emissor comCedente(String cedente) {
 		this.cedente = cedente;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#getDigitoContaCorrente()
-	 */
-	@Deprecated
-	public char getDvContaCorrente() {
-		return getDigitoContaCorrente();
 	}
 
 	/**
@@ -217,32 +190,14 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#withDigitoContaCorrente(char)
-	 */
-	@Deprecated
-	public Emissor withDvContaCorrente(char dv) {
-		return withDigitoContaCorrente(dv);
-	}
-
-	/**
 	 * Associa um digito verificador (DV) da conta corrente ao emissor
 	 * 
 	 * @param dv
 	 * @return
 	 */
-	public Emissor withDigitoContaCorrente(char dv) {
+	public Emissor comDigitoContaCorrente(char dv) {
 		this.digitoContaCorrente = dv;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#getDigitoAgencia()
-	 */
-	@Deprecated
-	public char getDvAgencia() {
-		return getDigitoAgencia();
 	}
 
 	/**
@@ -255,21 +210,12 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#withDigitoAgencia(char)
-	 */
-	@Deprecated
-	public Emissor withDvAgencia(char dv) {
-		return withDigitoAgencia(dv);
-	}
-
-	/**
 	 * Associa um digito verificador (DV) da agencia ao emissor
 	 * 
 	 * @param dv
 	 * @return
 	 */
-	public Emissor withDigitoAgencia(char dv) {
+	public Emissor comDigitoAgencia(char dv) {
 		this.digitoAgencia = dv;
 		return this;
 	}
@@ -286,15 +232,6 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#getCodigoOperacao()
-	 */
-	@Deprecated
-	public int getCodOperacao() {
-		return getCodigoOperacao();
-	}
-
-	/**
 	 * Devolve o código de operação do emissor.
 	 * 
 	 * @return
@@ -304,32 +241,14 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#withCodigoOperacao(int)
-	 */
-	@Deprecated
-	public Emissor withCodOperacao(int codOperacao) {
-		return withCodigoOperacao(codOperacao);
-	}
-
-	/**
 	 * Associa um código de operação ao emissor.
 	 * 
 	 * @param codOperacao
 	 * @return
 	 */
-	public Emissor withCodigoOperacao(int codOperacao) {
+	public Emissor comCodigoOperacao(int codOperacao) {
 		this.codigoOperacao = codOperacao;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#getCodigoFornecidoPelaAgencia()
-	 */
-	@Deprecated
-	public int getCodFornecidoPelaAgencia() {
-		return getCodigoFornecidoPelaAgencia();
 	}
 
 	/**
@@ -342,32 +261,14 @@ public class Emissor {
 	}
 
 	/**
-	 * @deprecated
-	 * @see Emissor#withCodigoFornecidoPelaAgencia(int)
-	 */
-	@Deprecated
-	public Emissor withCodFornecidoPelaAgencia(int codFornecidoPelaAgencia) {
-		return withCodigoFornecidoPelaAgencia(codFornecidoPelaAgencia);
-	}
-
-	/**
 	 * Associa um código fornecido pela agência ao emissor.
 	 * 
 	 * @param codFornecidoPelaAgencia
 	 * @return
 	 */
-	public Emissor withCodigoFornecidoPelaAgencia(int codFornecidoPelaAgencia) {
+	public Emissor comCodigoFornecidoPelaAgencia(int codFornecidoPelaAgencia) {
 		this.codigoFornecidoPelaAgencia = codFornecidoPelaAgencia;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#withDigitoNossoNumero(char)
-	 */
-	@Deprecated
-	public Emissor withDvNossoNumero(String dvNossoNumero) {
-		return withDigitoNossoNumero(dvNossoNumero);
 	}
 
 	/**
@@ -375,18 +276,9 @@ public class Emissor {
 	 * 
 	 * @param dvNossoNumero
 	 */
-	public Emissor withDigitoNossoNumero(String digitoNossoNumero) {
+	public Emissor comDigitoNossoNumero(String digitoNossoNumero) {
 		this.digitoNossoNumero = digitoNossoNumero;
 		return this;
-	}
-
-	/**
-	 * @deprecated
-	 * @see Emissor#getDigitoNossoNumero()
-	 */
-	@Deprecated
-	public String getDvNossoNumero() {
-		return getDigitoNossoNumero();
 	}
 
 	/**
@@ -402,7 +294,7 @@ public class Emissor {
 		return codigoCliente;
 	}
 
-	public Emissor withCodigoCliente(String codigoCliente) {
+	public Emissor comCodigoCliente(String codigoCliente) {
 		String cod = String.format("%7s", codigoCliente);
 		this.codigoCliente = cod.replaceAll(" ", "0");
 		return this;

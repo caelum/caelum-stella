@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static java.lang.String.*;
+
 import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
@@ -18,18 +20,18 @@ public class Caixa extends AbstractBanco implements Banco {
 		int carteiraDoEmissor = emissor.getCarteira();
 		StringBuilder codigoDeBarras = new StringBuilder();
 		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
+		codigoDeBarras.append(valueOf(boleto.getCodigoEspecieMoeda()));
 		codigoDeBarras.append(boleto.getFatorVencimento());
 		codigoDeBarras.append(boleto.getValorFormatado());
 		
 		if (carteiraDoEmissor == 1) {
 			codigoDeBarras.append(carteiraDoEmissor);
-			codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
+			codigoDeBarras.append(format("%06d", emissor.getContaCorrente()));
 			codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
 		}
 		else if (carteiraDoEmissor == 2) {
 			String nossoNumeroCompleto = getNossoNumeroDoEmissorFormatado(emissor);
-			codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
+			codigoDeBarras.append(format("%06d", emissor.getContaCorrente()));
 			codigoDeBarras.append(emissor.getDigitoContaCorrente());
 			codigoDeBarras.append(nossoNumeroCompleto.substring(2, 5));
 			codigoDeBarras.append(nossoNumeroCompleto.substring(0, 1));
@@ -55,32 +57,32 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%02d", emissor.getCarteira());
+		return format("%02d", emissor.getCarteira());
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%05d", emissor.getContaCorrente());
+		return format("%05d", emissor.getContaCorrente());
 	}
 	
 	public String getCodigoFornecidoPelaAgenciaFormatado(Emissor emissor) {
-		return String.format("%08d", emissor.getCodigoFornecidoPelaAgencia());
+		return format("%08d", emissor.getCodigoFornecidoPelaAgencia());
 	}
 
 	public String getCodigoOperacaoFormatado(Emissor emissor) {
-		return String.format("%03d", emissor.getCodigoOperacao());
+		return format("%03d", emissor.getCodigoOperacao());
 	}
 
 	@Override
 	public URL getImage() {
 		String arquivo = "/br/com/caelum/stella/boleto/img/%s.png";
-		String imagem = String.format(arquivo, getNumeroFormatado());
+		String imagem = format(arquivo, getNumeroFormatado());
 		return getClass().getResource(imagem);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%017d", emissor.getNossoNumero());
+		return format("%017d", emissor.getNossoNumero());
 	}
 
 	@Override

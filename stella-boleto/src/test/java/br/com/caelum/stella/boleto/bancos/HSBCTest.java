@@ -22,17 +22,17 @@ public class HSBCTest {
 	@Before
 	public void setUp() {
 
-		Datas datas = Datas.newDatas().withDocumento(28,1,2013)
-				.withProcessamento(29,1,2013).withVencimento(30,1,2013);
+		Datas datas = Datas.novasDatas().comDocumento(28,1,2013)
+				.comProcessamento(29,1,2013).comVencimento(30,1,2013);
 
-		Emissor emissor = Emissor.newEmissor().withCedente("Rodrigo Turini")
-			.withCodigoFornecidoPelaAgencia(4146239).withNossoNumero(1476147);
+		Emissor emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
+			.comCodigoFornecidoPelaAgencia(4146239).comNossoNumero(1476147);
 
-	    Sacado sacado = Sacado.newSacado().withNome("Paulo Silveira");
+	    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
 		
-	    this.boleto = Boleto.newBoleto().withDatas(datas).withEmissor(emissor)
-	    	.withBanco(this.banco).withSacado(sacado).withValorBoleto(3383.00)
-	    	.withNumeroDoDocumento("0789201");
+	    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
+	    	.comBanco(this.banco).comSacado(sacado).comValorBoleto(3383.00)
+	    	.comNumeroDoDocumento("0789201");
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class HSBCTest {
 
 	@Test
 	public void testCodigoDeBarraDoBancoHSBC() {
-		this.boleto = this.boleto.withBanco(this.banco);
+		this.boleto = this.boleto.comBanco(this.banco);
 		String codigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
 		assertEquals("39992559400003383004146239000000000147603032", codigoDeBarras);
 	}

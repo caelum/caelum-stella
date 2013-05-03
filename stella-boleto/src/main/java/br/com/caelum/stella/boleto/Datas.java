@@ -27,9 +27,9 @@ public class Datas {
 	 * Data do processamento padrão: data atual
 	 * 
 	 */
-	public static Datas newDatas() {
+	public static Datas novasDatas() {
 		Calendar data = Calendar.getInstance();
-		return new Datas().withDocumento(data).withProcessamento(data);
+		return new Datas().comDocumento(data).comProcessamento(data);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Datas {
 	 * 
 	 * @param documento
 	 */
-	public Datas withDocumento(Calendar documento) {
+	public Datas comDocumento(Calendar documento) {
 		if (documento.getTime().before(MINIMUM_DATE.getTime())) {
 			throw new IllegalArgumentException("O ano do documento deve ser maior do que 1997.");
 		}
@@ -65,8 +65,8 @@ public class Datas {
 	 * 
 	 * @param documento
 	 */
-	public Datas withDocumento(int dia, int mes, int ano) {
-		return withDocumento(dataPara(dia, mes, ano));
+	public Datas comDocumento(int dia, int mes, int ano) {
+		return comDocumento(dataPara(dia, mes, ano));
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class Datas {
 	 * 
 	 * @param processamento
 	 */
-	public Datas withProcessamento(Calendar processamento) {
+	public Datas comProcessamento(Calendar processamento) {
 		if (processamento.getTime().before(MINIMUM_DATE.getTime())) {
 			throw new IllegalArgumentException("O ano do processamento deve ser maior do que 1997.");
 		}
@@ -102,8 +102,8 @@ public class Datas {
 	 * 
 	 * @param processamento
 	 */
-	public Datas withProcessamento(int dia, int mes, int ano) {
-		return withProcessamento(dataPara(dia, mes, ano));
+	public Datas comProcessamento(int dia, int mes, int ano) {
+		return comProcessamento(dataPara(dia, mes, ano));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class Datas {
 	/**
 	 * Modifica o vencimento do respectivo boleto com um Calendar.
 	 */
-	public Datas withVencimento(Calendar vencimento) {
+	public Datas comVencimento(Calendar vencimento) {
 		if (vencimento.getTime().before(MINIMUM_DATE.getTime())) {
 			throw new IllegalArgumentException("O ano do vencimento deve ser maior do que 1997.");
 		}
@@ -131,15 +131,13 @@ public class Datas {
 	 * Modifica o vencimento.
 	 * 
 	 */
-	public Datas withVencimento(int dia, int mes, int ano) {
-		return withVencimento(dataPara(dia, mes, ano));
+	public Datas comVencimento(int dia, int mes, int ano) {
+		return comVencimento(dataPara(dia, mes, ano));
 	}
 
 	private Calendar dataPara(int dia, int mes, int ano) {
 		Calendar c = Calendar.getInstance();
-		c.set(Calendar.DAY_OF_MONTH, dia);
-		c.set(Calendar.MONTH, mes - 1);
-		c.set(Calendar.YEAR, ano);
+		c.set(ano, mes-1, dia);
 		return c;
 	}
 }
