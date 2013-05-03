@@ -12,23 +12,23 @@ package br.com.caelum.stella.inwords;
 public class InteiroSemFormato implements FormatoDeExtenso {
 
     public String getUnidadeDecimalNoPlural() {
-        return null;
+        return "";
     }
 
     public String getUnidadeDecimalNoSingular() {
-        return null;
+        return "";
     }
 
     public String getUnidadeInteiraNoSingular() {
-        return null;
+        return "";
     }
 
     public String getUnidadeInteiraNoPlural() {
-        return null;
+        return "";
     }
 
     public int getCasasDecimais() {
-        return 0;
+        return 1;
     }
 
 }

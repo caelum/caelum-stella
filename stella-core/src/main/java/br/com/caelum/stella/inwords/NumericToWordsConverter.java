@@ -126,9 +126,6 @@ public class NumericToWordsConverter {
         DecimalFormat decimalFormat = new DecimalFormat(pattern.toString(), symbols);
         String formatted = decimalFormat.format(number);
         String[] parts = formatted.split("[.]");
-        if(formato.getCasasDecimais()==0) {
-        	parts = new String[]{parts[0], "0"};
-        }
         return parts;
     }
 
@@ -136,17 +133,17 @@ public class NumericToWordsConverter {
         if (blocks.length != 1 || !blocks[0].isZero()) {
             if (number >= 2) {
                 String unit = formato.getUnidadeInteiraNoPlural();
-                if(unit!=null && !unit.isEmpty() ) {
+                if( !unit.isEmpty() ) {
                     result.append(" ");
-                int length = blocks.length;
-                if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
-                    result.append("de ");
-                }
+                    int length = blocks.length;
+                	if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
+                        result.append("de ");
+                    }
                 	result.append(unit);
                 }
             } else {
                 String unit = formato.getUnidadeInteiraNoSingular();
-                if(unit!=null && !unit.isEmpty() ) {
+                if( !unit.isEmpty() ) {
                     result.append(" ").append(unit);
                 }
             }
