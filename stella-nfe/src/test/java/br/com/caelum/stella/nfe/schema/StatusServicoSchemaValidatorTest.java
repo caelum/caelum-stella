@@ -1,7 +1,6 @@
 package br.com.caelum.stella.nfe.schema;
 
 import java.io.File;
-import java.io.Reader;
 import java.io.StringReader;
 
 import javax.xml.XMLConstants;
@@ -10,21 +9,20 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import br.com.caelum.stella.nfe.xsd.status.TRetConsStatServ;
 
 public class StatusServicoSchemaValidatorTest {
 
 	@Test
+	@Ignore
 	public void retornoDeStatusDeServicoDeveSerValido() throws Exception {
 
 		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		File schemaFile = new File("xsds/PL_006j/retConsStatServ_v2.00.xsd");
-		System.out.println(schemaFile.exists());
 		Schema schema = sf.newSchema(schemaFile);
 
 		JAXBContext context = JAXBContext.newInstance(TRetConsStatServ.class);

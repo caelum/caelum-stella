@@ -11,7 +11,7 @@ public class NFEProperties {
 	public NFEProperties() {
 
 		try {
-			InputStream defaultIS = this.getClass().getResourceAsStream("/nfeDefault.properties");
+			InputStream defaultIS = this.getClass().getResourceAsStream("/nfe.default.properties");
 			if (defaultIS != null)
 				prop.load(defaultIS);
 

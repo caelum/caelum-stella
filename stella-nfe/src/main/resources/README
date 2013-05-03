@@ -10,5 +10,4 @@ wsimport -s src -d bin -p br.com.caelum.stella.nfe.ws.SIGLA_DO_ESTADO -Xaddition
 
 para gerar as classes baseadas nos xsds:
 
-xjc -encoding utf-8 -target 2.1 xsds/PL_006j_semAncora/consReciNFe_v2.00.xsd 
-	-d src -p br.com.caelum.stella.nfe.xsd.schema.generated
+xjc -encoding utf-8 -target 2.1 xsds/PL_006j/consReciNFe_v2.00.xsd -d src -p br.com.caelum.stella.nfe.xsd.schema.generated
