@@ -5,7 +5,6 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class Caixa extends AbstractBanco implements Banco {
 
@@ -14,39 +13,24 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
+		Emissor emissor = boleto.getEmissor();
 		StringBuilder codigoDeBarras = new StringBuilder();
 		codigoDeBarras.append(getNumeroFormatado());
 		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-		// Digito Verificador sera inserido aqui.
-
 		codigoDeBarras.append(boleto.getFatorVencimento());
 		codigoDeBarras.append(boleto.getValorFormatado());
-
-		Emissor emissor = boleto.getEmissor();
-
 		codigoDeBarras.append(emissor.getCarteira());
+		codigoDeBarras.append(String.format("%06d", emissor.getContaCorrente()));
 		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-
-		codigoDeBarras.append(emissor.getAgenciaFormatado());
-		codigoDeBarras.append(getCodigoOperacaoFormatado(emissor));
-		codigoDeBarras.append(getCodigoFornecidoPelaAgenciaFormatado(emissor));
-
 		codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
-
-		String result = codigoDeBarras.toString();
-
-		if (result.length() != 44) {
-			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados."
-							+ result.length());
-		}
-
-		return result;
+		return codigoDeBarras.toString();
 	}
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_CAIXA + "-" + DIGITO_CAIXA;
+		StringBuilder builder = new StringBuilder();
+		builder.append(getNumeroFormatado()).append("-");
+		return builder.append(DIGITO_CAIXA).toString();
 	}
 
 	@Override
@@ -58,7 +42,7 @@ public class Caixa extends AbstractBanco implements Banco {
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 		return String.format("%05d", emissor.getContaCorrente());
 	}
-
+	
 	public String getCodigoFornecidoPelaAgenciaFormatado(Emissor emissor) {
 		return String.format("%08d", emissor.getCodigoFornecidoPelaAgencia());
 	}
@@ -69,18 +53,18 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public URL getImage() {
-		return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
+		String arquivo = "/br/com/caelum/stella/boleto/img/%s.png";
+		String imagem = String.format(arquivo, getNumeroFormatado());
+		return getClass().getResource(imagem);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		int length = 10 - (emissor.getCarteira() / 10);
-		return String.format("%0" + (length - 1) + "d", emissor.getNossoNumero());
+		return String.format("%017d", emissor.getNossoNumero());
 	}
 
 	@Override
 	public String getNumeroFormatado() {
 		return NUMERO_CAIXA;
 	}
-
 }
