@@ -33,7 +33,7 @@ import java.util.List;
 public class DigitoPara {
 
 	private List<Integer> numero;
-	private List<Integer> multiplicadores;
+	private List<Integer> multiplicadores = new ArrayList<Integer>();
 	private boolean complementar;
 	private List<Integer> aSubstituir;
 	private String substituto;
@@ -46,6 +46,7 @@ public class DigitoPara {
 	 * @param trecho Refere-se à linha numérica sobre a qual o dígito deve ser calculado
 	 */
 	public DigitoPara(String trecho) {
+		comMultiplicadoresDeAte(2, 9);
 		this.aSubstituir = Collections.emptyList();
 		this.numero = new ArrayList<Integer>();
 		char[] digitos = trecho.toCharArray();
@@ -64,7 +65,7 @@ public class DigitoPara {
 	 * @param fim Último número do intervalo sequencial de multiplicadores
 	 */
 	public DigitoPara comMultiplicadoresDeAte(int inicio, int fim) {
-		this.multiplicadores = new ArrayList<Integer>();
+		this.multiplicadores.clear();
 		for (int i = inicio; i <= fim; i++) {
 			multiplicadores.add(i);
 		}
