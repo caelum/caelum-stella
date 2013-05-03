@@ -31,7 +31,7 @@ public class NumericToWordsConverter {
     public String toWords(long number) {
         try {
             if (number < 0) {
-                throw new IllegalArgumentException("Não é possível transforma número negativos.");
+                throw new IllegalArgumentException("Não é possível transformar números negativos.");
             }
             StringBuffer result = new StringBuffer();
             if (number == 0) {
@@ -66,7 +66,7 @@ public class NumericToWordsConverter {
     public String toWords(double number) {
         try {
             if (number < 0) {
-                throw new IllegalArgumentException("Não é possível transforma número negativos.");
+                throw new IllegalArgumentException("Não é possível transformar números negativos.");
             }
             StringBuffer result = new StringBuffer();
             if (number == 0) {
@@ -131,15 +131,21 @@ public class NumericToWordsConverter {
 
     private void appendIntegersUnits(double number, StringBuffer result, ThousandBlock[] blocks) {
         if (blocks.length != 1 || !blocks[0].isZero()) {
-            result.append(" ");
             if (number >= 2) {
-                int length = blocks.length;
-                if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
-                    result.append("de ");
+                String unit = formato.getUnidadeInteiraNoPlural();
+                if( !unit.isEmpty() ) {
+                    result.append(" ");
+                    int length = blocks.length;
+                	if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
+                        result.append("de ");
+                    }
+                	result.append(unit);
                 }
-                result.append(formato.getUnidadeInteiraNoPlural());
             } else {
-                result.append(formato.getUnidadeInteiraNoSingular());
+                String unit = formato.getUnidadeInteiraNoSingular();
+                if( !unit.isEmpty() ) {
+                    result.append(" ").append(unit);
+                }
             }
         }
     }
