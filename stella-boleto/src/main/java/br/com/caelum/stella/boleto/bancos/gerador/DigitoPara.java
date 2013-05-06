@@ -59,7 +59,8 @@ public class DigitoPara {
 	/**
 	 * Para multiplicadores (ou pesos) sequenciais e em ordem crescente, esse método permite 
 	 * criar a lista de multiplicadores que será usada cíclicamente, caso o número base seja
-	 * maior do que a sequência de multiplicadores.
+	 * maior do que a sequência de multiplicadores. Por padrão os multiplicadores são iniciados
+	 * de 2 a 9. No momento em que você inserir outro valor este default será sobrescrito.
 	 * 
 	 * @param inicio Primeiro número do intervalo sequencial de multiplicadores
 	 * @param fim Último número do intervalo sequencial de multiplicadores

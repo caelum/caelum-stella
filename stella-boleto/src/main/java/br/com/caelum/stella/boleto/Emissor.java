@@ -1,12 +1,11 @@
 package br.com.caelum.stella.boleto;
 
 /**
- * Bean que representa os dados do emissor de um Boleto.
+ * Bean que representa os dados do emissor de um boleto 
+ * bancario. É um bean genérico, ou seja, o uso dos campos 
+ * varia de acordo com o banco pelo qual será gerado o boleto.
  * 
- * @author Paulo Silveira
- * @author Caue Guerra
- * @author David Paniz
- * 
+ * @author Paulo Silveira, Caue Guerra e David Paniz
  */
 public class Emissor {
 	
@@ -22,24 +21,19 @@ public class Emissor {
 	private int codigoOperacao;
 	private int codigoFornecidoPelaAgencia;
 	private String endereco;
-	private String codigoCliente;
 
 	private Emissor() {
 	}
 
 	/**
-	 * Cria novo emissor
-	 * 
-	 * @return
+	 * @return um novo Emissor
 	 */
 	public static Emissor novoEmissor() {
 		return new Emissor();
 	}
 
 	/**
-	 * Associa um endereço ao emissor
-	 * 
-	 * @param endereco
+	 * @param endereco, que será associado ao emissor
 	 * @return este emissor
 	 */
 	public Emissor comEndereco(String endereco) {
@@ -48,26 +42,24 @@ public class Emissor {
 	}
 
 	/**
-	 * Retorna o endereço do Emissor.
-	 * 
-	 * @return
+	 * @return o endereço do Emissor
 	 */
 	public String getEndereco() {
 		return endereco;
 	}
 
 	/**
-	 * Devolve o número da agencia sem o digito
-	 * 
+	 * @return número da agencia sem o digito
 	 */
 	public int getAgencia() {
 		return this.agencia;
 	}
 
 	/**
-	 * Associa uma agencia, SEM o dígito verificador, ao emissor
+	 * @param agencia, que deverá ser informada
+	 * <strong>sem</strong> o digito verificador
 	 * 
-	 * @param agencia
+	 * @return este emissor
 	 */
 	public Emissor comAgencia(int agencia) {
 		this.agencia = agencia;
@@ -75,17 +67,17 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o número da conta corrente sem o digito
-	 * 
+	 * @return número da conta corrente sem o digito
 	 */
 	public long getContaCorrente() {
 		return this.contaCorrente;
 	}
 
 	/**
-	 * Associa uma conta corrente, SEM o dígito verificador, ao emissor
+	 * @param contaCorrente, que deverá ser informada
+	 * <strong>sem</strong> o digito verificador.
 	 * 
-	 * @param contaCorrente
+	 * @return este emissor
 	 */
 	public Emissor comContaCorrente(long contaCorrente) {
 		this.contaCorrente = contaCorrente;
@@ -93,19 +85,18 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve a carteira<br/>
-	 * Valor informado pelo banco para identificação do tipo de boleto
-	 * 
+	 * @return carteira <br/> Valor informado pelo 
+	 * banco para identificação do tipo de boleto
 	 */
 	public int getCarteira() {
 		return this.carteira;
 	}
 
 	/**
-	 * Associa uma carteira ao emissor<br/>
-	 * Valor informado pelo banco para identificação do tipo de boleto
+	 * @param carteira <br/> Valor informado pelo 
+	 * banco para identificação do tipo de boleto
 	 * 
-	 * @param carteira
+	 * @return este emissor
 	 */
 	public Emissor comCarteira(int carteira) {
 		this.carteira = carteira;
@@ -113,23 +104,18 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o número do convênio<br/>
-	 * Valor que identifica um emissor junto ao seu banco para associar seus
-	 * boletos<br/>
-	 * Valor informado pelo banco
-	 * 
+	 * @return número do convênio <br/> Valor que identifica 
+	 * um emissor junto ao seu banco para associar seus boletos
 	 */
 	public long getNumeroConvenio() {
 		return this.numeroConvenio;
 	}
 
 	/**
-	 * Associa um número de convênio ao emissor<br/>
-	 * Valor que identifica um emissor junto ao seu banco para associar seus
-	 * boletos<br/>
-	 * Valor informado pelo banco
+	 * @param numConvenio <br/> Valor que identifica um 
+	 * emissor junto ao seu banco para associar seus boletos
 	 * 
-	 * @param numConvenio
+	 * @return este emissor
 	 */
 	public Emissor comNumeroConvenio(long numConvenio) {
 		this.numeroConvenio = numConvenio;
@@ -137,25 +123,24 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o nosso número<br/>
-	 * Valor que o cedente escolhe para manter controle sobre seus boletos. Esse
-	 * valor serve para o cedente identificar quais boletos foram pagos ou não.
-	 * Recomenda-se o uso de números sequenciais, na geração de diversos
-	 * boletos, para facilitar a identificação dos boletos pagos
-	 * 
+	 * @return nosso número <br/> Valor que o cedente escolhe 
+	 * para manter controle sobre seus boletos. Esse valor serve 
+	 * para o cedente identificar quais boletos foram pagos ou não.
+	 * Recomenda-se o uso de números sequenciais, na geração de 
+	 * diversos boletos, para facilitar a identificação dos pagos
 	 */
 	public long getNossoNumero() {
 		return this.nossoNumero;
 	}
 
 	/**
-	 * Associa o nosso número ao emissor<br/>
-	 * Valor que o cedente escolhe para manter controle sobre seus boletos. Esse
-	 * valor serve para o cedente identificar quais boletos foram pagos ou não.
-	 * Recomenda-se o uso de números sequenciais, na geração de diversos
-	 * boletos, para facilitar a identificação dos boletos pagos
+	 * @param nossoNumero <br/> Valor que o cedente escolhe 
+	 * para manter controle sobre seus boletos. Esse valor serve 
+	 * para o cedente identificar quais boletos foram pagos ou não.
+	 * Recomenda-se o uso de números sequenciais, na geração de 
+	 * diversos boletos, para facilitar a identificação dos pagos
 	 * 
-	 * @param nossoNumero
+	 * @return este emissor
 	 */
 	public Emissor comNossoNumero(long nossoNumero) {
 		this.nossoNumero = nossoNumero;
@@ -163,17 +148,15 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o cedente. (nome do emissor)
-	 * 
+	 * @return cedente deste emissor (nome fornecido para boleto)
 	 */
 	public String getCedente() {
 		return this.cedente;
 	}
 
 	/**
-	 * Associa um cedente (nome) ao emissor
-	 * 
-	 * @param cedente
+	 * @param cedente, que será associado a este emissor.
+	 * @return este emissor
 	 */
 	public Emissor comCedente(String cedente) {
 		this.cedente = cedente;
@@ -181,49 +164,40 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o digito verificador (DV) da conta corrente
-	 * 
-	 * @return
+	 * @return digito verificador (DV) da conta corrente
 	 */
 	public char getDigitoContaCorrente() {
 		return this.digitoContaCorrente;
 	}
 
 	/**
-	 * Associa um digito verificador (DV) da conta corrente ao emissor
-	 * 
-	 * @param dv
-	 * @return
+	 * @param digito - verificador (DV) da conta corrente
+	 * @return este emissor
 	 */
-	public Emissor comDigitoContaCorrente(char dv) {
-		this.digitoContaCorrente = dv;
+	public Emissor comDigitoContaCorrente(char digito) {
+		this.digitoContaCorrente = digito;
 		return this;
 	}
 
 	/**
-	 * Devolve o digito verificador (DV) da agencia
-	 * 
-	 * @return
+	 * @return digito verificador (DV) da agencia
 	 */
 	public char getDigitoAgencia() {
 		return this.digitoAgencia;
 	}
 
 	/**
-	 * Associa um digito verificador (DV) da agencia ao emissor
-	 * 
-	 * @param dv
-	 * @return
+	 * @param digito - verificador (DV) da agencia
+	 * @return este emissor
 	 */
-	public Emissor comDigitoAgencia(char dv) {
-		this.digitoAgencia = dv;
+	public Emissor comDigitoAgencia(char digito) {
+		this.digitoAgencia = digito;
 		return this;
 	}
 
 	/**
-	 * Devolve a agencia formatada (com 4 digitos)
-	 * 
-	 * @return
+	 * @return agencia formatada com 4 digitos
+	 * Para o valor de agencia 123 retorna a String 0123
 	 */
 	public String getAgenciaFormatado() {
 		String valor = String.valueOf(this.agencia);
@@ -232,49 +206,40 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o código de operação do emissor.
-	 * 
-	 * @return
+	 * @return código de operação do emissor
 	 */
 	public int getCodigoOperacao() {
 		return this.codigoOperacao;
 	}
 
 	/**
-	 * Associa um código de operação ao emissor.
-	 * 
-	 * @param codOperacao
-	 * @return
+	 * @param codigoOperacao, que será associado ao emissor
+	 * @return este emissor
 	 */
-	public Emissor comCodigoOperacao(int codOperacao) {
-		this.codigoOperacao = codOperacao;
+	public Emissor comCodigoOperacao(int codigoOperacao) {
+		this.codigoOperacao = codigoOperacao;
 		return this;
 	}
 
 	/**
-	 * Devolve o código fornecido pela agência do emissor.
-	 * 
-	 * @return
+	 * @return código fornecido pela agência do emissor.
 	 */
 	public int getCodigoFornecidoPelaAgencia() {
 		return this.codigoFornecidoPelaAgencia;
 	}
 
 	/**
-	 * Associa um código fornecido pela agência ao emissor.
-	 * 
-	 * @param codFornecidoPelaAgencia
-	 * @return
+	 * @param codigoFornecidoPelaAgencia, que será associado ao emissor
+	 * @return este emissor
 	 */
-	public Emissor comCodigoFornecidoPelaAgencia(int codFornecidoPelaAgencia) {
-		this.codigoFornecidoPelaAgencia = codFornecidoPelaAgencia;
+	public Emissor comCodigoFornecidoPelaAgencia(int codigoFornecidoPelaAgencia) {
+		this.codigoFornecidoPelaAgencia = codigoFornecidoPelaAgencia;
 		return this;
 	}
 
 	/**
-	 * Associa o DV do nosso número ao emissor
-	 * 
-	 * @param dvNossoNumero
+	 * @param digitoNossoNumero, que será associado ao emissor
+	 * @return este emissor
 	 */
 	public Emissor comDigitoNossoNumero(String digitoNossoNumero) {
 		this.digitoNossoNumero = digitoNossoNumero;
@@ -282,21 +247,9 @@ public class Emissor {
 	}
 
 	/**
-	 * Devolve o DV no nosso número associado ao emissor
-	 * 
-	 * @return
+	 * @return digito verificador do nosso número associado ao emissor
 	 */
 	public String getDigitoNossoNumero() {
 		return this.digitoNossoNumero;
-	}
-
-	public String getCodigoCliente() {
-		return codigoCliente;
-	}
-
-	public Emissor comCodigoCliente(String codigoCliente) {
-		String cod = String.format("%7s", codigoCliente);
-		this.codigoCliente = cod.replaceAll(" ", "0");
-		return this;
 	}
 }
