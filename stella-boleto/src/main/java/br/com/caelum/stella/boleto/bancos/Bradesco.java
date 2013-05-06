@@ -44,7 +44,7 @@ public class Bradesco extends AbstractBanco implements Banco {
 		codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
 		codigoDeBarras.append("0");
 
-		codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
+		codigoDeBarras.insert(4, this.geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
 
 		String result = codigoDeBarras.toString();
 

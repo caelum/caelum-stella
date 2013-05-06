@@ -54,7 +54,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 					"Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
 		}
 
-		codigoDeBarras.insert(4, this.dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
+		codigoDeBarras.insert(4, this.geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
 
 		String result = codigoDeBarras.toString();
 

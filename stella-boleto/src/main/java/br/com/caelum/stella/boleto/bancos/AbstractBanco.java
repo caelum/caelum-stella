@@ -7,16 +7,18 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 public abstract class AbstractBanco implements Banco {
 
-	protected final GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
+	protected final GeradorDeDigito geradorDeDigito = new GeradorDeDigitoPadrao();
 
 	@Override
 	public GeradorDeDigito getGeradorDeDigito() {
-		return dvGenerator;
+		return geradorDeDigito;
 	}
 
 	@Override
 	public String getNossoNumeroECodDocumento(Emissor emissor) {
-		return emissor.getCarteira() + " / " + getNossoNumeroDoEmissorFormatado(emissor);
+		StringBuilder builder = new StringBuilder(emissor.getCarteira());
+		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
+		return builder.toString();
 	}
 
 	@Override

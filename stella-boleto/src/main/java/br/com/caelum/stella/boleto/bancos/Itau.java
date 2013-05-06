@@ -26,14 +26,14 @@ public class Itau extends AbstractBanco implements Banco {
 		codigoDeBarras.append(emissor.getAgenciaFormatado());
 		codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor)).append("000");
 
-		codigoDeBarras.insert(38, this.dvGenerator
+		codigoDeBarras.insert(38, this.geradorDeDigito
 				.geraDigitoMod10(codigoDeBarras.substring(30, 38)));
 
-		codigoDeBarras.insert(29, this.dvGenerator
+		codigoDeBarras.insert(29, this.geradorDeDigito
 				.geraDigitoMod10(codigoDeBarras.substring(30, 38)
 						.concat(codigoDeBarras.substring(18, 29))));
 
-		codigoDeBarras.insert(4, this.dvGenerator
+		codigoDeBarras.insert(4, this.geradorDeDigito
 				.geraDigitoMod11(codigoDeBarras.toString()));
 
 		String codigoDeBarrasGerado = codigoDeBarras.toString();

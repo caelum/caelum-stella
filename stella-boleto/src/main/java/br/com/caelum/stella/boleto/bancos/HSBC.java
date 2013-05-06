@@ -30,7 +30,7 @@ public class HSBC extends AbstractBanco implements Banco {
 		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 		codigoDeBarras.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
 		codigoDeBarras.append(HSBC.CODIGO_APLICATIVO);
-		codigoDeBarras.insert(4, dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
+		codigoDeBarras.insert(4, geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
 		return codigoDeBarras.toString();
 	}
 

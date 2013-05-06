@@ -38,13 +38,13 @@ public class Caixa extends AbstractBanco implements Banco {
 			codigoDeBarras.append(nossoNumeroCompleto.substring(5 ,8));
 			codigoDeBarras.append(nossoNumeroCompleto.substring(1, 2));
 			codigoDeBarras.append(nossoNumeroCompleto.substring(8));
-			codigoDeBarras.append(dvGenerator.geraDigitoMod11(codigoDeBarras.substring(18)));
+			codigoDeBarras.append(geradorDeDigito.geraDigitoMod11(codigoDeBarras.substring(18)));
 		}
 		else {
 			throw new IllegalArgumentException("A carteira digitada não é suportada");
 		}
 		
-		codigoDeBarras.insert(4, dvGenerator.geraDigitoMod11(codigoDeBarras.toString()));
+		codigoDeBarras.insert(4, geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
 		return codigoDeBarras.toString();
 	}
 
