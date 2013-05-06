@@ -197,7 +197,7 @@ class PNGPDFTransformerHelper {
 	}
 
 	private void geraEImprimeCodigoDeBarras(Boleto boleto) {
-		Image imagemDoCodigoDeBarras = GeradorDeCodigoDeBarras.geraCodigoDeBarrasPara(
+		Image imagemDoCodigoDeBarras = GeradorDeImagemDoCodigoDeBarras.geraImagemDoCodigoDeBarrasPara(
 				boleto.getBanco().geraCodigoDeBarrasPara(boleto), 39.00f);
 		
 		try {
