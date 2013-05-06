@@ -20,16 +20,13 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 public class Boleto {
 
 	private BigDecimal valorBoleto;
-
 	private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
-
 	private String especieDocumento;
 	private String numeroDocumento;
 	private boolean aceite;
-
 	private Banco banco;
 	private Datas datas;
 	private Sacado sacado;
@@ -38,31 +35,28 @@ public class Boleto {
 	private List<String> descricoes = Collections.emptyList();
 	private List<String> locaisDePagamento = Collections.emptyList();
 
-	private Boleto() {
-	}
+	private Boleto() {}
 
 	/**
-	 * Cria um novo boleto com valores padrão.
-	 * 
+	 * @return novo Boleto com valores default de especieMoeda R$,
+	 * código de espécie moeda 9 (real), aceite false e espécie DV
 	 */
 	public static Boleto novoBoleto() {
-		return new Boleto().comEspecieMoeda("R$").comCodigoEspecieMoeda(9).comAceite(false)
-				.comEspecieDocumento("DV");
+		return new Boleto().comEspecieMoeda("R$")
+			.comCodigoEspecieMoeda(9)
+			.comAceite(false).comEspecieDocumento("DV");
 	}
 
 	/**
-	 * Devolve o aceite do boleto Valor padrão: 'N'
-	 * 
-	 * @return
+	 * @return aceite do boleto que por default sempre é false
 	 */
 	public boolean getAceite() {
 		return this.aceite;
 	}
 
 	/**
-	 * Associa o aceite ao boleto. Valor padrão: 'N'
-	 * 
-	 * @param aceite
+	 * @param aceite que será associado ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comAceite(boolean aceite) {
 		this.aceite = aceite;
@@ -70,19 +64,16 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve as datas do boleto
-	 * 
-	 * @return
+	 * @return datas do boleto 
+	 * @see br.com.caelum.stella.boleto.Datas.java
 	 */
 	public Datas getDatas() {
 		return this.datas;
 	}
 
 	/**
-	 * Associa datas ao boleto
-	 * 
-	 * @param datas
-	 * 
+	 * @param datas que serão associadas ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comDatas(Datas datas) {
 		this.datas = datas;
@@ -90,18 +81,15 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve a espécie do documento do boleto. Valor padrão: "DV"
-	 * 
-	 * @return
+	 * @return espécie do documento do boleto que por default sempre é "DV"
 	 */
 	public String getEspecieDocumento() {
 		return this.especieDocumento;
 	}
 
 	/**
-	 * Associa a espécie do documento ao boleto. Valor padrão: "DV"
-	 * 
-	 * @param especieDocumento
+	 * @param especieDocumento que será associado ao boleto.
+	 * @return este boleto
 	 */
 	public Boleto comEspecieDocumento(String especieDocumento) {
 		this.especieDocumento = especieDocumento;
@@ -109,38 +97,31 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o número do documento. Código informado pelo banco.
-	 * 
-	 * @return
+	 * @return número do documento. Código informado pelo banco
 	 */
 	public String getNumeroDoDocumento() {
 		return this.numeroDocumento;
 	}
 
 	/**
-	 * Associa o número do documento ao boleto Código informado pelo banco.
-	 * 
-	 * @param noDocumento
+	 * @param numeroDocumento que será associado ao boleto
+	 * @return este boleto
 	 */
-	public Boleto comNumeroDoDocumento(String noDocumento) {
-		this.numeroDocumento = noDocumento;
+	public Boleto comNumeroDoDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 		return this;
 	}
 
 	/**
-	 * Devolve a quantidade da moeda
-	 * 
-	 * @return
+	 * @return quantidade da moeda
 	 */
 	public BigDecimal getQuantidadeDeMoeda() {
 		return this.quantidadeMoeda;
 	}
 
 	/**
-	 * Associa a quantidade de moeda ao boleto
-	 * 
-	 * @param quantidadeMoeda
-	 * @return
+	 * @param quantidadeMoeda que será associada ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comQuantidadeMoeda(BigDecimal quantidadeMoeda) {
 		this.quantidadeMoeda = quantidadeMoeda;
@@ -148,63 +129,49 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o valor desse boleto
+	 * @return valor desse boleto
 	 */
 	public BigDecimal getValorBoleto() {
 		return this.valorBoleto;
 	}
 
 	/**
-	 * Associa um valor ao boleto, convertendo o double em string para evitar o
-	 * bug de casa decimal
-	 * 
-	 * @see Boleto#comValorBoleto(String)
-	 * @param valorBoleto
-	 * @return
+	 * @param valor em double que após ser convertido pra String 
+	 * será associado ao boleto @see Boleto#comValorBoleto(String)
 	 */
 
-	public Boleto comValorBoleto(double valorBoleto) {
-		return comValorBoleto(Double.toString(valorBoleto));
+	public Boleto comValorBoleto(double valor) {
+		return comValorBoleto(Double.toString(valor));
 	}
 
 	/**
-	 * Associa um valor ao boleto, convertendo a String para BigDecimal
-	 * utilizando o Locale da JVM
-	 * 
-	 * @see Boleto#comValorBoleto(BigDecimal)
-	 * @param valorBoleto
-	 * @return
+	 * @param valor String que é convertido para BigDecimal com
+	 * o Locale da JVM @see Boleto#comValorBoleto(BigDecimal)
 	 */
-	public Boleto comValorBoleto(String valorBoleto) {
-		return comValorBoleto(new BigDecimal(valorBoleto));
+	public Boleto comValorBoleto(String valor) {
+		return comValorBoleto(new BigDecimal(valor));
 
 	}
 
 	/**
-	 * Associa um valor ao boleto
-	 * 
-	 * @param valorBoleto
-	 * @return
+	 * @param valor que será associado ao boleto
+	 * @return este boleto
 	 */
-	public Boleto comValorBoleto(BigDecimal valorBoleto) {
-		this.valorBoleto = valorBoleto;
+	public Boleto comValorBoleto(BigDecimal valor) {
+		this.valorBoleto = valor;
 		return this;
 	}
 
 	/**
-	 * Devolve a espécie da moeda. Valor padrão: "R$"
-	 * 
-	 * @return
+	 * @return espécie da moeda que por default é "R$"
 	 */
 	public String getEspecieMoeda() {
 		return this.especieMoeda;
 	}
 
 	/**
-	 * Associa uma espécie de moeda ao boleto. Valor padrão: "R$"
-	 * 
-	 * @param especieMoeda
-	 * @return
+	 * @param especieMoeda que será associada ao boleto
+	 * @return este boleto
 	 */
 	private Boleto comEspecieMoeda(String especieMoeda) {
 		this.especieMoeda = especieMoeda;
@@ -212,38 +179,30 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o código da espécie da moeda. Valor padrão: '9' (para R$)
-	 * 
-	 * @return
+	 * @return código da espécie da moeda que por default é "9" (real)
 	 */
 	public int getCodigoEspecieMoeda() {
 		return this.codigoEspecieMoeda;
 	}
 
 	/**
-	 * Associa um código da espécie da moeda ao boleto. Valor padrão: '9' (para
-	 * R$)
-	 * 
-	 * @param codEspecieMoeda
-	 * @return
+	 * @param codigoEspecieMoeda que será associado ao boleto
+	 * @return este boleto
 	 */
-	private Boleto comCodigoEspecieMoeda(int codEspecieMoeda) {
-		this.codigoEspecieMoeda = codEspecieMoeda;
+	private Boleto comCodigoEspecieMoeda(int codigoEspecieMoeda) {
+		this.codigoEspecieMoeda = codigoEspecieMoeda;
 		return this;
 	}
 
 	/**
-	 * Devolve o valor da moeda, format
-	 * 
-	 * @return
+	 * @return valor da moeda
 	 */
 	public BigDecimal getValorMoeda() {
 		return this.valorMoeda;
 	}
 
 	/**
-	 * Associa um valor de moeda ao boleto
-	 * 
+	 * @param valorMoeda que será associado ao boleto
 	 */
 	public Boleto comValorMoeda(BigDecimal valorMoeda) {
 		this.valorMoeda = valorMoeda;
@@ -251,19 +210,15 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o banco do boleto
-	 * 
-	 * @return
+	 * @return banco do boleto
 	 */
 	public Banco getBanco() {
 		return this.banco;
 	}
 
 	/**
-	 * Associa um banco ao boleto
-	 * 
-	 * @param banco
-	 * @return
+	 * @param banco que será associado ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comBanco(Banco banco) {
 		this.banco = banco;
@@ -271,19 +226,15 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o sacado do banco
-	 * 
-	 * @return
+	 * @return sacado do banco
 	 */
 	public Sacado getSacado() {
 		return this.sacado;
 	}
 
 	/**
-	 * Associa um sacado ao banco
-	 * 
-	 * @param sacado
-	 * @return
+	 * @param sacado que será associado ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comSacado(Sacado sacado) {
 		this.sacado = sacado;
@@ -291,19 +242,15 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o emissor do boleto
-	 * 
-	 * @return
+	 * @return emissor do boleto
 	 */
 	public Emissor getEmissor() {
 		return this.emissor;
 	}
 
 	/**
-	 * Associa um sacado ao boleto
-	 * 
-	 * @param emissor
-	 * @return
+	 * @param emissor que será associado ao boleto
+	 * @return este boleto
 	 */
 	public Boleto comEmissor(Emissor emissor) {
 		this.emissor = emissor;
@@ -311,24 +258,16 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve as instruções do boleto
-	 * 
-	 * @return
+	 * @return lista de instruções do boleto
 	 */
 	public List<String> getInstrucoes() {
 		return this.instrucoes;
 	}
 
 	/**
-	 * Associa instruções ao boleto.
-	 * 
-	 * @param instrucoes
-	 *            . Limite de 5 valores
-	 * @return
-	 * 
-	 * @throws IllegalArgumentException
-	 *             instruções tiver mais de 5 elementos
-	 * 
+	 * @param instrucoes que serão associadas ao boleto (limite de 5)
+	 * @throws IllegalArgumentException caso tenha mais de 5 instruções
+	 * @return este boleto
 	 */
 	public Boleto comInstrucoes(String... instrucoes) {
 		if (instrucoes.length > 5) {
@@ -339,25 +278,18 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve as descrições do boleto. Note que esse campo não aparece no
-	 * boleto gerado em PNG
-	 * 
-	 * @return
+	 * @return lista de descrições do boleto. <br>
+	 * Note que esse campo não aparece no boleto gerado em PNG
 	 */
 	public List<String> getDescricoes() {
 		return this.descricoes;
 	}
 
 	/**
-	 * Associa as descrições ao boleto. Note que esse campo não aparece no
-	 * boleto gerado em PNG
-	 * 
-	 * @param descricoes
-	 *            . Limite de 5 valores
-	 * @return
-	 * 
-	 * @throws IllegalArgumentException
-	 *             descricoes tiver mais de 5 elementos
+	 * @param descricoes que serão asociadas ao boleto (limite de 5)
+	 * <br> Note que esse campo não aparece no boleto gerado em PNG
+	 * @throws IllegalArgumentException caso tenha mais de 5 descrições
+	 * @return este boleto
 	 */
 	public Boleto comDescricoes(String... descricoes) {
 		if (descricoes.length > 5) {
@@ -368,23 +300,16 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve os locais de pagamento do boleto
-	 * 
-	 * @return
+	 * @return lista de locais de pagamento do boleto
 	 */
 	public List<String> getLocaisDePagamento() {
 		return this.locaisDePagamento;
 	}
 
 	/**
-	 * Associa locais de pagamento ao boleto
-	 * 
-	 * @param locaisDePagamento
-	 *            . Limite de 2 valores
-	 * @return
-	 * 
-	 * @throws IllegalArgumentException
-	 *             locaisDePagamento tiver mais de 2 elementos
+	 * @param locaisDePagamento que serão associados ao boleto (limite de 2 locais)
+	 * @throws IllegalArgumentException tiver mais de 2 locais de pagamento
+	 * @return este boleto
 	 */
 	public Boleto comLocaisDePagamento(String... locaisDePagamento) {
 		if (locaisDePagamento.length > 2) {
@@ -395,10 +320,7 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o fator de vencimento do boleto. Utilizado para geração do código
-	 * de barras e da linha digitável
-	 * 
-	 * @return
+	 * @return fator de vencimento do boleto. Utilizado para geração do código de barras
 	 */
 	public String getFatorVencimento() {
 		Calendar dataBase = Calendar.getInstance();
@@ -431,27 +353,29 @@ public class Boleto {
 	}
 
 	/**
-	 * Devolve o valor do boleto formatado (com 10 digitos)
-	 * 
-	 * @return
+	 * @return valor do boleto formatado (com 10 digitos)
 	 */
 	public String getValorFormatado() {
 		return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]", "");
 	}
 
 	/**
-	 * Devolve o número do documento formatado (com 4 digitos)
-	 * 
-	 * @return
+	 * @return número do documento formatado (com 4 digitos)
 	 */
 	public String getNumeroDoDocumentoFormatado() {
 		return StringUtils.leftPad(this.numeroDocumento, 4, '0');
 	}
 
+	/**
+	 * @return agencia e codigo cedente (conta corrente) do banco
+	 */
 	public String getAgenciaECodigoCedente() {
 		return this.banco.getAgenciaECodigoCedente(this.emissor);
 	}
 
+	/**
+	 * @return nosso numero e codigo do documento para boleto
+	 */
 	public String getNossoNumeroECodDocumento() {
 		return banco.getNossoNumeroECodDocumento(this.emissor);
 	}
