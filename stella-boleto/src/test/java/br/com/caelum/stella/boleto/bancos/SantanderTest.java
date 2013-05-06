@@ -25,7 +25,7 @@ public class SantanderTest {
 
 	    this.emissor = Emissor.novoEmissor().comCedente("PETROBRAS")
             .comAgencia(6790).comDigitoAgencia('0').comCarteira(102)
-            .comCodigoCliente("5260965").comNossoNumero(1056137495014l);  
+            .comContaCorrente(5260965l).comNossoNumero(1056137495014l);  
 
 	    Sacado sacado = Sacado.novoSacado().comNome("PAULO SILVEIRA") ; 
 	    

@@ -23,7 +23,7 @@ public class Santander implements Banco {
 		codigoDeBarrasBuilder.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
 		codigoDeBarrasBuilder.append(boleto.getFatorVencimento());
 		codigoDeBarrasBuilder.append(boleto.getValorFormatado()).append("9");
-		codigoDeBarrasBuilder.append(emissor.getCodigoCliente());
+		codigoDeBarrasBuilder.append(getContaCorrenteDoEmissorFormatado(emissor));
 		codigoDeBarrasBuilder.append(getNossoNumeroDoEmissorFormatado(emissor));
 		codigoDeBarrasBuilder.append("0").append(emissor.getCarteira());
 		int digito = gdivSantander.geraDigitoMod11(codigoDeBarrasBuilder.toString());
@@ -70,7 +70,7 @@ public class Santander implements Banco {
 	public String getAgenciaECodigoCedente(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(String.format("%05d", emissor.getAgencia()));
-		builder.append("/").append(emissor.getCodigoCliente());
+		builder.append("/").append(emissor.getContaCorrente());
 		return builder.toString();
 	}
 
