@@ -23,47 +23,29 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		StringBuilder codigoDeBarras = new StringBuilder();
-		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-		// Digito Verificador sera inserido aqui.
-
-		codigoDeBarras.append(boleto.getFatorVencimento());
-		codigoDeBarras.append(boleto.getValorFormatado());
-
+		StringBuilder campoLivre = new StringBuilder();
 		Emissor emissor = boleto.getEmissor();
-		// CAMPO LIVRE
 		if (emissor.getNumeroConvenio() < 1000000) {
 			if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
-				codigoDeBarras.append(getNumeroConvenioDoEmissorFormatado(emissor));
-				codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-				codigoDeBarras.append("21");
+				campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
+				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+				campoLivre.append("21");
 			} else {
-				codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-				codigoDeBarras.append(emissor.getAgenciaFormatado());
-				codigoDeBarras.append(emissor.getCedente());
-				codigoDeBarras.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
+				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+				campoLivre.append(emissor.getAgenciaFormatado());
+				campoLivre.append(emissor.getCedente());
+				campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 			}
 		} else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
-			codigoDeBarras.append("000000");
-			codigoDeBarras.append(getNumeroConvenioDoEmissorFormatado(emissor));
-			codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
-			codigoDeBarras.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
+			campoLivre.append("000000");
+			campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
+			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
+			campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 		} else {
 			throw new CriacaoBoletoException(
 					"Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
 		}
-
-		codigoDeBarras.insert(4, this.geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
-
-		String result = codigoDeBarras.toString();
-
-		if (result.length() != 44) {
-			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
-		}
-
-		return result;
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
 	@Override
