@@ -3,18 +3,12 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
  * Gera dados de um boleto relativos ao Banco Bradesco.
  * 
- * @see <a *
- *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
- *      * .com.br/boleto-setup.html< /a>
- * 
- * @see <a * href=
- *      "http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf"
- *      >MANUAL * DO BLOQUETO DE COBRANÇA< /a>
+ * @see <a href="http://www.bradesco.com.br/br/pj/conteudo/sol_rec
+ * /pdf/manualtecnico.pdf" >MANUAL DO BLOQUETO DE COBRANÇA </a>
  * 
  * @author Leonardo Bessa
  * 
@@ -39,7 +33,9 @@ public class Bradesco extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_BRADESCO + "-" + DIGITO_NUMERO_BRADESCO;
+		StringBuilder builder = new StringBuilder();
+		builder.append(getNumeroFormatado()).append("-");
+		return builder.append(DIGITO_NUMERO_BRADESCO).toString();
 	}
 
 	@Override
@@ -49,12 +45,9 @@ public class Bradesco extends AbstractBanco implements Banco {
 
 	@Override
 	public java.net.URL getImage() {
-		return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
-	}
-
-	@Deprecated
-	public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-		return getNumeroConvenioDoEmissorFormatado(emissor);
+		String arquivo = "/br/com/caelum/stella/boleto/img/%s.png";
+		String imagem = String.format(arquivo, getNumeroFormatado());
+		return getClass().getResource(imagem);
 	}
 
 	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
@@ -82,15 +75,14 @@ public class Bradesco extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroECodDocumento(Emissor emissor) {
-		return emissor.getCarteira() + " / " + getNossoNumeroDoEmissorFormatado(emissor)
-				+ getDigitoNossoNumero(emissor);
-
+		StringBuilder builder = new StringBuilder(emissor.getCarteira());
+		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
+		return builder.append(getDigitoNossoNumero(emissor)).toString();
 	}
 
 	private String getDigitoNossoNumero(Emissor emissor) {
-		return emissor.getDigitoNossoNumero() != null && !emissor.getDigitoNossoNumero().isEmpty() ? "-"
-				+ emissor.getDigitoNossoNumero() : "";
-
+		return emissor.getDigitoNossoNumero() != null 
+			&& !emissor.getDigitoNossoNumero().isEmpty() 
+				? "-" + emissor.getDigitoNossoNumero() : "";
 	}
-
 }
