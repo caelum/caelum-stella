@@ -18,34 +18,28 @@ public class Caixa extends AbstractBanco implements Banco {
 		
 		Emissor emissor = boleto.getEmissor();
 		int carteiraDoEmissor = emissor.getCarteira();
-		StringBuilder codigoDeBarras = new StringBuilder();
-		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(valueOf(boleto.getCodigoEspecieMoeda()));
-		codigoDeBarras.append(boleto.getFatorVencimento());
-		codigoDeBarras.append(boleto.getValorFormatado());
+		StringBuilder campoLivre = new StringBuilder();
 		
 		if (carteiraDoEmissor == 1) {
-			codigoDeBarras.append(carteiraDoEmissor);
-			codigoDeBarras.append(format("%06d", emissor.getContaCorrente()));
-			codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
+			campoLivre.append(carteiraDoEmissor);
+			campoLivre.append(format("%06d", emissor.getContaCorrente()));
+			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 		}
 		else if (carteiraDoEmissor == 2) {
 			String nossoNumeroCompleto = getNossoNumeroDoEmissorFormatado(emissor);
-			codigoDeBarras.append(format("%06d", emissor.getContaCorrente()));
-			codigoDeBarras.append(emissor.getDigitoContaCorrente());
-			codigoDeBarras.append(nossoNumeroCompleto.substring(2, 5));
-			codigoDeBarras.append(nossoNumeroCompleto.substring(0, 1));
-			codigoDeBarras.append(nossoNumeroCompleto.substring(5 ,8));
-			codigoDeBarras.append(nossoNumeroCompleto.substring(1, 2));
-			codigoDeBarras.append(nossoNumeroCompleto.substring(8));
-			codigoDeBarras.append(geradorDeDigito.geraDigitoMod11(codigoDeBarras.substring(18)));
+			campoLivre.append(format("%06d", emissor.getContaCorrente()));
+			campoLivre.append(emissor.getDigitoContaCorrente());
+			campoLivre.append(nossoNumeroCompleto.substring(2, 5));
+			campoLivre.append(nossoNumeroCompleto.substring(0, 1));
+			campoLivre.append(nossoNumeroCompleto.substring(5 ,8));
+			campoLivre.append(nossoNumeroCompleto.substring(1, 2));
+			campoLivre.append(nossoNumeroCompleto.substring(8));
+			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
 		}
 		else {
 			throw new IllegalArgumentException("A carteira digitada não é suportada");
 		}
-		
-		codigoDeBarras.insert(4, geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
-		return codigoDeBarras.toString();
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
 	@Override
