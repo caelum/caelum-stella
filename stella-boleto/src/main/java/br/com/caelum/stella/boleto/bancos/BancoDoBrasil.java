@@ -8,13 +8,8 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 /**
  * Gera dados de um boleto relativos ao Banco do Brasil.
  * 
- * @see <a *
- *      href="http://stella.caelum.com.br/boleto-setup.html">http://stella.caelum
- *      * .com.br/boleto-setup.html< /a>
- * 
  * @author Cauê Guerra
  * @author Paulo Silveira
- * 
  */
 public class BancoDoBrasil extends AbstractBanco implements Banco {
 
@@ -43,7 +38,8 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 			campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 		} else {
 			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras. Nenhuma regra se aplica. Verifique carteira e demais dados.");
+					"Erro na geração do código de barras. Nenhuma regra se aplica. " +
+					"Verifique carteira e demais dados.");
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
@@ -55,12 +51,9 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public java.net.URL getImage() {
-		return getClass().getResource(String.format("/br/com/caelum/stella/boleto/img/%s.png", getNumeroFormatado()));
-	}
-
-	@Deprecated
-	public String getNumConvenioDoEmissorFormatado(Emissor emissor) {
-		return getNumeroConvenioDoEmissorFormatado(emissor);
+		String arquivo = "/br/com/caelum/stella/boleto/img/%s.png";
+		String imagem = String.format(arquivo, getNumeroFormatado());
+		return getClass().getResource(imagem);
 	}
 
 	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
