@@ -27,33 +27,14 @@ public class Bradesco extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		StringBuilder codigoDeBarras = new StringBuilder();
-		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-		// Digito Verificador sera inserido aqui.
-
-		codigoDeBarras.append(boleto.getFatorVencimento());
-		codigoDeBarras.append(boleto.getValorFormatado());
-
 		Emissor emissor = boleto.getEmissor();
-
-		// CAMPO LIVRE
-		codigoDeBarras.append(emissor.getAgenciaFormatado());
-		codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
-		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-		codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor));
-		codigoDeBarras.append("0");
-
-		codigoDeBarras.insert(4, this.geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
-
-		String result = codigoDeBarras.toString();
-
-		if (result.length() != 44) {
-			throw new CriacaoBoletoException(
-					"Erro na geração do código de barras. Número de digitos diferente de 44. Verifique todos os dados.");
-		}
-
-		return result;
+		StringBuilder campoLivre = new StringBuilder();
+		campoLivre.append(emissor.getAgenciaFormatado());
+		campoLivre.append(getCarteiraDoEmissorFormatado(emissor));
+		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor));
+		campoLivre.append("0");
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
 	@Override
