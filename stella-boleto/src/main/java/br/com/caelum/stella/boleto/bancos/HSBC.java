@@ -20,18 +20,13 @@ public class HSBC extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		
-		StringBuilder codigoDeBarras = new StringBuilder();
-		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(boleto.getCodigoEspecieMoeda());
-		codigoDeBarras.append(boleto.getFatorVencimento());
-		codigoDeBarras.append(boleto.getValorFormatado());
-		codigoDeBarras.append(String.format("%07d", boleto.getEmissor().getCodigoFornecidoPelaAgencia()));
-		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
-		codigoDeBarras.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
-		codigoDeBarras.append(HSBC.CODIGO_APLICATIVO);
-		codigoDeBarras.insert(4, geradorDeDigito.geraDigitoMod11(codigoDeBarras.toString()));
-		return codigoDeBarras.toString();
+		StringBuilder campoLivre = new StringBuilder();
+		int codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
+		campoLivre.append(String.format("%07d", codigoAgencia));
+		campoLivre.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
+		campoLivre.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
+		campoLivre.append(HSBC.CODIGO_APLICATIVO);
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
 	public String getDataFormatoJuliano(Calendar vencimento, int tipo) {
