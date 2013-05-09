@@ -16,19 +16,12 @@ public class Santander implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		
 		Emissor emissor = boleto.getEmissor();
-		StringBuilder codigoDeBarrasBuilder = new StringBuilder();
-		codigoDeBarrasBuilder.append(NUMERO_SANTANDER);
-		codigoDeBarrasBuilder.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-		codigoDeBarrasBuilder.append(boleto.getFatorVencimento());
-		codigoDeBarrasBuilder.append(boleto.getValorFormatado()).append("9");
-		codigoDeBarrasBuilder.append(getContaCorrenteDoEmissorFormatado(emissor));
-		codigoDeBarrasBuilder.append(getNossoNumeroDoEmissorFormatado(emissor));
-		codigoDeBarrasBuilder.append("0").append(emissor.getCarteira());
-		int digito = gdivSantander.geraDigitoMod11(codigoDeBarrasBuilder.toString());
-		codigoDeBarrasBuilder.insert(4, digito);
-		return codigoDeBarrasBuilder.toString();
+		StringBuilder campoLivre = new StringBuilder("9");
+		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor));
+		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+		campoLivre.append("0").append(emissor.getCarteira());
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 	
 	@Override
