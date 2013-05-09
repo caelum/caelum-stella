@@ -5,7 +5,6 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 public class Itau extends AbstractBanco implements Banco {
 
@@ -14,35 +13,17 @@ public class Itau extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		
 		Emissor emissor = boleto.getEmissor();
-		StringBuilder codigoDeBarras = new StringBuilder();
-		codigoDeBarras.append(getNumeroFormatado());
-		codigoDeBarras.append(String.valueOf(boleto.getCodigoEspecieMoeda()));
-		codigoDeBarras.append(boleto.getFatorVencimento());
-		codigoDeBarras.append(boleto.getValorFormatado());
-		codigoDeBarras.append(getCarteiraDoEmissorFormatado(emissor));
-		codigoDeBarras.append(getNossoNumeroDoEmissorFormatado(emissor));
-		codigoDeBarras.append(emissor.getAgenciaFormatado());
-		codigoDeBarras.append(getContaCorrenteDoEmissorFormatado(emissor)).append("000");
-
-		codigoDeBarras.insert(38, this.geradorDeDigito
-				.geraDigitoMod10(codigoDeBarras.substring(30, 38)));
-
-		codigoDeBarras.insert(29, this.geradorDeDigito
-				.geraDigitoMod10(codigoDeBarras.substring(30, 38)
-						.concat(codigoDeBarras.substring(18, 29))));
-
-		codigoDeBarras.insert(4, this.geradorDeDigito
-				.geraDigitoMod11(codigoDeBarras.toString()));
-
-		String codigoDeBarrasGerado = codigoDeBarras.toString();
-
-		if (codigoDeBarrasGerado.length() != 44) {
-			throw new CriacaoBoletoException("Erro na geração do código de barras. " +
-					"Número de digitos diferente de 44. Verifique todos os dados.");
-		}
-		return codigoDeBarrasGerado;
+		StringBuilder campoLivre = new StringBuilder();
+		campoLivre.append(getCarteiraDoEmissorFormatado(emissor));
+		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+		campoLivre.append(emissor.getAgenciaFormatado());
+		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor)).append("000");
+		campoLivre.insert(20, this.geradorDeDigito
+				.geraDigitoMod10(campoLivre.substring(12, 20)));
+		campoLivre.insert(11, this.geradorDeDigito.geraDigitoMod10(campoLivre
+				.substring(12, 20).concat(campoLivre.substring(0, 11))));
+		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
 	@Override
