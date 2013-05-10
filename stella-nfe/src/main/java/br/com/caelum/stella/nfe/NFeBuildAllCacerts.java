@@ -114,7 +114,7 @@ public class NFeBuildAllCacerts {
 	    	 * PKIX path building failed:
 	    	 * sun.security.provider.certpath.SunCertPathBuilderException:
 	    	 * unable to find valid certification path to requested target
-	    	 * N�o tratado, pois sempre ocorre essa exceo quando o cacerts
+	    	 * Não tratado, pois sempre ocorre essa exceo quando o cacerts
 	    	 * nao esta gerado.
 	    	 */
 	    } catch (SSLException e) {

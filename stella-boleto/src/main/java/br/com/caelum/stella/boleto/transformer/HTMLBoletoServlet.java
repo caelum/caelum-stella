@@ -24,6 +24,7 @@ public class HTMLBoletoServlet extends HttpServlet {
 	@Override
 	protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException,
 			IOException {
+		
 		String tipoRecurso = request.getParameter("type");
 		String value = request.getParameter("value");
 		BufferedImage image = getCorrectImageFor(tipoRecurso, value);
