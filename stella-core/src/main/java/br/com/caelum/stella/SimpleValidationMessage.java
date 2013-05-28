@@ -18,4 +18,9 @@ public class SimpleValidationMessage implements ValidationMessage {
     public String getMessage() {
         return this.message;
     }
+    
+    @Override
+    public String toString() {
+    	return this.getMessage();
+    }
 }
