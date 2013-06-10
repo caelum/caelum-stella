@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.gerador.DigitoPara;
+import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
@@ -38,7 +39,7 @@ class CodigoDeBarrasBuilder {
 	public String comCampoLivre(StringBuilder campoLivre) {
 		this.codigoDeBarras.append(campoLivre);
 		String trecho = this.codigoDeBarras.toString();
-		String digito = new DigitoPara(trecho).complementarAoModulo().mod(11);
+		int digito = new GeradorDeDigitoPadrao().geraDigitoMod11(trecho);
 		this.codigoDeBarras.insert(4, digito);
 		validaTamahoDoCodigoDeBarrasCompletoGerado();
 		return this.codigoDeBarras.toString();
