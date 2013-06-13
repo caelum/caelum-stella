@@ -5,12 +5,6 @@ import br.com.caelum.stella.validation.Validator;
 
 public class IEPernambucoAntigaValidatorTest extends IEValidatorTest {
 
-	/*
-	 * IE validas
-	 * 
-	 * 18.1.001.0000004-9 18100100000049
-	 */
-
 	public IEPernambucoAntigaValidatorTest() {
 		super(wrongCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
 	}
@@ -21,8 +15,8 @@ public class IEPernambucoAntigaValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedString = "18.1.001.0000004-9";
 
-	// TODO Adicionar mais IE validas
-	private static final String[] validValues = { validFormattedString };
+	private static final String[] validValues = { validFormattedString, "18119003256336", 
+		"1811500337842-7", "18119003584848", "18132003335425", "1818310338152-6"};
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {

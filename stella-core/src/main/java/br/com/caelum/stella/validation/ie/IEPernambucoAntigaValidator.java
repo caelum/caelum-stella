@@ -10,15 +10,6 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
 
 class IEPernambucoAntigaValidator extends AbstractIEValidator {
 
-    // Exemplo 18.1.001.0000004-9
-
-    // UF Tam Fat f Cálculo DVX
-    // PE 14 1 E 11 P7
-
-    // VALORES POSSÍVEIS PARA DÍGITOS
-    // =1 =8 1/9 0/9 0/9 0/9 0/9 0/9 0/9 0/9 0/9 0/9 0/9
-
-    // DVX
     private static final int MOD = 11;
 
     private static final int FATOR = 1;
@@ -34,8 +25,7 @@ class IEPernambucoAntigaValidator extends AbstractIEValidator {
 
     private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
-
-    public static final Pattern FORMATED = Pattern.compile("([1][8])[.]([1-9])[.](\\d{3})[.](\\d{7})[-](\\d{1})");
+    public static final Pattern FORMATED = Pattern.compile("([1][8])\\.?([1-9])\\.?(\\d{3})\\.?(\\d{7})\\-?(\\d{1})");
 
     public static final Pattern UNFORMATED = Pattern.compile("([1][8])([1-9])(\\d{3})(\\d{7})(\\d{1})");
 	
