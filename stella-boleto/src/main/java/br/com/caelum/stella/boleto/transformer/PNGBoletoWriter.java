@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
-import com.lowagie.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.BaseFont;
 
 /**
  * Writer que sabe escrever num PNG

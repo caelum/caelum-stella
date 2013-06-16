@@ -3,8 +3,8 @@ package br.com.caelum.stella.boleto.transformer;
 import java.awt.Color;
 import java.awt.Image;
 
-import com.lowagie.text.Element;
-import com.lowagie.text.pdf.BarcodeInter25;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.BarcodeInter25;
 
 /**
  * Implementa um gerador de imagem de códigos de barras
