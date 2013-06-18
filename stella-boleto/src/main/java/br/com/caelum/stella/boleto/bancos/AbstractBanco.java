@@ -17,7 +17,6 @@ public abstract class AbstractBanco implements Banco {
 	@Override
 	public String getNossoNumeroECodDocumento(Emissor emissor) {
 		StringBuilder builder = new StringBuilder().append(emissor.getCarteira());
-		System.out.println("carteira" + emissor.getCarteira());
 		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
 		return builder.toString();
 	}
