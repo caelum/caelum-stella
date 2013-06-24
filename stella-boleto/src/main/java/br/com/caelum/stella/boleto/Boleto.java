@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
@@ -363,9 +361,9 @@ public class Boleto {
 	 * @return número do documento formatado (com 4 digitos)
 	 */
 	public String getNumeroDoDocumentoFormatado() {
-		return StringUtils.leftPad(this.numeroDocumento, 4, '0');
+		return String.format("%04d", new Integer(this.numeroDocumento));
 	}
-
+	
 	/**
 	 * @return agencia e codigo cedente (conta corrente) do banco
 	 */

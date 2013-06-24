@@ -8,8 +8,6 @@ import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.lang.StringUtils;
-
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
@@ -112,7 +110,7 @@ class PNGPDFTransformerHelper {
 		final float LINHA3 = 378;
 		
 		this.writer.write(50, LINHA1, boleto.getEmissor().getCedente());
-		this.writer.write(50, LINHA_ENDERECO_CEDENTE, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
+		this.writer.write(50, LINHA_ENDERECO_CEDENTE, nullToEmpty(boleto.getEmissor().getEndereco()));
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 		this.writer.write(290, LINHA2, formatDate(boleto.getDatas().getVencimento()));
@@ -176,7 +174,7 @@ class PNGPDFTransformerHelper {
 		final float LINHA_ENDERECO = 122;
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
-		this.writer.write(5, LINHA_ENDERECO, StringUtils.defaultString(boleto.getEmissor().getEndereco()));
+		this.writer.write(5, LINHA_ENDERECO, nullToEmpty(boleto.getEmissor().getEndereco()));
 	}
 
 	private void imprimeDadosDoSacado(Boleto boleto) {
@@ -206,6 +204,10 @@ class PNGPDFTransformerHelper {
 		} catch (IOException e) {
 			throw new CriacaoBoletoException("Erro na geração do código de barras", e);
 		}
+	}
+	
+	private String nullToEmpty(String str) {
+	    return str == null ? "" : str;
 	}
 }
 
