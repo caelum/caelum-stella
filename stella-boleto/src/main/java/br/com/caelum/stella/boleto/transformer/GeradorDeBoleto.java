@@ -50,19 +50,17 @@ public class GeradorDeBoleto {
 			byte[] b = geraPDF();
 
 			fos.write(b);
-			fos.close();
 		} catch (Exception e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
 		} finally {
-			tentaFecharOFileOutput(fos);
+			fecharSilenciosamente(fos);
 		}
 	}
 
-	private void tentaFecharOFileOutput(Closeable c) {
+	private void fecharSilenciosamente(Closeable c) {
 		try {
 			c.close();
-		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro ao fechar stream", e);
+		} catch (Exception e) {
 		}
 	}
 
@@ -94,7 +92,7 @@ public class GeradorDeBoleto {
 		} catch (IOException e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
 		} finally {
-			tentaFecharOFileOutput(fos);
+			fecharSilenciosamente(fos);
 		}
 
 	}
@@ -134,7 +132,7 @@ public class GeradorDeBoleto {
 		} catch (IOException e) {
 			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
 		} finally {
-			tentaFecharOFileOutput(is);
+			fecharSilenciosamente(is);
 		}
 		return b;
 	}
