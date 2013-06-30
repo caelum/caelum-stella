@@ -7,21 +7,25 @@ import java.util.Locale;
 
 class FormatadorDeBoleto {
 
-	private static NumberFormat formatador = NumberFormat
+	private static NumberFormat nfmt = NumberFormat
 			.getNumberInstance(new Locale("pt", "BR"));
 	
-	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
+	private static SimpleDateFormat dfmt = new SimpleDateFormat("dd/MM/yyyy"); 
 	
 	static {
-		formatador.setMinimumFractionDigits(2);
-		formatador.setMaximumFractionDigits(2);
+		nfmt.setMinimumFractionDigits(2);
+		nfmt.setMaximumFractionDigits(2);
 	}
 	
 	static String formataData(final Calendar data) {
-		return sdf.format(data.getTime());
+		synchronized (dfmt) {
+			return dfmt.format(data.getTime());
+		}
 	}
 
 	static String formataValor(final double valor) {
-		return formatador.format(valor);
+		synchronized (nfmt) {
+			return nfmt.format(valor);
+		}
 	}
 }
