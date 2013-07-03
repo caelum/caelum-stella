@@ -12,44 +12,45 @@ import br.com.caelum.stella.boleto.exception.BancoNaoSuportadoException;
  */
 public enum Bancos {
 
-	BANCO_DO_BRASIL("001") {
+	BANCO_DO_BRASIL("001", "Banco do Brasil") {
 		@Override
 		public Banco getBanco() {
 			return new BancoDoBrasil();
 		}
 	},
-	BRADESCO("237") {
+	BRADESCO("237", "Bradesco") {
 		@Override
 		public Banco getBanco() {
 			return new Bradesco();
 		}
 	},
-	CAIXA("104") {
+	CAIXA("104", "Caixa") {
 		@Override
 		public Banco getBanco() {
 			return new Caixa();
 		}
 	},
-	HSBC("399") {
+	HSBC("399", "HSBC") {
 		@Override
 		public Banco getBanco() {
 			return new HSBC();
 		}
 	},
-	ITAU("341") {
+	ITAU("341", "Itaú") {
 		@Override
 		public Banco getBanco() {
 			return new Itau();
 		}
 	},
-	SANTANDER("033") {
+	SANTANDER("033", "Santander") {
 		@Override
 		public Banco getBanco() {
 			return new Santander();
 		}
 	};
 
-	private String numeroDoBanco;
+	private final String numeroDoBanco;
+	private final String nomeDoBanco;
 
 	/**
 	 * Obtém o número do banco
@@ -59,9 +60,14 @@ public enum Bancos {
 	public String getNumeroDoBanco() {
 		return numeroDoBanco;
 	}
+	
+	public String getNomeDoBanco() {
+        return nomeDoBanco;
+    }
 
-	private Bancos(String numeroDoBanco) {
+	private Bancos(String numeroDoBanco, String nomeDoBanco) {
 		this.numeroDoBanco = numeroDoBanco;
+        this.nomeDoBanco = nomeDoBanco;
 	}
 
 	/**
