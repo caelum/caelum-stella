@@ -104,7 +104,7 @@ public class BoletoTransformerIntegrationTest {
 
 	private void apagaArquivoSeExistir(final File pngFile) {
 		if (pngFile.exists()) {
-			(pngFile).delete();
+			pngFile.delete();
 		}
 	}
 

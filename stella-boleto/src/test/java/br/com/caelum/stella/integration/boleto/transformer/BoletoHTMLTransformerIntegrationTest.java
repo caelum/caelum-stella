@@ -23,7 +23,7 @@ import br.com.caelum.stella.boleto.transformer.BoletoTransformer;
 import br.com.caelum.stella.boleto.transformer.HTMLBoletoWriter;
 
 /**
- * Test para testar o boleto html, deixei em um teste separado pois ainda n�o
+ * Test para testar o boleto html, deixei em um teste separado pois ainda não
  * foi colocado no BoletoGenerator.
  * 
  * @author Alberto Pc
