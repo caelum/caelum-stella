@@ -26,7 +26,7 @@ import br.com.caelum.stella.boleto.transformer.HTMLBoletoWriter;
  * Test para testar o boleto html, deixei em um teste separado pois ainda não
  * foi colocado no BoletoGenerator.
  * 
- * @author Alberto Pc
+ * @author Alberto
  * 
  */
 public class BoletoHTMLTransformerIntegrationTest {

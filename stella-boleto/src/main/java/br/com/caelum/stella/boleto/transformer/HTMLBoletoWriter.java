@@ -39,7 +39,7 @@ public class HTMLBoletoWriter implements BoletoWriter {
 	 * @param urlServletBoleto
 	 *            url de sua app. Ex: http://www.algumsite.com.br/stella-boleto/
 	 */
-	public HTMLBoletoWriter(final String urlServletBoleto) {
+	public HTMLBoletoWriter(String urlServletBoleto) {
 
 		this.urlServletBoleto = urlServletBoleto;
 		boletos = new ArrayList<BoletoTemplateWrapper>();
@@ -54,6 +54,13 @@ public class HTMLBoletoWriter implements BoletoWriter {
 			throw new GeracaoBoletoException("Não foi possivel iniciar a configuração do Velocity", e);
 		}
 	}
+	
+	/**
+	 * Cria o writter com o endereço padrão da servlet (stella-boleto)
+	 */
+	public HTMLBoletoWriter(){
+		this("stella-boleto");
+	}
 
 	/**
 	 * 
@@ -61,7 +68,7 @@ public class HTMLBoletoWriter implements BoletoWriter {
 	 * 
 	 */
 	@Override
-	public void write(final Boleto boleto) {
+	public void write(Boleto boleto) {
 		BoletoTemplateWrapper wrapper = new BoletoTemplateWrapper(boleto);
 		boletos.add(wrapper);
 	}
