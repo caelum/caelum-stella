@@ -1,10 +1,6 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import java.io.Closeable;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import br.com.caelum.stella.boleto.Boleto;
@@ -44,24 +40,7 @@ public class GeradorDeBoleto {
 	 * @param arquivo
 	 */
 	public void geraPDF(File arquivo) {
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(arquivo);
-			byte[] b = geraPDF();
-
-			fos.write(b);
-		} catch (Exception e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PDF", e);
-		} finally {
-			fecharSilenciosamente(fos);
-		}
-	}
-
-	private void fecharSilenciosamente(Closeable c) {
-		try {
-			c.close();
-		} catch (Exception e) {
-		}
+		new StreamHelper().escreveArquivo(arquivo, geraStream(new PDFBoletoWriter()));
 	}
 
 	/**
@@ -80,60 +59,67 @@ public class GeradorDeBoleto {
 	 * @param arquivo
 	 */
 	public void geraPNG(File arquivo) {
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(arquivo);
-
-			byte[] b = geraPNG();
-
-			fos.write(b);
-		} catch (FileNotFoundException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em PNG", e);
-		} finally {
-			fecharSilenciosamente(fos);
-		}
-
+		new StreamHelper().escreveArquivo(arquivo, geraStream(new PNGBoletoWriter()));
 	}
 
 	/**
 	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
 	 */
 	public byte[] geraPDF() {
-		return gera(new PDFBoletoWriter());
+		return new StreamHelper().geraBytes(geraStream(new PDFBoletoWriter()));
 	}
 
 	/**
 	 * Devolve um array de bytes representando o PNG desse boleto ja gerado.
 	 */
 	public byte[] geraPNG() {
-		return gera(new PNGBoletoWriter());
+		return new StreamHelper().geraBytes(geraStream(new PNGBoletoWriter()));
 	}
 
 	/**
-	 * Devolve o array de bytes do boleto escrito pelo writer indicado.
+	 * Devolve um array de bytes representando o HTML desse boleto ja gerado.
 	 * 
-	 * @param writer
 	 * @return
 	 */
-	private byte[] gera(BoletoWriter writer) {
-		BoletoTransformer transformer = new BoletoTransformer(writer);
+	public byte[] geraHTML() {
+		return new StreamHelper().geraBytes(geraStream(new HTMLBoletoWriter()));
+	}
 
-		InputStream is = transformer.transform(this.boletos);
+	public void geraHTML(File arquivo) {
+		new StreamHelper().escreveArquivo(arquivo, geraStream(new HTMLBoletoWriter()));
+	}
 
-		byte[] b;
+	public void geraHTML(String arquivo) {
+		File file = new File(arquivo);
+		geraHTML(file);
+	}
+
+	public InputStream geraHTMLStream() {
+		return geraStream(new HTMLBoletoWriter());
+	}
+
+	public InputStream geraPDFStream() {
+		return geraStream(new PDFBoletoWriter());
+	}
+
+	public InputStream geraPNGStream() {
+		return geraStream(new PNGBoletoWriter());
+	}
+
+	/**
+	 * Devolve o InputStream do boleto escrito pelo writer indicado.
+	 * 
+	 * @param writer
+	 *            Tipo de writer para gerar o boleto
+	 */
+
+	public InputStream geraStream(BoletoWriter writer) {
 		try {
-			b = new byte[is.available()];
-			is.read(b);
-
-		} catch (NumberFormatException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
-		} catch (IOException e) {
-			throw new GeracaoBoletoException("Erro na geração do boleto em HTML", e);
-		} finally {
-			fecharSilenciosamente(is);
+			BoletoTransformer transformer = new BoletoTransformer(writer);
+			return transformer.transform(this.boletos);
+		} catch (Exception e) {
+			throw new GeracaoBoletoException("Erro na geração do boleto", e);
 		}
-		return b;
+
 	}
 }
