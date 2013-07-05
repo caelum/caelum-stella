@@ -85,23 +85,42 @@ public class GeradorDeBoleto {
 		return new StreamHelper().geraBytes(geraStream(new HTMLBoletoWriter()));
 	}
 
+	/**
+	 * Gera o boleto no formato html e salva no arquivo indicado
+	 * @param arquivo onde será salvo o conteúdo do boleto
+	 */
 	public void geraHTML(File arquivo) {
 		new StreamHelper().escreveArquivo(arquivo, geraStream(new HTMLBoletoWriter()));
 	}
-
+	/**
+	 * Gera o boleto no formato html e salva em um arquivo no local indicado
+	 * @param arquivo onde será salvo o conteúdo do boleto
+	 */
 	public void geraHTML(String arquivo) {
 		File file = new File(arquivo);
 		geraHTML(file);
 	}
 
+	/**
+	 * Gera o boleto no formato html 
+	 * @return inputStream com o conteúdo do arquivo
+	 */
 	public InputStream geraHTMLStream() {
 		return geraStream(new HTMLBoletoWriter());
 	}
-
+	
+	/**
+	 * Gera o boleto no formato pdf 
+	 * @return inputStream com o conteúdo do arquivo
+	 */
 	public InputStream geraPDFStream() {
 		return geraStream(new PDFBoletoWriter());
 	}
 
+	/**
+	 * Gera o boleto no formato png 
+	 * @return inputStream com o conteúdo do arquivo
+	 */
 	public InputStream geraPNGStream() {
 		return geraStream(new PNGBoletoWriter());
 	}
