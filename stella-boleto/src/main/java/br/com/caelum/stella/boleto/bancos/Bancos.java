@@ -47,6 +47,12 @@ public enum Bancos {
 		public Banco getBanco() {
 			return new Santander();
 		}
+	},
+	SAFRA("422", "Safra") {
+		@Override
+		public Banco getBanco() {
+			return new Safra();
+		}
 	};
 
 	private final String numeroDoBanco;
