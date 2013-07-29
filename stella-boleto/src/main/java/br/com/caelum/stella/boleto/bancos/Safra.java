@@ -5,7 +5,6 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.bancos.gerador.DigitoPara;
 
 /**
  * Gera dados de um boleto relativos ao Banco Safra.
@@ -62,8 +61,7 @@ public class Safra extends AbstractBanco implements Banco {
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%08d", emissor.getNossoNumero()));
-		builder.append(new DigitoPara(builder.toString()).mod(MOD_DAC_NOSSO_NUMERO));
+		builder.append(String.format("%09d", emissor.getNossoNumero()));
 		return builder.toString();
 	}
 	

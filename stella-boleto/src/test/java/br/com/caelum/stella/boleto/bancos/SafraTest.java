@@ -50,13 +50,6 @@ public class SafraTest {
 	}
 	
 	@SuppressWarnings("deprecation") @Test
-	public void codigoDeBarrasDeveTerQuarentaEQuatroPosicoes(){
-		this.boleto = this.boleto.comBanco(this.banco);
-		
-		assertEquals(banco.geraCodigoDeBarrasPara(this.boleto).length(), 44, 0);
-	}
-	
-	@SuppressWarnings("deprecation") @Test
 	public void contaCorrenteDoEmissorDeveTerNoveDigitos(){
 		assertEquals(9, this.banco.getContaCorrenteDoEmissorFormatado(this.emissor).length());
 	}
@@ -82,20 +75,23 @@ public class SafraTest {
 	}
 	
 	@SuppressWarnings("deprecation") @Test
-	public void dadoOsDadosDoBancoEDoEmissorDeveGerarALinhaDoCodigoDeBarras(){
+	public void dadoOsDadosDoBancoEDoEmissorDeveGerarALinhaDigitavelDoCodigoDeBarras(){
 		this.boleto = this.boleto.comBanco(this.banco);
 		
-		assertEquals("42299577100000019807000010000124510000000482", 
-			this.banco.geraCodigoDeBarrasPara(this.boleto));
+		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
+		
+		assertEquals("42297.00002  10000.124510  00000.000422  4  57710000001980", 
+			linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
 	}
 	
 	@SuppressWarnings("deprecation") @Test
-	public void dadoOBancoEAMoedaODigitoVerificadorDaPosicaoCincoDeveSerNove(){
+	public void dadoOBancoEAMoedaODigitoVerificadorDaPosicaoCincoDeveSerQuatro(){
 		this.boleto = this.boleto.comBanco(this.banco);
 		
 		String linhaCodigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
 		
-		assertEquals("9", linhaCodigoDeBarras.substring(4,5));
+		assertEquals("4", linhaCodigoDeBarras.substring(4,5));
 	}
 	
 	@SuppressWarnings("deprecation") @Test
