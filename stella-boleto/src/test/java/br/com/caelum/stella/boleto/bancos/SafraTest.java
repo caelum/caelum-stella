@@ -68,7 +68,7 @@ public class SafraTest {
 	}
 
 	@SuppressWarnings("deprecation") @Test
-	public void numeroComDigitoDeveTerCincoDigitos(){
+	public void numeroDoBancoComODigitoDeveTerCincoDigitos(){
 		String numeroDoBanco = this.banco.getNumeroFormatadoComDigito();
 		assertEquals("422-7", numeroDoBanco);
 		assertEquals(5, numeroDoBanco.length());

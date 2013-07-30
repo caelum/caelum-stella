@@ -20,7 +20,6 @@ public class Safra extends AbstractBanco implements Banco {
 	private static final String DIGITO_NUMERO_SAFRA = "7";
 	private static final String COBRANCA_DIRETA_ELETRONICA = "7";
 	private static final String TIPO_COBRANCA_EMITIDO_AO_CLIENTE = "2";
-	private static final int MOD_DAC_NOSSO_NUMERO = 11;
 	
 	@Override
 	public String getNumeroFormatado() {
@@ -74,7 +73,7 @@ public class Safra extends AbstractBanco implements Banco {
 	
 	private String getAgencia(Emissor emissor){
 		StringBuilder builder =new StringBuilder();
-		//O Banco Safra espera uma Agencia com 5 casas decimais
+		//O Banco Safra espera uma Agencia com 5 posicoes
 		builder.append("0");
 		return builder.append(emissor.getAgenciaFormatado()).toString();
 	}
