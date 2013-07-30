@@ -24,7 +24,7 @@ public class SafraTest {
 								.comVencimento(26, 07, 2013)
 								.comProcessamento(25, 07, 2013);
 		this.emissor = Emissor.novoEmissor()
-								.comCedente("Supermercado Pedreira LT")
+								.comCedente("Supermercado XYZ")
 								.comAgencia(1)
 								.comDigitoAgencia('8')
 								.comContaCorrente(1245)
