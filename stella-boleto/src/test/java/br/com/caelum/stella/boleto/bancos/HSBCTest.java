@@ -32,7 +32,7 @@ public class HSBCTest {
 		
 	    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
 	    	.comBanco(this.banco).comSacado(sacado).comValorBoleto(3383.00)
-	    	.comNumeroDoDocumento("0789201");
+	    	.comNumeroDoDocumento("1540000201305");
 	}
 
 	@Test

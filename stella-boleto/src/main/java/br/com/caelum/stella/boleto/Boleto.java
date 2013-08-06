@@ -361,7 +361,7 @@ public class Boleto {
 	 * @return número do documento formatado (com 4 digitos)
 	 */
 	public String getNumeroDoDocumentoFormatado() {
-		return String.format("%04d", new Integer(this.numeroDocumento));
+		return String.format("%04d", new Long(this.numeroDocumento));
 	}
 	
 	/**
