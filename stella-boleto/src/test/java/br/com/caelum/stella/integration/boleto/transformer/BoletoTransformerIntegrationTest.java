@@ -58,8 +58,8 @@ public class BoletoTransformerIntegrationTest {
 
 		GeradorDeBoleto generator = new GeradorDeBoleto(boleto);
 
-		generator.geraPDF("arquivo.pdf");
-		generator.geraPNG("arquivo.png");
+		generator.geraPDFBasic("arquivo.pdf");
+		generator.geraPNGBasic("arquivo.png");
 
 	}
 

@@ -3,7 +3,6 @@ package br.com.caelum.stella.boleto;
 import br.com.caelum.stella.boleto.bancos.HSBC;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 
-
 public class StellaHSBCMain {
 
     public static void main(String[] args) {
@@ -36,7 +35,7 @@ public class StellaHSBCMain {
 
         Banco banco = new HSBC();
         //Banco banco = new BancoDoBrasil();  
-        
+
         Boleto boleto = Boleto.novoBoleto().comEspecieDocumento("DM")
                 .comBanco(banco)
                 .comDatas(datas)
@@ -47,15 +46,16 @@ public class StellaHSBCMain {
                 //.comDescricoes("bla", "bla")
                 .comInstrucoes("Juros de 0,50% ao mês após o vencimento", "Cobrar multa de 2,00% após o vencimento")
                 .comLocaisDePagamento("PAGAR PREFERENCIALMENTE EM AGÊNCIA DO HSBC")
-                .comNumeroDoDocumento("1540000201305");
+                .comNumeroDoDocumento("1540000201305")
+                .comParcela("1/1");
 
         GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
 
         // Para gerar um boleto em PDF  
-        gerador.geraPDF("HSBC.pdf");
+        gerador.geraPDF2("HSBC.pdf");
 
         // Para gerar um boleto em PNG  
-        gerador.geraPNG("HSBC.png");
+        gerador.geraPNG2("HSBC.png");
 
         // Para gerar um array de bytes a partir de um PDF  
         // byte[] bPDF = gerador.toPDF();  

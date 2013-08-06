@@ -51,10 +51,10 @@ public class StellaBBMain {
 	    GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);  
 
 	    // Para gerar um boleto em PDF  
-	    gerador.geraPDF("BancoBrasil.pdf");  
+	    gerador.geraPDFBasic("BancoBrasil.pdf");  
 
 	    // Para gerar um boleto em PNG  
-	    gerador.geraPNG("BancoDoBrasil.png");  
+	    gerador.geraPNGBasic("BancoDoBrasil.png");  
 
 	    // Para gerar um array de bytes a partir de um PDF  
 	   // byte[] bPDF = gerador.toPDF();  

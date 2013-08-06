@@ -13,7 +13,7 @@ import com.itextpdf.text.pdf.BarcodeInter25;
  * @author Paulo Silveira
  * 
  */
-class GeradorDeImagemDoCodigoDeBarras {
+public class GeradorDeImagemDoCodigoDeBarras {
 
 	/**
 	 * @param codigo, que é a String do código de barras completo.
@@ -21,7 +21,7 @@ class GeradorDeImagemDoCodigoDeBarras {
 	 * 
 	 * @return imagem com o código de barras para a string do código
 	 */
-	static Image geraImagemDoCodigoDeBarrasPara(String codigo, float altura) {
+	public static Image geraImagemDoCodigoDeBarrasPara(String codigo, float altura) {
 		BarcodeInter25 bar = new BarcodeInter25();
 		bar.setCode(codigo);
 		bar.setExtended(true);
