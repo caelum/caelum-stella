@@ -1,14 +1,12 @@
 package br.com.caelum.stella.boleto.transformer;
 
-import br.com.caelum.stella.boleto.transformer.templatebasico.PDFBoletoWriterBasic;
-import br.com.caelum.stella.boleto.transformer.templatebasico.PNGBoletoWriterBasic;
+import br.com.caelum.stella.boleto.transformer.template_basico.PDFBoletoWriter;
+import br.com.caelum.stella.boleto.transformer.template_basico.PNGBoletoWriter;
 import java.io.File;
 import java.io.InputStream;
 
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
-import br.com.caelum.stella.boleto.transformer.template2.PDFBoletoWriter2;
-import br.com.caelum.stella.boleto.transformer.template2.PNGBoletoWriter2;
 
 /**
  * Geração do boleto em arquivos. Essa é uma classe utilitária, dessa maneira
@@ -33,14 +31,13 @@ public class GeradorDeBoleto {
      *
      * @param arquivo
      */
-    public void geraPDFBasic(String arquivo) {
-        File file = new File(arquivo);
-        geraPDF(file, new PDFBoletoWriterBasic());
+    public void geraPDF(String arquivo) {
+        geraPDF(arquivo, BoletoTemplate.TEMPLATE_BASICO);
     }
 
-    public void geraPDF2(String arquivo) {
+    public void geraPDF(String arquivo, BoletoTemplate boletoTemplate) {
         File file = new File(arquivo);
-        geraPDF(file, new PDFBoletoWriter2());
+        geraPDF(file, boletoTemplate);
     }
 
     /**
@@ -48,8 +45,8 @@ public class GeradorDeBoleto {
      *
      * @param arquivo
      */
-    public void geraPDF(File arquivo, BoletoWriter boletoWriter) {
-        new StreamHelper().escreveArquivo(arquivo, geraStream(boletoWriter));
+    public void geraPDF(File arquivo, BoletoTemplate boletoTemplate) {
+        new StreamHelper().escreveArquivo(arquivo, geraStream(boletoTemplate.getBoletoPDFWriter()));
     }
 
     /**
@@ -57,18 +54,13 @@ public class GeradorDeBoleto {
      *
      * @param arquivo
      */
-    public void geraPNGBasic(String arquivo) {
-        File file = new File(arquivo);
-        geraPNG(file, new PNGBoletoWriterBasic());
+    public void geraPNG(String arquivo) {
+        geraPNG(arquivo, BoletoTemplate.TEMPLATE_BASICO);
     }
 
-    /* Gera um boleto em PNG, e grava no caminho indicado
-     *
-     * @param arquivo
-     */
-    public void geraPNG2(String arquivo) {
+    public void geraPNG(String arquivo, BoletoTemplate boletoTemplate) {
         File file = new File(arquivo);
-        geraPNG(file, new PNGBoletoWriter2());
+        geraPNG(file, boletoTemplate);
     }
 
     /**
@@ -76,22 +68,30 @@ public class GeradorDeBoleto {
      *
      * @param arquivo
      */
-    public void geraPNG(File arquivo, BoletoWriter boletoWriter) {
-        new StreamHelper().escreveArquivo(arquivo, geraStream(boletoWriter));
+    public void geraPNG(File arquivo, BoletoTemplate boletoTemplate) {
+        new StreamHelper().escreveArquivo(arquivo, geraStream(boletoTemplate.getBoletoPNGWriter()));
     }
 
     /**
      * Devolve um array de bytes representando o PDF desse boleto ja gerado.
      */
     public byte[] geraPDF() {
-        return new StreamHelper().geraBytes(geraStream(new PDFBoletoWriterBasic()));
+        return geraPDF(BoletoTemplate.TEMPLATE_BASICO);
+    }
+
+    public byte[] geraPDF(BoletoTemplate boletoTemplate) {
+        return new StreamHelper().geraBytes(geraStream(boletoTemplate.getBoletoPDFWriter()));
     }
 
     /**
      * Devolve um array de bytes representando o PNG desse boleto ja gerado.
      */
     public byte[] geraPNG() {
-        return new StreamHelper().geraBytes(geraStream(new PNGBoletoWriterBasic()));
+        return geraPNG(BoletoTemplate.TEMPLATE_BASICO);
+    }
+
+    public byte[] geraPNG(BoletoTemplate boletoTemplate) {
+        return new StreamHelper().geraBytes(geraStream(boletoTemplate.getBoletoPNGWriter()));
     }
 
     /**
@@ -117,11 +117,11 @@ public class GeradorDeBoleto {
     }
 
     public InputStream geraPDFStream() {
-        return geraStream(new PDFBoletoWriterBasic());
+        return geraStream(new PDFBoletoWriter());
     }
 
     public InputStream geraPNGStream() {
-        return geraStream(new PNGBoletoWriterBasic());
+        return geraStream(new PNGBoletoWriter());
     }
 
     /**

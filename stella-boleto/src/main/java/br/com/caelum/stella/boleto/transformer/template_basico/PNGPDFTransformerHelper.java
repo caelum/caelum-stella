@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto.transformer.templatebasico;
+package br.com.caelum.stella.boleto.transformer.template_basico;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -25,7 +25,7 @@ import br.com.caelum.stella.boleto.transformer.TextWriter;
  *
  *
  */
-class PNGPDFTransformerHelperBasic {
+class PNGPDFTransformerHelper {
     /* Ainda precisa de um nome melhor!! */
 
     public static final float IMAGEM_BOLETO_WIDTH = 2144;
@@ -34,13 +34,13 @@ class PNGPDFTransformerHelperBasic {
     private TextWriter writer;
     private URL imagemTitulo;
 
-    private PNGPDFTransformerHelperBasic(TextWriter writer, BoletoTemplate boletoTemplate) {
+    private PNGPDFTransformerHelper(TextWriter writer, BoletoTemplate boletoTemplate) {
         super();
         this.writer = writer;
-        this.imagemTitulo = PNGPDFTransformerHelperBasic.class.getResource(boletoTemplate.getEnderecoTemplate());
+        this.imagemTitulo = PNGPDFTransformerHelper.class.getResource(boletoTemplate.getEnderecoTemplate());
     }
 
-    public PNGPDFTransformerHelperBasic(TextWriter writer) {
+    public PNGPDFTransformerHelper(TextWriter writer) {
         this(writer, BoletoTemplate.TEMPLATE_BASICO);
     }
 

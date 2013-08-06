@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto.transformer.template2;
+package br.com.caelum.stella.boleto.transformer.template_avancado;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -31,7 +31,7 @@ import com.itextpdf.text.pdf.BaseFont;
  * @author Paulo Silveira
  * 
  */
-public class PNGBoletoWriter2 implements BoletoWriter, TextWriter {
+public class PNGBoletoWriterTemplateAvancado implements BoletoWriter, TextWriter {
 
 	private static final int NORMAL_SIZE = 36;
 
@@ -47,13 +47,13 @@ public class PNGBoletoWriter2 implements BoletoWriter, TextWriter {
 
 	private final Graphics2D graphics;
 
-	private final PNGPDFTransformerHelper2 writerHelper;
+	private final PNGPDFTransformerHelperTemplateAvancado writerHelper;
 
-	public PNGBoletoWriter2() {
+	public PNGBoletoWriterTemplateAvancado() {
 		this(2144f, 1900);
 	}
 
-	public PNGBoletoWriter2(final double w, final double h) {
+	public PNGBoletoWriterTemplateAvancado(final double w, final double h) {
 
 		PNGimage = new BufferedImage((int) w, (int) h, BufferedImage.TYPE_INT_RGB);
 		graphics = PNGimage.createGraphics();
@@ -70,7 +70,7 @@ public class PNGBoletoWriter2 implements BoletoWriter, TextWriter {
 
 		fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
 
-		writerHelper = new PNGPDFTransformerHelper2(this);
+		writerHelper = new PNGPDFTransformerHelperTemplateAvancado(this);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto.transformer.template2;
+package br.com.caelum.stella.boleto.transformer.template_basico;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -28,7 +28,7 @@ import com.itextpdf.text.pdf.PdfWriter;
  * @author Paulo Silveira
  * @author Leonardo Bessa
  */
-public class PDFBoletoWriter2 implements BoletoWriter, TextWriter {
+public class PDFBoletoWriter implements BoletoWriter, TextWriter {
 
 	private static final int NORMAL_SIZE = 8;
 
@@ -50,9 +50,9 @@ public class PDFBoletoWriter2 implements BoletoWriter, TextWriter {
 
 	private final int scale = 1;
 
-	private final PNGPDFTransformerHelper2 writerHelper;
+	private final PNGPDFTransformerHelper writerHelper;
 
-	public PDFBoletoWriter2(final Rectangle rectangle) {
+	public PDFBoletoWriter(final Rectangle rectangle) {
 		bytes = new ByteArrayOutputStream();
 		document = new Document(rectangle);
 
@@ -71,10 +71,10 @@ public class PDFBoletoWriter2 implements BoletoWriter, TextWriter {
 		document.open();
 		contentByte = writer.getDirectContent();
 		document.newPage();
-		writerHelper = new PNGPDFTransformerHelper2(this);
+		writerHelper = new PNGPDFTransformerHelper(this);
 	}
 
-	public PDFBoletoWriter2() {
+	public PDFBoletoWriter() {
 		this(PageSize.A4);
 	}
 

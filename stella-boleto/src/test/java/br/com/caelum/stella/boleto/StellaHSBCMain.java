@@ -1,6 +1,7 @@
 package br.com.caelum.stella.boleto;
 
 import br.com.caelum.stella.boleto.bancos.HSBC;
+import br.com.caelum.stella.boleto.transformer.BoletoTemplate;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 
 public class StellaHSBCMain {
@@ -52,10 +53,10 @@ public class StellaHSBCMain {
         GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
 
         // Para gerar um boleto em PDF  
-        gerador.geraPDF2("HSBC.pdf");
+        gerador.geraPDF("HSBC.pdf", BoletoTemplate.TEMPLATE_AVANCADO);
 
         // Para gerar um boleto em PNG  
-        gerador.geraPNG2("HSBC.png");
+        gerador.geraPNG("HSBC.png", BoletoTemplate.TEMPLATE_AVANCADO);
 
         // Para gerar um array de bytes a partir de um PDF  
         // byte[] bPDF = gerador.toPDF();  
