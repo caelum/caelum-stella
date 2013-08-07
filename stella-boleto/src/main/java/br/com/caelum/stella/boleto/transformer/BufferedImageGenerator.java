@@ -10,9 +10,9 @@ import java.awt.image.BufferedImage;
  * @author Alberto Pc
  * 
  */
-class BufferedImageGenerator {
+public class BufferedImageGenerator {
 
-	static BufferedImage generateBufferedImageFor(Image image, int type) {
+	public static BufferedImage generateBufferedImageFor(Image image, int type) {
 		int w = image.getWidth(null);
 		int h = image.getHeight(null);
 		BufferedImage result = new BufferedImage(w, h, type);
