@@ -2,10 +2,9 @@ package br.com.caelum.stella.validation;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.caelum.stella.MessageProducer;

@@ -1,7 +1,7 @@
 package br.com.caelum.stella.validation;
 
-import junit.framework.Assert;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

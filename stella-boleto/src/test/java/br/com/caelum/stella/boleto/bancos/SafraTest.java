@@ -1,6 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;

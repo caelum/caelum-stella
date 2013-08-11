@@ -1,8 +1,9 @@
 package br.com.caelum.stella.tinytype;
 
-import junit.framework.Assert;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class CNPJTest {
 
@@ -20,8 +21,8 @@ public class CNPJTest {
     public void shouldHaveDomainDrivenEquals() {
         CNPJ a = new CNPJ("23.121.367/0001-69");
         CNPJ b = new CNPJ("23.121.367/0001-69");
-        Assert.assertTrue(a.equals(b));
-        Assert.assertTrue(b.equals(a));
+        assertTrue(a.equals(b));
+        assertTrue(b.equals(a));
     }
 
 }
