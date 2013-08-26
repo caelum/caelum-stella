@@ -21,3 +21,5 @@ arquivo.pdf
 arquivo.png
 velocity.log*
 *.swp
+.idea
+*.iml

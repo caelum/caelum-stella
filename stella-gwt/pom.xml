@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>br.com.caelum.stella</groupId>
+        <artifactId>caelum-stella</artifactId>
+        <version>2.0.5-SNAPSHOT</version>
+    </parent>
+    <artifactId>caelum-stella-gwt</artifactId>
+    <description>
+        Uma versão da biblioteca stella-core para ser utilizada com GWT.
+    </description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <gwt.version>2.5.1</gwt.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Stella -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>caelum-stella-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Google Web Toolkit -->
+        <!--<dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
+            <scope>provided</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+            </plugin>
+            <!-- Disable "normal" testing, which doesn't work for GWT tests. -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <execution>
+                        <id>unpack-stella-core-sources</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>unpack-dependencies</goal></goals>
+                        <configuration>
+                            <includeArtifactIds>caelum-stella-core</includeArtifactIds>
+                            <classifier>sources</classifier>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <excludeTransitive>true</excludeTransitive>
+                            <excludes>META-INF/MANIFEST.MF</excludes>
+                            <outputDirectory>${project.build.directory}/stella-core-sources</outputDirectory>
+                            <type>java-source</type>
+                            <!--<type>resource</type>-->
+                            <silent>false</silent>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>caelum-stella-core</artifactId>
+                        <version>${project.version}</version>
+                        <classifier>sources</classifier>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                                <target name="copy-gwt-resources">
+                                    <echo message="COPYING JAVA RESOURCE FROM STELLA-CORE"/>
+                                    <copy toDir="${project.build.directory}/stella-core-gwt-sources"
+                                          verbose="true">
+                                        <fileset dir="${project.build.directory}/stella-core-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <not><contains text="emulated = true"/></not>
+                                            </and>
+                                            <exclude name="**/*.properties" />
+                                        </fileset>
+                                    </copy>
+                                    <replace value="com.google.gwt.regexp.shared.RegExp" token="java.util.regex.Pattern">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="RegExp " token="Pattern ">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="RegExp." token="Pattern.">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="boolean " token="Matcher ">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="" token="import java.util.regex.Matcher;">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="test" token="matcher">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="" token=".matches()">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value="UNFORMATED.replace(value, REPLACEMENT)" token="test.replaceAll(REPLACEMENT)">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <contains text="patternConvertible = true"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <replace value=".getClass().getName()" token=".getClass().getSimpleName()">
+                                        <fileset dir="${project.build.directory}/stella-core-gwt-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                            </and>
+                                        </fileset>
+                                    </replace>
+                                    <copy file="${project.build.directory}/stella-core-sources/br/com/caelum/stella/inwords/messages.properties"
+                                          tofile="${project.build.directory}/stella-core-gwt-sources/br/com/caelum/stella/inwords/MessagesBundle.properties" />
+                                    <replace file="${project.build.directory}/stella-core-gwt-sources/br/com/caelum/stella/inwords/MessagesBundle.properties">
+                                        <replacetoken><![CDATA[.]]></replacetoken>
+                                        <replacevalue><![CDATA[_]]></replacevalue>
+                                    </replace>
+                                    <replace file="${project.build.directory}/stella-core-gwt-sources/br/com/caelum/stella/inwords/MessagesBundle.properties">
+                                        <replacetoken><![CDATA[+?]]></replacetoken>
+                                        <replacevalue><![CDATA[_op]]></replacevalue>
+                                    </replace>
+                                </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>${gwt.version}</version>
+                <executions>
+                    <execution>
+                        <id>gwt-compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <module>${project.groupId}.compile.ForceStellaCompilation</module>
+                            <strict>true</strict>
+                            <validateOnly>true</validateOnly>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+            </resource>
+            <!--<resource>-->
+                <!--<directory>src-super</directory>-->
+            <!--</resource>-->
+            <resource>
+                <directory>${project.build.directory}/stella-core-gwt-sources</directory>
+            </resource>
+        </resources>
+    </build>
+    
+</project>

@@ -1,0 +1,15 @@
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.0//EN"
+        "http://google-web-toolkit.googlecode.com/svn/releases/2.0/distro-source/core/src/gwt-module.dtd">
+<module>
+
+    <inherits name="br.com.caelum.stella.annotations.Annotations"/>
+    <inherits name="br.com.caelum.stella.format.Format"/>
+    <inherits name="br.com.caelum.stella.inwords.Inwords"/>
+    <inherits name="br.com.caelum.stella.tinytype.Tinytype"/>
+    <inherits name="br.com.caelum.stella.type.Type"/>
+    <inherits name="br.com.caelum.stella.validation.Validation"/>
+    <inherits name='com.google.gwt.user.User'/>
+
+    <source path="" />
+
+</module>
