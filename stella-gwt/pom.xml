@@ -84,7 +84,6 @@
                             <excludes>META-INF/MANIFEST.MF</excludes>
                             <outputDirectory>${project.build.directory}/stella-core-sources</outputDirectory>
                             <type>java-source</type>
-                            <!--<type>resource</type>-->
                             <silent>false</silent>
                         </configuration>
                     </execution>
@@ -182,12 +181,14 @@
                                             </and>
                                         </fileset>
                                     </replace>
-                                    <replace value=".getClass().getName()" token=".getClass().getSimpleName()">
+                                    <replace>
                                         <fileset dir="${project.build.directory}/stella-core-gwt-sources">
                                             <and>
                                                 <contains text="@GwtCompatible"/>
                                             </and>
                                         </fileset>
+                                        <replacetoken><![CDATA[error.getClass().getSimpleName()]]></replacetoken>
+                                        <replacevalue><![CDATA[error.getClass().getName().substring(error.getClass().getName().lastIndexOf(".")+1)]]></replacevalue>
                                     </replace>
                                     <copy file="${project.build.directory}/stella-core-sources/br/com/caelum/stella/inwords/messages.properties"
                                           tofile="${project.build.directory}/stella-core-gwt-sources/br/com/caelum/stella/inwords/MessagesBundle.properties" />
@@ -227,9 +228,6 @@
             <resource>
                 <directory>src/main/java</directory>
             </resource>
-            <!--<resource>-->
-                <!--<directory>src-super</directory>-->
-            <!--</resource>-->
             <resource>
                 <directory>${project.build.directory}/stella-core-gwt-sources</directory>
             </resource>
