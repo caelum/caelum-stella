@@ -11,6 +11,9 @@ import java.util.ResourceBundle;
  * Portabilidade da classe original para o GWT
  *
  * @author Danilo Reinert
+ *
+ * Classe original
+ *
  * @author Victor Santos
  *
  */

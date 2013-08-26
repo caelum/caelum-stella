@@ -3,6 +3,16 @@ package br.com.caelum.stella.format;
 import br.com.caelum.stella.annotations.GwtCompatible;
 import com.google.gwt.regexp.shared.RegExp;
 
+/**
+ * Portabilidade da classe original para o GWT
+ *
+ * @author Danilo Reinert
+ *
+ * Classe original
+ *
+ * @author Victor Santos
+ *
+ */
 @GwtCompatible(emulated = true)
 public class BaseFormatter implements Formatter {
 

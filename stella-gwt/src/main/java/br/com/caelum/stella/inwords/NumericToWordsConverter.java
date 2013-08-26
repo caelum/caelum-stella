@@ -11,6 +11,9 @@ import java.util.MissingResourceException;
  * Portabilidade da classe original para GWT
  *
  * @author Danilo Reinert
+ *
+ * Classe Original
+ *
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
  * 

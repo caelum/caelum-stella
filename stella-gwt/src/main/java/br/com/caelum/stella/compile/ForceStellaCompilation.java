@@ -4,11 +4,10 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.*;
 
 /**
- * Created at 26/08/13 11:09
+ * Necessário para forçar a compilação do GWT.
  *
  * @author Danilo Reinert
  */
-
 public class ForceStellaCompilation implements EntryPoint {
     public void onModuleLoad() {
     }

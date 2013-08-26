@@ -3,7 +3,7 @@ package br.com.caelum.stella.inwords;
 import com.google.gwt.i18n.client.ConstantsWithLookup;
 
 /**
- * Created at 26/08/13 13:23
+ * Constants necessária para portabilidade da classe {@link Messages} para o GWT.
  *
  * @author Danilo Reinert
  */
