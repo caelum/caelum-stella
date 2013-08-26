@@ -6,11 +6,13 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.InvalidValue;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@GwtCompatible(patternConvertible = true)
 public abstract class AbstractIEValidator implements Validator<String> {
 	
 	private final boolean isFormatted;

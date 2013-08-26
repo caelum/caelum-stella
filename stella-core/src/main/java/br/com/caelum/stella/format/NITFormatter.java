@@ -1,10 +1,12 @@
 package br.com.caelum.stella.format;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.NITValidator;
 
 /**
  * @author Leonardo Bessa
  */
+@GwtCompatible
 public class NITFormatter implements Formatter {
 
     private final BaseFormatter base;

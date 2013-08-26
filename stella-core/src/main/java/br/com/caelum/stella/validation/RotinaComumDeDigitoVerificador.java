@@ -1,5 +1,7 @@
 package br.com.caelum.stella.validation;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Essa rotina é utilizada para se obter o dígito verificador de CPF, CNPJ e
  * RENAVAM.
@@ -7,6 +9,7 @@ package br.com.caelum.stella.validation;
  * @author leonardobessa
  * 
  */
+@GwtCompatible
 class RotinaComumDeDigitoVerificador implements RotinaDeDigitoVerificador {
 
     public Integer transform(RotinaParameters parameter) {

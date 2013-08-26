@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 
 /**
  * <p>
@@ -21,6 +22,7 @@ import br.com.caelum.stella.ValidationMessage;
  * 
  * @author leobessa
  */
+@GwtCompatible
 public class BaseValidator {
     private final MessageProducer messageProducer;
 

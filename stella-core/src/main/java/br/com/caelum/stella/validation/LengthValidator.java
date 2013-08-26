@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.error.LengthError;
 
 /**
@@ -15,6 +16,7 @@ import br.com.caelum.stella.validation.error.LengthError;
  * @author leonardobessa
  * 
  */
+@GwtCompatible
 public class LengthValidator implements Validator<Object> {
 
     private final int validLength;

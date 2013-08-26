@@ -1,5 +1,7 @@
 package br.com.caelum.stella.inwords;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.MissingResourceException;
@@ -11,6 +13,7 @@ import java.util.MissingResourceException;
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible(emulated = true)
 public class NumericToWordsConverter {
 
     private final FormatoDeExtenso formato;

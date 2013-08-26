@@ -1,10 +1,13 @@
 package br.com.caelum.stella.inwords;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * @author Victor dos Santos Pereira
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible
 public class FormatoDeReal implements FormatoDeExtenso {
 
     public String getUnidadeDecimalNoPlural() {

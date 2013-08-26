@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
@@ -16,6 +17,7 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@GwtCompatible(patternConvertible = true)
 public class IERioGrandeDoSulValidator implements Validator<String> {
 
     private static final int MOD = 11;
@@ -38,6 +40,8 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
     public static final Pattern FORMATED = Pattern.compile("[0-4]\\d{2}\\/\\d{7}");
 
     public static final Pattern UNFORMATED = Pattern.compile("([0-4]\\d{2})\\d{7}");
+
+    private static final String REPLACEMENT = "$1";
 
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -81,11 +85,11 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
         return errors;
     }
 
-    private boolean hasValidMunicipality(String unformatedIE) {
+    private boolean hasValidMunicipality(String value) {
         String municipality = null;
-        Matcher matcher = UNFORMATED.matcher(unformatedIE);
+        Matcher matcher = UNFORMATED.matcher(value);
         if (matcher.matches()) {
-            municipality = matcher.replaceAll("$1");
+            municipality = matcher.replaceAll(REPLACEMENT);
         }
         int municipalityInt = Integer.parseInt(municipality);
         boolean result = municipalityInt > 0 && municipalityInt <= 467;

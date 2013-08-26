@@ -1,6 +1,7 @@
 package br.com.caelum.stella.type;
 
 import br.com.caelum.stella.MessageProducer;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.ie.IEAcreValidator;
 import br.com.caelum.stella.validation.ie.IEAlagoasValidator;
@@ -36,6 +37,7 @@ import br.com.caelum.stella.validation.ie.IETocantinsValidator;
  * @author leobessa
  * 
  */
+@GwtCompatible(emulated = true)
 public enum Estado {
 
     AC(12) {

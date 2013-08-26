@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.InvalidValue;
 
 /**
@@ -34,6 +35,7 @@ import br.com.caelum.stella.validation.InvalidValue;
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible(emulated = true)
 public class ResourceBundleMessageProducer implements MessageProducer {
 
     private final ResourceBundle bundle;

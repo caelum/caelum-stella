@@ -1,5 +1,7 @@
 package br.com.caelum.stella.inwords;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa o formato de para números inteiros com precisão de miléssimos.
  * 
@@ -8,6 +10,7 @@ package br.com.caelum.stella.inwords;
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible
 public class FormatoDeInteiro implements FormatoDeExtenso {
 
     public String getUnidadeDecimalNoPlural() {

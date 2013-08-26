@@ -6,11 +6,13 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 
 /**
  * 
  * @author leonardobessa
  */
+@GwtCompatible
 public class AcceptAnyValidator implements Validator<String> {
 
     private List<Validator<String>> validators = new ArrayList<Validator<String>>();

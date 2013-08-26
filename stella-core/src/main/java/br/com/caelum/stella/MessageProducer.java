@@ -1,5 +1,6 @@
 package br.com.caelum.stella;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.InvalidValue;
 
 /**
@@ -14,6 +15,7 @@ import br.com.caelum.stella.validation.InvalidValue;
  * @author Fabio Kung
  * @author Leonardo Bessa
  */
+@GwtCompatible
 public interface MessageProducer {
     /**
      * @param invalidValue

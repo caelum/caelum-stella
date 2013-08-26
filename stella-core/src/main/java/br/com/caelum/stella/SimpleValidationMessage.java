@@ -1,10 +1,13 @@
 package br.com.caelum.stella;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Implementação básica e imutável. Apenas guarda a mensagem.
  * 
  * @author Fabio Kung
  */
+@GwtCompatible
 public class SimpleValidationMessage implements ValidationMessage {
     private final String message;
 

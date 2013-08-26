@@ -1,11 +1,14 @@
 package br.com.caelum.stella.tinytype;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa um CPF (Cadastro de Pessoas Física).
  * 
  * @author leobessa
  * 
  */
+@GwtCompatible
 public final class CPF {
 
     private final String numero;

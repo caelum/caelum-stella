@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
@@ -18,6 +19,7 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
  */
+@GwtCompatible(patternConvertible = true)
 public class IEAcreValidator extends AbstractIEValidator {
 
 	public static final Pattern FORMATED = Pattern.compile("01(\\.\\d{3}){2}\\/\\d{3}\\-\\d{2}");

@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
 import br.com.caelum.stella.validation.ValidadorDeDV;
@@ -15,6 +16,7 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * 
  * @author Leonardo Bessa
  */
+@GwtCompatible(patternConvertible = true)
 public class IEPiauiValidator extends AbstractIEValidator {
 
     private static final int MOD = 11;

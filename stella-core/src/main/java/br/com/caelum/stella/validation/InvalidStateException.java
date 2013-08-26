@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 
 /**
  * Sinaliza uma ocorrência de um valor inválido.
@@ -11,6 +12,7 @@ import br.com.caelum.stella.ValidationMessage;
  * @author leobessa
  * 
  */
+@GwtCompatible
 public class InvalidStateException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;

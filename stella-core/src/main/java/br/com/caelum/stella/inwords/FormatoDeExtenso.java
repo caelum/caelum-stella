@@ -1,5 +1,7 @@
 package br.com.caelum.stella.inwords;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa o formato utilizado para os números serem transformados em
  * extenso.
@@ -8,6 +10,7 @@ package br.com.caelum.stella.inwords;
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible
 public interface FormatoDeExtenso {
 
     /**

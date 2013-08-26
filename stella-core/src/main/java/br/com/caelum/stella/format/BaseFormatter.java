@@ -1,8 +1,11 @@
 package br.com.caelum.stella.format;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@GwtCompatible(emulated = true)
 public class BaseFormatter implements Formatter {
 
     private final Pattern formatted;

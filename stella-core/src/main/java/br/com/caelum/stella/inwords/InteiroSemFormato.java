@@ -1,5 +1,7 @@
 package br.com.caelum.stella.inwords;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa o formato para um número inteiro por extenso, sem tipo de unidade.
  * Ou seja, números são escritos simplesmente como "dois", "vinte e três" ou
@@ -9,6 +11,7 @@ package br.com.caelum.stella.inwords;
  * @author Leonardo Garcia Fischer
  * 
  */
+@GwtCompatible
 public class InteiroSemFormato implements FormatoDeExtenso {
 
     public String getUnidadeDecimalNoPlural() {

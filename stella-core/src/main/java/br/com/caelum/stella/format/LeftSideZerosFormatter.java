@@ -1,5 +1,7 @@
 package br.com.caelum.stella.format;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Formatador que insere ou remove zeros a esquerda de um String que <b>deve</b>
  * representar um numero decimal.
@@ -7,6 +9,7 @@ package br.com.caelum.stella.format;
  * @author Leonardo Bessa
  * 
  */
+@GwtCompatible
 public class LeftSideZerosFormatter implements Formatter {
 
     /**

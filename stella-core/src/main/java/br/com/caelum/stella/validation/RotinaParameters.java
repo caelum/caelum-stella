@@ -1,10 +1,13 @@
 package br.com.caelum.stella.validation;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa um parâmetro para {@link RotinaDeDigitoVerificador}.
  * 
  * @author Leonardo Bessa
  */
+@GwtCompatible
 public class RotinaParameters {
     private final DigitoVerificadorInfo digitoVerificadorInfo;
 

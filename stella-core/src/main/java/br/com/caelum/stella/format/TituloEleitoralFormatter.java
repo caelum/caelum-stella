@@ -1,11 +1,12 @@
 package br.com.caelum.stella.format;
 
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.TituloEleitoralValidator;
 
-public class TituloEleitoralFormatter implements Formatter{
-	  
-	
+@GwtCompatible
+public class TituloEleitoralFormatter implements Formatter {
+
 	private final BaseFormatter base;
 	
     public TituloEleitoralFormatter() {

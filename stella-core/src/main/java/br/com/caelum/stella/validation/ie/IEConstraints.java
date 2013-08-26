@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.format.LeftSideZerosFormatter;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
@@ -13,6 +14,7 @@ import br.com.caelum.stella.validation.RotinaParameters;
  * 
  * @author leobessa
  */
+@GwtCompatible(patternConvertible = true)
 public class IEConstraints {
 
     public static final Formatter PRE_VALIDATION_FORMATTER = new LeftSideZerosFormatter(14);

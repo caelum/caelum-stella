@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.BaseValidator;
 import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
@@ -14,6 +15,7 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@GwtCompatible(patternConvertible = true)
 class IESaoPauloProdutorRuralValidator implements Validator<String> {
 
     private static final int MOD = 11;

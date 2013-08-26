@@ -1,11 +1,14 @@
 package br.com.caelum.stella.format;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 import java.util.regex.Pattern;
 
 /**
  * @author Rafael Carvalho
  *
  */
+@GwtCompatible(patternConvertible = true)
 public class RenavamFormatter implements Formatter {
 
     public static final Pattern FORMATTED = Pattern.compile("(\\d{2}).(\\d{6})-(\\d{1})");

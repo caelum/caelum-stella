@@ -3,6 +3,7 @@ package br.com.caelum.stella.validation;
 import java.util.List;
 
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 
 /**
  * <p>
@@ -21,6 +22,7 @@ import br.com.caelum.stella.ValidationMessage;
  * @param <T>
  *            tipo de objeto a ser validado
  */
+@GwtCompatible
 public interface Validator<T> {
     /**
      * @param object

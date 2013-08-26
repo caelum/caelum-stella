@@ -1,11 +1,14 @@
 package br.com.caelum.stella.tinytype;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Representa um Cadastro Nacional da Pessoa Jurídica - CNPJ.
  * 
  * @author leobessa
  * 
  */
+@GwtCompatible
 public final class CNPJ {
 
     private final String numero;

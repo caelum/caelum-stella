@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation.error;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.InvalidValue;
 
 /**
@@ -7,6 +8,7 @@ import br.com.caelum.stella.validation.InvalidValue;
  * 
  * @author Rafael Carvalho
  */
+@GwtCompatible
 public enum RenavamError implements InvalidValue {
 
     INVALID_CHECK_DIGIT, INVALID_DIGITS

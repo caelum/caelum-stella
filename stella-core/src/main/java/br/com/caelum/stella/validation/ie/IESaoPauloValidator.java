@@ -6,10 +6,12 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.validation.LogicOrComposedValidator;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
+@GwtCompatible(emulated = true, patternConvertible = true)
 public class IESaoPauloValidator implements Validator<String> {
 
     private final LogicOrComposedValidator<String> baseValidator;

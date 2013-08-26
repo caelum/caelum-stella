@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.annotations.GwtCompatible;
 import br.com.caelum.stella.format.RenavamFormatter;
 import br.com.caelum.stella.validation.error.RenavamError;
 
@@ -23,6 +24,7 @@ import br.com.caelum.stella.validation.error.RenavamError;
  * 
  * @author Rafael Carvalho
  */
+@GwtCompatible(patternConvertible = true)
 public class RenavamValidator implements Validator<String> {
 
     private final BaseValidator baseValidator;

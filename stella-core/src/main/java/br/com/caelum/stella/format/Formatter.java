@@ -1,11 +1,14 @@
 package br.com.caelum.stella.format;
 
+import br.com.caelum.stella.annotations.GwtCompatible;
+
 /**
  * Formatter é responsável por transfomar cadeias sem formatação em cadeias
  * formatadas e vice-versa.
  * 
  * @author Leonardo Bessa
  */
+@GwtCompatible
 public interface Formatter {
 
     /**
