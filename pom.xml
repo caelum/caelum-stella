@@ -34,6 +34,7 @@
     <module>stella-faces</module>
     <module>stella-boleto</module>
     <module>stella-distribution</module>
+    <module>stella-gwt</module>
     <module>examples/faces-example-1x</module>
     <module>examples/faces-example-2x</module>
     <module>examples/hibernate-persistence-example</module>
@@ -358,6 +359,13 @@
 	<contributor>
       <name>Rafael Carvalho</name>
       <email>rafael.c.carvalho@gmail.com</email>
+    </contributor>
+    <contributor>
+      <name>Danilo Reinert</name>
+      <email>daniloreinert@gmail.com</email>
+      <organization>Grow bit</organization>
+      <organizationUrl>http://www.growbit.com.br</organizationUrl>
+      <timezone>-3</timezone>
     </contributor>
   </contributors>
 

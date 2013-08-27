@@ -10,9 +10,10 @@
     </parent>
     <artifactId>caelum-stella-gwt</artifactId>
     <description>
-        Uma versão da biblioteca stella-core para ser utilizada com GWT.
+        Agora o Stella Core também disponível em GWT.
     </description>
     <packaging>jar</packaging>
+    <name>Stella GWT</name>
 
     <properties>
         <gwt.version>2.5.1</gwt.version>
