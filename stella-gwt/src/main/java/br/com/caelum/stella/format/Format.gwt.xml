@@ -4,6 +4,8 @@
 
     <inherits name="com.google.gwt.regexp.RegExp"/>
 
+    <!--<super-source path="super"/>-->
+
     <source path="" />
 
 </module>

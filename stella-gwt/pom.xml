@@ -46,6 +46,23 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals><goal>add-source</goal></goals>
+                        <configuration>
+                            <sources>
+                                <source>src/super/java</source>
+                                <source>${project.build.directory}/stella-core-gwt-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
             </plugin>
@@ -114,6 +131,18 @@
                                             <and>
                                                 <contains text="@GwtCompatible"/>
                                                 <not><contains text="emulated = true"/></not>
+                                                <not><contains text="patternConvertible = true"/></not>
+                                            </and>
+                                            <exclude name="**/*.properties" />
+                                        </fileset>
+                                    </copy>
+                                    <copy toDir="${project.build.directory}/stella-core-gwt-sources/br/com/caelum/stella/super"
+                                          verbose="true">
+                                        <fileset dir="${project.build.directory}/stella-core-sources">
+                                            <and>
+                                                <contains text="@GwtCompatible"/>
+                                                <not><contains text="emulated = true"/></not>
+                                                <contains text="patternConvertible = true"/>
                                             </and>
                                             <exclude name="**/*.properties" />
                                         </fileset>
@@ -217,7 +246,7 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <module>${project.groupId}.compile.ForceStellaCompilation</module>
+                            <module>br.com.caelum.stella.compile.ForceStellaCompilation</module>
                             <strict>true</strict>
                             <validateOnly>true</validateOnly>
                         </configuration>
@@ -226,6 +255,9 @@
             </plugin>
         </plugins>
         <resources>
+            <resource>
+                <directory>src/super/java</directory>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
             </resource>

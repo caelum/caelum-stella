@@ -2,10 +2,6 @@ package br.com.caelum.stella.inwords;
 
 import br.com.caelum.stella.annotations.GwtCompatible;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.client.ConstantsWithLookup;
-import com.google.gwt.resources.client.ClientBundle;
-
-import java.util.ResourceBundle;
 
 /**
  * Portabilidade da classe original para o GWT

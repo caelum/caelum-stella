@@ -6,5 +6,6 @@
     <inherits name="br.com.caelum.stella.Stella"/>
 
     <source path="" />
+    <!--<super-source path="super"/>-->
 
 </module>
