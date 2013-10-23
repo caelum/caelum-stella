@@ -57,6 +57,8 @@ public class StellaCPFValidator implements Validator, StateHolder {
     }
 
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
+    	if (value == null) return;
+    	
         ResourceBundle bundle = resourceBundleFinder.getForCurrentLocale(facesContext);
         ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
         CPFValidator validator = new CPFValidator(producer, formatted);
