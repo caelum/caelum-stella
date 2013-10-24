@@ -105,4 +105,18 @@ public class StellaCPFValidatorTest {
         	fail("shouldn't throw exception for null cpf");
         }
     }
+
+    @Test
+    public void shouldNotThrowValidatorExceptionWhenCPFIsEmpty() {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+
+        try {
+            validator.validate(context, component, "");
+            mockery.assertIsSatisfied();
+        } catch (ValidatorException e) {
+            fail("shouldn't throw exception for empty cpf");
+        }
+    }
 }
