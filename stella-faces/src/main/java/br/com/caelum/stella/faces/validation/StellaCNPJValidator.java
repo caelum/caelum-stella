@@ -49,7 +49,7 @@ public class StellaCNPJValidator implements Validator, StateHolder {
     }
 
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-    	if (value == null || "".equals(value)) return; // deixa o validador required fazer seu trabalho
+    	if (value == null || "".equals(value)) return;
     	
         ResourceBundle bundle = resourceBundleFinder.getForCurrentLocale(facesContext);
         ResourceBundleMessageProducer producer = new ResourceBundleMessageProducer(bundle);
