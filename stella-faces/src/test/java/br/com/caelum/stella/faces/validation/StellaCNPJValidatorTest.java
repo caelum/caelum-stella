@@ -76,4 +76,34 @@ public class StellaCNPJValidatorTest {
             mockery.assertIsSatisfied();
         }
     }
+
+    @Test
+    public void shouldNotThrowNullPointerExceptionWhenCNPJIsNull() {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+
+        try {
+            validator.validate(context, component, null);
+            mockery.assertIsSatisfied();
+        } catch (ValidatorException e) {
+            fail("shouldn't throw exception for null cnpj");
+        } catch (NullPointerException e) {
+        	fail("shouldn't throw exception for null cnpj");
+        }
+    }
+
+    @Test
+    public void shouldNotThrowValidatorExceptionWhenCNPJIsEmpty() {
+        final FacesContext context = mockery.mock(FacesContext.class);
+        final UIComponent component = mockery.mock(UIComponent.class);
+        facesContextMocker.mockMessageBundle(context, "messages", Locale.getDefault());
+
+        try {
+            validator.validate(context, component, "");
+            mockery.assertIsSatisfied();
+        } catch (ValidatorException e) {
+            fail("shouldn't throw exception for empty cnpj");
+        }
+    }
 }
