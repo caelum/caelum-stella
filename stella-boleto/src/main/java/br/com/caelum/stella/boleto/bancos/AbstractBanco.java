@@ -7,6 +7,8 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 public abstract class AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
 	protected final GeradorDeDigito geradorDeDigito = new GeradorDeDigitoPadrao();
 
 	@Override

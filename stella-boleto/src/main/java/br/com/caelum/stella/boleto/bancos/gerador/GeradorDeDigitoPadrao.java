@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto.bancos.gerador;
 
 public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public int geraDigitoMod11(String codigoDeBarras) {
 		return geraDigitoMod(codigoDeBarras, 2, 9, 11);

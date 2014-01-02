@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto.bancos.gerador;
 
 public class GeradorDeDigitoSantander extends GeradorDeDigitoPadrao {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public int geraDigitoBloco1(String bloco) {
 		return calculaDVBloco(bloco);

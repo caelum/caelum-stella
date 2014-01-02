@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import java.io.Serializable;
+
 /**
  * Interface com métodos do sacado<br/> Sacado é a pessoa/empresa que vai pagar
  * pelo boleto gerado.
@@ -7,7 +9,10 @@ package br.com.caelum.stella.boleto;
  * @author Cauê Guerra
  * 
  */
-public class Sacado {
+public class Sacado implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
     private String nome = "";
     private String cpf = "";
     private String endereco = "";

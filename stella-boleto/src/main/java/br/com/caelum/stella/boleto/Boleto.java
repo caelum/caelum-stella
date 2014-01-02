@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -15,7 +16,9 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  * @author Caue Guerra
  * 
  */
-public class Boleto {
+public class Boleto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private BigDecimal valorBoleto;
 	private BigDecimal quantidadeMoeda;

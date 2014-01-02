@@ -8,6 +8,8 @@ import br.com.caelum.stella.boleto.Emissor;
 
 public class Itau extends AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
 	private static final String NUMERO_ITAU = "341";
 	private static final String DIGITO_ITAU = "7";
 

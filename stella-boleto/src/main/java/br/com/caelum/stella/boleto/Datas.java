@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -11,7 +12,10 @@ import java.util.GregorianCalendar;
  * @author Leonardo Bessa
  * 
  */
-public class Datas {
+public class Datas implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private Calendar documento;
 	private Calendar processamento;
 	private Calendar vencimento;

@@ -16,6 +16,8 @@ import br.com.caelum.stella.boleto.Emissor;
  */
 public class Safra extends AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
 	private static final String NUMERO_SAFRA = "422";
 	private static final String DIGITO_NUMERO_SAFRA = "7";
 	private static final String COBRANCA_DIRETA_ELETRONICA = "7";
