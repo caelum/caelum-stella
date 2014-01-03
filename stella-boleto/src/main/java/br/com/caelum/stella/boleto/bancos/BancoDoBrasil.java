@@ -13,6 +13,9 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  */
 public class BancoDoBrasil extends AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
+
 	private static final String NUMERO_BB = "001";
 	private static final String DIGITO_NUMERO_BB = "9";
 

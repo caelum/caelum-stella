@@ -1,6 +1,8 @@
 package br.com.caelum.stella.boleto.bancos.gerador;
 
-public interface GeradorDeDigito {
+import java.io.Serializable;
+
+public interface GeradorDeDigito extends Serializable {
 
 	int geraDigitoMod11(String codigoDeBarras);
 

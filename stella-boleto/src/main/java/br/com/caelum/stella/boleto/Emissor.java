@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import java.io.Serializable;
+
 /**
  * Bean que representa os dados do emissor de um boleto 
  * bancario. É um bean genérico, ou seja, o uso dos campos 
@@ -7,8 +9,10 @@ package br.com.caelum.stella.boleto;
  * 
  * @author Paulo Silveira, Caue Guerra e David Paniz
  */
-public class Emissor {
-	
+public class Emissor implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private int agencia;
 	private char digitoAgencia;
 	private long contaCorrente;

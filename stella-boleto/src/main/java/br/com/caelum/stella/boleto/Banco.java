@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto;
 
+import java.io.Serializable;
 import java.net.URL;
 
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
@@ -29,7 +30,7 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
  * @author Cauê Guerra
  * 
  */
-public interface Banco {
+public interface Banco extends Serializable {
 
 	/**
 	 * Retorna o número desse banco, formatado com 3 dígitos

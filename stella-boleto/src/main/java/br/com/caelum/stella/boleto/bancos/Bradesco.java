@@ -15,6 +15,9 @@ import br.com.caelum.stella.boleto.Emissor;
  */
 public class Bradesco extends AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
+
 	private static final String NUMERO_BRADESCO = "237";
 
 	private static final String DIGITO_NUMERO_BRADESCO = "2";

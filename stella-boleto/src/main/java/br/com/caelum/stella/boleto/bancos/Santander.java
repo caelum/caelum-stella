@@ -10,6 +10,8 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoSantander;
 
 public class Santander implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
 	private final static String NUMERO_SANTANDER = "033";
 	private final static String DIGITO_SANTANDER = "7";
 	private GeradorDeDigito gdivSantander = new GeradorDeDigitoSantander();

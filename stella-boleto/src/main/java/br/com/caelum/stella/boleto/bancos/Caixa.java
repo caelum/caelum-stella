@@ -10,6 +10,9 @@ import br.com.caelum.stella.boleto.Emissor;
 
 public class Caixa extends AbstractBanco implements Banco {
 
+	private static final long serialVersionUID = 1L;
+
+
 	private static final String NUMERO_CAIXA = "104";
 	private static final String DIGITO_CAIXA = "0";
 
