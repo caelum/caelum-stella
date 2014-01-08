@@ -49,11 +49,15 @@ public class DigitoParaTest {
 	
 	@Test
 	public void geracaoDeDigitoParaCNPJ(){
-		Assert.assertEquals("8", new DigitoPara("112223330001").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
-		Assert.assertEquals("1", new DigitoPara("1122233300018").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+		Assert.assertEquals("8", digitoParaCNPJ("112223330001"));
+		Assert.assertEquals("1", digitoParaCNPJ("1122233300018"));
 
-		Assert.assertEquals("5", new DigitoPara("615191280001").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
-		Assert.assertEquals("0", new DigitoPara("6151912800015").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+		Assert.assertEquals("5", digitoParaCNPJ("615191280001"));
+		Assert.assertEquals("0", digitoParaCNPJ("6151912800015"));
 		
+	}
+
+	private String digitoParaCNPJ(String cnpj) {
+		return new DigitoPara(cnpj).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
 	}
 }
