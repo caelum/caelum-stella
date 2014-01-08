@@ -1,4 +1,4 @@
-package br.com.caelum.stella.boleto.bancos.gerador;
+package br.com.caelum.stella;
 
 import java.util.ArrayList;
 import java.util.Arrays;

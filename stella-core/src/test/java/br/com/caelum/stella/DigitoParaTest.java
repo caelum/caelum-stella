@@ -1,10 +1,12 @@
-package br.com.caelum.stella.boleto.bancos.gerador;
+package br.com.caelum.stella;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import br.com.caelum.stella.DigitoPara;
 
 public class DigitoParaTest {
 
