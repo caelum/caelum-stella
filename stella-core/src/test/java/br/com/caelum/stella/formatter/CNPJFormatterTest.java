@@ -30,5 +30,13 @@ public class CNPJFormatterTest {
         String unformatedValue = formatter.unformat(fotmatedValue);
         assertEquals(unformatedValue, "26637142000158");
     }
+    
+    @Test
+    public void testShoudNotThrowExceptionIfAlreadyUnformated() {
+        String fotmatedValue = "26637142000158";
+        String unformatedValue = formatter.unformat(fotmatedValue);
+        assertEquals(unformatedValue, "26637142000158");
+    }
+    
 
 }

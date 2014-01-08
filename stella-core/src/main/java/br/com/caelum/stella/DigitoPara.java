@@ -114,7 +114,8 @@ public class DigitoPara {
 		int soma = 0;
 		int multiplicadorDaVez = 0;
 		for (int algarismo : numero) {
-			soma += algarismo * multiplicadores.get(multiplicadorDaVez);
+			int multiplicador = multiplicadores.get(multiplicadorDaVez);
+			soma += algarismo * multiplicador;
 			multiplicadorDaVez = proximoMultiplicador(multiplicadorDaVez);
 		}
 		int resultado = soma % modulo;

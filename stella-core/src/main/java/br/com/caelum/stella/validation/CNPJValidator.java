@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -17,61 +18,36 @@ import br.com.caelum.stella.validation.error.CNPJError;
  */
 public class CNPJValidator implements Validator<String> {
 
-    private final BaseValidator baseValidator;
-
-    private final boolean isFormatted;
-
-    private static final int MOD = 11;
-
-    private static final int DV1_POSITION = 13;
-
-    private static final int DV2_POSITION = 14;
-
-    private static final Integer[] DV1_MULTIPLIERS = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-    private static final Integer[] DV2_MULTIPLIERS = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
     public static final Pattern FORMATED = Pattern.compile("(\\d{2})[.](\\d{3})[.](\\d{3})/(\\d{4})-(\\d{2})");
-
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})");
-
-
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new RotinaComumDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV1_MULTIPLIERS,
-            DV1_POSITION);
-
-    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
-            new RotinaComumDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV2_MULTIPLIERS,
-            DV2_POSITION);
-
-    private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
-
-    private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
-
+	
+    private boolean isFormatted = false;
+	private MessageProducer messageProducer;
+    
     /**
      * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public CNPJValidator() {
-        this(true);
+    	messageProducer = new SimpleMessageProducer();
     }
 
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
-     * mensagens.
+     * mensagens. Leva em conta se o valor está ou não formatado.
      * 
      * @param isFormatted
      *            considera cadeia no formato de CNPJ: "dd.ddd.ddd/dddd-dd" onde
      *            "d" é um dígito decimal.
      */
     public CNPJValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
+		this.isFormatted  = isFormatted;
+		this.messageProducer = new SimpleMessageProducer();
     }
 
     /**
      * <p>
-     * Construtor do Validador de CNPJ.
+     * Construtor do Validador de CNPJ. Leva em consideração se o valor está formatado.
      * </p>
      * <p>
      * 
@@ -82,39 +58,53 @@ public class CNPJValidator implements Validator<String> {
      *            "d" é um dígito decimal.
      */
     public CNPJValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = isFormatted;
+		this.messageProducer = messageProducer;
+		this.isFormatted  = isFormatted;
+    }
+    
+    public CNPJValidator(MessageProducer messageProducer){
+		this.messageProducer = messageProducer;
     }
 
-    private List<InvalidValue> getInvalidValues(String cnpj) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        errors.clear();
+    private List<ValidationMessage> getInvalidValues(String cnpj) {
+
+    	List<ValidationMessage> errors = new ArrayList<ValidationMessage>();    	
+        
         if (cnpj != null) {
-            if (!isEligible(cnpj)) {
-                if (isFormatted) {
-                    errors.add(CNPJError.INVALID_FORMAT);
-                } else {
-                    errors.add(CNPJError.INVALID_DIGITS);
-                }
-            } else {
-                String unformatedCNPJ;
-                if (isFormatted) {
-                    CNPJFormatter formatter = new CNPJFormatter();
-                    unformatedCNPJ = formatter.unformat(cnpj);
-                } else {
-                    unformatedCNPJ = cnpj;
-                }
-                if (!hasValidCheckDigits(unformatedCNPJ)) {
-                    errors.add(CNPJError.INVALID_CHECK_DIGITS);
-                }
+        	
+        	if(isFormatted && !FORMATED.matcher(cnpj).matches()){
+        		errors.add(messageProducer.getMessage(CNPJError.INVALID_FORMAT));
+        	}
+        	
+        	String unformatedCNPJ = null;
+        	try{
+				unformatedCNPJ = new CNPJFormatter().unformat(cnpj);
+        	}catch(IllegalArgumentException e){
+        		errors.add(messageProducer.getMessage(CNPJError.INVALID_DIGITS));
+        		return errors;
+        	}
+        	
+            if(unformatedCNPJ.length() != 14 || !unformatedCNPJ.matches("[0-9]*")){
+            	errors.add(messageProducer.getMessage(CNPJError.INVALID_DIGITS));
             }
+           
+            String cnpjSemDigito = unformatedCNPJ.substring(0, unformatedCNPJ.length() - 2);
+            String digitos = unformatedCNPJ.substring(unformatedCNPJ.length() - 2);
+            
+            String digito1 = obtemDigito(cnpjSemDigito);
+            String digito2 = new DigitoPara(cnpjSemDigito + digito1).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+            
+            if(!digitos.equals(digito1.concat(digito2))){
+            	errors.add(messageProducer.getMessage(CNPJError.INVALID_CHECK_DIGITS));
+            }
+            
         }
         return errors;
     }
 
-    private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.isDVValid(value)) && (DV2_CHECKER.isDVValid(value));
-    }
+	private String obtemDigito(String cnpjSemDigito) {
+		return new DigitoPara(cnpjSemDigito).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+	}
 
     public boolean isEligible(String value) {
         boolean result;
@@ -126,12 +116,18 @@ public class CNPJValidator implements Validator<String> {
         return result;
     }
 
+    @Override
     public void assertValid(String cnpj) {
-        baseValidator.assertValid(getInvalidValues(cnpj));
+    	
+        List<ValidationMessage> errors = getInvalidValues(cnpj);
+		if (!errors.isEmpty()) {
+            throw new InvalidStateException(errors);
+        }
     }
 
+    @Override
     public List<ValidationMessage> invalidMessagesFor(String cnpj) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cnpj));
+        return getInvalidValues(cnpj);
     }
 
 }
