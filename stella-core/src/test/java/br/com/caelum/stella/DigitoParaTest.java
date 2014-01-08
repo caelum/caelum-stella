@@ -43,7 +43,17 @@ public class DigitoParaTest {
 
 	@Test
 	public void geracaoDeDigitoParaRGDeSaoPaulo() {
-		Assert.assertEquals("1", new DigitoPara("36422911").comMultiplicadoresDeAte(2, 9).mod(11));
-		Assert.assertEquals("X", new DigitoPara("42105900").comMultiplicadoresDeAte(2, 9).trocandoPorSeEncontrar("X", 10).mod(11));
+		Assert.assertEquals("1", new DigitoPara("36422911").comMultiplicadoresDeAte(2,9).mod(11));
+		Assert.assertEquals("X", new DigitoPara("42105900").comMultiplicadoresDeAte(2,9).trocandoPorSeEncontrar("X", 10).mod(11));
+	}
+	
+	@Test
+	public void geracaoDeDigitoParaCNPJ(){
+		Assert.assertEquals("8", new DigitoPara("112223330001").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+		Assert.assertEquals("1", new DigitoPara("1122233300018").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+
+		Assert.assertEquals("5", new DigitoPara("615191280001").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+		Assert.assertEquals("0", new DigitoPara("6151912800015").complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11));
+		
 	}
 }
