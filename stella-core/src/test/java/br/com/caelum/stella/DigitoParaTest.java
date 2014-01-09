@@ -60,4 +60,18 @@ public class DigitoParaTest {
 	private String digitoParaCNPJ(String cnpj) {
 		return new DigitoPara(cnpj).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
 	}
+	
+	@Test
+	public void geracaoDeDigitoParaCPF(){
+		Assert.assertEquals("3", digitoParaCPF("111444777"));
+		Assert.assertEquals("5", digitoParaCPF("1114447773"));
+
+		Assert.assertEquals("0", digitoParaCPF("367486656"));
+		Assert.assertEquals("4", digitoParaCPF("3674866560"));
+		
+	}
+
+	private String digitoParaCPF(String cpf) {
+		return new DigitoPara(cpf).comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+	}
 }
