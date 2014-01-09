@@ -42,11 +42,11 @@ public final class CPF {
 	}
 
     /**
-     * @return número do CPF.
+     * @return número do CPF formatado.
      */
     @Override
     public String toString() {
-        return numero;
+        return getNumeroFormatado();
     }
 
     @Override

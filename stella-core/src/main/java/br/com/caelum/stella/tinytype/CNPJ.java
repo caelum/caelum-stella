@@ -42,11 +42,11 @@ public final class CNPJ {
     }
     
     /**
-     * @return número do CNPJ.
+     * @return número do CNPJ formatado.
      */
     @Override
     public String toString() {
-    	return numero;
+    	return getNumeroFormatado();
     }
 
     @Override
