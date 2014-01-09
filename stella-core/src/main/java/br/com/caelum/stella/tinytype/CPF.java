@@ -30,7 +30,7 @@ public final class CPF {
     /**
      * @return número do CPF formatado
      */
-    public Object getNumeroFormatado() {
+    public String getNumeroFormatado() {
     	return new CPFFormatter().format(numero);
     }
 
