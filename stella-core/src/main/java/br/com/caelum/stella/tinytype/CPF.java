@@ -4,7 +4,7 @@ import br.com.caelum.stella.format.CPFFormatter;
 import br.com.caelum.stella.validation.CPFValidator;
 
 /**
- * Representa um CPF (Cadastro de Pessoas Física).
+ * Representa um Cadastro de Pessoas Física - CPF.
  * 
  * @author leobessa
  * 
@@ -14,28 +14,28 @@ public final class CPF {
     private final String numero;
 
     /**
-     * @param numero do CPF
+     * @param número do CPF.
      */
     public CPF(String numero) {
         this.numero = new CPFFormatter().unformat(numero);
     }
 
     /**
-     * @return número do CPF
+     * @return número do CPF.
      */
     public String getNumero() {
         return numero;
     }
     
     /**
-     * @return número do CPF formatado
+     * @return número do CPF formatado.
      */
     public String getNumeroFormatado() {
     	return new CPFFormatter().format(numero);
     }
 
     /**
-     * @return se o número do CPF é valido
+     * @return se o número do CPF é valido.
      */
 	public boolean isValido() {
 		return new CPFValidator(false).invalidMessagesFor(numero).isEmpty();

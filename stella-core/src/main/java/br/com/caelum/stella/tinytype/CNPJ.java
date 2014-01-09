@@ -14,7 +14,7 @@ public final class CNPJ {
     private final String numero;
 
     /**
-     * @param numero do CNPJ
+     * @param número do CNPJ.
      */
     public CNPJ(String numero) {
         this.numero = new CNPJFormatter().unformat(numero);
