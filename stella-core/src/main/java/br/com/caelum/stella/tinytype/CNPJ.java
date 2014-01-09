@@ -38,7 +38,7 @@ public final class CNPJ {
      * @return se o número do CNPJ é valido.
      */
     public boolean isValid() {
-    	return new CNPJValidator(false).invalidMessagesFor(numero).isEmpty();
+    	return new CNPJValidator().invalidMessagesFor(numero).isEmpty();
     }
     
     /**
