@@ -12,6 +12,8 @@ public class CPFValidatorTest {
 
 	private static final String INVALID_FORMAT = "INVALID FORMAT";
 
+	private static final String REPEATED_DIGITS = "REPEATED DIGITS";
+
 	private static final String INVALID_CHECK_DIGITS = "INVALID CHECK DIGITS";
 
 	private static final String INVALID_DIGITS = "INVALID DIGITS";
@@ -134,7 +136,7 @@ public class CPFValidatorTest {
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
-            assertMessage(e, INVALID_DIGITS);
+            assertMessage(e, REPEATED_DIGITS);
         }
     }
     
@@ -147,7 +149,7 @@ public class CPFValidatorTest {
             fail();
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
-            assertMessage(e, INVALID_DIGITS);
+            assertMessage(e, REPEATED_DIGITS);
         }
     }
     
@@ -171,7 +173,7 @@ public class CPFValidatorTest {
         CPFValidator validator = new CPFValidator(true);
         // VALID CPF = 332.375.322-40
         try {
-        	String value = "332.375.32240";
+        	String value = "33237532240";
             validator.assertValid(value);
             fail();
         } catch (InvalidStateException e) {
