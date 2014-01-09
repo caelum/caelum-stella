@@ -1,5 +1,8 @@
 package br.com.caelum.stella.tinytype;
 
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.validation.CNPJValidator;
+
 /**
  * Representa um Cadastro Nacional da Pessoa Jurídica - CNPJ.
  * 
@@ -11,11 +14,10 @@ public final class CNPJ {
     private final String numero;
 
     /**
-     * @param numero
-     *            do CNPJ
+     * @param numero do CNPJ
      */
     public CNPJ(String numero) {
-        this.numero = numero;
+        this.numero = new CNPJFormatter().unformat(numero);
     }
 
     /**
@@ -24,13 +26,27 @@ public final class CNPJ {
     public String getNumero() {
         return numero;
     }
+    
+    /**
+     * @return número do CNPJ formatado.
+     */
+    public String getNumeroFormatado() {
+    	return new CNPJFormatter().format(numero);
+    }
 
+    /**
+     * @return se o número do CNPJ é valido.
+     */
+    public boolean isValid() {
+    	return new CNPJValidator(false).invalidMessagesFor(numero).isEmpty();
+    }
+    
     /**
      * @return número do CNPJ.
      */
     @Override
     public String toString() {
-        return numero;
+    	return numero;
     }
 
     @Override
