@@ -90,21 +90,16 @@ public class CNPJValidator implements Validator<String> {
            
             String cnpjSemDigito = unformatedCNPJ.substring(0, unformatedCNPJ.length() - 2);
             String digitos = unformatedCNPJ.substring(unformatedCNPJ.length() - 2);
-            
-            String digito1 = obtemDigito(cnpjSemDigito);
-            String digito2 = new DigitoPara(cnpjSemDigito + digito1).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
-            
-            if(!digitos.equals(digito1.concat(digito2))){
+
+			String digitosCalculados = new DigitoPara(cnpjSemDigito).cnpj();
+
+            if(!digitos.equals(digitosCalculados)){
             	errors.add(messageProducer.getMessage(CNPJError.INVALID_CHECK_DIGITS));
             }
             
         }
         return errors;
     }
-
-	private String obtemDigito(String cnpjSemDigito) {
-		return new DigitoPara(cnpjSemDigito).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
-	}
 
     public boolean isEligible(String value) {
         boolean result;

@@ -60,7 +60,7 @@ public class DigitoPara {
 
 	/**
 	 * Para multiplicadores (ou pesos) sequenciais e em ordem crescente, esse método permite 
-	 * criar a lista de multiplicadores que será usada cíclicamente, caso o número base seja
+	 * criar a lista de multiplicadores que será usada ciclicamente, caso o número base seja
 	 * maior do que a sequência de multiplicadores. Por padrão os multiplicadores são iniciados
 	 * de 2 a 9. No momento em que você inserir outro valor este default será sobrescrito.
 	 * 
@@ -150,11 +150,26 @@ public class DigitoPara {
 	/**
 	 * Faz o cálculo dos digitos usando a lógica de CPF
 	 * 
-	 * @return String com os dois dígitos calculados.
+	 * @return String os dois dígitos calculados.
 	 */
 	public String cpf() {
 		comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
 
+		String digito1 = calcula();
+		this.numero.addFirst(Integer.valueOf(digito1));
+		String digito2 = calcula();
+		
+		return digito1 + digito2;
+	}
+
+	/**
+	 * Faz o cálculo dos digitos usando a lógica de CNPJ
+	 * 
+	 * @return String os dois dígitos calculados.
+	 */
+	public String cnpj() {
+		complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+		
 		String digito1 = calcula();
 		this.numero.addFirst(Integer.valueOf(digito1));
 		String digito2 = calcula();

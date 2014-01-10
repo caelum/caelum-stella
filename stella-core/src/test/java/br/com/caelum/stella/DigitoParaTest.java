@@ -6,8 +6,6 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.caelum.stella.DigitoPara;
-
 public class DigitoParaTest {
 
 	@Test
@@ -48,23 +46,14 @@ public class DigitoParaTest {
 	}
 	
 	@Test
-	public void geracaoDeDigitoParaCNPJ(){
-		Assert.assertEquals("8", digitoParaCNPJ("112223330001"));
-		Assert.assertEquals("1", digitoParaCNPJ("1122233300018"));
-
-		Assert.assertEquals("5", digitoParaCNPJ("615191280001"));
-		Assert.assertEquals("0", digitoParaCNPJ("6151912800015"));
-		
-	}
-
-	private String digitoParaCNPJ(String cnpj) {
-		return new DigitoPara(cnpj).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
-	}
-	
-	@Test
 	public void geracaoDeDigitoParaCPF(){
 		Assert.assertEquals("35", new DigitoPara("111444777").cpf());
 		Assert.assertEquals("04", new DigitoPara("367486656").cpf());
-		
+	}
+	
+	@Test
+	public void geracaoDeDigitoParaCNPJ(){
+		Assert.assertEquals("81", new DigitoPara("112223330001").cnpj());
+		Assert.assertEquals("50", new DigitoPara("615191280001").cnpj());
 	}
 }
