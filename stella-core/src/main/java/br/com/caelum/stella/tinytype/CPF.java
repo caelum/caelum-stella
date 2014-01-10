@@ -44,7 +44,7 @@ public final class CPF {
      * @return se o número do CPF é valido.
      */
 	public boolean isValido() {
-		return new CPFValidator(false).invalidMessagesFor(numero).isEmpty();
+		return new CPFValidator().invalidMessagesFor(numero).isEmpty();
 	}
 
     /**
