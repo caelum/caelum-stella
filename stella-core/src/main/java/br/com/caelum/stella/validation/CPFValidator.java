@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -17,181 +18,183 @@ import br.com.caelum.stella.validation.error.CPFError;
  * @author Leonardo Bessa
  */
 public class CPFValidator implements Validator<String> {
-    private final BaseValidator baseValidator;
 
-    private static final int MOD = 11;
+	public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
 
-    private final boolean isFormatted;
+	private boolean isFormatted = false;
+	private boolean isIgnoringRepeatedDigits = false;
+	private MessageProducer messageProducer;
 
-    private final boolean isIgnoringRepeatedDigits;
+	/**
+	 * Construtor padrão de validador de CPF. Este considera, por padrão, que as
+	 * cadeias estão formatadas e utiliza um {@linkplain SimpleMessageProducer}
+	 * para geração de mensagens.
+	 */
+	public CPFValidator() {
+		messageProducer = new SimpleMessageProducer();
+	}
 
-    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
+	/**
+	 * Construtor de validador de CPF. O validador utiliza um
+	 * {@linkplain SimpleMessageProducer} para geração de mensagens. Leva em
+	 * conta se o valor está ou não formatado.
+	 * 
+	 * @param isFormatted
+	 *            considera cadeia no formato de CPF:"ddd.ddd.ddd-dd" onde "d" é
+	 *            um dígito decimal.
+	 */
+	public CPFValidator(boolean isFormatted) {
+		this.isFormatted = isFormatted;
+		this.messageProducer = new SimpleMessageProducer();
+	}
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
+	/**
+	 * Construtor de validador de CPF. O validador utiliza um
+	 * 
+	 * @param isFormatted
+	 *            indica se o CPF está formatado.
+	 * @param isIgnoringRepeatedDigits
+	 *            condição para ignorar cadeias de CPF com todos os dígitos
+	 *            repetidos. {@linkplain SimpleMessageProducer} para geração de
+	 *            mensagens.
+	 */
+	public CPFValidator(boolean isFormatted, boolean isIgnoringRepeatedDigits) {
+		this.isFormatted = isFormatted;
+		this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
+		this.messageProducer = new SimpleMessageProducer();
+	}
 
-    private static final Integer DV1_POSITION = 10;
+	/**
+	 * <p>
+	 * Construtor do Validador de CPF. Leva em consideração se o valor está
+	 * formatado.
+	 * </p>
+	 * <p>
+	 * Por padrão o validador criado não aceita cadeias de CPF com todos os
+	 * dígitos repetidos, quando todas as outras condições de validação são
+	 * aceitas. Para considerar estes documentos válidos use o construtor
+	 * {@link #CPFValidator(MessageProducer, boolean, boolean)} com a váriavel
+	 * {@linkplain #isIgnoringRepeatedDigits} em <code>true</code>.
+	 * </p>
+	 * 
+	 * @param messageProducer
+	 *            produtor de mensagem de erro.
+	 * @param isFormatted
+	 *            considera cadeia no formato de CPF: "ddd.ddd.ddd-dd" onde "d"
+	 *            é um dígito decimal.
+	 */
+	public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
+		this(messageProducer, isFormatted, false);
+	}
 
-    private static final Integer[] DV1_MULTIPLIERS = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+	/**
+	 * @param messageProducer
+	 *            produtor de mensagem de erro.
+	 * @param isFormatted
+	 *            condição para considerar cadeia no formato de CPF:
+	 *            "ddd.ddd.ddd-dd" onde "d" é um dígito decimal.
+	 * @param isIgnoringRepeatedDigits
+	 *            condição para ignorar cadeias de CPF com todos os dígitos
+	 *            repetidos.
+	 */
+	public CPFValidator(MessageProducer messageProducer, boolean isFormatted, boolean isIgnoringRepeatedDigits) {
+		this.messageProducer = messageProducer;
+		this.isFormatted = isFormatted;
+		this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
+	}
 
-    private static final Integer DV2_POSITION = 11;
+	/**
+	 * Valida se a cadeia está de acordo com as regras de um CPF.
+	 * 
+	 * @see br.com.caelum.stella.validation.Validator#assertValid(java.lang.Object)
+	 * @return <code>true</code> se a cadeia é válida ou é nula;
+	 *         <code>false</code> caso contrario.
+	 */
+	private List<ValidationMessage> getInvalidValues(String cpf) {
 
-    private static final Integer[] DV2_MULTIPLIERS = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
 
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV1_MULTIPLIERS,
-            DV1_POSITION);
+		if (cpf != null) {
+			if (isFormatted && !FORMATED.matcher(cpf).matches()) {
+				errors.add(messageProducer.getMessage(CPFError.INVALID_FORMAT));
+			}
 
-    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaComumDeDigitoVerificador() }, MOD, DV2_MULTIPLIERS,
-            DV2_POSITION);
+			String unformatedCPF = null;
+			try {
+				unformatedCPF = new CPFFormatter().unformat(cpf);
+			} catch (IllegalArgumentException e) {
+				errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
+				return errors;
+			}
 
-    private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
+			if (unformatedCPF.length() != 11 || !unformatedCPF.matches("[0-9]*")) {
+				errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
+			}
 
-    private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
+			if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCPF)) {
+				errors.add(messageProducer.getMessage(CPFError.REPEATED_DIGITS));
+			}
 
-    /**
-     * Construtor padrão de validador de CPF. Este considera, por padrão, que as
-     * cadeias estão formatadas e utiliza um {@linkplain SimpleMessageProducer}
-     * para geração de mensagens.
-     */
-    public CPFValidator() {
-        this(true);
-    }
+			String cpfSemDigito = unformatedCPF.substring(0, unformatedCPF.length() - 2);
+			String digitos = unformatedCPF.substring(unformatedCPF.length() - 2);
 
-    /**
-     * Construtor de validador de CPF. O validador utiliza um
-     * {@linkplain SimpleMessageProducer} para geração de mensagens.
-     */
-    public CPFValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
-        this.isIgnoringRepeatedDigits = false;
-    }
-    
-    /**
-     * Construtor de validador de CPF. O validador utiliza um
-     * @param isFormatted indica se o CPF está formatado.
-     *  @param isIgnoringRepeatedDigits
-     *            condição para ignorar cadeias de CPF com todos os dígitos
-     *            repetidos.
-     * {@linkplain SimpleMessageProducer} para geração de mensagens.
-     */
-    public CPFValidator(boolean isFormatted, boolean isIgnoringRepeatedDigits) {
-        this.baseValidator = new BaseValidator();
-        this.isFormatted = isFormatted;
-        this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
-    }
+			String digitosCalculados = calculaDigitos(cpfSemDigito);
 
-    /**
-     * <p>
-     * Construtor do Validador de CPF.
-     * </p>
-     * <p>
-     * Por padrão o validador criado não aceita cadeias de CPF com todos os dígitos
-     * repetidos, quando todas as outras condições de validação são aceitas.
-     * Para considerar estes documentos válidos use o construtor
-     * {@link #CPFValidator(MessageProducer, boolean, boolean)} com a váriavel
-     * {@linkplain #isIgnoringRepeatedDigits} em <code>true</code>.
-     * </p>
-     * 
-     * @param messageProducer
-     *            produtor de mensagem de erro.
-     * @param isFormatted
-     *            considera cadeia no formato de CPF: "ddd.ddd.ddd-dd" onde "d"
-     *            é um dígito decimal.
-     */
-    public CPFValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this(messageProducer, isFormatted, false);
-    }
+			if (!digitos.equals(digitosCalculados)) {
+				errors.add(messageProducer.getMessage(CPFError.INVALID_CHECK_DIGITS));
+			}
+		}
+		return errors;
+	}
 
-    /**
-     * @param messageProducer
-     *            produtor de mensagem de erro.
-     * @param isFormatted
-     *            condição para considerar cadeia no formato de CPF:
-     *            "ddd.ddd.ddd-dd" onde "d" é um dígito decimal.
-     * @param isIgnoringRepeatedDigits
-     *            condição para ignorar cadeias de CPF com todos os dígitos
-     *            repetidos.
-     */
-    public CPFValidator(MessageProducer messageProducer, boolean isFormatted, boolean isIgnoringRepeatedDigits) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = isFormatted;
-        this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
-    }
+	/**
+	 * Faz o cálculo dos digitos usando a lógica de CPF
+	 * 
+	 * @return String os dois dígitos calculados.
+	 */
+	private String calculaDigitos(String cpfSemDigito) {
+		DigitoPara digitoPara = new DigitoPara(cpfSemDigito);
+    	digitoPara.comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
 
-    /**
-     * Valida se a cadeia está de acordo com as regras de um CPF.
-     * 
-     * @see br.com.caelum.stella.validation.Validator#assertValid(java.lang.Object)
-     * @return <code>true</code> se a cadeia é válida ou é nula;
-     *         <code>false</code> caso contrario.
-     */
-    private List<InvalidValue> getInvalidValues(String cpf) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        if (cpf != null) {
+		String digito1 = digitoPara.calcula();
+		digitoPara.addDigito(digito1);
+		String digito2 = digitoPara.calcula();
+		
+		return digito1 + digito2;
+	}
 
-            if (!isEligible(cpf)) {
-                if (isFormatted) {
-                    errors.add(CPFError.INVALID_FORMAT);
-                } else {
-                    errors.add(CPFError.INVALID_DIGITS);
-                }
-            } else {
-                String unformatedCPF;
-                if (isFormatted) {
-                    CPFFormatter formatter = new CPFFormatter();
-                    unformatedCPF = formatter.unformat(cpf);
-                } else {
-                    unformatedCPF = cpf;
-                }
-                if (errors.isEmpty()) {
-                    if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCPF)) {
-                        errors.add(CPFError.REPEATED_DIGITS);
-                    }
-                }
-                if (errors.isEmpty()) {
-                    if (!hasValidCheckDigits(unformatedCPF)) {
-                        errors.add(CPFError.INVALID_CHECK_DIGITS);
-                    }
-                }
-            }
-        }
-        return errors;
-    }
+	private boolean hasAllRepeatedDigits(String cpf) {
+		for (int i = 1; i < cpf.length(); i++) {
+			if (cpf.charAt(i) != cpf.charAt(0)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.isDVValid(value)) && (DV2_CHECKER.isDVValid(value));
-    }
-
-    private boolean hasAllRepeatedDigits(String cpf) {
-        for (int i = 1; i < cpf.length(); i++) {
-            if (cpf.charAt(i) != cpf.charAt(0)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
+	@Override
 	public boolean isEligible(String value) {
-        boolean result;
-        if (isFormatted) {
-            result = FORMATED.matcher(value).matches();
-        } else {
-            result = UNFORMATED.matcher(value).matches();
-        }
-        return result;
-    }
+		boolean result;
+		if (isFormatted) {
+			result = FORMATED.matcher(value).matches();
+		} else {
+			result = UNFORMATED.matcher(value).matches();
+		}
+		return result;
+	}
 
-    @Override
+	@Override
 	public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
-    }
+		List<ValidationMessage> errors = getInvalidValues(cpf);
+		if (!errors.isEmpty()) {
+			throw new InvalidStateException(errors);
+		}
+	}
 
-    @Override
+	@Override
 	public List<ValidationMessage> invalidMessagesFor(String cpf) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
-    }
+		return getInvalidValues(cpf);
+	}
 
 }

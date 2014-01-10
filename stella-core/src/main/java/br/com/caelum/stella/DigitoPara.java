@@ -3,6 +3,7 @@ package br.com.caelum.stella;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,11 +33,12 @@ import java.util.List;
  */
 public class DigitoPara {
 
-	private List<Integer> numero;
+	private LinkedList<Integer> numero;
 	private List<Integer> multiplicadores = new ArrayList<Integer>();
 	private boolean complementar;
 	private List<Integer> aSubstituir;
 	private String substituto;
+	private int modulo;
 
 	/**
 	 * Cria o objeto a ser preenchido com interface fluente e armazena o trecho numérico
@@ -48,7 +50,7 @@ public class DigitoPara {
 	public DigitoPara(String trecho) {
 		comMultiplicadoresDeAte(2, 9);
 		this.aSubstituir = Collections.emptyList();
-		this.numero = new ArrayList<Integer>();
+		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
 		for (char digito : digitos) {
 			this.numero.add(Character.getNumericValue(digito));
@@ -58,7 +60,7 @@ public class DigitoPara {
 
 	/**
 	 * Para multiplicadores (ou pesos) sequenciais e em ordem crescente, esse método permite 
-	 * criar a lista de multiplicadores que será usada cíclicamente, caso o número base seja
+	 * criar a lista de multiplicadores que será usada ciclicamente, caso o número base seja
 	 * maior do que a sequência de multiplicadores. Por padrão os multiplicadores são iniciados
 	 * de 2 a 9. No momento em que você inserir outro valor este default será sobrescrito.
 	 * 
@@ -104,13 +106,21 @@ public class DigitoPara {
 	}
 
 	/**
+	 * @param modulo Inteiro pelo qual o resto será tirado e também seu complementar.
+	 * 			O valor padrão é 11.
+	 */
+	public DigitoPara mod(int modulo) {
+		this.modulo = modulo;
+		return this;
+	}
+	
+	/**
 	 * Faz a soma geral das multiplicações dos algarismos pelos multiplicadores, tira o 
 	 * módulo e devolve seu complementar.
 	 * 
-	 * @param modulo Inteiro pelo qual o resto será tirado e também seu complementar
 	 * @return String o dígito vindo do módulo com o número passado e configurações extra.
 	 */
-	public String mod(int modulo) {
+	public String calcula() {
 		int soma = 0;
 		int multiplicadorDaVez = 0;
 		for (int algarismo : numero) {
@@ -135,5 +145,14 @@ public class DigitoPara {
 		if (multiplicadorDaVez == multiplicadores.size())
 			multiplicadorDaVez = 0;
 		return multiplicadorDaVez;
+	}
+
+	/**
+	 * Adiciona um dígito no final do trecho numérico.
+	 *  
+	 * @param digito É o dígito a ser adicionado.
+	 */
+	public void addDigito(String digito) {
+		this.numero.addFirst(Integer.valueOf(digito));
 	}
 }
