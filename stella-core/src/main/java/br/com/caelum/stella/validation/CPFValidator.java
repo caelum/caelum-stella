@@ -139,18 +139,13 @@ public class CPFValidator implements Validator<String> {
 			String cpfSemDigito = unformatedCPF.substring(0, unformatedCPF.length() - 2);
 			String digitos = unformatedCPF.substring(unformatedCPF.length() - 2);
 
-			String digito1 = obtemDigito(cpfSemDigito);
-			String digito2 = new DigitoPara(cpfSemDigito + digito1).comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+			String digitosCalculados = new DigitoPara(cpfSemDigito).cpf();
 
-			if (!digitos.equals(digito1.concat(digito2))) {
+			if (!digitos.equals(digitosCalculados)) {
 				errors.add(messageProducer.getMessage(CPFError.INVALID_CHECK_DIGITS));
 			}
 		}
 		return errors;
-	}
-
-	private String obtemDigito(String cpfSemDigito) {
-		return new DigitoPara(cpfSemDigito).comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
 	}
 
 	private boolean hasAllRepeatedDigits(String cpf) {

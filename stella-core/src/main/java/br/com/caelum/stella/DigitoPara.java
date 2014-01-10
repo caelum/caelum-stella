@@ -3,6 +3,7 @@ package br.com.caelum.stella;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,11 +33,12 @@ import java.util.List;
  */
 public class DigitoPara {
 
-	private List<Integer> numero;
+	private LinkedList<Integer> numero;
 	private List<Integer> multiplicadores = new ArrayList<Integer>();
 	private boolean complementar;
 	private List<Integer> aSubstituir;
 	private String substituto;
+	private int modulo;
 
 	/**
 	 * Cria o objeto a ser preenchido com interface fluente e armazena o trecho numérico
@@ -48,7 +50,7 @@ public class DigitoPara {
 	public DigitoPara(String trecho) {
 		comMultiplicadoresDeAte(2, 9);
 		this.aSubstituir = Collections.emptyList();
-		this.numero = new ArrayList<Integer>();
+		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
 		for (char digito : digitos) {
 			this.numero.add(Character.getNumericValue(digito));
@@ -104,13 +106,21 @@ public class DigitoPara {
 	}
 
 	/**
+	 * @param modulo Inteiro pelo qual o resto será tirado e também seu complementar.
+	 * 			O valor padrão é 11.
+	 */
+	public DigitoPara mod(int modulo) {
+		this.modulo = modulo;
+		return this;
+	}
+
+	/**
 	 * Faz a soma geral das multiplicações dos algarismos pelos multiplicadores, tira o 
 	 * módulo e devolve seu complementar.
 	 * 
-	 * @param modulo Inteiro pelo qual o resto será tirado e também seu complementar
 	 * @return String o dígito vindo do módulo com o número passado e configurações extra.
 	 */
-	public String mod(int modulo) {
+	public String calcula() {
 		int soma = 0;
 		int multiplicadorDaVez = 0;
 		for (int algarismo : numero) {
@@ -135,5 +145,20 @@ public class DigitoPara {
 		if (multiplicadorDaVez == multiplicadores.size())
 			multiplicadorDaVez = 0;
 		return multiplicadorDaVez;
+	}
+
+	/**
+	 * Faz o cálculo dos digitos usando a lógica de CPF
+	 * 
+	 * @return String com os dois dígitos calculados.
+	 */
+	public String cpf() {
+		comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
+
+		String digito1 = calcula();
+		this.numero.addFirst(Integer.valueOf(digito1));
+		String digito2 = calcula();
+		
+		return digito1 + digito2;
 	}
 }
