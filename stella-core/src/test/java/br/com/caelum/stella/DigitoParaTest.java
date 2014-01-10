@@ -45,15 +45,4 @@ public class DigitoParaTest {
 		Assert.assertEquals("X", new DigitoPara("42105900").comMultiplicadoresDeAte(2,9).trocandoPorSeEncontrar("X", 10).mod(11).calcula());
 	}
 	
-	@Test
-	public void geracaoDeDigitoParaCPF(){
-		Assert.assertEquals("35", new DigitoPara("111444777").cpf());
-		Assert.assertEquals("04", new DigitoPara("367486656").cpf());
-	}
-	
-	@Test
-	public void geracaoDeDigitoParaCNPJ(){
-		Assert.assertEquals("81", new DigitoPara("112223330001").cnpj());
-		Assert.assertEquals("50", new DigitoPara("615191280001").cnpj());
-	}
 }
