@@ -26,7 +26,15 @@ public class CNPJTest {
 	public void shouldAcceptInvalidCNPJ() throws Exception {
     	CNPJ cnpj = new CNPJ("12.345.678/9012-34");
 		assertEquals("12345678901234", cnpj.getNumero());
-		assertEquals("12.345.678/9012-34", cnpj.getNumeroFormatado());
+
+		cnpj = new CNPJ("12.3w5.678/9012-34");
+		assertEquals("12.3w5.678/9012-34", cnpj.getNumero());
+
+		cnpj = new CNPJ("12.3453.678/9012-34");
+		assertEquals("12.3453.678/9012-34", cnpj.getNumero());
+    	
+		cnpj = new CNPJ("12.345.8/9012-34");
+		assertEquals("12.345.8/9012-34", cnpj.getNumero());
 	}
     
     @Test

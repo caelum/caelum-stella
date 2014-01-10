@@ -17,7 +17,13 @@ public final class CPF {
      * @param número do CPF.
      */
     public CPF(String numero) {
-        this.numero = new CPFFormatter().unformat(numero);
+    	String numeroCpf;
+    	try {
+    		numeroCpf = new CPFFormatter().unformat(numero);
+		} catch (IllegalArgumentException e) {
+			numeroCpf = numero;
+		}
+    	this.numero = numeroCpf;
     }
 
     /**
