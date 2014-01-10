@@ -113,7 +113,7 @@ public class DigitoPara {
 		this.modulo = modulo;
 		return this;
 	}
-
+	
 	/**
 	 * Faz a soma geral das multiplicações dos algarismos pelos multiplicadores, tira o 
 	 * módulo e devolve seu complementar.
@@ -148,32 +148,11 @@ public class DigitoPara {
 	}
 
 	/**
-	 * Faz o cálculo dos digitos usando a lógica de CPF
-	 * 
-	 * @return String os dois dígitos calculados.
+	 * Adiciona um dígito no final do trecho numérico.
+	 *  
+	 * @param digito É o dígito a ser adicionado.
 	 */
-	public String cpf() {
-		comMultiplicadoresDeAte(2, 11).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
-
-		String digito1 = calcula();
-		this.numero.addFirst(Integer.valueOf(digito1));
-		String digito2 = calcula();
-		
-		return digito1 + digito2;
-	}
-
-	/**
-	 * Faz o cálculo dos digitos usando a lógica de CNPJ
-	 * 
-	 * @return String os dois dígitos calculados.
-	 */
-	public String cnpj() {
-		complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11);
-		
-		String digito1 = calcula();
-		this.numero.addFirst(Integer.valueOf(digito1));
-		String digito2 = calcula();
-		
-		return digito1 + digito2;
+	public void addDigito(String digito) {
+		this.numero.addFirst(Integer.valueOf(digito));
 	}
 }
