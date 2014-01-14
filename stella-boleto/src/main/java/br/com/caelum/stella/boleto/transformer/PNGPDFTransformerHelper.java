@@ -183,17 +183,17 @@ class PNGPDFTransformerHelper {
 	}
 	
 	private void imprimeUnidadeCedente(Boleto boleto) {
-		final float LINHA10 = 132;
-		final float LINHA_ENDERECO = 122;
+		final float LINHA10 = 139;
+		final float LINHA_ENDERECO = 127;
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 		this.writer.write(5, LINHA_ENDERECO, nullToEmpty(boleto.getEmissor().getEndereco()));
 	}
 
 	private void imprimeDadosDoSacado(Boleto boleto) {
-		final float LINHA11 = 97;
-		final float LINHA12 = 87;
-		final float LINHA13 = 77;
+		final float LINHA11 = 107;
+		final float LINHA12 = 97;
+		final float LINHA13 = 87;
 
 		this.writer.write(50, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "")
 				+ " " + (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));
