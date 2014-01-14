@@ -213,9 +213,7 @@ TD {
 	<tr>
 		<td vAlign="top" colSpan="6" rowSpan="5"><b>Instrucoes</b><br>
 			#foreach ($inst in $boleto.instrucoes)
-				#if ((! ${inst}) && (!"${inst}" == ""))
-				 ${inst}<br>			
-				#end
+				${inst}<br>
 			#end
 		<font class=campo>
 		
