@@ -49,6 +49,7 @@ class PNGPDFTransformerHelper {
 		imprimeDadosDoDocumento(boleto);
 		imprimeDadosDoBoletoInclusiveValor(boleto);
 		imprimeInstrucoesDePagamento(boleto);
+		imprimeValoresBoleto(boleto);
 		imprimeUnidadeCedente(boleto);
 		imprimeDadosDoSacado(boleto);
 
@@ -164,6 +165,21 @@ class PNGPDFTransformerHelper {
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
 			this.writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
 		}
+	}
+	
+	private void imprimeValoresBoleto(Boleto boleto) {
+		final float LINHA_DESCONTO = 207;
+		int COLUNA = 430;
+		this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
+		
+		final float LINHA_DEDUCOES = 185;
+		this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
+		final float LINHA_MULTA = 164;
+		this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
+		final float LINHA_ACRESCIMOS = 143;
+		this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
+		final float LINHA_VALOR_COBRADO = 121;
+		this.writer.write(COLUNA, LINHA_VALOR_COBRADO, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
 	}
 	
 	private void imprimeUnidadeCedente(Boleto boleto) {
