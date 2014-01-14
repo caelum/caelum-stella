@@ -32,12 +32,16 @@ import com.itextpdf.text.pdf.BaseFont;
 public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 
 	private static final int NORMAL_SIZE = 36;
+	
+	private static final int SMALL_SIZE = 28;
 
 	private static final int BIG_SIZE = 45;
 
 	private final Font fonteSimples;
 
 	private final Font fonteBold;
+	
+	private final Font fontePequena;
 
 	private final BufferedImage PNGimage;
 
@@ -46,6 +50,7 @@ public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 	private final Graphics2D graphics;
 
 	private final PNGPDFTransformerHelper writerHelper;
+
 
 	public PNGBoletoWriter() {
 		this(2144f, 1900);
@@ -67,6 +72,8 @@ public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 		fonteBold = new Font(BaseFont.HELVETICA_BOLD, Font.BOLD, BIG_SIZE);
 
 		fonteSimples = new Font(BaseFont.HELVETICA, Font.PLAIN, NORMAL_SIZE);
+		
+		fontePequena = new Font(BaseFont.HELVETICA, Font.PLAIN, SMALL_SIZE);
 
 		writerHelper = new PNGPDFTransformerHelper(this);
 	}
@@ -89,6 +96,13 @@ public class PNGBoletoWriter implements BoletoWriter, TextWriter {
 	public void write(final float x, final float y, final String text) {
 		checkIfDocIsClosed();
 		graphics.setFont(fonteSimples);
+		graphics.drawString(text, scaleX(x), scaleY(y));
+	}
+	
+	@Override
+	public void writeSmall(final float x, final float y, final String text) {
+		checkIfDocIsClosed();
+		graphics.setFont(fontePequena);
 		graphics.drawString(text, scaleX(x), scaleY(y));
 	}
 

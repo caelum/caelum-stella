@@ -163,7 +163,7 @@ class PNGPDFTransformerHelper {
 		final float LINHA9 = 205;
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-			this.writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
+			this.writer.writeSmall(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
 		}
 	}
 	

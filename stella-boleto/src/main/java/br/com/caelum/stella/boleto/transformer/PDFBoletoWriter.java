@@ -30,6 +30,8 @@ public class PDFBoletoWriter implements BoletoWriter, TextWriter {
 
 	private static final int NORMAL_SIZE = 8;
 
+	private static final int SMALL_SIZE = 7;
+
 	private static final int BIG_SIZE = 10;
 
 	private InputStream stream;
@@ -94,6 +96,12 @@ public class PDFBoletoWriter implements BoletoWriter, TextWriter {
 	public void writeBold(final float x, final float y, final String text) {
 		write(x, y, text, fonteBold, BIG_SIZE * scale);
 	}
+	
+	@Override
+	public void writeSmall(final float x, final float y, final String text) {
+		write(x, y, text, fonteSimples, SMALL_SIZE * scale);
+	}
+	
 
 	private void write(final float x, final float y, final String text, final BaseFont font, final int size) {
 		checkIfDocIsClosed();

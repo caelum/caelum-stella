@@ -42,4 +42,13 @@ public interface TextWriter {
 	 */
 	void writeImage(float x, float y, BufferedImage image, float width, float height) throws IOException;
 
+	
+	/**
+	 * Escreve um texto na posição x, y com fonte pequena (VERDANA , 6)
+	 * @param x
+	 * @param y
+	 * @param text
+	 */
+	void writeSmall(float x, float y, String text);
+
 }
