@@ -168,17 +168,17 @@ class PNGPDFTransformerHelper {
 	}
 	
 	private void imprimeValoresBoleto(Boleto boleto) {
-		final float LINHA_DESCONTO = 207;
 		int COLUNA = 430;
-		this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
-		
+		final float LINHA_DESCONTO = 207;
 		final float LINHA_DEDUCOES = 185;
-		this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
 		final float LINHA_MULTA = 164;
-		this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
 		final float LINHA_ACRESCIMOS = 143;
-		this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
 		final float LINHA_VALOR_COBRADO = 121;
+		
+		this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
+		this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
+		this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
+		this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
 		this.writer.write(COLUNA, LINHA_VALOR_COBRADO, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
 	}
 	
