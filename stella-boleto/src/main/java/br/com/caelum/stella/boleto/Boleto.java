@@ -390,40 +390,45 @@ public class Boleto implements Serializable {
 		return valorDescontos;
 	}
 
-	public void comValorDescontos(BigDecimal valorDescontos) {
-		this.valorDescontos = valorDescontos;
+	public Boleto comValorDescontos(String valorDescontos) {
+		this.valorDescontos = new BigDecimal(valorDescontos);
+		return this;
 	}
 
-	public BigDecimal comValorDeducoes() {
+	public BigDecimal getValorDeducoes() {
 		return valorDeducoes;
 	}
 
-	public void comValorDeducoes(BigDecimal valorDeducoes) {
-		this.valorDeducoes = valorDeducoes;
+	public Boleto comValorDeducoes(String valorDeducoes) {
+		this.valorDeducoes = new BigDecimal(valorDeducoes);
+		return this;
 	}
 
-	public BigDecimal comValorMulta() {
+	public BigDecimal getValorMulta() {
 		return valorMulta;
 	}
 
-	public void comValorMulta(BigDecimal valorMulta) {
-		this.valorMulta = valorMulta;
+	public Boleto comValorMulta(String valorMulta) {
+		this.valorMulta = new BigDecimal(valorMulta);
+		return this;
 	}
 
-	public BigDecimal comValorAcrescimos() {
+	public BigDecimal getValorAcrescimos() {
 		return valorAcrescimos;
 	}
 
-	public void comValorAcrescimos(BigDecimal valorAcrescimos) {
-		this.valorAcrescimos = valorAcrescimos;
+	public Boleto comValorAcrescimos(String valorAcrescimos) {
+		this.valorAcrescimos = new BigDecimal(valorAcrescimos);
+		return this;
 	}
 
-	public BigDecimal comValorCobrado() {
+	public BigDecimal getValorCobrado() {
 		return valorCobrado;
 	}
 
-	public void comValorCobrado(BigDecimal valorCobrado) {
-		this.valorCobrado = valorCobrado;
+	public Boleto comValorCobrado(String valorCobrado) {
+		this.valorCobrado = new BigDecimal(valorCobrado);
+		return this;
 	}
 
 }
