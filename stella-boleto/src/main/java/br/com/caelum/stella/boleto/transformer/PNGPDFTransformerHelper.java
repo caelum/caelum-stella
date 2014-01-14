@@ -22,9 +22,6 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 class PNGPDFTransformerHelper {
 	/* Ainda precisa de um nome melhor!! */
-	public static final float IMAGEM_BOLETO_WIDTH = 2144;
-	public static final float IMAGEM_BOLETO_HEIGHT = 1604;
-	public static final double BOLETO_TEMPLATE_SCALE = 1 / 2d;
 
 	private TextWriter writer;
 	private URL imagemTitulo;
