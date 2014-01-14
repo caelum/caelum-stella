@@ -23,6 +23,11 @@ public class Boleto implements Serializable {
 	private BigDecimal valorBoleto;
 	private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
+	private BigDecimal valorDescontos;
+	private BigDecimal valorDeducoes;
+	private BigDecimal valorMulta;
+	private BigDecimal valorAcrescimos;
+	private BigDecimal valorCobrado;
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
 	private String especieDocumento;
@@ -380,4 +385,45 @@ public class Boleto implements Serializable {
 	public String getNossoNumeroECodDocumento() {
 		return banco.getNossoNumeroECodDocumento(this.emissor);
 	}
+
+	public BigDecimal getValorDescontos() {
+		return valorDescontos;
+	}
+
+	public void comValorDescontos(BigDecimal valorDescontos) {
+		this.valorDescontos = valorDescontos;
+	}
+
+	public BigDecimal comValorDeducoes() {
+		return valorDeducoes;
+	}
+
+	public void comValorDeducoes(BigDecimal valorDeducoes) {
+		this.valorDeducoes = valorDeducoes;
+	}
+
+	public BigDecimal comValorMulta() {
+		return valorMulta;
+	}
+
+	public void comValorMulta(BigDecimal valorMulta) {
+		this.valorMulta = valorMulta;
+	}
+
+	public BigDecimal comValorAcrescimos() {
+		return valorAcrescimos;
+	}
+
+	public void comValorAcrescimos(BigDecimal valorAcrescimos) {
+		this.valorAcrescimos = valorAcrescimos;
+	}
+
+	public BigDecimal comValorCobrado() {
+		return valorCobrado;
+	}
+
+	public void comValorCobrado(BigDecimal valorCobrado) {
+		this.valorCobrado = valorCobrado;
+	}
+
 }
