@@ -175,11 +175,25 @@ class PNGPDFTransformerHelper {
 		final float LINHA_ACRESCIMOS = 143;
 		final float LINHA_VALOR_COBRADO = 121;
 		
-		this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
-		this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
-		this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
-		this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
-		this.writer.write(COLUNA, LINHA_VALOR_COBRADO, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
+		if(boleto.getValorDescontos() != null){
+			this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
+		}
+		
+		if(boleto.getValorDeducoes() != null){
+			this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
+		}
+		
+		if(boleto.getValorMulta() != null){
+			this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
+		}
+		
+		if(boleto.getValorAcrescimos() != null){
+			this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
+		}
+		
+		if(boleto.getValorCobrado() != null){
+			this.writer.write(COLUNA, LINHA_VALOR_COBRADO, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
+		}
 	}
 	
 	private void imprimeUnidadeCedente(Boleto boleto) {
