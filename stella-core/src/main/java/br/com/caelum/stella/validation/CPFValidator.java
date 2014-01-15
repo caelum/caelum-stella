@@ -28,7 +28,7 @@ public class CPFValidator implements Validator<String> {
 
 	/**
 	 * Construtor padrão de validador de CPF. Este considera, por padrão, que as
-	 * cadeias estão formatadas e utiliza um {@linkplain SimpleMessageProducer}
+	 * cadeias não estão formatadas e utiliza um {@linkplain SimpleMessageProducer}
 	 * para geração de mensagens.
 	 */
 	public CPFValidator() {

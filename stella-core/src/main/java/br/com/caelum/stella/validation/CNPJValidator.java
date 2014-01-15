@@ -23,9 +23,9 @@ public class CNPJValidator implements Validator<String> {
 	
     private boolean isFormatted = false;
 	private MessageProducer messageProducer;
-    
+
     /**
-     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * Este considera, por padrão, que as cadeias não estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public CNPJValidator() {
