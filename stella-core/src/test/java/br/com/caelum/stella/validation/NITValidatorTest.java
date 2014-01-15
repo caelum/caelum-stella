@@ -58,24 +58,10 @@ public class NITValidatorTest {
     }
 
     @Test
-    public void shouldNotValidateNITWithCheckDigitsWithFirstCheckDigitWrong() {
+    public void shouldNotValidateNITCheckDigitsWithCheckDigitWrong() {
         NITValidator validator = new NITValidator();
         // VALID NIT = 24.84380.348-0
         String value = "24843803470";
-        try {
-            validator.assertValid(value);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-            assertMessage(e, INVALID_CHECK_DIGITS);
-        }
-    }
-
-    @Test
-    public void shouldNotValidateNITWithCheckDigitsWithSecondCheckDigitWrong() {
-        NITValidator validator = new NITValidator();
-        // VALID NIT = 099.075.865-60
-        String value = "09907586561";
         try {
             validator.assertValid(value);
             fail();
