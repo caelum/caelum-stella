@@ -113,7 +113,8 @@ TD {
 		&nbsp;</TD>
 
 		<td vAlign="top">(=) Valor Cobrado<br>
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorCobrado}</DIV>
+		</TD>
 	</tr>
 	<tr>
 		<td height=70 vAlign="top" colSpan="5"><font class=campo></font></TD>

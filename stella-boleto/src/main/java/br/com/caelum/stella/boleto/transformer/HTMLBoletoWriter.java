@@ -217,8 +217,8 @@ public class HTMLBoletoWriter implements BoletoWriter {
 			return boleto.getSacado();
 		}
 
-		public BigDecimal getValorBoleto() {
-			return boleto.getValorBoleto();
+		public String getValorBoleto() {
+			return getOrEmpty(boleto.getValorBoleto());
 		}
 
 		public String getValorFormatado() {

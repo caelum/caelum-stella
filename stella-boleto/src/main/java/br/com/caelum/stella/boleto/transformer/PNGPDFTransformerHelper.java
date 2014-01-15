@@ -112,7 +112,12 @@ class PNGPDFTransformerHelper {
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 		this.writer.write(290, LINHA2, formatDate(boleto.getDatas().getVencimento()));
-		this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
+		
+		if(boleto.getValorCobrado() != null){
+			this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
+		}else{
+			this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
+		}
 		
 		this.writer.write(5, LINHA3, boleto.getAgenciaECodigoCedente());
 		this.writer.write(146, LINHA3, boleto.getNossoNumeroECodDocumento());
