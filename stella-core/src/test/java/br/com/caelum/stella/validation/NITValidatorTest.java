@@ -16,7 +16,7 @@ public class NITValidatorTest {
 	
     @Test
     public void shouldNotValidateNITWithInvalidCharacter() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         String value = "1111111a111";
         try {
             validator.assertValid(value);
@@ -33,7 +33,7 @@ public class NITValidatorTest {
 
 	@Test
     public void shouldNotValidateNITWithLessDigitsThanAllowed() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         String value = "1234567890";
         try {
             validator.assertValid(value);
@@ -46,7 +46,7 @@ public class NITValidatorTest {
 
     @Test
     public void shouldNotValidateNITWithMoreDigitsThanAlowed() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         String value = "123456789012";
         try {
             validator.assertValid(value);
@@ -59,7 +59,7 @@ public class NITValidatorTest {
 
     @Test
     public void shouldNotValidateNITWithCheckDigitsWithFirstCheckDigitWrong() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         // VALID NIT = 24.84380.348-0
         String value = "24843803470";
         try {
@@ -73,7 +73,7 @@ public class NITValidatorTest {
 
     @Test
     public void shouldNotValidateNITWithCheckDigitsWithSecondCheckDigitWrong() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         // VALID NIT = 099.075.865-60
         String value = "09907586561";
         try {
@@ -87,7 +87,7 @@ public class NITValidatorTest {
 
     @Test
     public void shouldValidateValidNIT() {
-		NITValidator validator = new NITValidator(false);
+		NITValidator validator = new NITValidator();
 
 		validator.assertValid("12345678919");
 		validator.assertValid("34608514300");
@@ -96,7 +96,7 @@ public class NITValidatorTest {
 
     @Test
     public void shouldValidateNullNIT() {
-        NITValidator validator = new NITValidator(false);
+        NITValidator validator = new NITValidator();
         String value = null;
         validator.assertValid(value);
     }
@@ -113,7 +113,7 @@ public class NITValidatorTest {
     public void shouldNotValidateValidUnformattedNIT() {
         NITValidator validator = new NITValidator(true);
         // VALID NIT = 12.34567.891-9
-        String value = "12.34a67.891-9";
+        String value = "12345678919";
         try {
             validator.assertValid(value);
             fail();
