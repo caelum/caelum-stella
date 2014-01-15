@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -74,61 +75,30 @@ import br.com.caelum.stella.validation.error.TituloEleitoralError;
  */
 public class TituloEleitoralValidator implements Validator<String> {
 
-    private final BaseValidator baseValidator;
-    
-    private final boolean isFormatted;
-
-    private static final int MOD = 11;
-
-    private static final int DV1_POSITION = 11;
-
-    private static final int DV2_POSITION = 12;
-
-    private static final Integer[] DV1_MULTIPLIERS = { 9, 8, 7, 6, 5, 4, 3, 2 };
-
-    private static final Integer[] DV2_MULTIPLIERS = { 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2 };
-
     public static final Pattern FORMATED = Pattern.compile("(\\d{10})/(\\d{2})");
-
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})(\\d{2})");
+    
+    private boolean isFormatted = false;
+    private MessageProducer messageProducer;
 
-    private enum Rotina implements RotinaDeDigitoVerificador {
-        POS_PRODUTO_INTERNO {
-            public Integer transform(RotinaParameters parameter) {
-                Integer mod = parameter.getDigitoVerificadorInfo().getMod();
-                Integer result = parameter.getResult() % mod;
-                if (result < 2) {
-                    result = 0;
-                } else {
-                    result = 11 - result;
-                }
-                return result;
-            }
-        }
+    
+    /**
+     * Construtor do TituloEleitoralValidator. Considera por padrão que as cadeias não estão formatadas.
+     * Utiliza um {@linkplain SimpleMessageProducer} para geração de mensagens.
+     */
+    public TituloEleitoralValidator(){
+    	this.messageProducer = new SimpleMessageProducer();
     }
 
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
-
-    private static final DigitoVerificadorInfo DV2_INFO = new DigitoVerificadorInfo(0,
-            new Rotina[] { Rotina.POS_PRODUTO_INTERNO }, MOD, DV2_MULTIPLIERS, DV2_POSITION);
-
-    private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
-
-    private static final ValidadorDeDV DV2_CHECKER = new ValidadorDeDV(DV2_INFO);
-
     /**
+     * Considera se cadeias não estão formatadas ou não.
      * Utiliza um {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public TituloEleitoralValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
+    	this.messageProducer = new SimpleMessageProducer();
         this.isFormatted = isFormatted;
     }
-    public TituloEleitoralValidator(){
-    	this(false);
-    }
-
- 
+    
     /**
      * <p>
      * Construtor do Validador de Titulo de Eleitor.
@@ -138,81 +108,91 @@ public class TituloEleitoralValidator implements Validator<String> {
      *            produtor de mensagem de erro.
      */
     public TituloEleitoralValidator(MessageProducer messageProducer,boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
+    	this.messageProducer = messageProducer;
         this.isFormatted = isFormatted;
     }
     
     public TituloEleitoralValidator(MessageProducer messageProducer) {
-        this.baseValidator = new BaseValidator(messageProducer);
-        this.isFormatted = false;
+    	this.messageProducer = messageProducer;
     }
     
 
-    private List<InvalidValue> getInvalidValues(String tituloDeEleitor) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        errors.clear();
+    private List<ValidationMessage> getInvalidValues(String tituloDeEleitor) {
+        List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
         if (tituloDeEleitor != null) { 
         	
-        	if (!isEligible(tituloDeEleitor)) {
-                 if (isFormatted) {
-                     errors.add(TituloEleitoralError.INVALID_FORMAT);
-                 } else {
-                     errors.add(TituloEleitoralError.INVALID_DIGITS);
-                 }
-        	}
-        	
-            else {
-                String unformated;
-                if(isFormatted){
-                	 TituloEleitoralFormatter formatter = new TituloEleitoralFormatter();
-                     unformated = formatter.unformat(tituloDeEleitor);
-                }
-                else {
-                    unformated = tituloDeEleitor;
-                }
-                if (!hasValidCheckDigits(unformated)) {
-                    errors.add(TituloEleitoralError.INVALID_CHECK_DIGITS);
-                }
-                if (hasCodigoDeEstadoInvalido(tituloDeEleitor)) {
-                    errors.add(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO);
-                }
-            }
+			if (isFormatted && !FORMATED.matcher(tituloDeEleitor).matches()) {
+				errors.add(messageProducer.getMessage(TituloEleitoralError.INVALID_FORMAT));
+			}
+
+			String unformatedTitulo = null;
+			try {
+				unformatedTitulo = new TituloEleitoralFormatter().unformat(tituloDeEleitor);
+			} catch (IllegalArgumentException e) {
+				errors.add(messageProducer.getMessage(TituloEleitoralError.INVALID_DIGITS));
+				return errors;
+			}
+
+			if (unformatedTitulo.length() != 12 || !unformatedTitulo.matches("[0-9]*")) {
+				errors.add(messageProducer.getMessage(TituloEleitoralError.INVALID_DIGITS));
+			}
+			
+			if (hasCodigoDeEstadoInvalido(unformatedTitulo)) {
+				errors.add(messageProducer.getMessage(TituloEleitoralError.INVALID_CODIGO_DE_ESTADO));
+			} else {
+				
+				String tituloSemDigito = unformatedTitulo.substring(0, unformatedTitulo.length() - 2);
+				String digitos = unformatedTitulo.substring(unformatedTitulo.length() - 2);
+				
+				String digitosCalculados = calculaDigitos(tituloSemDigito);
+				
+				if (!digitos.equals(digitosCalculados)) {
+					errors.add(messageProducer.getMessage(TituloEleitoralError.INVALID_CHECK_DIGITS));
+				}
+				
+			}
+
+			
         }
         return errors;
     }
 
-    private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
-        final int length = tituloDeEleitor.length();
-        int codigo;
-        if(isFormatted){
-        	codigo = Integer.parseInt(tituloDeEleitor.substring(length - 5, length - 3));
-        }
-        else{
-        	codigo= Integer.parseInt(tituloDeEleitor.substring(length - 4, length - 2));
-        }
+    private String calculaDigitos(String tituloSemDigito) {
+    	int length = tituloSemDigito.length();
+
+    	String sequencial = tituloSemDigito.substring(0,length - 2);
+		String digito1 = new DigitoPara(sequencial).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
+    	
+		String codigoEstado = tituloSemDigito.substring(length - 2, length);
+		String digito2 = new DigitoPara(codigoEstado + digito1).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
+
+		return digito1 + digito2;
+	}
+
+	private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
+        int codigo= Integer.parseInt(tituloDeEleitor.substring(tituloDeEleitor.length() - 4, tituloDeEleitor.length() - 2));
         return !(codigo >= 01 && codigo <= 28);
     }
 
-    private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.isDVValid(value)) && (DV2_CHECKER.isDVValid(value));
-    }
+	public boolean isEligible(String value) {
+		boolean result;
+		if (isFormatted) {
+			result = FORMATED.matcher(value).matches();
+		} else {
+			result = UNFORMATED.matcher(value).matches();
+		}
+		return result;
+	}
 
-    public boolean isEligible(String value) {
-    	 boolean result;
-         if (isFormatted) {
-             result = FORMATED.matcher(value).matches();
-         } else {
-             result = UNFORMATED.matcher(value).matches();
-         }
-         return result;
-    }
+	public void assertValid(String tituloDeEleitor) {
+		List<ValidationMessage> errors = getInvalidValues(tituloDeEleitor);
+		if (!errors.isEmpty()) {
+			throw new InvalidStateException(errors);
+		}
+	}
 
-    public void assertValid(String tituloDeEleitor) {
-        baseValidator.assertValid(getInvalidValues(tituloDeEleitor));
-    }
-
-    public List<ValidationMessage> invalidMessagesFor(String tituloDeEleitor) {
-        return baseValidator.generateValidationMessages(getInvalidValues(tituloDeEleitor));
-    }
+	public List<ValidationMessage> invalidMessagesFor(String tituloDeEleitor) {
+		return getInvalidValues(tituloDeEleitor);
+	}
 
 }

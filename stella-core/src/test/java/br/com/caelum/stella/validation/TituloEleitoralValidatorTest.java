@@ -40,7 +40,7 @@ public class TituloEleitoralValidatorTest {
     }
     
     @Test
-    public void shouldValidateCorrectString2() {
+    public void shouldValidateCorrectFormattedString() {
     	for (String validString : validStringsFormatted) {
     		validatorFormatted.assertValid(validString);
     	}
