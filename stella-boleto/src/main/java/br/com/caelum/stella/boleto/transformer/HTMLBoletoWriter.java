@@ -237,5 +237,33 @@ public class HTMLBoletoWriter implements BoletoWriter {
 			return boleto.getAgenciaECodigoCedente();
 		}
 
+		public String getValorDescontos() {
+			return getOrEmpty(boleto.getValorDescontos());
+		}
+
+		private String getOrEmpty(BigDecimal valor) {
+			if(valor != null){
+				return FormatadorDeBoleto.formataValor(valor.doubleValue());
+			}else{
+				return " ";
+			}
+		}
+
+		public String getValorDeducoes() {
+			return getOrEmpty(boleto.getValorDeducoes());
+		}
+
+		public String getValorMulta() {
+			return getOrEmpty(boleto.getValorMulta());
+		}
+
+		public String getValorAcrescimos() {
+			return getOrEmpty(boleto.getValorAcrescimos());
+		}
+
+		public String getValorCobrado() {
+			return getOrEmpty(boleto.getValorCobrado());
+		}
+
 	}
 }

@@ -219,25 +219,23 @@ TD {
 		
 		</font></TD>
 		<td valign=top height=27>(-) Descontos / Abatimentos<br>
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorDescontos}</DIV></TD>
 	</tr>
 	<tr>
 		<td valign=top height=27>(-) Outras Deducoes<br>
-
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorDeducoes}</DIV></TD>
 	</tr>
 	<tr>
 		<td valign=top height=27>(+) Mora / Multa<br>
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorMulta}</DIV></TD>
 	</tr>
 	<tr>
 		<td valign=top height=27>(+) Outros Acrescimos<br>
-
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorAcrescimos}</DIV></TD>
 	</tr>
 	<tr>
 		<td valign=top height=27>(=) Valor<br>
-		&nbsp;</TD>
+		<DIV align="right" Class=campo>${boleto.valorCobrado}</DIV></TD>
 	</tr>
 	<tr>
 		<td height=70 valign=top colSpan="7">Sacado<br>
