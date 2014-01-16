@@ -20,14 +20,14 @@ public class Boleto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private BigDecimal valorBoleto;
+	private BigDecimal valorBoleto = BigDecimal.ZERO;
 	private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
-	private BigDecimal valorDescontos;
-	private BigDecimal valorDeducoes;
-	private BigDecimal valorMulta;
-	private BigDecimal valorAcrescimos;
-	private BigDecimal valorCobrado;
+	private BigDecimal valorDescontos = BigDecimal.ZERO;
+	private BigDecimal valorDeducoes = BigDecimal.ZERO;
+	private BigDecimal valorMulta = BigDecimal.ZERO;
+	private BigDecimal valorAcrescimos = BigDecimal.ZERO;
+
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
 	private String especieDocumento;
@@ -362,11 +362,7 @@ public class Boleto implements Serializable {
 	 * @return valor do boleto formatado (com 10 digitos)
 	 */
 	public String getValorFormatado() {
-		if(this.valorCobrado != null){
-			return String.format("%011.2f", this.valorCobrado).replaceAll("[^0-9]", "");
-		}else{
-			return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]", "");
-		}
+		return String.format("%011.2f", this.getValorCobrado()).replaceAll("[^0-9]", "");
 	}
 
 	/**
@@ -427,12 +423,7 @@ public class Boleto implements Serializable {
 	}
 
 	public BigDecimal getValorCobrado() {
-		return valorCobrado;
+		return valorBoleto.subtract(valorDescontos).subtract(valorDeducoes)
+				.add(valorMulta).add(valorAcrescimos);
 	}
-
-	public Boleto comValorCobrado(String valorCobrado) {
-		this.valorCobrado = new BigDecimal(valorCobrado);
-		return this;
-	}
-
 }
