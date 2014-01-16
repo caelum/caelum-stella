@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -25,52 +26,30 @@ import br.com.caelum.stella.validation.error.NITError;
  */
 public class NITValidator implements Validator<String> {
 
-    private final BaseValidator baseValidator;
+    public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[.](\\d{2})-(\\d{1})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})(\\d{1})");
 
-    private static final int MOD = 11;
-
-    private final boolean isFormatted;
-
-    private static class RotinaPosProdutoInterno implements RotinaDeDigitoVerificador {
-        public Integer transform(RotinaParameters parameter) {
-            Integer mod = parameter.getDigitoVerificadorInfo().getMod();
-            Integer result = parameter.getResult() % mod;
-            if (result < 2) {
-                result = 0;
-            } else {
-                result = 11 - result;
-            }
-            return result;
-        }
-    }
-
-    private static final Integer DV1_POSITION = 11;
-
-    private static final Integer[] DV1_MULTIPLIERS = { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-    private static final DigitoVerificadorInfo DV1_INFO = new DigitoVerificadorInfo(0,
-            new RotinaDeDigitoVerificador[] { new RotinaPosProdutoInterno() }, MOD, DV1_MULTIPLIERS, DV1_POSITION);
-
-    private static final ValidadorDeDV DV1_CHECKER = new ValidadorDeDV(DV1_INFO);
-
-    public static final Pattern NIT_FORMATED = Pattern.compile("(\\d{3})[.](\\d{5})[.](\\d{2})-(\\d{1})");
-
-    public static final Pattern NIT_UNFORMATED = Pattern.compile("(\\d{3})(\\d{5})(\\d{2})(\\d{1})");
+    private boolean isFormatted = false;
+    private MessageProducer messageProducer;
 
     /**
-     * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
+     * Este considera, por padrão, que as cadeias não estão formatadas e utiliza um
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public NITValidator() {
-        this(true);
+    	this.messageProducer = new SimpleMessageProducer();
     }
 
     /**
      * O validador utiliza um {@linkplain SimpleMessageProducer} para geração de
      * mensagens.
+
+     * @param isFormatted
+     *            considera cadeia no formato de NIT: "ddd.ddddd.dd-d" onde "d"
+     *            é um dígito decimal.
      */
     public NITValidator(boolean isFormatted) {
-        this.baseValidator = new BaseValidator();
+    	this.messageProducer = new SimpleMessageProducer();
         this.isFormatted = isFormatted;
     }
 
@@ -86,57 +65,65 @@ public class NITValidator implements Validator<String> {
      *            é um dígito decimal.
      */
     public NITValidator(MessageProducer messageProducer, boolean isFormatted) {
-        this.baseValidator = new BaseValidator(messageProducer);
+        this.messageProducer = messageProducer;
         this.isFormatted = isFormatted;
     }
 
-    private List<InvalidValue> getInvalidValues(String nit) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        if (nit != null) {
-            if (!isEligible(nit)) {
-                if (isFormatted) {
-                    errors.add(NITError.INVALID_FORMAT);
-                } else {
-                    errors.add(NITError.INVALID_DIGITS);
-                }
-            } else {
-                String unformatedNit;
-                if (isFormatted) {
-                    NITFormatter formatter = new NITFormatter();
-                    unformatedNit = formatter.unformat(nit);
-                } else {
-                    unformatedNit = nit;
-                }
-
-                if (errors.isEmpty()) {
-                    if (!hasValidCheckDigits(unformatedNit)) {
-                        errors.add(NITError.INVALID_CHECK_DIGITS);
-                    }
-                }
-            }
-        }
-        return errors;
+    private List<ValidationMessage> getInvalidValues(String nit) {
+		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
+		if (nit != null) {
+		
+			if(isFormatted && !FORMATED.matcher(nit).matches()){
+				errors.add(messageProducer.getMessage(NITError.INVALID_FORMAT));
+			}
+			
+			String unformatedNIT = null;
+			try{
+				unformatedNIT = new NITFormatter().unformat(nit);
+			}catch(IllegalArgumentException e){
+				errors.add(messageProducer.getMessage(NITError.INVALID_DIGITS));
+				return errors;
+			}
+			
+		    if(unformatedNIT.length() != 11 || !unformatedNIT.matches("[0-9]*")){
+		    	errors.add(messageProducer.getMessage(NITError.INVALID_DIGITS));
+		    }
+		   
+		    String nitSemDigito = unformatedNIT.substring(0, unformatedNIT.length() - 1);
+		    String digitos = unformatedNIT.substring(unformatedNIT.length() - 1);
+		
+			String digitosCalculados = calculaDigitos(nitSemDigito);
+		
+		    if(!digitos.equals(digitosCalculados)){
+		    	errors.add(messageProducer.getMessage(NITError.INVALID_CHECK_DIGITS));
+		
+			}
+		}
+		return errors;
     }
 
-    private boolean hasValidCheckDigits(String value) {
-        return (DV1_CHECKER.isDVValid(value));
-    }
+    private String calculaDigitos(String nitSemDigito) {
+    	return new DigitoPara(nitSemDigito).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
+	}
 
-    public boolean isEligible(String value) {
+	public boolean isEligible(String value) {
         boolean result;
         if (isFormatted) {
-            result = NIT_FORMATED.matcher(value).matches();
+            result = FORMATED.matcher(value).matches();
         } else {
-            result = NIT_UNFORMATED.matcher(value).matches();
+            result = UNFORMATED.matcher(value).matches();
         }
         return result;
     }
 
-    public void assertValid(String cpf) {
-        baseValidator.assertValid(getInvalidValues(cpf));
+    public void assertValid(String nit) {
+        List<ValidationMessage> errors = getInvalidValues(nit);
+        if (!errors.isEmpty()) {
+			throw new InvalidStateException(errors);
+		}
     }
 
-    public List<ValidationMessage> invalidMessagesFor(String cpf) {
-        return baseValidator.generateValidationMessages(getInvalidValues(cpf));
+    public List<ValidationMessage> invalidMessagesFor(String nit) {
+        return getInvalidValues(nit);
     }
 }
