@@ -20,9 +20,14 @@ public class Boleto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private BigDecimal valorBoleto;
+	private BigDecimal valorBoleto = BigDecimal.ZERO;
 	private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
+	private BigDecimal valorDescontos = BigDecimal.ZERO;
+	private BigDecimal valorDeducoes = BigDecimal.ZERO;
+	private BigDecimal valorMulta = BigDecimal.ZERO;
+	private BigDecimal valorAcrescimos = BigDecimal.ZERO;
+
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
 	private String especieDocumento;
@@ -357,7 +362,7 @@ public class Boleto implements Serializable {
 	 * @return valor do boleto formatado (com 10 digitos)
 	 */
 	public String getValorFormatado() {
-		return String.format("%011.2f", this.valorBoleto).replaceAll("[^0-9]", "");
+		return String.format("%011.2f", this.getValorCobrado()).replaceAll("[^0-9]", "");
 	}
 
 	/**
@@ -379,5 +384,46 @@ public class Boleto implements Serializable {
 	 */
 	public String getNossoNumeroECodDocumento() {
 		return banco.getNossoNumeroECodDocumento(this.emissor);
+	}
+
+	public BigDecimal getValorDescontos() {
+		return valorDescontos;
+	}
+
+	public Boleto comValorDescontos(String valorDescontos) {
+		this.valorDescontos = new BigDecimal(valorDescontos);
+		return this;
+	}
+
+	public BigDecimal getValorDeducoes() {
+		return valorDeducoes;
+	}
+
+	public Boleto comValorDeducoes(String valorDeducoes) {
+		this.valorDeducoes = new BigDecimal(valorDeducoes);
+		return this;
+	}
+
+	public BigDecimal getValorMulta() {
+		return valorMulta;
+	}
+
+	public Boleto comValorMulta(String valorMulta) {
+		this.valorMulta = new BigDecimal(valorMulta);
+		return this;
+	}
+
+	public BigDecimal getValorAcrescimos() {
+		return valorAcrescimos;
+	}
+
+	public Boleto comValorAcrescimos(String valorAcrescimos) {
+		this.valorAcrescimos = new BigDecimal(valorAcrescimos);
+		return this;
+	}
+
+	public BigDecimal getValorCobrado() {
+		return valorBoleto.subtract(valorDescontos).subtract(valorDeducoes)
+				.add(valorMulta).add(valorAcrescimos);
 	}
 }

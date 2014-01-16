@@ -22,9 +22,6 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 class PNGPDFTransformerHelper {
 	/* Ainda precisa de um nome melhor!! */
-	public static final float IMAGEM_BOLETO_WIDTH = 2144;
-	public static final float IMAGEM_BOLETO_HEIGHT = 1604;
-	public static final double BOLETO_TEMPLATE_SCALE = 1 / 2d;
 
 	private TextWriter writer;
 	private URL imagemTitulo;
@@ -52,6 +49,7 @@ class PNGPDFTransformerHelper {
 		imprimeDadosDoDocumento(boleto);
 		imprimeDadosDoBoletoInclusiveValor(boleto);
 		imprimeInstrucoesDePagamento(boleto);
+		imprimeValoresBoleto(boleto);
 		imprimeUnidadeCedente(boleto);
 		imprimeDadosDoSacado(boleto);
 
@@ -114,7 +112,12 @@ class PNGPDFTransformerHelper {
 		
 		this.writer.write(5, LINHA2, boleto.getSacado().getNome());
 		this.writer.write(290, LINHA2, formatDate(boleto.getDatas().getVencimento()));
-		this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
+		
+		if(boleto.getValorCobrado() != null){
+			this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
+		}else{
+			this.writer.write(377, LINHA2, FormatadorDeBoleto.formataValor(boleto.getValorBoleto().doubleValue()));
+		}
 		
 		this.writer.write(5, LINHA3, boleto.getAgenciaECodigoCedente());
 		this.writer.write(146, LINHA3, boleto.getNossoNumeroECodDocumento());
@@ -165,22 +168,37 @@ class PNGPDFTransformerHelper {
 		final float LINHA9 = 205;
 
 		for (int i = 0; i < boleto.getInstrucoes().size(); i++) {
-			this.writer.write(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
+			this.writer.writeSmall(5, LINHA9 - i * 10, boleto.getInstrucoes().get(i));
 		}
 	}
 	
+	private void imprimeValoresBoleto(Boleto boleto) {
+		int COLUNA = 430;
+		final float LINHA_DESCONTO = 207;
+		final float LINHA_DEDUCOES = 185;
+		final float LINHA_MULTA = 164;
+		final float LINHA_ACRESCIMOS = 143;
+		final float LINHA_VALOR_COBRADO = 121;
+		
+		this.writer.write(COLUNA, LINHA_DESCONTO, FormatadorDeBoleto.formataValor(boleto.getValorDescontos().doubleValue()));
+		this.writer.write(COLUNA, LINHA_DEDUCOES, FormatadorDeBoleto.formataValor(boleto.getValorDeducoes().doubleValue()));
+		this.writer.write(COLUNA, LINHA_MULTA, FormatadorDeBoleto.formataValor(boleto.getValorMulta().doubleValue()));
+		this.writer.write(COLUNA, LINHA_ACRESCIMOS, FormatadorDeBoleto.formataValor(boleto.getValorAcrescimos().doubleValue()));
+		this.writer.write(COLUNA, LINHA_VALOR_COBRADO, FormatadorDeBoleto.formataValor(boleto.getValorCobrado().doubleValue()));
+	}
+	
 	private void imprimeUnidadeCedente(Boleto boleto) {
-		final float LINHA10 = 132;
-		final float LINHA_ENDERECO = 122;
+		final float LINHA10 = 139;
+		final float LINHA_ENDERECO = 127;
 
 		this.writer.write(5, LINHA10, boleto.getEmissor().getCedente());
 		this.writer.write(5, LINHA_ENDERECO, nullToEmpty(boleto.getEmissor().getEndereco()));
 	}
 
 	private void imprimeDadosDoSacado(Boleto boleto) {
-		final float LINHA11 = 97;
-		final float LINHA12 = 87;
-		final float LINHA13 = 77;
+		final float LINHA11 = 107;
+		final float LINHA12 = 97;
+		final float LINHA13 = 87;
 
 		this.writer.write(50, LINHA11, (boleto.getSacado().getNome() != null ? boleto.getSacado().getNome() : "")
 				+ " " + (boleto.getSacado().getCpf() != null ? boleto.getSacado().getCpf() : ""));
