@@ -18,7 +18,7 @@ import br.com.caelum.stella.validation.error.RenavamError;
  * 
  * <p>
  * O Renavam, ou Registro nacional de veículos automotores, é o número único de
- * cada veículo e é composto de 10 (oito) dígitos, mais um digito verificador.
+ * cada veículo e é composto de 10 (dez) dígitos, mais um digito verificador.
  * </p>
  * 
  * Formato do Renavam: "dddd.dddddd-d" onde "d" é um digito decimal.
