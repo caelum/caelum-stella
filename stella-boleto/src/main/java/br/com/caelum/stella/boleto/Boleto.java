@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 
 /**
@@ -425,5 +426,37 @@ public class Boleto implements Serializable {
 	public BigDecimal getValorCobrado() {
 		return valorBoleto.subtract(valorDescontos).subtract(valorDeducoes)
 				.add(valorMulta).add(valorAcrescimos);
+	}
+	
+	/**
+	 * Valor numérico do código de barras
+	 * @return
+	 */
+	public String getCodigoDeBarras(){
+		return banco.geraCodigoDeBarrasPara(this);
+	}
+	
+	/**
+	 * Linha digitável formatada
+	 * @return
+	 */
+	public String getLinhaDigitavel(){
+		return new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(getCodigoDeBarras());
+	}
+	
+	/**
+	 * Carteira do boleto
+	 * @return
+	 */
+	public String getCarteira(){
+		return banco.getCarteiraDoEmissorFormatado(emissor);
+	}
+	
+	/**
+	 * Local de Pagamento
+	 * @return
+	 */
+	public String getLocalDePagamento(){
+		return locaisDePagamento.isEmpty() ? "" : locaisDePagamento.get(0);
 	}
 }
