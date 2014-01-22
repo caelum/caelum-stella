@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto.bancos.gerador;
 
+import br.com.caelum.stella.DigitoPara;
+
 public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 
 	private static final long serialVersionUID = 1L;
@@ -11,39 +13,12 @@ public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 
 	@Override
 	public int geraDigitoMod(String codigoDeBarras, int inicio, int fim, int numMOD) {
-
-		int soma = 0;
-		for (int i = codigoDeBarras.length() - 1, multiplicador = inicio; i >= 0; i--, multiplicador++) {
-			if (multiplicador == fim + 1) {
-				multiplicador = inicio;
-			}
-			soma += Integer.parseInt(String.valueOf(codigoDeBarras.charAt(i))) * multiplicador;
-		}
-
-		soma *= 10;
-
-		int resto = soma % numMOD;
-
-		if (resto == 10 || resto == 0) {
-			return 1;
-		} else {
-			return resto;
-		}
-
+		return Integer.valueOf(new DigitoPara(codigoDeBarras).comMultiplicadoresDeAte(inicio, fim).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(numMOD).calcula());
 	}
 
 	@Override
 	public int geraDigitoMod10(String campo) {
-		int soma = 0;
-		for (int i = campo.length() - 1; i >= 0; i--) {
-			int multiplicador = (campo.length() - i) % 2 + 1;
-			int algarismoMultiplicado = Integer.parseInt(String.valueOf(campo.charAt(i))) * multiplicador;
-			soma += (algarismoMultiplicado / 10) + (algarismoMultiplicado % 10);
-		}
-
-		int resto = soma % 10;
-		int resultado = (10 - resto) % 10;
-		return resultado;
+		return Integer.valueOf(new DigitoPara(campo).comMultiplicadores(2, 1).complementarAoModulo().trocandoPorSeEncontrar("0",10).mod(10).calcula());
 	}
 
 	@Override
