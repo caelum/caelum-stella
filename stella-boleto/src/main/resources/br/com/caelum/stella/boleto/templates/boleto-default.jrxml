@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
-	<property name="ireport.zoom" value="4.0"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="2420"/>
+	<property name="ireport.y" value="1102"/>
 	<property name="ireport.background.image" value="/Users/mario/caelum/caelum-stella/stella-boleto/BradescoDoBrasil.png"/>
 	<property name="ireport.background.image.properties" value="false,true,0.75,0,0,0,0,0,0"/>
 	<style name="Celula" forecolor="#646464" fontName="Helvetica" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
@@ -141,11 +141,11 @@
 	<detail>
 		<band height="802" splitType="Prevent">
 			<staticText>
-				<reportElement style="Celula" x="0" y="638" width="555" height="70" uuid="a0ebfd6d-f78f-4a6d-840a-cfd5344b04df"/>
+				<reportElement style="Celula" x="0" y="638" width="27" height="69" uuid="a0ebfd6d-f78f-4a6d-840a-cfd5344b04df"/>
 				<text><![CDATA[Sacado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="0" y="276" width="355" height="26" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
+				<reportElement style="Celula" x="0" y="276" width="355" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
 				<text><![CDATA[Nome do Cliente]]></text>
 			</staticText>
 			<staticText>
@@ -189,11 +189,11 @@
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Celula" x="355" y="276" width="100" height="26" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
+				<reportElement style="Celula" x="355" y="276" width="100" height="10" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
 				<text><![CDATA[Data de Vencimento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="455" y="276" width="100" height="26" uuid="9476fbf3-dbd9-44db-a458-de45abee4ef1"/>
+				<reportElement style="Celula" x="455" y="276" width="100" height="10" uuid="9476fbf3-dbd9-44db-a458-de45abee4ef1"/>
 				<text><![CDATA[Valor Cobrado]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -205,11 +205,11 @@
 				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Celula" x="0" y="302" width="178" height="26" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
+				<reportElement style="Celula" x="0" y="302" width="178" height="10" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
 				<text><![CDATA[Agência / Código do Cedente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="178" y="302" width="177" height="26" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
+				<reportElement style="Celula" x="178" y="302" width="177" height="10" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
 				<text><![CDATA[Nosso Número]]></text>
 			</staticText>
 			<staticText>
@@ -248,11 +248,11 @@
 				<imageExpression><![CDATA[$F{logo_banco}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Celula" x="0" y="403" width="389" height="26" uuid="8e1bce5a-a021-42b8-8369-32a2f8cc6bbd"/>
+				<reportElement style="Celula" x="0" y="403" width="389" height="10" uuid="8e1bce5a-a021-42b8-8369-32a2f8cc6bbd"/>
 				<text><![CDATA[Local de Pagamento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Opaque" x="389" y="403" width="166" height="26" backcolor="#D2D2D2" uuid="9a753a3c-4b4e-4c29-9580-1a6558413ac0"/>
+				<reportElement style="Celula" mode="Opaque" x="389" y="403" width="166" height="10" backcolor="#D2D2D2" uuid="9a753a3c-4b4e-4c29-9580-1a6558413ac0"/>
 				<text><![CDATA[Vencimento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -270,47 +270,47 @@
 				<textFieldExpression><![CDATA[$F{linhaDigitavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Celula" x="0" y="429" width="389" height="26" uuid="da59b3ca-b885-4209-9b54-17ec5c88d1d1"/>
+				<reportElement style="Celula" x="0" y="429" width="389" height="10" uuid="da59b3ca-b885-4209-9b54-17ec5c88d1d1"/>
 				<text><![CDATA[Cedente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="429" width="166" height="26" uuid="4435ada7-43bc-400c-b80e-ebaa6277044a"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="429" width="166" height="10" uuid="4435ada7-43bc-400c-b80e-ebaa6277044a"/>
 				<text><![CDATA[Agência / Código do Cedente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="90" y="455" width="90" height="26" uuid="30ced1b4-822e-473b-9ef2-d8272091cb13"/>
+				<reportElement style="Celula" x="90" y="455" width="90" height="10" uuid="30ced1b4-822e-473b-9ef2-d8272091cb13"/>
 				<text><![CDATA[Nº do Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="0" y="455" width="90" height="26" uuid="2dd9d9f4-265c-4598-a301-18c9d4fa9643"/>
+				<reportElement style="Celula" x="0" y="455" width="90" height="10" uuid="2dd9d9f4-265c-4598-a301-18c9d4fa9643"/>
 				<text><![CDATA[Data do Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="180" y="455" width="60" height="26" uuid="4dc33c06-10f2-478a-b6f1-b905f2bb9d1f"/>
+				<reportElement style="Celula" x="180" y="455" width="60" height="10" uuid="4dc33c06-10f2-478a-b6f1-b905f2bb9d1f"/>
 				<text><![CDATA[Espécie Doc.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="240" y="455" width="59" height="26" uuid="4318ffc8-e2c1-4b14-aed2-211c66f305ef"/>
+				<reportElement style="Celula" x="240" y="455" width="59" height="10" uuid="4318ffc8-e2c1-4b14-aed2-211c66f305ef"/>
 				<text><![CDATA[Aceite]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="299" y="455" width="90" height="26" uuid="d4188f19-d828-45e4-9fa0-6cb1a329245b"/>
+				<reportElement style="Celula" x="299" y="455" width="90" height="10" uuid="d4188f19-d828-45e4-9fa0-6cb1a329245b"/>
 				<text><![CDATA[Data de Processamento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="175" y="481" width="75" height="26" uuid="710a9295-5ea1-45b2-833b-47edbc2d84e1"/>
+				<reportElement style="Celula" x="175" y="481" width="75" height="10" uuid="710a9295-5ea1-45b2-833b-47edbc2d84e1"/>
 				<text><![CDATA[Espécie Moeda]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="100" y="481" width="75" height="26" uuid="bac8900c-f41b-4eca-bde7-cddb31f02cae"/>
+				<reportElement style="Celula" x="100" y="481" width="75" height="10" uuid="bac8900c-f41b-4eca-bde7-cddb31f02cae"/>
 				<text><![CDATA[Carteira]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="340" y="481" width="49" height="26" uuid="0036bfbc-f5d2-4deb-b627-c434a8a11bca"/>
+				<reportElement style="Celula" x="340" y="481" width="49" height="10" uuid="0036bfbc-f5d2-4deb-b627-c434a8a11bca"/>
 				<text><![CDATA[Valor Moeda]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="250" y="481" width="90" height="26" uuid="e50ae844-8ccc-49ea-91f9-4e204eac278e"/>
+				<reportElement style="Celula" x="250" y="481" width="90" height="10" uuid="e50ae844-8ccc-49ea-91f9-4e204eac278e"/>
 				<text><![CDATA[Quantidade Moeda]]></text>
 			</staticText>
 			<staticText>
@@ -318,39 +318,39 @@
 				<text><![CDATA[Uso do Banco]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="455" width="166" height="26" uuid="6d8eb9b9-36c3-48e3-966e-b21feec3e93b"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="455" width="166" height="10" uuid="6d8eb9b9-36c3-48e3-966e-b21feec3e93b"/>
 				<text><![CDATA[Nosso Número / Cód. do Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="0" y="507" width="389" height="91" uuid="cb9e2129-a50c-425a-9030-e1f007fad68e"/>
+				<reportElement style="Celula" x="0" y="507" width="389" height="10" uuid="cb9e2129-a50c-425a-9030-e1f007fad68e"/>
 				<text><![CDATA[Instruções]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Opaque" x="389" y="481" width="166" height="26" backcolor="#D2D2D2" uuid="84a3f2e4-97db-4f0a-b421-799598a3bdc1"/>
+				<reportElement style="Celula" mode="Opaque" x="389" y="481" width="166" height="10" backcolor="#D2D2D2" uuid="84a3f2e4-97db-4f0a-b421-799598a3bdc1"/>
 				<text><![CDATA[(=) Valor do Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="507" width="166" height="26" uuid="1cbb9b84-4c58-4787-b9e5-4c2276ac5ef7"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="507" width="166" height="10" uuid="1cbb9b84-4c58-4787-b9e5-4c2276ac5ef7"/>
 				<text><![CDATA[(-) Desconto / Abatimento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="533" width="166" height="26" uuid="33d8584e-cdf2-4f11-88dd-0aa9e88f1aa7"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="533" width="166" height="10" uuid="33d8584e-cdf2-4f11-88dd-0aa9e88f1aa7"/>
 				<text><![CDATA[(-) Outras Deduções]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="559" width="166" height="26" uuid="05bee876-4051-4aa5-9b17-64c367a62fd8"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="559" width="166" height="10" uuid="05bee876-4051-4aa5-9b17-64c367a62fd8"/>
 				<text><![CDATA[(+) Mora / Multa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Transparent" x="389" y="585" width="166" height="26" uuid="81b04d6a-9755-4ccf-b04b-033c046b08af"/>
+				<reportElement style="Celula" mode="Transparent" x="389" y="585" width="166" height="10" uuid="81b04d6a-9755-4ccf-b04b-033c046b08af"/>
 				<text><![CDATA[(+) Outros Acréscimos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" mode="Opaque" x="389" y="611" width="166" height="27" backcolor="#D2D2D2" uuid="8bd38d51-923f-4783-aff6-93357fc3130c"/>
+				<reportElement style="Celula" mode="Opaque" x="389" y="611" width="166" height="11" backcolor="#D2D2D2" uuid="8bd38d51-923f-4783-aff6-93357fc3130c"/>
 				<text><![CDATA[(=) Valor Cobrado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="0" y="598" width="389" height="40" uuid="8d629e1a-e406-45f5-9549-0f6a325c498a"/>
+				<reportElement style="Celula" x="0" y="598" width="389" height="10" uuid="8d629e1a-e406-45f5-9549-0f6a325c498a"/>
 				<text><![CDATA[Unidade Cedente]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -503,11 +503,11 @@
 				</jr:barbecue>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="0" y="607" width="389" height="15" uuid="e45d233f-f5c8-4378-9044-3ccdba7e9326"/>
+				<reportElement style="Txt_Normal" x="0" y="608" width="389" height="15" uuid="e45d233f-f5c8-4378-9044-3ccdba7e9326"/>
 				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="0" y="622" width="389" height="15" uuid="ca0f877a-07d1-4919-a537-e7c04300c5da"/>
+				<reportElement style="Txt_Normal" x="0" y="623" width="389" height="15" uuid="ca0f877a-07d1-4919-a537-e7c04300c5da"/>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
 			</textField>
 		</band>
