@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
+	<property name="ireport.zoom" value="4.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2420"/>
+	<property name="ireport.background.image" value="/Users/mario/caelum/caelum-stella/stella-boleto/BradescoDoBrasil.png"/>
+	<property name="ireport.background.image.properties" value="false,true,0.75,0,0,0,0,0,0"/>
+	<style name="Celula" forecolor="#646464" fontName="Helvetica" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Txt_Normal" fontName="Helvetica" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2"/>
+	</style>
+	<style name="Txt_Negrito" style="Txt_Normal" hAlign="Left" vAlign="Bottom" fontSize="13" isBold="true">
+		<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2"/>
+	</style>
+	<style name="Txt_Peq" style="Txt_Normal" fontSize="7"/>
+	<style name="Txt_valor" style="Txt_Normal" hAlign="Right" pattern="###0.00">
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="10"/>
+	</style>
+	<style name="Txt_Data" style="Txt_Normal" pattern="dd/MM/yyyy"/>
+	<subDataset name="instrucoes_ds" uuid="2fe8a4de-a25a-4233-8d68-4ee5e0e0d45b">
+		<field name="_THIS" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/mario/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cedente" class="java.lang.String">
+		<fieldDescription><![CDATA[emissor.cedente]]></fieldDescription>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[emissor.endereco]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.nome]]></fieldDescription>
+	</field>
+	<field name="vencimento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.vencimento]]></fieldDescription>
+	</field>
+	<field name="valorCobrado" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorCobrado]]></fieldDescription>
+	</field>
+	<field name="agenciaECodigoCedente" class="java.lang.String">
+		<fieldDescription><![CDATA[agenciaECodigoCedente]]></fieldDescription>
+	</field>
+	<field name="nossoNumeroECodDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[nossoNumeroECodDocumento]]></fieldDescription>
+	</field>
+	<field name="numeroFormatadoComDigito" class="java.lang.String">
+		<fieldDescription><![CDATA[banco.numeroFormatadoComDigito]]></fieldDescription>
+	</field>
+	<field name="locaisDePagamento" class="java.util.List">
+		<fieldDescription><![CDATA[locaisDePagamento]]></fieldDescription>
+	</field>
+	<field name="documento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.documento]]></fieldDescription>
+	</field>
+	<field name="especieDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[especieDocumento]]></fieldDescription>
+	</field>
+	<field name="aceite" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[aceite]]></fieldDescription>
+	</field>
+	<field name="processamento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.processamento]]></fieldDescription>
+	</field>
+	<field name="especieMoeda" class="java.lang.String">
+		<fieldDescription><![CDATA[especieMoeda]]></fieldDescription>
+	</field>
+	<field name="quantidadeDeMoeda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[quantidadeDeMoeda]]></fieldDescription>
+	</field>
+	<field name="valorMoeda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorMoeda]]></fieldDescription>
+	</field>
+	<field name="valorBoleto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorBoleto]]></fieldDescription>
+	</field>
+	<field name="instrucoes" class="java.util.List">
+		<fieldDescription><![CDATA[instrucoes]]></fieldDescription>
+	</field>
+	<field name="valorDescontos" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorDescontos]]></fieldDescription>
+	</field>
+	<field name="valorDeducoes" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorDeducoes]]></fieldDescription>
+	</field>
+	<field name="valorMulta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorMulta]]></fieldDescription>
+	</field>
+	<field name="valorAcrescimos" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorAcrescimos]]></fieldDescription>
+	</field>
+	<field name="logo_banco" class="java.net.URL">
+		<fieldDescription><![CDATA[banco.image]]></fieldDescription>
+	</field>
+	<field name="endereco_1" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.endereco]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.cpf]]></fieldDescription>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.cep]]></fieldDescription>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.bairro]]></fieldDescription>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.cidade]]></fieldDescription>
+	</field>
+	<field name="uf" class="java.lang.String">
+		<fieldDescription><![CDATA[sacado.uf]]></fieldDescription>
+	</field>
+	<field name="localDePagamento" class="java.lang.String">
+		<fieldDescription><![CDATA[localDePagamento]]></fieldDescription>
+	</field>
+	<field name="linhaDigitavel" class="java.lang.String">
+		<fieldDescription><![CDATA[linhaDigitavel]]></fieldDescription>
+	</field>
+	<field name="numeroDoDocumentoFormatado" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroDoDocumentoFormatado]]></fieldDescription>
+	</field>
+	<field name="codigoDeBarras" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoDeBarras]]></fieldDescription>
+	</field>
+	<field name="carteira" class="java.lang.String">
+		<fieldDescription><![CDATA[carteira]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="802" splitType="Prevent">
+			<staticText>
+				<reportElement style="Celula" x="0" y="638" width="555" height="70" uuid="a0ebfd6d-f78f-4a6d-840a-cfd5344b04df"/>
+				<text><![CDATA[Sacado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="276" width="355" height="26" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
+				<text><![CDATA[Nome do Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="242" width="51" height="34" uuid="11132e1a-1557-4f37-8f1d-8ca6f59c23ea"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEDENTE : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="51" y="242" width="414" height="16" uuid="1f153a12-3665-46bb-8314-8460522f1cbc"/>
+				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="51" y="258" width="414" height="18" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="465" y="242" width="90" height="13" uuid="328ec8cd-7add-4abf-9c8d-fb4fae35b5ac"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE SACADO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="286" width="355" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="355" y="276" width="100" height="26" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
+				<text><![CDATA[Data de Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="455" y="276" width="100" height="26" uuid="9476fbf3-dbd9-44db-a458-de45abee4ef1"/>
+				<text><![CDATA[Valor Cobrado]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" x="355" y="286" width="100" height="16" uuid="ba60b891-62a7-4e63-9591-9769ef2ff057"/>
+				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="455" y="286" width="100" height="16" uuid="1d5919bf-162d-49ff-8b7d-43d64d2a71b8"/>
+				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="0" y="302" width="178" height="26" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
+				<text><![CDATA[Agência / Código do Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="178" y="302" width="177" height="26" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
+				<text><![CDATA[Nosso Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="307" width="190" height="21" forecolor="#646464" uuid="86b2ab07-a154-4c6f-afb0-a6880c6e98a5"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5" lineColor="#000000"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Helvetica" size="6"/>
+				</textElement>
+				<text><![CDATA[Autenticação Mecânica]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="312" width="178" height="16" uuid="9b0e8341-a44a-4d63-9135-2753b6fbedc7"/>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="178" y="312" width="177" height="16" uuid="0a386697-5190-4930-a3e4-dada92f6d225"/>
+				<textFieldExpression><![CDATA[$F{nossoNumeroECodDocumento}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="347" width="555" height="1" uuid="4f399483-25a5-48c3-beef-d2dfe40a016b"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<image vAlign="Bottom">
+				<reportElement x="0" y="370" width="111" height="33" uuid="8674bd7a-d7c6-4dbb-8277-85105c9e7322"/>
+				<box topPadding="2" bottomPadding="2" rightPadding="0">
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<imageExpression><![CDATA[$F{logo_banco}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Celula" x="0" y="403" width="389" height="26" uuid="8e1bce5a-a021-42b8-8369-32a2f8cc6bbd"/>
+				<text><![CDATA[Local de Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Opaque" x="389" y="403" width="166" height="26" backcolor="#D2D2D2" uuid="9a753a3c-4b4e-4c29-9580-1a6558413ac0"/>
+				<text><![CDATA[Vencimento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" x="111" y="370" width="46" height="33" uuid="7b224a79-bf31-4606-86d7-7c26877a1d73"/>
+				<box topPadding="2" leftPadding="4" bottomPadding="2" rightPadding="2">
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{numeroFormatadoComDigito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" x="157" y="370" width="400" height="33" uuid="ef02be07-c02b-4325-87b8-7216d35efe9e"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linhaDigitavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="0" y="429" width="389" height="26" uuid="da59b3ca-b885-4209-9b54-17ec5c88d1d1"/>
+				<text><![CDATA[Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="429" width="166" height="26" uuid="4435ada7-43bc-400c-b80e-ebaa6277044a"/>
+				<text><![CDATA[Agência / Código do Cedente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="90" y="455" width="90" height="26" uuid="30ced1b4-822e-473b-9ef2-d8272091cb13"/>
+				<text><![CDATA[Nº do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="455" width="90" height="26" uuid="2dd9d9f4-265c-4598-a301-18c9d4fa9643"/>
+				<text><![CDATA[Data do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="180" y="455" width="60" height="26" uuid="4dc33c06-10f2-478a-b6f1-b905f2bb9d1f"/>
+				<text><![CDATA[Espécie Doc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="240" y="455" width="59" height="26" uuid="4318ffc8-e2c1-4b14-aed2-211c66f305ef"/>
+				<text><![CDATA[Aceite]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="299" y="455" width="90" height="26" uuid="d4188f19-d828-45e4-9fa0-6cb1a329245b"/>
+				<text><![CDATA[Data de Processamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="175" y="481" width="75" height="26" uuid="710a9295-5ea1-45b2-833b-47edbc2d84e1"/>
+				<text><![CDATA[Espécie Moeda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="100" y="481" width="75" height="26" uuid="bac8900c-f41b-4eca-bde7-cddb31f02cae"/>
+				<text><![CDATA[Carteira]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="340" y="481" width="49" height="26" uuid="0036bfbc-f5d2-4deb-b627-c434a8a11bca"/>
+				<text><![CDATA[Valor Moeda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="250" y="481" width="90" height="26" uuid="e50ae844-8ccc-49ea-91f9-4e204eac278e"/>
+				<text><![CDATA[Quantidade Moeda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="481" width="100" height="26" uuid="27ba0fc6-3ceb-4acc-b536-468ba214cec3"/>
+				<text><![CDATA[Uso do Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="455" width="166" height="26" uuid="6d8eb9b9-36c3-48e3-966e-b21feec3e93b"/>
+				<text><![CDATA[Nosso Número / Cód. do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="507" width="389" height="91" uuid="cb9e2129-a50c-425a-9030-e1f007fad68e"/>
+				<text><![CDATA[Instruções]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Opaque" x="389" y="481" width="166" height="26" backcolor="#D2D2D2" uuid="84a3f2e4-97db-4f0a-b421-799598a3bdc1"/>
+				<text><![CDATA[(=) Valor do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="507" width="166" height="26" uuid="1cbb9b84-4c58-4787-b9e5-4c2276ac5ef7"/>
+				<text><![CDATA[(-) Desconto / Abatimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="533" width="166" height="26" uuid="33d8584e-cdf2-4f11-88dd-0aa9e88f1aa7"/>
+				<text><![CDATA[(-) Outras Deduções]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="559" width="166" height="26" uuid="05bee876-4051-4aa5-9b17-64c367a62fd8"/>
+				<text><![CDATA[(+) Mora / Multa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Transparent" x="389" y="585" width="166" height="26" uuid="81b04d6a-9755-4ccf-b04b-033c046b08af"/>
+				<text><![CDATA[(+) Outros Acréscimos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" mode="Opaque" x="389" y="611" width="166" height="27" backcolor="#D2D2D2" uuid="8bd38d51-923f-4783-aff6-93357fc3130c"/>
+				<text><![CDATA[(=) Valor Cobrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="0" y="598" width="389" height="40" uuid="8d629e1a-e406-45f5-9549-0f6a325c498a"/>
+				<text><![CDATA[Unidade Cedente]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="27" y="642" width="272" height="15" uuid="5d1fa5fb-b6ef-4a47-a6a7-a051b0a1e6cb"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="299" y="642" width="90" height="15" uuid="940485ce-679b-4681-a992-da3cc59f8e4e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="27" y="657" width="513" height="15" uuid="446593d2-cd04-4e68-8206-f41bfdd4e191"/>
+				<textFieldExpression><![CDATA[$F{endereco_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="27" y="672" width="513" height="15" uuid="a1bdaff2-fe08-420b-a5e3-fa6287f91ebd"/>
+				<textFieldExpression><![CDATA[$F{cep} + " - " + $F{bairro} + " - " + $F{cidade} + " " + $F{uf}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="517" width="389" height="81" uuid="fc22e98e-c947-40d8-8347-ac223f7ac029"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{instrucoes})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "boleto-default_instrucoes.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="439" width="389" height="16" uuid="de5585ce-2add-4676-a320-dc0a2bd95c54"/>
+				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="389" y="439" width="166" height="16" uuid="9af58f23-bc10-4746-a68a-fc55cbe59daf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="413" width="389" height="16" uuid="55f1c803-8e3f-4aa1-a8a2-6c631df24c17"/>
+				<textFieldExpression><![CDATA[$F{localDePagamento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" x="389" y="413" width="166" height="16" uuid="3bd7c6f6-b617-4e1a-bb21-2dba1e8321ff"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" x="0" y="465" width="90" height="16" uuid="f7e4683d-666a-408c-8587-1c582bc0ee42"/>
+				<textFieldExpression><![CDATA[$F{documento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="180" y="465" width="60" height="16" uuid="526748ae-c896-4032-81a1-f3048b33852a"/>
+				<textFieldExpression><![CDATA[$F{especieDocumento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="240" y="465" width="59" height="16" uuid="ae185d3c-ab66-47d8-a9b1-30e25e35ddd5"/>
+				<textFieldExpression><![CDATA[$F{aceite} ? "S" : "N"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" x="299" y="465" width="90" height="16" uuid="89873df5-4480-4896-adb7-e18e3a8b10b8"/>
+				<textFieldExpression><![CDATA[$F{processamento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="389" y="465" width="166" height="16" uuid="f0ba65b8-3db2-487f-a954-47088c7ad6a0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nossoNumeroECodDocumento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="175" y="491" width="75" height="16" uuid="c99d58c0-e63a-45a4-a840-ee5f65405297"/>
+				<textFieldExpression><![CDATA[$F{especieMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="250" y="491" width="90" height="16" uuid="604a41ff-3863-4870-bac4-a28d4339425c"/>
+				<textFieldExpression><![CDATA[$F{quantidadeDeMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="340" y="491" width="49" height="16" uuid="667cf13f-6b26-45f3-a63b-580302300aa9"/>
+				<textFieldExpression><![CDATA[$F{valorMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="491" width="166" height="16" uuid="c980c26b-8c9a-4965-8a32-32b525b3093e"/>
+				<textFieldExpression><![CDATA[$F{valorBoleto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="517" width="166" height="16" uuid="6008f898-5317-45d3-83c4-21a898d1e700"/>
+				<textFieldExpression><![CDATA[$F{valorDescontos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="543" width="166" height="16" uuid="8ec54b05-6441-440c-8baa-12575e62690c"/>
+				<textFieldExpression><![CDATA[$F{valorDeducoes}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="569" width="166" height="16" uuid="e0c0a3ed-35a1-4bc6-9cfc-ec2a42bddcec"/>
+				<textFieldExpression><![CDATA[$F{valorMulta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="595" width="166" height="16" uuid="98d50a6d-89dc-4a1d-96cf-ff34727a41dc"/>
+				<textFieldExpression><![CDATA[$F{valorAcrescimos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" x="389" y="622" width="166" height="16" uuid="15f18665-2c50-4946-9787-254ea11964bc"/>
+				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="309" y="687" width="80" height="20" uuid="8299f81f-8ef3-4bbb-b6ff-26e1cfe26035"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="5" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Código de Baixa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="309" y="707" width="80" height="20" uuid="173a66cb-b4f3-4443-a9be-5be702b8206b"/>
+				<box topPadding="5" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Autenticação Mecânica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="411" y="707" width="144" height="20" uuid="cc04906a-fa73-46ee-83fa-eaf9e7ed0013"/>
+				<box topPadding="5" leftPadding="2" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE COMPENSAÇÃO]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="90" y="465" width="90" height="16" uuid="ecc57944-7d6a-421f-9cb7-5019a596ca87"/>
+				<textFieldExpression><![CDATA[$F{numeroDoDocumentoFormatado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="100" y="491" width="75" height="16" uuid="893d6875-ce7b-44e8-8092-f3c89752507f"/>
+				<textFieldExpression><![CDATA[$F{carteira}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="10" y="727" width="545" height="42" uuid="dc077954-2d5d-4513-9b53-3c7bde34c9f2"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Int2of5" drawText="false" checksumRequired="false" barHeight="100">
+					<jr:codeExpression><![CDATA[$F{codigoDeBarras}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="607" width="389" height="15" uuid="e45d233f-f5c8-4378-9044-3ccdba7e9326"/>
+				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="0" y="622" width="389" height="15" uuid="ca0f877a-07d1-4919-a537-e7c04300c5da"/>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
