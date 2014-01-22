@@ -2,7 +2,9 @@ package br.com.caelum.stella.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -16,26 +18,20 @@ import br.com.caelum.stella.validation.error.RenavamError;
  * 
  * <p>
  * O Renavam, ou Registro nacional de veículos automotores, é o número único de
- * cada veículo e é composto de 8 (oito) dígitos, mais um digito verificador.
+ * cada veículo e é composto de 10 (dez) dígitos, mais um digito verificador.
  * </p>
  * 
- * Formato do Renavam: "dd.dddddd-d" onde "d" é um digito decimal.
+ * Formato do Renavam: "dddd.dddddd-d" onde "d" é um digito decimal.
  * 
  * @author Rafael Carvalho
  */
 public class RenavamValidator implements Validator<String> {
 
-    private final BaseValidator baseValidator;
-    private static final Integer fator = 0;
-    private static final Integer mod = 11;
-    private static final Integer[] pesos = { 9, 8, 7, 6, 5, 4, 3, 2 };
-    private static final Integer posicaoDoDigitoVerificador = 9;
-    private static final RotinaDeDigitoVerificador[] rotinas = { new RotinaComumDeDigitoVerificador() };
-    private static final DigitoVerificadorInfo digitoVerificadorInfo = new DigitoVerificadorInfo(fator, rotinas, mod,
-            pesos,
-            posicaoDoDigitoVerificador);
-    private static final ValidadorDeDV validatorDeDigitoVerificador = new ValidadorDeDV(digitoVerificadorInfo);
-    private final boolean isFormatted;
+	public static final Pattern FORMATED = Pattern.compile("(\\d{4})[.](\\d{6})-(\\d{1})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{4})(\\d{6})(\\d{1})");
+
+    private boolean isFormatted = false;
+    private MessageProducer messageProducer;
 
     /**
      * Construtor padrão de validador do Renavam. Este considera, por padrão,
@@ -43,7 +39,7 @@ public class RenavamValidator implements Validator<String> {
      * {@linkplain SimpleMessageProducer} para geração de mensagens.
      */
     public RenavamValidator() {
-        this(true);
+    	this.messageProducer = new SimpleMessageProducer();
     }
 
     /**
@@ -56,7 +52,7 @@ public class RenavamValidator implements Validator<String> {
      */
     public RenavamValidator(boolean isFormatted) {
         this.isFormatted = isFormatted;
-        this.baseValidator = new BaseValidator();
+        this.messageProducer = new SimpleMessageProducer();
     }
 
     /**
@@ -72,19 +68,18 @@ public class RenavamValidator implements Validator<String> {
      */
     public RenavamValidator(MessageProducer messageProducer, boolean isFormatted) {
         this.isFormatted = isFormatted;
-        this.baseValidator = new BaseValidator(messageProducer);
+        this.messageProducer = messageProducer;
     }
 
     public void assertValid(String renavam) {
-        baseValidator.assertValid(getInvalidValues(renavam));
-    }
-
-    private boolean isCheckDigitValid(String renavam) {
-        return validatorDeDigitoVerificador.isDVValid(unformat(renavam));
+        List<ValidationMessage> errors = getInvalidValues(renavam);
+        if (!errors.isEmpty()) {
+			throw new InvalidStateException(errors);
+		}
     }
 
     public List<ValidationMessage> invalidMessagesFor(String renavam) {
-        return baseValidator.generateValidationMessages(getInvalidValues(renavam));
+        return getInvalidValues(renavam);
     }
 
     /**
@@ -94,20 +89,55 @@ public class RenavamValidator implements Validator<String> {
      * 
      * @param renavam
      *            Cadeia de caracteres representando o Renavam a ser validado
-     * @return Uma lista de {@linkplain InvalidValue} com os erros encontrados
+     * @return Uma lista de {@linkplain ValidationMessage} com os erros encontrados
      *         ou uma lista vazia, caso não haja nenhum erro.
      */
-    private List<InvalidValue> getInvalidValues(String renavam) {
-        List<InvalidValue> errors = new ArrayList<InvalidValue>();
-        if (!isEligible(renavam)) {
-            errors.add(RenavamError.INVALID_DIGITS);
-        } else if (!isCheckDigitValid(renavam)) {
-            errors.add(RenavamError.INVALID_CHECK_DIGIT);
-        }
-        return errors;
+    private List<ValidationMessage> getInvalidValues(String renavam) {
+        List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
+		if (renavam != null) {
+
+			renavam = formataPadraoNovo(renavam);
+			
+			if (isFormatted && !FORMATED.matcher(renavam).matches()) {
+				errors.add(messageProducer.getMessage(RenavamError.INVALID_FORMAT));
+			}
+
+			String unformatedRenavam = null;
+			try {
+				unformatedRenavam = new RenavamFormatter().unformat(renavam);
+			} catch (IllegalArgumentException e) {
+				errors.add(messageProducer.getMessage(RenavamError.INVALID_DIGITS));
+				return errors;
+			}
+			
+			if (unformatedRenavam.length() != 11 || !unformatedRenavam.matches("[0-9]*")) {
+				errors.add(messageProducer.getMessage(RenavamError.INVALID_DIGITS));
+			}
+
+			String renavamSemDigito = unformatedRenavam.substring(0, unformatedRenavam.length() - 1);
+			String digito = unformatedRenavam.substring(unformatedRenavam.length() - 1);
+
+			String digitoCalculado = calculaDigito(renavamSemDigito);
+
+			if (!digito.equals(digitoCalculado)) {
+				errors.add(messageProducer.getMessage(RenavamError.INVALID_CHECK_DIGIT));
+			}
+		}
+		return errors;
     }
 
-    public boolean isEligible(String renavam) {
+	private String formataPadraoNovo(String renavam) {
+		if ((isFormatted && renavam.length() == 11) || (!isFormatted && renavam.length() == 9)) {
+			return "00" + renavam;
+		}
+		return renavam;
+	}
+
+	private String calculaDigito(String renavamSemDigito) {
+    	return new DigitoPara(renavamSemDigito).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
+	}
+
+	public boolean isEligible(String renavam) {
         boolean isEligible;
         if (isFormatted) {
             isEligible = RenavamFormatter.FORMATTED.matcher(renavam).matches();
@@ -117,18 +147,4 @@ public class RenavamValidator implements Validator<String> {
         return isEligible;
     }
 
-    /**
-     * Remove a formatação da cadeia
-     * 
-     * @param renavam
-     *            Cadeia de caracteres representando o Renavam
-     * @return O renvam informado, sem formatação.
-     */
-    private String unformat(String renavam) {
-        String result = renavam;
-        if (isFormatted) {
-            result = new RenavamFormatter().unformat(renavam);
-        }
-        return result;
-    }
 }

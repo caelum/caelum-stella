@@ -7,28 +7,25 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.jmock.Expectations;
-import org.jmock.Mockery;
 import org.junit.Test;
 
-import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
-import br.com.caelum.stella.validation.error.RenavamError;
 
 public class RenavamValidationTest {
 
-    private final String validUnformattedRenavam1 = "639884962";
-    private final String validUnformattedRenavam2 = "811443620";
-    private final String validFormattedRenavam1 = "73.640767-7";
-    private final String validFormattedRenavam2 = "96.525195-0";
-    private final String renavamUnformattedWithInvalidCheckDigit = "639884969";
-    private final String renavamFormattedWithInvalidCheckDigit = "96.525195-2";
-    private final String renavamWithLessThenNineDigits = "999999";
-    private final String renavamWithMoreThenNineDigits = "9999999999";
+    private final String validUnformattedRenavam1 = "00639884962";
+    private final String validUnformattedRenavam2 = "00811443620";
+    private final String validFormattedRenavam1 = "0073.640767-7";
+    private final String validFormattedRenavam2 = "0096.525195-0";
+    private final String renavamUnformattedWithInvalidCheckDigit = "00639884969";
+    private final String renavamFormattedWithInvalidCheckDigit = "0096.525195-2";
+    private final String renavamWithLessThenElevenDigits = "9999999999";
+    private final String renavamWithMoreThenElevenDigits = "999999999999";
+    private final String renavamWithNineDigits = "639884962";
 
     @Test
     public void shouldValidateValidUnformatedRenavam() {
-        RenavamValidator validator = new RenavamValidator(false);
+        RenavamValidator validator = new RenavamValidator();
         validator.assertValid(validUnformattedRenavam1);
         validator.assertValid(validUnformattedRenavam2);
 
@@ -38,7 +35,7 @@ public class RenavamValidationTest {
 
     @Test
     public void shouldValidateFormattedValidRenavam() {
-        RenavamValidator validator = new RenavamValidator();
+        RenavamValidator validator = new RenavamValidator(true);
         validator.assertValid(validFormattedRenavam1);
         validator.assertValid(validFormattedRenavam2);
 
@@ -48,7 +45,7 @@ public class RenavamValidationTest {
 
     @Test
     public void shouldConsiderAValidFormattedRenavamAsEligible() {
-        RenavamValidator validator = new RenavamValidator();
+        RenavamValidator validator = new RenavamValidator(true);
         assertTrue(validator.isEligible(validFormattedRenavam1));
         assertTrue(validator.isEligible(validFormattedRenavam2));
         assertTrue(validator.isEligible(renavamFormattedWithInvalidCheckDigit));
@@ -56,7 +53,7 @@ public class RenavamValidationTest {
 
     @Test
     public void shouldConsiderAValidUnformattedRenavamAsEligible() {
-        RenavamValidator validator = new RenavamValidator(false);
+        RenavamValidator validator = new RenavamValidator();
         assertTrue("Renamvam " + validUnformattedRenavam1 + " must be eligible.", validator
                 .isEligible(validUnformattedRenavam1));
         assertTrue(validator.isEligible(validUnformattedRenavam2));
@@ -65,33 +62,34 @@ public class RenavamValidationTest {
 
     @Test(expected = InvalidStateException.class)
     public void shouldNotValidadeUnformattedRenavamWithInvalidCheckDigit() {
-        RenavamValidator validator = new RenavamValidator(false);
+        RenavamValidator validator = new RenavamValidator();
         validator.assertValid(renavamUnformattedWithInvalidCheckDigit);
     }
 
     @Test(expected = InvalidStateException.class)
     public void shouldNotValidadeFormattedRenavamWithInvalidCheckDigit() {
-        RenavamValidator validator = new RenavamValidator();
+        RenavamValidator validator = new RenavamValidator(true);
         validator.assertValid(renavamFormattedWithInvalidCheckDigit);
     }
 
     @Test
-    public void onlyRenavamWithNineDigitsAreEligible() {
+    public void onlyRenavamWithNineOrElevenDigitsAreEligible() {
         RenavamValidator validator = new RenavamValidator();
-        assertFalse(validator.isEligible(renavamWithLessThenNineDigits));
-        assertFalse(validator.isEligible(renavamWithMoreThenNineDigits));
+        assertFalse(validator.isEligible(renavamWithNineDigits));
+        assertFalse(validator.isEligible(renavamWithLessThenElevenDigits));
+        assertFalse(validator.isEligible(renavamWithMoreThenElevenDigits));
     }
 
     @Test(expected = InvalidStateException.class)
-    public void shouldNotValidateARenavamWithLessThenNineDigits() {
+    public void shouldNotValidateARenavamWithLessThenElevenDigits() {
         RenavamValidator validator = new RenavamValidator();
-        validator.assertValid(renavamWithLessThenNineDigits);
+        validator.assertValid(renavamWithLessThenElevenDigits);
     }
 
     @Test(expected = InvalidStateException.class)
-    public void shouldNotValidateARenavamWithMoreThenNineDigits() {
+    public void shouldNotValidateARenavamWithMoreThenElevenDigits() {
         RenavamValidator validator = new RenavamValidator();
-        validator.assertValid(renavamWithMoreThenNineDigits);
+        validator.assertValid(renavamWithMoreThenElevenDigits);
     }
 
     @Test
@@ -103,7 +101,7 @@ public class RenavamValidationTest {
 
     @Test
     public void shouldGenerateExplanatoryErrorMessagesForUnformattedRenavam() {
-        RenavamValidator validator = new RenavamValidator(false);
+        RenavamValidator validator = new RenavamValidator();
         List<ValidationMessage> invalidMessagesFor = null;
 
         invalidMessagesFor = validator.invalidMessagesFor("999");
@@ -117,12 +115,13 @@ public class RenavamValidationTest {
 
     @Test
     public void shouldGenerateExplanatoryErrorMessagesForFormattedRenavam() {
-        RenavamValidator validator = new RenavamValidator();
+        RenavamValidator validator = new RenavamValidator(true);
         List<ValidationMessage> invalidMessagesFor = null;
 
         invalidMessagesFor = validator.invalidMessagesFor("999");
-        assertTrue(invalidMessagesFor.size() == 1);
-        assertEquals("RenavamError : INVALID DIGITS", invalidMessagesFor.get(0).getMessage());
+        assertTrue(invalidMessagesFor.size() == 2);
+        assertEquals("RenavamError : INVALID FORMAT", invalidMessagesFor.get(0).getMessage());
+        assertEquals("RenavamError : INVALID DIGITS", invalidMessagesFor.get(1).getMessage());
 
         invalidMessagesFor = validator.invalidMessagesFor(renavamFormattedWithInvalidCheckDigit);
         assertTrue(invalidMessagesFor.size() == 1);
@@ -143,24 +142,11 @@ public class RenavamValidationTest {
     }
 
     @Test
-    public void shouldUseTheMessageProducerPassedForTheConstructorAsAnArgument() {
-        Mockery mockery = new Mockery();
-        final MessageProducer messageProducer = mockery.mock(MessageProducer.class);
+    public void shouldValidateValidRenavamWithNineDigits() {
+        RenavamValidator validator = new RenavamValidator();
+        validator.assertValid(renavamWithNineDigits);
 
-        mockery.checking(new Expectations() {
-            {
-                exactly(1).of(messageProducer).getMessage(RenavamError.INVALID_CHECK_DIGIT);
-            }
-        });
-
-        RenavamValidator validator = new RenavamValidator(messageProducer, true);
-        try {
-            validator.assertValid(renavamFormattedWithInvalidCheckDigit);
-            fail();
-        } catch (InvalidStateException e) {
-            assertTrue(e.getInvalidMessages().size() == 1);
-        }
-
-        mockery.assertIsSatisfied();
+        List<ValidationMessage> errorMessages = validator.invalidMessagesFor(renavamWithNineDigits);
+        assertTrue(errorMessages.isEmpty());
     }
 }
