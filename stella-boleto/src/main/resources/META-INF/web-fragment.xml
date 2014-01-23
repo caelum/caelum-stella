@@ -4,12 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
 	id="WebAppFragment_ID" version="3.0">
 		<name>servlets</name>
-		<servlet>
-			<servlet-name>stella-boleto</servlet-name>
-			<servlet-class>br.com.caelum.stella.boleto.transformer.HTMLBoletoServlet</servlet-class>
-		</servlet>
-		<servlet-mapping>
-			<servlet-name>stella-boleto</servlet-name>
-			<url-pattern>/stella-boleto</url-pattern>
-		</servlet-mapping>
+	    <servlet>
+	        <servlet-name>JasperReportsImageServlet</servlet-name>
+	        <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
+	    </servlet>
+	    <servlet-mapping>
+	        <servlet-name>JasperReportsImageServlet</servlet-name>
+	        <url-pattern>/stella-boleto</url-pattern>
+	    </servlet-mapping>
 	</web-fragment>
