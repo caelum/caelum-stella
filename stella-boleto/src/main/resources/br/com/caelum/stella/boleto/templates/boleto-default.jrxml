@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1102"/>
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="2287"/>
+	<property name="ireport.y" value="3357"/>
 	<property name="ireport.background.image" value="/Users/mario/caelum/caelum-stella/stella-boleto/BradescoDoBrasil.png"/>
 	<property name="ireport.background.image.properties" value="false,true,0.75,0,0,0,0,0,0"/>
 	<style name="Celula" forecolor="#646464" fontName="Helvetica" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
@@ -10,12 +10,18 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
 			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.0" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
 	<style name="Txt_Normal" fontName="Helvetica" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
-		<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2"/>
+		<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
 	</style>
 	<style name="Txt_Negrito" style="Txt_Normal" hAlign="Left" vAlign="Bottom" fontSize="13" isBold="true">
 		<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2"/>
@@ -141,11 +147,17 @@
 	<detail>
 		<band height="802" splitType="Prevent">
 			<staticText>
-				<reportElement style="Celula" x="0" y="638" width="27" height="69" uuid="a0ebfd6d-f78f-4a6d-840a-cfd5344b04df"/>
+				<reportElement style="Celula" x="0" y="638" width="27" height="68" uuid="a0ebfd6d-f78f-4a6d-840a-cfd5344b04df"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Sacado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="0" y="276" width="355" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Nome do Cliente]]></text>
 			</staticText>
 			<staticText>
@@ -164,10 +176,24 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="51" y="242" width="414" height="16" uuid="1f153a12-3665-46bb-8314-8460522f1cbc"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="51" y="258" width="414" height="18" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
+				<reportElement style="Txt_Normal" x="51" y="258" width="504" height="18" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -186,30 +212,65 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="286" width="355" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="355" y="276" width="100" height="10" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Data de Vencimento]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="455" y="276" width="100" height="10" uuid="9476fbf3-dbd9-44db-a458-de45abee4ef1"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<text><![CDATA[Valor Cobrado]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Data" x="355" y="286" width="100" height="16" uuid="ba60b891-62a7-4e63-9591-9769ef2ff057"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_valor" x="455" y="286" width="100" height="16" uuid="1d5919bf-162d-49ff-8b7d-43d64d2a71b8"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="10">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="0" y="302" width="178" height="10" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Agência / Código do Cedente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="178" y="302" width="177" height="10" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Nosso Número]]></text>
 			</staticText>
 			<staticText>
@@ -228,10 +289,24 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="312" width="178" height="16" uuid="9b0e8341-a44a-4d63-9135-2753b6fbedc7"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="178" y="312" width="177" height="16" uuid="0a386697-5190-4930-a3e4-dada92f6d225"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{nossoNumeroECodDocumento}]]></textFieldExpression>
 			</textField>
 			<line>
@@ -249,10 +324,16 @@
 			</image>
 			<staticText>
 				<reportElement style="Celula" x="0" y="403" width="389" height="10" uuid="8e1bce5a-a021-42b8-8369-32a2f8cc6bbd"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Local de Pagamento]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" mode="Opaque" x="389" y="403" width="166" height="10" backcolor="#D2D2D2" uuid="9a753a3c-4b4e-4c29-9580-1a6558413ac0"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Vencimento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -263,7 +344,10 @@
 				<textFieldExpression><![CDATA[$F{numeroFormatadoComDigito}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Negrito" x="157" y="370" width="400" height="33" uuid="ef02be07-c02b-4325-87b8-7216d35efe9e"/>
+				<reportElement style="Txt_Negrito" x="157" y="370" width="398" height="33" uuid="ef02be07-c02b-4325-87b8-7216d35efe9e"/>
+				<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2">
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right" markup="none">
 					<font size="13"/>
 				</textElement>
@@ -271,30 +355,55 @@
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="0" y="429" width="389" height="10" uuid="da59b3ca-b885-4209-9b54-17ec5c88d1d1"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Cedente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" mode="Transparent" x="389" y="429" width="166" height="10" uuid="4435ada7-43bc-400c-b80e-ebaa6277044a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Agência / Código do Cedente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="90" y="455" width="90" height="10" uuid="30ced1b4-822e-473b-9ef2-d8272091cb13"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Nº do Documento]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="0" y="455" width="90" height="10" uuid="2dd9d9f4-265c-4598-a301-18c9d4fa9643"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Data do Documento]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="180" y="455" width="60" height="10" uuid="4dc33c06-10f2-478a-b6f1-b905f2bb9d1f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<text><![CDATA[Espécie Doc.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="240" y="455" width="59" height="10" uuid="4318ffc8-e2c1-4b14-aed2-211c66f305ef"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Aceite]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="299" y="455" width="90" height="10" uuid="d4188f19-d828-45e4-9fa0-6cb1a329245b"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Data de Processamento]]></text>
 			</staticText>
 			<staticText>
@@ -319,6 +428,9 @@
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" mode="Transparent" x="389" y="455" width="166" height="10" uuid="6d8eb9b9-36c3-48e3-966e-b21feec3e93b"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<text><![CDATA[Nosso Número / Cód. do Documento]]></text>
 			</staticText>
 			<staticText>
@@ -355,46 +467,109 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="27" y="642" width="272" height="15" uuid="5d1fa5fb-b6ef-4a47-a6a7-a051b0a1e6cb"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="299" y="642" width="90" height="15" uuid="940485ce-679b-4681-a992-da3cc59f8e4e"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="27" y="657" width="513" height="15" uuid="446593d2-cd04-4e68-8206-f41bfdd4e191"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{endereco_1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="27" y="672" width="513" height="15" uuid="a1bdaff2-fe08-420b-a5e3-fa6287f91ebd"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{cep} + " - " + $F{bairro} + " - " + $F{cidade} + " " + $F{uf}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="517" width="389" height="81" uuid="fc22e98e-c947-40d8-8347-ac223f7ac029"/>
+				<reportElement x="1" y="517" width="388" height="81" uuid="fc22e98e-c947-40d8-8347-ac223f7ac029"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{instrucoes})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "boleto-default_instrucoes.jasper"]]></subreportExpression>
 			</subreport>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="439" width="389" height="16" uuid="de5585ce-2add-4676-a320-dc0a2bd95c54"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="389" y="439" width="166" height="16" uuid="9af58f23-bc10-4746-a68a-fc55cbe59daf"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="413" width="389" height="16" uuid="55f1c803-8e3f-4aa1-a8a2-6c631df24c17"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{localDePagamento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Data" x="389" y="413" width="166" height="16" uuid="3bd7c6f6-b617-4e1a-bb21-2dba1e8321ff"/>
+				<reportElement style="Txt_Data" mode="Opaque" x="389" y="413" width="166" height="16" backcolor="#D2D2D2" uuid="3bd7c6f6-b617-4e1a-bb21-2dba1e8321ff"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Data" x="0" y="465" width="90" height="16" uuid="f7e4683d-666a-408c-8587-1c582bc0ee42"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{documento}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
@@ -427,7 +602,7 @@
 				<textFieldExpression><![CDATA[$F{valorMoeda}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_valor" x="389" y="491" width="166" height="16" uuid="c980c26b-8c9a-4965-8a32-32b525b3093e"/>
+				<reportElement style="Txt_valor" mode="Opaque" x="389" y="491" width="166" height="16" backcolor="#D2D2D2" uuid="c980c26b-8c9a-4965-8a32-32b525b3093e"/>
 				<textFieldExpression><![CDATA[$F{valorBoleto}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
@@ -447,11 +622,11 @@
 				<textFieldExpression><![CDATA[$F{valorAcrescimos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_valor" x="389" y="622" width="166" height="16" uuid="15f18665-2c50-4946-9787-254ea11964bc"/>
+				<reportElement style="Txt_valor" mode="Opaque" x="389" y="622" width="166" height="16" backcolor="#D2D2D2" uuid="15f18665-2c50-4946-9787-254ea11964bc"/>
 				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Celula" x="309" y="687" width="80" height="20" uuid="8299f81f-8ef3-4bbb-b6ff-26e1cfe26035"/>
+				<reportElement style="Celula" x="309" y="690" width="80" height="15" uuid="8299f81f-8ef3-4bbb-b6ff-26e1cfe26035"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="5" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -463,7 +638,7 @@
 				<text><![CDATA[Código de Baixa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="309" y="707" width="80" height="20" uuid="173a66cb-b4f3-4443-a9be-5be702b8206b"/>
+				<reportElement style="Celula" x="309" y="710" width="80" height="15" uuid="173a66cb-b4f3-4443-a9be-5be702b8206b"/>
 				<box topPadding="5" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -475,7 +650,7 @@
 				<text><![CDATA[Autenticação Mecânica]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="411" y="707" width="144" height="20" uuid="cc04906a-fa73-46ee-83fa-eaf9e7ed0013"/>
+				<reportElement style="Celula" x="406" y="709" width="144" height="18" uuid="cc04906a-fa73-46ee-83fa-eaf9e7ed0013"/>
 				<box topPadding="5" leftPadding="2" bottomPadding="2" rightPadding="3">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -490,6 +665,13 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="90" y="465" width="90" height="16" uuid="ecc57944-7d6a-421f-9cb7-5019a596ca87"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{numeroDoDocumentoFormatado}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
@@ -497,19 +679,43 @@
 				<textFieldExpression><![CDATA[$F{carteira}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="10" y="727" width="545" height="42" uuid="dc077954-2d5d-4513-9b53-3c7bde34c9f2"/>
+				<reportElement x="10" y="727" width="530" height="42" uuid="dc077954-2d5d-4513-9b53-3c7bde34c9f2"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Int2of5" drawText="false" checksumRequired="false" barHeight="100">
 					<jr:codeExpression><![CDATA[$F{codigoDeBarras}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="608" width="389" height="15" uuid="e45d233f-f5c8-4378-9044-3ccdba7e9326"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
 				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="0" y="623" width="389" height="15" uuid="ca0f877a-07d1-4919-a537-e7c04300c5da"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="706" width="555" height="1" uuid="e384b968-bd03-439c-8477-c33362996b52"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="555" y="638" width="1" height="69" uuid="08525572-bed4-4ddc-a42f-1ab9eef90327"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="517" width="1" height="81" uuid="fe64f02a-8061-4be7-940c-6ce2d8cc9df2"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 </jasperReport>
