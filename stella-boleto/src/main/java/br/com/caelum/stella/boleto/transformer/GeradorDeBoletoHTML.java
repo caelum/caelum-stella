@@ -27,8 +27,9 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 	public GeradorDeBoletoHTML(Boleto... boletos) {
 		super(boletos);
 	}
-
-	public GeradorDeBoletoHTML(InputStream template, Map parametros, Boleto... boletos) {
+	
+	@SuppressWarnings("rawtypes")
+	public GeradorDeBoletoHTML(InputStream template,  Map parametros, Boleto... boletos) {
 		super(template, parametros, boletos);
 	}
 

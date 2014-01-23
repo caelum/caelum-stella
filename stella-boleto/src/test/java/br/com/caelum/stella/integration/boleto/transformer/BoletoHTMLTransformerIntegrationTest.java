@@ -1,15 +1,12 @@
 package br.com.caelum.stella.integration.boleto.transformer;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Locale;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,8 +16,9 @@ import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
-import br.com.caelum.stella.boleto.transformer.BoletoTransformer;
-import br.com.caelum.stella.boleto.transformer.HTMLBoletoWriter;
+import br.com.caelum.stella.boleto.transformer.GeradorDeBoletoHTML;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test para testar o boleto html, deixei em um teste separado pois ainda não
@@ -30,6 +28,29 @@ import br.com.caelum.stella.boleto.transformer.HTMLBoletoWriter;
  * 
  */
 public class BoletoHTMLTransformerIntegrationTest {
+	
+	private static final String FILE_NAME = "arquivo.html";
+	
+	
+	@After
+	public void removeFiles(){
+		delete(new File(FILE_NAME));
+		delete(new File(FILE_NAME + "_files"));
+	}
+	
+	private boolean delete(File file) {
+		if (file.isDirectory()) {
+			String[] children = file.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = delete(new File(file, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		}
+
+		return file.delete();
+	}	
 
 	@Before
 	public void setUp() throws Exception {
@@ -59,43 +80,35 @@ public class BoletoHTMLTransformerIntegrationTest {
 				.comSacado(sacado).comValorBoleto("40.00").comNumeroDoDocumento("4323").comInstrucoes(instrucoes)
 				.comLocaisDePagamento(locaisDePagamento);
 
-		BoletoTransformer transformer = new BoletoTransformer(new HTMLBoletoWriter(
-				"http://localhost:8080/caelum-stella-boleto/stella-boleto/"));
-		InputStream is = transformer.transform(boleto);
-		@SuppressWarnings("resource")
-		FileOutputStream arquivo = new FileOutputStream("arquivo.html");
-		byte[] bytes = new byte[is.available()];
-		is.read(bytes);
-		arquivo.write(bytes);
-
+		GeradorDeBoletoHTML gerador = new GeradorDeBoletoHTML(boleto);
+		gerador.geraHTML(FILE_NAME);
 	}
 
 	@Test
 	public void testHTMLWriterGeneration() {
-		assertTrue(new File("arquivo.html").exists());
+		assertTrue(new File(FILE_NAME).exists());
 	}
 
 	@Test
 	public void testHTMLWriterEscreveValorCorreto() {
-		System.out.println(lerArquivo());
 		assertTrue(lerArquivo().contains("40,00"));
 	}
 
 	@Test
 	public void testHTMLWriterEscreveLinhaDigitavelCorreta() {
-		assertTrue(lerArquivo().contains("00190.00009  01207.113000  09000.206186  5  38600000004000"));
+		assertTrue(lerArquivo().contains("00190.00009 01207.113000 09000.206186 5 38600000004000"));
 	}
 
 	private String lerArquivo() {
 		try {
 			@SuppressWarnings("resource")
-			FileInputStream fileInputStream = new FileInputStream(new File("arquivo.html"));
+			FileInputStream fileInputStream = new FileInputStream(new File(FILE_NAME));
 			int c = 0;
 			StringBuffer boleto = new StringBuffer();
 			while ((c = fileInputStream.read()) != -1) {
 				boleto.append((char) c);
 			}
-			return boleto.toString();
+			return boleto.toString().replaceAll("&nbsp;", "");
 		} catch (FileNotFoundException fileNotFoundException) {
 			throw new RuntimeException(fileNotFoundException);
 		} catch (IOException ioException) {
