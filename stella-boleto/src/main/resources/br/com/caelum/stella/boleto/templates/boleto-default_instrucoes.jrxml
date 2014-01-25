@@ -11,7 +11,7 @@
 			<textField isBlankWhenNull="true">
 				<reportElement mode="Opaque" x="2" y="2" width="384" height="11" uuid="b95bbc13-9427-42d1-b018-a1758c7d4c8a"/>
 				<textElement>
-					<font fontName="Helvetica" size="7"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 			</textField>
