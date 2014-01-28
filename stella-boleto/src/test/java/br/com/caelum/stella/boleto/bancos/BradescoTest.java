@@ -71,7 +71,6 @@ public class BradescoTest {
 		this.boleto = this.boleto.comBanco(this.banco);
 		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
-		System.out.println(codigoDeBarras);
 		assertEquals("23792.94909  60000.000004  03000.658009  6  31680000000100",
 				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
