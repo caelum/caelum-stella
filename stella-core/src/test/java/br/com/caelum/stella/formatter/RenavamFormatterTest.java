@@ -12,8 +12,8 @@ public class RenavamFormatterTest {
 
     @Test
     public void shouldFormatAnUnformattedRenavam() {
-        String formattedRenavam = formatter.format("736407677");
-        assertEquals("73.640767-7", formattedRenavam);
+        String formattedRenavam = formatter.format("00736407677");
+        assertEquals("0073.640767-7", formattedRenavam);
     }
 
     @Test

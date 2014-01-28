@@ -63,7 +63,7 @@ public class ItauTest {
 		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 		String linha = "34191.57213  89766.660164  74514.590004  6  56550000268016";
-		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras));
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test

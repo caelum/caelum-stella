@@ -5,7 +5,7 @@ import br.com.caelum.stella.DigitoPara;
 public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Override
 	public int geraDigitoMod11(String codigoDeBarras) {
 		return geraDigitoMod(codigoDeBarras, 2, 9, 11);
@@ -18,7 +18,13 @@ public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 
 	@Override
 	public int geraDigitoMod10(String campo) {
-		return Integer.valueOf(new DigitoPara(campo).comMultiplicadores(2, 1).complementarAoModulo().trocandoPorSeEncontrar("0",10).mod(10).calcula());
+		return Integer.valueOf(new DigitoPara(campo)
+		.comMultiplicadores(2, 1)
+		.somandoIndividualmente()
+		.trocandoPorSeEncontrar("0",10)
+		.complementarAoModulo()
+		.mod(10)
+		.calcula());
 	}
 
 	@Override

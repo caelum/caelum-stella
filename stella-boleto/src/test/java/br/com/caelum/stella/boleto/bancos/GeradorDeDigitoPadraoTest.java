@@ -26,9 +26,9 @@ public class GeradorDeDigitoPadraoTest {
 
 	@Test
 	public void geracaoDeDigitoMod10() {
-		Assert.assertEquals(0, gerador.geraDigitoMod10("237929490"));
+		Assert.assertEquals(9, gerador.geraDigitoMod10("237929490"));
 		Assert.assertEquals(4, gerador.geraDigitoMod10("6000000000"));
-		Assert.assertEquals(1, gerador.geraDigitoMod10("0300065800"));
-		Assert.assertEquals(0, gerador.geraDigitoMod10("399903512"));
+		Assert.assertEquals(9, gerador.geraDigitoMod10("0300065800"));
+		Assert.assertEquals(8, gerador.geraDigitoMod10("399903512"));
 	}
 }

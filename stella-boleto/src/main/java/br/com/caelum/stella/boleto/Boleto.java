@@ -441,7 +441,7 @@ public class Boleto implements Serializable {
 	 * @return
 	 */
 	public String getLinhaDigitavel(){
-		return new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(getCodigoDeBarras());
+		return new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(getCodigoDeBarras(), banco);
 	}
 	
 	/**
