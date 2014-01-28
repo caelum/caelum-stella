@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
  */
 public class RenavamFormatter implements Formatter {
 
-    public static final Pattern FORMATTED = Pattern.compile("(\\d{4}).(\\d{6})-(\\d{1})");
-    public static final Pattern UNFORMATTED = Pattern.compile("(\\d{4})(\\d{6})(\\d{1})");
+    public static final Pattern FORMATTED = Pattern.compile("(\\d{2,4}).(\\d{6})-(\\d{1})");
+    public static final Pattern UNFORMATTED = Pattern.compile("(\\d{2,4})(\\d{6})(\\d{1})");
 
     private final BaseFormatter base;
 

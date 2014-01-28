@@ -75,8 +75,8 @@ public class RenavamValidationTest {
     @Test
     public void onlyRenavamWithNineOrElevenDigitsAreEligible() {
         RenavamValidator validator = new RenavamValidator();
-        assertFalse(validator.isEligible(renavamWithNineDigits));
-        assertFalse(validator.isEligible(renavamWithLessThenElevenDigits));
+        assertTrue(validator.isEligible(renavamWithNineDigits));
+        assertTrue(validator.isEligible(renavamWithLessThenElevenDigits));
         assertFalse(validator.isEligible(renavamWithMoreThenElevenDigits));
     }
 
