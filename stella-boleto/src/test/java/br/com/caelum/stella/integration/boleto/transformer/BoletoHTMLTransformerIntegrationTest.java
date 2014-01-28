@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
  * @author Alberto
  * 
  */
-public class BoletoHTMLTransformerIntegrationTest {
+public class BoletoHTMLTransformerIntegrationTest extends DefaultIntegrationTest{
 	
 	private static final String FILE_NAME = "arquivo.html";
 	
@@ -50,8 +50,8 @@ public class BoletoHTMLTransformerIntegrationTest {
 		}
 
 		return file.delete();
-	}	
-
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 
@@ -98,7 +98,7 @@ public class BoletoHTMLTransformerIntegrationTest {
 	public void testHTMLWriterEscreveLinhaDigitavelCorreta() {
 		assertTrue(lerArquivo().contains("00190.00009 01207.113000 09000.206186 5 38600000004000"));
 	}
-
+	
 	private String lerArquivo() {
 		try {
 			@SuppressWarnings("resource")

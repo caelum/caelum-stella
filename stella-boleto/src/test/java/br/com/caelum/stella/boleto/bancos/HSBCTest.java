@@ -39,7 +39,7 @@ public class HSBCTest {
 	public void testLinhaDoBancoHSBC() {
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 		assertEquals("39994.14620  39000.000008  01476.030323  2  55940000338300",
-			new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(codigoDeBarras));
+			new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test

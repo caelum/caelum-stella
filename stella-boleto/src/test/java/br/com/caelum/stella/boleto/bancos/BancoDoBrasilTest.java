@@ -169,7 +169,7 @@ public class BancoDoBrasilTest {
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
 		assertEquals("00190.00009  01207.113000  09000.206186  5  38600000004000",
-				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
+				linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test

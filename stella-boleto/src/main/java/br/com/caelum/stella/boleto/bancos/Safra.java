@@ -79,4 +79,5 @@ public class Safra extends AbstractBanco implements Banco {
 		builder.append("0");
 		return builder.append(emissor.getAgenciaFormatado()).toString();
 	}
+
 }

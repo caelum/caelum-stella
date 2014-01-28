@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
@@ -12,8 +13,6 @@ import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
  */
 public class GeradorDeLinhaDigitavel {
 
-	private GeradorDeDigito dvGenerator = new GeradorDeDigitoPadrao();
-
 	/**
 	 * Gera a linha digitavel do boleto de acordo com normas 
 	 * da carta circular n. 2926 do banco central do Brasil.
@@ -22,13 +21,15 @@ public class GeradorDeLinhaDigitavel {
 	 * @param codigoDeBarras gerado pelo boleto
 	 * @return linha digitavel já formatada de acordo com padrao
 	 */
-	public String geraLinhaDigitavelPara(String codigoDeBarras) {
+	public String geraLinhaDigitavelPara(String codigoDeBarras, Banco banco) {
 		
 		if (codigoDeBarras.length()!= 44){
 			throw new IllegalArgumentException("O código de barras" +
 				" precisa ter 44 digitos");
 		}
 				
+		GeradorDeDigito dvGenerator = banco.getGeradorDeDigito();
+
 		StringBuilder builder = new StringBuilder();
 		builder.append(codigoDeBarras.substring(0, 3));
 		builder.append(codigoDeBarras.substring(3, 4));
@@ -44,7 +45,7 @@ public class GeradorDeLinhaDigitavel {
 		
 		return formata(builder).toString();
 	}
-
+	
 	private StringBuilder formata(StringBuilder linhaDigitavel) {
 		linhaDigitavel.insert(5, '.');
 		linhaDigitavel.insert(11, "  ");

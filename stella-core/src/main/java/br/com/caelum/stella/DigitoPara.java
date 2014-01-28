@@ -39,6 +39,7 @@ public class DigitoPara {
 	private List<Integer> aSubstituir;
 	private String substituto;
 	private int modulo;
+	private boolean somarIndividual;
 
 	/**
 	 * Cria o objeto a ser preenchido com interface fluente e armazena o trecho numérico
@@ -116,6 +117,19 @@ public class DigitoPara {
 	}
 	
 	/**
+	 * Indica se ao calcular o módulo, se a soma dos resultados da multiplicação deve ser
+	 * considerado digito a dígito.
+	 * 
+	 * Ex: 2 X 9 = 18, irá somar 9 (1 + 8) invés de 18 ao total.
+	 * 
+	 * @return
+	 */
+	public DigitoPara somandoIndividualmente(){
+		this.somarIndividual = true;
+		return this;
+	}
+	
+	/**
 	 * Faz a soma geral das multiplicações dos algarismos pelos multiplicadores, tira o 
 	 * módulo e devolve seu complementar.
 	 * 
@@ -126,13 +140,27 @@ public class DigitoPara {
 		int multiplicadorDaVez = 0;
 		for (int algarismo : numero) {
 			int multiplicador = multiplicadores.get(multiplicadorDaVez);
-			soma += algarismo * multiplicador;
+			int total = algarismo * multiplicador;
+			soma += somarIndividual ? somaDigitos(total) : total;
 			multiplicadorDaVez = proximoMultiplicador(multiplicadorDaVez);
 		}
 		int resultado = soma % modulo;
 		if (complementar)
 			resultado = modulo - resultado;
 		return aSubstituir.contains(resultado) ? substituto : String.valueOf(resultado);
+	}
+	
+	
+	/**
+	 * soma os dígitos do número (até 2)
+	 * 
+	 * Ex: 18 => 9 (1+8), 12 => 3 (1+2)
+	 * 
+	 * @param total
+	 * @return
+	 */
+	private int somaDigitos(int total) {
+		return (total / 10) + (total % 10);
 	}
 
 	/**

@@ -82,7 +82,7 @@ public class SafraTest {
 		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
-		assertEquals("42297.00002  10000.124510  00000.000422  4  57710000001980", linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras));
+		assertEquals("42297.00002  10000.124510  00000.000422  4  57710000001980", linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test

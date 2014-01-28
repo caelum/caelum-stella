@@ -99,7 +99,7 @@ public class CaixaTest {
 		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 		String linha = "10491.00231  59990.000008  00039.944582  2  56830000401610";
-		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras));
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class CaixaTest {
 		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = outroBoleto.getBanco().geraCodigoDeBarrasPara(outroBoleto);
 		String linha = "10492.90271  45900.200044  00000.013227  9  54460000008000";
-		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras));
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test

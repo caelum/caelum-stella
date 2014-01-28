@@ -76,4 +76,5 @@ public class Itau extends AbstractBanco implements Banco {
 		builder.append("-").append(emissor.getDigitoContaCorrente());
 		return builder.toString();
 	}
+
 }
