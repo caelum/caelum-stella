@@ -2,10 +2,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="467"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.background.image" value="/Users/mario/caelum/caelum-stella/stella-boleto/BradescoDoBrasil.png"/>
 	<property name="ireport.background.image.properties" value="false,true,0.75,0,0,0,0,0,0"/>
-	<style name="Celula" forecolor="#646464" fontName="SansSerif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+	<style name="Celula" forecolor="#646464" fontName="Serif" fontSize="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -14,7 +14,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="Txt_Normal" fontName="SansSerif" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+	<style name="Txt_Normal" fontName="Serif" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 			<pen lineWidth="0.5"/>
 			<topPen lineWidth="0.0"/>
