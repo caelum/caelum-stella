@@ -9,5 +9,5 @@ import br.com.caelum.stella.validation.InvalidValue;
  */
 public enum RenavamError implements InvalidValue {
 
-    INVALID_CHECK_DIGIT, INVALID_DIGITS
+    INVALID_FORMAT, INVALID_CHECK_DIGIT, INVALID_DIGITS
 }

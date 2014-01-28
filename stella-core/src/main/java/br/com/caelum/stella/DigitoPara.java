@@ -49,6 +49,7 @@ public class DigitoPara {
 	 */
 	public DigitoPara(String trecho) {
 		comMultiplicadoresDeAte(2, 9);
+		mod(11);
 		this.aSubstituir = Collections.emptyList();
 		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
