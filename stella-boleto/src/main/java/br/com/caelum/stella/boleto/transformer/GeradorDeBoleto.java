@@ -60,7 +60,7 @@ public class GeradorDeBoleto {
 			InputStream template_sub = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default_instrucoes.jasper");
 			parametros.put("SUB_INSTRUCOES", JRLoader.loadObject(template_sub));
 		} catch (JRException e) {
-			e.printStackTrace();
+			throw new GeracaoBoletoException(e);
 		}
 	}
 	
