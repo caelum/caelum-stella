@@ -50,7 +50,7 @@ public class Santander implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%13d", emissor.getNossoNumero());
+		return String.format("%013d", emissor.getNossoNumero());
 	}
 
 	@Override

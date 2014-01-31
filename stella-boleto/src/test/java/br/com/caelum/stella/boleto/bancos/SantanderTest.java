@@ -1,7 +1,9 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +48,16 @@ public class SantanderTest {
 	@Test
 	public void testGetImage() {
 		assertNotNull(banco.getImage());
+	}
+
+	@Test
+	public void testNossoNumeroDoEmissorFormatado() {
+		this.emissor = Emissor.novoEmissor().comCedente("BOTICARIO")
+				.comAgencia(6790).comDigitoAgencia('0').comCarteira(102)
+				.comContaCorrente(5260965l).comNossoNumero(123l);
+
+		assertThat(banco.getNossoNumeroDoEmissorFormatado(emissor),
+				is("0000000000123"));
 	}
 
 }
