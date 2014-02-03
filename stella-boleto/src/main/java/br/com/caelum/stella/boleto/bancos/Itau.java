@@ -58,8 +58,9 @@ public class Itau extends AbstractBanco implements Banco {
 	}
 	
 	@Override
-	public String getNossoNumeroECodDocumento(Emissor emissor) {
-		String valor = super.getNossoNumeroECodDocumento(emissor);
+	public String getNossoNumeroECodDocumento(Boleto boleto) {
+		String valor = super.getNossoNumeroECodDocumento(boleto);
+		Emissor emissor = boleto.getEmissor();
 		return valor.concat("-").concat(emissor.getDigitoNossoNumero());
 	}
 

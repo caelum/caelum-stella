@@ -63,6 +63,6 @@ public interface Banco extends Serializable {
 
 	GeradorDeDigito getGeradorDeDigito();
 
-	String getNossoNumeroECodDocumento(Emissor emissor);
+	String getNossoNumeroECodDocumento(Boleto boleto);
 
 }
