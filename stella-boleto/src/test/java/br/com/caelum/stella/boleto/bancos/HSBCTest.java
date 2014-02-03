@@ -38,7 +38,7 @@ public class HSBCTest {
 	@Test
 	public void testLinhaDoBancoHSBC() {
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
-		assertEquals("39994.14620  39000.000008  01476.030323  2  55940000338300",
+		assertEquals("39994.14620  39000.000149  76147.030324  5  55940000338300",
 			new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
@@ -52,7 +52,14 @@ public class HSBCTest {
 	public void testCodigoDeBarraDoBancoHSBC() {
 		this.boleto = this.boleto.comBanco(this.banco);
 		String codigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
-		assertEquals("39992559400003383004146239000000000147603032", codigoDeBarras);
+		assertEquals("39995559400003383004146239000000147614703032", codigoDeBarras);
+	}
+	
+	@Test
+	public void testDigitosNossoNumeroHSBC(){
+		this.boleto = this.boleto.comBanco(this.banco);
+		String nossoNumeroCompleto = this.banco.getNossoNumeroECodDocumento(boleto);
+		assertEquals("0000001476147541", nossoNumeroCompleto);
 	}
 
 	@Test
