@@ -4,8 +4,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
