@@ -34,9 +34,9 @@ public abstract class AbstractIEValidator implements Validator<String> {
 	private List<InvalidValue> getInvalidValues(String IE) {
 	    List<InvalidValue> errors = new ArrayList<InvalidValue>();
 	    if (IE != null) {
-	        String unformatedIE = checkForCorrectFormat(IE, errors);
+	        String unformattedIE = checkForCorrectFormat(IE, errors);
 	        if (errors.isEmpty()) {
-	            if (!hasValidCheckDigits(unformatedIE)) {
+	            if (!hasValidCheckDigits(unformattedIE)) {
 	                errors.add(IEError.INVALID_CHECK_DIGITS);
 	            }
 	        }
