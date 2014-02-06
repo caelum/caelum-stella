@@ -88,7 +88,9 @@ public class Caixa extends AbstractBanco implements Banco {
 	}
 	
 	@Override
-	public String getNossoNumeroECodDocumento(Emissor emissor) {
+	public String getNossoNumeroECodDocumento(Boleto boleto) {
+		
+		Emissor emissor = boleto.getEmissor();
 		
 		String nn = getNossoNumeroDoEmissorFormatado(emissor);
 		StringBuilder builder = new StringBuilder(nn);

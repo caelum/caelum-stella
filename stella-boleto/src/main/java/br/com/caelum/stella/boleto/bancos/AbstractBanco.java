@@ -1,6 +1,7 @@
 package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
@@ -17,7 +18,8 @@ public abstract class AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getNossoNumeroECodDocumento(Emissor emissor) {
+	public String getNossoNumeroECodDocumento(Boleto boleto) {
+		Emissor emissor = boleto.getEmissor();
 		StringBuilder builder = new StringBuilder().append(emissor.getCarteira());
 		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
 		return builder.toString();

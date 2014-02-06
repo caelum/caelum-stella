@@ -384,7 +384,7 @@ public class Boleto implements Serializable {
 	 * @return nosso numero e codigo do documento para boleto
 	 */
 	public String getNossoNumeroECodDocumento() {
-		return banco.getNossoNumeroECodDocumento(this.emissor);
+		return banco.getNossoNumeroECodDocumento(this);
 	}
 
 	public BigDecimal getValorDescontos() {

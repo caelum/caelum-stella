@@ -92,8 +92,8 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getNossoNumeroECodDocumento(Emissor emissor) {
-		return getNossoNumeroDoEmissorFormatado(emissor);
+	public String getNossoNumeroECodDocumento(Boleto boleto) {
+		return getNossoNumeroDoEmissorFormatado(boleto.getEmissor());
 	}
 
 }

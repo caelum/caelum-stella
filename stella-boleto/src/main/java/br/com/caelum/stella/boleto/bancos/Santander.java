@@ -69,7 +69,9 @@ public class Santander implements Banco {
 	}
 
 	@Override
-	public String getNossoNumeroECodDocumento(Emissor emissor) {
+	public String getNossoNumeroECodDocumento(Boleto boleto) {
+		Emissor emissor = boleto.getEmissor();
+		
 		String nossoNumero = getNossoNumeroDoEmissorFormatado(emissor);
 		StringBuilder builder = new StringBuilder();
 		builder.append(nossoNumero.substring(0, 12));
