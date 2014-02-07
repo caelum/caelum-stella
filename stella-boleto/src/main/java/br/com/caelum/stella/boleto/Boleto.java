@@ -363,7 +363,7 @@ public class Boleto implements Serializable {
 	 * @return valor do boleto formatado (com 10 digitos)
 	 */
 	public String getValorFormatado() {
-		return String.format("%011.2f", this.getValorCobrado()).replaceAll("[^0-9]", "");
+		return String.format("%011.2f", this.getValorBoleto()).replaceAll("[^0-9]", "");
 	}
 
 	/**
