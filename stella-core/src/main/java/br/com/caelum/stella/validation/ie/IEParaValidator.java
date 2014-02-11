@@ -2,11 +2,9 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 /**
  * <p> Documentação de referência: </p>
@@ -16,19 +14,6 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * @author Leonardo Bessa
  */
 public class IEParaValidator extends AbstractIEValidator {
-
-    private static final int MOD = 11;
-
-    private static final int DVX_POSITION = 5 + 9;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     public static final Pattern FORMATED = Pattern.compile("15(\\.\\d{3}){2}\\-\\d{1}");
 
@@ -69,9 +54,19 @@ public class IEParaValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
+    protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
 
-    protected boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
-        return DVX_CHECKER.isDVValid(testedValue);
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
     }
+
+	private String calculaDigito(String iESemDigito) {
+		DigitoPara digitoPara = new DigitoPara(iESemDigito);
+		digitoPara.complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11);
+
+		return digitoPara.calcula();
+	}
 }
