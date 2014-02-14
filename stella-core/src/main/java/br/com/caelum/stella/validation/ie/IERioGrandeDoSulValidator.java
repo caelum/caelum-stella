@@ -5,33 +5,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.BaseValidator;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 public class IERioGrandeDoSulValidator implements Validator<String> {
-
-    private static final int MOD = 11;
-
-    private static final String MISSING_LEFT_SIDE_ZEROS = "0000";
-
-    private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 10;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
@@ -108,10 +91,21 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
         return unformatedIE;
     }
 
-    private boolean hasValidCheckDigits(String value) {
-        String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return DVX_CHECKER.isDVValid(testedValue);
+    protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
     }
+
+	private String calculaDigito(String iESemDigito) {
+		DigitoPara digitoPara = new DigitoPara(iESemDigito);
+		digitoPara.complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11);
+
+		return digitoPara.calcula();
+	}
 
     public boolean isEligible(String value) {
         boolean result;
