@@ -12,19 +12,22 @@ import br.com.caelum.stella.validation.CPFValidator;
 public final class CPF {
 
     private final String numero;
+	private final String numeroFormatado;
 
     /**
      * @param número do CPF.
      */
     public CPF(String numero) {
-    	String numeroCpf;
     	CPFFormatter formatter = new CPFFormatter();
-    	if (formatter.isFormatted(numero)) {
-			numeroCpf = formatter.unformat(numero);
+		if (formatter.isFormatted(numero)) {
+			this.numero = formatter.unformat(numero);
+			this.numeroFormatado = numero;
+		} else if (formatter.canBeFormatted(numero)) {
+			this.numero = numero;
+			this.numeroFormatado = formatter.format(numero);
 		} else {
-			numeroCpf = numero;
+			this.numero = this.numeroFormatado = numero;
 		}
-    	this.numero = numeroCpf;
     }
 
     /**
@@ -38,7 +41,7 @@ public final class CPF {
      * @return número do CPF formatado.
      */
     public String getNumeroFormatado() {
-    	return new CPFFormatter().format(numero);
+    	return numeroFormatado;
     }
 
     /**
