@@ -186,8 +186,10 @@ public class DigitoPara {
 	 * Adiciona um dígito no final do trecho numérico.
 	 *  
 	 * @param digito É o dígito a ser adicionado.
+	 * @return 
 	 */
-	public void addDigito(String digito) {
+	public DigitoPara addDigito(String digito) {
 		this.numero.addFirst(Integer.valueOf(digito));
+		return this;
 	}
 }
