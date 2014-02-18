@@ -13,12 +13,18 @@ public class NITFormatter implements Formatter {
         this.base = new BaseFormatter(NITValidator.FORMATED, "$1.$2.$3-$4", NITValidator.UNFORMATED, "$1$2$3$4");
     }
 
-    public String format(String value) {
+    @Override
+	public String format(String value) {
         return base.format(value);
     }
 
-    public String unformat(String value) {
+    @Override
+	public String unformat(String value) {
         return base.unformat(value);
     }
 
+    @Override
+    public boolean isFormatted(String value) {
+    	return base.isFormatted(value);
+    }
 }

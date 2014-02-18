@@ -13,7 +13,8 @@ public class BaseFormatter implements Formatter {
 
     private final String unformattedReplacement;
 
-    public String format(String value) throws IllegalArgumentException {
+    @Override
+	public String format(String value) throws IllegalArgumentException {
         String result;
         if (value == null) {
             throw new IllegalArgumentException("Value may not be null.");
@@ -23,20 +24,26 @@ public class BaseFormatter implements Formatter {
         return result;
     }
 
-    public String unformat(String value) throws IllegalArgumentException {
+    @Override
+	public String unformat(String value) throws IllegalArgumentException {
         String result;
         if (value == null) {
             throw new IllegalArgumentException("Value may not be null.");
         }
-        
+
         Matcher unformattedMatcher = unformatted.matcher(value);
-        if(unformattedMatcher.matches()){ 
+        if(unformattedMatcher.matches()){
         	return value;
         }
-        
+
         Matcher matcher = formatted.matcher(value);
         result = matchAndReplace(matcher, unformattedReplacement);
         return result;
+    }
+
+    @Override
+    public boolean isFormatted(String value) {
+    	return formatted.matcher(value).matches();
     }
 
     private String matchAndReplace(Matcher matcher, String replacement) {

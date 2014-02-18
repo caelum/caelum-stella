@@ -1,6 +1,8 @@
 package br.com.caelum.stella.formatter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,13 +32,18 @@ public class CNPJFormatterTest {
         String unformatedValue = formatter.unformat(fotmatedValue);
         assertEquals(unformatedValue, "26637142000158");
     }
-    
+
     @Test
     public void testShoudNotThrowExceptionIfAlreadyUnformated() {
         String fotmatedValue = "26637142000158";
         String unformatedValue = formatter.unformat(fotmatedValue);
         assertEquals(unformatedValue, "26637142000158");
     }
-    
 
+    @Test
+	public void shouldVerifyIfAValueIsAlreadyFormattedOrNot() throws Exception {
+		assertTrue(formatter.isFormatted("26.637.142/0001-58"));
+		assertFalse(formatter.isFormatted("26637142000158"));
+		assertFalse(formatter.isFormatted("26.7.1x2/00a1-58"));
+	}
 }

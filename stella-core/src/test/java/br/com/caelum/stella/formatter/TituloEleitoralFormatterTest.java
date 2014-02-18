@@ -1,6 +1,8 @@
 package br.com.caelum.stella.formatter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,5 +33,11 @@ public class TituloEleitoralFormatterTest {
         assertEquals(unformatedValue, "133968200302");
     }
 
+    @Test
+	public void shouldVerifyIfAValueIsFormattedOrNot() throws Exception {
+		assertTrue(formatter.isFormatted("1339682003/02"));
+		assertFalse(formatter.isFormatted("133968200302"));
+		assertFalse(formatter.isFormatted("1339682003/0x"));
+	}
 }
 

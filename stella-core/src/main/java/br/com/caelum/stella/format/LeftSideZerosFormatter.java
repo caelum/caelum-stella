@@ -3,9 +3,9 @@ package br.com.caelum.stella.format;
 /**
  * Formatador que insere ou remove zeros a esquerda de um String que <b>deve</b>
  * representar um numero decimal.
- * 
+ *
  * @author Leonardo Bessa
- * 
+ *
  */
 public class LeftSideZerosFormatter implements Formatter {
 
@@ -13,34 +13,40 @@ public class LeftSideZerosFormatter implements Formatter {
      * Tamanaho da cadeia a ser retornada quando se chama o metodo
      * {@link #format(String)}
      */
-    private final int formatedLength;
+    private final int formattedLength;
 
     /**
-     * @param formatedLength
+     * @param formattedLength
      *            tamanaho da cadeia a ser retornada quando se chama o metodo
      *            {@link #format(String)}
      */
-    public LeftSideZerosFormatter(int formatedLength) {
+    public LeftSideZerosFormatter(int formattedLength) {
         super();
-        this.formatedLength = formatedLength;
+        this.formattedLength = formattedLength;
     }
 
-    public String format(String value) {
-        boolean matches = value.matches("\\d{0," + formatedLength + "}");
+    @Override
+	public String format(String value) {
+        boolean matches = value.matches("\\d{0," + formattedLength + "}");
         if (!matches) {
-            throw new IllegalArgumentException("Argument value must have only " + formatedLength + " digits at most.");
+            throw new IllegalArgumentException("Argument value must have only " + formattedLength + " digits at most.");
         }
         String formated = value;
-        while (formated.length() < formatedLength) {
+        while (formated.length() < formattedLength) {
             formated = "0" + formated;
         }
         return formated;
     }
 
-    public String unformat(String value) {
+    @Override
+	public String unformat(String value) {
         Integer integer = Integer.valueOf(value);
         String formated = integer.toString();
         return formated;
     }
 
+    @Override
+    public boolean isFormatted(String value) {
+    	return value.matches("\\d{" + formattedLength + "}");
+    }
 }

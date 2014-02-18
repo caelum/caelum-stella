@@ -1,6 +1,8 @@
 package br.com.caelum.stella.format;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -20,4 +22,12 @@ public class LeftSideZerosFormatterTest {
         assertEquals("567890", actual);
     }
 
+    @Test
+	public void shouldVerifyIfAValueIsAlreadyFormattedOrNot() throws Exception {
+		Formatter formatter = new LeftSideZerosFormatter(14);
+		assertTrue(formatter.isFormatted("00001234567890"));
+		assertFalse(formatter.isFormatted("00001234"));
+		assertFalse(formatter.isFormatted("1234567890"));
+		assertFalse(formatter.isFormatted("123456789012345"));
+	}
 }
