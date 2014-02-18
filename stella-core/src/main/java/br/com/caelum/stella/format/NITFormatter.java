@@ -27,4 +27,9 @@ public class NITFormatter implements Formatter {
     public boolean isFormatted(String value) {
     	return base.isFormatted(value);
     }
+
+    @Override
+    public boolean canBeFormatted(String value) {
+    	return base.canBeFormatted(value);
+    }
 }

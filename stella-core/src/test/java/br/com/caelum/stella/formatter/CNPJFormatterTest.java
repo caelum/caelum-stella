@@ -46,4 +46,11 @@ public class CNPJFormatterTest {
 		assertFalse(formatter.isFormatted("26637142000158"));
 		assertFalse(formatter.isFormatted("26.7.1x2/00a1-58"));
 	}
+
+    @Test
+	public void shouldVerifyIfAValueCanBeFormatted() throws Exception {
+		assertFalse(formatter.canBeFormatted("26.637.142/0001-58"));
+		assertTrue(formatter.canBeFormatted("26637142000158"));
+		assertFalse(formatter.canBeFormatted("26.7.1x2/00a1-58"));
+	}
 }

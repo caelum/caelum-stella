@@ -32,4 +32,13 @@ public class RenavamFormatterTest {
 		assertFalse(formatter.isFormatted("736407677"));
 		assertFalse(formatter.isFormatted("73.x407a7-7"));
 	}
+
+    @Test
+	public void shouldVerifyIfAValueCanBeFormattedOrNot() throws Exception {
+		assertFalse(formatter.canBeFormatted("73.640767-7"));
+		assertFalse(formatter.canBeFormatted("0073.640767-7"));
+		assertTrue(formatter.canBeFormatted("736407677"));
+		assertTrue(formatter.canBeFormatted("00736407677"));
+		assertFalse(formatter.canBeFormatted("73.x407a7-7"));
+	}
 }

@@ -46,6 +46,11 @@ public class BaseFormatter implements Formatter {
     	return formatted.matcher(value).matches();
     }
 
+    @Override
+    public boolean canBeFormatted(String value) {
+    	return unformatted.matcher(value).matches();
+    }
+
     private String matchAndReplace(Matcher matcher, String replacement) {
         String result = null;
         if (matcher.matches()) {

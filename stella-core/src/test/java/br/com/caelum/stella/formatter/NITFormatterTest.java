@@ -39,4 +39,11 @@ public class NITFormatterTest {
 		assertFalse(formatter.isFormatted("17033259504"));
 		assertFalse(formatter.isFormatted("170.C32b9.50-a"));
 	}
+
+    @Test
+	public void verifyIfAValueCanBeFormattedOrNot() throws Exception {
+		assertFalse(formatter.canBeFormatted("170.33259.50-4"));
+		assertTrue(formatter.canBeFormatted("17033259504"));
+		assertFalse(formatter.canBeFormatted("170.C32b9.50-a"));
+	}
 }

@@ -39,5 +39,12 @@ public class TituloEleitoralFormatterTest {
 		assertFalse(formatter.isFormatted("133968200302"));
 		assertFalse(formatter.isFormatted("1339682003/0x"));
 	}
+
+    @Test
+	public void shouldVerifyIfAValueCanBeFormattedOrNot() throws Exception {
+		assertFalse(formatter.canBeFormatted("1339682003/02"));
+		assertTrue(formatter.canBeFormatted("133968200302"));
+		assertFalse(formatter.canBeFormatted("1339682003/0x"));
+	}
 }
 

@@ -28,4 +28,9 @@ public class CNPJFormatter implements Formatter {
 		return base.isFormatted(value);
 	}
 
+	@Override
+	public boolean canBeFormatted(String value) {
+		return base.canBeFormatted(value);
+	}
+
 }

@@ -40,4 +40,11 @@ public class CPFFormatterTest {
 		assertFalse(formatter.isFormatted("1.1a1.1-2"));
 	}
 
+    @Test
+	public void shouldDetectIfAValueCanBeFormattedOrNot() throws Exception {
+    	assertFalse(formatter.canBeFormatted("111.222.333-44"));
+		assertTrue(formatter.canBeFormatted("11122233344"));
+		assertFalse(formatter.canBeFormatted("1.1a1.1-2"));
+	}
+
 }

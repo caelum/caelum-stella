@@ -27,8 +27,7 @@ public class LeftSideZerosFormatter implements Formatter {
 
     @Override
 	public String format(String value) {
-        boolean matches = value.matches("\\d{0," + formattedLength + "}");
-        if (!matches) {
+        if (!canBeFormatted(value)) {
             throw new IllegalArgumentException("Argument value must have only " + formattedLength + " digits at most.");
         }
         String formated = value;
@@ -48,5 +47,10 @@ public class LeftSideZerosFormatter implements Formatter {
     @Override
     public boolean isFormatted(String value) {
     	return value.matches("\\d{" + formattedLength + "}");
+    }
+
+    @Override
+    public boolean canBeFormatted(String value) {
+    	return value.matches("\\d{0," + formattedLength + "}");
     }
 }

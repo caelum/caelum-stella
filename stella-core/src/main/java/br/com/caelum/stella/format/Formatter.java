@@ -46,4 +46,15 @@ public interface Formatter {
 	 * @return true, se estiver de acordo com o formato
 	 */
 	public abstract boolean isFormatted(String value);
+
+	/**
+	 * <p>
+	 * Verifica se uma cadeia pode ser formatada por esse formatador.
+	 * </p>
+	 *
+	 * @param value
+	 *            cadeia a ser verificada
+	 * @return true, se este formatador pode formatar a cadeia dada.
+	 */
+	public abstract boolean canBeFormatted(String value);
 }
