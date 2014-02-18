@@ -2,32 +2,15 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 public class IERoraimaValidator extends AbstractIEValidator {
-
-    private static final int MOD = 9;
-
-    private static final String MISSING_LEFT_SIDE_ZEROS = "00000";
-
-    private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P5;
-
-    private static final RotinaDeDigitoVerificador[] ROTINAS = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, ROTINAS, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
 
     public static final Pattern FORMATED = Pattern.compile("24\\d{6}\\-\\d{1}");
 
     public static final Pattern UNFORMATED = Pattern.compile("24\\d{7}");
-
-    private final ValidadorDeDV validadorDeDV = new ValidadorDeDV(DVX_INFO);
 
 
     /**
@@ -53,7 +36,6 @@ public class IERoraimaValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -64,9 +46,16 @@ public class IERoraimaValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-    protected boolean hasValidCheckDigits(String value) {
-        String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return this.validadorDeDV.isDVValid(testedValue);
-    }
+	protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
+	}
+
+	private String calculaDigito(String iESemDigito) {
+		return new DigitoPara(iESemDigito).comMultiplicadores(8,7,6,5,4,3,2,1).mod(9).calcula();
+	}
 
 }
