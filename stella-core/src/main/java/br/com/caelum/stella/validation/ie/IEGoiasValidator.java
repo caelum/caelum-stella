@@ -2,11 +2,9 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 /**
  * <p>
@@ -21,25 +19,6 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * 
  */
 public class IEGoiasValidator extends AbstractIEValidator {
-
-    private static final int MOD = 11;
-
-    private static final int DVX_POSITION = 5 + 9;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E,
-            IEConstraints.Rotina.POS_IE_GOIAS };
-
-    private static final DigitoVerificadorInfo DVX_INFO_FATOR1 = new DigitoVerificadorInfo(1, rotinas, MOD,
-            DVX_MULTIPLIERS, DVX_POSITION);
-
-    private static final DigitoVerificadorInfo DVX_INFO_FATOR0 = new DigitoVerificadorInfo(0, rotinas, MOD,
-            DVX_MULTIPLIERS, DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER_FATOR1 = new ValidadorDeDV(DVX_INFO_FATOR1);
-
-    private static final ValidadorDeDV DVX_CHECKER_FATOR0 = new ValidadorDeDV(DVX_INFO_FATOR0);
 
     public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
@@ -80,29 +59,36 @@ public class IEGoiasValidator extends AbstractIEValidator {
 	}
 
 
-    protected boolean hasValidCheckDigits(String value) {
-        int ie = Integer.parseInt(value);
-        boolean result;
+    protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return regraBizarraDeGoias(iESemDigito, digito) || digito.equals(digitoCalculado);
+	}
+
+	private boolean regraBizarraDeGoias(String iESemDigito, String digito) {
+		if (iESemDigito.equals("11094402")){
+			if (digito.equals("0") || digito.equals("1")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private String calculaDigito(String iESemDigito) {
+		int ie = Integer.parseInt(iESemDigito);
         /*
          * http://www.sintegra.gov.br/Cad_Estados/cad_GO.html
          * 
-         * Quando a inscrição for 11094402 o dígito verificador pode ser zero
-         * (0) e pode ser um (1);
+         * De 10103105X a 10119997X => d=1
          */
-        if (ie == 110944020 || ie == 110944021) {
-            result = true;
-        } else {
-            String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
-            ValidadorDeDV validadorDeDV = null;
-            if (101031051 <= ie && ie <= 101199979) {
-                validadorDeDV = DVX_CHECKER_FATOR1;
-            } else {
-                validadorDeDV = DVX_CHECKER_FATOR0;
-            }
-            result = validadorDeDV.isDVValid(testedValue);
+        String d = "0";
+        if ((10103105 <= ie) && (ie <= 10119997)) {
+        	d = "1";
         }
-
-        return result;
+        
+        return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar(d, 10).trocandoPorSeEncontrar("0", 11).calcula();
     }
 
 
