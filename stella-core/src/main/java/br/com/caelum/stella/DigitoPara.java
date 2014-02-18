@@ -52,7 +52,7 @@ public class DigitoPara {
 	public DigitoPara(String trecho) {
 		comMultiplicadoresDeAte(2, 9);
 		mod(11);
-		substituicoes = Collections.emptyMap();
+		substituicoes = new HashMap<Integer, String>();
 		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
 		for (char digito : digitos) {
@@ -102,7 +102,6 @@ public class DigitoPara {
 	}
 
 	public DigitoPara trocandoPorSeEncontrar(String substituto, Integer... i) {
-		substituicoes = new HashMap<Integer, String>();
 		for (Integer integer : i) {
 			substituicoes.put(integer, substituto);
 		}
