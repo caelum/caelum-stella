@@ -2,11 +2,9 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 /**
  * <p> Documentação de referência: </p>
@@ -16,20 +14,6 @@ import br.com.caelum.stella.validation.ValidadorDeDV;
  * @author Leonardo Bessa
  */
 public class IERioGrandeDoNorteValidator extends AbstractIEValidator {
-
-    private static final int MOD = 11;
-
-    private static final int DVX_POSITION = 5 + 9;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P11;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.B, IEConstraints.Rotina.D,
-            IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     public static final Pattern FORMATED = Pattern.compile("20\\.(\\d\\.)?\\d{3}\\.\\d{3}\\-\\d{1}");
 
@@ -69,9 +53,16 @@ public class IERioGrandeDoNorteValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-    protected boolean hasValidCheckDigits(String value) {
-        String testedValue = IEConstraints.PRE_VALIDATION_FORMATTER.format(value);
-        return DVX_CHECKER.isDVValid(testedValue);
-    }
+	protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
+	}
+
+	private String calculaDigito(String iESemDigito) {
+		return new DigitoPara(iESemDigito).comMultiplicadoresDeAte(2, 10).complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11).calcula();
+	}
 
 }
