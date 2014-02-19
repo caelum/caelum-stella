@@ -4,33 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.BaseValidator;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
 import br.com.caelum.stella.validation.InvalidValue;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
 class IESaoPauloProdutorRuralValidator implements Validator<String> {
-
-    private static final int MOD = 11;
-
-    // TAMANHO = 13;
-    private static final String MISSING_LEFT_SIDE_ZEROS = "00";
-
-    private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 9;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P12;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.D, IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, rotinas, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     private final boolean isFormatted;
 
@@ -73,10 +55,19 @@ class IESaoPauloProdutorRuralValidator implements Validator<String> {
         return unformatedIE;
     }
 
-    private boolean hasValidCheckDigits(String value) {
-        String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return (DVX_CHECKER.isDVValid(testedValue));
+    protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 4);
+		String digito = unformattedIE.substring(unformattedIE.length() - 4, unformattedIE.length() - 3);
+
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
     }
+
+	private String calculaDigito(String iESemDigito) {
+		return new DigitoPara(iESemDigito).comMultiplicadores(10,8,7,6,5,4,3,1)
+						.trocandoPorSeEncontrar("0", 10).trocandoPorSeEncontrar("1", 11).calcula();
+	}
 
     public boolean isEligible(String value) {
         boolean result;
