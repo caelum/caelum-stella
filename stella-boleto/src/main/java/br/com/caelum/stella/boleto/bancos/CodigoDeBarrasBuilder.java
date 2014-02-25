@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
@@ -12,6 +13,7 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
 class CodigoDeBarrasBuilder {
 	
 	private StringBuilder codigoDeBarras;
+	private Banco banco;
 
 	/**
 	 * Cria um CodigoDeBarrasBuilder com os primeiros 18 digitos 
@@ -22,8 +24,9 @@ class CodigoDeBarrasBuilder {
 	 * @param boleto para o qual será gerado o código de barras.
 	 */
 	CodigoDeBarrasBuilder(Boleto boleto) {
-		String numeroBanco = boleto.getBanco().getNumeroFormatado();
-		this.codigoDeBarras = new StringBuilder(numeroBanco);
+		this.banco = boleto.getBanco();
+		this.codigoDeBarras = new StringBuilder(44);
+		this.codigoDeBarras.append(banco.getNumeroFormatado());		
 		int codigoEspecieMoeda = boleto.getCodigoEspecieMoeda();
 		this.codigoDeBarras.append(String.valueOf(codigoEspecieMoeda));
 		this.codigoDeBarras.append(boleto.getFatorVencimento());
@@ -38,7 +41,7 @@ class CodigoDeBarrasBuilder {
 	public String comCampoLivre(StringBuilder campoLivre) {
 		this.codigoDeBarras.append(campoLivre);
 		String trecho = this.codigoDeBarras.toString();
-		int digito = new GeradorDeDigitoPadrao().geraDigitoMod11(trecho);
+		int digito = banco.getGeradorDeDigito().geraDigitoMod11(trecho);
 		this.codigoDeBarras.insert(4, digito);
 		validaTamahoDoCodigoDeBarrasCompletoGerado();
 		return this.codigoDeBarras.toString();
