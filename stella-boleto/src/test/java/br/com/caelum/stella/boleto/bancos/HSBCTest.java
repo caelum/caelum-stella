@@ -61,6 +61,18 @@ public class HSBCTest {
 		String nossoNumeroCompleto = this.banco.getNossoNumeroECodDocumento(boleto);
 		assertEquals("0000001476147541", nossoNumeroCompleto);
 	}
+	
+	@Test
+	public void testDigitosNossoNumeroHSBCComDadosDoManual(){
+		this.boleto = this.boleto.comBanco(this.banco);
+		
+		this.boleto.getEmissor().comNossoNumero(239104761);
+		this.boleto.getEmissor().comCodigoFornecidoPelaAgencia(8351202);
+		this.boleto.getDatas().comVencimento(4, 7, 2008);
+		
+		String nossoNumeroCompleto = this.banco.getNossoNumeroECodDocumento(boleto);
+		assertEquals("0000239104761941", nossoNumeroCompleto);
+	}
 
 	@Test
 	public void testGetImage() throws IOException {
