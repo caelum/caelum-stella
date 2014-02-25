@@ -101,12 +101,16 @@ public class HSBC extends AbstractBanco implements Banco {
 		
 		String somatorio = String.valueOf(nossoNum + beneficiario + vcto);
 		
-		String segundoDigito = getModuloNossoNumero(somatorio).calcula();
+		DigitoPara calculadorMod2 = getModuloNossoNumero(somatorio);
+		String segundoDigito = calculadorMod2.calcula();
 		return nossoNumeroComDigitos + segundoDigito;
 	}
 
 	private DigitoPara getModuloNossoNumero(String nossoNumero) {
-		return new DigitoPara(nossoNumero).comMultiplicadores(9,8,7,6,5,4,3,2).mod(11);
+		return new DigitoPara(nossoNumero)
+						.trocandoPorSeEncontrar("0",10,11)
+						.comMultiplicadores(9,8,7,6,5,4,3,2)
+						.mod(11);
 	}
 	
 }
