@@ -31,7 +31,7 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 	{
 		exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-1");
 		exporter.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, Boolean.FALSE);
-		exporter.setParameter(JRHtmlExporterParameter.ZOOM_RATIO, 1.5F);
+		exporter.setParameter(JRHtmlExporterParameter.ZOOM_RATIO, 1.3F);
 		exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI, "stella-boleto?image=");
 		exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-1");
 	}
