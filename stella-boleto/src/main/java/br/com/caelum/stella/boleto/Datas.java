@@ -27,13 +27,10 @@ public class Datas implements Serializable {
 
 	/**
 	 * Cria novas datas<br/>
-	 * Data do documento padrão: data atual<br/>
-	 * Data do processamento padrão: data atual
 	 * 
 	 */
 	public static Datas novasDatas() {
-		Calendar data = Calendar.getInstance();
-		return new Datas().comDocumento(data).comProcessamento(data);
+		return new Datas();
 	}
 
 	/**
@@ -43,6 +40,9 @@ public class Datas implements Serializable {
 	 * @return
 	 */
 	public Calendar getDocumento() {
+		if(documento == null){
+			documento = Calendar.getInstance();
+		}
 		return this.documento;
 	}
 
@@ -80,6 +80,9 @@ public class Datas implements Serializable {
 	 * @return
 	 */
 	public Calendar getProcessamento() {
+		if(processamento == null){
+			processamento = Calendar.getInstance();
+		}
 		return this.processamento;
 	}
 
@@ -114,6 +117,10 @@ public class Datas implements Serializable {
 	 * Retorna a data de vencimento do boleto
 	 */
 	public Calendar getVencimento() {
+		if(vencimento == null){
+			vencimento = Calendar.getInstance();
+		}
+
 		return this.vencimento;
 	}
 
