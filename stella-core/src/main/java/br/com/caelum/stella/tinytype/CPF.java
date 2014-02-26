@@ -5,25 +5,29 @@ import br.com.caelum.stella.validation.CPFValidator;
 
 /**
  * Representa um Cadastro de Pessoas Física - CPF.
- * 
+ *
  * @author leobessa
- * 
+ *
  */
 public final class CPF {
 
     private final String numero;
+	private final String numeroFormatado;
 
     /**
      * @param número do CPF.
      */
     public CPF(String numero) {
-    	String numeroCpf;
-    	try {
-    		numeroCpf = new CPFFormatter().unformat(numero);
-		} catch (IllegalArgumentException e) {
-			numeroCpf = numero;
+    	CPFFormatter formatter = new CPFFormatter();
+		if (formatter.isFormatted(numero)) {
+			this.numero = formatter.unformat(numero);
+			this.numeroFormatado = numero;
+		} else if (formatter.canBeFormatted(numero)) {
+			this.numero = numero;
+			this.numeroFormatado = formatter.format(numero);
+		} else {
+			this.numero = this.numeroFormatado = numero;
 		}
-    	this.numero = numeroCpf;
     }
 
     /**
@@ -32,12 +36,12 @@ public final class CPF {
     public String getNumero() {
         return numero;
     }
-    
+
     /**
      * @return número do CPF formatado.
      */
     public String getNumeroFormatado() {
-    	return new CPFFormatter().format(numero);
+    	return numeroFormatado;
     }
 
     /**
@@ -65,18 +69,23 @@ public final class CPF {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) {
+			return true;
+		}
+        if (obj == null) {
+			return false;
+		}
+        if (getClass() != obj.getClass()) {
+			return false;
+		}
         final CPF other = (CPF) obj;
         if (numero == null) {
-            if (other.numero != null)
-                return false;
-        } else if (!numero.equals(other.numero))
-            return false;
+            if (other.numero != null) {
+				return false;
+			}
+        } else if (!numero.equals(other.numero)) {
+			return false;
+		}
         return true;
     }
 

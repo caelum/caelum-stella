@@ -17,12 +17,23 @@ public class RenavamFormatter implements Formatter {
         this.base = new BaseFormatter(FORMATTED, "$1.$2-$3", UNFORMATTED, "$1$2$3");
     }
 
-    public String format(String renavam) throws IllegalArgumentException {
+    @Override
+	public String format(String renavam) throws IllegalArgumentException {
         return base.format(renavam);
     }
 
-    public String unformat(String renavam) throws IllegalArgumentException {
+    @Override
+	public String unformat(String renavam) throws IllegalArgumentException {
         return base.unformat(renavam);
     }
 
+    @Override
+    public boolean isFormatted(String value) {
+    	return base.isFormatted(value);
+    }
+
+    @Override
+    public boolean canBeFormatted(String value) {
+    	return base.canBeFormatted(value);
+    }
 }
