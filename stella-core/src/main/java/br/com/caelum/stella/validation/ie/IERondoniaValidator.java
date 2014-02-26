@@ -2,28 +2,11 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 public class IERondoniaValidator extends AbstractIEValidator {
-
-    private static final int MOD = 11;
-
-    private static final String MISSING_LEFT_SIDE_ZEROS = "";
-
-    private static final int DVX_POSITION = MISSING_LEFT_SIDE_ZEROS.length() + 14;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P1;
-
-    private static final RotinaDeDigitoVerificador[] rotinas = { IEConstraints.Rotina.E, IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(1, rotinas, MOD, DVX_MULTIPLIERS,
-            DVX_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
 
     public static final Pattern FORMATED = Pattern.compile("\\d{13}-\\d{1}");
 
@@ -64,9 +47,16 @@ public class IERondoniaValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-	protected boolean hasValidCheckDigits(String value) {
-        String testedValue = MISSING_LEFT_SIDE_ZEROS + value;
-        return DVX_CHECKER.isDVValid(testedValue);
-    }
+	protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
+		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+		String digitoCalculado = calculaDigito(iESemDigito);
+
+		return digito.equals(digitoCalculado);
+	}
+
+	private String calculaDigito(String iESemDigito) {
+		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10).trocandoPorSeEncontrar("1", 11).calcula();
+	}
 
 }

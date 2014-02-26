@@ -3,8 +3,10 @@ package br.com.caelum.stella;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Uma fluent interface para o cálculo de dígitos, que é usado em diversos boletos e 
@@ -36,10 +38,9 @@ public class DigitoPara {
 	private LinkedList<Integer> numero;
 	private List<Integer> multiplicadores = new ArrayList<Integer>();
 	private boolean complementar;
-	private List<Integer> aSubstituir;
-	private String substituto;
 	private int modulo;
 	private boolean somarIndividual;
+	private Map<Integer,String> substituicoes;
 
 	/**
 	 * Cria o objeto a ser preenchido com interface fluente e armazena o trecho numérico
@@ -51,7 +52,7 @@ public class DigitoPara {
 	public DigitoPara(String trecho) {
 		comMultiplicadoresDeAte(2, 9);
 		mod(11);
-		this.aSubstituir = Collections.emptyList();
+		substituicoes = new HashMap<Integer, String>();
 		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
 		for (char digito : digitos) {
@@ -100,10 +101,10 @@ public class DigitoPara {
 		return this;
 	}
 
-	
 	public DigitoPara trocandoPorSeEncontrar(String substituto, Integer... i) {
-		this.substituto = substituto;
-		this.aSubstituir = Arrays.asList(i);
+		for (Integer integer : i) {
+			substituicoes.put(integer, substituto);
+		}
 		return this;
 	}
 
@@ -147,7 +148,11 @@ public class DigitoPara {
 		int resultado = soma % modulo;
 		if (complementar)
 			resultado = modulo - resultado;
-		return aSubstituir.contains(resultado) ? substituto : String.valueOf(resultado);
+		
+		if (substituicoes.containsKey(resultado)) {
+			return substituicoes.get(resultado);
+		}
+		return String.valueOf(resultado);
 	}
 	
 	
@@ -180,8 +185,10 @@ public class DigitoPara {
 	 * Adiciona um dígito no final do trecho numérico.
 	 *  
 	 * @param digito É o dígito a ser adicionado.
+	 * @return 
 	 */
-	public void addDigito(String digito) {
+	public DigitoPara addDigito(String digito) {
 		this.numero.addFirst(Integer.valueOf(digito));
+		return this;
 	}
 }

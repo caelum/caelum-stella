@@ -1,52 +1,16 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.validation.DigitoVerificadorInfo;
-import br.com.caelum.stella.validation.RotinaDeDigitoVerificador;
-import br.com.caelum.stella.validation.ValidadorDeDV;
 
 public class IEMinasGeraisValidator extends AbstractIEValidator {
-
-    private static final int DVX_MOD = 10;
-
-    private static final int DVY_MOD = 11;
-
-    // TAMANHO = 13;
-    private static final String MISSING_ZEROS = "0";
-
-    private static final int DVX_POSITION = MISSING_ZEROS.length() + 12;
-
-    private static final int DVY_POSITION = MISSING_ZEROS.length() + 13;
-
-    private static final Integer[] DVX_MULTIPLIERS = IEConstraints.P10;
-
-    private static final Integer[] DVY_MULTIPLIERS = IEConstraints.P11;
-
-    private static final RotinaDeDigitoVerificador[] DVX_ROTINAS = { IEConstraints.Rotina.A, IEConstraints.Rotina.E,
-            IEConstraints.Rotina.POS_IE };
-
-    private static final RotinaDeDigitoVerificador[] DVY_ROTINAS = { IEConstraints.Rotina.E,
-            IEConstraints.Rotina.POS_IE };
-
-    private static final DigitoVerificadorInfo DVX_INFO = new DigitoVerificadorInfo(0, DVX_ROTINAS, DVX_MOD,
-            DVX_MULTIPLIERS, DVX_POSITION);
-
-    private static final DigitoVerificadorInfo DVY_INFO = new DigitoVerificadorInfo(0, DVY_ROTINAS, DVY_MOD,
-            DVY_MULTIPLIERS, DVY_POSITION);
-
-    private static final ValidadorDeDV DVX_CHECKER = new ValidadorDeDV(DVX_INFO);
-
-    private static final ValidadorDeDV DVY_CHECKER = new ValidadorDeDV(DVY_INFO);
 
     public static final Pattern FORMATED = Pattern.compile("(((\\d{3})\\.){2}\\d{3}/\\d{4})|(\\d{9}\\.\\d{2}-\\d{2})");
 
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{13})");
-
-    private static final String REPLACEMENT = MISSING_ZEROS + "$1";
 
 	
     /**
@@ -83,16 +47,23 @@ public class IEMinasGeraisValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
+	protected boolean hasValidCheckDigits(String unformattedIE) {
+		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 2);
+		String digitos = unformattedIE.substring(unformattedIE.length() - 2);
+		String digitosCalculados = calculaDigitos(iESemDigito);
 
-    protected boolean hasValidCheckDigits(String value) {
-        String testedValue = null;
-        Matcher matcher = UNFORMATED.matcher(value);
-        if (matcher.matches()) {
-            testedValue = matcher.replaceAll(REPLACEMENT);
-        }
-        boolean DVXisValid = DVX_CHECKER.isDVValid(testedValue);
-        boolean DVYisValid = DVY_CHECKER.isDVValid(testedValue);
-        return (DVXisValid) && (DVYisValid);
-    }
+		return digitos.equals(digitosCalculados);
+	}
+
+	private String calculaDigitos(String iESemDigito) {
+		String ieComZero = iESemDigito.substring(0, 3) + "0" + iESemDigito.substring(3);
+		String digito1 = new DigitoPara(ieComZero).complementarAoModulo().comMultiplicadores(2,1).somandoIndividualmente()
+									.mod(10).trocandoPorSeEncontrar("0", 10).calcula();
+
+		String digito2 = new DigitoPara(iESemDigito + digito1).complementarAoModulo().comMultiplicadoresDeAte(2, 11)
+									.trocandoPorSeEncontrar("0", 10, 11).calcula();
+
+		return digito1 + digito2;
+	}
 
 }
