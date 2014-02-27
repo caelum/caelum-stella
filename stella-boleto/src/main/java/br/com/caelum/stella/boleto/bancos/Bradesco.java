@@ -1,8 +1,10 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.utils.StellaStringUtils;
 
 /**
  * Gera dados de um boleto relativos ao Banco Bradesco.
@@ -54,26 +56,26 @@ public class Bradesco extends AbstractBanco implements Banco {
 	}
 
 	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
-		return String.format("%07d", emissor.getNumeroConvenio());
+		return leftPadWithZeros(emissor.getNumeroConvenio(), 7);
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%07d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 7);
 	}
 
 	@Override
-	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%02d", emissor.getCarteira());
+	public String getCarteiraDoEmissorFormatado(Emissor emissor) {	
+		return leftPadWithZeros(emissor.getCarteira(), 2);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%011d", emissor.getNossoNumero());
+		return leftPadWithZeros(emissor.getNossoNumero(), 11);
 	}
 
 	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.valueOf(emissor.getDigitoNossoNumero());
+		return emissor.getDigitoNossoNumero();
 	}
 
 	@Override

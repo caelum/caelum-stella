@@ -2,6 +2,9 @@ package br.com.caelum.stella.boleto;
 
 import java.io.Serializable;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+import br.com.caelum.stella.boleto.utils.StellaStringUtils;
+
 /**
  * Bean que representa os dados do emissor de um boleto 
  * bancario. É um bean genérico, ou seja, o uso dos campos 
@@ -285,9 +288,7 @@ public class Emissor implements Serializable {
 	 * Para o valor de agencia 123 retorna a String 0123
 	 */
 	public String getAgenciaFormatado() {
-		String valor = String.valueOf(this.agencia);
-		valor = String.format("%04d", Integer.parseInt(valor));
-		return valor.substring(0, 4);
+		return leftPadWithZeros(agencia, 4);
 	}
 
 	/**

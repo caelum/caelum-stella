@@ -2,9 +2,11 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import br.com.caelum.stella.boleto.utils.StellaStringUtils;
 
 /**
  * Gera dados de um boleto relativos ao Banco Safra.
@@ -49,20 +51,20 @@ public class Safra extends AbstractBanco implements Banco {
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%08d", emissor.getContaCorrente()));
+		builder.append(leftPadWithZeros(emissor.getContaCorrente(), 8));
 		builder.append(emissor.getDigitoContaCorrente());
 		return builder.toString();
 	}
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%02d", emissor.getCarteira());
+		return leftPadWithZeros(emissor.getCarteira(), 2);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%09d", emissor.getNossoNumero()));
+		builder.append(leftPadWithZeros(emissor.getNossoNumero(),9));
 		return builder.toString();
 	}
 	
