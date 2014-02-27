@@ -40,7 +40,7 @@ public class Caixa extends AbstractBanco implements Banco {
 			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
 		}
 		else {
-			throw new IllegalArgumentException("A carteira digitada não é suportada");
+			throw new IllegalArgumentException("A carteira digitada não é suportada: " + carteiraDoEmissor);
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
