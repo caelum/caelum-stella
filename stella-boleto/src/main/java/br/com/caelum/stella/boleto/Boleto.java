@@ -306,6 +306,24 @@ public class Boleto implements Serializable {
 		return this;
 	}
 
+    /**
+     * @param descricao que será adicionada à lista de descricoes do boleto
+     * <br> Note que esse campo não aparece no boleto gerado em PNG
+     * @throws IllegalArgumentException caso a descrição seja nula
+     * @throws UnsupportedOperationException caso a lista de descrições tenha 5 descrições
+     * @return este boleto
+     */
+    public Boleto comDescricao(String descricao) {
+        if(descricao == null) {
+            throw new IllegalArgumentException("nao e permitida descricao nula");
+        }
+        if(this.descricoes.length == 5) {
+            throw new UnsupportedOperationException("maximo de descricoes permitidas atingido");
+        }
+        this.descricoes.add(descricao);
+        return this;
+    }
+
 	/**
 	 * @return lista de locais de pagamento do boleto
 	 */
