@@ -7,10 +7,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
-import br.com.caelum.stella.boleto.utils.StellaStringUtils;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Bean que representa os dados de um boleto.

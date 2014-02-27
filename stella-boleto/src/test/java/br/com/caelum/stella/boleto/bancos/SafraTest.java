@@ -25,11 +25,11 @@ public class SafraTest {
 
 		this.emissor = Emissor.novoEmissor()
 						.comCedente("Supermercado e Comercio XYZ LTDA")
-						.comAgencia(1)
-						.comDigitoAgencia('8')
-						.comContaCorrente(1245)
-						.comDigitoContaCorrente('1')
-						.comNossoNumero(4)
+						.comAgencia("1")
+						.comDigitoAgencia("8")
+						.comContaCorrente("1245")
+						.comDigitoContaCorrente("1")
+						.comNossoNumero("4")
 						.comDigitoNossoNumero("3");
 
 		Sacado sacado = Sacado.novoSacado()
@@ -57,7 +57,7 @@ public class SafraTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);

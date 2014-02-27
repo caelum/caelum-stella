@@ -3,7 +3,6 @@ package br.com.caelum.stella.boleto;
 import java.io.Serializable;
 
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
-import br.com.caelum.stella.boleto.utils.StellaStringUtils;
 
 /**
  * Bean que representa os dados do emissor de um boleto 

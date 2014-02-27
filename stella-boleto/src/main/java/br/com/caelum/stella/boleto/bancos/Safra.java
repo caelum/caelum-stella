@@ -2,11 +2,10 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.utils.StellaStringUtils;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Gera dados de um boleto relativos ao Banco Safra.

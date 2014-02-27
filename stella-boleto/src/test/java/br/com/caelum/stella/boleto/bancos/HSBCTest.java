@@ -1,8 +1,5 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -13,6 +10,9 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class HSBCTest {
 	
@@ -26,7 +26,7 @@ public class HSBCTest {
 				.comProcessamento(29,1,2013).comVencimento(30,1,2013);
 
 		Emissor emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
-			.comCodigoFornecidoPelaAgencia(4146239).comNossoNumero(1476147);
+			.comCodigoFornecidoPelaAgencia("4146239").comNossoNumero("1476147");
 
 	    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
 		

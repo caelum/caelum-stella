@@ -26,8 +26,8 @@ public class SantanderTest {
             .comProcessamento(29, 04, 2013).comVencimento(8, 05, 2013);  
 
 	    this.emissor = Emissor.novoEmissor().comCedente("PETROBRAS")
-            .comAgencia(6790).comDigitoAgencia('0').comCarteira(102)
-            .comContaCorrente(5260965l).comNossoNumero(1056137495014l);  
+            .comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
+            .comContaCorrente("5260965").comNossoNumero("1056137495014");  
 
 	    Sacado sacado = Sacado.novoSacado().comNome("PAULO SILVEIRA") ; 
 	    
@@ -53,8 +53,8 @@ public class SantanderTest {
 	@Test
 	public void testNossoNumeroDoEmissorFormatado() {
 		this.emissor = Emissor.novoEmissor().comCedente("BOTICARIO")
-				.comAgencia(6790).comDigitoAgencia('0').comCarteira(102)
-				.comContaCorrente(5260965l).comNossoNumero(123l);
+				.comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
+				.comContaCorrente("5260965").comNossoNumero("123");
 
 		assertThat(banco.getNossoNumeroDoEmissorFormatado(emissor),
 				is("0000000000123"));

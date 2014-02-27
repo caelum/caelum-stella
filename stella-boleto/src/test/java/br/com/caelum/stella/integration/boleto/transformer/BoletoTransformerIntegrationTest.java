@@ -1,7 +1,5 @@
 package br.com.caelum.stella.integration.boleto.transformer;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
@@ -20,6 +18,8 @@ import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Teste de INTEGRACAO apesar de estar no de unidade FIXME
  * 
@@ -36,9 +36,9 @@ public class BoletoTransformerIntegrationTest extends DefaultIntegrationTest{
 		Boleto boleto;
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
-		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia(1824).comDigitoAgencia('4')
-				.comContaCorrente(76000).comNumeroConvenio(1207113).comDigitoContaCorrente('5').comCarteira(18)
-				.comNossoNumero(9000206);
+		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia("1824").comDigitoAgencia("4")
+				.comContaCorrente("76000").comNumeroConvenio("1207113").comDigitoContaCorrente("5").comCarteira("18")
+				.comNossoNumero("9000206");
 
 		Sacado sacado = Sacado.novoSacado().comNome("Fulano da Silva").comCpf("111.222.333-12")
 				.comEndereco("Av dos testes, 111 apto 333").comBairro("Bairro Teste").comCep("01234-111")
