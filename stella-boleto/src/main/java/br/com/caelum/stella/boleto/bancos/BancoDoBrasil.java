@@ -23,8 +23,9 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
 		Emissor emissor = boleto.getEmissor();
-		if (emissor.getNumeroConvenio() < 1000000) {
-			if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
+		
+		if (convenioAntigo(emissor.getNumeroConvenio())) {
+			if (emissor.getCarteira().equals("16") || emissor.getCarteira().equals("18")) {
 				campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
 				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 				campoLivre.append("21");
@@ -34,7 +35,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 				campoLivre.append(emissor.getCedente());
 				campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 			}
-		} else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
+		} else if (emissor.getCarteira().equals("17") || emissor.getCarteira().equals("18")) {
 			campoLivre.append("000000");
 			campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
 			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
@@ -45,6 +46,11 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 					"Verifique carteira e demais dados.");
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
+	}
+
+	private boolean convenioAntigo(String convenio) {
+		long numeroConvenio = Long.parseLong(convenio);
+		return numeroConvenio < 1000000;
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	}
 
 	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
-		if (emissor.getNumeroConvenio() < 1000000) {
+		if (convenioAntigo(emissor.getNumeroConvenio())) {
 			return String.format("%06d", emissor.getNumeroConvenio());
 		} else {
 			return String.format("%07d", emissor.getNumeroConvenio());
@@ -79,7 +85,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		if (emissor.getCarteira() == 18) {
+		if (emissor.getCarteira().equals("18")) {
 			return String.format("%017d", emissor.getNossoNumero());
 		} else {
 			return String.format("%011d", emissor.getNossoNumero());

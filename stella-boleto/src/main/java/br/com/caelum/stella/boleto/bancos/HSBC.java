@@ -25,7 +25,7 @@ public class HSBC extends AbstractBanco implements Banco {
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
-		int codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
+		String codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
 		campoLivre.append(String.format("%07d", codigoAgencia));
 		campoLivre.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 		campoLivre.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
@@ -88,7 +88,7 @@ public class HSBC extends AbstractBanco implements Banco {
 		Emissor emissor = boleto.getEmissor();
 		
 		String nossoNumero = getNossoNumeroDoEmissorFormatado(emissor);
-		int beneficiario = emissor.getCodigoFornecidoPelaAgencia();
+		String beneficiario = emissor.getCodigoFornecidoPelaAgencia();
 		String dataVcto = new SimpleDateFormat("ddMMyy").format(boleto.getDatas().getVencimento().getTime());;
 		
 		DigitoPara calculadorMod = getModuloNossoNumero(nossoNumero);

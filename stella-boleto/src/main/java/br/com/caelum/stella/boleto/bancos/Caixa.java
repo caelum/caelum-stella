@@ -20,15 +20,15 @@ public class Caixa extends AbstractBanco implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		
 		Emissor emissor = boleto.getEmissor();
-		int carteiraDoEmissor = emissor.getCarteira();
+		String carteiraDoEmissor = emissor.getCarteira();
 		StringBuilder campoLivre = new StringBuilder();
 		
-		if (carteiraDoEmissor == 1) {
+		if (carteiraDoEmissor.equals(1)) {
 			campoLivre.append(carteiraDoEmissor);
 			campoLivre.append(format("%06d", emissor.getContaCorrente()));
 			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 		}
-		else if (carteiraDoEmissor == 2) {
+		else if (carteiraDoEmissor.equals(2)) {
 			String nossoNumeroCompleto = getNossoNumeroDoEmissorFormatado(emissor);
 			campoLivre.append(format("%06d", emissor.getContaCorrente()));
 			campoLivre.append(emissor.getDigitoContaCorrente());
