@@ -21,7 +21,7 @@ public final class CPF {
     private final String numeroFormatado;
 
     /**
-     * Constrói um CPF com o número especificado. Se o número conter 
+     * Constrói um CPF com o número especificado. Se o número contiver 
      * apenas caracteres numéricos ou estiver no formato ddd.ddd.ddd-dd, 
      * ele é guardado com e sem formatação nos respectivos atributos.
      * Caso contrário, ele guarda o parâmetro como passado em ambos os atributos.
