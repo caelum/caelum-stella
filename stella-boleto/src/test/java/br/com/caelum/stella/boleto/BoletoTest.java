@@ -162,18 +162,18 @@ public class BoletoTest {
 		assertEquals(5, b.getDescricoes().size());
 	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void boletoNaoDeveAceitarDescricaoNula() {
-        Boleto b = Boleto.novoBoleto();
-        b.comDescricao("");
-    }
+        @Test(expected = IllegalArgumentException.class)
+        public void boletoNaoDeveAceitarDescricaoNula() {
+            Boleto b = Boleto.novoBoleto();
+            b.comDescricao(null);
+        }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void boletoNaoDeveAceitarDescricaoQuandoTemCincoDescricoes() {
-        Boleto b = Boleto.novoBoleto();
-        b.comDescricoes("","","","","");
-        b.comDescricao("");
-    }
+        @Test(expected = UnsupportedOperationException.class)
+        public void boletoNaoDeveAceitarDescricaoQuandoTemCincoDescricoes() {
+            Boleto b = Boleto.novoBoleto();
+            b.comDescricoes("","","","","");
+            b.comDescricao("");
+        }
 
 	@Test(expected = IllegalArgumentException.class)
 	public void boletoNaoDeveAceitarMaisDeDoisLocais() {
