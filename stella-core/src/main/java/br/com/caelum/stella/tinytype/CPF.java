@@ -7,30 +7,43 @@ import br.com.caelum.stella.validation.CPFValidator;
  * Representa um Cadastro de Pessoas Física - CPF.
  *
  * @author leobessa
- *
  */
 public final class CPF {
 
+    /**
+     * Número do CPF. Possui apenas os caracteres numéricos.
+     */
     private final String numero;
-	private final String numeroFormatado;
 
     /**
-     * @param número do CPF.
+     * Número do CPF. No formato ddd.ddd.ddd-dd .
+     */
+    private final String numeroFormatado;
+
+    /**
+     * Constrói um CPF com o número especificado. Se o número conter 
+     * apenas caracteres numéricos ou estiver no formato ddd.ddd.ddd-dd, 
+     * ele é guardado com e sem formatação nos respectivos atributos.
+     * Caso contrário, ele guarda o parâmetro como passado em ambos os atributos.
+     * 
+     * @param numero número do CPF
      */
     public CPF(String numero) {
-    	CPFFormatter formatter = new CPFFormatter();
-		if (formatter.isFormatted(numero)) {
-			this.numero = formatter.unformat(numero);
+    	CPFFormatter formatador = new CPFFormatter();
+		if (formatador.isFormatted(numero)) {
+			this.numero = formatador.unformat(numero);
 			this.numeroFormatado = numero;
-		} else if (formatter.canBeFormatted(numero)) {
+		} else if (formatador.canBeFormatted(numero)) {
 			this.numero = numero;
-			this.numeroFormatado = formatter.format(numero);
+			this.numeroFormatado = formatador.format(numero);
 		} else {
 			this.numero = this.numeroFormatado = numero;
 		}
     }
 
     /**
+     * Retorna o número do CPF apenas com os caracteres numéricos.
+     * 
      * @return número do CPF.
      */
     public String getNumero() {
@@ -38,27 +51,42 @@ public final class CPF {
     }
 
     /**
-     * @return número do CPF formatado.
+     * Retorna o número do CPF no formato ddd.ddd.ddd-dd .
+     * 
+     * @return número do CPF no formato ddd.ddd.ddd-dd .
      */
     public String getNumeroFormatado() {
     	return numeroFormatado;
     }
 
     /**
+     * Retorna se o número do CPF é válido. O resultado é <code>true</code>
+     * se os dígitos verificadores estão de acordo com a regra de cálculo.
+     * 
      * @return se o número do CPF é valido.
+     * 
+     * @see CPFValidator
      */
 	public boolean isValido() {
 		return new CPFValidator().invalidMessagesFor(numero).isEmpty();
 	}
 
     /**
-     * @return número do CPF formatado.
+     * Retorna uma representação em string desse CPF. A intenção desse método
+     * é ser usado para impressão e retorna o número no formato ddd.ddd.ddd-dd .
+     * 
+     * @return número do CPF no formato ddd.ddd.ddd-dd.
      */
     @Override
     public String toString() {
         return getNumeroFormatado();
     }
 
+    /**
+     * Retorna um hash code para esse CPF.
+     * 
+     * @return um valor de hash code para esse objeto.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -67,6 +95,15 @@ public final class CPF {
         return result;
     }
 
+    /**
+     * Compara esse <code>CPF</code> ao <code>Object</code> 
+     * especificado.  O resultado é <code>true</code> se e só se
+     * o argumento é um objeto <code>CPF</code> com o mesmo número.
+     * 
+     * @param obj o objeto a ser comparado
+     * @return <code>true</code> se esse objeto é igual a <code>obj</code>;
+     * <code>false</code> caso contrário.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -88,5 +125,4 @@ public final class CPF {
 		}
         return true;
     }
-
 }
