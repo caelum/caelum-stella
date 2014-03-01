@@ -2,12 +2,13 @@ package br.com.caelum.stella.boleto.transformer;
 
 import java.io.File;
 import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRHtmlExporter;
@@ -22,7 +23,18 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  * @author Mario Amaral {@link github.com/mariofts}
  * 
  */
+@SuppressWarnings("deprecation")
 public class GeradorDeBoletoHTML extends GeradorDeBoleto {
+	
+	private JRHtmlExporter exporter = new JRHtmlExporter();
+
+	{
+		exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-1");
+		exporter.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, Boolean.FALSE);
+		exporter.setParameter(JRHtmlExporterParameter.ZOOM_RATIO, 1.3F);
+		exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI, "stella-boleto?image=");
+		exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-1");
+	}
 	
 	public GeradorDeBoletoHTML(Boleto... boletos) {
 		super(boletos);
@@ -31,6 +43,16 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 	@SuppressWarnings("rawtypes")
 	public GeradorDeBoletoHTML(InputStream template,  Map parametros, Boleto... boletos) {
 		super(template, parametros, boletos);
+	}
+	
+	/**
+	 * Seta propriedades para o gerador de html do jasper.
+	 * 
+	 * @param parameter
+	 * @param value
+	 */
+	public void setJasperParameter(JRExporterParameter parameter, Object value){
+		exporter.setParameter(parameter, value);
 	}
 
 	public void geraHTML(String arquivo) {
@@ -45,7 +67,7 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 		geraHTML(arquivo.getAbsolutePath());
 	}
 
-	public void geraHTML(PrintWriter writer, HttpServletRequest request) {
+	public void geraHTML(Writer writer, HttpServletRequest request) {
 		try {
 			JRHtmlExporter exporter = getHtmlExporter(request);
 			exporter.setParameter(JRHtmlExporterParameter.OUTPUT_WRITER, writer);
@@ -55,16 +77,10 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	protected JRHtmlExporter getHtmlExporter(HttpServletRequest request) {
 		JasperPrint relatorio = geraRelatorio();
 
-		JRHtmlExporter exporter = new JRHtmlExporter();
 		exporter.setParameter(JRHtmlExporterParameter.JASPER_PRINT, relatorio);
-		exporter.setParameter(JRHtmlExporterParameter.CHARACTER_ENCODING, "ISO-8859-1");
-		exporter.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, Boolean.FALSE);
-		exporter.setParameter(JRHtmlExporterParameter.ZOOM_RATIO, 1.5F);
-		exporter.setParameter(JRHtmlExporterParameter.IMAGES_URI, "stella-boleto?image=");
 		
 		request.getSession().setAttribute(ImageServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, relatorio);
 

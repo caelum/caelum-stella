@@ -21,28 +21,28 @@ public class Boleto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private BigDecimal valorBoleto = BigDecimal.ZERO;
-	private BigDecimal quantidadeMoeda;
-	private BigDecimal valorMoeda;
-	private BigDecimal valorDescontos = BigDecimal.ZERO;
-	private BigDecimal valorDeducoes = BigDecimal.ZERO;
-	private BigDecimal valorMulta = BigDecimal.ZERO;
-	private BigDecimal valorAcrescimos = BigDecimal.ZERO;
+	protected BigDecimal valorBoleto = BigDecimal.ZERO;
+	protected BigDecimal quantidadeMoeda;
+	protected BigDecimal valorMoeda;
+	protected BigDecimal valorDescontos = BigDecimal.ZERO;
+	protected BigDecimal valorDeducoes = BigDecimal.ZERO;
+	protected BigDecimal valorMulta = BigDecimal.ZERO;
+	protected BigDecimal valorAcrescimos = BigDecimal.ZERO;
 
-	private String especieMoeda;
-	private int codigoEspecieMoeda;
-	private String especieDocumento;
-	private String numeroDocumento;
-	private boolean aceite;
-	private Banco banco;
-	private Datas datas;
-	private Sacado sacado;
-	private Emissor emissor;
-	private List<String> instrucoes = Collections.emptyList();
-	private List<String> descricoes = Collections.emptyList();
-	private List<String> locaisDePagamento = Collections.emptyList();
+	protected String especieMoeda;
+	protected int codigoEspecieMoeda;
+	protected String especieDocumento;
+	protected String numeroDocumento;
+	protected boolean aceite;
+	protected Banco banco;
+	protected Datas datas;
+	protected Sacado sacado;
+	protected Emissor emissor;
+	protected List<String> instrucoes = Collections.emptyList();
+	protected List<String> descricoes = Collections.emptyList();
+	protected List<String> locaisDePagamento = Collections.emptyList();
 
-	private Boleto() {}
+	protected Boleto() {}
 
 	/**
 	 * @return novo Boleto com valores default de especieMoeda R$,
@@ -180,7 +180,7 @@ public class Boleto implements Serializable {
 	 * @param especieMoeda que será associada ao boleto
 	 * @return este boleto
 	 */
-	private Boleto comEspecieMoeda(String especieMoeda) {
+	public Boleto comEspecieMoeda(String especieMoeda) {
 		this.especieMoeda = especieMoeda;
 		return this;
 	}
@@ -196,7 +196,7 @@ public class Boleto implements Serializable {
 	 * @param codigoEspecieMoeda que será associado ao boleto
 	 * @return este boleto
 	 */
-	private Boleto comCodigoEspecieMoeda(int codigoEspecieMoeda) {
+	public Boleto comCodigoEspecieMoeda(int codigoEspecieMoeda) {
 		this.codigoEspecieMoeda = codigoEspecieMoeda;
 		return this;
 	}

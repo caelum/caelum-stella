@@ -22,6 +22,7 @@ public class GeradorDeDigitoPadraoTest {
 		Assert.assertEquals(6, gerador.geraDigitoMod11("2379316800000001002949060000000000300065800"));
 		Assert.assertEquals(3, gerador.geraDigitoMod11("0000039104766"));
 		Assert.assertEquals(3, gerador.geraDigitoMod11("3999100100001200000351202000003910476618602"));
+		Assert.assertEquals(1, gerador.geraDigitoMod11("3999597400000001002461722000000001934404542"));
 	}
 
 	@Test

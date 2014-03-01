@@ -5,7 +5,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 
 import org.junit.BeforeClass;
 
-public class DefaultIntegrationTest {
+public abstract class DefaultIntegrationTest {
 	
 	@BeforeClass
 	public static void compileReports() throws JRException{
