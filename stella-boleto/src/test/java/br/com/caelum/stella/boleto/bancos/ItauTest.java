@@ -24,8 +24,8 @@ public class ItauTest {
 	            .comProcessamento(20, 03, 2013).comVencimento(01, 04, 2013);  
 
 		    this.emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
-	            .comAgencia(167).comCarteira(157).comContaCorrente(45145)
-	            .comNossoNumero(21897666l).comDigitoNossoNumero("6");  
+	            .comAgencia("167").comCarteira("157").comContaCorrente("45145")
+	            .comNossoNumero("21897666").comDigitoNossoNumero("6");  
 
 		    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
 		    
@@ -36,7 +36,7 @@ public class ItauTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOitoDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206");
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(8, numeroFormatado.length());
 		assertEquals("09000206", numeroFormatado);
@@ -44,7 +44,7 @@ public class ItauTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerTresDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(3, numeroFormatado.length());
 		assertEquals("001", numeroFormatado);

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
@@ -25,8 +26,8 @@ public class HSBC extends AbstractBanco implements Banco {
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
-		int codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
-		campoLivre.append(String.format("%07d", codigoAgencia));
+		String codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
+		campoLivre.append(leftPadWithZeros(codigoAgencia, 7));
 		campoLivre.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
 		campoLivre.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
 		campoLivre.append(HSBC.CODIGO_APLICATIVO);
@@ -56,7 +57,7 @@ public class HSBC extends AbstractBanco implements Banco {
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%07d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 7);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class HSBC extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%013d", emissor.getNossoNumero());
+		return leftPadWithZeros(emissor.getNossoNumero(), 13);
 	}
 
 	@Override
@@ -78,9 +79,8 @@ public class HSBC extends AbstractBanco implements Banco {
 
 	@Override
 	public String getAgenciaECodigoCedente(Emissor emissor) {
-		return String.format("%07d", emissor.getCodigoFornecidoPelaAgencia());
+		return leftPadWithZeros(emissor.getCodigoFornecidoPelaAgencia(), 7);
 	}
-
 	
 	@Override
 	public String getNossoNumeroECodDocumento(Boleto boleto) {
@@ -88,7 +88,7 @@ public class HSBC extends AbstractBanco implements Banco {
 		Emissor emissor = boleto.getEmissor();
 		
 		String nossoNumero = getNossoNumeroDoEmissorFormatado(emissor);
-		int beneficiario = emissor.getCodigoFornecidoPelaAgencia();
+		String beneficiario = emissor.getCodigoFornecidoPelaAgencia();
 		String dataVcto = new SimpleDateFormat("ddMMyy").format(boleto.getDatas().getVencimento().getTime());;
 		
 		DigitoPara calculadorMod = getModuloNossoNumero(nossoNumero);
@@ -98,8 +98,9 @@ public class HSBC extends AbstractBanco implements Banco {
 	
 		long nossoNum = Long.parseLong(nossoNumeroComDigitos);
 		long vcto = Long.parseLong(dataVcto);
+		long benef = Long.parseLong(beneficiario);
 		
-		String somatorio = String.valueOf(nossoNum + beneficiario + vcto);
+		String somatorio = String.valueOf(nossoNum + benef + vcto);
 		
 		DigitoPara calculadorMod2 = getModuloNossoNumero(somatorio);
 		String segundoDigito = calculadorMod2.calcula();

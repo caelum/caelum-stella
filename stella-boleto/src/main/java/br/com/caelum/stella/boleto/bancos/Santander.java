@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -40,17 +41,17 @@ public class Santander implements Banco {
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%03d", emissor.getCarteira());
+		return leftPadWithZeros(emissor.getCarteira(), 3);
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%07d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 7);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%013d", emissor.getNossoNumero());
+		return leftPadWithZeros(emissor.getNossoNumero(), 13);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class Santander implements Banco {
 	@Override
 	public String getAgenciaECodigoCedente(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%05d", emissor.getAgencia()));
+		builder.append(leftPadWithZeros(emissor.getAgencia(), 5));
 		builder.append("/").append(emissor.getContaCorrente());
 		return builder.toString();
 	}

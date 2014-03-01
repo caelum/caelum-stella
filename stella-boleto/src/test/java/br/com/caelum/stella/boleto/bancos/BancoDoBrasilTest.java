@@ -22,9 +22,9 @@ public class BancoDoBrasilTest {
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
 
-		this.emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia(1824).comDigitoAgencia('4')
-				.comContaCorrente(76000).comNumeroConvenio(1207113).comDigitoContaCorrente('5').comCarteira(18)
-				.comNossoNumero(9000206);
+		this.emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia("1824").comDigitoAgencia("4")
+				.comContaCorrente("76000").comNumeroConvenio("1207113").comDigitoContaCorrente("5").comCarteira("18")
+				.comNossoNumero("9000206");
 
 		Sacado sacado = Sacado.novoSacado().comNome("Fulano");
 
@@ -36,7 +36,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio(1234);
+		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("1234");
 		String numeroFormatado = this.banco.getNumeroConvenioDoEmissorFormatado(emissor);
 		assertEquals(6, numeroFormatado.length());
 		assertEquals("001234", numeroFormatado);
@@ -44,7 +44,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206).comCarteira(11);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206").comCarteira("11");
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(11, numeroFormatado.length());
 		assertEquals("00009000206", numeroFormatado);
@@ -52,7 +52,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero(9000206).comCarteira(18);
+		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206").comCarteira("18");
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
 		assertEquals(17, numeroFormatado.length());
 		assertEquals("00000000009000206", numeroFormatado);
@@ -60,7 +60,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
 		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);

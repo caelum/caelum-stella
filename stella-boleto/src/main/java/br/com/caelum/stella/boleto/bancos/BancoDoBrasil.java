@@ -4,6 +4,7 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Gera dados de um boleto relativos ao Banco do Brasil.
@@ -23,8 +24,9 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
 		Emissor emissor = boleto.getEmissor();
-		if (emissor.getNumeroConvenio() < 1000000) {
-			if (emissor.getCarteira() == 16 || emissor.getCarteira() == 18) {
+		
+		if (convenioAntigo(emissor.getNumeroConvenio())) {
+			if (emissor.getCarteira().equals("16") || emissor.getCarteira().equals("18")) {
 				campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
 				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 				campoLivre.append("21");
@@ -34,7 +36,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 				campoLivre.append(emissor.getCedente());
 				campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 			}
-		} else if (emissor.getCarteira() == 17 || emissor.getCarteira() == 18) {
+		} else if (emissor.getCarteira().equals("17") || emissor.getCarteira().equals("18")) {
 			campoLivre.append("000000");
 			campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
 			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor).substring(7));
@@ -45,6 +47,11 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 					"Verifique carteira e demais dados.");
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
+	}
+
+	private boolean convenioAntigo(String convenio) {
+		long numeroConvenio = Long.parseLong(convenio);
+		return numeroConvenio < 1000000;
 	}
 
 	@Override
@@ -60,29 +67,29 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	}
 
 	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
-		if (emissor.getNumeroConvenio() < 1000000) {
-			return String.format("%06d", emissor.getNumeroConvenio());
+		if (convenioAntigo(emissor.getNumeroConvenio())) {
+			return leftPadWithZeros(emissor.getNumeroConvenio(), 6);
 		} else {
-			return String.format("%07d", emissor.getNumeroConvenio());
+			return leftPadWithZeros(emissor.getNumeroConvenio(), 7);
 		}
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%08d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 8);
 	}
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%02d", emissor.getCarteira());
+		return leftPadWithZeros(emissor.getCarteira(),2);
 	}
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		if (emissor.getCarteira() == 18) {
-			return String.format("%017d", emissor.getNossoNumero());
+		if (emissor.getCarteira().equals("18")) {
+			return leftPadWithZeros(emissor.getNossoNumero(), 17);
 		} else {
-			return String.format("%011d", emissor.getNossoNumero());
+			return leftPadWithZeros(emissor.getNossoNumero(), 11);
 		}
 	}
 

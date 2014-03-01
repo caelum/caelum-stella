@@ -1,8 +1,5 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +7,9 @@ import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class CaixaTest {
 
@@ -29,8 +29,8 @@ public class CaixaTest {
 			.comProcessamento(22, 04, 2013).comVencimento(29, 04, 2013);
 
 		this.emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
-			.comAgencia(2873).comCarteira(1)
-			.comContaCorrente(2359).comNossoNumero(990000000003994458l)
+			.comAgencia("2873").comCarteira("1")
+			.comContaCorrente("2359").comNossoNumero("990000000003994458")
 			.comDigitoNossoNumero("0");
 
 		Sacado sacado = Sacado.novoSacado().comNome("Mario Amaral");
@@ -47,9 +47,9 @@ public class CaixaTest {
 				.comProcessamento(21, 8, 2012).comVencimento(04, 9, 2012);
 
 		Emissor emissor = Emissor.novoEmissor().comCedente("Guilherme")
-			.comAgencia(589).comCarteira(2)
-			.comContaCorrente(290274).comDigitoContaCorrente('5')
-			.comNossoNumero(24900000000000132l)
+			.comAgencia("589").comCarteira("2")
+			.comContaCorrente("290274").comDigitoContaCorrente("5")
+			.comNossoNumero("24900000000000132")
 			.comDigitoNossoNumero("3");
 
 		Sacado sacadoOutroBoleto = Sacado.novoSacado().comNome("Paulo");
@@ -62,7 +62,7 @@ public class CaixaTest {
 	@Test
 	public void codFornecidoPelaAgenciaDeveTerOitoDigitos() {
 		Emissor emissor = Emissor.novoEmissor()
-				.comCodigoFornecidoPelaAgencia(2);
+				.comCodigoFornecidoPelaAgencia("2");
 		String numeroFormatado = this.banco
 				.getCodigoFornecidoPelaAgenciaFormatado(emissor);
 		assertEquals(8, numeroFormatado.length());
@@ -71,7 +71,7 @@ public class CaixaTest {
 
 	@Test
 	public void codOperacaoDeveTerTresDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCodigoOperacao(2);
+		Emissor emissor = Emissor.novoEmissor().comCodigoOperacao("2");
 		String numeroFormatado = this.banco.getCodigoOperacaoFormatado(emissor);
 		assertEquals(3, numeroFormatado.length());
 		assertEquals("002", numeroFormatado);
@@ -79,7 +79,7 @@ public class CaixaTest {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira(1);
+		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
 		String numeroFormatado = this.banco
 				.getCarteiraDoEmissorFormatado(emissor);
 		assertEquals(2, numeroFormatado.length());
@@ -124,7 +124,7 @@ public class CaixaTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveLancarExceptionSeCarteiraNaoForSuportada() throws Exception {
-		this.outroBoleto.getEmissor().comCarteira(3);
+		this.outroBoleto.getEmissor().comCarteira("3");
 		assertEquals("10499544600000080002902745900200040000001322",
 				this.banco.geraCodigoDeBarrasPara(this.outroBoleto));
 	}

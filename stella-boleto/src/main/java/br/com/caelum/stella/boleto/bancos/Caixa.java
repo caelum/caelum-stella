@@ -1,12 +1,12 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static java.lang.String.*;
-
 import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+import static java.lang.String.format;
 
 public class Caixa extends AbstractBanco implements Banco {
 
@@ -20,17 +20,17 @@ public class Caixa extends AbstractBanco implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		
 		Emissor emissor = boleto.getEmissor();
-		int carteiraDoEmissor = emissor.getCarteira();
+		String carteiraDoEmissor = emissor.getCarteira();
 		StringBuilder campoLivre = new StringBuilder();
 		
-		if (carteiraDoEmissor == 1) {
+		if (carteiraDoEmissor.equals("1")) {
 			campoLivre.append(carteiraDoEmissor);
-			campoLivre.append(format("%06d", emissor.getContaCorrente()));
+			campoLivre.append(leftPadWithZeros(emissor.getContaCorrente(), 6));
 			campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 		}
-		else if (carteiraDoEmissor == 2) {
+		else if (carteiraDoEmissor.equals("2")) {
 			String nossoNumeroCompleto = getNossoNumeroDoEmissorFormatado(emissor);
-			campoLivre.append(format("%06d", emissor.getContaCorrente()));
+			campoLivre.append(leftPadWithZeros(emissor.getContaCorrente(), 6));
 			campoLivre.append(emissor.getDigitoContaCorrente());
 			campoLivre.append(nossoNumeroCompleto.substring(2, 5));
 			campoLivre.append(nossoNumeroCompleto.substring(0, 1));
@@ -40,7 +40,7 @@ public class Caixa extends AbstractBanco implements Banco {
 			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
 		}
 		else {
-			throw new IllegalArgumentException("A carteira digitada não é suportada");
+			throw new IllegalArgumentException("A carteira digitada não é suportada: " + carteiraDoEmissor);
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
@@ -54,20 +54,20 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return format("%02d", emissor.getCarteira());
+		return leftPadWithZeros(emissor.getCarteira(), 2);
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return format("%05d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 5);
 	}
 	
 	public String getCodigoFornecidoPelaAgenciaFormatado(Emissor emissor) {
-		return format("%08d", emissor.getCodigoFornecidoPelaAgencia());
+		return leftPadWithZeros(emissor.getCodigoFornecidoPelaAgencia(), 8);
 	}
 
 	public String getCodigoOperacaoFormatado(Emissor emissor) {
-		return format("%03d", emissor.getCodigoOperacao());
+		return leftPadWithZeros(emissor.getCodigoOperacao(), 3);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Caixa extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return format("%017d", emissor.getNossoNumero());
+		return leftPadWithZeros(emissor.getNossoNumero(), 17);
 	}
 
 	@Override

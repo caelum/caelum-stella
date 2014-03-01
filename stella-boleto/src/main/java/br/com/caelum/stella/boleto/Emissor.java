@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto;
 
 import java.io.Serializable;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 /**
  * Bean que representa os dados do emissor de um boleto 
  * bancario. É um bean genérico, ou seja, o uso dos campos 
@@ -13,17 +15,17 @@ public class Emissor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int agencia;
-	private char digitoAgencia;
-	private long contaCorrente;
-	private int carteira;
-	private long numeroConvenio;
-	private long nossoNumero;
+	private String agencia;
+	private String digitoAgencia;
+	private String contaCorrente;
+	private String carteira;
+	private String numeroConvenio;
+	private String nossoNumero;
 	private String cedente;
-	private char digitoContaCorrente;
+	private String digitoContaCorrente;
 	private String digitoNossoNumero;
-	private int codigoOperacao;
-	private int codigoFornecidoPelaAgencia;
+	private String codigoOperacao;
+	private String codigoFornecidoPelaAgencia;
 	private String endereco;
 
 	private Emissor() {
@@ -55,35 +57,58 @@ public class Emissor implements Serializable {
 	/**
 	 * @return número da agencia sem o digito
 	 */
-	public int getAgencia() {
+	public String getAgencia() {
 		return this.agencia;
 	}
 
 	/**
 	 * @param agencia, que deverá ser informada
 	 * <strong>sem</strong> o digito verificador
-	 * 
+	 * @deprecated Agora deve ser String. 
 	 * @return este emissor
 	 */
 	public Emissor comAgencia(int agencia) {
+		this.agencia = String.valueOf(agencia);
+		return this;
+	}
+	
+	/**
+	 * @param agencia, que deverá ser informada
+	 * <strong>sem</strong> o digito verificador
+	 * 
+	 * @return este emissor
+	 */
+	public Emissor comAgencia(String agencia) {
 		this.agencia = agencia;
 		return this;
 	}
 
+
 	/**
 	 * @return número da conta corrente sem o digito
 	 */
-	public long getContaCorrente() {
+	public String getContaCorrente() {
 		return this.contaCorrente;
 	}
 
 	/**
 	 * @param contaCorrente, que deverá ser informada
 	 * <strong>sem</strong> o digito verificador.
-	 * 
+	 * @deprecated deve ser String agora 
 	 * @return este emissor
 	 */
 	public Emissor comContaCorrente(long contaCorrente) {
+		this.contaCorrente = String.valueOf(contaCorrente);
+		return this;
+	}
+	
+	/**
+	 * @param contaCorrente, que deverá ser informada
+	 * <strong>sem</strong> o digito verificador.
+	 * 
+	 * @return este emissor
+	 */
+	public Emissor comContaCorrente(String contaCorrente) {
 		this.contaCorrente = contaCorrente;
 		return this;
 	}
@@ -92,17 +117,28 @@ public class Emissor implements Serializable {
 	 * @return carteira <br/> Valor informado pelo 
 	 * banco para identificação do tipo de boleto
 	 */
-	public int getCarteira() {
+	public String getCarteira() {
 		return this.carteira;
 	}
 
 	/**
 	 * @param carteira <br/> Valor informado pelo 
 	 * banco para identificação do tipo de boleto
-	 * 
+	 * @deprecated deve ser String agora 
 	 * @return este emissor
 	 */
 	public Emissor comCarteira(int carteira) {
+		this.carteira = String.valueOf(carteira);
+		return this;
+	}
+	
+	/**
+	 * @param carteira <br/> Valor informado pelo 
+	 * banco para identificação do tipo de boleto
+	 * 
+	 * @return este emissor
+	 */
+	public Emissor comCarteira(String carteira) {
 		this.carteira = carteira;
 		return this;
 	}
@@ -111,17 +147,28 @@ public class Emissor implements Serializable {
 	 * @return número do convênio <br/> Valor que identifica 
 	 * um emissor junto ao seu banco para associar seus boletos
 	 */
-	public long getNumeroConvenio() {
+	public String getNumeroConvenio() {
 		return this.numeroConvenio;
 	}
 
 	/**
 	 * @param numConvenio <br/> Valor que identifica um 
 	 * emissor junto ao seu banco para associar seus boletos
-	 * 
+	 * @deprecated deve ser String agora 
 	 * @return este emissor
 	 */
 	public Emissor comNumeroConvenio(long numConvenio) {
+		this.numeroConvenio = String.valueOf(numConvenio);
+		return this;
+	}
+	
+	/**
+	 * @param numConvenio <br/> Valor que identifica um 
+	 * emissor junto ao seu banco para associar seus boletos
+	 * 
+	 * @return este emissor
+	 */
+	public Emissor comNumeroConvenio(String numConvenio) {
 		this.numeroConvenio = numConvenio;
 		return this;
 	}
@@ -133,8 +180,22 @@ public class Emissor implements Serializable {
 	 * Recomenda-se o uso de números sequenciais, na geração de 
 	 * diversos boletos, para facilitar a identificação dos pagos
 	 */
-	public long getNossoNumero() {
+	public String getNossoNumero() {
 		return this.nossoNumero;
+	}
+
+	/**
+	 * @param nossoNumero <br/> Valor que o cedente escolhe 
+	 * para manter controle sobre seus boletos. Esse valor serve 
+	 * para o cedente identificar quais boletos foram pagos ou não.
+	 * Recomenda-se o uso de números sequenciais, na geração de 
+	 * diversos boletos, para facilitar a identificação dos pagos
+	 * @deprecated deve ser String agora 
+	 * @return este emissor
+	 */
+	public Emissor comNossoNumero(long nossoNumero) {
+		this.nossoNumero =  String.valueOf(nossoNumero);
+		return this;
 	}
 
 	/**
@@ -146,11 +207,12 @@ public class Emissor implements Serializable {
 	 * 
 	 * @return este emissor
 	 */
-	public Emissor comNossoNumero(long nossoNumero) {
+	public Emissor comNossoNumero(String nossoNumero) {
 		this.nossoNumero = nossoNumero;
 		return this;
 	}
 
+	
 	/**
 	 * @return cedente deste emissor (nome fornecido para boleto)
 	 */
@@ -170,31 +232,52 @@ public class Emissor implements Serializable {
 	/**
 	 * @return digito verificador (DV) da conta corrente
 	 */
-	public char getDigitoContaCorrente() {
+	public String getDigitoContaCorrente() {
 		return this.digitoContaCorrente;
 	}
 
 	/**
 	 * @param digito - verificador (DV) da conta corrente
+	 * @deprecated deve ser String agora
 	 * @return este emissor
 	 */
 	public Emissor comDigitoContaCorrente(char digito) {
+		this.digitoContaCorrente =  String.valueOf(digito);
+		return this;
+	}
+	
+	/**
+	 * @param digito - verificador (DV) da conta corrente
+	 * @return este emissor
+	 */
+	public Emissor comDigitoContaCorrente(String digito) {
 		this.digitoContaCorrente = digito;
 		return this;
 	}
 
+
 	/**
 	 * @return digito verificador (DV) da agencia
 	 */
-	public char getDigitoAgencia() {
+	public String getDigitoAgencia() {
 		return this.digitoAgencia;
 	}
 
 	/**
 	 * @param digito - verificador (DV) da agencia
+	 * @deprecated deve ser String agora
 	 * @return este emissor
 	 */
 	public Emissor comDigitoAgencia(char digito) {
+		this.digitoAgencia =  String.valueOf(digito);
+		return this;
+	}
+	
+	/**
+	 * @param digito - verificador (DV) da agencia
+	 * @return este emissor
+	 */
+	public Emissor comDigitoAgencia(String digito) {
 		this.digitoAgencia = digito;
 		return this;
 	}
@@ -204,23 +287,31 @@ public class Emissor implements Serializable {
 	 * Para o valor de agencia 123 retorna a String 0123
 	 */
 	public String getAgenciaFormatado() {
-		String valor = String.valueOf(this.agencia);
-		valor = String.format("%04d", Integer.parseInt(valor));
-		return valor.substring(0, 4);
+		return leftPadWithZeros(agencia, 4);
 	}
 
 	/**
 	 * @return código de operação do emissor
 	 */
-	public int getCodigoOperacao() {
+	public String getCodigoOperacao() {
 		return this.codigoOperacao;
 	}
 
 	/**
 	 * @param codigoOperacao, que será associado ao emissor
+	 * @deprecated deve ser String agora
 	 * @return este emissor
 	 */
 	public Emissor comCodigoOperacao(int codigoOperacao) {
+		this.codigoOperacao =  String.valueOf(codigoOperacao);
+		return this;
+	}
+	
+	/**
+	 * @param codigoOperacao, que será associado ao emissor
+	 * @return este emissor
+	 */
+	public Emissor comCodigoOperacao(String codigoOperacao) {
 		this.codigoOperacao = codigoOperacao;
 		return this;
 	}
@@ -228,19 +319,29 @@ public class Emissor implements Serializable {
 	/**
 	 * @return código fornecido pela agência do emissor.
 	 */
-	public int getCodigoFornecidoPelaAgencia() {
+	public String getCodigoFornecidoPelaAgencia() {
 		return this.codigoFornecidoPelaAgencia;
+	}
+
+	/**
+	 * @param codigoFornecidoPelaAgencia, que será associado ao emissor
+	 * @deprecated Deve ser com String agora
+	 * @return este emissor
+	 */
+	public Emissor comCodigoFornecidoPelaAgencia(int codigoFornecidoPelaAgencia) {
+		this.codigoFornecidoPelaAgencia =  String.valueOf(codigoFornecidoPelaAgencia);
+		return this;
 	}
 
 	/**
 	 * @param codigoFornecidoPelaAgencia, que será associado ao emissor
 	 * @return este emissor
 	 */
-	public Emissor comCodigoFornecidoPelaAgencia(int codigoFornecidoPelaAgencia) {
+	public Emissor comCodigoFornecidoPelaAgencia(String codigoFornecidoPelaAgencia) {
 		this.codigoFornecidoPelaAgencia = codigoFornecidoPelaAgencia;
 		return this;
 	}
-
+	
 	/**
 	 * @param digitoNossoNumero, que será associado ao emissor
 	 * @return este emissor

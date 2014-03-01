@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -37,12 +38,12 @@ public class Itau extends AbstractBanco implements Banco {
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return String.format("%03d", emissor.getCarteira());
+		return leftPadWithZeros(emissor.getCarteira(), 3);
 	}
 
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return String.format("%05d", emissor.getContaCorrente());
+		return leftPadWithZeros(emissor.getContaCorrente(), 5);
 	}
 
 	@Override
@@ -54,7 +55,7 @@ public class Itau extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return String.format("%08d", emissor.getNossoNumero());
+		return leftPadWithZeros(emissor.getNossoNumero(), 8);
 	}
 	
 	@Override

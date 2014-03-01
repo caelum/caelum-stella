@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Bean que representa os dados de um boleto.
@@ -370,7 +371,7 @@ public class Boleto implements Serializable {
 	 * @return número do documento formatado (com 4 digitos)
 	 */
 	public String getNumeroDoDocumentoFormatado() {
-		return String.format("%04d", new Integer(this.numeroDocumento));
+		return leftPadWithZeros(this.numeroDocumento, 4);
 	}
 	
 	/**

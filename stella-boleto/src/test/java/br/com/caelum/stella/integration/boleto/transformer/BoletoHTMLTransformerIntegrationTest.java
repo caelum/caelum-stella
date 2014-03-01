@@ -60,9 +60,9 @@ public class BoletoHTMLTransformerIntegrationTest extends DefaultIntegrationTest
 		Boleto boleto;
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
-		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia(1824).comDigitoAgencia('4')
-				.comContaCorrente(76000).comNumeroConvenio(1207113).comDigitoContaCorrente('5').comCarteira(18)
-				.comNossoNumero(9000206);
+		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia("1824").comDigitoAgencia("4")
+				.comContaCorrente("76000").comNumeroConvenio("1207113").comDigitoContaCorrente("5").comCarteira("18")
+				.comNossoNumero("9000206");
 
 		Sacado sacado = Sacado.novoSacado().comNome("Fulano da Silva").comCpf("111.222.333-12")
 				.comEndereco("Av dos testes, 111 apto 333").comBairro("Bairro Teste").comCep("01234-111")

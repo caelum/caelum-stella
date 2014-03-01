@@ -2,7 +2,6 @@ package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
 /**
  * Gera linha digitavel do boleto com base no codigo de barras.
