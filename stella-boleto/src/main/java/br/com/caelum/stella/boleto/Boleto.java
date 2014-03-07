@@ -318,7 +318,7 @@ public class Boleto implements Serializable {
         if(descricao == null) {
             throw new IllegalArgumentException("nao e permitida descricao nula");
         }
-        if(this.descricoes.length == 5) {
+        if(this.descricoes.size() == 5) {
             throw new UnsupportedOperationException("maximo de descricoes permitidas atingido");
         }
         this.descricoes.add(descricao);
