@@ -69,13 +69,13 @@ public class SantanderTest {
 	public void testRetornarDigitoNossoNumero() throws Exception {
 		emissor.comNossoNumero("000000000001");
 		
-		int digito = banco.calcularDigitoVerificador(emissor);
+		String digito = banco.calcularDigitoVerificador(emissor);
 		
-		assertThat(digito, is(9));
+		assertThat(digito, is("9"));
 	}
 	
 	@Test
-	public void testLancarExcecaoQuandoNossoNumeroForDiferenteQueDoze() throws Exception {
+	public void testLancarExcecaoQuandoNossoNumeroForMaiorQueDoze() throws Exception {
 		excecao.expect(IllegalArgumentException.class);
 		
 		emissor.comNossoNumero("0000000000001");
@@ -90,6 +90,15 @@ public class SantanderTest {
 		emissor.comNossoNumero(null);
 		
 		banco.calcularDigitoVerificador(emissor);
+	}
+	
+	@Test
+	public void testRetornarDigitoQuandoNossoNumeroForMenorQueDoze() throws Exception {
+		emissor.comNossoNumero("1");
+		
+		String digito = banco.calcularDigitoVerificador(emissor);
+		
+		assertThat(digito, is("9"));
 	}
 
 }
