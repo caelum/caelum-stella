@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto.bancos;
 import java.net.URL;
 
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -83,5 +84,20 @@ public class Santander implements Banco {
 	@Override
 	public GeradorDeDigito getGeradorDeDigito() {
 		return gdivSantander;
+	}
+	
+	public String calcularDigitoVerificador(Emissor emissor) {
+		if (emissor == null || emissor.getNossoNumero() == null || emissor.getNossoNumero().length() > 12) {
+			throw new IllegalArgumentException();
+		}
+		DigitoPara digitoPara = new DigitoPara(leftPadWithZeros(emissor.getNossoNumero(), 12));
+		String resultado = digitoPara.comMultiplicadoresDeAte(2,9).mod(11).complementarAoModulo().calcula();
+		if (resultado.equals("1") || resultado.equals("0")) {
+			return "0";
+		} else if (resultado.equals("10")) {
+			return "1";
+		} else {
+			return resultado;
+		}
 	}
 }
