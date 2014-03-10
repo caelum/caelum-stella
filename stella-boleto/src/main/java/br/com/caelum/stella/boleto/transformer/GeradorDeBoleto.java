@@ -113,13 +113,13 @@ public class GeradorDeBoleto {
 	public void geraPDF(File arquivo) {
 		try {
 			OutputStream out = new FileOutputStream(arquivo);
-			geraPDFHelper(out); 
+			geraPDF(out); 
 		} catch (FileNotFoundException e) {
 			throw new GeracaoBoletoException(e);
 		}
 	}
 	
-	protected void geraPDFHelper(OutputStream out){
+	public void geraPDF(OutputStream out){
 		try {
 			JasperPrint relatorio = geraRelatorio();
 			JasperExportManager.exportReportToPdfStream(relatorio, out); 
@@ -144,13 +144,13 @@ public class GeradorDeBoleto {
 	 */
 	public void geraPNG(File arquivo) {
 		try {
-			geraPNGHelper(new FileOutputStream(arquivo));
+			geraPNG(new FileOutputStream(arquivo));
 		} catch (FileNotFoundException e) {
 			throw new GeracaoBoletoException(e);
 		}
 	}
 
-	protected void geraPNGHelper(OutputStream out) {
+	public void geraPNG(OutputStream out) {
 		try {
 			JasperPrint relatorio = geraRelatorio();
 			BufferedImage image = (BufferedImage) JasperPrintManager.printPageToImage(relatorio, 0, 2);
@@ -165,7 +165,7 @@ public class GeradorDeBoleto {
 	 */
 	public byte[] geraPDF() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		geraPDFHelper(stream);
+		geraPDF(stream);
 		return stream.toByteArray();	
 	}
 
@@ -174,7 +174,7 @@ public class GeradorDeBoleto {
 	 */
 	public byte[] geraPNG() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		geraPNGHelper(stream);
+		geraPNG(stream);
 		return stream.toByteArray();
 	}
 		
