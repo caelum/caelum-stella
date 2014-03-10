@@ -84,4 +84,28 @@ public class Santander implements Banco {
 	public GeradorDeDigito getGeradorDeDigito() {
 		return gdivSantander;
 	}
+	
+	public int calcularDigitoVerificador(Emissor emissor) {
+		if (emissor == null || emissor.getNossoNumero() == null || emissor.getNossoNumero().length() != 12) {
+			throw new IllegalArgumentException();
+		}
+		int soma = 0;
+		for (int i = 2, multiplicador = 2, fim = 12; i < 14; i++) {
+			if (i < 10) {
+				soma += i * Integer.parseInt(emissor.getNossoNumero().substring(fim-1, fim));
+			} else {
+				soma += multiplicador * Integer.parseInt(emissor.getNossoNumero().substring(fim-1, fim));
+				multiplicador++;
+			}
+			fim--;
+		}
+		int resto = (soma * 10) % 11;
+		if (resto == 1 || resto == 0) {
+			return 0;
+		} else if (resto == 10) {
+			return 1;
+		} else {
+			return resto;
+		}
+	}
 }
