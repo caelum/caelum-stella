@@ -21,7 +21,7 @@ public class Santander implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		Emissor emissor = boleto.getEmissor();
 		StringBuilder campoLivre = new StringBuilder("9");
-		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor));
+		campoLivre.append(getNumeroConvenioFormatado(emissor));
 		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 		campoLivre.append("0").append(emissor.getCarteira());
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
@@ -65,7 +65,7 @@ public class Santander implements Banco {
 	public String getAgenciaECodigoCedente(Emissor emissor) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(leftPadWithZeros(emissor.getAgencia(), 5));
-		builder.append("/").append(emissor.getContaCorrente());
+		builder.append("/").append(getNumeroConvenioFormatado(emissor));
 		return builder.toString();
 	}
 
@@ -84,4 +84,9 @@ public class Santander implements Banco {
 	public GeradorDeDigito getGeradorDeDigito() {
 		return gdivSantander;
 	}
+	
+	public String getNumeroConvenioFormatado(Emissor emissor) {
+		return leftPadWithZeros(emissor.getNumeroConvenio(), 7);
+	}
+	
 }

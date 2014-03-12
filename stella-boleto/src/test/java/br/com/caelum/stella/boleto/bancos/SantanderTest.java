@@ -27,7 +27,7 @@ public class SantanderTest {
 
 	    this.emissor = Emissor.novoEmissor().comCedente("PETROBRAS")
             .comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
-            .comContaCorrente("5260965").comNossoNumero("1056137495014");  
+            .comNumeroConvenio("5260965").comNossoNumero("1056137495014");  
 
 	    Sacado sacado = Sacado.novoSacado().comNome("PAULO SILVEIRA") ; 
 	    
@@ -58,6 +58,18 @@ public class SantanderTest {
 
 		assertThat(banco.getNossoNumeroDoEmissorFormatado(emissor),
 				is("0000000000123"));
+	}
+	
+	@Test
+	public void testUtilizarNumeroConvenio() throws Exception {
+		this.emissor = Emissor.novoEmissor().comCedente("BOTICARIO")
+				.comNumeroConvenio("3903125").comCarteira("102")
+				.comNossoNumero("3827130004722");
+		
+		boleto.comEmissor(emissor);
+		
+		assertThat(banco.geraCodigoDeBarrasPara(boleto),
+				is("03391569200000219509390312538271300047220102"));
 	}
 
 }
