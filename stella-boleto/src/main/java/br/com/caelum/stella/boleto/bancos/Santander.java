@@ -86,7 +86,7 @@ public class Santander implements Banco {
 		return gdivSantander;
 	}
 	
-	public String calcularDigitoVerificador(Emissor emissor) {
+	public String calcularDigitoVerificadorNossoNumero(Emissor emissor) {
 		if (emissor == null || emissor.getNossoNumero() == null || emissor.getNossoNumero().length() > 12) {
 			throw new IllegalArgumentException();
 		}

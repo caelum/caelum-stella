@@ -67,11 +67,11 @@ public class SantanderTest {
 	
 	@Test
 	public void testRetornarDigitoNossoNumero() throws Exception {
-		emissor.comNossoNumero("105613749501");
+		emissor.comNossoNumero("566612457800");
 		
-		String digito = banco.calcularDigitoVerificador(emissor);
+		String digito = banco.calcularDigitoVerificadorNossoNumero(emissor);
 		
-		assertThat(digito, is("4"));
+		assertThat(digito, is("2"));
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class SantanderTest {
 		
 		emissor.comNossoNumero("1056137495014");
 		
-		banco.calcularDigitoVerificador(emissor);
+		banco.calcularDigitoVerificadorNossoNumero(emissor);
 	}
 	
 	@Test
@@ -89,14 +89,14 @@ public class SantanderTest {
 		
 		emissor.comNossoNumero(null);
 		
-		banco.calcularDigitoVerificador(emissor);
+		banco.calcularDigitoVerificadorNossoNumero(emissor);
 	}
 	
 	@Test
 	public void testRetornarDigitoQuandoNossoNumeroForMenorQueDoze() throws Exception {
 		emissor.comNossoNumero("1");
 		
-		String digito = banco.calcularDigitoVerificador(emissor);
+		String digito = banco.calcularDigitoVerificadorNossoNumero(emissor);
 		
 		assertThat(digito, is("9"));
 	}
