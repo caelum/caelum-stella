@@ -67,18 +67,18 @@ public class SantanderTest {
 	
 	@Test
 	public void testRetornarDigitoNossoNumero() throws Exception {
-		emissor.comNossoNumero("000000000001");
+		emissor.comNossoNumero("105613749501");
 		
 		String digito = banco.calcularDigitoVerificador(emissor);
 		
-		assertThat(digito, is("9"));
+		assertThat(digito, is("4"));
 	}
 	
 	@Test
 	public void testLancarExcecaoQuandoNossoNumeroForMaiorQueDoze() throws Exception {
 		excecao.expect(IllegalArgumentException.class);
 		
-		emissor.comNossoNumero("0000000000001");
+		emissor.comNossoNumero("1056137495014");
 		
 		banco.calcularDigitoVerificador(emissor);
 	}
