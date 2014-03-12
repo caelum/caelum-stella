@@ -91,13 +91,6 @@ public class Santander implements Banco {
 			throw new IllegalArgumentException();
 		}
 		DigitoPara digitoPara = new DigitoPara(leftPadWithZeros(emissor.getNossoNumero(), 12));
-		String resultado = digitoPara.comMultiplicadoresDeAte(2,9).mod(11).complementarAoModulo().calcula();
-		if (resultado.equals("1") || resultado.equals("0")) {
-			return "0";
-		} else if (resultado.equals("10")) {
-			return "1";
-		} else {
-			return resultado;
-		}
+		return digitoPara.comMultiplicadoresDeAte(2,9).mod(11).complementarAoModulo().trocandoPorSeEncontrar("0", 1).trocandoPorSeEncontrar("1", 10).calcula();
 	}
 }
