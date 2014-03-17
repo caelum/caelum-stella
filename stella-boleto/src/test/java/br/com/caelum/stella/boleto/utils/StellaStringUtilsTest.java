@@ -28,6 +28,12 @@ public class StellaStringUtilsTest {
 	}
 	
 	
+	@Test
+	public void deveCompletarUmaStringComZerosAEsquerdaQuandoValorForNulo() {
+		String value = null;
+		String result = StellaStringUtils.leftPadWithZeros(value, 5);
+		assertEquals("00000", result);
+	}
 	
 
 }
