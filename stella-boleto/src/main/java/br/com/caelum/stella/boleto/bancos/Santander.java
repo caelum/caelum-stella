@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto.bancos;
 import java.net.URL;
 
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Emissor;
@@ -89,4 +90,17 @@ public class Santander implements Banco {
 		return leftPadWithZeros(emissor.getNumeroConvenio(), 7);
 	}
 	
+	public String calcularDigitoVerificadorNossoNumero(Emissor emissor) {
+		if (emissor == null || emissor.getNossoNumero() == null || emissor.getNossoNumero().length() > 12) {
+			throw new IllegalArgumentException("Nosso Número inválido: " + emissor.getNossoNumero());
+		}
+		DigitoPara digitoPara = new DigitoPara(leftPadWithZeros(emissor.getNossoNumero(), 12));
+		return digitoPara.comMultiplicadoresDeAte(2,9)
+							.mod(11)
+							.complementarAoModulo()
+							.trocandoPorSeEncontrar("0", 1)
+							.trocandoPorSeEncontrar("1", 10)
+							.calcula();
+	}
+
 }
