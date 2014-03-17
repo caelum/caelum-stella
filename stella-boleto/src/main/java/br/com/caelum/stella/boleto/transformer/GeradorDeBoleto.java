@@ -30,7 +30,7 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
 /**
  * Geração do boleto em arquivos. Essa é uma classe utilitária, dessa maneira
- * você não precisa trabalhar com InputStream, byte[], BoletoWriters, etc.
+ * você não precisa trabalhar com InputStream, byte[], etc.
  * 
  * Basta passar um Boleto para o construtor e usar o método adequado para gerar
  * um PDF, PNG, etc e grava-lo como o arquivo desejado.
@@ -46,9 +46,9 @@ public class GeradorDeBoleto {
 	protected Map<String,Object> parametros = new HashMap<String,Object>();
 	
 	/**
-	 * Cria um gerador de boletos com o template padrão
+	 * Cria um gerador de boletos com o template padrão.
 	 * 
-	 * @param boletos
+	 * @param boletos boletos a serem gerados.
 	 */
 	public GeradorDeBoleto(Boleto... boletos) {
 		this.boletos = boletos;
@@ -65,9 +65,9 @@ public class GeradorDeBoleto {
 	/**
 	 * Cria um gerador de boletos que usa um template customizado.
 	 * 
-	 * @param template o template (.jasper) a ser usado (obrigatório)
-	 * @param parametros parametros extras para o relatório( opcional)
-	 * @param boletos boletos
+	 * @param template o template (.jasper) a ser usado (obrigatório).
+	 * @param parametros parametros extras para o relatório( opcional).
+	 * @param boletos boletos.
 	 */
 	public GeradorDeBoleto(InputStream template, Map<String,Object> parametros, Boleto... boletos) {
 		this(boletos);
@@ -82,9 +82,9 @@ public class GeradorDeBoleto {
 	}
 
 	/**
-	 * Gera um boleto em PDF, e grava no caminho indicado
+	 * Gera um boleto em PDF, e grava no caminho indicado.
 	 * 
-	 * @param arquivo
+	 * @param arquivo.
 	 */
 	public void geraPDF(String arquivo) {
 		geraPDF(new File(arquivo));
@@ -103,9 +103,9 @@ public class GeradorDeBoleto {
 	}
 
 	/**
-	 * Gera um boleto em PDF, e grava no arquivo indicado
+	 * Gera um boleto em PDF, e grava no arquivo indicado.
 	 * 
-	 * @param arquivo
+	 * @param arquivo arquivo para gravar o PDF.
 	 */
 	public void geraPDF(File arquivo) {
 		try {
@@ -116,6 +116,11 @@ public class GeradorDeBoleto {
 		}
 	}
 	
+	/**
+	 * Gera um boleto em PDF, e grava no OutputStream passado.
+	 * 
+	 * @param out Local para gravação do PDF.
+	 */
 	public void geraPDF(OutputStream out){
 		try {
 			JasperPrint relatorio = geraRelatorio();
@@ -126,18 +131,18 @@ public class GeradorDeBoleto {
 	}
 
 	/**
-	 * Gera um boleto em PNG, e grava no caminho indicado
+	 * Gera um boleto em PNG, e grava no caminho indicado.
 	 * 
-	 * @param arquivo
+	 * @param arquivo caminho para o aquivo onde será gravado o PNG.
 	 */
 	public void geraPNG(String arquivo) {
 		geraPNG(new File(arquivo));
 	}
 
 	/**
-	 * Gera um boleto em PNG, e grava no arquivo indicado
+	 * Gera um boleto em PNG, e grava no arquivo indicado.
 	 * 
-	 * @param arquivo
+	 * @param arquivo caminho para o aquivo onde será gravado o PNG.
 	 */
 	public void geraPNG(File arquivo) {
 		try {
@@ -147,6 +152,11 @@ public class GeradorDeBoleto {
 		}
 	}
 
+	/**
+	 * Gera um boleto em PNG, e grava no OutputStream indicado.
+	 * 
+	 * @param out local para gravação.
+	 */
 	public void geraPNG(OutputStream out) {
 		try {
 			JasperPrint relatorio = geraRelatorio();
@@ -158,7 +168,8 @@ public class GeradorDeBoleto {
 	}
 
 	/**
-	 * Devolve um array de bytes representando o PDF desse boleto ja gerado.
+	 * Gera o boleto no formato PDF.
+	 * @return array de bytes representando o PDF desse boleto ja gerado.
 	 */
 	public byte[] geraPDF() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -167,7 +178,8 @@ public class GeradorDeBoleto {
 	}
 
 	/**
-	 * Devolve um array de bytes representando o PNG desse boleto ja gerado.
+	 * Gera o boleto no formato PNG.
+	 * @return array de bytes representando o PNG desse boleto ja gerado.
 	 */
 	public byte[] geraPNG() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -176,15 +188,15 @@ public class GeradorDeBoleto {
 	}
 		
 	/**
-	 * Gera o boleto no formato pdf 
-	 * @return inputStream com o conteúdo do arquivo
+	 * Gera o boleto no formato PDF.
+	 * @return inputStream com o conteúdo do arquivo.
 	 */
 	public InputStream geraPDFStream() {
 		return new ByteArrayInputStream(geraPDF());
 	}
 
 	/**
-	 * Gera o boleto no formato png 
+	 * Gera o boleto no formato PNG. 
 	 * @return inputStream com o conteúdo do arquivo
 	 */
 	public InputStream geraPNGStream() {
