@@ -37,15 +37,13 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  * 
  * 
  */
-@SuppressWarnings("unchecked")
 public class GeradorDeBoleto {
 
 	protected final Boleto[] boletos;
 	protected InputStream templateJasper;
 	protected JasperPrint relatorio;
 
-	@SuppressWarnings("rawtypes")
-	protected Map parametros = new HashMap();
+	protected Map<String,Object> parametros = new HashMap<String,Object>();
 	
 	/**
 	 * Cria um gerador de boletos com o template padrão
@@ -71,14 +69,13 @@ public class GeradorDeBoleto {
 	 * @param parametros parametros extras para o relatório( opcional)
 	 * @param boletos boletos
 	 */
-	@SuppressWarnings({ "rawtypes" })
-	public GeradorDeBoleto(InputStream template, Map parametros, Boleto... boletos) {
+	public GeradorDeBoleto(InputStream template, Map<String,Object> parametros, Boleto... boletos) {
 		this(boletos);
 		
 		this.templateJasper = template;
 		if(parametros != null){
-			Set<Map.Entry> entrySet = parametros.entrySet();
-			for (Entry entry : entrySet) {
+			Set<Entry<String,Object>> entrySet = parametros.entrySet();
+			for (Entry<String,Object> entry : entrySet) {
 				this.parametros.put(entry.getKey(), entry.getValue());
 			}
 		}
