@@ -80,7 +80,7 @@ public class Bradesco extends AbstractBanco implements Banco {
 	@Override
 	public String getNossoNumeroECodDocumento(Boleto boleto) {
 		Emissor emissor = boleto.getEmissor();
-		StringBuilder builder = new StringBuilder().append( String.format("%02d", emissor.getCarteira()));
+		StringBuilder builder = new StringBuilder().append(leftPadWithZeros(emissor.getCarteira(),2));
 		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
 		return builder.append(getDigitoNossoNumero(emissor)).toString();
 	}
