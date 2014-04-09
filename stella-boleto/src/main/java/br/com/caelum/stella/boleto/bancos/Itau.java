@@ -23,9 +23,9 @@ public class Itau extends AbstractBanco implements Banco {
 		campoLivre.append(emissor.getAgenciaFormatado());
 		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor)).append("000");
 		campoLivre.insert(20, this.geradorDeDigito
-				.geraDigitoMod10(campoLivre.substring(12, 20)));
+				.geraDigitoMod10(campoLivre.substring(11, 20)));
 		campoLivre.insert(11, this.geradorDeDigito.geraDigitoMod10(campoLivre
-				.substring(12, 20).concat(campoLivre.substring(0, 11))));
+				.substring(11, 20).concat(campoLivre.substring(0, 11))));
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
