@@ -39,7 +39,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 		} else if (emissor.getCarteira().equals("17") || emissor.getCarteira().equals("18")) {
 			campoLivre.append("000000");
 			campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
-			campoLivre.append(emissor.getCarteira().equals("17") ? getNossoNumeroDoEmissorFormatado(emissor).substring(7) : getNossoNumeroDoEmissorFormatado(emissor).substring(1));
+			campoLivre.append(emissor.getCarteira().equals("17") ? getNossoNumeroDoEmissorFormatado(emissor).substring(1) : getNossoNumeroDoEmissorFormatado(emissor).substring(7));
 			campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 		} else {
 			throw new CriacaoBoletoException(
