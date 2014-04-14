@@ -52,6 +52,9 @@ public class Santander implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
+		if (emissor.getDigitoNossoNumero() != null) {
+			return leftPadWithZeros(emissor.getNossoNumero()+emissor.getDigitoNossoNumero(), 13);
+		}
 		return leftPadWithZeros(emissor.getNossoNumero(), 13);
 	}
 
