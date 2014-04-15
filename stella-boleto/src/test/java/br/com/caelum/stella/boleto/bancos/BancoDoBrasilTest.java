@@ -185,7 +185,7 @@ public class BancoDoBrasilTest {
 		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("2670001").comCarteira("17");
 		this.boleto.comEmissor(emissor);
 
-		this.banco.geraCodigoDeBarrasPara(boleto);
+		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
 	}
 
 }

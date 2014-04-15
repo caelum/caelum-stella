@@ -16,9 +16,14 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private static final String NUMERO_BB = "001";
 	private static final String DIGITO_NUMERO_BB = "9";
+	private static final String CARTEIRA_16 = "16";
+	private static final String CARTEIRA_17 = "17";
+	private static final String CARTEIRA_18 = "18";
+	private static final String ZEROS_CONVENIOS_NOVOS = "000000";
+	private static final String TIPO_MODALIDADE_COBRANCA_CARTEIRA_SEM_REGISTRO = "21";
+
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
@@ -26,20 +31,20 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 		Emissor emissor = boleto.getEmissor();
 		
 		if (convenioAntigo(emissor.getNumeroConvenio())) {
-			if (emissor.getCarteira().equals("16") || emissor.getCarteira().equals("18")) {
+			if (emissor.getCarteira().equals(CARTEIRA_16) || emissor.getCarteira().equals(CARTEIRA_18)) {
 				campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
 				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
-				campoLivre.append("21");
+				campoLivre.append(TIPO_MODALIDADE_COBRANCA_CARTEIRA_SEM_REGISTRO);
 			} else {
 				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 				campoLivre.append(emissor.getAgenciaFormatado());
 				campoLivre.append(emissor.getCedente());
 				campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 			}
-		} else if (emissor.getCarteira().equals("17") || emissor.getCarteira().equals("18")) {
-			campoLivre.append("000000");
+		} else if (emissor.getCarteira().equals(CARTEIRA_17) || emissor.getCarteira().equals(CARTEIRA_18)) {
+			campoLivre.append(ZEROS_CONVENIOS_NOVOS);
 			campoLivre.append(getNumeroConvenioDoEmissorFormatado(emissor));
-			campoLivre.append(emissor.getCarteira().equals("17") ? getNossoNumeroDoEmissorFormatado(emissor).substring(1) : getNossoNumeroDoEmissorFormatado(emissor).substring(7));
+			campoLivre.append(getNossoNumeroParaCarteiras17e18(emissor));
 			campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 		} else {
 			throw new CriacaoBoletoException(
@@ -47,6 +52,11 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 					"Verifique carteira e demais dados.");
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
+	}
+
+	private String getNossoNumeroParaCarteiras17e18(Emissor emissor) {
+		int indice = emissor.getCarteira().equals(CARTEIRA_17) ? 1 : 7;
+		return  getNossoNumeroDoEmissorFormatado(emissor).substring(indice);
 	}
 
 	private boolean convenioAntigo(String convenio) {
@@ -86,7 +96,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		if (emissor.getCarteira().equals("18")) {
+		if (emissor.getCarteira().equals(CARTEIRA_18)) {
 			return leftPadWithZeros(emissor.getNossoNumero(), 17);
 		} else {
 			return leftPadWithZeros(emissor.getNossoNumero(), 11);
