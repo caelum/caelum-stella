@@ -177,4 +177,15 @@ public class BancoDoBrasilTest {
 		assertNotNull(this.banco.getImage());
 	}
 
+	@Test
+	public void testCarteira17ComConvenioSeteDigitosMaior1000000() {
+		this.banco = new BancoDoBrasil();
+		this.boleto = this.boleto.comBanco(this.banco);
+		
+		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("2670001").comCarteira("17");
+		this.boleto.comEmissor(emissor);
+
+		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
+	}
+
 }
