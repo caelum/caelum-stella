@@ -71,6 +71,28 @@ public class ItauTest {
 		String codigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
 		assertEquals("34196565500002680161572189766660167451459000", codigoDeBarras);
 	}
+	
+	@Test
+	public void testLinhaDoBancoItau2() {
+		 Datas datas = Datas.novasDatas().comDocumento(20, 03, 2014)
+		            .comProcessamento(20, 03, 2014).comVencimento(10, 04, 2014); 
+		
+		this.emissor = Emissor.novoEmissor().comCedente("Mario Amaral")
+				.comAgencia("8462").comCarteira("174").comContaCorrente("05825")
+				.comNossoNumero("00015135").comDigitoNossoNumero("6");
+		
+		Sacado sacado = Sacado.novoSacado().comNome("Rodrigo de Sousa");
+	    
+	    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
+	    	.comBanco(banco).comSacado(sacado).comValorBoleto(2680.16)
+	    	.comNumeroDoDocumento("575");
+		 
+		this.boleto = this.boleto.comBanco(this.banco);
+		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
+		String linha = "34191.74002  01513.568467  20582.590004  6  60290000268016";
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
+	}
 
 	@Test
 	public void testGetImage() {
