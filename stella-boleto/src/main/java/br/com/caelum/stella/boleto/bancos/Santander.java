@@ -98,15 +98,13 @@ public class Santander implements Banco {
 			throw new IllegalArgumentException("Nosso Número inválido: " + emissor.getNossoNumero());
 		}
 		DigitoPara digitoPara = new DigitoPara(leftPadWithZeros(emissor.getNossoNumero(), 12));
-		int digito = Integer.parseInt(digitoPara.comMultiplicadoresDeAte(2,9)
+		return digitoPara.comMultiplicadoresDeAte(2,9)
 							.mod(11)
+							.complementarAoModulo()
+							.trocandoPorSeEncontrar("0", 11)
 							.trocandoPorSeEncontrar("0", 1)
 							.trocandoPorSeEncontrar("1", 10)
-							.calcula());
-		if (digito > 1) {
-			digito = 11-digito;
-		}
-		return String.valueOf(digito);
+							.calcula();
 	}
 
 }
