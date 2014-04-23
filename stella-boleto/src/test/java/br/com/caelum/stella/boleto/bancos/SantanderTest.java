@@ -87,9 +87,21 @@ public class SantanderTest {
 	
 	@Test	
 	public void testRetornarDigitoNossoNumero() throws Exception {
-		emissor.comNossoNumero("566612457800");
-		String digito = banco.calcularDigitoVerificadorNossoNumero(emissor);
-		assertThat(digito, is("2"));
+		String[][] parametros = { 
+				{ "566612457800", "2" },
+				{ "566612457801", "0" },
+				{ "566612457802", "9" },
+				{ "566612457803", "7" },
+				{ "566612457804", "5" }
+		};
+
+		for (String[] parametro : parametros) {
+			String nossoNumero = parametro[0];
+			emissor.comNossoNumero(nossoNumero);
+			String digito = banco.calcularDigitoVerificadorNossoNumero(emissor);
+			String digitoEsperado = parametro[1];
+			assertThat("Para o nosso número " + nossoNumero, digito, is(digitoEsperado));
+		}
 	}
 	
 	@Test
