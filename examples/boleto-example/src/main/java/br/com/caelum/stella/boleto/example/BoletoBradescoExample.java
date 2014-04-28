@@ -62,6 +62,6 @@ public class BoletoBradescoExample {
 
         // Para gerar um array de bytes a partir de um PNG
         @SuppressWarnings("unused")
-        byte[] bPNG = gerador.geraPDF();
+        byte[] bPNG = gerador.geraPNG();
     }
 }
