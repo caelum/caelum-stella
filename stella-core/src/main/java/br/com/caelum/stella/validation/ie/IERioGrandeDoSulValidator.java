@@ -71,7 +71,7 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
             municipality = matcher.replaceAll("$1");
         }
         int municipalityInt = Integer.parseInt(municipality);
-        boolean result = municipalityInt > 0 && municipalityInt <= 467;
+        boolean result = municipalityInt > 0;
         return result;
     }
 
