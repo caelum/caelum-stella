@@ -1,5 +1,7 @@
 package br.com.caelum.stella.validation;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -102,6 +104,12 @@ public class CPFValidatorTest {
             assertMessage(e, INVALID_CHECK_DIGITS);
         }
     }
+    
+    @Test
+    public void shouldNeverThrowsNPE() {
+		CPFValidator validator = new CPFValidator();
+		assertThat(validator.isEligible(null), is(false));
+	}
 
     @Test
     public void shouldValidateValidCPF() {
