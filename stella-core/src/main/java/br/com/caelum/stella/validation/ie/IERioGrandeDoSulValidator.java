@@ -2,7 +2,6 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.caelum.stella.DigitoPara;
@@ -56,23 +55,9 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
                 if (!hasValidCheckDigits(unformatedIE)) {
                     errors.add(IEError.INVALID_CHECK_DIGITS);
                 }
-                if (!hasValidMunicipality(unformatedIE)) {
-                    errors.add(IEError.INVALID_MUNICIPALITY);
-                }
             }
         }
         return errors;
-    }
-
-    private boolean hasValidMunicipality(String unformatedIE) {
-        String municipality = null;
-        Matcher matcher = UNFORMATED.matcher(unformatedIE);
-        if (matcher.matches()) {
-            municipality = matcher.replaceAll("$1");
-        }
-        int municipalityInt = Integer.parseInt(municipality);
-        boolean result = municipalityInt > 0 && municipalityInt <= 467;
-        return result;
     }
 
     private String checkForCorrectFormat(String ie, List<InvalidValue> errors) {
