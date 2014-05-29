@@ -22,9 +22,9 @@ public class CPFValidator implements Validator<String> {
 	public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
 	public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
 
-	private boolean isFormatted = false;
-	private boolean isIgnoringRepeatedDigits = false;
-	private MessageProducer messageProducer;
+	private final boolean isFormatted;
+	private final boolean isIgnoringRepeatedDigits;
+	private final MessageProducer messageProducer;
 
 	/**
 	 * Construtor padrão de validador de CPF. Este considera, por padrão, que as
@@ -32,7 +32,7 @@ public class CPFValidator implements Validator<String> {
 	 * para geração de mensagens.
 	 */
 	public CPFValidator() {
-		messageProducer = new SimpleMessageProducer();
+		this(new SimpleMessageProducer(), false, false);
 	}
 
 	/**
@@ -45,8 +45,7 @@ public class CPFValidator implements Validator<String> {
 	 *            um dígito decimal.
 	 */
 	public CPFValidator(boolean isFormatted) {
-		this.isFormatted = isFormatted;
-		this.messageProducer = new SimpleMessageProducer();
+		this(new SimpleMessageProducer(), isFormatted, false);
 	}
 
 	/**
@@ -60,9 +59,7 @@ public class CPFValidator implements Validator<String> {
 	 *            mensagens.
 	 */
 	public CPFValidator(boolean isFormatted, boolean isIgnoringRepeatedDigits) {
-		this.isFormatted = isFormatted;
-		this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
-		this.messageProducer = new SimpleMessageProducer();
+		this(new SimpleMessageProducer(), isFormatted, isIgnoringRepeatedDigits);
 	}
 
 	/**
