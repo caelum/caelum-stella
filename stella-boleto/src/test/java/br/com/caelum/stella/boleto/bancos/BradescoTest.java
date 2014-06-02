@@ -35,14 +35,6 @@ public class BradescoTest {
 	}
 
 	@Test
-	public void numeroDoConvenioFormatadoDeveTerSeteDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("1234");
-		String numeroFormatado = this.banco.getNumeroConvenioDoEmissorFormatado(emissor);
-		assertEquals(7, numeroFormatado.length());
-		assertEquals("0001234", numeroFormatado);
-	}
-
-	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
 		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206").comDigitoNossoNumero("7");
 		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);

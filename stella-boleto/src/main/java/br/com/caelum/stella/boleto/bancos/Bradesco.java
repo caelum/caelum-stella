@@ -54,10 +54,6 @@ public class Bradesco extends AbstractBanco implements Banco {
 		return getClass().getResource(imagem);
 	}
 
-	public String getNumeroConvenioDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getNumeroConvenio(), 7);
-	}
-
 	@Override
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 		return leftPadWithZeros(emissor.getContaCorrente(), 7);
