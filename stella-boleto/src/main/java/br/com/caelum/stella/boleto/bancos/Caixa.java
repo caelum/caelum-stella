@@ -61,10 +61,6 @@ public class Caixa extends AbstractBanco implements Banco {
 	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
 		return leftPadWithZeros(emissor.getContaCorrente(), 5);
 	}
-	
-	public String getCodigoFornecidoPelaAgenciaFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getCodigoFornecidoPelaAgencia(), 8);
-	}
 
 	public String getCodigoOperacaoFormatado(Emissor emissor) {
 		return leftPadWithZeros(emissor.getCodigoOperacao(), 3);

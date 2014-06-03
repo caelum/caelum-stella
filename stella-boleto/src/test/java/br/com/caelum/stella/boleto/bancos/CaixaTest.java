@@ -60,16 +60,6 @@ public class CaixaTest {
 	}
 
 	@Test
-	public void codFornecidoPelaAgenciaDeveTerOitoDigitos() {
-		Emissor emissor = Emissor.novoEmissor()
-				.comCodigoFornecidoPelaAgencia("2");
-		String numeroFormatado = this.banco
-				.getCodigoFornecidoPelaAgenciaFormatado(emissor);
-		assertEquals(8, numeroFormatado.length());
-		assertEquals("00000002", numeroFormatado);
-	}
-
-	@Test
 	public void codOperacaoDeveTerTresDigitos() {
 		Emissor emissor = Emissor.novoEmissor().comCodigoOperacao("2");
 		String numeroFormatado = this.banco.getCodigoOperacaoFormatado(emissor);

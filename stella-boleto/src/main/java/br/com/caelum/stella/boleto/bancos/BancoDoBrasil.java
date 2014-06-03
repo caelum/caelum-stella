@@ -38,7 +38,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 			} else {
 				campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
 				campoLivre.append(emissor.getAgenciaFormatado());
-				campoLivre.append(emissor.getCedente());
+				campoLivre.append(emissor.getContaCorrente());
 				campoLivre.append(boleto.getBanco().getCarteiraDoEmissorFormatado(emissor));
 			}
 		} else if (emissor.getCarteira().equals(CARTEIRA_17) || emissor.getCarteira().equals(CARTEIRA_18)) {
