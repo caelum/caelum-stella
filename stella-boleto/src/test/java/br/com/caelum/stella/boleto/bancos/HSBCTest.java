@@ -6,9 +6,9 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 
 import static org.junit.Assert.assertEquals;
@@ -25,12 +25,12 @@ public class HSBCTest {
 		Datas datas = Datas.novasDatas().comDocumento(28,1,2013)
 				.comProcessamento(29,1,2013).comVencimento(30,1,2013);
 
-		Emissor emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
-			.comCodigoFornecidoPelaAgencia("4146239").comNossoNumero("1476147");
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Rodrigo Turini")
+			.comCodigoBeneficiario("4146239").comNossoNumero("1476147");
 
 	    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
 		
-	    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
+	    this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(beneficiario)
 	    	.comBanco(this.banco).comSacado(sacado).comValorBoleto(3383.00)
 	    	.comNumeroDoDocumento("0789201");
 	}
@@ -58,7 +58,7 @@ public class HSBCTest {
 	@Test
 	public void testDigitosNossoNumeroHSBC(){
 		this.boleto = this.boleto.comBanco(this.banco);
-		String nossoNumeroCompleto = this.banco.getNossoNumeroECodDocumento(boleto);
+		String nossoNumeroCompleto = this.banco.getNossoNumeroECodigoDocumento(boleto);
 		assertEquals("0000001476147541", nossoNumeroCompleto);
 	}
 	
@@ -66,11 +66,11 @@ public class HSBCTest {
 	public void testDigitosNossoNumeroHSBCComDadosDoManual(){
 		this.boleto = this.boleto.comBanco(this.banco);
 		
-		this.boleto.getEmissor().comNossoNumero(239104761);
-		this.boleto.getEmissor().comCodigoFornecidoPelaAgencia(8351202);
+		this.boleto.getBeneficiario().comNossoNumero("239104761");
+		this.boleto.getBeneficiario().comCodigoBeneficiario("8351202");
 		this.boleto.getDatas().comVencimento(4, 7, 2008);
 		
-		String nossoNumeroCompleto = this.banco.getNossoNumeroECodDocumento(boleto);
+		String nossoNumeroCompleto = this.banco.getNossoNumeroECodigoDocumento(boleto);
 		assertEquals("0000239104761941", nossoNumeroCompleto);
 	}
 

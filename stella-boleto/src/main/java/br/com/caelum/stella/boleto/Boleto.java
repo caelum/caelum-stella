@@ -38,7 +38,7 @@ public class Boleto implements Serializable {
 	protected Banco banco;
 	protected Datas datas;
 	protected Sacado sacado;
-	protected Emissor emissor;
+	protected Beneficiario beneficiario;
 	protected List<String> instrucoes = Collections.emptyList();
 	protected List<String> descricoes = Collections.emptyList();
 	protected List<String> locaisDePagamento = Collections.emptyList();
@@ -248,20 +248,39 @@ public class Boleto implements Serializable {
 		this.sacado = sacado;
 		return this;
 	}
+	
+	public Beneficiario getBeneficiario() {
+		return beneficiario;
+	}
 
 	/**
+	 * Beneficiário do boleto
+	 * @param beneficiario
+	 * @return
+	 */
+	public Boleto comBeneficiario(Beneficiario beneficiario) {
+		this.beneficiario = beneficiario;
+		return this;
+	}
+	
+
+	/**
+	 * @deprecated use getBeneficiario
 	 * @return emissor do boleto
 	 */
+	@Deprecated
 	public Emissor getEmissor() {
-		return this.emissor;
+		return new EmissorToBeneficiarioMapper().toEmissor(beneficiario);
 	}
 
 	/**
 	 * @param emissor que será associado ao boleto
+	 * @deprecated use comBeneficiario
 	 * @return este boleto
 	 */
+	@Deprecated
 	public Boleto comEmissor(Emissor emissor) {
-		this.emissor = emissor;
+		this.beneficiario = new EmissorToBeneficiarioMapper().toBeneficiario(emissor);
 		return this;
 	}
 
@@ -396,14 +415,14 @@ public class Boleto implements Serializable {
 	 * @return agencia e codigo cedente (conta corrente) do banco
 	 */
 	public String getAgenciaECodigoCedente() {
-		return this.banco.getAgenciaECodigoCedente(this.emissor);
+		return this.banco.getAgenciaECodigoBeneficiario(this.beneficiario);
 	}
 
 	/**
 	 * @return nosso numero e codigo do documento para boleto
 	 */
 	public String getNossoNumeroECodDocumento() {
-		return banco.getNossoNumeroECodDocumento(this);
+		return banco.getNossoNumeroECodigoDocumento(this);
 	}
 
 	public BigDecimal getValorDescontos() {
@@ -468,7 +487,7 @@ public class Boleto implements Serializable {
 	 * @return
 	 */
 	public String getCarteira(){
-		return banco.getCarteiraDoEmissorFormatado(emissor);
+		return banco.getCarteiraFormatado(beneficiario);
 	}
 	
 	/**

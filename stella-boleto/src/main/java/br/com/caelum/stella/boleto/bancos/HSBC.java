@@ -7,8 +7,8 @@ import java.util.Calendar;
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Emissor;
 
 public class HSBC extends AbstractBanco implements Banco {
 
@@ -26,9 +26,9 @@ public class HSBC extends AbstractBanco implements Banco {
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
-		String codigoAgencia = boleto.getEmissor().getCodigoFornecidoPelaAgencia();
+		String codigoAgencia = boleto.getBeneficiario().getCodigoBeneficiario();
 		campoLivre.append(leftPadWithZeros(codigoAgencia, 7));
-		campoLivre.append(getNossoNumeroDoEmissorFormatado(boleto.getEmissor()));
+		campoLivre.append(getNossoNumeroFormatado(boleto.getBeneficiario()));
 		campoLivre.append(getDataFormatoJuliano(boleto.getDatas().getVencimento(), 4));
 		campoLivre.append(HSBC.CODIGO_APLICATIVO);
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
@@ -51,13 +51,13 @@ public class HSBC extends AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
+	public String getCarteiraFormatado(Beneficiario beneficiario) {
 		return "CNR";
 	}
 
 	@Override
-	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getContaCorrente(), 7);
+	public String getCodigoBeneficiarioFormatado(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 7);
 	}
 
 	@Override
@@ -68,8 +68,8 @@ public class HSBC extends AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getNossoNumero(), 13);
+	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getNossoNumero(), 13);
 	}
 
 	@Override
@@ -78,17 +78,17 @@ public class HSBC extends AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getAgenciaECodigoCedente(Emissor emissor) {
-		return leftPadWithZeros(emissor.getCodigoFornecidoPelaAgencia(), 7);
+	public String getAgenciaECodigoBeneficiario(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 7);
 	}
 	
 	@Override
-	public String getNossoNumeroECodDocumento(Boleto boleto) {
+	public String getNossoNumeroECodigoDocumento(Boleto boleto) {
 		
-		Emissor emissor = boleto.getEmissor();
+		Beneficiario beneficiario = boleto.getBeneficiario();
 		
-		String nossoNumero = getNossoNumeroDoEmissorFormatado(emissor);
-		String beneficiario = emissor.getCodigoFornecidoPelaAgencia();
+		String nossoNumero = getNossoNumeroFormatado(beneficiario);
+		String codigoBeneficiario = beneficiario.getCodigoBeneficiario();
 		String dataVcto = new SimpleDateFormat("ddMMyy").format(boleto.getDatas().getVencimento().getTime());;
 		
 		DigitoPara calculadorMod = getModuloNossoNumero(nossoNumero);
@@ -98,7 +98,7 @@ public class HSBC extends AbstractBanco implements Banco {
 	
 		long nossoNum = Long.parseLong(nossoNumeroComDigitos);
 		long vcto = Long.parseLong(dataVcto);
-		long benef = Long.parseLong(beneficiario);
+		long benef = Long.parseLong(codigoBeneficiario);
 		
 		String somatorio = String.valueOf(nossoNum + benef + vcto);
 		

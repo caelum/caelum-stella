@@ -10,7 +10,9 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
  * varia de acordo com o banco pelo qual será gerado o boleto.
  * 
  * @author Paulo Silveira, Caue Guerra e David Paniz
+ * @deprecated use {@link Beneficiario}
  */
+@Deprecated
 public class Emissor implements Serializable {
 
 	private static final long serialVersionUID = 1L;

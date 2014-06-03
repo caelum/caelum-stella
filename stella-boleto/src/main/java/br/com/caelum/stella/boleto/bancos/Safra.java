@@ -3,8 +3,8 @@ package br.com.caelum.stella.boleto.bancos;
 import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Emissor;
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
@@ -38,32 +38,32 @@ public class Safra extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		Emissor emissor = boleto.getEmissor();
+		Beneficiario beneficiario = boleto.getBeneficiario();
 		StringBuilder campoLivre = new StringBuilder().append(COBRANCA_DIRETA_ELETRONICA);
-		campoLivre.append(getAgencia(emissor));
-		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor));
-		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
+		campoLivre.append(getAgencia(beneficiario));
+		campoLivre.append(getCodigoBeneficiarioFormatado(beneficiario));
+		campoLivre.append(getNossoNumeroFormatado(beneficiario));
 		campoLivre.append(TIPO_COBRANCA_EMITIDO_AO_CLIENTE);
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 	
 	@Override
-	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
+	public String getCodigoBeneficiarioFormatado(Beneficiario beneficiario) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(leftPadWithZeros(emissor.getContaCorrente(), 8));
-		builder.append(emissor.getDigitoContaCorrente());
+		builder.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 8));
+		builder.append(beneficiario.getDigitoCodigoBeneficiario());
 		return builder.toString();
 	}
 
 	@Override
-	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getCarteira(), 2);
+	public String getCarteiraFormatado(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getCarteira(), 2);
 	}
 
 	@Override
-	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
+	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(leftPadWithZeros(emissor.getNossoNumero(),9));
+		builder.append(leftPadWithZeros(beneficiario.getNossoNumero(),9));
 		return builder.toString();
 	}
 	
@@ -74,11 +74,11 @@ public class Safra extends AbstractBanco implements Banco {
 		return builder.append(DIGITO_NUMERO_SAFRA).toString();
 	}
 	
-	private String getAgencia(Emissor emissor){
+	private String getAgencia(Beneficiario beneficiario){
 		StringBuilder builder =new StringBuilder();
 		//O Banco Safra espera uma Agencia com 5 posicoes
 		builder.append("0");
-		return builder.append(emissor.getAgenciaFormatado()).toString();
+		return builder.append(beneficiario.getAgenciaFormatada()).toString();
 	}
 
 }

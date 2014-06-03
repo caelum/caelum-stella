@@ -2,6 +2,8 @@ package br.com.caelum.stella.boleto;
 
 import java.io.Serializable;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 public class Beneficiario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,10 @@ public class Beneficiario implements Serializable {
 	private String numeroConvenio; // BB...
 
 	private Beneficiario() {
+	}
+	
+	public String getAgenciaFormatada(){
+		return leftPadWithZeros(agencia, 4);
 	}
 
 	public static Beneficiario novoBeneficiario() {

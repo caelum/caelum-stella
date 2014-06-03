@@ -3,6 +3,8 @@ package br.com.caelum.stella.boleto;
 import java.io.Serializable;
 
 public class Endereco implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public String logradouro;
 	public String bairro;
 	public String cep;
@@ -19,6 +21,19 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.uf = uf;
+	}
+	
+	public String getEnderecoCompleto(){
+		return logradouro
+				+ bairro != null ? ", " + bairro : ""
+				+ cep != null ? " " + cep : ""
+				+ cidade != null ? " - " + cidade : ""
+				+ uf != null ? " - " + uf : ""; 
+	}
+	
+	@Override
+	public String toString() {
+		return this.getEnderecoCompleto();
 	}
 
 	public static Endereco novoEndereco() {

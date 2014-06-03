@@ -1,8 +1,8 @@
 package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoPadrao;
 
@@ -18,20 +18,20 @@ public abstract class AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getNossoNumeroECodDocumento(Boleto boleto) {
-		Emissor emissor = boleto.getEmissor();
-		StringBuilder builder = new StringBuilder().append(emissor.getCarteira());
-		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
+	public String getNossoNumeroECodigoDocumento(Boleto boleto) {
+		Beneficiario beneficiario = boleto.getBeneficiario();
+		StringBuilder builder = new StringBuilder().append(beneficiario.getCarteira());
+		builder.append("/").append(getNossoNumeroFormatado(beneficiario));
 		return builder.toString();
 	}
 
 	@Override
-	public String getAgenciaECodigoCedente(Emissor emissor) {
+	public String getAgenciaECodigoBeneficiario(Beneficiario beneficiario) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(emissor.getAgenciaFormatado());
-		builder.append("-").append(emissor.getDigitoAgencia());
-		builder.append(getContaCorrenteDoEmissorFormatado(emissor));
-		builder.append("-").append(emissor.getDigitoContaCorrente());
+		builder.append(beneficiario.getAgenciaFormatada());
+		builder.append("-").append(beneficiario.getDigitoAgencia());
+		builder.append(getCodigoBeneficiarioFormatado(beneficiario));
+		builder.append("-").append(beneficiario.getDigitoCodigoBeneficiario());
 		return builder.toString();
 	}
 

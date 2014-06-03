@@ -11,9 +11,9 @@ import org.pdfbox.pdmodel.PDDocument;
 import org.pdfbox.util.PDFTextStripper;
 
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Emissor;
 import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
@@ -36,8 +36,8 @@ public class BoletoTransformerIntegrationTest extends DefaultIntegrationTest{
 		Boleto boleto;
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
-		Emissor emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia("1824").comDigitoAgencia("4")
-				.comContaCorrente("76000").comNumeroConvenio("1207113").comDigitoContaCorrente("5").comCarteira("18")
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Caue").comAgencia("1824").comDigitoAgencia("4")
+				.comCodigoBeneficiario("76000").comNumeroConvenio("1207113").comDigitoCodigoBeneficiario("5").comCarteira("18")
 				.comNossoNumero("9000206");
 
 		Sacado sacado = Sacado.novoSacado().comNome("Fulano da Silva").comCpf("111.222.333-12")
@@ -52,7 +52,7 @@ public class BoletoTransformerIntegrationTest extends DefaultIntegrationTest{
 
 		Banco banco = new BancoDoBrasil();
 
-		boleto = Boleto.novoBoleto().comBanco(banco).comDatas(datas).comDescricoes(descricoes).comEmissor(emissor)
+		boleto = Boleto.novoBoleto().comBanco(banco).comDatas(datas).comDescricoes(descricoes).comBeneficiario(beneficiario)
 				.comSacado(sacado).comValorBoleto("40.00").comNumeroDoDocumento("4323").comInstrucoes(instrucoes)
 				.comLocaisDePagamento(locaisDePagamento);
 

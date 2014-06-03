@@ -1,8 +1,8 @@
 package br.com.caelum.stella.boleto.bancos;
 
 import br.com.caelum.stella.boleto.Banco;
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.Emissor;
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
@@ -25,12 +25,12 @@ public class Bradesco extends AbstractBanco implements Banco {
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		Emissor emissor = boleto.getEmissor();
+		Beneficiario beneficiario = boleto.getBeneficiario();
 		StringBuilder campoLivre = new StringBuilder();
-		campoLivre.append(emissor.getAgenciaFormatado());
-		campoLivre.append(getCarteiraDoEmissorFormatado(emissor));
-		campoLivre.append(getNossoNumeroDoEmissorFormatado(emissor));
-		campoLivre.append(getContaCorrenteDoEmissorFormatado(emissor));
+		campoLivre.append(beneficiario.getAgenciaFormatada());
+		campoLivre.append(getCarteiraFormatado(beneficiario));
+		campoLivre.append(getNossoNumeroFormatado(beneficiario));
+		campoLivre.append(getCodigoBeneficiarioFormatado(beneficiario));
 		campoLivre.append("0");
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
@@ -55,36 +55,32 @@ public class Bradesco extends AbstractBanco implements Banco {
 	}
 
 	@Override
-	public String getContaCorrenteDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getContaCorrente(), 7);
+	public String getCodigoBeneficiarioFormatado(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 7);
 	}
 
 	@Override
-	public String getCarteiraDoEmissorFormatado(Emissor emissor) {	
-		return leftPadWithZeros(emissor.getCarteira(), 2);
+	public String getCarteiraFormatado(Beneficiario beneficiario) {	
+		return leftPadWithZeros(beneficiario.getCarteira(), 2);
 	}
 
 	@Override
-	public String getNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return leftPadWithZeros(emissor.getNossoNumero(), 11);
-	}
-
-	public String getDigitoNossoNumeroDoEmissorFormatado(Emissor emissor) {
-		return emissor.getDigitoNossoNumero();
+	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
+		return leftPadWithZeros(beneficiario.getNossoNumero(), 11);
 	}
 
 	@Override
-	public String getNossoNumeroECodDocumento(Boleto boleto) {
-		Emissor emissor = boleto.getEmissor();
-		StringBuilder builder = new StringBuilder().append(leftPadWithZeros(emissor.getCarteira(),2));
-		builder.append("/").append(getNossoNumeroDoEmissorFormatado(emissor));
-		return builder.append(getDigitoNossoNumero(emissor)).toString();
+	public String getNossoNumeroECodigoDocumento(Boleto boleto) {
+		Beneficiario beneficiario = boleto.getBeneficiario();
+		StringBuilder builder = new StringBuilder().append(leftPadWithZeros(beneficiario.getCarteira(),2));
+		builder.append("/").append(getNossoNumeroFormatado(beneficiario));
+		return builder.append(getDigitoNossoNumero(beneficiario)).toString();
 	}
 
-	private String getDigitoNossoNumero(Emissor emissor) {
-		return emissor.getDigitoNossoNumero() != null 
-			&& !emissor.getDigitoNossoNumero().isEmpty() 
-				? "-" + emissor.getDigitoNossoNumero() : "";
+	private String getDigitoNossoNumero(Beneficiario beneficiario) {
+		return beneficiario.getDigitoNossoNumero() != null 
+			&& !beneficiario.getDigitoNossoNumero().isEmpty() 
+				? "-" + beneficiario.getDigitoNossoNumero() : "";
 	}
 
 }
