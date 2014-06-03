@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -9,7 +11,6 @@ import java.util.List;
 
 import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Bean que representa os dados de um boleto.
@@ -37,7 +38,7 @@ public class Boleto implements Serializable {
 	protected boolean aceite;
 	protected Banco banco;
 	protected Datas datas;
-	protected Sacado sacado;
+	protected Pagador pagador;
 	protected Beneficiario beneficiario;
 	protected List<String> instrucoes = Collections.emptyList();
 	protected List<String> descricoes = Collections.emptyList();
@@ -234,18 +235,38 @@ public class Boleto implements Serializable {
 	}
 
 	/**
-	 * @return sacado do banco
+	 * @return pagador do banco
 	 */
-	public Sacado getSacado() {
-		return this.sacado;
+	public Pagador getPagador() {
+		return this.pagador;
 	}
 
 	/**
+	 * @param pagador que será associado ao boleto
+	 * @return este boleto
+	 */
+	public Boleto comPagador(Pagador pagador) {
+		this.pagador = pagador;
+		return this;
+	}
+
+	/**
+	 * @deprecated use getPagador
+	 * @return sacado do banco
+	 */
+	@Deprecated
+	public Sacado getSacado() {
+		return new SacadoToPagadorMapper().toSacado(this.pagador);
+	}
+	
+	/**
+	 * @deprecated use comPagador
 	 * @param sacado que será associado ao boleto
 	 * @return este boleto
 	 */
+	@Deprecated
 	public Boleto comSacado(Sacado sacado) {
-		this.sacado = sacado;
+		this.pagador = new SacadoToPagadorMapper().toPagador(sacado);
 		return this;
 	}
 	

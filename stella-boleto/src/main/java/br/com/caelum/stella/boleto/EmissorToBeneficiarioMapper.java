@@ -1,7 +1,7 @@
 package br.com.caelum.stella.boleto;
 
 @SuppressWarnings("deprecation")
-class EmissorToBeneficiarioMapper {
+public class EmissorToBeneficiarioMapper {
 	
 	public Beneficiario toBeneficiario(Emissor emissor){
 		

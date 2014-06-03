@@ -9,7 +9,7 @@ import org.junit.Test;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,10 +28,10 @@ public class HSBCTest {
 		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Rodrigo Turini")
 			.comCodigoBeneficiario("4146239").comNossoNumero("1476147");
 
-	    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
+	    Pagador pagador = Pagador.novoPagador().comNome("Paulo Silveira");
 		
 	    this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(beneficiario)
-	    	.comBanco(this.banco).comSacado(sacado).comValorBoleto(3383.00)
+	    	.comBanco(this.banco).comPagador(pagador).comValorBoleto(3383.00)
 	    	.comNumeroDoDocumento("0789201");
 	}
 
