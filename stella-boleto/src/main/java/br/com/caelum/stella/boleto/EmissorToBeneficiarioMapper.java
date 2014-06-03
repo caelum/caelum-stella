@@ -9,6 +9,7 @@ class EmissorToBeneficiarioMapper {
 
 		return Beneficiario.novoBeneficiario()
 				.comAgencia(emissor.getAgencia())
+				.comDigitoAgencia(emissor.getDigitoAgencia())
 				.comCarteira(emissor.getCarteira())
 				.comCodigoBeneficiario(emissor.getContaCorrente())
 				.comDigitoCodigoBeneficiario(emissor.getDigitoContaCorrente())

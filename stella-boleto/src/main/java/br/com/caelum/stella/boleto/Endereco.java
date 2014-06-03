@@ -25,10 +25,10 @@ public class Endereco implements Serializable {
 	
 	public String getEnderecoCompleto(){
 		return logradouro
-				+ bairro != null ? ", " + bairro : ""
-				+ cep != null ? " " + cep : ""
-				+ cidade != null ? " - " + cidade : ""
-				+ uf != null ? " - " + uf : ""; 
+				+ (bairro != null ? ", " + bairro : "")
+				+ (cep != null ? " " + cep : "")
+				+ (cidade != null ? " - " + cidade : "")
+				+ (uf != null ? " - " + uf : ""); 
 	}
 	
 	@Override
