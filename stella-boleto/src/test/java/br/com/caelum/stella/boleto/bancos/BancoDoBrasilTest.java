@@ -6,7 +6,7 @@ import org.junit.Test;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,11 +30,11 @@ public class BancoDoBrasilTest {
 				.comCarteira("18")
 				.comNossoNumero("9000206");
 
-		Sacado sacado = Sacado.novoSacado().comNome("Fulano");
+		Pagador pagador = Pagador.novoPagador().comNome("Fulano");
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(this.beneficiario).comSacado(sacado)
+		this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(this.beneficiario).comPagador(pagador)
 				.comValorBoleto("40.00").comNumeroDoDocumento("4323");
 	}
 

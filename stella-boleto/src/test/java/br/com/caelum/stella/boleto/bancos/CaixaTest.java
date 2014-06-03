@@ -6,7 +6,7 @@ import org.junit.Test;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -33,10 +33,10 @@ public class CaixaTest {
 			.comCodigoBeneficiario("2359").comNossoNumero("990000000003994458")
 			.comDigitoNossoNumero("0");
 
-		Sacado sacado = Sacado.novoSacado().comNome("Mario Amaral");
+		Pagador pagador = Pagador.novoPagador().comNome("Mario Amaral");
 
 		this.boleto = Boleto.novoBoleto().comDatas(datas)
-			.comBeneficiario(beneficiario).comBanco(this.banco).comSacado(sacado)
+			.comBeneficiario(beneficiario).comBanco(this.banco).comPagador(pagador)
 			.comValorBoleto(4016.10).comNumeroDoDocumento("3084373");
 		
 		///////////////////////////////////////////////////////////////////
@@ -52,10 +52,10 @@ public class CaixaTest {
 			.comNossoNumero("24900000000000132")
 			.comDigitoNossoNumero("3");
 
-		Sacado sacadoOutroBoleto = Sacado.novoSacado().comNome("Paulo");
+		Pagador pagadorOutroBoleto = Pagador.novoPagador().comNome("Paulo");
 
 		this.outroBoleto = Boleto.novoBoleto().comDatas(datasOutroBoleto)
-			.comBeneficiario(beneficiario).comBanco(banco).comSacado(sacadoOutroBoleto)
+			.comBeneficiario(beneficiario).comBanco(banco).comPagador(pagadorOutroBoleto)
 			.comValorBoleto(80.00).comNumeroDoDocumento("00000000132");
 	}
 

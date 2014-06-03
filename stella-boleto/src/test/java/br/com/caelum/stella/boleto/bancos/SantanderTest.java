@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
 import static org.hamcrest.CoreMatchers.is;
 
 import static org.junit.Assert.assertEquals;
@@ -34,11 +34,11 @@ public class SantanderTest {
             .comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
             .comNumeroConvenio("5260965").comNossoNumero("1056137495014");  
 
-	    Sacado sacado = Sacado.novoSacado().comNome("PAULO SILVEIRA") ; 
+	    Pagador pagador = Pagador.novoPagador().comNome("PAULO SILVEIRA") ; 
 	    
 	    boleto = Boleto.novoBoleto().comEspecieDocumento("DM")
     		.comBanco(banco).comDatas(datas).comBeneficiario(beneficiario)
-    		.comSacado(sacado).comValorBoleto(219.50).comAceite(Boolean.FALSE)
+    		.comPagador(pagador).comValorBoleto(219.50).comAceite(Boolean.FALSE)
     		.comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4")
     		.comLocaisDePagamento("local 1", "local 2")
     		.comNumeroDoDocumento("105613749501");

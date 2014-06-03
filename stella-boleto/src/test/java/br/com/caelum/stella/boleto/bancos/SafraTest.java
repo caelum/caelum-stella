@@ -6,7 +6,7 @@ import org.junit.Test;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -33,7 +33,7 @@ public class SafraTest {
 						.comNossoNumero("4")
 						.comDigitoNossoNumero("3");
 
-		Sacado sacado = Sacado.novoSacado()
+		Pagador pagador = Pagador.novoPagador()
 						.comNome("Distribuidora de Alimentos SSH LTDA");
 
 		banco = new Safra();
@@ -41,7 +41,7 @@ public class SafraTest {
 		this.boleto = Boleto.novoBoleto()
 						.comDatas(datas)
 						.comBeneficiario(this.beneficiario)
-						.comSacado(sacado)
+						.comPagador(pagador)
 						.comValorBoleto(19.80)
 						.comNumeroDoDocumento("14048");
 	}
