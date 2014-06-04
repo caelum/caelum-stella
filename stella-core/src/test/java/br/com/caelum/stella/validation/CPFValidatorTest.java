@@ -1,8 +1,11 @@
 package br.com.caelum.stella.validation;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -22,6 +25,13 @@ public class CPFValidatorTest {
 
     private final String firstCheckDigitWrong = "248.438.034-70";
 
+	private CPFValidator validator;
+
+	@Before
+	public void setUp() {
+		validator = new CPFValidator();
+	}
+    
     @Test
     public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
         new CPFValidator().assertValid(validString);
@@ -40,7 +50,6 @@ public class CPFValidatorTest {
 
 	@Test
     public void shouldNotValidateCPFWithInvalidCharacter() {
-        CPFValidator validator = new CPFValidator();
         try {
             validator.assertValid("1111111a111");
             fail();
@@ -52,7 +61,6 @@ public class CPFValidatorTest {
 
     @Test
     public void shouldNotValidateCPFWithLessDigitsThanAllowed() {
-        CPFValidator validator = new CPFValidator();
         try {
             validator.assertValid("1234567890");
             fail();
@@ -64,7 +72,6 @@ public class CPFValidatorTest {
 
     @Test
     public void shouldNotValidateCPFWithMoreDigitsThanAlowed() {
-        CPFValidator validator = new CPFValidator();
         try {
         	String value = "123456789012";
             validator.assertValid(value);
@@ -77,7 +84,6 @@ public class CPFValidatorTest {
 
     @Test
     public void shouldNotValidateCPFCheckDigitsWithFirstCheckDigitWrong() {
-        CPFValidator validator = new CPFValidator();
         // VALID CPF = 248.438.034-80
         try {
         	String value = "24843803470";
@@ -91,7 +97,6 @@ public class CPFValidatorTest {
 
     @Test
     public void shouldNotValidateCPFCheckDigitsWithSecondCheckDigitWrong() {
-        CPFValidator validator = new CPFValidator();
         // VALID CPF = 099.075.865-60
         try {
         	String value = "09907586561";
@@ -102,11 +107,14 @@ public class CPFValidatorTest {
             assertMessage(e, INVALID_CHECK_DIGITS);
         }
     }
+    
+    @Test
+    public void shouldNeverThrowsNPE() {
+		assertThat(validator.isEligible(null), is(false));
+	}
 
     @Test
     public void shouldValidateValidCPF() {
-        CPFValidator validator = new CPFValidator();
-        
         validator.assertValid("11144477735");
         validator.assertValid("88641577947");
         validator.assertValid("34608514300");
@@ -115,14 +123,12 @@ public class CPFValidatorTest {
 
     @Test
     public void shouldValidateNullCPF() {
-        CPFValidator validator = new CPFValidator();
         String value = null;
         validator.assertValid(value);
     }
 
     @Test
     public void shouldValidateCPFWithLeadingZeros() {
-        CPFValidator validator = new CPFValidator();
         String value = "01169538452";
         validator.assertValid(value);
     }
@@ -142,7 +148,6 @@ public class CPFValidatorTest {
     
     @Test
     public void shouldNotValidateCPFWithAllRepeatedDigitsByDefault() {
-        CPFValidator validator = new CPFValidator();
         try {
         	String value = "44444444444";
             validator.assertValid(value);
