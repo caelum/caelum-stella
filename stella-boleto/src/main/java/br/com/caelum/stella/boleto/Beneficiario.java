@@ -17,8 +17,9 @@ public class Beneficiario implements Serializable {
 	private String carteira;
 	private String nossoNumero;
 	private String digitoNossoNumero;
+	
 	private String nomeBeneficiario;
-
+	private String documento;
 	private Endereco endereco = Endereco.novoEndereco();
 
 	private String numeroConvenio; // BB...
@@ -122,6 +123,14 @@ public class Beneficiario implements Serializable {
 	public Beneficiario comNumeroConvenio(String numeroConvenio) {
 		this.numeroConvenio = numeroConvenio;
 		return this;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void comDocumento(String documento) {
+		this.documento = documento;
 	}
 
 }

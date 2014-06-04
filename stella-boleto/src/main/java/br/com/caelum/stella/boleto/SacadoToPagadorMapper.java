@@ -9,13 +9,13 @@ public class SacadoToPagadorMapper {
 				.comCidade(pagador.getEndereco().getCidade())
 				.comEndereco(pagador.getEndereco().getLogradouro())
 				.comUf(pagador.getEndereco().getUf())
-				.comCpf(pagador.getCpf())
+				.comCpf(pagador.getDocumento())
 				.comNome(pagador.getNome());
 	}
 
 	public Pagador toPagador(Sacado sacado) {
 		Endereco endereco = new Endereco(sacado.getEndereco(), sacado.getBairro(), sacado.getCep(), sacado.getCidade(), sacado.getUf());
-		return Pagador.novoPagador().comCpf(sacado.getCpf())
+		return Pagador.novoPagador().comDocumento(sacado.getCpf())
 				.comEndereco(endereco)
 				.comNome(sacado.getNome());
 	}

@@ -12,7 +12,7 @@ public class Pagador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
     private String nome = "";
-    private String cpf = "";
+    private String documento = "";
     private Endereco endereco = Endereco.novoEndereco();
 
     private Pagador() {
@@ -48,22 +48,22 @@ public class Pagador implements Serializable {
     }
 
     /**
-     * Devolve o CPF do pagador
+     * Devolve o CPF/CNPJ do pagador
      * 
      * @return
      */
-    public String getCpf() {
-        return this.cpf;
+    public String getDocumento() {
+        return this.documento;
     }
 
     /**
-     * Associa um CPF ao pagador
+     * Associa um CPF/CNPJ ao pagador
      * 
-     * @param cpf
+     * @param 
      * @return
      */
-    public Pagador comCpf(String cpf) {
-        this.cpf = cpf;
+    public Pagador comDocumento(String documento) {
+        this.documento = documento;
         return this;
     }
 
