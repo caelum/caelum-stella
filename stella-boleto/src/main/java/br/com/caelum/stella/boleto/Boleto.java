@@ -433,9 +433,9 @@ public class Boleto implements Serializable {
 	}
 	
 	/**
-	 * @return agencia e codigo cedente (conta corrente) do banco
+	 * @return agencia e codigo beneficiario (conta corrente) do banco
 	 */
-	public String getAgenciaECodigoCedente() {
+	public String getAgenciaECodigoBeneficiario() {
 		return this.banco.getAgenciaECodigoBeneficiario(this.beneficiario);
 	}
 
