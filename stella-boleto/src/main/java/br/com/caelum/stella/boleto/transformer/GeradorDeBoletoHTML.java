@@ -20,7 +20,7 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 /**
  * Gerador de boletos em HTML
  * 
- * @author Mario Amaral {@link github.com/mariofts}
+ * @author Mario Amaral <a href="github.com/mariofts">Github</a>
  * 
  */
 @SuppressWarnings("deprecation")
@@ -108,7 +108,7 @@ public class GeradorDeBoletoHTML extends GeradorDeBoleto {
 	 * Obtém o JRExporter para HTML. 
 	 * 
 	 * @param request requisição.
-	 * @return
+	 * @return exporter do Jasper configurado.
 	 */
 	protected JRHtmlExporter getHtmlExporter(HttpServletRequest request) {
 		JasperPrint relatorio = geraRelatorio();

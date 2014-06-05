@@ -18,6 +18,7 @@ public class GeradorDeLinhaDigitavel {
 	 * Disponível para consulta em caelum.stella.boleto.doc
 	 * 
 	 * @param codigoDeBarras gerado pelo boleto
+	 * @param banco banco para o qual estamos gerando o boleto.
 	 * @return linha digitavel já formatada de acordo com padrao
 	 */
 	public String geraLinhaDigitavelPara(String codigoDeBarras, Banco banco) {
