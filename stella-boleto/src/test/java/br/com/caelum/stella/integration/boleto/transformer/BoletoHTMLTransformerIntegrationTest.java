@@ -69,7 +69,7 @@ public class BoletoHTMLTransformerIntegrationTest extends DefaultIntegrationTest
 
 		Endereco endereco = new Endereco("Av dos testes, 111 apto 333", "Bairro Teste", "01234-111", "São Paulo", "SP");
 
-		Pagador pagador = Pagador.novoPagador().comNome("Fulano da Silva").comCpf("111.222.333-12")
+		Pagador pagador = Pagador.novoPagador().comNome("Fulano da Silva").comDocumento("111.222.333-12")
 				.comEndereco(endereco);
 
 		String[] descricoes = { "descricao 1", "descricao 2", "descricao 3", "descricao 4", "descricao 5" };
