@@ -26,7 +26,8 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Cria novas datas<br/>
+	 * Cria novas datas<br>
+	 * @return this
 	 * 
 	 */
 	public static Datas novasDatas() {
@@ -34,10 +35,10 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Devolve a data do documento do boleto. (data de geração do boleto)<br/>
+	 * Devolve a data do documento do boleto. (data de geração do boleto)<br>
 	 * Valor padrão: data de criação do boleto
 	 * 
-	 * @return
+	 * @return data de emissão do boleto
 	 */
 	public Calendar getDocumento() {
 		if(documento == null){
@@ -47,10 +48,11 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Associa uma data do documento.<br/>
+	 * Associa uma data do documento.<br>
 	 * Valor padrão: data atual
 	 * 
-	 * @param documento
+	 * @param documento data de emissão
+	 * @return this
 	 */
 	public Datas comDocumento(Calendar documento) {
 		if (documento.getTime().before(MINIMUM_DATE.getTime())) {
@@ -64,20 +66,23 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Associa uma data do documento.<br/>
+	 * Associa uma data do documento.<br>
 	 * Valor padrão: data atual
 	 * 
-	 * @param documento
+	 * @param dia dia de emissão
+	 * @param mes mes de emissão
+	 * @param ano ano de emissão
+	 * @return this
 	 */
 	public Datas comDocumento(int dia, int mes, int ano) {
 		return comDocumento(dataPara(dia, mes, ano));
 	}
 
 	/**
-	 * Devolve a data de processamento do boleto. (data de geração do boleto)<br/>
+	 * Devolve a data de processamento do boleto. (data de geração do boleto)<br>
 	 * Valor padrão: data de criação do boleto
 	 * 
-	 * @return
+	 * @return data de processamento
 	 */
 	public Calendar getProcessamento() {
 		if(processamento == null){
@@ -87,10 +92,11 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Associa uma data do processamento.<br/>
+	 * Associa uma data do processamento.<br>
 	 * Valor padrão: data atual
 	 * 
-	 * @param processamento
+	 * @param processamento data de processamento
+	 * @return this
 	 */
 	public Datas comProcessamento(Calendar processamento) {
 		if (processamento.getTime().before(MINIMUM_DATE.getTime())) {
@@ -104,10 +110,13 @@ public class Datas implements Serializable {
 	}
 
 	/**
-	 * Associa uma data do processamento.<br/>
+	 * Associa uma data do processamento.<br>
 	 * Valor padrão: data atual
 	 * 
-	 * @param processamento
+	 * @param dia dia de processamento
+	 * @param mes mes de processamento
+	 * @param ano ano de processamento
+	 * @return this
 	 */
 	public Datas comProcessamento(int dia, int mes, int ano) {
 		return comProcessamento(dataPara(dia, mes, ano));
@@ -115,6 +124,7 @@ public class Datas implements Serializable {
 
 	/**
 	 * Retorna a data de vencimento do boleto
+	 * @return data de vencimento
 	 */
 	public Calendar getVencimento() {
 		if(vencimento == null){
@@ -126,6 +136,8 @@ public class Datas implements Serializable {
 
 	/**
 	 * Modifica o vencimento do respectivo boleto com um Calendar.
+	 * @param vencimento data de vencimento
+	 * @return this
 	 */
 	public Datas comVencimento(Calendar vencimento) {
 		if (vencimento.getTime().before(MINIMUM_DATE.getTime())) {
@@ -141,6 +153,10 @@ public class Datas implements Serializable {
 	/**
 	 * Modifica o vencimento.
 	 * 
+	 * @param dia dia de vencimento
+	 * @param mes mes de vencimento
+	 * @param ano ano de vencimento
+	 * @return this 
 	 */
 	public Datas comVencimento(int dia, int mes, int ano) {
 		return comVencimento(dataPara(dia, mes, ano));

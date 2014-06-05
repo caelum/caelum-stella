@@ -39,14 +39,13 @@ public class ResourceBundleMessageProducer implements MessageProducer {
     private final ResourceBundle bundle;
 
     /**
-     * @param bundle
-     *            ResourceBlunde que contém o mapa que associa erros as
-     *            mensagens.
+     * @param bundle ResourceBlunde que contém o mapa que associa erros 
+     * 				as mensagens.
      */
     public ResourceBundleMessageProducer(final ResourceBundle bundle) {
         this.bundle = bundle;
     }
-
+    
     public ValidationMessage getMessage(InvalidValue error) {
         Locale locale = bundle.getLocale();
         if (locale == null) {
@@ -64,22 +63,21 @@ public class ResourceBundleMessageProducer implements MessageProducer {
 
     /**
      * A chave padrao é gerada com base no nome da classe do erro e do nome do
-     * erro, sempre minúscula.
+     * erro, sempre minúscula. <br>
      * 
-     * <p>
      * Ex.:
      * <ul>
-     * <li>classe do erro: CPFError</li>
-     * <li>nome do erro: INVALID_DIGITS</li>
+     * 	<li>classe do erro: CPFError</li>
+     * 	<li>nome do erro: INVALID_DIGITS</li>
      * </ul>
      * 
+     * <p>
      * Chave gerada: <b>cpferror.invalid_digits</b>.
      * </p>
      * 
-     * @param locale
-     *            a ser usado na conversão para minúsculo
-     * @param errorClass
-     * @param error
+     * @param locale locale a ser usado na conversão para minúsculo
+     * @param errorClass classe do tipo de erro
+     * @param error erro
      * @return chave que representa o erro a ser usada para recuperar sua
      *         mensagem associada
      */

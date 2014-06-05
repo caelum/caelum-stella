@@ -3,7 +3,7 @@ package br.com.caelum.stella.boleto;
 import java.io.Serializable;
 
 /**
- * Interface com métodos do sacado<br/> Sacado é a pessoa/empresa que vai pagar
+ * Interface com métodos do sacado<br> Sacado é a pessoa/empresa que vai pagar
  * pelo boleto gerado.
  * 
  * @author Cauê Guerra
@@ -27,7 +27,7 @@ public class Sacado implements Serializable {
     /**
      * Cria um novo sacado
      * 
-     * @return
+     * @return novo sacado
      */
     public static Sacado novoSacado() {
         return new Sacado();
@@ -36,17 +36,17 @@ public class Sacado implements Serializable {
     /**
      * Devolve o nome do sacado
      * 
-     * @return
+     * @return nome do pagador
      */
     public String getNome() {
         return this.nome;
     }
 
     /**
-     * Associa um nome ao sacado
+     * Associa um nome ao pagador
      * 
-     * @param nome
-     * @return
+     * @param nome nome do pagador
+     * @return this
      */
     public Sacado comNome(String nome) {
         this.nome = nome;
@@ -56,7 +56,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve o CPF do sacado
      * 
-     * @return
+     * @return cpf
      */
     public String getCpf() {
         return this.cpf;
@@ -65,8 +65,8 @@ public class Sacado implements Serializable {
     /**
      * Associa um CPF ao sacado
      * 
-     * @param cpf
-     * @return
+     * @param cpf cpf do pagador
+     * @return this
      */
     public Sacado comCpf(String cpf) {
         this.cpf = cpf;
@@ -76,7 +76,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve o endereço do sacado
      * 
-     * @return
+     * @return logradouro
      */
     public String getEndereco() {
         return this.endereco;
@@ -85,8 +85,8 @@ public class Sacado implements Serializable {
     /**
      * Associa um endereço ao sacado
      * 
-     * @param endereco
-     * @return
+     * @param endereco endereco do pagador
+     * @return this
      */
     public Sacado comEndereco(String endereco) {
         this.endereco = endereco;
@@ -96,7 +96,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve o CEP do sacado
      * 
-     * @return
+     * @return cep
      */
     public String getCep() {
         return this.cep;
@@ -105,8 +105,8 @@ public class Sacado implements Serializable {
     /**
      * Associa o CEP ao sacado
      * 
-     * @param cep
-     * @return
+     * @param cep cep do pagador
+     * @return this
      */
     public Sacado comCep(String cep) {
         this.cep = cep;
@@ -116,7 +116,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve o bairro do sacado
      * 
-     * @return
+     * @return bairro
      */
     public String getBairro() {
         return this.bairro;
@@ -125,8 +125,8 @@ public class Sacado implements Serializable {
     /**
      * Associa o bairro ao sacado
      * 
-     * @param bairro
-     * @return
+     * @param bairro bairro do pagador
+     * @return this
      */
     public Sacado comBairro(String bairro) {
         this.bairro = bairro;
@@ -136,7 +136,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve a cidade do sacado
      * 
-     * @return
+     * @return cidade do pagador
      */
     public String getCidade() {
         return this.cidade;
@@ -145,8 +145,8 @@ public class Sacado implements Serializable {
     /**
      * Associa uma cidade ao sacado
      * 
-     * @param cidade
-     * @return
+     * @param cidade cidade do pagador
+     * @return this
      */
     public Sacado comCidade(String cidade) {
         this.cidade = cidade;
@@ -156,7 +156,7 @@ public class Sacado implements Serializable {
     /**
      * Devolve a UF do sacado
      * 
-     * @return
+     * @return estado estado do pagador
      */
     public String getUf() {
         return this.uf;
@@ -165,8 +165,8 @@ public class Sacado implements Serializable {
     /**
      * Associa uma UF ao sacado
      * 
-     * @param uf
-     * @return
+     * @param uf estado do pagador
+     * @return this
      */
     public Sacado comUf(String uf) {
         this.uf = uf;

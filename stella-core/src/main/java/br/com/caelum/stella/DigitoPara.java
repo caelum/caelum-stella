@@ -19,7 +19,7 @@ import java.util.Map;
  *	0  0  0  0  0  3  9  1  0  4  7  6  6 (trecho numérico)
  *	2  7  6  5  4  3  2  7  6  5  4  3  2 (multiplicadores, da direita para a esquerda e ciclando)
  *	----------------------------------------- multiplicações algarismo a algarismo 
- *	 0  0  0  0  0  9 18  7  0 20 28 18 12 ---> soma = 112
+ *	 0  0  0  0  0  9 18  7  0 20 28 18 12 -- soma = 112
  * </pre>
  * 
  * Tira-se o módulo dessa soma e, então, calcula-se o complementar do módulo e, se o número 
@@ -69,6 +69,7 @@ public class DigitoPara {
 	 * 
 	 * @param inicio Primeiro número do intervalo sequencial de multiplicadores
 	 * @param fim Último número do intervalo sequencial de multiplicadores
+	 * @return this
 	 */
 	public DigitoPara comMultiplicadoresDeAte(int inicio, int fim) {
 		this.multiplicadores.clear();
@@ -84,6 +85,7 @@ public class DigitoPara {
 	 * através de varargs.
 	 * 
 	 * @param multiplicadoresEmOrdem Sequência de inteiros com os multiplicadores em ordem
+	 * @return this
 	 */
 	public DigitoPara comMultiplicadores(Integer... multiplicadoresEmOrdem) {
 		this.multiplicadores = Arrays.asList(multiplicadoresEmOrdem);
@@ -95,6 +97,8 @@ public class DigitoPara {
 	 * do módulo em sí. Então, a chamada desse método habilita a flag que é usada 
 	 * no método mod para decidir se o resultado devolvido é o módulo puro ou seu 
 	 * complementar.
+	 * 
+	 * @return this
 	 */
 	public DigitoPara complementarAoModulo() {
 		this.complementar = true;
@@ -111,6 +115,8 @@ public class DigitoPara {
 	/**
 	 * @param modulo Inteiro pelo qual o resto será tirado e também seu complementar.
 	 * 			O valor padrão é 11.
+	 * 
+	 * @return this
 	 */
 	public DigitoPara mod(int modulo) {
 		this.modulo = modulo;
@@ -123,7 +129,7 @@ public class DigitoPara {
 	 * 
 	 * Ex: 2 X 9 = 18, irá somar 9 (1 + 8) invés de 18 ao total.
 	 * 
-	 * @return
+	 * @return this
 	 */
 	public DigitoPara somandoIndividualmente(){
 		this.somarIndividual = true;
@@ -173,6 +179,7 @@ public class DigitoPara {
 	 * multiplicadores ou, se chegar ao fim da lista, a primeira posição, novamente.
 	 *  
 	 * @param multiplicadorDaVez Essa é a posição do último multiplicador usado.
+	 * @return próximo multiplicador
 	 */
 	private int proximoMultiplicador(int multiplicadorDaVez) {
 		multiplicadorDaVez++;
@@ -185,7 +192,7 @@ public class DigitoPara {
 	 * Adiciona um dígito no final do trecho numérico.
 	 *  
 	 * @param digito É o dígito a ser adicionado.
-	 * @return 
+	 * @return this
 	 */
 	public DigitoPara addDigito(String digito) {
 		this.numero.addFirst(Integer.valueOf(digito));

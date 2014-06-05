@@ -7,12 +7,13 @@ import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
 
 /**
- * Busca o arquivo de mensagens configurado no faces-config.xml: <p/>
- * <code><pre>
+ * <p>Busca o arquivo de mensagens configurado no faces-config.xml: </p>
+ * <pre>
  * &lt;application&gt;
  *   &lt;message-bundle&gt;messages&lt;/message-bundle&gt;
  * &lt;/application&gt;
- * </pre></code> <p/>
+ * </pre>
+ * 
  * <p>
  * Caso não haja nenhum arquivo de mensagens configurado no faces-config.xml,
  * será usado o arquivo padrão de mensagens contido no stella-faces
@@ -28,8 +29,8 @@ public class ResourceBundleFinder {
      * Encontra o ResourceBundle para o Locale da &aacute;rvore de componentes
      * (UIViewRoot) atual.
      * 
-     * @param facesContext
-     * @return
+     * @param facesContext FacesContext atual.
+     * @return {@link ResourceBundle} atual.
      */
     public ResourceBundle getForCurrentLocale(FacesContext facesContext) {
         Application application = facesContext.getApplication();
