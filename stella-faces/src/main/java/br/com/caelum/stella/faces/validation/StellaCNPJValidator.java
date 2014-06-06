@@ -39,8 +39,7 @@ public class StellaCNPJValidator implements Validator, StateHolder {
      * Atribui se a regra de validação deve considerar, ou não, a cadeia no
      * formato do documento.
      * 
-     * @param formatted
-     *            caso seja <code>true</code> o validador considera que a cadeia
+     * @param formatted caso seja <code>true</code> o validador considera que a cadeia
      *            está formatada; caso contrário, considera que a cadeia contém
      *            apenas dígitos numéricos.
      */

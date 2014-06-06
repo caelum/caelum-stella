@@ -74,7 +74,7 @@ public class Boleto implements Serializable {
 
 	/**
 	 * @return datas do boleto 
-	 * @see br.com.caelum.stella.boleto.Datas.java
+	 * @see Datas
 	 */
 	public Datas getDatas() {
 		return this.datas;
@@ -147,6 +147,8 @@ public class Boleto implements Serializable {
 	/**
 	 * @param valor em double que após ser convertido pra String 
 	 * será associado ao boleto @see Boleto#comValorBoleto(String)
+	 * 
+	 * @return this
 	 */
 
 	public Boleto comValorBoleto(double valor) {
@@ -156,6 +158,7 @@ public class Boleto implements Serializable {
 	/**
 	 * @param valor String que é convertido para BigDecimal com
 	 * o Locale da JVM @see Boleto#comValorBoleto(BigDecimal)
+	 * @return this
 	 */
 	public Boleto comValorBoleto(String valor) {
 		return comValorBoleto(new BigDecimal(valor));
@@ -212,6 +215,7 @@ public class Boleto implements Serializable {
 
 	/**
 	 * @param valorMoeda que será associado ao boleto
+	 * @return this
 	 */
 	public Boleto comValorMoeda(BigDecimal valorMoeda) {
 		this.valorMoeda = valorMoeda;
@@ -489,7 +493,7 @@ public class Boleto implements Serializable {
 	
 	/**
 	 * Valor numérico do código de barras
-	 * @return
+	 * @return código de barras
 	 */
 	public String getCodigoDeBarras(){
 		return banco.geraCodigoDeBarrasPara(this);
@@ -497,7 +501,7 @@ public class Boleto implements Serializable {
 	
 	/**
 	 * Linha digitável formatada
-	 * @return
+	 * @return linha digitável
 	 */
 	public String getLinhaDigitavel(){
 		return new GeradorDeLinhaDigitavel().geraLinhaDigitavelPara(getCodigoDeBarras(), banco);
@@ -505,7 +509,7 @@ public class Boleto implements Serializable {
 	
 	/**
 	 * Carteira do boleto
-	 * @return
+	 * @return carteira
 	 */
 	public String getCarteira(){
 		return banco.getCarteiraFormatado(beneficiario);
@@ -513,7 +517,7 @@ public class Boleto implements Serializable {
 	
 	/**
 	 * Local de Pagamento
-	 * @return
+	 * @return local de pagamento
 	 */
 	public String getLocalDePagamento(){
 		return locaisDePagamento.isEmpty() ? "" : locaisDePagamento.get(0);

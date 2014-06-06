@@ -116,7 +116,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @return carteira <br/> Valor informado pelo 
+	 * @return carteira <br> Valor informado pelo 
 	 * banco para identificação do tipo de boleto
 	 */
 	public String getCarteira() {
@@ -124,7 +124,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @param carteira <br/> Valor informado pelo 
+	 * @param carteira <br> Valor informado pelo 
 	 * banco para identificação do tipo de boleto
 	 * @deprecated deve ser String agora 
 	 * @return este emissor
@@ -135,7 +135,7 @@ public class Emissor implements Serializable {
 	}
 	
 	/**
-	 * @param carteira <br/> Valor informado pelo 
+	 * @param carteira <br> Valor informado pelo 
 	 * banco para identificação do tipo de boleto
 	 * 
 	 * @return este emissor
@@ -146,7 +146,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @return número do convênio <br/> Valor que identifica 
+	 * @return número do convênio <br> Valor que identifica 
 	 * um emissor junto ao seu banco para associar seus boletos
 	 */
 	public String getNumeroConvenio() {
@@ -154,7 +154,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @param numConvenio <br/> Valor que identifica um 
+	 * @param numConvenio <br> Valor que identifica um 
 	 * emissor junto ao seu banco para associar seus boletos
 	 * @deprecated deve ser String agora 
 	 * @return este emissor
@@ -165,7 +165,7 @@ public class Emissor implements Serializable {
 	}
 	
 	/**
-	 * @param numConvenio <br/> Valor que identifica um 
+	 * @param numConvenio <br> Valor que identifica um 
 	 * emissor junto ao seu banco para associar seus boletos
 	 * 
 	 * @return este emissor
@@ -176,7 +176,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @return nosso número <br/> Valor que o cedente escolhe 
+	 * @return nosso número <br> Valor que o cedente escolhe 
 	 * para manter controle sobre seus boletos. Esse valor serve 
 	 * para o cedente identificar quais boletos foram pagos ou não.
 	 * Recomenda-se o uso de números sequenciais, na geração de 
@@ -187,7 +187,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @param nossoNumero <br/> Valor que o cedente escolhe 
+	 * @param nossoNumero <br> Valor que o cedente escolhe 
 	 * para manter controle sobre seus boletos. Esse valor serve 
 	 * para o cedente identificar quais boletos foram pagos ou não.
 	 * Recomenda-se o uso de números sequenciais, na geração de 
@@ -201,7 +201,7 @@ public class Emissor implements Serializable {
 	}
 
 	/**
-	 * @param nossoNumero <br/> Valor que o cedente escolhe 
+	 * @param nossoNumero <br> Valor que o cedente escolhe 
 	 * para manter controle sobre seus boletos. Esse valor serve 
 	 * para o cedente identificar quais boletos foram pagos ou não.
 	 * Recomenda-se o uso de números sequenciais, na geração de 

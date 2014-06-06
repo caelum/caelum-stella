@@ -9,9 +9,9 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
 
 /**
  * Gera dados de um boleto relativos ao Banco Safra.
- * 
- * @see http://www.boletophp.com.br/documentacao/Documentacao_Safra.zip
- * 
+ * <p>
+ * <a href="http://www.boletophp.com.br/documentacao/Documentacao_Safra.zip">Documentação Safra</a>
+ * </p>
  * @author Bluesoft
  * 
  */

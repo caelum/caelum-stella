@@ -93,6 +93,7 @@ public class TituloEleitoralValidator implements Validator<String> {
     /**
      * Considera se cadeias não estão formatadas ou não.
      * Utiliza um {@linkplain SimpleMessageProducer} para geração de mensagens.
+     * @param isFormatted indica se o número está formatado.
      */
     public TituloEleitoralValidator(boolean isFormatted) {
     	this.messageProducer = new SimpleMessageProducer();
@@ -106,6 +107,7 @@ public class TituloEleitoralValidator implements Validator<String> {
      * 
      * @param messageProducer
      *            produtor de mensagem de erro.
+     * @param isFormatted indica se o número está formatado.
      */
     public TituloEleitoralValidator(MessageProducer messageProducer,boolean isFormatted) {
     	this.messageProducer = messageProducer;

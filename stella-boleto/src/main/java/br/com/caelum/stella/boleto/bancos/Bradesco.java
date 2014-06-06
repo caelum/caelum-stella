@@ -8,8 +8,8 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
 /**
  * Gera dados de um boleto relativos ao Banco Bradesco.
  * 
- * @see <a href="http://www.bradesco.com.br/br/pj/conteudo/sol_rec
- * /pdf/manualtecnico.pdf" >MANUAL DO BLOQUETO DE COBRANÇA </a>
+ * @see <a href="http://www.bradesco.com.br/br/pj/conteudo/sol_rec/pdf/manualtecnico.pdf">
+ * MANUAL DO BLOQUETO DE COBRANÇA</a>
  * 
  * @author Leonardo Bessa
  * 

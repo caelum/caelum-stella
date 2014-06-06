@@ -6,25 +6,24 @@ import java.net.URL;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 
 /**
- * Interface que define métodos específicos ao funcionamento de cada banco para
- * gerar o código de barras e a linha digitável.<br/>
- * <br/>
+ * <p>Interface que define métodos específicos ao funcionamento de cada banco para
+ * gerar o código de barras e a linha digitável.</p>
  * 
- * Infelizmente cada banco funciona de uma maneira diferente para gerar esses
- * valores, e as vezes até mudam de funcionamento.
  * 
- * Documentação que pode ser consultada:<br/>
- * <br/>
+ * <p>Infelizmente cada banco funciona de uma maneira diferente para gerar esses
+ * valores, e as vezes até mudam de funcionamento.</p>
  * 
- * http://www.macoratti.net/boleto.htm<br/>
- * http://pt.wikipedia.org/wiki/Boleto_bancário<br/>
- * <br/>
+ * <p>Documentação que pode ser consultada:</p>
  * 
- * Para testes rapidos: http://evandro.net/codigo_barras.html<br/>
- * <br/>
+ * <ul>
+ *   <li>http://www.macoratti.net/boleto.htm</li>
+ *   <li>http://pt.wikipedia.org/wiki/Boleto_bancário</li>
+ * </ul>
  * 
- * Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
- * valores e testar alguns boletos, em especial se valores serão altos.
+ * <p>Para testes rapidos: http://evandro.net/codigo_barras.html</p>
+ * 
+ * <p>Apesar de possuirmos diversos unit tests, sempre é bom ter precaução com
+ * valores e testar alguns boletos, em especial se valores serão altos.</p>
  * 
  * @author Paulo Silveira
  * @author Cauê Guerra
@@ -35,19 +34,21 @@ public interface Banco extends Serializable {
 	/**
 	 * Retorna o número desse banco, formatado com 3 dígitos
 	 * 
-	 * @return
+	 * @return numero formatado
 	 */
 	String getNumeroFormatado();
 
 	/**
 	 * Pega a URL com a imagem de um banco
 	 * 
-	 * @return
+	 * @return logo do banco
 	 */
 	URL getImage();
 
 	/**
 	 * Gera o código de barras para determinado boleto
+	 * @param boleto boleto
+	 * @return código de barras (texto)
 	 */
 	String geraCodigoDeBarrasPara(Boleto boleto);
 

@@ -32,7 +32,13 @@ public class StellaCNPJValidatorTag extends ValidatorELTag {
     }
 
     /**
+     * Atribui se a regra de validação deve considerar, ou não, a cadeia no formato do documento.
+     * 
+     * @param formatted caso seja true o validador considera que a cadeia está formatada; 
+     * caso contrário, considera que a cadeia contém apenas dígitos numéricos.
+     * 
      * @see StellaCNPJValidator#setFormatted(boolean)
+     * 
      */
     public void setFormatted(ValueExpression formatted) {
         ELContext elContext = FacesContext.getCurrentInstance().getELContext();

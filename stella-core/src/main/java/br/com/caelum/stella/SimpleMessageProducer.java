@@ -13,12 +13,13 @@ import br.com.caelum.stella.validation.InvalidValue;
  * </p>
  * <code>
  * String message = (simpleName + "." + errorName).replaceFirst("[.]", " : ").replaceAll("_", " "); 
- * </code> </p>
+ * </code> 
+ * 
  * <p>
  * Veja o exemplo:
  * </p>
  * <p>
- * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br/>
+ * A mesagem do erro representado por CPFError.INVALID_DIGITS é : <br>
  * CPFError : INVALID DIGITS .
  * </p>
  * 
@@ -28,7 +29,7 @@ import br.com.caelum.stella.validation.InvalidValue;
 public class SimpleMessageProducer implements MessageProducer {
 
     /**
-     * @see br.com.caelum.stella.MessageProducer#getMessage(java.lang.Enum)
+     * @see MessageProducer#getMessage(InvalidValue)
      */
     public ValidationMessage getMessage(InvalidValue error) {
         String simpleName = error.getClass().getSimpleName();
