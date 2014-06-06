@@ -1,5 +1,7 @@
 package br.com.caelum.stella.boleto;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -9,7 +11,6 @@ import java.util.List;
 
 import br.com.caelum.stella.boleto.bancos.GeradorDeLinhaDigitavel;
 import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
  * Bean que representa os dados de um boleto.
@@ -37,8 +38,8 @@ public class Boleto implements Serializable {
 	protected boolean aceite;
 	protected Banco banco;
 	protected Datas datas;
-	protected Sacado sacado;
-	protected Emissor emissor;
+	protected Pagador pagador;
+	protected Beneficiario beneficiario;
 	protected List<String> instrucoes = Collections.emptyList();
 	protected List<String> descricoes = Collections.emptyList();
 	protected List<String> locaisDePagamento = Collections.emptyList();
@@ -238,34 +239,73 @@ public class Boleto implements Serializable {
 	}
 
 	/**
-	 * @return sacado do banco
+	 * @return pagador do banco
 	 */
-	public Sacado getSacado() {
-		return this.sacado;
+	public Pagador getPagador() {
+		return this.pagador;
 	}
 
 	/**
-	 * @param sacado que será associado ao boleto
+	 * @param pagador que será associado ao boleto
 	 * @return este boleto
 	 */
-	public Boleto comSacado(Sacado sacado) {
-		this.sacado = sacado;
+	public Boleto comPagador(Pagador pagador) {
+		this.pagador = pagador;
 		return this;
 	}
 
 	/**
+	 * @deprecated use getPagador
+	 * @return sacado do banco
+	 */
+	@Deprecated
+	public Sacado getSacado() {
+		return new SacadoToPagadorMapper().toSacado(this.pagador);
+	}
+	
+	/**
+	 * @deprecated use comPagador
+	 * @param sacado que será associado ao boleto
+	 * @return este boleto
+	 */
+	@Deprecated
+	public Boleto comSacado(Sacado sacado) {
+		this.pagador = new SacadoToPagadorMapper().toPagador(sacado);
+		return this;
+	}
+	
+	public Beneficiario getBeneficiario() {
+		return beneficiario;
+	}
+
+	/**
+	 * Beneficiário do boleto
+	 * @param beneficiario
+	 * @return
+	 */
+	public Boleto comBeneficiario(Beneficiario beneficiario) {
+		this.beneficiario = beneficiario;
+		return this;
+	}
+	
+
+	/**
+	 * @deprecated use getBeneficiario
 	 * @return emissor do boleto
 	 */
+	@Deprecated
 	public Emissor getEmissor() {
-		return this.emissor;
+		return new EmissorToBeneficiarioMapper().toEmissor(beneficiario);
 	}
 
 	/**
 	 * @param emissor que será associado ao boleto
+	 * @deprecated use comBeneficiario
 	 * @return este boleto
 	 */
+	@Deprecated
 	public Boleto comEmissor(Emissor emissor) {
-		this.emissor = emissor;
+		this.beneficiario = new EmissorToBeneficiarioMapper().toBeneficiario(emissor);
 		return this;
 	}
 
@@ -397,17 +437,17 @@ public class Boleto implements Serializable {
 	}
 	
 	/**
-	 * @return agencia e codigo cedente (conta corrente) do banco
+	 * @return agencia e codigo beneficiario (conta corrente) do banco
 	 */
-	public String getAgenciaECodigoCedente() {
-		return this.banco.getAgenciaECodigoCedente(this.emissor);
+	public String getAgenciaECodigoBeneficiario() {
+		return this.banco.getAgenciaECodigoBeneficiario(this.beneficiario);
 	}
 
 	/**
 	 * @return nosso numero e codigo do documento para boleto
 	 */
 	public String getNossoNumeroECodDocumento() {
-		return banco.getNossoNumeroECodDocumento(this);
+		return banco.getNossoNumeroECodigoDocumento(this);
 	}
 
 	public BigDecimal getValorDescontos() {
@@ -472,7 +512,7 @@ public class Boleto implements Serializable {
 	 * @return carteira
 	 */
 	public String getCarteira(){
-		return banco.getCarteiraDoEmissorFormatado(emissor);
+		return banco.getCarteiraFormatado(beneficiario);
 	}
 	
 	/**

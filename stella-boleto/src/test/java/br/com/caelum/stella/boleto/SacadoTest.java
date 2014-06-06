@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto;
 import org.junit.Assert;
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class SacadoTest {
 	private Sacado sacado = Sacado.novoSacado();
 

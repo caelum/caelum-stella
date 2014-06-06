@@ -1,19 +1,20 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class SafraTest {
 
 	private Safra banco;
-	private Emissor emissor;
+	private Beneficiario beneficiario;
 	private Boleto boleto;
 
 	@Before
@@ -23,24 +24,24 @@ public class SafraTest {
 						.comVencimento(26, 07, 2013)
 						.comProcessamento(25, 07, 2013);
 
-		this.emissor = Emissor.novoEmissor()
-						.comCedente("Supermercado e Comercio XYZ LTDA")
+		this.beneficiario = Beneficiario.novoBeneficiario()
+						.comNomeBeneficiario("Supermercado e Comercio XYZ LTDA")
 						.comAgencia("1")
 						.comDigitoAgencia("8")
-						.comContaCorrente("1245")
-						.comDigitoContaCorrente("1")
+						.comCodigoBeneficiario("1245")
+						.comDigitoCodigoBeneficiario("1")
 						.comNossoNumero("4")
 						.comDigitoNossoNumero("3");
 
-		Sacado sacado = Sacado.novoSacado()
+		Pagador pagador = Pagador.novoPagador()
 						.comNome("Distribuidora de Alimentos SSH LTDA");
 
 		banco = new Safra();
 
 		this.boleto = Boleto.novoBoleto()
 						.comDatas(datas)
-						.comEmissor(this.emissor)
-						.comSacado(sacado)
+						.comBeneficiario(this.beneficiario)
+						.comPagador(pagador)
 						.comValorBoleto(19.80)
 						.comNumeroDoDocumento("14048");
 	}
@@ -52,20 +53,20 @@ public class SafraTest {
 
 	@Test
 	public void contaCorrenteDoEmissorDeveTerNoveDigitos() {
-		assertEquals(9, this.banco.getContaCorrenteDoEmissorFormatado(this.emissor).length());
+		assertEquals(9, this.banco.getCodigoBeneficiarioFormatado(this.beneficiario).length());
 	}
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
-		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comCarteira("1");
+		String numeroFormatado = this.banco.getCarteiraFormatado(beneficiario);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);
 	}
 
 	@Test
 	public void nossoNumeroDoEmissorDeveTerNoveDigitos() {
-		assertEquals(9, this.banco.getNossoNumeroDoEmissorFormatado(this.emissor).length());
+		assertEquals(9, this.banco.getNossoNumeroFormatado(this.beneficiario).length());
 	}
 
 	@Test

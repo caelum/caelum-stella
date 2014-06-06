@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="915"/>
-	<property name="ireport.background.image" value="/Users/mario/caelum/caelum-stella/stella-boleto/BradescoDoBrasil.png"/>
-	<property name="ireport.background.image.properties" value="false,true,0.75,0,0,0,0,0,0"/>
+	<property name="ireport.y" value="379"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Celula" forecolor="#646464" fontName="Arial" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -44,14 +42,14 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="cedente" class="java.lang.String">
-		<fieldDescription><![CDATA[emissor.cedente]]></fieldDescription>
+	<field name="nomeBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.nomeBeneficiario]]></fieldDescription>
 	</field>
-	<field name="endereco" class="java.lang.String">
-		<fieldDescription><![CDATA[emissor.endereco]]></fieldDescription>
+	<field name="enderecoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.endereco.enderecoCompleto]]></fieldDescription>
 	</field>
-	<field name="nome" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.nome]]></fieldDescription>
+	<field name="nomePagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.nome]]></fieldDescription>
 	</field>
 	<field name="vencimento" class="java.util.Calendar">
 		<fieldDescription><![CDATA[datas.vencimento]]></fieldDescription>
@@ -59,8 +57,8 @@
 	<field name="valorCobrado" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[valorCobrado]]></fieldDescription>
 	</field>
-	<field name="agenciaECodigoCedente" class="java.lang.String">
-		<fieldDescription><![CDATA[agenciaECodigoCedente]]></fieldDescription>
+	<field name="agenciaECodigoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[agenciaECodigoBeneficiario]]></fieldDescription>
 	</field>
 	<field name="nossoNumeroECodDocumento" class="java.lang.String">
 		<fieldDescription><![CDATA[nossoNumeroECodDocumento]]></fieldDescription>
@@ -113,23 +111,23 @@
 	<field name="logo_banco" class="java.net.URL">
 		<fieldDescription><![CDATA[banco.image]]></fieldDescription>
 	</field>
-	<field name="endereco_1" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.endereco]]></fieldDescription>
+	<field name="logradouroPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.logradouro]]></fieldDescription>
 	</field>
-	<field name="cpf" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.cpf]]></fieldDescription>
+	<field name="documentoPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.documento]]></fieldDescription>
 	</field>
-	<field name="cep" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.cep]]></fieldDescription>
+	<field name="cepPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.cep]]></fieldDescription>
 	</field>
-	<field name="bairro" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.bairro]]></fieldDescription>
+	<field name="bairroPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.bairro]]></fieldDescription>
 	</field>
-	<field name="cidade" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.cidade]]></fieldDescription>
+	<field name="cidadePagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.cidade]]></fieldDescription>
 	</field>
-	<field name="uf" class="java.lang.String">
-		<fieldDescription><![CDATA[sacado.uf]]></fieldDescription>
+	<field name="ufPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.uf]]></fieldDescription>
 	</field>
 	<field name="localDePagamento" class="java.lang.String">
 		<fieldDescription><![CDATA[localDePagamento]]></fieldDescription>
@@ -157,7 +155,7 @@
 				<text><![CDATA[Nome do Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Celula" x="1" y="270" width="50" height="34" uuid="11132e1a-1557-4f37-8f1d-8ca6f59c23ea"/>
+				<reportElement style="Celula" x="1" y="270" width="69" height="34" uuid="11132e1a-1557-4f37-8f1d-8ca6f59c23ea"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -168,10 +166,10 @@
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CEDENTE : ]]></text>
+				<text><![CDATA[BENEFICIÁRIO : ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="51" y="270" width="503" height="16" uuid="1f153a12-3665-46bb-8314-8460522f1cbc"/>
+				<reportElement style="Txt_Normal" x="70" y="270" width="484" height="16" uuid="1f153a12-3665-46bb-8314-8460522f1cbc"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -179,10 +177,10 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="51" y="286" width="503" height="18" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
+				<reportElement style="Txt_Normal" x="70" y="286" width="484" height="18" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -190,7 +188,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{enderecoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="314" width="354" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
@@ -201,7 +199,7 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="355" y="304" width="100" height="10" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
@@ -247,7 +245,7 @@
 					<topPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
 				</box>
-				<text><![CDATA[Agência / Código do Cedente]]></text>
+				<text><![CDATA[Agência / Código do Beneficiário]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="178" y="330" width="177" height="10" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
@@ -280,7 +278,7 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="178" y="340" width="177" height="16" uuid="0a386697-5190-4930-a3e4-dada92f6d225"/>
@@ -306,7 +304,7 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="310" y="681" width="80" height="15" uuid="ea7afc65-37b8-4a52-9e2f-3800f91081ba"/>
@@ -346,7 +344,7 @@
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
-				<text><![CDATA[Cedente]]></text>
+				<text><![CDATA[Beneficiário]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="91" y="462" width="90" height="14" uuid="1a991ed5-70b4-46f8-9549-e5de61e7caf6"/>
@@ -421,7 +419,7 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<text><![CDATA[Sacado]]></text>
+				<text><![CDATA[Pagador]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" mode="Opaque" x="390" y="476" width="164" height="10" backcolor="#D2D2D2" uuid="a1fa60ef-f4ae-48fb-a27b-7ae0419acb17"/>
@@ -496,7 +494,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomePagador}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" mode="Transparent" x="390" y="524" width="164" height="10" uuid="3e79e7e1-ac06-44fb-bf46-7643a0041d11"/>
@@ -516,23 +514,23 @@
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="607" width="389" height="14" uuid="a59a60b8-e05f-48b1-815b-f6c1c412f909"/>
 				<textElement>
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{enderecoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="593" width="389" height="14" uuid="a11fdbc6-8f6d-4550-aac5-9d6ce5731f7f"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{cedente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" mode="Transparent" x="390" y="428" width="164" height="10" uuid="d17ced91-6210-4152-8e54-1533c773b6fa"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
-				<text><![CDATA[Agência / Código do Cedente]]></text>
+				<text><![CDATA[Agência / Código do Beneficiário]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_valor" x="390" y="582" width="164" height="14" uuid="e14e0139-d56b-482b-a7b5-9b3d76907a52"/>
@@ -567,7 +565,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{endereco_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{logradouroPagador}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="28" y="665" width="282" height="15" uuid="c3c1f800-6b03-4dd2-8c49-d6d3db49eab8"/>
@@ -603,7 +601,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{cep} + " - " + $F{bairro} + " - " + $F{cidade} + " " + $F{uf}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cepPagador} + " - " + $F{bairroPagador} + " - " + $F{cidadePagador} + " " + $F{ufPagador}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="101" y="486" width="75" height="14" uuid="521e7c14-d377-42dd-b770-a2ee0dad878b"/>
@@ -634,7 +632,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{agenciaECodigoCedente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="300" y="452" width="90" height="10" uuid="f030d527-74ed-46e3-9165-eb498cb0d8e7"/>
@@ -692,7 +690,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{documentoPagador}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="176" y="486" width="75" height="14" uuid="77ba1bbf-ecb9-4203-985f-1657ee237ca8"/>
@@ -700,7 +698,7 @@
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="1" y="583" width="389" height="10" uuid="c163d242-c866-4a9f-bd53-d50ae9ac24ee"/>
-				<text><![CDATA[Unidade Cedente]]></text>
+				<text><![CDATA[Beneficiário]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="390" y="462" width="164" height="14" uuid="22e7b6e7-e99d-485c-9dbd-129d8b1f2bd9"/>

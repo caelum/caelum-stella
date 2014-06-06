@@ -1,74 +1,79 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BancoDoBrasilTest {
 
 	private Boleto boleto;
 	private BancoDoBrasil banco;
-	private Emissor emissor;
+	private Beneficiario beneficiario;
 
 	@Before
 	public void setUp() {
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
 
-		this.emissor = Emissor.novoEmissor().comCedente("Caue").comAgencia("1824").comDigitoAgencia("4")
-				.comContaCorrente("76000").comNumeroConvenio("1207113").comDigitoContaCorrente("5").comCarteira("18")
+		this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Caue")
+				.comAgencia("1824").comDigitoAgencia("4")
+				.comCodigoBeneficiario("76000")
+				.comNumeroConvenio("1207113")
+				.comDigitoCodigoBeneficiario("5")
+				.comCarteira("18")
 				.comNossoNumero("9000206");
 
-		Sacado sacado = Sacado.novoSacado().comNome("Fulano");
+		Pagador pagador = Pagador.novoPagador().comNome("Fulano");
 
 		this.banco = new BancoDoBrasil();
 
-		this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(this.emissor).comSacado(sacado)
+		this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(this.beneficiario).comPagador(pagador)
 				.comValorBoleto("40.00").comNumeroDoDocumento("4323");
 	}
 
 	@Test
 	public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("1234");
-		String numeroFormatado = this.banco.getNumeroConvenioDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("1234");
+		
+		String numeroFormatado = this.banco.getNumeroConvenioFormatado(beneficiario);
 		assertEquals(6, numeroFormatado.length());
 		assertEquals("001234", numeroFormatado);
 	}
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206").comCarteira("11");
-		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("11");
+		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
 		assertEquals(11, numeroFormatado.length());
 		assertEquals("00009000206", numeroFormatado);
 	}
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206").comCarteira("18");
-		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("18");
+		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
 		assertEquals(17, numeroFormatado.length());
 		assertEquals("00000000009000206", numeroFormatado);
 	}
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
-		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comCarteira("1");
+		String numeroFormatado = this.banco.getCarteiraFormatado(beneficiario);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);
 	}
 
 	@Test
 	public void contaCorrenteFormatadaDeveTerOitoDigitos() {
-		String numeroFormatado = this.banco.getContaCorrenteDoEmissorFormatado(this.emissor);
+		String numeroFormatado = this.banco.getCodigoBeneficiarioFormatado(this.beneficiario);
 		assertEquals(8, numeroFormatado.length());
 		assertEquals("00076000", numeroFormatado);
 	}
@@ -182,8 +187,8 @@ public class BancoDoBrasilTest {
 		this.banco = new BancoDoBrasil();
 		this.boleto = this.boleto.comBanco(this.banco);
 		
-		Emissor emissor = Emissor.novoEmissor().comNumeroConvenio("2670001").comCarteira("17");
-		this.boleto.comEmissor(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("2670001").comCarteira("17");
+		this.boleto.comBeneficiario(beneficiario);
 
 		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
 	}

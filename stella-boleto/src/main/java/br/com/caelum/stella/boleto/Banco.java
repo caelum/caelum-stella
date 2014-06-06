@@ -52,18 +52,18 @@ public interface Banco extends Serializable {
 	 */
 	String geraCodigoDeBarrasPara(Boleto boleto);
 
-	String getContaCorrenteDoEmissorFormatado(Emissor emissor);
+	String getCodigoBeneficiarioFormatado(Beneficiario beneficiario);
 
-	String getCarteiraDoEmissorFormatado(Emissor emissor);
+	String getCarteiraFormatado(Beneficiario beneficiario);
 
-	String getNossoNumeroDoEmissorFormatado(Emissor emissor);
+	String getNossoNumeroFormatado(Beneficiario beneficiario);
 
-	String getAgenciaECodigoCedente(Emissor emissor);
+	String getAgenciaECodigoBeneficiario(Beneficiario beneficiario);
 
 	String getNumeroFormatadoComDigito();
 
 	GeradorDeDigito getGeradorDeDigito();
 
-	String getNossoNumeroECodDocumento(Boleto boleto);
+	String getNossoNumeroECodigoDocumento(Boleto boleto);
 
 }

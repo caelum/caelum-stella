@@ -1,21 +1,21 @@
 package br.com.caelum.stella.boleto.bancos;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.caelum.stella.boleto.Emissor;
-import br.com.caelum.stella.boleto.Sacado;
+import br.com.caelum.stella.boleto.Pagador;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ItauTest {
 	
 	private Boleto boleto;
 	private Itau banco = new Itau();
-	private Emissor emissor;
+	private Beneficiario beneficiario;
 
 	@Before
 	public void setUp() {
@@ -23,36 +23,36 @@ public class ItauTest {
 	    Datas datas = Datas.novasDatas().comDocumento(20, 03, 2013)
 	            .comProcessamento(20, 03, 2013).comVencimento(01, 04, 2013);  
 
-		    this.emissor = Emissor.novoEmissor().comCedente("Rodrigo Turini")
-	            .comAgencia("167").comCarteira("157").comContaCorrente("45145")
+		    this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Rodrigo Turini")
+	            .comAgencia("167").comCarteira("157").comCodigoBeneficiario("45145")
 	            .comNossoNumero("21897666").comDigitoNossoNumero("6");  
 
-		    Sacado sacado = Sacado.novoSacado().comNome("Paulo Silveira");
+		    Pagador pagador = Pagador.novoPagador().comNome("Paulo Silveira");
 		    
-		    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
-		    	.comBanco(banco).comSacado(sacado).comValorBoleto(2680.16)
+		    this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(beneficiario)
+		    	.comBanco(banco).comPagador(pagador).comValorBoleto(2680.16)
 		    	.comNumeroDoDocumento("575");
 	}
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOitoDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comNossoNumero("9000206");
-		String numeroFormatado = this.banco.getNossoNumeroDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206");
+		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
 		assertEquals(8, numeroFormatado.length());
 		assertEquals("09000206", numeroFormatado);
 	}
 
 	@Test
 	public void carteiraFormatadoDeveTerTresDigitos() {
-		Emissor emissor = Emissor.novoEmissor().comCarteira("1");
-		String numeroFormatado = this.banco.getCarteiraDoEmissorFormatado(emissor);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comCarteira("1");
+		String numeroFormatado = this.banco.getCarteiraFormatado(beneficiario);
 		assertEquals(3, numeroFormatado.length());
 		assertEquals("001", numeroFormatado);
 	}
 
 	@Test
 	public void contaCorrenteFormatadaDeveTerCincoDigitos() {
-		String numeroFormatado = this.banco.getContaCorrenteDoEmissorFormatado(this.emissor);
+		String numeroFormatado = this.banco.getCodigoBeneficiarioFormatado(this.beneficiario);
 		assertEquals(5, numeroFormatado.length());
 		assertEquals("45145", numeroFormatado);
 	}
@@ -77,14 +77,14 @@ public class ItauTest {
 		 Datas datas = Datas.novasDatas().comDocumento(20, 03, 2014)
 		            .comProcessamento(20, 03, 2014).comVencimento(10, 04, 2014); 
 		
-		this.emissor = Emissor.novoEmissor().comCedente("Mario Amaral")
-				.comAgencia("8462").comCarteira("174").comContaCorrente("05825")
+		this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Mario Amaral")
+				.comAgencia("8462").comCarteira("174").comCodigoBeneficiario("05825")
 				.comNossoNumero("00015135").comDigitoNossoNumero("6");
 		
-		Sacado sacado = Sacado.novoSacado().comNome("Rodrigo de Sousa");
+		Pagador pagador = Pagador.novoPagador().comNome("Rodrigo de Sousa");
 	    
-	    this.boleto = Boleto.novoBoleto().comDatas(datas).comEmissor(emissor)
-	    	.comBanco(banco).comSacado(sacado).comValorBoleto(2680.16)
+	    this.boleto = Boleto.novoBoleto().comDatas(datas).comBeneficiario(beneficiario)
+	    	.comBanco(banco).comPagador(pagador).comValorBoleto(2680.16)
 	    	.comNumeroDoDocumento("575");
 		 
 		this.boleto = this.boleto.comBanco(this.banco);

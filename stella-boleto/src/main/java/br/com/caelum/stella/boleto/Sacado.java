@@ -7,8 +7,9 @@ import java.io.Serializable;
  * pelo boleto gerado.
  * 
  * @author Cauê Guerra
- * 
+ * @deprecated
  */
+@Deprecated
 public class Sacado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
