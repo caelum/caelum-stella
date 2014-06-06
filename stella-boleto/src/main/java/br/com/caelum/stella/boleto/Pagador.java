@@ -3,8 +3,10 @@ package br.com.caelum.stella.boleto;
 import java.io.Serializable;
 
 /**
- * Interface com métodos do pagador<br/> Pagador é a pessoa/empresa que vai pagar
+ * Pagador é a pessoa/empresa que vai pagar
  * pelo boleto gerado.
+ * 
+ * Antigamente este componente era chamado <b>Sacado</b>.
  * 
  */
 public class Pagador implements Serializable {
@@ -21,7 +23,7 @@ public class Pagador implements Serializable {
     /**
      * Cria um novo pagador
      * 
-     * @return
+     * @return this
      */
     public static Pagador novoPagador() {
         return new Pagador();
@@ -30,7 +32,7 @@ public class Pagador implements Serializable {
     /**
      * Devolve o nome do pagador
      * 
-     * @return
+     * @return nome do pagador
      */
     public String getNome() {
         return this.nome;
@@ -39,8 +41,8 @@ public class Pagador implements Serializable {
     /**
      * Associa um nome ao pagador
      * 
-     * @param nome
-     * @return
+     * @param nome nome do pagador
+     * @return this
      */
     public Pagador comNome(String nome) {
         this.nome = nome;
@@ -50,7 +52,7 @@ public class Pagador implements Serializable {
     /**
      * Devolve o CPF/CNPJ do pagador
      * 
-     * @return
+     * @return this
      */
     public String getDocumento() {
         return this.documento;
@@ -59,8 +61,8 @@ public class Pagador implements Serializable {
     /**
      * Associa um CPF/CNPJ ao pagador
      * 
-     * @param 
-     * @return
+     * @param documento do pagador
+     * @return this
      */
     public Pagador comDocumento(String documento) {
         this.documento = documento;
@@ -70,7 +72,7 @@ public class Pagador implements Serializable {
     /**
      * Devolve o endereço do pagador
      * 
-     * @return
+     * @return endereço do pagador
      */
     public Endereco getEndereco() {
         return this.endereco;
@@ -79,8 +81,8 @@ public class Pagador implements Serializable {
     /**
      * Associa um endereço ao pagador
      * 
-     * @param endereco
-     * @return
+     * @param endereco do pagador
+     * @return this
      */
     public Pagador comEndereco(Endereco endereco) {
         this.endereco = endereco;
