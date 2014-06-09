@@ -105,15 +105,9 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>
-											org.codehaus.mojo
-										</groupId>
-										<artifactId>
-											jasperreports-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.0-beta-2,)
-										</versionRange>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>jasperreports-maven-plugin</artifactId>
+										<versionRange>[1.0-beta-2,)</versionRange>
 										<goals>
 											<goal>compile-reports</goal>
 										</goals>
@@ -142,6 +136,9 @@
 				<version>1.0-beta-2</version>
 					<configuration>
 						<sourceDirectory>src/main/resources</sourceDirectory>
+						<maven.compiler.source>1.6</maven.compiler.source>
+  						<maven.compiler.target>1.6</maven.compiler.target>
+  						<compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
 					</configuration>
 					<dependencies>
 						<dependency>
