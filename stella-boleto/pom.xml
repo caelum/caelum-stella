@@ -22,7 +22,7 @@
 	    <dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.5.0</version>
+			<version>5.5.2</version>
 			<exclusions>
 				<exclusion>
 					<groupId>jfree</groupId>
@@ -51,7 +51,15 @@
 				<exclusion>
 					<groupId>xml-apis</groupId>
 					<artifactId>*</artifactId>
-				</exclusion>	
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.lucene</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.olap4j</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		
