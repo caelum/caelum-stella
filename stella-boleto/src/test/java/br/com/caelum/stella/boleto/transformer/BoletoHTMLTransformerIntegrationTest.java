@@ -1,4 +1,4 @@
-package br.com.caelum.stella.integration.boleto.transformer;
+package br.com.caelum.stella.boleto.transformer;
 
 import static org.junit.Assert.assertTrue;
 
@@ -28,7 +28,7 @@ import br.com.caelum.stella.boleto.transformer.GeradorDeBoletoHTML;
  * @author Alberto
  * 
  */
-public class BoletoHTMLTransformerIntegrationTest extends DefaultIntegrationTest{
+public class BoletoHTMLTransformerIntegrationTest{
 	
 	private static final String FILE_NAME = "arquivo.html";
 	

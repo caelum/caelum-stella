@@ -1,4 +1,4 @@
-package br.com.caelum.stella.integration.boleto.transformer;
+package br.com.caelum.stella.boleto.transformer;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
  * Teste de INTEGRACAO apesar de estar no de unidade FIXME
  * 
  */
-public class BoletoTransformerIntegrationTest extends DefaultIntegrationTest{
+public class BoletoTransformerIntegrationTest{
 
 	@Before
 	public void setUp() {
