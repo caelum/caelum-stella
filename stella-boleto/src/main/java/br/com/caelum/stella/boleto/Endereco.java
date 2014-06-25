@@ -37,11 +37,11 @@ public class Endereco implements Serializable {
 	 * @return endereço formatado
 	 */
 	public String getEnderecoCompleto(){
-		return logradouro
-				+ (bairro != null ? ", " + bairro : "")
-				+ (cep != null ? " " + cep : "")
-				+ (cidade != null ? " - " + cidade : "")
-				+ (uf != null ? " - " + uf : ""); 
+		return (logradouro != null ? logradouro + ", " : "")
+				+ (bairro != null ? bairro + " " : "")
+				+ (cep != null ?  cep + " - " : "")
+				+ (cidade != null ?  cidade + " - " : "")
+				+ (uf != null ? uf : ""); 
 	}
 	
 	/**
