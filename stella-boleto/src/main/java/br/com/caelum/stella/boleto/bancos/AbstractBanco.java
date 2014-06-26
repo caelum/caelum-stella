@@ -1,5 +1,6 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.prefixNotNullStringOrDefault;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
@@ -29,9 +30,10 @@ public abstract class AbstractBanco implements Banco {
 	public String getAgenciaECodigoBeneficiario(Beneficiario beneficiario) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(beneficiario.getAgenciaFormatada());
-		builder.append("-").append(beneficiario.getDigitoAgencia());
+		builder.append(prefixNotNullStringOrDefault(beneficiario.getDigitoAgencia(), "", "-"));
+		builder.append("/");
 		builder.append(getCodigoBeneficiarioFormatado(beneficiario));
-		builder.append("-").append(beneficiario.getDigitoCodigoBeneficiario());
+		builder.append(prefixNotNullStringOrDefault(beneficiario.getDigitoCodigoBeneficiario(), "", "-"));	
 		return builder.toString();
 	}
 

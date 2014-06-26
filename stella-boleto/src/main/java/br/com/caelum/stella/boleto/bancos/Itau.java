@@ -1,8 +1,10 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.prefixNotNullStringOrDefault;
+
 import java.net.URL;
 
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
@@ -75,7 +77,7 @@ public class Itau extends AbstractBanco implements Banco {
 		StringBuilder builder = new StringBuilder();
 		builder.append(beneficiario.getAgenciaFormatada()).append("/");
 		builder.append(getCodigoBeneficiarioFormatado(beneficiario));
-		builder.append("-").append(beneficiario.getDigitoCodigoBeneficiario());
+		builder.append(prefixNotNullStringOrDefault(beneficiario.getDigitoCodigoBeneficiario(),"","-"));	
 		return builder.toString();
 	}
 

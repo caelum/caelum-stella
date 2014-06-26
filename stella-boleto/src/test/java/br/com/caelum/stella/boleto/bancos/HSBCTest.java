@@ -1,5 +1,10 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -10,9 +15,6 @@ import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Pagador;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class HSBCTest {
 	
@@ -77,5 +79,14 @@ public class HSBCTest {
 	@Test
 	public void testGetImage() throws IOException {
 		assertNotNull(this.banco.getImage());
+	}
+	
+	@Test
+	public void naoAparecerNuloEmAgenciaECodigoBeneficiarioFormatado() throws Exception {
+		this.banco = new HSBC();
+		
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comAgencia("1234").comDigitoAgencia(null).comCodigoBeneficiario("1234567").comDigitoCodigoBeneficiario(null);
+		
+		assertThat(banco.getAgenciaECodigoBeneficiario(beneficiario), is("1234567"));
 	}
 }
