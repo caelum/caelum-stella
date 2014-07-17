@@ -129,8 +129,9 @@ public class Beneficiario implements Serializable {
 		return documento;
 	}
 
-	public void comDocumento(String documento) {
+	public Beneficiario comDocumento(String documento) {
 		this.documento = documento;
+		return this;
 	}
 
 }
