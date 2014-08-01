@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="379"/>
+	<property name="ireport.y" value="667"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Celula" forecolor="#646464" fontName="Arial" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
@@ -188,7 +188,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{enderecoBeneficiario}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{enderecoBeneficiario} == null ? "" : $F{enderecoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="314" width="354" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
@@ -516,7 +516,7 @@
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{enderecoBeneficiario}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{enderecoBeneficiario} == null ? "" : $F{enderecoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="593" width="389" height="14" uuid="a11fdbc6-8f6d-4550-aac5-9d6ce5731f7f"/>
@@ -601,7 +601,7 @@
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textFieldExpression><![CDATA[$F{cepPagador} + " - " + $F{bairroPagador} + " - " + $F{cidadePagador} + " " + $F{ufPagador}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{cepPagador} == null ? "" : $F{cepPagador} + " - ") + ($F{bairroPagador} == null ? "" : $F{bairroPagador} + " - ") + ($F{cidadePagador} == null ? "" : $F{cidadePagador} + " ") + ($F{ufPagador} == null ? "" : $F{ufPagador})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="101" y="486" width="75" height="14" uuid="521e7c14-d377-42dd-b770-a2ee0dad878b"/>

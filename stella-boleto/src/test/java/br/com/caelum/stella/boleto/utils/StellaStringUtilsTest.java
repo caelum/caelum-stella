@@ -2,6 +2,9 @@ package br.com.caelum.stella.boleto.utils;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class StellaStringUtilsTest {
@@ -35,5 +38,37 @@ public class StellaStringUtilsTest {
 		assertEquals("00000", result);
 	}
 	
-
+	@Test
+	public void deveRetornarUmaStringPreenchidaAoInvesDeNullSemPrefixo() throws Exception {
+		String value = null;
+		String substitute = "123";
+		String result = StellaStringUtils.prefixNotNullStringOrDefault(value, substitute, "123");
+		assertThat(result, notNullValue());
+		assertThat(result, is(substitute));
+	}
+	
+	@Test
+	public void naoDeveRetornarUmaStringSubstitutaQuandoValorNaoEstiverNuloComPrefixo() throws Exception {
+		String value = "abc";
+		String substitute = "123"; 
+		String result = StellaStringUtils.prefixNotNullStringOrDefault(value, substitute, "def");
+		assertThat(result, is("def"+value));
+	}
+	
+	@Test
+	public void deveRetornarUmaStringPreenchidaAoInvesDeNullSemSufixo() throws Exception {
+		String value = null;
+		String substitute = "123";
+		String result = StellaStringUtils.suffixNotNullStringOrDefault(value, substitute, "123");
+		assertThat(result, notNullValue());
+		assertThat(result, is(substitute));
+	}
+	
+	@Test
+	public void naoDeveRetornarUmaStringSubstitutaQuandoValorNaoEstiverNuloComSufixo() throws Exception {
+		String value = "abc";
+		String substitute = "123"; 
+		String result = StellaStringUtils.suffixNotNullStringOrDefault(value, substitute, "def");
+		assertThat(result, is(value+"def"));
+	}
 }

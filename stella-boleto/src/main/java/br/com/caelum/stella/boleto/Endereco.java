@@ -2,6 +2,7 @@ package br.com.caelum.stella.boleto;
 
 import java.io.Serializable;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.suffixNotNullStringOrDefault;
 
 /**
  * Dados do endereço
@@ -37,11 +38,11 @@ public class Endereco implements Serializable {
 	 * @return endereço formatado
 	 */
 	public String getEnderecoCompleto(){
-		return logradouro
-				+ (bairro != null ? ", " + bairro : "")
-				+ (cep != null ? " " + cep : "")
-				+ (cidade != null ? " - " + cidade : "")
-				+ (uf != null ? " - " + uf : ""); 
+		return (suffixNotNullStringOrDefault(logradouro, "", ", "))
+				+ (suffixNotNullStringOrDefault(bairro, "", " "))
+				+ (suffixNotNullStringOrDefault(cep, "", " - "))
+				+ (suffixNotNullStringOrDefault(cidade, "", " - "))
+				+ (suffixNotNullStringOrDefault(uf, "", ""));  
 	}
 	
 	/**

@@ -84,4 +84,14 @@ public class SantanderTest {
 		
 		assertThat(banco.getNossoNumeroFormatado(beneficiario), is("3827130004722"));
 	}
+	
+	@Test
+	public void naoAparecerNuloEmAgenciaECodigoBeneficiarioFormatado() throws Exception {
+		this.banco = new Santander();
+		
+		beneficiario.comAgencia("12345").comDigitoAgencia(null).comNumeroConvenio("1234567");
+		
+		assertThat(banco.getAgenciaECodigoBeneficiario(beneficiario), is("12345/1234567"));
+	}
+
 }
