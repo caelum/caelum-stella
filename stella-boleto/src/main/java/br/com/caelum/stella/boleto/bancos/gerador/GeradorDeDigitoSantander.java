@@ -1,5 +1,8 @@
 package br.com.caelum.stella.boleto.bancos.gerador;
 
+import br.com.caelum.stella.DigitoPara;
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 public class GeradorDeDigitoSantander extends GeradorDeDigitoPadrao {
 
 	private static final long serialVersionUID = 1L;
@@ -41,4 +44,23 @@ public class GeradorDeDigitoSantander extends GeradorDeDigitoPadrao {
 			return 10 - resto;
 		}
 	}
+	
+	public String calculaDVNossoNumero(String nossoNumero) {
+		if (nossoNumero == null ||  nossoNumero.length() > 12) {
+			throw new IllegalArgumentException("Nosso Número inválido: " + nossoNumero);
+		}
+		DigitoPara digitoPara = new DigitoPara(leftPadWithZeros(nossoNumero, 12));
+		int digito = Integer.parseInt(digitoPara.comMultiplicadoresDeAte(2,9)
+							.mod(11)
+							.trocandoPorSeEncontrar("0", 1)
+							.trocandoPorSeEncontrar("1", 10)
+							.calcula());
+		
+		if (digito > 1) {
+			digito = 11-digito;
+		}
+		
+		return String.valueOf(digito);
+	}
+
 }

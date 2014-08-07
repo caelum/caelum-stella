@@ -1,13 +1,13 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
+
 import java.net.URL;
 
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
-import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigito;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoSantander;
-import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 public class Santander implements Banco {
 
@@ -15,7 +15,7 @@ public class Santander implements Banco {
 
 	private final static String NUMERO_SANTANDER = "033";
 	private final static String DIGITO_SANTANDER = "7";
-	private GeradorDeDigito gdivSantander = new GeradorDeDigitoSantander();
+	private GeradorDeDigitoSantander gdivSantander = new GeradorDeDigitoSantander();
 
 	@Override
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
@@ -51,10 +51,11 @@ public class Santander implements Banco {
 
 	@Override
 	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
+		String nossoNumero = beneficiario.getNossoNumero();
 		if (beneficiario.getDigitoNossoNumero() != null) {
-			return leftPadWithZeros(beneficiario.getNossoNumero()+beneficiario.getDigitoNossoNumero(), 13);
-		}
-		return leftPadWithZeros(beneficiario.getNossoNumero(), 13);
+			return leftPadWithZeros(nossoNumero+beneficiario.getDigitoNossoNumero(), 13);
+		} 
+		return leftPadWithZeros(nossoNumero+getGeradorDeDigito().calculaDVNossoNumero(nossoNumero), 13);
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class Santander implements Banco {
 	}
  
 	@Override
-	public GeradorDeDigito getGeradorDeDigito() {
+	public GeradorDeDigitoSantander getGeradorDeDigito() {
 		return gdivSantander;
 	}
 	
