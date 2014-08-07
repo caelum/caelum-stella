@@ -1,5 +1,10 @@
 package br.com.caelum.stella.boleto.bancos;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,9 +12,6 @@ import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Pagador;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class ItauTest {
 	
@@ -97,5 +99,14 @@ public class ItauTest {
 	@Test
 	public void testGetImage() {
 		assertNotNull(this.banco.getImage());
+	}
+	
+	@Test
+	public void naoAparecerNuloEmAgenciaECodigoBeneficiarioFormatado() throws Exception {
+		this.banco = new Itau();
+		
+		beneficiario.comAgencia("1234").comDigitoAgencia(null).comCodigoBeneficiario("1234567").comDigitoCodigoBeneficiario(null);
+		
+		assertThat(banco.getAgenciaECodigoBeneficiario(beneficiario), is("1234/1234567"));
 	}
 }
