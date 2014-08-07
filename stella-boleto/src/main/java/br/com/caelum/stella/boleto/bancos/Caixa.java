@@ -24,36 +24,30 @@ public class Caixa extends AbstractBanco implements Banco {
 
 		if (carteiraDoEmissor.equals("1")) {
 			campoLivre.append(carteiraDoEmissor);
-			campoLivre.append(leftPadWithZeros(
-					beneficiario.getCodigoBeneficiario(), 6));
+			campoLivre.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 6));
 			campoLivre.append(getNossoNumeroFormatado(beneficiario));
 		} else if (carteiraDoEmissor.equals("2")) {
 			String nossoNumeroCompleto = getNossoNumeroFormatado(beneficiario);
-			campoLivre.append(leftPadWithZeros(
-					beneficiario.getCodigoBeneficiario(), 6));
+			campoLivre.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 6));
 			campoLivre.append(beneficiario.getDigitoCodigoBeneficiario());
 			campoLivre.append(nossoNumeroCompleto.substring(2, 5));
 			campoLivre.append(nossoNumeroCompleto.substring(0, 1));
 			campoLivre.append(nossoNumeroCompleto.substring(5, 8));
 			campoLivre.append(nossoNumeroCompleto.substring(1, 2));
 			campoLivre.append(nossoNumeroCompleto.substring(8));
-			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre
-					.toString()));
+			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
 		} else if (carteiraDoEmissor.equals("24")) {
 			String nossoNumeroCompleto = getNossoNumeroFormatado(beneficiario);
-			campoLivre.append(leftPadWithZeros(
-					beneficiario.getCodigoBeneficiario(), 6));
+			campoLivre.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 6));
 			campoLivre.append(beneficiario.getDigitoCodigoBeneficiario());
 			campoLivre.append(nossoNumeroCompleto.substring(2, 5));
 			campoLivre.append(nossoNumeroCompleto.substring(0, 1));
 			campoLivre.append(nossoNumeroCompleto.substring(5, 8));
 			campoLivre.append(nossoNumeroCompleto.substring(1, 2));
 			campoLivre.append(nossoNumeroCompleto.substring(8));
-			campoLivre.append(geradorDeDigito
-					.geraDigitoMod11AceitandoRestoZero(campoLivre.toString()));
+			campoLivre.append(geradorDeDigito.geraDigitoMod11AceitandoRestoZero(campoLivre.toString()));
 		} else {
-			throw new IllegalArgumentException(
-					"A carteira digitada não é suportada: " + carteiraDoEmissor);
+			throw new IllegalArgumentException("A carteira digitada não é suportada: " + carteiraDoEmissor);
 		}
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}

@@ -12,13 +12,13 @@ public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 	}
 
 	@Override
-	public int geraDigitoMod(String codigoDeBarras, int inicio, int fim,
-			int numMOD) {
+	public int geraDigitoMod(String codigoDeBarras, int inicio, int fim, int numMOD) {
 		return Integer.valueOf(new DigitoPara(codigoDeBarras)
-				.comMultiplicadoresDeAte(inicio, fim).complementarAoModulo()
-				.trocandoPorSeEncontrar("1", 0, 1, 10, 11).mod(numMOD)
-				.calcula());
-
+					.comMultiplicadoresDeAte(inicio, fim)
+					.complementarAoModulo()
+					.trocandoPorSeEncontrar("1", 0, 1, 10, 11)
+					.mod(numMOD)
+					.calcula());
 	}
 
 	@Override
@@ -52,8 +52,11 @@ public class GeradorDeDigitoPadrao implements GeradorDeDigito {
 	public int geraDigitoModAceitandoRestoZero(String codigoDeBarras,
 			int inicio, int fim, int numMod) {
 		return Integer.valueOf(new DigitoPara(codigoDeBarras)
-				.comMultiplicadoresDeAte(inicio, fim).complementarAoModulo()
-				.trocandoPorSeEncontrar("0", 0, 10, 11).mod(numMod).calcula());
+				.comMultiplicadoresDeAte(inicio, fim)
+				.complementarAoModulo()
+				.trocandoPorSeEncontrar("0", 0, 10, 11)
+				.mod(numMod)
+				.calcula());
 	}
 
 }

@@ -47,8 +47,7 @@ public class CaixaCarteira24Test {
 
 	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario()
-				.comCarteira("24");
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comCarteira("24");
 		String numeroFormatado = this.banco.getCarteiraFormatado(beneficiario);
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("24", numeroFormatado);
@@ -67,17 +66,14 @@ public class CaixaCarteira24Test {
 	@Test
 	public void testLinhaDoBancoCaixaComCarteiraSIGCBSimples() {
 		GeradorDeLinhaDigitavel gerador = new GeradorDeLinhaDigitavel();
-		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(
-				this.boleto);
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 		String linha = "10495.03665  23000.200040  00000.000604  8  61200000000123";
-		assertEquals(linha,
-				gerador.geraLinhaDigitavelPara(codigoDeBarras, this.banco));
+		assertEquals(linha, gerador.geraLinhaDigitavelPara(codigoDeBarras, this.banco));
 	}
 
 	@Test
 	public void testCodigoDeBarraDoBancoCaixaComCarteiraSIGCBSimples() {
-		assertEquals("10498612000000001235036623000200040000000060",
-				this.banco.geraCodigoDeBarrasPara(this.boleto));
+		assertEquals("10498612000000001235036623000200040000000060", this.banco.geraCodigoDeBarrasPara(this.boleto));
 	}
 
 	@Test
