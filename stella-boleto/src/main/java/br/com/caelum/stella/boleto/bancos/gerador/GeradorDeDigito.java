@@ -16,4 +16,8 @@ public interface GeradorDeDigito extends Serializable {
 
 	int geraDigitoBloco3(String bloco);
 
+	int geraDigitoMod11AceitandoRestoZero(String codigoDeBarras);
+
+	int geraDigitoModAceitandoRestoZero(String codigoDeBarras, int inicio, int fim, int numMod);
+
 }
