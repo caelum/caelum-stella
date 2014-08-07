@@ -32,7 +32,8 @@ public class SantanderTest {
 
 	    this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("PETROBRAS")
             .comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
-            .comNumeroConvenio("5260965").comNossoNumero("1056137495014");  
+            .comNumeroConvenio("5260965").comNossoNumero("105613749501")
+            .comDigitoNossoNumero("4");  
 
 	    Pagador pagador = Pagador.novoPagador().comNome("PAULO SILVEIRA") ; 
 	    
@@ -56,7 +57,7 @@ public class SantanderTest {
 	}
 
 	@Test
-	public void testNossoNumeroDoEmissorFormatado() {
+	public void testNossoNumeroDoBeneficiarioFormatado() {
 		this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("BOTICARIO")
 				.comAgencia("6790").comDigitoAgencia("0").comCarteira("102")
 				.comCodigoBeneficiario("5260965").comNossoNumero("12").comDigitoNossoNumero("4");
@@ -92,6 +93,64 @@ public class SantanderTest {
 		beneficiario.comAgencia("12345").comDigitoAgencia(null).comNumeroConvenio("1234567");
 		
 		assertThat(banco.getAgenciaECodigoBeneficiario(beneficiario), is("12345/1234567"));
+	}
+
+	@Test	
+	public void testRetornarDigitoNossoNumero() throws Exception {
+		String[][] parametros = { 
+				{ "566612457800", "2" },
+				{ "566612457801", "0" },
+				{ "566612457802", "9" },
+				{ "566612457803", "7" },
+				{ "566612457804", "5" },
+				{ "566612457810", "0" }
+		};
+
+		for (String[] parametro : parametros) {
+			String nossoNumero = parametro[0];
+			beneficiario.comNossoNumero(nossoNumero);
+			String digito = banco.getGeradorDeDigito().calculaDVNossoNumero(beneficiario.getNossoNumero());
+			String digitoEsperado = parametro[1];
+			assertThat("Para o nosso número " + nossoNumero, digito, is(digitoEsperado));
+		}
+	}
+	
+	@Test
+	public void testLancarExcecaoQuandoNossoNumeroForMaiorQueDoze() throws Exception {
+		excecao.expect(IllegalArgumentException.class);
+		beneficiario.comNossoNumero("1056137495014");
+		banco.getGeradorDeDigito().calculaDVNossoNumero(beneficiario.getNossoNumero());
+	}
+	
+	@Test
+	public void testLancarExcecaoQuandoNossoNumeroForNulo() throws Exception {
+		excecao.expect(IllegalArgumentException.class);
+		beneficiario.comNossoNumero(null);
+		banco.getGeradorDeDigito().calculaDVNossoNumero(beneficiario.getNossoNumero());
+	}
+	
+	@Test
+	public void testRetornarDigitoQuandoNossoNumeroForMenorQueDoze() throws Exception {
+		beneficiario.comNossoNumero("1");
+		String digito = banco.getGeradorDeDigito().calculaDVNossoNumero(beneficiario.getNossoNumero());
+		assertThat(digito, is("9"));
+	}
+	
+	@Test
+	public void testAdicionarDVNossoNumeroQuandoOMesmoEstaNulo() throws Exception {
+		String nossoNumero = "105613749501";
+		String dvNossoNumero = "4";
+		beneficiario.comNossoNumero(nossoNumero);
+		assertThat(nossoNumero+dvNossoNumero, is(banco.getNossoNumeroFormatado(beneficiario)));
+	}
+	
+	@Test
+	public void testAdicionarDVNossoNumeroQuandoOMesmoEstaPreenchido() throws Exception {
+		String nossoNumero = "566612457803";
+		String dvNossoNumero = "5";
+		beneficiario.comNossoNumero(nossoNumero);
+		beneficiario.comDigitoNossoNumero(dvNossoNumero);
+		assertThat(nossoNumero+dvNossoNumero, is(banco.getNossoNumeroFormatado(beneficiario)));
 	}
 
 }
