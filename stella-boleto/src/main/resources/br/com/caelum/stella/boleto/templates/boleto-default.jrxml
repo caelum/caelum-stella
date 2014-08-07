@@ -152,7 +152,7 @@
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
-				<text><![CDATA[Nome do Cliente]]></text>
+				<text><![CDATA[Nome do Beneficiário]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Celula" x="1" y="270" width="69" height="34" uuid="11132e1a-1557-4f37-8f1d-8ca6f59c23ea"/>
