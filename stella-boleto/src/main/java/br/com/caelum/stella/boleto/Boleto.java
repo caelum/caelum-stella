@@ -280,8 +280,8 @@ public class Boleto implements Serializable {
 
 	/**
 	 * Beneficiário do boleto
-	 * @param beneficiario
-	 * @return this
+	 * @param beneficiario beneficiário do Boleto
+	 * @return this este boleto.	
 	 */
 	public Boleto comBeneficiario(Beneficiario beneficiario) {
 		this.beneficiario = beneficiario;

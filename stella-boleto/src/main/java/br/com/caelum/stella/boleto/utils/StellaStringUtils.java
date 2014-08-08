@@ -24,6 +24,7 @@ public class StellaStringUtils {
 	 * @param str Campo desejado para fazer a verificação.
 	 * @param defaultStr Caso a str for nula, esse campo será usado no lugar. 
 	 * @param prefix Adicionar um prefixo apenas se a str não for nula.
+	 * @return string tratada
 	 */
 	public static String prefixNotNullStringOrDefault (String str, String defaultStr, String prefix) {
 		if ( str == null) {
@@ -36,7 +37,8 @@ public class StellaStringUtils {
 	 * Método para auxiliar a verificação de String nula e adicionar um prefixo caso não seja.
 	 * @param str Campo desejado para fazer a verificação.
 	 * @param defaultStr Caso a str for nula, esse campo será usado no lugar. 
-	 * @param prefix Adicionar um sufixo apenas se a str não for nula.
+	 * @param suffix Adicionar um sufixo apenas se a str não for nula.
+	 * @return string tratada
 	 */
 	public static String suffixNotNullStringOrDefault (String str, String defaultStr, String suffix) {
 		if ( str == null) {
