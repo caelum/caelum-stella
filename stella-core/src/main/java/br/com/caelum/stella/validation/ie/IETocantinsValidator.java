@@ -10,11 +10,9 @@ import br.com.caelum.stella.SimpleMessageProducer;
  * <p>
  * Documentação de referência:
  * </p>
- * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
- * Fazenda do Estado de São Paulo</a> <a
- * href="http://www.sintegra.gov.br/Cad_Estados/cad_TO.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a> <a
- * href="http://www2.sefaz.to.gov.br/Servicos/Sintegra/calinse.htm"> ESTADO DO
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_TO.html">SINTEGRA - ROTEIRO
+ * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a> <br>
+ * <a href="http://www2.sefaz.to.gov.br/Servicos/Sintegra/calinse.htm"> ESTADO DO
  * TOCANTINS SECRETARIA DA FAZENDA ASSESSORIA DE MODERNIZAÇÃO E INFORMAÇÃO</a>
  * 
  * @author Leonardo Bessa
@@ -22,9 +20,9 @@ import br.com.caelum.stella.SimpleMessageProducer;
  */
 public class IETocantinsValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("29(\\.\\d{3}){2}\\-\\d{1}");
+    public static final Pattern FORMATED = Pattern.compile("\\d{2}(.\\d{2}.)?(\\.)?\\d{3}\\.\\d{3}\\-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("29\\d{7}");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{9}|\\d{11})");
 
 
     /**
@@ -64,12 +62,21 @@ public class IETocantinsValidator extends AbstractIEValidator {
 	protected boolean hasValidCheckDigits(String unformattedIE) {
 		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
 		String digito = unformattedIE.substring(unformattedIE.length() - 1);
+		
+		if(iESemDigito.length() == 10){
+			iESemDigito = removeCaracteresIgnorados(iESemDigito);
+		}
+		
 		String digitoCalculado = calculaDigito(iESemDigito);
-
 		return digito.equals(digitoCalculado);
+	}
+
+	private String removeCaracteresIgnorados(String iESemDigito) {
+		return iESemDigito.substring(0,2) + iESemDigito.substring(4);
 	}
 
 	private String calculaDigito(String iESemDigito) {
 		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11).calcula();
 	}
+	
 }
