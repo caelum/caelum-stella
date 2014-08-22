@@ -96,7 +96,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
-		if (beneficiario.getCarteira().equals(CARTEIRA_18)) {
+		if (beneficiario.getCarteira().equals(CARTEIRA_18) || beneficiario.getCarteira().equals(CARTEIRA_16)) {
 			return leftPadWithZeros(beneficiario.getNossoNumero(), 17);
 		} else {
 			return leftPadWithZeros(beneficiario.getNossoNumero(), 11);
