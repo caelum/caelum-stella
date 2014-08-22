@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="667"/>
+	<property name="ireport.y" value="387"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Celula" forecolor="#646464" fontName="Arial" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
 		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
@@ -42,6 +42,9 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="documentoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.documento]]></fieldDescription>
+	</field>
 	<field name="nomeBeneficiario" class="java.lang.String">
 		<fieldDescription><![CDATA[beneficiario.nomeBeneficiario]]></fieldDescription>
 	</field>
@@ -148,7 +151,7 @@
 		<band height="746" splitType="Prevent">
 			<property name="local_mesure_unitheight" value="cm"/>
 			<staticText>
-				<reportElement style="Celula" x="1" y="304" width="354" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
+				<reportElement style="Celula" x="1" y="304" width="254" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
@@ -191,7 +194,7 @@
 				<textFieldExpression><![CDATA[$F{enderecoBeneficiario} == null ? "" : $F{enderecoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="1" y="314" width="354" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
+				<reportElement style="Txt_Normal" x="1" y="314" width="254" height="16" uuid="b84b6839-3dbd-445f-8705-3b8052763edc"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -296,7 +299,7 @@
 				<textFieldExpression><![CDATA[$F{especieDocumento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Txt_Normal" x="1" y="438" width="389" height="14" uuid="abcefd43-93dc-44be-a707-7d3cfce23a63"/>
+				<reportElement style="Txt_Normal" x="1" y="438" width="289" height="14" uuid="abcefd43-93dc-44be-a707-7d3cfce23a63"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.0"/>
@@ -340,7 +343,7 @@
 				<textFieldExpression><![CDATA[$F{linhaDigitavel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Celula" x="1" y="428" width="389" height="10" uuid="8117e3e7-4e84-4b30-b71f-4b251a9d81dd"/>
+				<reportElement style="Celula" x="1" y="428" width="289" height="10" uuid="8117e3e7-4e84-4b30-b71f-4b251a9d81dd"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.0"/>
 				</box>
@@ -732,6 +735,42 @@
 				</box>
 				<text><![CDATA[]]></text>
 			</staticText>
+			<staticText>
+				<reportElement style="Celula" x="290" y="428" width="100" height="10" uuid="32961fa0-ff37-4850-a1a8-7b5aaf7c14b8"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[CNPJ/CPF]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="290" y="438" width="100" height="14" uuid="d3c6e98e-8a8e-480f-a553-b89bac0b1c26"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{documentoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" x="255" y="304" width="100" height="10" uuid="c5964a7c-a133-4371-988e-0bb2ca62b22a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[CNPJ/CPF]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" x="255" y="314" width="100" height="16" uuid="8b328735-2819-44cb-aaba-11f10ae6b727"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{documentoBeneficiario}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
