@@ -1,15 +1,17 @@
 package br.com.caelum.stella.usertype;
 
-import junit.framework.Assert;
-
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.classic.Session;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.caelum.stella.tinytype.CPF;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class CpfUserTypeTest {
@@ -18,9 +20,10 @@ public class CpfUserTypeTest {
 
 	@BeforeClass
 	public static void geraBanco(){
-		AnnotationConfiguration cfg = new AnnotationConfiguration();
+		Configuration cfg = new Configuration();
 		cfg.addAnnotatedClass(PessoaFisica.class);
-		factory = cfg.buildSessionFactory();
+		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();        
+        factory = cfg.buildSessionFactory(serviceRegistry);
 	}
 	
 	@Test
@@ -37,7 +40,7 @@ public class CpfUserTypeTest {
 		session = factory.openSession();
 		Long id = pessoa.getId();
 		PessoaFisica load = (PessoaFisica) session.load(PessoaFisica.class, id);
-		Assert.assertEquals(cpf, load.getCpf());
+		assertEquals(cpf, load.getCpf());
 	}
 	
 }
