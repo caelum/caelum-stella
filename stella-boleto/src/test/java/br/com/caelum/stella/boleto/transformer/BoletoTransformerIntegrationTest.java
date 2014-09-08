@@ -17,7 +17,8 @@ import br.com.caelum.stella.boleto.Datas;
 import br.com.caelum.stella.boleto.Endereco;
 import br.com.caelum.stella.boleto.Pagador;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
-import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
+
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -26,6 +27,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class BoletoTransformerIntegrationTest{
 
+    private Boleto boleto;
+
 	@Before
 	public void setUp() {
 
@@ -33,7 +36,6 @@ public class BoletoTransformerIntegrationTest{
 
 		apagaArquivosGerados();
 
-		Boleto boleto;
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
 		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Caue").comAgencia("1824").comDigitoAgencia("4")
@@ -94,6 +96,13 @@ public class BoletoTransformerIntegrationTest{
 	public void testPNGWriteGeneration() {
 		assertTrue(new File("arquivo.png").exists());
 	}
+
+    @Test
+    public void testByteArrayGeneration() {
+        GeradorDeBoleto geradorDeBoleto = new GeradorDeBoleto(this.boleto);
+        assertNotNull(geradorDeBoleto.geraPDF());
+        assertNotNull(geradorDeBoleto.geraPNG());
+    }
 
 	@After
 	public void apagaArquivosGerados() {
