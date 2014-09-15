@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -39,7 +40,7 @@ import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
  */
 public class GeradorDeBoleto {
 
-	protected final Boleto[] boletos;
+	protected final Collection<Boleto> boletos;
 	protected InputStream templateJasper;
 	protected JasperPrint relatorio;
 
@@ -50,7 +51,7 @@ public class GeradorDeBoleto {
 	 * 
 	 * @param boletos boletos a serem gerados.
 	 */
-	public GeradorDeBoleto(Boleto... boletos) {
+	public GeradorDeBoleto(Collection<Boleto> boletos) {
 		this.boletos = boletos;
 		try {
 			templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default.jasper");
@@ -63,6 +64,15 @@ public class GeradorDeBoleto {
 	}
 	
 	/**
+	 * Cria um gerador de boletos com o template padrão.
+	 * 
+	 * @param boletos boletos a serem gerados.
+	 */
+	public GeradorDeBoleto(Boleto... boletos) {
+		this(Arrays.asList(boletos));
+	}
+	
+	/**
 	 * Cria um gerador de boletos que usa um template customizado.
 	 * 
 	 * @param template o template (.jasper) a ser usado (obrigatório).
@@ -70,6 +80,25 @@ public class GeradorDeBoleto {
 	 * @param boletos boletos.
 	 */
 	public GeradorDeBoleto(InputStream template, Map<String,Object> parametros, Boleto... boletos) {
+		this(boletos);
+		
+		this.templateJasper = template;
+		if(parametros != null){
+			Set<Entry<String,Object>> entrySet = parametros.entrySet();
+			for (Entry<String,Object> entry : entrySet) {
+				this.parametros.put(entry.getKey(), entry.getValue());
+			}
+		}
+	}
+	
+	/**
+	 * Cria um gerador de boletos que usa um template customizado.
+	 * 
+	 * @param template o template (.jasper) a ser usado (obrigatório).
+	 * @param parametros parametros extras para o relatório( opcional).
+	 * @param boletos boletos.
+	 */
+	public GeradorDeBoleto(InputStream template, Map<String,Object> parametros, Collection<Boleto> boletos) {
 		this(boletos);
 		
 		this.templateJasper = template;
@@ -93,7 +122,7 @@ public class GeradorDeBoleto {
 	protected JasperPrint geraRelatorio(){
 		try{
 			if(relatorio == null){
-				JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Arrays.asList(boletos));
+				JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(boletos);
 				relatorio = JasperFillManager.fillReport(templateJasper,parametros,	dataSource);
 			}
 			return relatorio;
