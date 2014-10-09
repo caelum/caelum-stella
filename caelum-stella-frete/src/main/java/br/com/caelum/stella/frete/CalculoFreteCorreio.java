@@ -18,13 +18,13 @@ import org.xml.sax.SAXException;
 import br.com.caelum.stella.frete.entity.Encomenda;
 import br.com.caelum.stella.frete.entity.Frete;
 import br.com.caelum.stella.frete.enums.Servico;
-import br.com.caelum.stella.frete.exeption.FreteException;
+import br.com.caelum.stella.frete.exception.CorreiosException;
 import br.com.caelum.stella.frete.ws.CorreiosService;
 
 
 public class CalculoFreteCorreio {  
 
-	public static Frete calcularFrete( Encomenda encomenda, Servico tipoFrete) throws FreteException {  
+	public static Frete calcularFrete( Encomenda encomenda, Servico tipoFrete) throws CorreiosException {  
 		Properties parameters = new Properties(); 
 
 		parameters.setProperty("nCdEmpresa", encomenda.getCodigoEmpresa());  
@@ -55,7 +55,7 @@ public class CalculoFreteCorreio {
 			Unmarshaller u = jc.createUnmarshaller();
 			Frete frete = u.unmarshal( servicos.getFirstChild(), Frete.class).getValue();
 			if (frete.getErro()!= 0){
-				throw new FreteException(frete.getErro(), frete.getMensagemErro());
+				throw new CorreiosException(frete.getErro(), frete.getMensagemErro());
 			}
 			return frete;
 

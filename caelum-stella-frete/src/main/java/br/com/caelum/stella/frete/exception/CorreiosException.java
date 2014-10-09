@@ -1,11 +1,11 @@
-package br.com.caelum.stella.frete.exeption;
+package br.com.caelum.stella.frete.exception;
 
 
-public class FreteException extends Exception{
+public class CorreiosException extends Exception{
 	private static final long serialVersionUID = 4624995677824779368L;
 	private int codigo;
 	
-	public FreteException(int codigo,String mensagem){
+	public CorreiosException(int codigo,String mensagem){
 		super(mensagem);
 		this.codigo = codigo;
 	}
