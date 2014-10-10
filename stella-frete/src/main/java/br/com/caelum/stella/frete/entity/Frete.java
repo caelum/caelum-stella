@@ -26,8 +26,6 @@ public class Frete {
 	private int erro;
 	private String mensagemErro;
 	
-	
-	
 	@XmlElement(name="Codigo")
 	@XmlJavaTypeAdapter(ServicoAdapter.class)
 	public Servico getCodigo() {
@@ -86,14 +84,11 @@ public class Frete {
 		return erro;
 	}
 	
-	
-	
 	@XmlElement(name="MsgErro")
 	public String getMensagemErro() {
 		return mensagemErro;
 	}
-	
-	
+		
 	@SuppressWarnings("unused")
 	private void setCodigo(Servico codigo) {
 		this.codigo = codigo;
@@ -144,7 +139,6 @@ public class Frete {
 		this.erro = erro;
 	}
 	
-
 	@SuppressWarnings("unused")
 	private void setMensagemErro(String mensagemErro){
 		this.mensagemErro = mensagemErro;

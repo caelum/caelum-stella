@@ -20,8 +20,6 @@ public class Encomenda {
 	private String StrRetorno;
 	private String cepDestino;
 	private String cepOrigem;
-
-	
 	
 	public Encomenda(){
 		codigoEmpresa = getValue("br.com.caelum.stella.frete.encomenda.codempresa"); 
@@ -35,7 +33,7 @@ public class Encomenda {
 		maoPropria = getValue("br.com.caelum.stella.frete.encomenda.maopropria"); 
 		valorDeclarado = getValueAsDouble("br.com.caelum.stella.frete.encomenda.valordeclarado");
 		avisoRecebimento = getValue("br.com.caelum.stella.frete.encomenda.avisorecebimento");
-		cepOrigem = getValue("br.com.caelum.stella.frete.encomenda.ceporigem"); 
+		cepOrigem = Strings.onlyNumbers(getValue("br.com.caelum.stella.frete.encomenda.ceporigem")); 
 		cepDestino= "";
 	}
 
