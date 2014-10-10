@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public class ResourceUtil {
 
 	
-	private static final String BUNDLE_NAME = "Encomenda";
+	private static final String BUNDLE_NAME = "encomenda";
 	private static final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 	
 	
