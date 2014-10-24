@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -24,9 +25,9 @@ public class CNPJValidatorTest {
     @Test
     public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
 
-    	new CNPJValidator().assertValid(validString);
+    	new CNPJValidator(true).assertValid(validString);
         try {
-            new CNPJValidator().assertValid(firstCheckDigitWrong);
+            new CNPJValidator(true).assertValid(firstCheckDigitWrong);
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
             assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
@@ -124,7 +125,7 @@ public class CNPJValidatorTest {
 
     @Test
     public void shouldValidateValidFormattedCNPJ() {
-        CNPJValidator validator = new CNPJValidator();
+        CNPJValidator validator = new CNPJValidator(true);
         String value = validString;
         validator.assertValid(value);
     }
@@ -144,4 +145,31 @@ public class CNPJValidatorTest {
         }
     }
 
+    @Test
+    public void shouldBeEligibleIfValid() {
+        final String validFormatted = "26.637.142/0001-58";
+        final String validNotFormatted = "26637142000158";
+
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        assertTrue(cnpjValidator.isEligible(validNotFormatted));
+        cnpjValidator.assertValid(validNotFormatted);
+
+        try {
+            assertFalse(cnpjValidator.isEligible(validFormatted));
+            cnpjValidator.assertValid(validFormatted);
+            fail("Not eligible should not be valid");
+        } catch (InvalidStateException e) {
+        }
+
+        final CNPJValidator cnpjValidatorFormatted = new CNPJValidator(true);
+        assertTrue(cnpjValidatorFormatted.isEligible(validFormatted));
+        cnpjValidatorFormatted.assertValid(validFormatted);
+
+        try{
+            assertFalse(cnpjValidatorFormatted.isEligible(validNotFormatted));
+            cnpjValidatorFormatted.assertValid(validNotFormatted);
+            fail("Not eligible should not be valid");
+        } catch (InvalidStateException e) {
+        }
+    }
 }

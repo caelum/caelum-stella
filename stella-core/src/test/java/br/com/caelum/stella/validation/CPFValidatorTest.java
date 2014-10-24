@@ -1,9 +1,8 @@
 package br.com.caelum.stella.validation;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,10 +33,10 @@ public class CPFValidatorTest {
     
     @Test
     public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        new CPFValidator().assertValid(validString);
+        new CPFValidator(true).assertValid(validString);
 
         try {
-            new CPFValidator().assertValid(firstCheckDigitWrong);
+            new CPFValidator(true).assertValid(firstCheckDigitWrong);
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
             assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
@@ -184,6 +183,34 @@ public class CPFValidatorTest {
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
             assertMessage(e, INVALID_FORMAT);
+        }
+    }
+
+    @Test
+    public void shouldBeEligibleIfValid() {
+        final String validFormatted = "248.438.034-80";
+        final String validNotFormatted = "24843803480";
+
+        final CPFValidator cpfValidator = new CPFValidator();
+        assertTrue(cpfValidator.isEligible(validNotFormatted));
+        cpfValidator.assertValid(validNotFormatted);
+
+        try {
+            assertFalse(cpfValidator.isEligible(validFormatted));
+            cpfValidator.assertValid(validFormatted);
+            fail("Not eligible should not be valid");
+        } catch (InvalidStateException e) {
+        }
+
+        final CPFValidator cpfValidatorFormatted = new CPFValidator(true);
+        assertTrue(cpfValidatorFormatted.isEligible(validFormatted));
+        cpfValidatorFormatted.assertValid(validFormatted);
+
+        try{
+            assertFalse(cpfValidatorFormatted.isEligible(validNotFormatted));
+            cpfValidatorFormatted.assertValid(validNotFormatted);
+            fail("Not eligible should not be valid");
+        } catch (InvalidStateException e) {
         }
     }
 
