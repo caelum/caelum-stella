@@ -113,7 +113,7 @@ public class CPFValidator implements Validator<String> {
 		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
 
 		if (cpf != null) {
-			if (isFormatted && !FORMATED.matcher(cpf).matches()) {
+			if (isFormatted != FORMATED.matcher(cpf).matches()) {
 				errors.add(messageProducer.getMessage(CPFError.INVALID_FORMAT));
 			}
 

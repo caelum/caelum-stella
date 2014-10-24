@@ -18,9 +18,15 @@ import br.com.caelum.stella.bean.validation.logic.StellaCPFValidator;
 public class StellaCPFValidatorTest {
 	private ConstraintValidatorContext context = Mockito.mock(ConstraintValidatorContext.class);
 	private StellaCPFValidator validator;
+	private StellaCPFValidator validatorFormatted;
 
 	private static class ObjectWithCPF {
 		@CPF
+		private String cpf;
+	}
+
+	private static class ObjectWithCPFFormatted {
+		@CPF(formatted = true)
 		private String cpf;
 	}
 	
@@ -34,6 +40,10 @@ public class StellaCPFValidatorTest {
 		CPF cpfAnnotation = ObjectWithCPF.class.getDeclaredField("cpf").getAnnotation(CPF.class);
 		validator = new StellaCPFValidator();
 		validator.initialize(cpfAnnotation);
+
+		cpfAnnotation = ObjectWithCPFFormatted.class.getDeclaredField("cpf").getAnnotation(CPF.class);
+		validatorFormatted = new StellaCPFValidator();
+		validatorFormatted.initialize(cpfAnnotation);
 	}
 	
 	@Test
@@ -55,6 +65,20 @@ public class StellaCPFValidatorTest {
 	@Test
 	public void shouldOnlyValidateStrings() {
 		boolean valid = validator.isValid("03118383402", context);
+		assertTrue(valid);
+
+		//formatted but expected not formatted
+		valid = validator.isValid("031.183.834-02", context);
+		assertFalse(valid);
+	}
+
+	@Test
+	public void shouldOnlyValidateStringsFormatted() {
+		//not formatted but expected formatted
+		boolean valid = validatorFormatted.isValid("03118383402", context);
+		assertFalse(valid);
+
+		valid = validatorFormatted.isValid("031.183.834-02", context);
 		assertTrue(valid);
 	}
 
