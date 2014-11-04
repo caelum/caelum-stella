@@ -19,15 +19,18 @@ public class CNPJValidatorTest {
 	private static final String INVALID_DIGITS = "INVALID DIGITS";
 
 	private final String validString = "26.637.142/0001-58";
+	private final String validStringNotFormatted = "26637142000158";
 
     private final String firstCheckDigitWrong = "26.637.142/0001-68";
+    private final String firstCheckDigitWrongNotFormatted = "26637142000168";
 
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsNotFormatted() {
 
-    	new CNPJValidator(true).assertValid(validString);
+    	new CNPJValidator().assertValid(validStringNotFormatted);
         try {
-            new CNPJValidator(true).assertValid(firstCheckDigitWrong);
+            new CNPJValidator().assertValid(firstCheckDigitWrongNotFormatted);
+            fail("Test expected to throw exception");
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
             assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
