@@ -149,30 +149,23 @@ public class CNPJValidatorTest {
     }
 
     @Test
-    public void shouldBeEligibleIfValid() {
-        final String validFormatted = "26.637.142/0001-58";
-        final String validNotFormatted = "26637142000158";
-
+    public void shouldBeEligibleDefaultConstructor() {
         final CNPJValidator cnpjValidator = new CNPJValidator();
-        assertTrue(cnpjValidator.isEligible(validNotFormatted));
-        cnpjValidator.assertValid(validNotFormatted);
+        assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validString));
+    }
 
-        try {
-            assertFalse(cnpjValidator.isEligible(validFormatted));
-            cnpjValidator.assertValid(validFormatted);
-            fail("Not eligible should not be valid");
-        } catch (InvalidStateException e) {
-        }
+    @Test
+    public void shouldBeEligibleConstructorNotFormatted() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(false);
+        assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validString));
+    }
 
-        final CNPJValidator cnpjValidatorFormatted = new CNPJValidator(true);
-        assertTrue(cnpjValidatorFormatted.isEligible(validFormatted));
-        cnpjValidatorFormatted.assertValid(validFormatted);
-
-        try{
-            assertFalse(cnpjValidatorFormatted.isEligible(validNotFormatted));
-            cnpjValidatorFormatted.assertValid(validNotFormatted);
-            fail("Not eligible should not be valid");
-        } catch (InvalidStateException e) {
-        }
+    @Test
+    public void shouldBeEligibleConstructorFormatted() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(true);
+        assertFalse(cnpjValidator.isEligible(validStringNotFormatted));
+        assertTrue(cnpjValidator.isEligible(validString));
     }
 }
