@@ -21,7 +21,6 @@ public class CNPJValidatorTest {
 	private final String validString = "26.637.142/0001-58";
 	private final String validStringNotFormatted = "26637142000158";
 
-    private final String firstCheckDigitWrong = "26.637.142/0001-68";
     private final String firstCheckDigitWrongNotFormatted = "26637142000168";
 
     @Test
