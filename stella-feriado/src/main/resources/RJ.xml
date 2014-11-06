@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feriados>
+	<Feriado nome="Dia de São Jorge" 				dia="23"			mes="4"		tipo="Estadual" municipio="RJ"/>
+	<Feriado nome="Dia da Consciência Negra"		dia="20"			mes="11"	tipo="Estadual" municipio="RJ"/>
+</Feriados>
