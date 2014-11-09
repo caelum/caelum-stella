@@ -1,5 +1,6 @@
 package br.com.caelum.stella.validation;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -18,15 +19,17 @@ public class CNPJValidatorTest {
 	private static final String INVALID_DIGITS = "INVALID DIGITS";
 
 	private final String validString = "26.637.142/0001-58";
+	private final String validStringNotFormatted = "26637142000158";
 
-    private final String firstCheckDigitWrong = "26.637.142/0001-68";
+    private final String firstCheckDigitWrongNotFormatted = "26637142000168";
 
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsNotFormatted() {
 
-    	new CNPJValidator().assertValid(validString);
+    	new CNPJValidator().assertValid(validStringNotFormatted);
         try {
-            new CNPJValidator().assertValid(firstCheckDigitWrong);
+            new CNPJValidator().assertValid(firstCheckDigitWrongNotFormatted);
+            fail("Test expected to throw exception");
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
             assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
@@ -124,7 +127,7 @@ public class CNPJValidatorTest {
 
     @Test
     public void shouldValidateValidFormattedCNPJ() {
-        CNPJValidator validator = new CNPJValidator();
+        CNPJValidator validator = new CNPJValidator(true);
         String value = validString;
         validator.assertValid(value);
     }
@@ -144,4 +147,24 @@ public class CNPJValidatorTest {
         }
     }
 
+    @Test
+    public void shouldBeEligibleDefaultConstructor() {
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validString));
+    }
+
+    @Test
+    public void shouldBeEligibleConstructorNotFormatted() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(false);
+        assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validString));
+    }
+
+    @Test
+    public void shouldBeEligibleConstructorFormatted() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(true);
+        assertFalse(cnpjValidator.isEligible(validStringNotFormatted));
+        assertTrue(cnpjValidator.isEligible(validString));
+    }
 }

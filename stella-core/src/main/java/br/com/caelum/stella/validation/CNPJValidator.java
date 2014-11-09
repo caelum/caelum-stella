@@ -71,8 +71,8 @@ public class CNPJValidator implements Validator<String> {
     	List<ValidationMessage> errors = new ArrayList<ValidationMessage>();    	
         
         if (cnpj != null) {
-        	
-        	if(isFormatted && !FORMATED.matcher(cnpj).matches()){
+
+        	if(isFormatted != FORMATED.matcher(cnpj).matches()) {
         		errors.add(messageProducer.getMessage(CNPJError.INVALID_FORMAT));
         	}
         	

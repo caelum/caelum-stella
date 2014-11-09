@@ -1,9 +1,8 @@
 package br.com.caelum.stella.validation;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,8 +21,9 @@ public class CPFValidatorTest {
 	private static final String INVALID_DIGITS = "INVALID DIGITS";
 	
     private final String validString = "248.438.034-80";
+    private final String validStringNotFormatted = "24843803480";
 
-    private final String firstCheckDigitWrong = "248.438.034-70";
+    private final String firstCheckDigitWrongNotFormatted = "24843803470";
 
 	private CPFValidator validator;
 
@@ -33,11 +33,12 @@ public class CPFValidatorTest {
 	}
     
     @Test
-    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsFormatted() {
-        new CPFValidator().assertValid(validString);
+    public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsNotFormatted() {
+        new CPFValidator().assertValid(validStringNotFormatted);
 
         try {
-            new CPFValidator().assertValid(firstCheckDigitWrong);
+            new CPFValidator().assertValid(firstCheckDigitWrongNotFormatted);
+            fail("Test expected to throw exception");
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
             assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
@@ -185,6 +186,27 @@ public class CPFValidatorTest {
             assertTrue(e.getInvalidMessages().size() == 1);
             assertMessage(e, INVALID_FORMAT);
         }
+    }
+
+    @Test
+    public void shouldBeEligibleDefaultConstructor() {
+        final CPFValidator cpfValidator = new CPFValidator();
+        assertTrue(cpfValidator.isEligible(validStringNotFormatted));
+        assertFalse(cpfValidator.isEligible(validString));
+    }
+
+    @Test
+    public void shouldBeEligibleConstructorNotFormatted() {
+        final CPFValidator cpfValidator = new CPFValidator(false);
+        assertTrue(cpfValidator.isEligible(validStringNotFormatted));
+        assertFalse(cpfValidator.isEligible(validString));
+    }
+
+    @Test
+    public void shouldBeEligibleConstructorFormatted() {
+        final CPFValidator cpfValidator = new CPFValidator(true);
+        assertFalse(cpfValidator.isEligible(validStringNotFormatted));
+        assertTrue(cpfValidator.isEligible(validString));
     }
 
 }
