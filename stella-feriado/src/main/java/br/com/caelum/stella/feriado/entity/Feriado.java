@@ -9,18 +9,19 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import br.com.caelum.stella.feriado.adapter.TipoAdapter;
 import br.com.caelum.stella.feriado.enums.Tipo;
 import br.com.caelum.stella.feriado.util.DateUtil;
+import br.com.caelum.stella.feriado.util.ResourceUtil;
 
 @XmlRootElement(name="Feriado")
 public class Feriado {
 
-	private String nome;
+	private String key;
 	private Date data;
 	private Tipo tipo;
 	private int dia;
 	private int mes;
 
-	public Feriado(String nome, Date data, Tipo tipo) {
-		this.nome = nome;
+	public Feriado(String key, Date data, Tipo tipo) {
+		this.key = key;
 		this.data = data;
 		this.tipo = tipo;
 		this.dia = DateUtil.getDiaDoMes(data);
@@ -30,23 +31,27 @@ public class Feriado {
 	@SuppressWarnings("unused")
 	private Feriado(){}
 
-	public Feriado(String nome, int dia, int ano, Tipo tipo) {
-		this.nome = nome;
+	public Feriado(String key, int dia, int ano, Tipo tipo) {
+		this.key = key;
 		this.tipo = tipo;
 		this.dia = dia;
 		this.mes =ano;
 
 	}
 
-	@XmlAttribute(name="nome")
-	public String getNome() {
-		return nome;
+	@XmlAttribute(name="key")
+	public String getKey() {
+		return key;
 	}
 
 	public Date getData() {
 		return data;
 	}
-
+	
+	public String getNome() {
+		return ResourceUtil.getValue(key);
+	}
+		
 	@XmlAttribute(name="tipo")
 	@XmlJavaTypeAdapter(TipoAdapter.class)
 	public Tipo getTipo() {
@@ -64,8 +69,8 @@ public class Feriado {
 	}
 
 	@SuppressWarnings("unused")
-	private void setNome(String nome) {
-		this.nome = nome;
+	private void setKey(String key) {
+		this.key = key;
 	}
 
 	@SuppressWarnings("unused")
@@ -87,7 +92,7 @@ public class Feriado {
 	private void setMes(int mes) {
 		this.mes = mes;
 	}
-
+	
 	public void ajustarData(Date data){
 		this.data = DateUtil.zerarHora(data).getTime();
 	}
@@ -95,7 +100,8 @@ public class Feriado {
 	@Override
 	public String toString() {
 		String oc = new Date().before(data) ? " ocorrerá no dia " : " ocorreu no dia ";
-		return tipo + " - " + nome + oc + DateUtil.formatterExtenso.format(data);
+		return tipo + " - " + getNome() + oc + DateUtil.formatterExtenso.format(data);
 	}
-		
+
+	
 }

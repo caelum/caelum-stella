@@ -52,6 +52,13 @@ public class FeriadosMoveis {
 		calendar.add(Calendar.DAY_OF_YEAR, -47);
 		return calendar.getTime();
 	}
+	
+	public static Date segundaDeCarnaval(int ano){
+		Calendar calendar = DateUtil.hoje();
+		calendar.setTime(pascoa(ano));
+		calendar.add(Calendar.DAY_OF_YEAR, -48);
+		return calendar.getTime();
+	}
 
 	public static Date diaDosPais(int ano){
 		return getSegundoDomingo(Calendar.AUGUST, ano);
@@ -63,12 +70,13 @@ public class FeriadosMoveis {
 
 	public static List<Feriado> doAno(int ano){
 		List<Feriado> feriados = new ArrayList<Feriado>();
-		feriados.add(new Feriado("Carnaval",tercaDeCarnaval(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("Sexta Feira Santa",sextaFeiraSanta(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("Pascoa",pascoa(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("Corpus Christi",corpusChristi(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("Dia das Mães",diaDasMaes(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("Dia dos Pais",diaDosPais(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("SEGUNDA_CARNAVAL",segundaDeCarnaval(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("TERCA_CARNAVAL",tercaDeCarnaval(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("SEXTA_SANTA",sextaFeiraSanta(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("PASCOA",pascoa(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("CORPUS_CHRISTI",corpusChristi(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("DIA_MAES",diaDasMaes(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("DIA_PAIS",diaDosPais(ano),Tipo.NACIONAL));
 		if(ano % 2 == 0){
 			feriados.add(new Feriado("Primeiro turno das Eleições",primeiroTurnoDasEleicoes(ano),Tipo.NACIONAL));
 			feriados.add(new Feriado("Segundo turno das Eleições",segundoTurnoDasEleicoes(ano),Tipo.NACIONAL));

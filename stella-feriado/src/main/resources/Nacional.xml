@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Feriados>
-	<Feriado nome="Confraternização Universal" 		dia="1"				mes="1"		tipo="Nacional"/>
-	<Feriado nome="Tiradentes"						dia="21"			mes="4"		tipo="Nacional"/>
-	<Feriado nome="Dia do Trabalhador"				dia="1"				mes="5"		tipo="Nacional"/>
-	<Feriado nome="Independencia"					dia="7"				mes="9"		tipo="Nacional"/>
-	<Feriado nome="Nossa Senhora Aparecida"			dia="12"			mes="10"	tipo="Nacional"/>
-	<Feriado nome="Finados"							dia="2"				mes="11"	tipo="Nacional"/>
-	<Feriado nome="Proclamação da  República"		dia="15"			mes="11"	tipo="Nacional"/>
-	<Feriado nome="Natal"							dia="25"			mes="12"	tipo="Nacional"/>
+	<Feriado key="CONFRATERNIZACAO_UNIVERSAL" 		dia="1"				mes="1"		tipo="Nacional"/>
+	<Feriado key="TIRANTEDES"						dia="21"			mes="4"		tipo="Nacional"/>
+	<Feriado key="TRABALHADOR"						dia="1"				mes="5"		tipo="Nacional"/>
+	<Feriado key="INDEPENDENCIA"					dia="7"				mes="9"		tipo="Nacional"/>
+	<Feriado key="NOSSA_SRA_APARECIDA"				dia="12"			mes="10"	tipo="Nacional"/>
+	<Feriado key="FINADOS"							dia="2"				mes="11"	tipo="Nacional"/>
+	<Feriado key="PROCLAMACAO_REPULBLICA"			dia="15"			mes="11"	tipo="Nacional"/>
+	<Feriado key="NATAL"							dia="25"			mes="12"	tipo="Nacional"/>
 </Feriados>
