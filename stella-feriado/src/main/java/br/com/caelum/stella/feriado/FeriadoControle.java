@@ -2,6 +2,7 @@ package br.com.caelum.stella.feriado;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import br.com.caelum.stella.feriado.entity.Feriado;
@@ -16,8 +17,11 @@ public class FeriadoControle {
 	
 	private List<Feriado>  feriados = new ArrayList<Feriado>();
 	
-	public  List<Feriado> listarFeriados(){
+	public  List<Feriado> listarFeriadosPorData(){
 		Collections.sort(feriados, Ordernador.DATA_CRESCENTE);
+		return feriados;
+	}
+	public  List<Feriado> listarFeriados(){
 		return feriados;
 	}
 	
@@ -43,6 +47,10 @@ public class FeriadoControle {
 	
 	public FeriadoControle feriadosEstaduais(Lugares...lugar){
 		feriados.addAll(FeriadosEstaduais.de(lugar));
+		return this;
+	}
+	public FeriadoControle ordenadoPor(Comparator<Feriado> lugar){
+		Collections.sort(feriados, Ordernador.LUGAR);
 		return this;
 	}
 }

@@ -21,6 +21,14 @@ public class Ordernador {
 		}
 	};
 
+	
+	public static final Comparator<Feriado> LUGAR = new Comparator<Feriado>() {
+		@Override
+		public int compare(Feriado f1, Feriado f2) {
+			return f1.getLocal().compareTo(f2.getLocal());
+		}
+	};
+	
 	public static final Comparator<Feriado> NOME_CRESCENTE = new Comparator<Feriado>() {
 		@Override
 		public int compare(Feriado f1, Feriado f2) {

@@ -70,16 +70,16 @@ public class FeriadosMoveis {
 
 	public static List<Feriado> doAno(int ano){
 		List<Feriado> feriados = new ArrayList<Feriado>();
-		feriados.add(new Feriado("SEGUNDA_CARNAVAL",segundaDeCarnaval(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("TERCA_CARNAVAL",tercaDeCarnaval(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("SEXTA_SANTA",sextaFeiraSanta(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("PASCOA",pascoa(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("CORPUS_CHRISTI",corpusChristi(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("DIA_MAES",diaDasMaes(ano),Tipo.NACIONAL));
-		feriados.add(new Feriado("DIA_PAIS",diaDosPais(ano),Tipo.NACIONAL));
+		feriados.add(new Feriado("SEGUNDA_CARNAVAL",segundaDeCarnaval(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("TERCA_CARNAVAL",tercaDeCarnaval(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("SEXTA_SANTA",sextaFeiraSanta(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("PASCOA",pascoa(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("CORPUS_CHRISTI",corpusChristi(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("DIA_MAES",diaDasMaes(ano),Tipo.NACIONAL,"Brasil"));
+		feriados.add(new Feriado("DIA_PAIS",diaDosPais(ano),Tipo.NACIONAL,"Brasil"));
 		if(ano % 2 == 0){
-			feriados.add(new Feriado("Primeiro turno das Eleições",primeiroTurnoDasEleicoes(ano),Tipo.NACIONAL));
-			feriados.add(new Feriado("Segundo turno das Eleições",segundoTurnoDasEleicoes(ano),Tipo.NACIONAL));
+			feriados.add(new Feriado("PRI_TURNO_ELEICOES",primeiroTurnoDasEleicoes(ano),Tipo.NACIONAL,"Brasil"));
+			feriados.add(new Feriado("SEG_TURNO_ELEICOES",segundoTurnoDasEleicoes(ano),Tipo.NACIONAL,"Brasil"));
 		}
 		Collections.sort(feriados, Ordernador.DATA_CRESCENTE);
 		return feriados;

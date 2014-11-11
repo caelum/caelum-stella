@@ -19,24 +19,26 @@ public class Feriado {
 	private Tipo tipo;
 	private int dia;
 	private int mes;
+	private String local;
 
-	public Feriado(String key, Date data, Tipo tipo) {
+	public Feriado(String key, Date data, Tipo tipo,String local) {
 		this.key = key;
 		this.data = data;
 		this.tipo = tipo;
 		this.dia = DateUtil.getDiaDoMes(data);
 		this.mes = DateUtil.getMes(data);
+		this.local = local;
 	}	
 
 	@SuppressWarnings("unused")
 	private Feriado(){}
 
-	public Feriado(String key, int dia, int ano, Tipo tipo) {
+	public Feriado(String key, int dia, int ano, Tipo tipo,String local) {
 		this.key = key;
 		this.tipo = tipo;
 		this.dia = dia;
 		this.mes =ano;
-
+		this.local = local;
 	}
 
 	@XmlAttribute(name="key")
@@ -67,6 +69,11 @@ public class Feriado {
 	public int getMes() {
 		return mes;
 	}
+	
+	@XmlAttribute(name="local")
+	public String getLocal() {
+		return local;
+	}
 
 	@SuppressWarnings("unused")
 	private void setKey(String key) {
@@ -93,6 +100,11 @@ public class Feriado {
 		this.mes = mes;
 	}
 	
+	@SuppressWarnings("unused")
+	private void setLocal(String local) {
+		this.local = local;
+	}
+
 	public void ajustarData(Date data){
 		this.data = DateUtil.zerarHora(data).getTime();
 	}
@@ -100,7 +112,7 @@ public class Feriado {
 	@Override
 	public String toString() {
 		String oc = new Date().before(data) ? " ocorrerá no dia " : " ocorreu no dia ";
-		return tipo + " - " + getNome() + oc + DateUtil.formatterExtenso.format(data);
+		return getNome() + oc + DateUtil.formatterExtenso.format(data) + " em " + getLocal();
 	}
 
 	
