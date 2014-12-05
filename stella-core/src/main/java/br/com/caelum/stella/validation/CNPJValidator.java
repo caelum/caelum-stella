@@ -118,6 +118,9 @@ public class CNPJValidator implements Validator<String> {
 	}
 
     public boolean isEligible(String value) {
+		if (value == null) {
+			return false;
+		}
         boolean result;
         if (isFormatted) {
             result = FORMATED.matcher(value).matches();

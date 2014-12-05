@@ -148,6 +148,12 @@ public class CNPJValidatorTest {
     }
 
     @Test
+    public void shouldNotBeEligibleWithNullCNPJ() {
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        assertFalse(cnpjValidator.isEligible(null));
+    }
+    
+    @Test
     public void shouldBeEligibleDefaultConstructor() {
         final CNPJValidator cnpjValidator = new CNPJValidator();
         assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
