@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feriados>
+	<!--  <Feriado key="" 		dia=""			mes=""		tipo="Municipal"		local=""/>-->
+	<Feriado key="SANTO_ANTONIO" 			dia="13"			mes="12"		tipo="Municipal"		local="Sapucaia/Rj"/>
+	<Feriado key="ANIVERSARIO_CIDADE" 		dia="07"			mes="12"		tipo="Municipal"		local="Sapucaia/Rj"/>
+	<Feriado key="SANTO_ANTONIO" 			dia="13"			mes="06"		tipo="Municipal"		local="Duque de Caxias/RJ"/>
+	<Feriado key="PATRONO_MUNICIPIO" 		dia="25"			mes="08"		tipo="Municipal"		local="Duque de Caxias/RJ"/>
+	<Feriado key="SERVIDOR_PUBLICO" 		dia="28"			mes="10"		tipo="Municipal"		local="Duque de Caxias/RJ"/>
+	<Feriado key="EMAM_POL_MUN" 			dia="15"			mes="01"		tipo="Municipal"		local="Paraíba do Sul/RJ"/>
+	<Feriado key="PADROEIRO_STPEDRO_SPAULO"	dia="29"			mes="06"		tipo="Municipal"		local="Paraíba do Sul/RJ"/>
+	<Feriado key="DIA_MUNICIPIO"			dia="19"			mes="05"		tipo="Municipal"		local="Rio Claro/RJ"/>
+	<Feriado key="DIA_PADROEIRA"			dia="15"			mes="09"		tipo="Municipal"		local="Rio Claro/RJ"/>
+	<Feriado key="ANIVERSARIO_CIDADE" 		dia="16"			mes="03"		tipo="Municipal"		local="Petrópolis/RJ"/>
+	<Feriado key="CHEGADA_COLONOS_ALEMAES" 	dia="29"			mes="06"		tipo="Municipal"		local="Petrópolis/RJ"/>
+	<Feriado key="HOM_SAO_SEBASTIAO" 		dia="20"			mes="01"		tipo="Municipal"		local="Porciúncula/RJ"/>
+	<Feriado key="PADROEIRO_MUINICIPIO" 	dia="13"			mes="06"		tipo="Municipal"		local="Porciúncula/RJ"/>
+	<Feriado key="PADROEIRO_3_DISTRITO" 	dia="11"			mes="08"		tipo="Municipal"		local="Porciúncula/RJ"/>
+	<Feriado key="EMAM-POL-ADM-MUN"		 	dia="21"			mes="08"		tipo="Municipal"		local="Porciúncula/RJ"/>
+	<Feriado key="NOSSA_SRA_CONCEICAO" 		dia="15"			mes="8"			tipo="Municipal"		local="Cabo Frio/RJ"/>
+	<Feriado key="ANIVERSARIO_CIDADE"		dia="13"			mes="11"		tipo="Municipal"		local="Cabo Frio/RJ"/>
+	<Feriado key="SAO_SEBASTIAO" 			dia="20"			mes="1"			tipo="Municipal"		local="Rio de Janeiro/RJ"/>
+	<Feriado key="ANIVERSARIO_CIDADE"	 	dia="01"			mes="03"		tipo="Municipal"		local="Rio de Janeiro/RJ"/>
+	<Feriado key="SAO_JORGE" 				dia="23"			mes="4"			tipo="Estadual" 		local="Rio de Janeiro/RJ"/>
+	<Feriado key="CONSCIENCIA_NEGRA"		dia="20"			mes="11"		tipo="Estadual" 		local="Rio de Janeiro/RJ"/>
+</Feriados>

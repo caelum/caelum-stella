@@ -34,6 +34,7 @@
     <module>stella-faces</module>
     <module>stella-boleto</module>
     <module>stella-frete</module>
+    <module>stella-feriado</module>
 <!--     <module>stella-distribution</module> -->
     <module>examples/faces-example-1x</module>
     <module>examples/faces-example-2x</module>

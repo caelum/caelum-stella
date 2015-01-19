@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feriados>
+	<Feriado key="biscoito" 				dia="11"			mes="3"		tipo="Estadual"/>
+	<Feriado key="PREGUICA"		dia="04"			mes="11"	tipo="Estadual"/>
+</Feriados>
