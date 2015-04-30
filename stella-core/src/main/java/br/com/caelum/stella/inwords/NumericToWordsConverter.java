@@ -151,7 +151,7 @@ public class NumericToWordsConverter {
                     result.append(" ");
                     int length = blocks.length;
                 	if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
-                        result.append("de ");
+                        result.append(getFormatSeparator());
                     }
                 	result.append(unit);
                 }
@@ -266,6 +266,10 @@ public class NumericToWordsConverter {
 
     private String getTensSeparator() {
         return getString("sep.dezena");
+    }
+
+    private String getFormatSeparator() {
+        return getString("sep.formato");
     }
 
     private String getAndSeparator() {
