@@ -10,10 +10,10 @@ import java.util.ResourceBundle;
  * @author Victor Santos
  * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>
  */
-public final class Messages {
+final class Messages {
 	private static final String BUNDLE_NAME = "br.com.caelum.stella.inwords.messages";
 
-	public static final Locale LOCALE_PT_BR = new Locale("pt", "BR");
+	static final Locale LOCALE_PT_BR = new Locale("pt", "BR");
 
 	private static final Map<String, ResourceBundle> RESOURCE_BUNDLES;
 
@@ -29,11 +29,11 @@ public final class Messages {
 	private Messages() {
 	}
 
-	public static String getString(String key) {
+	static String getString(String key) {
 		return RESOURCE_BUNDLES.get(LOCALE_PT_BR.getLanguage()).getString(key);
 	}
 
-	public static String getString(String key, Locale locale) {
+	static String getString(String key, Locale locale) {
 		ResourceBundle resourceBundle = RESOURCE_BUNDLES.get(locale.getLanguage());
 
 		if (resourceBundle == null) {
