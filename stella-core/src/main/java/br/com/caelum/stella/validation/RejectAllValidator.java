@@ -46,4 +46,9 @@ public class RejectAllValidator<T> implements Validator<T> {
         return messages;
     }
 
+    @Override
+    public T generateRandomValid() {
+        throw new UnsupportedOperationException("Operação não suportada pelo validador");
+    }
+
 }

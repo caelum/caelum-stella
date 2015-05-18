@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -125,5 +126,15 @@ public class NITValidator implements Validator<String> {
 
     public List<ValidationMessage> invalidMessagesFor(String nit) {
         return getInvalidValues(nit);
+    }
+    
+    @Override
+    public String generateRandomValid() {
+    	final String nitSemDigito = new DigitoGenerator().generate(10);
+    	final String nitComDigito = nitSemDigito + calculaDigitos(nitSemDigito);
+    	if (isFormatted) {
+    		return new NITFormatter().format(nitComDigito);
+    	}
+        return nitComDigito;
     }
 }

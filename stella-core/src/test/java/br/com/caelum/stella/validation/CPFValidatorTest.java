@@ -209,4 +209,17 @@ public class CPFValidatorTest {
         assertTrue(cpfValidator.isEligible(validString));
     }
 
+    @Test
+    public void shouldGenerateValidFormattedCPF() {
+        final CPFValidator cpfValidator = new CPFValidator(true);
+        final String generated = cpfValidator.generateRandomValid();
+        cpfValidator.assertValid(generated);
+    }
+
+    @Test
+    public void shouldGenerateValidUnformattedCPF() {
+        final CPFValidator cpfValidator = new CPFValidator();
+        final String generated = cpfValidator.generateRandomValid();
+        cpfValidator.assertValid(generated);
+    }
 }

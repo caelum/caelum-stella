@@ -1,7 +1,11 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.regex.Pattern;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -65,5 +69,26 @@ class IEPernambucoNovaValidator extends AbstractIEValidator {
 		String digito2 = digitoPara.calcula();
 
 		return digito1 + digito2;
+	}
+
+	private String formata(String valor) {
+		try {
+			final MaskFormatter formatador = new MaskFormatter("#######-##");
+			formatador.setValidCharacters("1234567890");
+			formatador.setValueContainsLiteralCharacters(false);
+			return formatador.valueToString(valor);
+		} catch (ParseException e) {
+			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		}
+	}
+
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigitos = new DigitoGenerator().generate(7);
+		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
+		if (isFormatted) {
+			return formata(ieComDigitos);
+		}
+		return ieComDigitos;
 	}
 }

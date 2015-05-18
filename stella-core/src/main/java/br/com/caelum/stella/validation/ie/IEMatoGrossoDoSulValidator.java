@@ -1,7 +1,11 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.regex.Pattern;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -68,5 +72,26 @@ public class IEMatoGrossoDoSulValidator extends AbstractIEValidator {
 		digitoPara.complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11);
 
 		return digitoPara.calcula();
+	}
+
+	private String formata(String valor) {
+		try {
+			final MaskFormatter formatador = new MaskFormatter("##.###.###-#");
+			formatador.setValidCharacters("1234567890");
+			formatador.setValueContainsLiteralCharacters(false);
+			return formatador.valueToString(valor);
+		} catch (ParseException e) {
+			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		}
+	}
+
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigito = "28" + new DigitoGenerator().generate(6);
+		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
+		if (isFormatted) {
+			return formata(ieComDigito);
+		}
+		return ieComDigito;
 	}
 }

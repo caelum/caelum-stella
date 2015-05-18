@@ -173,4 +173,18 @@ public class CNPJValidatorTest {
         assertFalse(cnpjValidator.isEligible(validStringNotFormatted));
         assertTrue(cnpjValidator.isEligible(validString));
     }
+
+    @Test
+    public void shouldGenerateValidFormattedCNPJ() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(true);
+        final String generated = cnpjValidator.generateRandomValid();
+        cnpjValidator.assertValid(generated);
+    }
+
+    @Test
+    public void shouldGenerateValidUnformattedCPF() {
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        final String generated = cnpjValidator.generateRandomValid();
+        cnpjValidator.assertValid(generated);
+    }
 }

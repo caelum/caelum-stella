@@ -1,9 +1,13 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -88,4 +92,28 @@ class IESaoPauloProdutorRuralValidator implements Validator<String> {
     public List<ValidationMessage> invalidMessagesFor(String cpf) {
         return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
+
+    private String formata(String valor) {
+		try {
+			final MaskFormatter formatador = new MaskFormatter("U-########.#/###");
+			formatador.setValidCharacters("P1234567890");
+			formatador.setValueContainsLiteralCharacters(false);
+			return formatador.valueToString(valor);
+		} catch (ParseException e) {
+			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		}
+	}
+    
+	@Override
+	public String generateRandomValid() {
+		final DigitoGenerator digitoGenerator = new DigitoGenerator();
+		final String ieSemDigitoParte1 = digitoGenerator.generate(8);
+		final String ieSemDigitoParte2 = digitoGenerator.generate(3);
+		final String ieComDigito = "P" + ieSemDigitoParte1 + calculaDigito(ieSemDigitoParte1)
+		        + ieSemDigitoParte2;
+		if (isFormatted) {
+			return formata(ieComDigito);
+		}
+		return ieComDigito;
+	}
 }

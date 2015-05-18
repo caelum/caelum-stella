@@ -63,4 +63,8 @@ public class LengthValidator implements Validator<Object> {
         return true;
     }
 
+    @Override
+    public Object generateRandomValid() {
+        throw new UnsupportedOperationException("Operação não suportada por este validador");
+    }
 }

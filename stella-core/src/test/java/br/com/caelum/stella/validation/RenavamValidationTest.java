@@ -149,4 +149,18 @@ public class RenavamValidationTest {
         List<ValidationMessage> errorMessages = validator.invalidMessagesFor(renavamWithNineDigits);
         assertTrue(errorMessages.isEmpty());
     }
+
+    @Test
+    public void shouldGenerateValidFormattedRenavam() {
+        final RenavamValidator renavamValidator = new RenavamValidator(true);
+        final String generated = renavamValidator.generateRandomValid();
+        renavamValidator.assertValid(generated);
+    }
+
+    @Test
+    public void shouldGenerateValidUnformattedRenavam() {
+        final RenavamValidator renavamValidator = new RenavamValidator();
+        final String generated = renavamValidator.generateRandomValid();
+        renavamValidator.assertValid(generated);
+    }
 }
