@@ -14,10 +14,10 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String logradouro;
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String uf;
+	private String bairro;
+	private String cep;
+	private String cidade;
+	private String uf;
 
 	private Endereco() {
 	}
