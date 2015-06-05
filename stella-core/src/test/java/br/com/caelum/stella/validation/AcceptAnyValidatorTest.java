@@ -94,4 +94,19 @@ public class AcceptAnyValidatorTest {
         String cnpj = "26637142000158";
         Assert.assertTrue(validator.invalidMessagesFor(cnpj).isEmpty());
     }
+
+    @Test
+    public void shouldGenerateARandomValidDocumentBasedOnTheFirstDocumentPassedOnConstruction() {
+        Validator<String> cpfOnlyValidator = new AcceptAnyValidator(false, Documento.CPF);
+        String validCpf = cpfOnlyValidator.generateRandomValid();
+        new CPFValidator(false).assertValid(validCpf);
+
+        Validator<String> cnpjOnlyValidator = new AcceptAnyValidator(false, Documento.CNPJ);
+        String validCnpj = cnpjOnlyValidator.generateRandomValid();
+        new CNPJValidator(false).assertValid(validCnpj);
+
+        Validator<String> cnpjCpfFormattedValidator = new AcceptAnyValidator(true, Documento.CNPJ, Documento.CPF);
+        String anotherValidCnpj = cnpjCpfFormattedValidator.generateRandomValid();
+        new CNPJValidator(true).assertValid(anotherValidCnpj);
+    }
 }

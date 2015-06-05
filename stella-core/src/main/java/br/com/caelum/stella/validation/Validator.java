@@ -43,4 +43,8 @@ public interface Validator<T> {
      */
     boolean isEligible(T object);
 
+    /**
+     * @return um objeto aleatório válido de acordo com as regras de validação deste validador
+     */
+    T generateRandomValid();
 }

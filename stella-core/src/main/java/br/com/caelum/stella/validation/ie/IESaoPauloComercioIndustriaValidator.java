@@ -1,7 +1,11 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.regex.Pattern;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -68,4 +72,28 @@ class IESaoPauloComercioIndustriaValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
+	private String formata(String valor) {
+		try {
+			final MaskFormatter formatador = new MaskFormatter("###.###.###.###");
+			formatador.setValidCharacters("1234567890");
+			formatador.setValueContainsLiteralCharacters(false);
+			return formatador.valueToString(valor);
+		} catch (ParseException e) {
+			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		}
+	}
+
+	@Override
+	public String generateRandomValid() {
+		final DigitoGenerator digitoGenerator = new DigitoGenerator();
+		final String ieSemDigitosParte1 = digitoGenerator.generate(8);
+		final String ieSemDigitosParte2 = digitoGenerator.generate(2);
+		final String digitosCalculados = calculaDigitos(ieSemDigitosParte1, ieSemDigitosParte2);
+		final String ieComDigitos = ieSemDigitosParte1 + digitosCalculados.charAt(0)
+		        + ieSemDigitosParte2 + digitosCalculados.charAt(1);
+		if (isFormatted) {
+			return formata(ieComDigitos);
+		}
+		return ieComDigitos;
+	}
 }

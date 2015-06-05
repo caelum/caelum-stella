@@ -63,4 +63,9 @@ public class LengthValidatorTest {
         Assert.assertEquals(1, invalidMessages.size());
         Assert.assertEquals("LengthError : INVALID LENGTH", invalidMessages.get(0).getMessage());
     }
+    
+    @Test(expected=UnsupportedOperationException.class)
+    public void shouldThrowExceptionWhenGeneratingRandomValue() {
+    	new LengthValidator(2).generateRandomValid();
+    }
 }

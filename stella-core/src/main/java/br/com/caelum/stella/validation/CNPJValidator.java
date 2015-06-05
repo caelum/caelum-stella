@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -144,4 +145,13 @@ public class CNPJValidator implements Validator<String> {
         return getInvalidValues(cnpj);
     }
 
+    @Override
+	public String generateRandomValid() {
+		final String cnpjSemDigitos = new DigitoGenerator().generate(12);
+		final String cnpjComDigitos = cnpjSemDigitos + calculaDigitos(cnpjSemDigitos);
+		if (isFormatted) {
+			return new CNPJFormatter().format(cnpjComDigitos);
+		}
+		return cnpjComDigitos;
+	}
 }

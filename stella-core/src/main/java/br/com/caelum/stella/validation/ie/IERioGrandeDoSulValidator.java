@@ -1,9 +1,14 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -111,4 +116,26 @@ public class IERioGrandeDoSulValidator implements Validator<String> {
     public List<ValidationMessage> invalidMessagesFor(String cpf) {
         return baseValidator.generateValidationMessages(getInvalidValues(cpf));
     }
+
+	private String formata(String valor) {
+		try {
+			final MaskFormatter formatador = new MaskFormatter("###/#######");
+			formatador.setValidCharacters("1234567890");
+			formatador.setValueContainsLiteralCharacters(false);
+			return formatador.valueToString(valor);
+		} catch (ParseException e) {
+			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		}
+	}
+	
+	@Override
+	public String generateRandomValid() {
+		final String primeiroDigito = String.valueOf(new Random().nextInt(5));
+		final String ieSemDigito = primeiroDigito + new DigitoGenerator().generate(8);
+		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
+		if (isFormatted) {
+			return formata(ieComDigito);
+		}
+		return ieComDigito;
+	}
 }

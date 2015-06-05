@@ -1,8 +1,12 @@
 package br.com.caelum.stella.validation.ie;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.MaskFormatter;
+
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
@@ -60,4 +64,13 @@ public class IEPernambucoValidator implements Validator<String> {
         return baseValidator.isEligible(object);
     }
 
+    /**
+	 * @see Validator#generateRandomValid()
+	 * @see LogicOrComposedValidator#generateRandomValid()
+	 * @return uma inscrição estadual válida de acordo com o novo padrão de Pernambuco
+	 */
+	@Override
+	public String generateRandomValid() {
+		return baseValidator.generateRandomValid();
+	}
 }
