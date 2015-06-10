@@ -12,13 +12,12 @@ public class HSBC extends AbstractBanco implements Banco {
 	private static final String NUMERO_HSBC = "399";
 	private static final String DIGITO_HSBC = "9";
 	private static final String CODIGO_APLICATIVO = "2";
-	private static final String SINAL_MENOS = "-";
-	private static final String CARTEIRA_EMISSOR = "CNR";
+	private static final String CARTEIRA_NAO_REGISTRADA = "CNR";
 	private static final String QUATRO_ZEROS = "0000";
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
-		return NUMERO_HSBC + SINAL_MENOS + DIGITO_HSBC;
+		return NUMERO_HSBC + "-" + DIGITO_HSBC;
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class HSBC extends AbstractBanco implements Banco {
 
 	@Override
 	public String getCarteiraDoEmissorFormatado(Emissor emissor) {
-		return CARTEIRA_EMISSOR;
+		return CARTEIRA_NAO_REGISTRADA;
 	}
 
 	@Override
