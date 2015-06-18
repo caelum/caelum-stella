@@ -13,7 +13,6 @@ public class HSBC extends AbstractBanco implements Banco {
 	private static final String DIGITO_HSBC = "9";
 	private static final String CODIGO_APLICATIVO = "2";
 	private static final String CARTEIRA_NAO_REGISTRADA = "CNR";
-	private static final String QUATRO_ZEROS = "0000";
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
@@ -38,7 +37,7 @@ public class HSBC extends AbstractBanco implements Banco {
 		dataLimite.set(Calendar.MONTH, 7 - 1);
 		dataLimite.set(Calendar.YEAR, 1997);
 		if (vencimento.before(dataLimite)) {
-			result = QUATRO_ZEROS;
+			result = "0000";
 		} else {
 			int diaDoAno = vencimento.get(Calendar.DAY_OF_YEAR);
 			int digitoDoAno = vencimento.get(Calendar.YEAR) % 10;
