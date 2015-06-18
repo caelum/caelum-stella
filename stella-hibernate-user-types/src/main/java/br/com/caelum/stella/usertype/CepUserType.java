@@ -72,8 +72,8 @@ public class CepUserType implements UserType {
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
             throws HibernateException, SQLException {
-        String name = rs.getString(names[0]);
-        return rs.wasNull() ? null : new CEP(name);
+        String value = rs.getString(names[0]);
+        return rs.wasNull() ? null : new CEP(value);
     }
 
     @Override
@@ -82,7 +82,8 @@ public class CepUserType implements UserType {
         if (value == null) {
             st.setNull(index, Types.VARCHAR);
         } else {
-            st.setString(index, value.toString());
+            CEP cep = (CEP) value;
+            st.setString(index, cep.getNumero());
         }
 
     }
