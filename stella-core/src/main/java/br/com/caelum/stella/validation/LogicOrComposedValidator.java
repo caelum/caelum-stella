@@ -23,12 +23,16 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
 
     @SuppressWarnings("unchecked")
     public LogicOrComposedValidator(MessageProducer messageProducer, boolean isFormatted,
-            Class<Validator<T>>... validatorClasses) {
+            Class<? extends Validator<T>>... validatorClasses) {
+        if (validatorClasses.length == 0) {
+            throw new IllegalArgumentException(
+                    "Ao menos um validador deve ser passado como argumento na construção");
+        }
         this.messageProducer = messageProducer;
         this.validators = new Validator[validatorClasses.length];
         int i = 0;
-        for (Class<Validator<T>> clazz : validatorClasses) {
-            Constructor<Validator<T>> constructor;
+        for (Class<? extends Validator<T>> clazz : validatorClasses) {
+            Constructor<? extends Validator<T>> constructor;
             try {
                 constructor = clazz.getConstructor(MessageProducer.class, boolean.class);
                 constructor.setAccessible(true);
@@ -105,4 +109,13 @@ public class LogicOrComposedValidator<T> implements Validator<T> {
         this.invalidFormat = invalidFormat;
     }
 
+    /**
+     * @see Validator#generateRandomValid()
+	 * @return um documento válido de acordo com as regras do primeiro validador passado como
+	 *         argumento na construção deste validador
+	 */
+    @Override
+    public T generateRandomValid() {
+        return validators[0].generateRandomValid();
+    }
 }

@@ -109,4 +109,17 @@ public class NITValidatorTest {
         }
     }
 
+    @Test
+    public void shouldGenerateRandomValidUnformattedNIT() {
+        NITValidator validator = new NITValidator(false);
+        String value = validator.generateRandomValid();
+        validator.assertValid(value);
+    }
+
+    @Test
+    public void shouldGenerateRandomValidFormattedNIT() {
+        NITValidator validator = new NITValidator(true);
+        String value = validator.generateRandomValid();
+        validator.assertValid(value);
+    }
 }

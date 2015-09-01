@@ -60,4 +60,13 @@ public class IESaoPauloValidator implements Validator<String> {
         return baseValidator.isEligible(object);
     }
 
+    /**
+     * @see Validator#generateRandomValid()
+     * @see LogicOrComposedValidator#generateRandomValid()
+     * @return uma inscrição estadual de comércio e indústria válida
+     */
+    @Override
+    public String generateRandomValid() {
+        return baseValidator.generateRandomValid();
+    }
 }

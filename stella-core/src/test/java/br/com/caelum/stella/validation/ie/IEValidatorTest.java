@@ -10,6 +10,7 @@ import org.junit.Test;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.InvalidStateException;
+import br.com.caelum.stella.validation.RenavamValidator;
 import br.com.caelum.stella.validation.Validator;
 import br.com.caelum.stella.validation.error.IEError;
 
@@ -176,4 +177,17 @@ public abstract class IEValidatorTest {
 		verify(messageProducer, times(1)).getMessage(IEError.INVALID_FORMAT);
 	}
 
+    @Test
+    public void shouldGenerateValidFormattedIE() {
+        final Validator<String> ieValidator = getValidator(messageProducer, true);
+        final String generated = ieValidator.generateRandomValid();
+        ieValidator.assertValid(generated);
+    }
+
+    @Test
+    public void shouldGenerateValidUnformattedIE() {
+        final Validator<String> ieValidator = getValidator(messageProducer, false);
+        final String generated = ieValidator.generateRandomValid();
+        ieValidator.assertValid(generated);
+    }
 }

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.format.RenavamFormatter;
 import br.com.caelum.stella.validation.error.RenavamError;
 
@@ -147,4 +149,13 @@ public class RenavamValidator implements Validator<String> {
         return isEligible;
     }
 
+    @Override
+	public String generateRandomValid() {
+		final String renavamSemDigito = new DigitoGenerator().generate(10);
+		final String renavamComDigito = renavamSemDigito + calculaDigito(renavamSemDigito);
+		if (isFormatted) {
+			return new RenavamFormatter().format(renavamComDigito);
+		}
+		return renavamComDigito;
+	}
 }

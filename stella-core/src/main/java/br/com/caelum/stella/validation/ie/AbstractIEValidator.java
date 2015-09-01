@@ -13,7 +13,7 @@ import br.com.caelum.stella.validation.error.IEError;
 
 public abstract class AbstractIEValidator implements Validator<String> {
 	
-	private final boolean isFormatted;
+	protected final boolean isFormatted;
 	private final BaseValidator baseValidator;
 
 	public AbstractIEValidator() {

@@ -73,4 +73,13 @@ public class AcceptAnyValidator implements Validator<String> {
         return result;
     }
 
+    /**
+     * @see Validator#generateRandomValid()
+	 * @return um documento válido de acordo com as regras do primeiro documento passado como
+	 *         argumento na construção deste validador
+	 */
+    @Override
+    public String generateRandomValid() {
+        return validators.iterator().next().generateRandomValid();
+    }
 }

@@ -83,4 +83,15 @@ public class TituloEleitoralValidatorTest {
         validator.assertValid("815155812960");
     }
 
+    @Test
+    public void shouldGenerateRandomValidUnformatted() {
+        final String value = validator.generateRandomValid();
+        validator.assertValid(value);
+    }
+
+    @Test
+    public void shouldGenerateRandomValidFormatted() {
+        final String value = validatorFormatted.generateRandomValid();
+        validatorFormatted.assertValid(value);
+    }
 }
