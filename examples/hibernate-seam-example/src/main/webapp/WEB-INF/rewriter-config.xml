@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<rewriter-config xmlns:b="http://rewriter.softeu.cz/basic/">
-
-    <!-- configures usefull rewritings when using JSF and Facelets -->
-    <b:facelets />
-
-</rewriter-config>
