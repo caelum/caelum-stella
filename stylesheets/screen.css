@@ -1,0 +1,355 @@
+@charset "UTF-8";
+/* CSS Document */
+*{margin:0px; padding:0px; font-family:Arial, Helvetica, sans-serif;}
+
+body{
+    background-color:#00487D; 
+    text-align:center;}
+    
+a{text-decoration:none;}
+
+/*header structure*/
+#headerWrap{
+    background-color: #ffffff;
+    background-position:left top;
+    background-repeat:repeat;
+    display:block; 
+    width:100%;
+    height:200px;
+    position:relative;
+    overflow:hidden;}
+    
+    #headerContent{
+        width:918px;
+        display:block;
+        height:100%;
+        position:relative;
+        margin:0px auto;
+        overflow:hidden;}
+        
+        #logoStella {
+            display:block;
+            width:336px;
+            height:90px;
+            background-image:url(../images/stella.jpg);
+            background-position:-6px 0px;
+            background-repeat:no-repeat;
+            position:absolute;
+            left:50px;
+            top:0px;
+            margin-top: 50px;
+            }
+            
+            #logoStella span, #caelumObjects span {display:none;}
+       
+        #caelumObjects {
+         background-position:-348px -151px;
+         background-repeat:no-repeat;
+         position:absolute;
+         right:0px;
+         top:20px;
+         width:156px;
+         height:62px;
+         display:block;
+         overflow:hidden;
+        margin-top: 80px;}
+
+/*menus like langbar and menuelements menu.css*/
+
+/*banner css configuration*/
+#bannerWrap{
+    background-position:0 -158px;
+    background-repeat:repeat;
+    display:block; 
+    width:100%;
+    height:302px;
+    position:relative;} 
+
+    #banner{
+        width:918px;    
+        height:auto;
+        margin:0px auto;    
+        display:block;  
+        height:auto;    
+        text-align:center;}
+        
+        #banner div {display:block; float:left; position:relative; height:auto; width:305px; text-align:center; margin-top:30px;}
+        
+         #banner div h3{
+            font-size:30px;
+            margin-bottom:10px;
+            color:#fff;
+            display:block;
+            width:auto;
+            height:auto;
+            text-transform:uppercase;}
+                
+        #banner div p{color:#FFF; padding-right:10px; text-transform:uppercase; font-size:13px;}
+        
+        #banner div#smallBox{border-left:1px solid #FFF; border-right:1px solid #FFF;}
+        
+        #banner div#hypermediaBox h3{
+          background-position:0px -520px; padding-top:100px; margin-top:30px;  background-repeat:no-repeat;}
+        #banner div#smallBox h3{
+          background-position:-242px -487px; padding-top:130px;  background-repeat:no-repeat;}
+        #banner div#simpleBox h3{background-position:-510px -500px; padding-top:110px; margin-top:25px;  background-repeat:no-repeat;}        
+        
+/*content css*/
+#contentWrap{
+    display:block;
+    width:100%;
+    height:auto;
+    position:relative;
+    overflow:auto;
+    background-color:#FFF;
+    background-position:0px -461px;
+    background-repeat:repeat-x;}
+    
+    /*css home*/
+    #contentHome{ width:918px;  margin:0px auto; display:block; height:auto; text-align:left; position:relative;}       
+
+        
+        /*quickpretending*/
+        #contentHome #quickPretending { width:450px; display:block; float:left; margin-bottom:20px; margin-top:25px;}
+        #contentHome #moreAbout {width:100%; display:block; float:left; padding:10px 0px 30px 0px; height:auto; overflow:hidden;}
+            
+        #contentHome #quickPretending h2{ color:#00487D; font-size:24px; display:block; width:100%; text-transform:uppercase; margin-top:20px; margin-bottom:15px; font-weight:bold; float:left;}   
+        #moreAbout h2{ color:#00487D; font-size:24px; display:block; width:100%; text-transform:uppercase; margin-bottom:15px; font-weight:bold; float:left;}           
+        #moreAbout p a{color:#00487D; font-weight:bold;}
+        #moreAbout p a:hover{color:#F00;}
+        
+        /*stellaBenefits*/
+        #contentHome #stellaBenefits{
+            background-repeat:no-repeat;
+            background-position:-580px 0px;
+            width:450px;
+            display:block;
+            float:left;
+           height:380px;
+           overflow:hidden;
+           position:relative;}
+           
+           #stellaBenefits h3{
+            display:block;
+            width:auto;
+            height:auto;
+            margin:25px 0px 30px 70px;
+            text-transform:uppercase;
+            color:#FFF;}
+            
+            #stellaBenefits ol{margin-left:15px; margin-right:15px; display:block; width:auto; height:auto;}
+                #stellaBenefits ol li{display:block; width:auto; height:auto; padding:8px 10px; list-style-type:none;}
+                #stellaBenefits ol li a{color:#00487D;}
+                #stellaBenefits ol li a:hover{color:#F00;}
+        
+        /*video box*/
+        #contentHome #boxvideo {
+            /*background-image:url(images/stellaSprites-trans.png); 
+            background-repeat:no-repeat; 
+            background-position: -7px -111px;*/
+            margin-top:40px;
+            width:415px; 
+            height:365px; 
+            padding-top:12px;
+            padding-left:12px;          
+            float:right;}       
+            #contentHome #boxvideo object {display:block; background-color:#0CF;}
+        
+        /*twitter box*/
+        #contentHome #twitterBox {float:right; width:415px; display:block; margin-top:15px; margin-bottom:25px;}    
+            #contentHome #twitterBox h3{margin-bottom:20px; text-transform:uppercase;}
+                #contentHome #twitterBox h3 a{font-size:18px; color:#00487D; text-decoration:none;}
+                    #contentHome #twitterBox h3 a:hover{color:#F00;}
+            
+            #contentHome #twitterBox ul{list-style-type:none;}
+                #contentHome #twitterBox ul li {
+                    background-position:-1008px -463px; 
+                    background-repeat:no-repeat;            
+                    padding-left:60px;
+                    display:block;
+                    height:70px;
+                    float:left;
+                    text-transform:uppercase;}          
+                    #contentHome #twitterBox ul li p {font-size:11px; color:#353535; font-weight:bold;}
+                        #contentHome #twitterBox ul li p a{color:#333399;}
+                    #contentHome #twitterBox ul li p span {font-weight:normal;}
+
+    /*documentacao*/
+    a.documentacaoBtn{
+      background-repeat:no-repeat; 
+      background-position:-738px -381px;
+      display:block;
+      position:relative;
+      overflow:hidden;
+      width:326px; 
+      height:81px;
+      margin-top:15px;
+      margin-right:45px;
+      float:right;
+      cursor:move;
+      text-align:center;
+    }
+    a.documentacaoBtn span{display:block; position:relative; width:auto; height:auto; text-transform:uppercase; font-weight:bold; color:#FFF; font-size:24px; margin-top:22px;}
+    a.documentacaoBtn:hover span{color:#F00;}
+
+    /*css beneficios*/  
+    #contentBeneficios{ width:918px; margin:0px auto; display:block; height:auto; text-align:left; position:relative;}
+        #contentBeneficios h2{ color:#00487D;  font-size:42px; display:block;  text-transform:uppercase;   margin-top:40px; margin-left:20px; font-weight:bold;}       
+        #contentBeneficios h3{ color:#747488;   font-size:18px; display:block;  text-transform:uppercase; font-weight:normal; margin-left:20px; margin-bottom:40px;}            
+        
+        .benefitsBox {
+            display:block; 
+            float:left;
+            width:322px;
+            margin-bottom:20px;
+            margin-left:20px;
+            padding-bottom:10px;
+            padding-left:105px;
+            border-bottom:solid 1px #999999;
+            background-repeat:no-repeat;}
+                
+            .benefitsBox h4{font-size:21px; color:#293049; text-transform:uppercase;}
+            .benefitsBox p{font-size:11px; color:#353535; text-align:justify;}
+    
+        /*depoimentos*/
+            .depoimentoClientes { display:block; width:100%; border-bottom:solid 1px #999999; padding-bottom:10px; overflow:auto; margin-bottom:10px; padding-left:20px; }
+                
+            .depoimentoClientes em{display:block; float:left; width:15%; font-weight:bold; font-size:11px;}
+            .depoimentoClientes em a{color:#00487D; text-decoration:none;}
+            .depoimentoClientes em a:hover{text-decoration:underline;}
+            .depoimentoClientes p{float:right; width:80%; display:block; font-size:12px; text-align:justify; font-family:Georgia, "Times New Roman", Times, serif;}
+            .depoimentoClientes p a{color:#F00;}
+            .depoimentoClientes p a:hover{text-decoration:underline;}
+
+
+/*suporte css*/
+        #contentSuporte{ width:918px;   margin:0px auto; display:block; height:auto; text-align:left; position:relative;}
+        #contentSuporte h2{ color:#00487D; font-size:42px; display:block;  text-transform:uppercase;   margin-top:40px; margin-left:20px; font-weight:bold;}       
+        #contentSuporte h3{ color:#747488;  font-size:18px; display:block;  text-transform:uppercase; font-weight:normal; margin-left:20px; margin-bottom:40px;}
+            #contentSuporte .suporteBox{
+                width:292px; 
+                display:block; 
+                float:left; 
+                text-align:left;
+                margin-bottom:40px;
+                margin-left:14px;}
+                
+                #contentSuporte .suporteBox h4 {
+                    display:block;
+                    background-repeat:no-repeat;
+                    background-position:-7px -152px;
+                    width:292px;
+                    height:91px;
+                    position:relative;}
+                    
+                    #contentSuporte .suporteBox h4 span{color:#00487D; font-size:24px; padding-top:35px; padding-left:15px; display:block; width:auto; height:auto; overflow:hidden; font-weight:bold;}
+                    
+                    #contentSuporte .suporteBox p{font-size:12px;}
+                    #contentSuporte .suporteBox em{font-size:14px; font-weight:bold; display:block; width:100%; height:auto; border-bottom:solid 1px #999999; text-transform:uppercase; padding-top:25px; padding-bottom:5px; margin-bottom:5px; color:#333;}
+                    #contentSuporte .suporteBox a{color:#00487D;} #contentSuporte .suporteBox a:hover{color:#F00;} 
+    
+/*footer css*/
+#footerWrap{
+    display:block; 
+    width:100%;
+    position:relative;}
+    
+    #footerContent{
+        width:918px;
+        display:block;
+        height:100px;
+        position:relative;
+        margin:10px auto;
+        overflow:hidden;
+        position:relative;}
+
+        #footerContent div.footbar{
+            width:918px;
+            height:auto;
+            display:block; 
+            position:relative;
+            overflow:hidden;
+            float:left;
+            color:#CCC;
+            text-transform:uppercase;
+            text-align:left;
+            padding-top:5px;
+            margin-top:10px;
+            border-top:solid 1px #ffffff;}
+            
+            div.footbar img.logoFooter{float:right;}
+            div.footbar a:hover{color:#FF0; text-decoration:underline;}         
+            div.footbar ul {display:block; float:left; margin:5px 0px 5px 20px;}
+            div.footbar ul li{ display:block; float:left; text-decoration:none; font-size:10px; font-weight:bold; margin:0px 2px 0px 0px;}
+            div.footbar ul li a{color:#FFF; text-decoration:none; font-weight:normal;}
+            div.footbar p{font-size:11px; padding:5px 20px; display:block; color:#ffffff; float:left; width:685px; border-top:solid 1px #ffffff;}
+            div.footbar p a{color:#ffffff; text-decoration:none;}
+
+#signature { background-image:url(../images/ldl-trans.png); background-repeat:no-repeat; background-position:left top; position:absolute; display:block; bottom:0px; left:10px; font-family:Georgia, "Times New Roman", Times, serif; font-size:10px; color:#FFF; padding:5px 0px 15px 30px; text-decoration:none;}
+a#signature:hover{color:#C90;}
+
+    /*css documentacao*/    
+    #contentDocumentacao{ width:100%; margin:0px auto; display:block; height:auto; text-align:left; position:relative;}
+        #contentDocumentacao h2{ color:#00487D;    font-size:42px; display:block;  text-transform:uppercase; margin-top:40px; margin-left:20px; font-weight:bold;}     
+        #contentDocumentacao h3{ color:#747488; font-size:18px; display:block;  text-transform:uppercase; font-weight:normal; margin-left:20px; margin-bottom:40px;}
+        
+        #textoCapitulo{font-size:12px; font-weight:normal;width:auto; margin-right:10px; margin-left:360px; display:block; text-align:justify; margin-bottom:40px;}
+            #textoCapitulo h2 {font-size:30px; font-weight:bold; margin:0px 0px 10px 0px; padding:0px;}
+            #textoCapitulo h3 {font-size:18px; font-weight:bold; margin:10px 0px 0px 0px; padding:0px; color:#C00;}
+            #textoCapitulo pre {font-size:11px; color:#666; font-family:"Courier New", Courier, monospace; margin-bottom:10px; margin-top:10px;}
+
+
+.logoFooter {
+  border:none;
+}
+
+
+#howto {
+    background-color: #0047D3;
+    border-bottom: 2px solid #ffffff;
+    width: 100%;
+}
+
+.box {
+    float: left;
+    margin-right: 16px;
+    height: 500px;
+}
+
+.wrap{
+    width: 960px;
+    margin: 0 auto;
+    margin-left: 220px;
+}
+
+.language {
+font-size:1em;
+margin-bottom:1.5em;
+margin-left:0;
+margin-right:0;
+margin-top:1em;
+color: #f2f2f2;
+font-weight: bold;
+}
+
+.side {
+font-size:1em;
+margin-bottom:0.5em;
+margin-left:0;
+margin-right:0;
+margin-top:1em;
+color: #f2f2f2;
+text-align: left;
+font-weight: bold;
+}
+
+.moto{
+    color:#00487D;
+    float:left;
+    font-size:13px;
+    font-style:oblique;
+    left:290px;
+    position:relative;
+    top:65px;
+}
+
