@@ -110,7 +110,12 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroECodigoDocumento(Boleto boleto) {
-		return getNossoNumeroFormatado(boleto.getBeneficiario());
+		Beneficiario beneficiario = boleto.getBeneficiario();
+		if (convenioAntigo(beneficiario.getNumeroConvenio())) {
+			return getNossoNumeroFormatado(boleto.getBeneficiario());
+		}else{
+			return getNossoNumeroParaCarteiras17e18(beneficiario);
+		}
 	}
 
 }
