@@ -4,8 +4,9 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -393,27 +394,10 @@ public class Boleto implements Serializable {
 	 * @return fator de vencimento do boleto. Utilizado para geração do código de barras
 	 */
 	public String getFatorVencimento() {
-		Calendar dataBase = Calendar.getInstance();
-		dataBase.set(Calendar.DAY_OF_MONTH, 7);
-		dataBase.set(Calendar.MONTH, 10 - 1);
-		dataBase.set(Calendar.YEAR, 1997);
-		dataBase.set(Calendar.HOUR_OF_DAY, 0);
-		dataBase.set(Calendar.MINUTE, 0);
-		dataBase.set(Calendar.SECOND, 0);
-		dataBase.set(Calendar.MILLISECOND, 0);
+		LocalDate dataBase = LocalDate.of(1997, 10, 7);
 
-		Calendar vencimentoSemHoras = Calendar.getInstance();
-
-		vencimentoSemHoras.set(Calendar.DAY_OF_MONTH, this.datas.getVencimento().get(Calendar.DAY_OF_MONTH));
-		vencimentoSemHoras.set(Calendar.MONTH, this.datas.getVencimento().get(Calendar.MONTH));
-		vencimentoSemHoras.set(Calendar.YEAR, this.datas.getVencimento().get(Calendar.YEAR));
-		vencimentoSemHoras.set(Calendar.HOUR_OF_DAY, 0);
-		vencimentoSemHoras.set(Calendar.MINUTE, 0);
-		vencimentoSemHoras.set(Calendar.SECOND, 0);
-		vencimentoSemHoras.set(Calendar.MILLISECOND, 0);
-
-		long diferencasEmMiliSegundos = vencimentoSemHoras.getTimeInMillis() - dataBase.getTimeInMillis();
-		long diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
+		LocalDate vencimento = this.datas.getVencimento();
+		long diferencasEmDias = ChronoUnit.DAYS.between(dataBase, vencimento);
 
 		if (diferencasEmDias > 9999) {
 			throw new CriacaoBoletoException("Data fora do formato aceito!");

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class HSBCTest {
 
 	@Test
 	public void testDataJuliana() {
-		Calendar vencimento = boleto.getDatas().getVencimento();
+		LocalDate vencimento = boleto.getDatas().getVencimento();
 		assertEquals("0303", banco.getDataFormatoJuliano(vencimento, 4));
 	}
 

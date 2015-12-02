@@ -3,7 +3,7 @@ package br.com.caelum.stella.boleto;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import org.junit.Test;
 
@@ -22,12 +22,7 @@ public class BoletoTest {
 	public void regraDoFatorVencimentoParaDataDaManha() {
 		Boleto b = Boleto.novoBoleto();
 
-		Calendar data = Calendar.getInstance();
-		data.set(Calendar.DAY_OF_MONTH, 2);
-		data.set(Calendar.MONTH, 5 - 1);
-		data.set(Calendar.YEAR, 2008);
-
-		data.set(Calendar.HOUR_OF_DAY, 1);
+		LocalDate data = LocalDate.of(2008, 5, 2);
 
 		b.comDatas(Datas.novasDatas().comVencimento(data));
 
@@ -47,12 +42,7 @@ public class BoletoTest {
 	public void regraDoFatorVencimentoParaDataDaNoite() {
 		Boleto b = Boleto.novoBoleto();
 
-		Calendar data = Calendar.getInstance();
-		data.set(Calendar.DAY_OF_MONTH, 2);
-		data.set(Calendar.MONTH, 5 - 1);
-		data.set(Calendar.YEAR, 2008);
-
-		data.set(Calendar.HOUR_OF_DAY, 23);
+		LocalDate data = LocalDate.of(2008, 5, 2);
 
 		b.comDatas(Datas.novasDatas().comVencimento(data));
 
@@ -63,15 +53,7 @@ public class BoletoTest {
 	public void regraDoFatorVencimentoParaDataDaExtremaNoite() {
 		Boleto b = Boleto.novoBoleto();
 
-		Calendar data = Calendar.getInstance();
-		data.set(Calendar.DAY_OF_MONTH, 2);
-		data.set(Calendar.MONTH, 5 - 1);
-		data.set(Calendar.YEAR, 2008);
-
-		data.set(Calendar.HOUR_OF_DAY, 23);
-		data.set(Calendar.MINUTE, 59);
-		data.set(Calendar.SECOND, 59);
-		data.set(Calendar.MILLISECOND, 999);
+		LocalDate data = LocalDate.of(2008, 5, 2);
 
 		b.comDatas(Datas.novasDatas().comVencimento(data));
 
@@ -82,15 +64,7 @@ public class BoletoTest {
 	public void regraDoFatorVencimentoParaDataDoExtremaManha() {
 		Boleto b = Boleto.novoBoleto();
 
-		Calendar data = Calendar.getInstance();
-		data.set(Calendar.DAY_OF_MONTH, 2);
-		data.set(Calendar.MONTH, 5 - 1);
-		data.set(Calendar.YEAR, 2008);
-
-		data.set(Calendar.HOUR_OF_DAY, 0);
-		data.set(Calendar.MINUTE, 0);
-		data.set(Calendar.SECOND, 0);
-		data.set(Calendar.MILLISECOND, 0);
+		LocalDate data = LocalDate.of(2008, 5, 2);
 
 		b.comDatas(Datas.novasDatas().comVencimento(data));
 

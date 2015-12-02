@@ -1,8 +1,8 @@
 package br.com.caelum.stella.boleto.bancos;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import br.com.caelum.stella.DigitoPara;
@@ -35,17 +35,16 @@ public class HSBC extends AbstractBanco implements Banco {
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
 
-	public String getDataFormatoJuliano(Calendar vencimento, int tipo) {
+	public String getDataFormatoJuliano(LocalDate vencimento, int tipo) {
 		String result;
-		Calendar dataLimite = Calendar.getInstance();
-		dataLimite.set(Calendar.DAY_OF_MONTH, 1);
-		dataLimite.set(Calendar.MONTH, 7 - 1);
-		dataLimite.set(Calendar.YEAR, 1997);
-		if (vencimento.before(dataLimite)) {
+		
+		LocalDate dataLimite = LocalDate.of(1997, 10, 7);
+		
+		if (vencimento.isBefore(dataLimite)) {
 			result = "0000";
 		} else {
-			int diaDoAno = vencimento.get(Calendar.DAY_OF_YEAR);
-			int digitoDoAno = vencimento.get(Calendar.YEAR) % 10;
+			int diaDoAno = vencimento.getDayOfYear();
+			int digitoDoAno = vencimento.getYear() % 10;
 			result = String.format("%03d%d", diaDoAno, digitoDoAno);
 		}
 		return result;
@@ -90,7 +89,7 @@ public class HSBC extends AbstractBanco implements Banco {
 		
 		String nossoNumero = getNossoNumeroFormatado(beneficiario);
 		String codigoBeneficiario = beneficiario.getCodigoBeneficiario();
-		String dataVcto = new SimpleDateFormat("ddMMyy").format(boleto.getDatas().getVencimento().getTime());;
+		String dataVcto = boleto.getDatas().getVencimento().format(DateTimeFormatter.ofPattern("ddMMyy"));
 		
 		DigitoPara calculadorMod = getModuloNossoNumero(nossoNumero);
 		String primeiroDigito = calculadorMod.calcula();

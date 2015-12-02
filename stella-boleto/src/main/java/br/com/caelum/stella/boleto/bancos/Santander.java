@@ -4,7 +4,6 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
 
 import java.net.URL;
 
-import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.bancos.gerador.GeradorDeDigitoSantander;
