@@ -396,8 +396,7 @@ public class Boleto implements Serializable {
 	public String getFatorVencimento() {
 		LocalDate dataBase = LocalDate.of(1997, 10, 7);
 
-		LocalDate vencimento = this.datas.getVencimento();
-		long diferencasEmDias = ChronoUnit.DAYS.between(dataBase, vencimento);
+		long diferencasEmDias = ChronoUnit.DAYS.between(dataBase, this.datas.getVencimento());
 
 		if (diferencasEmDias > 9999) {
 			throw new CriacaoBoletoException("Data fora do formato aceito!");
