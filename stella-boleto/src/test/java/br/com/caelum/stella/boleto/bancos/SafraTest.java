@@ -77,13 +77,22 @@ public class SafraTest {
 	}
 
 	@Test
+	public void campoLivreDeveSerFormatadoComCobrancaDiretaEletronicaEAgencia() {
+		this.boleto = this.boleto.comBanco(this.banco);
+
+		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
+
+		assertEquals("42292577100000019807001000000124510000000042", codigoDeBarras);
+	}
+
+	@Test
 	public void dadoOsDadosDoBancoEDoEmissorDeveGerarALinhaDigitavelDoCodigoDeBarras() {
 		this.boleto = this.boleto.comBanco(this.banco);
 
 		GeradorDeLinhaDigitavel linhaDigitavelGenerator = new GeradorDeLinhaDigitavel();
 		String codigoDeBarras = boleto.getBanco().geraCodigoDeBarrasPara(this.boleto);
 
-		assertEquals("42297.00002  10000.124510  00000.000422  4  57710000001980", linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
+		assertEquals("42297.00101  00000.124511  00000.000422  2  57710000001980", linhaDigitavelGenerator.geraLinhaDigitavelPara(codigoDeBarras,this.banco));
 	}
 
 	@Test
@@ -92,7 +101,19 @@ public class SafraTest {
 
 		String linhaCodigoDeBarras = this.banco.geraCodigoDeBarrasPara(this.boleto);
 
-		assertEquals("4", linhaCodigoDeBarras.substring(4, 5));
+		assertEquals("2", linhaCodigoDeBarras.substring(4, 5));
+	}
+
+	@Test
+	public void nossoNumeroComCodigoDocumentoNaoMostraDocumento() {
+		String nossoNumeroECodigoDocumento = this.banco.getNossoNumeroECodigoDocumento(this.boleto);
+		assertEquals("00000004-3", nossoNumeroECodigoDocumento);
+	}
+
+	@Test
+	public void agenciaECodigoBeneficiarioMostraDigitoConta() {
+		String agenciaECodigoBeneficiario = this.banco.getAgenciaECodigoBeneficiario(this.boleto.getBeneficiario());
+		assertEquals("00100 / 00001245-1", agenciaECodigoBeneficiario);
 	}
 
 	@Test
