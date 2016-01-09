@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -137,11 +138,23 @@ public class GeradorDeBoleto {
 	 * @param arquivo arquivo para gravar o PDF.
 	 */
 	public void geraPDF(File arquivo) {
+		OutputStream out = null;
+		
 		try {
-			OutputStream out = new FileOutputStream(arquivo);
-			geraPDF(out); 
+			out = new FileOutputStream(arquivo);
+			geraPDF(out);
+			
 		} catch (FileNotFoundException e) {
 			throw new GeracaoBoletoException(e);
+		
+		}finally {
+			if(out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					throw new GeracaoBoletoException(e);
+				}
+			}
 		}
 	}
 	
