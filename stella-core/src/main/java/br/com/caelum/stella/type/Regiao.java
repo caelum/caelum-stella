@@ -1,32 +1,6 @@
 package br.com.caelum.stella.type;
 
-import static br.com.caelum.stella.type.Estado.AC;
-import static br.com.caelum.stella.type.Estado.AL;
-import static br.com.caelum.stella.type.Estado.AM;
-import static br.com.caelum.stella.type.Estado.AP;
-import static br.com.caelum.stella.type.Estado.BA;
-import static br.com.caelum.stella.type.Estado.CE;
-import static br.com.caelum.stella.type.Estado.DF;
-import static br.com.caelum.stella.type.Estado.ES;
-import static br.com.caelum.stella.type.Estado.GO;
-import static br.com.caelum.stella.type.Estado.MA;
-import static br.com.caelum.stella.type.Estado.MG;
-import static br.com.caelum.stella.type.Estado.MS;
-import static br.com.caelum.stella.type.Estado.MT;
-import static br.com.caelum.stella.type.Estado.PA;
-import static br.com.caelum.stella.type.Estado.PB;
-import static br.com.caelum.stella.type.Estado.PE;
-import static br.com.caelum.stella.type.Estado.PI;
-import static br.com.caelum.stella.type.Estado.PR;
-import static br.com.caelum.stella.type.Estado.RJ;
-import static br.com.caelum.stella.type.Estado.RN;
-import static br.com.caelum.stella.type.Estado.RO;
-import static br.com.caelum.stella.type.Estado.RR;
-import static br.com.caelum.stella.type.Estado.RS;
-import static br.com.caelum.stella.type.Estado.SC;
-import static br.com.caelum.stella.type.Estado.SE;
-import static br.com.caelum.stella.type.Estado.SP;
-import static br.com.caelum.stella.type.Estado.TO;
+import static br.com.caelum.stella.type.Estado.*;
 import static java.util.Arrays.asList;
 
 import java.util.List;
