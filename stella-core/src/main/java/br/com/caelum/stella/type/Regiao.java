@@ -1,9 +1,8 @@
 package br.com.caelum.stella.type;
 
 import static br.com.caelum.stella.type.Estado.*;
-import static java.util.Arrays.asList;
 
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -21,7 +20,7 @@ public enum Regiao {
 	private final Set<Estado> estados;
 
 	private Regiao(Estado... estados) {
-		this.estados = new HashSet<Estado>(asList(estados));
+		this.estados = EnumSet.of(estados[0], estados);
 	}
 
 	/**
