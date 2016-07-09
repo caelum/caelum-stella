@@ -34,7 +34,7 @@ import br.com.caelum.stella.validation.ie.IETocantinsValidator;
  * Respresenta um estado brasileiro, ou o Destrito Federal.
  * 
  * @author leobessa
- * 
+ * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>
  */
 public enum Estado {
 
@@ -221,5 +221,32 @@ public enum Estado {
     
     public int getCodigoIBGE() {
 		return codigoIBGE;
+	}
+
+    /**
+	 * A região do território brasileiro em que esse estado está localizado.
+	 *
+	 * @return Retorna a região em que esse estado está localizado.
+	 */
+	public Regiao regiao() {
+		Regiao[] regioes = Regiao.values();
+
+		for (Regiao regiao : regioes) {
+			if(regiao.compostaPor(this)) {
+				return regiao;
+			}
+		}
+
+		throw new IllegalStateException("Não foi possível determinar a região do estado " + this);
+	}
+
+	/**
+	 * Verifica se esse estado está localizado na região informada.
+	 *
+	 * @param regiao Uma das regiões do território brasileiro.
+	 * @return Retorna {@code true} se esse estado pertencer à região informada ou {@code false} caso contrário.
+	 */
+	public boolean localizadoEm(Regiao regiao) {
+		return regiao() == regiao;
 	}
 }
