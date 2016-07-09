@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class RegiaoTest {
 	@Test
 	public void statesOfSouthRegion() throws Exception {
-		List<Estado> estados = Regiao.SUL.estados();
+		Set<Estado> estados = Regiao.SUL.estados();
 
 		assertThat(estados.size(), is(3));
 		assertThat(estados, hasItems(Estado.PR, Estado.RS, Estado.SC));
@@ -22,7 +22,7 @@ public class RegiaoTest {
 
 	@Test
 	public void statesOfSoutheastRegion() throws Exception {
-		List<Estado> estados = Regiao.SUDESTE.estados();
+		Set<Estado> estados = Regiao.SUDESTE.estados();
 
 		assertThat(estados.size(), is(4));
 		assertThat(estados, hasItems(Estado.SP, Estado.RJ, Estado.ES, Estado.MG));
@@ -30,7 +30,7 @@ public class RegiaoTest {
 
 	@Test
 	public void statesOfMidWestRegion() throws Exception {
-		List<Estado> estados = Regiao.CENTRO_OESTE.estados();
+		Set<Estado> estados = Regiao.CENTRO_OESTE.estados();
 
 		assertThat(estados.size(), is(4));
 		assertThat(estados, hasItems(Estado.MT, Estado.MS, Estado.GO, Estado.DF));
@@ -38,7 +38,7 @@ public class RegiaoTest {
 
 	@Test
 	public void statesOfNortheastRegion() throws Exception {
-		List<Estado> estados = Regiao.NORDESTE.estados();
+		Set<Estado> estados = Regiao.NORDESTE.estados();
 
 		assertThat(estados.size(), is(9));
 		assertThat(estados, hasItems(Estado.MA, Estado.PI, Estado.CE, Estado.RN, Estado.PE, Estado.PB, Estado.SE, Estado.AL, Estado.BA));
@@ -46,7 +46,7 @@ public class RegiaoTest {
 
 	@Test
 	public void statesOfNorthRegion() throws Exception {
-		List<Estado> estados = Regiao.NORTE.estados();
+		Set<Estado> estados = Regiao.NORTE.estados();
 
 		assertThat(estados.size(), is(7));
 		assertThat(estados, hasItems(Estado.AM, Estado.RR, Estado.AP, Estado.PA, Estado.TO, Estado.RO, Estado.AC));

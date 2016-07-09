@@ -3,7 +3,8 @@ package br.com.caelum.stella.type;
 import static br.com.caelum.stella.type.Estado.*;
 import static java.util.Arrays.asList;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Representa as divisões regionais do território brasileiro.
@@ -11,33 +12,25 @@ import java.util.List;
  * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>
  */
 public enum Regiao {
-	CENTRO_OESTE,
-	NORDESTE,
-	NORTE,
-	SUDESTE,
-	SUL;
+	CENTRO_OESTE(DF, GO, MT, MS),
+	NORDESTE(AL, BA, CE, MA, PB, PE, PI, RN, SE),
+	NORTE(AC, AM, AP, PA, RO, RR, TO),
+	SUDESTE(ES, MG, RJ, SP),
+	SUL(PR, RS, SC);
 
+	private final Set<Estado> estados;
+
+	private Regiao(Estado... estados) {
+		this.estados = new HashSet<Estado>(asList(estados));
+	}
 
 	/**
 	 * A lista de estados que compõem essa região.
 	 *
 	 * @return Retorna uma lista dos estados que compõem essa região.
 	 */
-	public List<Estado> estados() {
-		switch (this) {
-		case CENTRO_OESTE:
-			return asList(MT, MS, GO, DF);
-		case NORDESTE:
-			return asList(MA, PI, CE, RN, PE, PB, SE, AL, BA);
-		case NORTE:
-			return asList(AM, RR, AP, PA, TO, RO, AC);
-		case SUDESTE:
-			return asList(SP, RJ, ES, MG);
-		case SUL:
-			return asList(PR, RS, SC);
-		default:
-			throw new IllegalStateException("Não é possível determinar os estados que compõem a região " + this);
-		}
+	public Set<Estado> estados() {
+		return estados;
 	}
 
 	/**
