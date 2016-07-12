@@ -13,23 +13,34 @@ public class Itau extends AbstractBanco implements Banco {
 
 	private static final long serialVersionUID = 1L;
 
+    private static final String CARTEIRA_198 = "198";
 	private static final String NUMERO_ITAU = "341";
 	private static final String DIGITO_ITAU = "7";
 
-	@Override
-	public String geraCodigoDeBarrasPara(Boleto boleto) {
-		Beneficiario beneficiario = boleto.getBeneficiario();
-		StringBuilder campoLivre = new StringBuilder();
-		campoLivre.append(getCarteiraFormatado(beneficiario));
-		campoLivre.append(getNossoNumeroFormatado(beneficiario));
-		campoLivre.append(beneficiario.getAgenciaFormatada());
-		campoLivre.append(getCodigoBeneficiarioFormatado(beneficiario)).append("000");
-		campoLivre.insert(20, this.geradorDeDigito
-				.geraDigitoMod10(campoLivre.substring(11, 20)));
-		campoLivre.insert(11, this.geradorDeDigito.geraDigitoMod10(campoLivre
-				.substring(11, 20).concat(campoLivre.substring(0, 11))));
-		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
-	}
+    @Override
+    public String geraCodigoDeBarrasPara(Boleto boleto) {
+        Beneficiario beneficiario = boleto.getBeneficiario();
+        StringBuilder campoLivre = new StringBuilder();
+
+        String numeroCarteiraFormatado = getCarteiraFormatado(beneficiario);
+
+        campoLivre.append(getCarteiraFormatado(beneficiario));
+        campoLivre.append(getNossoNumeroFormatado(beneficiario));
+
+        if(numeroCarteiraFormatado.equals(CARTEIRA_198)){
+            campoLivre.append(boleto.getNumeroDoDocumento());
+            campoLivre.append(getCodigoBeneficiarioFormatado(beneficiario));
+            campoLivre.append(this.geradorDeDigito.geraDigitoMod10(campoLivre.substring(0, 23))).append("0");
+        }else{
+            campoLivre.append(beneficiario.getAgenciaFormatada());
+            campoLivre.append(getCodigoBeneficiarioFormatado(beneficiario)).append("000");
+            campoLivre.insert(20, this.geradorDeDigito.geraDigitoMod10(campoLivre.substring(11, 20)));
+            campoLivre.insert(11, this.geradorDeDigito.geraDigitoMod10(campoLivre.substring(11, 20).concat(campoLivre.substring(0, 11))));
+        }
+
+        return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
+
+    }
 
 	@Override
 	public String getNumeroFormatadoComDigito() {
@@ -59,7 +70,7 @@ public class Itau extends AbstractBanco implements Banco {
 	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
 		return leftPadWithZeros(beneficiario.getNossoNumero(), 8);
 	}
-	
+
 	@Override
 	public String getNossoNumeroECodigoDocumento(Boleto boleto) {
 		String valor = super.getNossoNumeroECodigoDocumento(boleto);
@@ -71,13 +82,13 @@ public class Itau extends AbstractBanco implements Banco {
 	public String getNumeroFormatado() {
 		return NUMERO_ITAU;
 	}
-	
+
 	@Override
 	public String getAgenciaECodigoBeneficiario(Beneficiario beneficiario) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(beneficiario.getAgenciaFormatada()).append("/");
 		builder.append(getCodigoBeneficiarioFormatado(beneficiario));
-		builder.append(prefixNotNullStringOrDefault(beneficiario.getDigitoCodigoBeneficiario(),"","-"));	
+		builder.append(prefixNotNullStringOrDefault(beneficiario.getDigitoCodigoBeneficiario(),"","-"));
 		return builder.toString();
 	}
 
