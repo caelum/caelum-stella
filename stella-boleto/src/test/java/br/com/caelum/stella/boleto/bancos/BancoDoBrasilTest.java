@@ -187,10 +187,23 @@ public class BancoDoBrasilTest {
 		this.banco = new BancoDoBrasil();
 		this.boleto = this.boleto.comBanco(this.banco);
 		
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("2670001").comCarteira("17");
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("0123456789").comNumeroConvenio("2670001").comCarteira("17");
 		this.boleto.comBeneficiario(beneficiario);
 
-		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
+                
+		assertEquals("00191386000000040000000002670001012345678917", this.banco.geraCodigoDeBarrasPara(boleto));
 	}
 
+        @Test
+	public void testCarteira17DezesseteDigitosMaior1000000() {
+		this.banco = new BancoDoBrasil();
+		this.boleto = this.boleto.comBanco(this.banco);
+		
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("12345678901234567").comNumeroConvenio("2670001").comCarteira("17");
+		this.boleto.comBeneficiario(beneficiario);
+
+                
+		assertEquals("00194386000000040002670001234567890123456717", this.banco.geraCodigoDeBarrasPara(boleto));
+	}
+        
 }

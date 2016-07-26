@@ -42,7 +42,9 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 				campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));
 			}
 		} else if (beneficiario.getCarteira().equals(CARTEIRA_17) || beneficiario.getCarteira().equals(CARTEIRA_18)) {
-			campoLivre.append(ZEROS_CONVENIOS_NOVOS);
+                    if (beneficiario.getNossoNumero().length() != 17) {
+                        campoLivre.append(ZEROS_CONVENIOS_NOVOS);
+                    }
 			campoLivre.append(getNumeroConvenioFormatado(beneficiario));
 			campoLivre.append(getNossoNumeroParaCarteiras17e18(beneficiario));
 			campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));
