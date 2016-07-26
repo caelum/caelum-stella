@@ -193,9 +193,7 @@ public class BancoDoBrasilTest {
                 
 		assertEquals("00191386000000040000000002670001012345678917", this.banco.geraCodigoDeBarrasPara(boleto));
 	}
-        
-        
-        
+
         @Test
 	public void testCarteira17DezesseteDigitosMaior1000000() {
 		this.banco = new BancoDoBrasil();
@@ -208,5 +206,4 @@ public class BancoDoBrasilTest {
 		assertEquals("00194386000000040002670001234567890123456717", this.banco.geraCodigoDeBarrasPara(boleto));
 	}
         
-
 }
