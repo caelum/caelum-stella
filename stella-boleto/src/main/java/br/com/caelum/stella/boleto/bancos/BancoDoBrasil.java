@@ -18,6 +18,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	private static final String NUMERO_BB = "001";
 	private static final String DIGITO_NUMERO_BB = "9";
+	private static final String CARTEIRA_11 = "11";
 	private static final String CARTEIRA_16 = "16";
 	private static final String CARTEIRA_17 = "17";
 	private static final String CARTEIRA_18 = "18";
@@ -29,7 +30,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	public String geraCodigoDeBarrasPara(Boleto boleto) {
 		StringBuilder campoLivre = new StringBuilder();
 		Beneficiario beneficiario = boleto.getBeneficiario();
-		
+
 		if (convenioAntigo(beneficiario.getNumeroConvenio())) {
 			if (beneficiario.getCarteira().equals(CARTEIRA_16) || beneficiario.getCarteira().equals(CARTEIRA_18)) {
 				campoLivre.append(getNumeroConvenioFormatado(beneficiario));
@@ -41,7 +42,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 				campoLivre.append(beneficiario.getCodigoBeneficiario());
 				campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));
 			}
-		} else if (beneficiario.getCarteira().equals(CARTEIRA_17) || beneficiario.getCarteira().equals(CARTEIRA_18)) {
+		} else if (beneficiario.getCarteira().equals(CARTEIRA_17) || beneficiario.getCarteira().equals(CARTEIRA_18) || beneficiario.getCarteira().equals(CARTEIRA_11)) {
 			campoLivre.append(ZEROS_CONVENIOS_NOVOS);
 			campoLivre.append(getNumeroConvenioFormatado(beneficiario));
 			campoLivre.append(getNossoNumeroParaCarteiras17e18(beneficiario));
@@ -55,8 +56,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 	}
 
 	private String getNossoNumeroParaCarteiras17e18(Beneficiario beneficiario) {
-		int indice = beneficiario.getCarteira().equals(CARTEIRA_17) ? 1 : 7;
-		return  getNossoNumeroFormatado(beneficiario).substring(indice);
+		return  getNossoNumeroFormatado(beneficiario).substring(7);
 	}
 
 	private boolean convenioAntigo(String convenio) {
@@ -96,7 +96,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 
 	@Override
 	public String getNossoNumeroFormatado(Beneficiario beneficiario) {
-		if (beneficiario.getCarteira().equals(CARTEIRA_18) || beneficiario.getCarteira().equals(CARTEIRA_16)) {
+		if (!convenioAntigo(beneficiario.getNumeroConvenio()) || beneficiario.getCarteira().equals(CARTEIRA_18) || beneficiario.getCarteira().equals(CARTEIRA_16)) {
 			return leftPadWithZeros(beneficiario.getNossoNumero(), 17);
 		} else {
 			return leftPadWithZeros(beneficiario.getNossoNumero(), 11);

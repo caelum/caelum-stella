@@ -49,7 +49,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("11");
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("11").comNumeroConvenio("123456");
 		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
 		assertEquals(11, numeroFormatado.length());
 		assertEquals("00009000206", numeroFormatado);
@@ -57,7 +57,7 @@ public class BancoDoBrasilTest {
 
 	@Test
 	public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("18");
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("18").comNumeroConvenio("1234567");
 		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
 		assertEquals(17, numeroFormatado.length());
 		assertEquals("00000000009000206", numeroFormatado);
@@ -191,6 +191,31 @@ public class BancoDoBrasilTest {
 		this.boleto.comBeneficiario(beneficiario);
 
 		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
+	}
+
+	@Test
+	public void testCarteira11ComConvenioSeteDigitos() {
+		this.banco = new BancoDoBrasil();
+		this.boleto = this.boleto.comBanco(this.banco);
+
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("1234567").comCarteira("11").comNossoNumero("12345670000001000");
+		this.boleto.comBeneficiario(beneficiario);
+
+		try {
+			assertEquals("00197386000000040000000001234567000000100011", this.banco.geraCodigoDeBarrasPara(boleto));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testCarteira17ComConvenioSeteDigitos() {
+		this.banco = new BancoDoBrasil();
+		this.boleto = this.boleto.comBanco(this.banco);
+
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("1234567").comCarteira("17").comNossoNumero("12345670000001000");
+		this.boleto.comBeneficiario(beneficiario);
+		assertEquals("00196386000000040000000001234567000000100017", this.banco.geraCodigoDeBarrasPara(boleto));
 	}
 
 }

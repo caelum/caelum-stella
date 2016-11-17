@@ -36,7 +36,7 @@ public class Caixa extends AbstractBanco implements Banco {
 			campoLivre.append(nossoNumeroCompleto.substring(1, 2));
 			campoLivre.append(nossoNumeroCompleto.substring(8));
 			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
-		} else if (carteiraDoEmissor.equals("24")) {
+		} else if (carteiraDoEmissor.equals("24") || carteiraDoEmissor.equals("14")) {
 			String nossoNumeroCompleto = getNossoNumeroFormatado(beneficiario);
 			campoLivre.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 6));
 			campoLivre.append(beneficiario.getDigitoCodigoBeneficiario());
