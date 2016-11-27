@@ -11,35 +11,38 @@ import org.hibernate.service.ServiceRegistry;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.caelum.stella.tinytype.CPF;
+import br.com.caelum.stella.tinytype.CNPJ;
 
-public class CpfUserTypeTest {
+/**
+ * @author Dayan Costa
+ */
+public class CnpjUserTypeTest {
 
   private static SessionFactory factory;
 
   @BeforeClass
   public static void geraBanco() {
     Configuration cfg = new Configuration();
-    cfg.addAnnotatedClass(PessoaFisica.class);
+    cfg.addAnnotatedClass(PessoaJuridica.class);
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg
       .getProperties()).build();
     factory = cfg.buildSessionFactory(serviceRegistry);
   }
 
   @Test
-  public void shouldSaveAndLoadEntityMappedWithCpfUserType() {
+  public void shouldSaveAndLoadEntityMappedWithCnpjUserType() {
     Session session = factory.openSession();
     Transaction transaction = session.beginTransaction();
-    PessoaFisica pessoa = new PessoaFisica();
-    CPF cpf = new CPF("555.555.555-55");
-    pessoa.setCpf(cpf);
+    PessoaJuridica pessoa = new PessoaJuridica();
+    CNPJ cnpj = new CNPJ("55.555.555/5555-55");
+    pessoa.setCnpj(cnpj);
     session.save(pessoa);
     transaction.commit();
     session.close();
     session = factory.openSession();
     Long id = pessoa.getId();
-    PessoaFisica load = session.load(PessoaFisica.class, id);
-    assertEquals(cpf, load.getCpf());
+    PessoaJuridica load = session.load(PessoaJuridica.class, id);
+    assertEquals(cnpj, load.getCnpj());
   }
 
 }

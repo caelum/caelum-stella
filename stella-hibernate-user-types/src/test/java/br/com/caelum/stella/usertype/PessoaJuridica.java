@@ -7,10 +7,14 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 
-import br.com.caelum.stella.tinytype.CPF;
+import br.com.caelum.stella.tinytype.CNPJ;
 
+/**
+ * @author Dayan Costa
+ */
 @Entity
-public class PessoaFisica {
+public class PessoaJuridica {
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -23,15 +27,15 @@ public class PessoaFisica {
     this.id = id;
   }
 
-  @Type(type = "br.com.caelum.stella.usertype.CpfUserType")
-  private CPF cpf;
+  @Type(type = "br.com.caelum.stella.usertype.CnpjUserType")
+  private CNPJ cnpj;
 
-  public CPF getCpf() {
-    return cpf;
+  public CNPJ getCnpj() {
+    return cnpj;
   }
 
-  public void setCpf(CPF cpf) {
-    this.cpf = cpf;
+  public void setCnpj(CNPJ cnpj) {
+    this.cnpj = cnpj;
   }
 
 }

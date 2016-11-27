@@ -39,11 +39,10 @@ public class CepUserTypeTest {
         endereco.setCep(cep);
         session.save(endereco);
         transaction.commit();
-        session.flush();
         session.close();
         session = factory.openSession();
         Long id = endereco.getId();
-        Endereco load = (Endereco) session.load(Endereco.class, id);
+        Endereco load = session.load(Endereco.class, id);
         assertEquals(cep, load.getCep());
     }
 
