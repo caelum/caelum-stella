@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.stella.tinytype.CNPJ;
@@ -20,8 +20,8 @@ public class CnpjUserTypeTest {
 
   private static SessionFactory factory;
 
-  @BeforeClass
-  public static void geraBanco() {
+  @Before
+  public void geraBanco() {
     Configuration cfg = new Configuration();
     cfg.addAnnotatedClass(PessoaJuridica.class);
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg
@@ -30,7 +30,7 @@ public class CnpjUserTypeTest {
   }
 
   @Test
-  public void shouldSaveAndLoadEntityMappedWithCnpjUserType() {
+  public void deveSalvarECarregarEntidadeMapeadaComCnpjUserType() {
     Session session = factory.openSession();
     Transaction transaction = session.beginTransaction();
     PessoaJuridica pessoa = new PessoaJuridica();

@@ -12,6 +12,9 @@ import org.hibernate.usertype.UserType;
 
 import br.com.caelum.stella.tinytype.CPF;
 
+/**
+ * Tipo de mapeamento de CPF para o hibernate
+ */
 public class CpfUserType implements UserType {
 
   private static final int[] SQL_TYPES = { Types.VARCHAR };

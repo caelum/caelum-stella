@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.stella.tinytype.CPF;
@@ -17,8 +17,8 @@ public class CpfUserTypeTest {
 
   private static SessionFactory factory;
 
-  @BeforeClass
-  public static void geraBanco() {
+  @Before
+  public void geraBanco() {
     Configuration cfg = new Configuration();
     cfg.addAnnotatedClass(PessoaFisica.class);
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cfg

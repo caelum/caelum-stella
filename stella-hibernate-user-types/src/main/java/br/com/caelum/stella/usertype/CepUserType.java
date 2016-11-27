@@ -13,6 +13,7 @@ import org.hibernate.usertype.UserType;
 import br.com.caelum.stella.tinytype.CEP;
 
 /**
+ * Tipo de mapeamento de CEP para o hibernate
  * @author Edenir Norberto Anschau
  */
 public class CepUserType implements UserType {

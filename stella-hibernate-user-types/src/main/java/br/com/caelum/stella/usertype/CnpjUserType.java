@@ -13,6 +13,7 @@ import org.hibernate.usertype.UserType;
 import br.com.caelum.stella.tinytype.CNPJ;
 
 /**
+ * Tipo de mapeamento de CNPJ para o hibernate
  * @author Dayan Costa
  */
 @SuppressWarnings("rawtypes")
