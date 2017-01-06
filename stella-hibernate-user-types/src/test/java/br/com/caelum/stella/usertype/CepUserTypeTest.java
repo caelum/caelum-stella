@@ -33,13 +33,12 @@ public class CepUserTypeTest {
     @Test
     public void shouldSaveAndLoadEntityMappedWithCepUserType() {
         Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Endereco endereco = new Endereco();
         CEP cep = new CEP("12345-678");
         endereco.setCep(cep);
         session.save(endereco);
-        transaction.commit();
-        session.flush();
+        tx.commit();
         session.close();
         session = factory.openSession();
         Long id = endereco.getId();
