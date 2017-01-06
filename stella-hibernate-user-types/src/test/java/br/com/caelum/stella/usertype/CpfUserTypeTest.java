@@ -28,16 +28,15 @@ public class CpfUserTypeTest {
 	
 	@Test
 	public void shouldSaveAndLoadEntityMappedWithCpfUserType(){
-		Session session = factory.openSession();
-		Transaction transaction = session.beginTransaction();
+                Session session = factory.openSession();
+                Transaction tx = session.beginTransaction();
 		PessoaFisica pessoa = new PessoaFisica();
 		CPF cpf = new CPF("555.555.555-55");
 		pessoa.setCpf(cpf);
 		session.save(pessoa);
-		transaction.commit();
-		session.flush();
-		session.close();
-		session = factory.openSession();
+                tx.commit();
+                session.close();
+                session = factory.openSession();
 		Long id = pessoa.getId();
 		PessoaFisica load = (PessoaFisica) session.load(PessoaFisica.class, id);
 		assertEquals(cpf, load.getCpf());
