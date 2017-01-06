@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
 import br.com.caelum.stella.tinytype.CPF;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 
 public class CpfUserType implements UserType {
 
@@ -48,36 +48,35 @@ public class CpfUserType implements UserType {
 		return false;
 	}
 
+        @Override
 	public Object replace(Object original, Object target, Object owner)
 			throws HibernateException {
 		return original;
 	}
 
 	@SuppressWarnings("rawtypes")
+        @Override
 	public Class returnedClass() {
 		return CPF.class;
 	}
 
+        @Override
 	public int[] sqlTypes() {
 		return SQL_TYPES;
 	}
 
-	@Override
-	public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
-			throws HibernateException, SQLException {
-		String name = rs.getString(names[0]);
-		return rs.wasNull() ? null : new CPF(name);
-	}
+        @Override
+        public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor ssci, Object owner) throws HibernateException, SQLException {
+                    String name = rs.getString(names[0]);
+                    return rs.wasNull() ? null : new CPF(name);
+        }
 
-	@Override
-	public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
-			throws HibernateException, SQLException {
-		if (value == null) {
-			st.setNull(index, Types.VARCHAR);
-		} else {
-			st.setString(index, value.toString());
-		}
-		
-	}
-
+        @Override
+        public void nullSafeSet(PreparedStatement ps, Object value, int index, SharedSessionContractImplementor ssci) throws HibernateException, SQLException {
+                    if (value == null) {
+                            ps.setNull(index, Types.VARCHAR);
+                    } else {
+                            ps.setString(index, value.toString());
+                    }
+        }
 }

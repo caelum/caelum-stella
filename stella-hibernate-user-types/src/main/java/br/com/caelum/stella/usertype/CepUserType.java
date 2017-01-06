@@ -11,6 +11,7 @@ import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
 import br.com.caelum.stella.tinytype.CEP;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 
 /**
  * @author Edenir Norberto Anschau
@@ -70,22 +71,18 @@ public class CepUserType implements UserType {
     }
 
     @Override
-    public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
-            throws HibernateException, SQLException {
+    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor ssci, Object owner) throws HibernateException, SQLException {
         String value = rs.getString(names[0]);
         return rs.wasNull() ? null : new CEP(value);
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
-            throws HibernateException, SQLException {
+    public void nullSafeSet(PreparedStatement ps, Object value, int index, SharedSessionContractImplementor ssci) throws HibernateException, SQLException {
         if (value == null) {
-            st.setNull(index, Types.VARCHAR);
+            ps.setNull(index, Types.VARCHAR);
         } else {
             CEP cep = (CEP) value;
-            st.setString(index, cep.getNumero());
+            ps.setString(index, cep.getNumero());
         }
-
     }
-
 }
