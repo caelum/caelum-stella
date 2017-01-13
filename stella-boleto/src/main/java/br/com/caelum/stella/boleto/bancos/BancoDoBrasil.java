@@ -81,7 +81,7 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
                 campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));
                 
                 if (campoLivre.length() != 25) {
-                        throw new IllegalArgumentException("Puts, assim não vai dar!! Coloque valores válidos." + campoLivre.toString());
+                        throw new IllegalArgumentException("Puts, assim não vai dar!! Campo livre deve ter 25 caracteres, mas tem " + campoLivre.toString());
                 }
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
