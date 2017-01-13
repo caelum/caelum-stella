@@ -54,14 +54,10 @@ public class GeradorDeBoleto {
 	 */
 	public GeradorDeBoleto(Collection<Boleto> boletos) {
 		this.boletos = boletos;
-		try {
-			templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default.jasper");
-			parametros.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
-			InputStream template_sub = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default_instrucoes.jasper");
-			parametros.put("SUB_INSTRUCOES", JRLoader.loadObject(template_sub));
-		} catch (JRException e) {
-			throw new GeracaoBoletoException(e);
-		}
+                templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-sem-pagador-avalista.jasper");
+                parametros.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
+                //InputStream template_sub = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default_instrucoes.jasper");
+                //parametros.put("SUB_INSTRUCOES", JRLoader.loadObject(template_sub));
 	}
 	
 	/**
