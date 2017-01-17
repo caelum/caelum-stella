@@ -148,7 +148,6 @@
 	</field>
 	<detail>
 		<band height="746" splitType="Prevent">
-			<property name="local_mesure_unitheight" value="cm"/>
 			<staticText>
 				<reportElement style="Celula" x="1" y="239" width="552" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
 				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
@@ -874,24 +873,24 @@
 				<text><![CDATA[Ficha de Compensação]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="2" y="471" width="379" height="20" isRemoveLineWhenBlank="true" uuid="f4d468f7-12ab-4fa9-8e8a-14b76cd7449f"/>
+				<reportElement x="2" y="472" width="379" height="25" isRemoveLineWhenBlank="true" uuid="f4d468f7-12ab-4fa9-8e8a-14b76cd7449f"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="instrucoes_ds" uuid="8e53c738-2c7b-4874-b314-ad0597844e94">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{instrucoes})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="20" width="379">
-						<textField>
-							<reportElement style="Txt_Normal" x="3" y="3" width="367" height="14" uuid="4b96d4fc-ae6d-461f-94dc-9d7faba58842"/>
-							<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-								<leftPen lineWidth="0.0"/>
-								<bottomPen lineWidth="0.0"/>
-								<rightPen lineWidth="0.0"/>
-							</box>
-							<textElement>
-								<font fontName="Arial" size="8"/>
-							</textElement>
-							<textFieldExpression><![CDATA[($F{instrucao} == null ? "":$F{instrucao})]]></textFieldExpression>
-						</textField>
+					<jr:listContents height="14">
+						<frame>
+							<reportElement x="0" y="0" width="250" height="14" uuid="14cb57d1-f790-4fd5-ae3b-e707c7935d3a"/>
+							<textField>
+								<reportElement style="Txt_Peq" x="0" y="2" width="250" height="10" uuid="4b96d4fc-ae6d-461f-94dc-9d7faba58842"/>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textFieldExpression><![CDATA[($F{instrucao} == null ? "":$F{instrucao})]]></textFieldExpression>
+							</textField>
+						</frame>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
