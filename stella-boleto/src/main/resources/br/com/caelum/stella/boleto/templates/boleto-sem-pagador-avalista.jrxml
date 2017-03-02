@@ -217,7 +217,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{valorCobrado}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorCobrado}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="1" y="280" width="552" height="10" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
@@ -400,7 +400,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{valorDescontos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{valorDescontos}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorDescontos}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Txt_Normal" x="1" y="368" width="389" height="16" uuid="4b494dc4-591b-4904-9a88-162a91db21bb"/>
@@ -613,7 +613,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{valorMulta}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{valorMulta}.compareTo(BigDecimal.ZERO) == 0) ? "" : $F{valorMulta}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" x="1" y="322" width="552" height="10" uuid="909d192c-1dc4-457c-8e8b-247507528a54"/>
@@ -798,7 +798,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{valorCobrado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{valorCobrado}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorCobrado}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="Celula" mode="Transparent" x="391" y="512" width="162" height="10" uuid="939b301f-82a3-41c9-8b50-d54681e1eb99"/>

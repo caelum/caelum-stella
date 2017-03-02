@@ -188,4 +188,28 @@ public class BoletoTest {
 		assertEquals(2, b.getLocaisDePagamento().size());
 	}
 
+	@Test
+	public void valorCobradoDeveSerZeroSemAcrescimoOuDescontos() {
+		Boleto b = Boleto.novoBoleto();
+                b.comValorBoleto("40.00");
+		assertEquals(BigDecimal.ZERO, b.getValorCobrado());
+	}
+        
+	@Test
+	public void valorCobradoDeveSerMaiorComAcrescimo() {
+		Boleto b = Boleto.novoBoleto();
+                b.comValorBoleto("40.00");
+                b.comValorAcrescimos("2.00");
+                b.comValorMulta("1.00");
+		assertEquals(new BigDecimal("43.00"), b.getValorCobrado());
+	}
+        
+	@Test
+	public void valorCobradoDeveSerMenorComDesconto() {
+		Boleto b = Boleto.novoBoleto();
+                b.comValorBoleto("40.00");
+                b.comValorDeducoes("2.00");
+                b.comValorDescontos("1.00");
+		assertEquals(new BigDecimal("37.00"), b.getValorCobrado());
+	}
 }
