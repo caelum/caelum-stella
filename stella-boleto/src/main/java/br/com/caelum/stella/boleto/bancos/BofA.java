@@ -1,25 +1,5 @@
 package br.com.caelum.stella.boleto.bancos;
-/*
- * ---------------------------------------------------------------------------------------------------------------------
- *  Class: BofA.java
- * ---------------------------------------------------------------------------------------------------------------------
- *
- *  Team: BizApps International
- *
- *  Description: This class needs to be stored under the package br.com.caelum.stella.boleto.Banco because it extends a
- *               java class that is package protected. 
- *               This class won't actually be used directly as we will generate a jar file and store it under 
- *               $XXFB_TOP/jar
- *
- * ---------------------------------------------------------------------------------------------------------------------
- *  Change History
- * ---------------------------------------------------------------------------------------------------------------------
- *  Version  Date         Task Number   Author             Description of Change
- * ---------------------------------------------------------------------------------------------------------------------
- *     0.1   21-Oct-2016  12297224      Fernando DalSotto  Initial Version
- * ---------------------------------------------------------------------------------------------------------------------
- *  
- */
+
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
@@ -47,10 +27,10 @@ implements Banco {
         cdb.append(this.getCodigoBeneficiarioFormatado(beneficiario));
         cdb.append(getNossoNumeroFormatado(beneficiario));
         cdb.append(StellaStringUtils.leftPadWithZeros((String)beneficiario.getCarteira(), (int)2)).append("4");
-        
+
         String digit = String.valueOf(this.getGeradorDeDigito().geraDigitoMod11(cdb.toString()));
-        cdb.insert(4, digit);        
-        
+        cdb.insert(4, digit);
+
         return cdb.toString();
     }
 
@@ -81,11 +61,10 @@ implements Banco {
     public String getNossoNumeroFormatado(Beneficiario beneficiario) {
         return StellaStringUtils.leftPadWithZeros((String)beneficiario.getNossoNumero(), (int)10);
     }
-    
+
     public String getNossoNumeroECodigoDocumento(Boleto boleto) {
         Beneficiario beneficiario = boleto.getBeneficiario();
         StringBuilder builder = new StringBuilder().append(this.getNossoNumeroFormatado(beneficiario));
         return builder.append(" ").append(StellaStringUtils.leftPadWithZeros((String)beneficiario.getCarteira(), (int)2)).append("4").toString();
     }
 }
-
