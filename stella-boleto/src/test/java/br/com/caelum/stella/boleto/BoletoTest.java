@@ -7,6 +7,9 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Datas;
+
 public class BoletoTest {
 
 	@Test
@@ -14,7 +17,8 @@ public class BoletoTest {
 		Boleto b = Boleto.novoBoleto();
 		assertEquals("R$", b.getEspecieMoeda());
 		assertEquals(9, b.getCodigoEspecieMoeda());
-		assertEquals(false, b.getAceite());
+          assertEquals(false, b.getAceite());
+          assertEquals(true, b.getRegistrado());
 		assertEquals("DV", b.getEspecieDocumento());
 	}
 
