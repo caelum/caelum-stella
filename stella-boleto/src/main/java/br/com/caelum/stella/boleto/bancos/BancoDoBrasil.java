@@ -3,6 +3,7 @@ package br.com.caelum.stella.boleto.bancos;
 import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
+import br.com.caelum.stella.boleto.Modalidade;
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 
 /**
@@ -62,20 +63,20 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
                 //Assumimos que o desenvolvedor sabe compor o NOSSO NUMERO,
                 //Deveríamos validá-lo com base na modalidade? Hum, NÃO!!
                 int numeroPosicoesConvenio = numeroConvenio.length();
-                char modalidade = beneficiario.getModalidade();
+                Modalidade modalidade = beneficiario.getModalidade();
                 
 		StringBuilder campoLivre = new StringBuilder();
 
-                if (numeroPosicoesConvenio == 7 && modalidade == 'C') {
+                if (numeroPosicoesConvenio == 7 && modalidade.equals(Modalidade.COM_REGISTRO)) {
                         campoLivre.append("000000");
                         campoLivre.append(beneficiario.getNossoNumero());
                 }
-                if ((numeroPosicoesConvenio == 4 || numeroPosicoesConvenio == 6) && modalidade == 'C') {
+                if ((numeroPosicoesConvenio == 4 || numeroPosicoesConvenio == 6) && modalidade.equals(Modalidade.COM_REGISTRO)) {
                         campoLivre.append(beneficiario.getNossoNumero());
                         campoLivre.append(beneficiario.getAgenciaFormatada());
                         campoLivre.append(beneficiario.getCodigoBeneficiario());                    
                 }
-                if (numeroPosicoesConvenio == 6 && modalidade == 'S') {
+                if (numeroPosicoesConvenio == 6 && modalidade.equals(Modalidade.SEM_REGISTRO)) {
                         campoLivre.append(beneficiario.getNossoNumero());
                 }
                 campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));

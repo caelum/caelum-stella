@@ -23,7 +23,7 @@ public class Beneficiario implements Serializable {
 	private Endereco endereco = Endereco.novoEndereco();
 
 	private String numeroConvenio; //Exigência do BB: número do convênio
-	private char modalidade = 'C'; //C ou S Registro
+	private Modalidade modalidade = Modalidade.COM_REGISTRO; //C ou S Registro
 
 	private Beneficiario() {
 	}
@@ -134,11 +134,11 @@ public class Beneficiario implements Serializable {
 		this.documento = documento;
 		return this;
 	}
-	public char getModalidade() {
+	public Modalidade getModalidade() {
 		return modalidade;
 	}
 
-	public Beneficiario comModalidade(char modalidade) {
+	public Beneficiario comModalidade(Modalidade modalidade) {
 		this.modalidade = modalidade;
 		return this;
 	}
