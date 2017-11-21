@@ -54,8 +54,6 @@ public class GeradorDeBoleto {
 		this.boletos = boletos;
                 templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-sem-sacador-avalista.jasper");
                 parametros.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
-                //InputStream template_sub = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default_instrucoes.jasper");
-                //parametros.put("SUB_INSTRUCOES", JRLoader.loadObject(template_sub));
 	}
 	
 	/**

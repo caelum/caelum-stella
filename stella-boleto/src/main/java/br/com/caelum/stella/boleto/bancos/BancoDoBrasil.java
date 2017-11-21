@@ -11,37 +11,40 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZer
  * 
  * O manual do BB(janeiro/2016) em relação ao código de barras relata o seguinte.
  * Leiaute com 2 campos (44 posições):
- *
- * 1. obrigatório, FEBRABAN com 19 posições;
- * 2. campo livre, determinado pela modalidade de cobrança utilizada pelo cliente com 25 posições.
- *
- * A classe BancoDoBrasil deve atuar na composição do campo livre seguindo o item 2.3.2, que diz " Os padrões do BB estão identificados nos Anexos VII, VIII, IX e X".
+ * <ul>
+ * <li>obrigatório, FEBRABAN com 19 posições;
+ * <li>campo livre, determinado pela modalidade de cobrança utilizada pelo cliente com 25 posições.
+ * </ul>
+ * <p>
+ * A classe BancoDoBrasil deve atuar na composição do campo livre seguindo o item 2.3.2, que diz <strong>"Os padrões do BB estão identificados nos Anexos VII, VIII, IX e X"</strong>.
  * Cada anexo é regido pelo número do convênio e não pela carteira como se vê atualmente na classe.
  * O cliente recebe um número de convênio, podendo ser de 4, 6 ou 7 posições - e cada algoritmo de formação do campo livre leva isso em consideração.
  * Nessa implementação a formação/composição do NOSSO NUMERO fica a cargo do desenvolvedor. O NOSSO NUMERO nada mais é
  * do que a união dos campos CONVENIO e COMPLEMENTO, com pequenos requisitos de formatação.
  * Para Boleto registrado:
- *
- * 1. Anexo VII, convênio 4 posições [convênio + complemento + agência + conta + carteira] CCCCNNNNNNN
- * 2. Anexo VIII, convênio 6 posições [convênio + complemento + agência + conta + carteira] CCCCCCNNNNN
- * 3. Anexo IX, convênio 7 posições [000000 + convênio + complemento + carteira] CCCCCCCNNNNNNNNNN
- *
+ * <ul>
+ * <li>Anexo VII, convênio 4 posições [convênio + complemento + agência + conta + carteira] CCCCNNNNNNN
+ * <li>Anexo VIII, convênio 6 posições [convênio + complemento + agência + conta + carteira] CCCCCCNNNNN
+ * <li>Anexo IX, convênio 7 posições [000000 + convênio + complemento + carteira] CCCCCCCNNNNNNNNNN
+ * </ul>
  * Finalmente, Boleto sem registro:
- *
- * 4. Anexo X, convênio 6 posições [convênio + complemento + carteira] NNNNNNNNNNNNNNNNN
- *
+ * <ul>
+ * <li>Anexo X, convênio 6 posições [convênio + complemento + carteira] NNNNNNNNNNNNNNNNN
+ * </ul>
+ * <p>
  * Um exemplo para número do convênio [1234567]: 
+ * <blockquote><pre>
  * String numeroConvenio = "1234567";
  * int numeroComplemento = 206; //identificador interno do BB ou do beneficiário
  * //Responsabilidade do desenvolvedor compor o nosso número
  * String nossoNumero = numeroConvenio + String.format("%010d", numeroComplemento);
- *
- * Referência: www.bb.com.br/docs/pub/emp/mpe/espeboletobb.pdf
+ * </pre></blockquote>
+ * Referência: <a href="www.bb.com.br/docs/pub/emp/mpe/espeboletobb.pdf">www.bb.com.br/docs/pub/emp/mpe/espeboletobb.pdf</a>
  * Útimo acesso: 06/01/2017
  *
- * @author Gilberto C Andrade 
  * @author Cauê Guerra
  * @author Paulo Silveira
+ * @author Gilberto C Andrade 
  */
 public class BancoDoBrasil extends AbstractBanco implements Banco {
 
@@ -55,13 +58,10 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
 		Beneficiario beneficiario = boleto.getBeneficiario();
                 String numeroConvenio = beneficiario.getNumeroConvenio();
 
-                //Exigencia do BB: numero do convenio
                 if (numeroConvenio == null 
 			|| numeroConvenio.isEmpty() ) {
                         throw new IllegalArgumentException("O número do convênio não pode ser nulo!");
                 }                
-                //Assumimos que o desenvolvedor sabe compor o NOSSO NUMERO,
-                //Deveríamos validá-lo com base na modalidade? Hum, NÃO!!
                 int numeroPosicoesConvenio = numeroConvenio.length();
                 Modalidade modalidade = beneficiario.getModalidade();
                 
@@ -82,7 +82,8 @@ public class BancoDoBrasil extends AbstractBanco implements Banco {
                 campoLivre.append(boleto.getBanco().getCarteiraFormatado(beneficiario));
                 
                 if (campoLivre.length() != 25) {
-                        throw new IllegalArgumentException("Puts, assim não vai dar!! Campo livre deve ter 25 caracteres, mas tem " + campoLivre.toString());
+                        String msg = String.format("Tamanho do campo livre inválido. Deveria ter 25, mas tem %s caracteres.", campoLivre.toString());
+                        throw new IllegalArgumentException(msg);
                 }
 		return new CodigoDeBarrasBuilder(boleto).comCampoLivre(campoLivre);
 	}
