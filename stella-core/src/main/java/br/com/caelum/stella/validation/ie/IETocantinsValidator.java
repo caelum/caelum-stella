@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -84,17 +81,6 @@ public class IETocantinsValidator extends AbstractIEValidator {
 		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11).calcula();
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("##.###.###-#");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-
 	/**
 	 * @see Validator#generateRandomValid()
 	 * @return uma inscrição estadual válida com 9 dígitos
@@ -104,7 +90,7 @@ public class IETocantinsValidator extends AbstractIEValidator {
 		final String ieSemDigito = new DigitoGenerator().generate(8);
 		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return formata(ieComDigito);
+			return format(ieComDigito,"##.###.###-#");
 		}
 		return ieComDigito;
 	}

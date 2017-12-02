@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -12,12 +9,11 @@ import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IEParanaValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("\\d{3}\\.?\\d{5}\\-\\d{2}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{3}\\.?\\d{5}\\-\\d{2}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -40,7 +36,6 @@ public class IEParanaValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -51,14 +46,14 @@ public class IEParanaValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-    protected boolean hasValidCheckDigits(String unformattedIE) {
+	protected boolean hasValidCheckDigits(String unformattedIE) {
 		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 2);
 		String digitos = unformattedIE.substring(unformattedIE.length() - 2);
 
 		String digitosCalculados = calculaDigitos(iESemDigito);
 
 		return digitos.equals(digitosCalculados);
-    }
+	}
 
 	private String calculaDigitos(String iESemDigito) {
 		DigitoPara digitoPara = new DigitoPara(iESemDigito);
@@ -71,23 +66,12 @@ public class IEParanaValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("###.#####-##");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-
 	@Override
 	public String generateRandomValid() {
 		final String ieSemDigitos = new DigitoGenerator().generate(8);
 		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "###.#####-##");
 		}
 		return ieComDigitos;
 	}

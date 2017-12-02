@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -12,13 +9,12 @@ import br.com.caelum.stella.SimpleMessageProducer;
 
 class IEPernambucoNovaValidator extends AbstractIEValidator {
 
-    // 0321418-40
-    public static final Pattern FORMATED = Pattern.compile("(\\d{7})[-](\\d{2})");
+	// 0321418-40
+	public static final Pattern FORMATED = Pattern.compile("(\\d{7})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{7})(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{7})(\\d{2})");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -40,7 +36,6 @@ class IEPernambucoNovaValidator extends AbstractIEValidator {
 	public IEPernambucoNovaValidator(MessageProducer messageProducer, boolean isFormatted) {
 		super(messageProducer, isFormatted);
 	}
-
 
 	@Override
 	protected Pattern getUnformattedPattern() {
@@ -71,23 +66,12 @@ class IEPernambucoNovaValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("#######-##");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-
 	@Override
 	public String generateRandomValid() {
 		final String ieSemDigitos = new DigitoGenerator().generate(7);
 		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "#######-##");
 		}
 		return ieComDigitos;
 	}

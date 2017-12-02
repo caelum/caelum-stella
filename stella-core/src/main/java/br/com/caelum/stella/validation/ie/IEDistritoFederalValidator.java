@@ -1,10 +1,7 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.Random;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -16,20 +13,20 @@ import br.com.caelum.stella.SimpleMessageProducer;
  * Documentação de referência:
  * </p>
  * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
- * Fazenda do Estado de São Paulo</a> <a
- * href="http://www.sintegra.gov.br/Cad_Estados/cad_DF.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
+ * Fazenda do Estado de São Paulo</a>
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_DF.html">SINTEGRA -
+ * ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
  */
 public class IEDistritoFederalValidator extends AbstractIEValidator {
 
 	/*
-     * Formato: 07.408.738/002-50
-     */
+	 * Formato: 07.408.738/002-50
+	 */
 
-    public static final Pattern FORMATED = Pattern.compile("(07)[.]([3-9]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
+	public static final Pattern FORMATED = Pattern.compile("(07)[.]([3-9]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(07)([3-9]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("(07)([3-9]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -54,7 +51,6 @@ public class IEDistritoFederalValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -64,8 +60,8 @@ public class IEDistritoFederalValidator extends AbstractIEValidator {
 	protected Pattern getFormattedPattern() {
 		return FORMATED;
 	}
-	
-    protected boolean hasValidCheckDigits(String unformattedIE) {
+
+	protected boolean hasValidCheckDigits(String unformattedIE) {
 		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 2);
 		String digitos = unformattedIE.substring(unformattedIE.length() - 2);
 		String digitosCalculados = calculaDigitos(iESemDigito);
@@ -84,17 +80,6 @@ public class IEDistritoFederalValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("##.###.###/###-##");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-	
 	private String geraDoisPrimeirosDigitos() {
 		final Random random = new Random();
 		final String primeiroDigito = String.valueOf(random.nextInt(7) + 3);
@@ -107,7 +92,7 @@ public class IEDistritoFederalValidator extends AbstractIEValidator {
 		final String ieSemDigitos = "07" + geraDoisPrimeirosDigitos() + new DigitoGenerator().generate(7);
 		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "##.###.###/###-##");
 		}
 		return ieComDigitos;
 	}
