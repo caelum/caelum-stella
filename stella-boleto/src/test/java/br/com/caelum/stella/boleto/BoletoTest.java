@@ -15,7 +15,7 @@ public class BoletoTest {
 		assertEquals("R$", b.getEspecieMoeda());
 		assertEquals(9, b.getCodigoEspecieMoeda());
 		assertEquals(false, b.getAceite());
-		assertEquals("DV", b.getEspecieDocumento());
+		assertEquals("DM", b.getEspecieDocumento());
 	}
 
 	@Test
