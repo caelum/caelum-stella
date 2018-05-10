@@ -47,6 +47,13 @@ public enum Bancos {
 		public Banco getBanco() {
 			return new Santander();
 		}
+	},
+
+	BANRISUL("041", "Banrisul") {
+		@Override
+		public Banco getBanco() {
+			return new Banrisul();
+		}
 	};
 
 	private final String numeroDoBanco;
