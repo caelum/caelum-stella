@@ -22,7 +22,8 @@ public class Beneficiario implements Serializable {
 	private String documento;
 	private Endereco endereco = Endereco.novoEndereco();
 
-	private String numeroConvenio; // BB...
+	private String numeroConvenio; //Exigência do BB: número do convênio
+	private Modalidade modalidade = Modalidade.COM_REGISTRO; //C ou S Registro
 
 	private Beneficiario() {
 	}
@@ -131,6 +132,14 @@ public class Beneficiario implements Serializable {
 
 	public Beneficiario comDocumento(String documento) {
 		this.documento = documento;
+		return this;
+	}
+	public Modalidade getModalidade() {
+		return modalidade;
+	}
+
+	public Beneficiario comModalidade(Modalidade modalidade) {
+		this.modalidade = modalidade;
 		return this;
 	}
 

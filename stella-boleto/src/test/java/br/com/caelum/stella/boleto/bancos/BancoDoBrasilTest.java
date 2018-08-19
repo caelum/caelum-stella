@@ -19,16 +19,21 @@ public class BancoDoBrasilTest {
 
 	@Before
 	public void setUp() {
+                String numeroConvenio = "1207113";
+                int numeroComplemento = 9000206; //identificador interno do BB ou do beneficiário
+                
+                //Responsabilidade do desenvolvedor compor o nosso número
+                String nossoNumero = numeroConvenio + String.format("%010d", numeroComplemento);
+                
 		Datas datas = Datas.novasDatas().comDocumento(4, 5, 2008).comProcessamento(4, 5, 2008)
 				.comVencimento(2, 5, 2008);
-
 		this.beneficiario = Beneficiario.novoBeneficiario().comNomeBeneficiario("Caue")
 				.comAgencia("1824").comDigitoAgencia("4")
 				.comCodigoBeneficiario("76000")
-				.comNumeroConvenio("1207113")
+				.comNumeroConvenio(numeroConvenio)
 				.comDigitoCodigoBeneficiario("5")
 				.comCarteira("18")
-				.comNossoNumero("9000206");
+				.comNossoNumero(nossoNumero);
 
 		Pagador pagador = Pagador.novoPagador().comNome("Fulano");
 
@@ -39,43 +44,12 @@ public class BancoDoBrasilTest {
 	}
 
 	@Test
-	public void numeroDoConvenioFormatadoDeveTerSeisDigitos() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("1234");
-		
-		String numeroFormatado = this.banco.getNumeroConvenioFormatado(beneficiario);
-		assertEquals(6, numeroFormatado.length());
-		assertEquals("001234", numeroFormatado);
-	}
-
-	@Test
-	public void nossoNumeroFormatadoDeveTerOnzeDigitos() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("11");
-		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
-		assertEquals(11, numeroFormatado.length());
-		assertEquals("00009000206", numeroFormatado);
-	}
-
-	@Test
-	public void nossoNumeroFormatadoDeveTerDezesseteDigitosComCarteira18() {
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNossoNumero("9000206").comCarteira("18");
-		String numeroFormatado = this.banco.getNossoNumeroFormatado(beneficiario);
-		assertEquals(17, numeroFormatado.length());
-		assertEquals("00000000009000206", numeroFormatado);
-	}
-
-	@Test
 	public void carteiraFormatadoDeveTerDoisDigitos() {
 		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comCarteira("1");
 		String numeroFormatado = this.banco.getCarteiraFormatado(beneficiario);
+                
 		assertEquals(2, numeroFormatado.length());
 		assertEquals("01", numeroFormatado);
-	}
-
-	@Test
-	public void contaCorrenteFormatadaDeveTerOitoDigitos() {
-		String numeroFormatado = this.banco.getCodigoBeneficiarioFormatado(this.beneficiario);
-		assertEquals(8, numeroFormatado.length());
-		assertEquals("00076000", numeroFormatado);
 	}
 
 	@Test
@@ -143,11 +117,11 @@ public class BancoDoBrasilTest {
 	}
 
 	@Test
-	public void testNossoNumeroFormatadoNoCampoLivreNoCodigoDeBarraDoBancoDoBrasil() {
+	public void testNossoNumeroFormatadoConvenio7LivreNoCodigoDeBarraDoBancoDoBrasil() {
 		this.banco = new BancoDoBrasil();
 		this.boleto = this.boleto.comBanco(this.banco);
-
-		assertEquals("0009000206", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(32, 42));
+                
+		assertEquals("12071130009000206", this.banco.geraCodigoDeBarrasPara(this.boleto).substring(25, 42));
 	}
 
 	@Test
@@ -186,8 +160,9 @@ public class BancoDoBrasilTest {
 	public void testCarteira17ComConvenioSeteDigitosMaior1000000() {
 		this.banco = new BancoDoBrasil();
 		this.boleto = this.boleto.comBanco(this.banco);
-		
-		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio("2670001").comCarteira("17");
+                String numeroConvenio = "2670001";
+		String nossoNumero = numeroConvenio + String.format("%010d", 0);
+		Beneficiario beneficiario = Beneficiario.novoBeneficiario().comNumeroConvenio(numeroConvenio).comCarteira("17").comNossoNumero(nossoNumero);
 		this.boleto.comBeneficiario(beneficiario);
 
 		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));

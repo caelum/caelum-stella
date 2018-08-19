@@ -487,8 +487,24 @@ public class Boleto implements Serializable {
 	}
 
 	public BigDecimal getValorCobrado() {
-		return valorBoleto.subtract(valorDescontos).subtract(valorDeducoes)
-				.add(valorMulta).add(valorAcrescimos);
+                BigDecimal valorCobrado = valorBoleto;
+                BigDecimal descontos = BigDecimal.ZERO;
+                BigDecimal acrescimos = BigDecimal.ZERO;
+                
+                descontos = descontos.add(valorDescontos).add(valorDeducoes);
+                acrescimos = acrescimos.add(valorMulta).add(valorAcrescimos);
+                
+                if (descontos.compareTo(BigDecimal.ZERO) != 0){
+                    valorCobrado = valorCobrado.subtract(descontos);
+                }
+                if (acrescimos.compareTo(BigDecimal.ZERO) != 0){
+                    valorCobrado = valorCobrado.add(acrescimos);
+                }
+                if (valorCobrado.compareTo(valorBoleto) == 0){
+                        return BigDecimal.ZERO;
+                }
+                
+		return valorCobrado;
 	}
 	
 	/**

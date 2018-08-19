@@ -65,7 +65,7 @@ public class BoletoHTMLTransformerIntegrationTest{
 				.comNomeBeneficiario("Caue").comAgencia("1824").comDigitoAgencia("4")
 				.comCodigoBeneficiario("76000").comNumeroConvenio("1207113")
 				.comDigitoCodigoBeneficiario("5").comCarteira("18")
-				.comNossoNumero("9000206");
+				.comNossoNumero("12071130009000206");
 
 		Endereco endereco = new Endereco("Av dos testes, 111 apto 333", "Bairro Teste", "01234-111", "São Paulo", "SP");
 
