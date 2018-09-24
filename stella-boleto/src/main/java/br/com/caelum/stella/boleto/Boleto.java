@@ -106,7 +106,8 @@ public class Boleto implements Serializable {
 	}
 
 	/**
-	 * @return número do documento. Código informado pelo banco
+	 * @return número do documento utilizado pelo Beneficiário para identificar
+	 * o título de cobrança.
 	 */
 	public String getNumeroDoDocumento() {
 		return this.numeroDocumento;
