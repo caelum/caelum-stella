@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -12,12 +9,11 @@ import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IERondoniaValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("\\d{13}-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{13}-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("\\d{14}");
+	public static final Pattern UNFORMATED = Pattern.compile("\\d{14}");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -40,7 +36,6 @@ public class IERondoniaValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -60,18 +55,8 @@ public class IERondoniaValidator extends AbstractIEValidator {
 	}
 
 	private String calculaDigito(String iESemDigito) {
-		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10).trocandoPorSeEncontrar("1", 11).calcula();
-	}
-
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("#############-#");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
+		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10)
+				.trocandoPorSeEncontrar("1", 11).calcula();
 	}
 
 	@Override
@@ -79,7 +64,7 @@ public class IERondoniaValidator extends AbstractIEValidator {
 		final String ieSemDigito = new DigitoGenerator().generate(13);
 		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return formata(ieComDigito);
+			return super.format(ieComDigito, "#############-#");
 		}
 		return ieComDigito;
 	}

@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -15,22 +12,22 @@ import br.com.caelum.stella.validation.Validator;
  * <p>
  * Documentação de referência:
  * </p>
- * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_TO.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a> <br>
- * <a href="http://www2.sefaz.to.gov.br/Servicos/Sintegra/calinse.htm"> ESTADO DO
- * TOCANTINS SECRETARIA DA FAZENDA ASSESSORIA DE MODERNIZAÇÃO E INFORMAÇÃO</a>
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_TO.html">SINTEGRA -
+ * ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a> <br>
+ * <a href="http://www2.sefaz.to.gov.br/Servicos/Sintegra/calinse.htm"> ESTADO
+ * DO TOCANTINS SECRETARIA DA FAZENDA ASSESSORIA DE MODERNIZAÇÃO E
+ * INFORMAÇÃO</a>
  * 
  * @author Leonardo Bessa
  * 
  */
 public class IETocantinsValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("\\d{2}(.\\d{2}.)?(\\.)?\\d{3}\\.\\d{3}\\-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{2}(.\\d{2}.)?(\\.)?\\d{3}\\.\\d{3}\\-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{9}|\\d{11})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{9}|\\d{11})");
 
-
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -53,7 +50,6 @@ public class IETocantinsValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -63,36 +59,25 @@ public class IETocantinsValidator extends AbstractIEValidator {
 	protected Pattern getFormattedPattern() {
 		return FORMATED;
 	}
-	
+
 	protected boolean hasValidCheckDigits(String unformattedIE) {
 		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
 		String digito = unformattedIE.substring(unformattedIE.length() - 1);
-		
-		if(iESemDigito.length() == 10){
+
+		if (iESemDigito.length() == 10) {
 			iESemDigito = removeCaracteresIgnorados(iESemDigito);
 		}
-		
+
 		String digitoCalculado = calculaDigito(iESemDigito);
 		return digito.equals(digitoCalculado);
 	}
 
 	private String removeCaracteresIgnorados(String iESemDigito) {
-		return iESemDigito.substring(0,2) + iESemDigito.substring(4);
+		return iESemDigito.substring(0, 2) + iESemDigito.substring(4);
 	}
 
 	private String calculaDigito(String iESemDigito) {
 		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11).calcula();
-	}
-
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("##.###.###-#");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
 	}
 
 	/**
@@ -104,7 +89,7 @@ public class IETocantinsValidator extends AbstractIEValidator {
 		final String ieSemDigito = new DigitoGenerator().generate(8);
 		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return formata(ieComDigito);
+			return format(ieComDigito, "##.###.###-#");
 		}
 		return ieComDigito;
 	}

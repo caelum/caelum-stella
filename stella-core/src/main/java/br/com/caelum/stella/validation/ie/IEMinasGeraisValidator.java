@@ -1,9 +1,6 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -13,12 +10,11 @@ import br.com.caelum.stella.validation.Validator;
 
 public class IEMinasGeraisValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("(((\\d{3})\\.){2}\\d{3}/\\d{4})|(\\d{9}\\.\\d{2}-\\d{2})");
+	public static final Pattern FORMATED = Pattern.compile("(((\\d{3})\\.){2}\\d{3}/\\d{4})|(\\d{9}\\.\\d{2}-\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{13})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{13})");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -41,7 +37,6 @@ public class IEMinasGeraisValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -62,38 +57,27 @@ public class IEMinasGeraisValidator extends AbstractIEValidator {
 
 	private String calculaDigitos(String iESemDigito) {
 		String ieComZero = iESemDigito.substring(0, 3) + "0" + iESemDigito.substring(3);
-		String digito1 = new DigitoPara(ieComZero).complementarAoModulo().comMultiplicadores(2,1).somandoIndividualmente()
-									.mod(10).trocandoPorSeEncontrar("0", 10).calcula();
+		String digito1 = new DigitoPara(ieComZero).complementarAoModulo().comMultiplicadores(2, 1)
+				.somandoIndividualmente().mod(10).trocandoPorSeEncontrar("0", 10).calcula();
 
 		String digito2 = new DigitoPara(iESemDigito + digito1).complementarAoModulo().comMultiplicadoresDeAte(2, 11)
-									.trocandoPorSeEncontrar("0", 10, 11).calcula();
+				.trocandoPorSeEncontrar("0", 10, 11).calcula();
 
 		return digito1 + digito2;
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("###.###.###/####");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-
 	/**
 	 * @see Validator#generateRandomValid()
-	 * @return uma inscrição estadual válida com 13 dígitos; se o validador estiver configurado para
-	 *         validar um número formatado, devolve o número gerado no formato
-	 *         <code>###.###.###/####</code>
+	 * @return uma inscrição estadual válida com 13 dígitos; se o validador estiver
+	 *         configurado para validar um número formatado, devolve o número gerado
+	 *         no formato <code>###.###.###/####</code>
 	 */
 	@Override
 	public String generateRandomValid() {
 		final String ieSemDigitos = new DigitoGenerator().generate(11);
 		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "###.###.###/####");
 		}
 		return ieComDigitos;
 	}

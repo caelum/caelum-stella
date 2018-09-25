@@ -1,25 +1,21 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
-import br.com.caelum.stella.format.CNPJFormatter;
 
 /**
  * <p>
  * Documentação de referência:
  * </p>
  * <ul>
- * <li><a href="http://www.sefaz.al.gov.br/sintegra/cad_AC.asp">ROTEIRO DE CRÍTICA DA INSCRIÇÃO
- * ESTADUAL</a>
- * <li><a href="http://www.sintegra.gov.br/Cad_Estados/cad_AC.html">SINTEGRA - ROTEIRO DE
+ * <li><a href="http://www.sefaz.al.gov.br/sintegra/cad_AC.asp">ROTEIRO DE
  * CRÍTICA DA INSCRIÇÃO ESTADUAL</a>
+ * <li><a href="http://www.sintegra.gov.br/Cad_Estados/cad_AC.html">SINTEGRA -
+ * ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL</a>
  * </ul>
  * 
  */
@@ -82,23 +78,12 @@ public class IEAcreValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("##.###.###/###-##");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
-	}
-
 	@Override
 	public String generateRandomValid() {
 		final String ieSemDigitos = "01" + new DigitoGenerator().generate(9);
 		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "##.###.###/###-##");
 		}
 		return ieComDigitos;
 	}

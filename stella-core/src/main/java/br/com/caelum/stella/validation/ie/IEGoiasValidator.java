@@ -1,10 +1,7 @@
 package br.com.caelum.stella.validation.ie;
 
-import java.text.ParseException;
 import java.util.Random;
 import java.util.regex.Pattern;
-
-import javax.swing.text.MaskFormatter;
 
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
@@ -16,18 +13,18 @@ import br.com.caelum.stella.SimpleMessageProducer;
  * Documentação de referência:
  * </p>
  * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
- * Fazenda do Estado de São Paulo</a> <a
- * href="http://www.sintegra.gov.br/Cad_Estados/cad_GO.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
+ * Fazenda do Estado de São Paulo</a>
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_GO.html">SINTEGRA -
+ * ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
  * @author Leonardo Bessa
  * 
  */
 public class IEGoiasValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+	public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
+	public static final Pattern UNFORMATED = Pattern.compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -52,7 +49,6 @@ public class IEGoiasValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -63,8 +59,7 @@ public class IEGoiasValidator extends AbstractIEValidator {
 		return FORMATED;
 	}
 
-
-    protected boolean hasValidCheckDigits(String unformattedIE) {
+	protected boolean hasValidCheckDigits(String unformattedIE) {
 		String iESemDigito = unformattedIE.substring(0, unformattedIE.length() - 1);
 		String digito = unformattedIE.substring(unformattedIE.length() - 1);
 		String digitoCalculado = calculaDigito(iESemDigito);
@@ -73,7 +68,7 @@ public class IEGoiasValidator extends AbstractIEValidator {
 	}
 
 	private boolean regraBizarraDeGoias(String iESemDigito, String digito) {
-		if (iESemDigito.equals("11094402")){
+		if (iESemDigito.equals("11094402")) {
 			if (digito.equals("0") || digito.equals("1")) {
 				return true;
 			}
@@ -83,28 +78,18 @@ public class IEGoiasValidator extends AbstractIEValidator {
 
 	private String calculaDigito(String iESemDigito) {
 		int ie = Integer.parseInt(iESemDigito);
-        /*
-         * http://www.sintegra.gov.br/Cad_Estados/cad_GO.html
-         * 
-         * De 10103105X a 10119997X => d=1
-         */
-        String d = "0";
-        if ((10103105 <= ie) && (ie <= 10119997)) {
-        	d = "1";
-        }
-        
-        return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar(d, 10).trocandoPorSeEncontrar("0", 11).calcula();
-    }
-
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("##.###.###-#");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
+		/*
+		 * http://www.sintegra.gov.br/Cad_Estados/cad_GO.html
+		 * 
+		 * De 10103105X a 10119997X => d=1
+		 */
+		String d = "0";
+		if ((10103105 <= ie) && (ie <= 10119997)) {
+			d = "1";
 		}
+
+		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar(d, 10)
+				.trocandoPorSeEncontrar("0", 11).calcula();
 	}
 
 	@Override
@@ -115,7 +100,7 @@ public class IEGoiasValidator extends AbstractIEValidator {
 				+ new DigitoGenerator().generate(6);
 		final String ieComDigitos = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return formata(ieComDigitos);
+			return super.format(ieComDigitos, "##.###.###-#");
 		}
 		return ieComDigitos;
 	}

@@ -12,12 +12,11 @@ import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IERoraimaValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("24\\d{6}\\-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("24\\d{6}\\-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("24\\d{7}");
+	public static final Pattern UNFORMATED = Pattern.compile("24\\d{7}");
 
-
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -59,18 +58,7 @@ public class IERoraimaValidator extends AbstractIEValidator {
 	}
 
 	private String calculaDigito(String iESemDigito) {
-		return new DigitoPara(iESemDigito).comMultiplicadores(8,7,6,5,4,3,2,1).mod(9).calcula();
-	}
-
-	private String formata(String valor) {
-		try {
-			final MaskFormatter formatador = new MaskFormatter("########-#");
-			formatador.setValidCharacters("1234567890");
-			formatador.setValueContainsLiteralCharacters(false);
-			return formatador.valueToString(valor);
-		} catch (ParseException e) {
-			throw new RuntimeException("Valor gerado não bate com o padrão: " + valor, e);
-		}
+		return new DigitoPara(iESemDigito).comMultiplicadores(8, 7, 6, 5, 4, 3, 2, 1).mod(9).calcula();
 	}
 
 	@Override
@@ -78,7 +66,7 @@ public class IERoraimaValidator extends AbstractIEValidator {
 		final String ieSemDigito = "24" + new DigitoGenerator().generate(6);
 		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return formata(ieComDigito);
+			return super.format(ieComDigito, "########-#");
 		}
 		return ieComDigito;
 	}
