@@ -443,6 +443,13 @@ public class Boleto implements Serializable {
 	public String getAgenciaECodigoBeneficiario() {
 		return this.banco.getAgenciaECodigoBeneficiario(this.beneficiario);
 	}
+	
+	/**
+	 * @return digito do nosso número
+	 */
+	public String getDigitoNossoNumero() {
+		return this.beneficiario.getDigitoNossoNumero();
+	}
 
 	/**
 	 * @return nosso numero e codigo do documento para boleto
