@@ -415,6 +415,10 @@ public class Boleto implements Serializable {
 
 		long diferencasEmMiliSegundos = vencimentoSemHoras.getTimeInMillis() - dataBase.getTimeInMillis();
 		long diferencasEmDias = diferencasEmMiliSegundos / (1000 * 60 * 60 * 24);
+	
+		while (diferencasEmDias > 9999){
+			diferencasEmDias = diferencasEmDias - 9999 + 999;
+		}
 
 		if (diferencasEmDias > 9999) {
 			throw new CriacaoBoletoException("Data fora do formato aceito!");

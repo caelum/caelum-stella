@@ -20,7 +20,7 @@ public class Datas implements Serializable {
 	private Calendar processamento;
 	private Calendar vencimento;
 	private static final Calendar MINIMUM_DATE = new GregorianCalendar(1997, 10, 7);
-	private static final Calendar MAXIMUM_DATE = new GregorianCalendar(2024, 1, 1);
+	private static final Calendar MAXIMUM_DATE = new GregorianCalendar(9999, 11, 31);
 
 	private Datas() {
 	}
@@ -59,7 +59,7 @@ public class Datas implements Serializable {
 			throw new IllegalArgumentException("O ano do documento deve ser maior do que 1997.");
 		}
 		if (documento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do documento deve ser menor do que 2024.");
+			throw new IllegalArgumentException("O ano do documento deve ser menor do que 21 de fevereiro de 2025.");
 		}
 		this.documento = documento;
 		return this;
@@ -103,7 +103,7 @@ public class Datas implements Serializable {
 			throw new IllegalArgumentException("O ano do processamento deve ser maior do que 1997.");
 		}
 		if (processamento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do processamento deve ser menor do que 2024.");
+			throw new IllegalArgumentException("O ano do processamento deve ser menor do que 21 de fevereiro de 2025.");
 		}
 		this.processamento = processamento;
 		return this;
@@ -144,7 +144,7 @@ public class Datas implements Serializable {
 			throw new IllegalArgumentException("O ano do vencimento deve ser maior do que 1997.");
 		}
 		if (vencimento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do vencimento deve ser menor do que 2024.");
+			throw new IllegalArgumentException("O ano do vencimento deve ser menor do que 21 de fevereiro de 2025.");
 		}
 		this.vencimento = vencimento;
 		return this;

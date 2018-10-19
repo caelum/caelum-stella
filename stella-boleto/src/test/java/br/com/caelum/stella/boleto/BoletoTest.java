@@ -39,7 +39,7 @@ public class BoletoTest {
 		Datas.novasDatas().comDocumento(01, 01, 1996).comProcessamento(01, 1, 1996).comVencimento(1, 2, 1996);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void fatorVencimentoComDataMaiorQueOPermitido() {
 		Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 2, 2025);
 	}
