@@ -43,7 +43,11 @@ public class BoletoTest {
 
 	@Test
 	public void fatorVencimentoComDataMaior2025() {
-		Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 12, 2025);
+		Boleto b = Boleto.novoBoleto();
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 12, 2025));
+		
+		assertEquals("1282", b.getFatorVencimento());
 	}
 	
 	@Test(expected = DataLimiteUltrapassadaException.class)
