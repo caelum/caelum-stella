@@ -8,7 +8,7 @@ public class DigitoGenerator {
 	public String generate(int quantidade) {
 		final StringBuilder digitos = new StringBuilder();
 		for (int i = 0; i < quantidade; i++) {
-			digitos.append(RANDOM.nextInt(10));
+			digitos.append(RANDOM.nextInt(9) + 1);
 		}
 		return digitos.toString();
 	}
