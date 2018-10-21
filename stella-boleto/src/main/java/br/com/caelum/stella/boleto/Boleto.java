@@ -455,6 +455,7 @@ public class Boleto implements Serializable {
 	}
 
 	/**
+	 * @deprecated use Boleto#comValorDescontos(BigDecimal)
 	 * @param valorDescontos String que é convertido para BigDecimal com
 	 * o Locale da JVM @see Boleto#comValorDescontos(BigDecimal)
 	 * @return this
@@ -473,6 +474,7 @@ public class Boleto implements Serializable {
 	}
 
 	/**
+	 * @deprecated use Boleto#comValorDeducoes(BigDecimal)
 	 * @param valorDeducoes String que é convertido para BigDecimal com
 	 * o Locale da JVM @see Boleto#comValorDeducoes(BigDecimal)
 	 * @return this
@@ -491,6 +493,7 @@ public class Boleto implements Serializable {
 	}
 
 	/**
+	 * @deprecated use Boleto#comValorMulta(BigDecimal)
 	 * @param valorMulta String que é convertido para BigDecimal com
 	 * o Locale da JVM @see Boleto#comValorMulta(BigDecimal)
 	 * @return this
@@ -509,6 +512,7 @@ public class Boleto implements Serializable {
 	}
 
 	/**
+	 * @deprecated use Boleto#comValorAcrescimos(BigDecimal)
 	 * @param valorAcrescimos String que é convertido para BigDecimal com
 	 * o Locale da JVM @see Boleto#comValorAcrescimos(BigDecimal)
 	 * @return this
