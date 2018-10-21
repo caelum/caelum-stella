@@ -8,6 +8,6 @@ Consulte a documentação:
 
 https://github.com/caelum/caelum-stella/wiki
 
-Página de downloads e configuração de dependência via Maven:
+E a página de downloads e configuração de dependência via Maven:
 
 https://github.com/caelum/caelum-stella/wiki/Download

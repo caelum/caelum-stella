@@ -2,18 +2,20 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
+import br.com.caelum.stella.validation.Validator;
 
 /**
  * <p>
  * Documentação de referência:
  * </p>
  * <a href="http://www.pfe.fazenda.sp.gov.br/consist_ie.shtm">Secretaria da
- * Fazenda do Estado de São Paulo</a> <a
- * href="http://www.sintegra.gov.br/Cad_Estados/cad_BA.html">SINTEGRA - ROTEIRO
- * DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
+ * Fazenda do Estado de São Paulo</a>
+ * <a href="http://www.sintegra.gov.br/Cad_Estados/cad_BA.html">SINTEGRA -
+ * ROTEIRO DE CRÍTICA DA INSCRIÇÃO ESTADUAL </a>
  * 
  */
 public class IEBahiaValidator extends AbstractIEValidator {
@@ -97,4 +99,19 @@ public class IEBahiaValidator extends AbstractIEValidator {
 		return digito1 + digito2;
 	}
 
+	/**
+	 * Gera uma inscrição estadual com 8 dígitos
+	 * 
+	 * @see Validator#generateRandomValid()
+	 * @return uma inscrição estadual aleatória válida
+	 */
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigitos = new DigitoGenerator().generate(6);
+		final String ieComDigitos = ieSemDigitos + calculaDigito(ieSemDigitos);
+		if (isFormatted) {
+			return super.format(ieComDigitos, "######-##");
+		}
+		return ieComDigitos;
+	}
 }

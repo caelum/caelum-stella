@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -22,6 +23,7 @@ public class CNPJValidator implements Validator<String> {
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})");
 	
     private boolean isFormatted = false;
+    private boolean isIgnoringRepeatedDigits;
 	private MessageProducer messageProducer;
 
     /**
@@ -43,6 +45,18 @@ public class CNPJValidator implements Validator<String> {
     public CNPJValidator(boolean isFormatted) {
 		this.isFormatted  = isFormatted;
 		this.messageProducer = new SimpleMessageProducer();
+    }
+    
+    public CNPJValidator(boolean isFormatted, boolean isIgnoringRepeatedDigits) {
+        this.isFormatted = isFormatted;
+        this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
+        this.messageProducer = new SimpleMessageProducer();
+    }
+
+    public CNPJValidator(MessageProducer messageProducer, boolean isFormatted, boolean isIgnoringRepeatedDigits) {
+        this.messageProducer = messageProducer;
+        this.isFormatted = isFormatted;
+        this.isIgnoringRepeatedDigits = isIgnoringRepeatedDigits;
     }
 
     /**
@@ -87,6 +101,10 @@ public class CNPJValidator implements Validator<String> {
             if(unformatedCNPJ.length() != 14 || !unformatedCNPJ.matches("[0-9]*")){
             	errors.add(messageProducer.getMessage(CNPJError.INVALID_DIGITS));
             }
+            
+            if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCNPJ)) {
+                errors.add(messageProducer.getMessage(CNPJError.REPEATED_DIGITS));
+            }
            
             String cnpjSemDigito = unformatedCNPJ.substring(0, unformatedCNPJ.length() - 2);
             String digitos = unformatedCNPJ.substring(unformatedCNPJ.length() - 2);
@@ -118,6 +136,9 @@ public class CNPJValidator implements Validator<String> {
 	}
 
     public boolean isEligible(String value) {
+		if (value == null) {
+			return false;
+		}
         boolean result;
         if (isFormatted) {
             result = FORMATED.matcher(value).matches();
@@ -141,4 +162,23 @@ public class CNPJValidator implements Validator<String> {
         return getInvalidValues(cnpj);
     }
 
+    @Override
+	public String generateRandomValid() {
+		final String cnpjSemDigitos = new DigitoGenerator().generate(12);
+		final String cnpjComDigitos = cnpjSemDigitos + calculaDigitos(cnpjSemDigitos);
+		if (isFormatted) {
+			return new CNPJFormatter().format(cnpjComDigitos);
+		}
+		return cnpjComDigitos;
+	}
+    
+    private boolean hasAllRepeatedDigits(String cnpj) {
+        for (int i = 1; i < cnpj.length(); i++) {
+            if (cnpj.charAt(i) != cnpj.charAt(0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }

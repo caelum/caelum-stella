@@ -2,18 +2,18 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IERondoniaValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("\\d{13}-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{13}-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("\\d{14}");
+	public static final Pattern UNFORMATED = Pattern.compile("\\d{14}");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -36,7 +36,6 @@ public class IERondoniaValidator extends AbstractIEValidator {
 		super(messageProducer, isFormatted);
 	}
 
-
 	@Override
 	protected Pattern getUnformattedPattern() {
 		return UNFORMATED;
@@ -56,7 +55,17 @@ public class IERondoniaValidator extends AbstractIEValidator {
 	}
 
 	private String calculaDigito(String iESemDigito) {
-		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10).trocandoPorSeEncontrar("1", 11).calcula();
+		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10)
+				.trocandoPorSeEncontrar("1", 11).calcula();
 	}
 
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigito = new DigitoGenerator().generate(13);
+		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
+		if (isFormatted) {
+			return super.format(ieComDigito, "#############-#");
+		}
+		return ieComDigito;
+	}
 }

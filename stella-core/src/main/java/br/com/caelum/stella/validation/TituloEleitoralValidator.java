@@ -2,8 +2,10 @@ package br.com.caelum.stella.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
@@ -197,4 +199,15 @@ public class TituloEleitoralValidator implements Validator<String> {
 		return getInvalidValues(tituloDeEleitor);
 	}
 
+	@Override
+	public String generateRandomValid() {
+		final String digitosSequenciais = new DigitoGenerator().generate(8);
+		final String digitosEstado = String.format("%02d", new Random().nextInt(28) + 1);
+		final String tituloSemDigito = digitosSequenciais + digitosEstado;
+		final String tituloComDigito = tituloSemDigito + calculaDigitos(tituloSemDigito);
+		if (isFormatted) {
+			return new TituloEleitoralFormatter().format(tituloComDigito);
+		}
+		return tituloComDigito;
+	}
 }

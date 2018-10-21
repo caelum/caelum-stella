@@ -2,17 +2,18 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IESergipeValidator extends AbstractIEValidator {
 
-    public static final Pattern FORMATED = Pattern.compile("\\d{2}(\\.?\\d{3}){2}\\-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{2}(\\.?\\d{3}){2}\\-\\d{1}");
 
-    public static final Pattern UNFORMATED = Pattern.compile("\\d{9}");
+	public static final Pattern UNFORMATED = Pattern.compile("\\d{9}");
 
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -34,7 +35,6 @@ public class IESergipeValidator extends AbstractIEValidator {
 	public IESergipeValidator(MessageProducer messageProducer, boolean isFormatted) {
 		super(messageProducer, isFormatted);
 	}
-
 
 	@Override
 	protected Pattern getUnformattedPattern() {
@@ -60,5 +60,15 @@ public class IESergipeValidator extends AbstractIEValidator {
 		digitoPara.complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11);
 
 		return digitoPara.calcula();
+	}
+
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigito = new DigitoGenerator().generate(8);
+		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
+		if (isFormatted) {
+			return super.format(ieComDigito, "##.###.###-#");
+		}
+		return ieComDigito;
 	}
 }

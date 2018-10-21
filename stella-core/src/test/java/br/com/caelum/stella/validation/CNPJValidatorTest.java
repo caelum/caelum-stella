@@ -148,6 +148,40 @@ public class CNPJValidatorTest {
     }
 
     @Test
+    public void shouldNotBeEligibleWithNullCNPJ() {
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        assertFalse(cnpjValidator.isEligible(null));
+    }
+    
+    @Test(expected = InvalidStateException.class)
+    public void shouldNotValidateFormattedCnpjWithAllRepeatedDigits() {
+        CNPJValidator validator = new CNPJValidator(true);
+        String cnpj = "00.000.000/0000-00";
+        validator.assertValid(cnpj);
+    }
+
+    @Test(expected = InvalidStateException.class)
+    public void shouldNotValidateUnformattedCnpjWithAllRepeatedDigits() {
+        CNPJValidator validator = new CNPJValidator();
+        String cnpj = "00000000000000";
+        validator.assertValid(cnpj);
+    }
+
+    @Test
+    public void shouldValidateFormattedCnpjWithAllRepeatedDigits() {
+        CNPJValidator validator = new CNPJValidator(true, true);
+        String cnpj = "00.000.000/0000-00";
+        validator.assertValid(cnpj);
+    }
+
+    @Test
+    public void shouldValidateUnformattedCnpjWithAllRepeatedDigits() {
+        CNPJValidator validator = new CNPJValidator(false, true);
+        String cnpj = "00000000000000";
+        validator.assertValid(cnpj);
+    }
+    
+    @Test
     public void shouldBeEligibleDefaultConstructor() {
         final CNPJValidator cnpjValidator = new CNPJValidator();
         assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
@@ -166,5 +200,19 @@ public class CNPJValidatorTest {
         final CNPJValidator cnpjValidator = new CNPJValidator(true);
         assertFalse(cnpjValidator.isEligible(validStringNotFormatted));
         assertTrue(cnpjValidator.isEligible(validString));
+    }
+
+    @Test
+    public void shouldGenerateValidFormattedCNPJ() {
+        final CNPJValidator cnpjValidator = new CNPJValidator(true);
+        final String generated = cnpjValidator.generateRandomValid();
+        cnpjValidator.assertValid(generated);
+    }
+
+    @Test
+    public void shouldGenerateValidUnformattedCNPJ() {
+        final CNPJValidator cnpjValidator = new CNPJValidator();
+        final String generated = cnpjValidator.generateRandomValid();
+        cnpjValidator.assertValid(generated);
     }
 }

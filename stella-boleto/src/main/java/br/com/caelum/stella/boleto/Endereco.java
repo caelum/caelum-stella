@@ -13,11 +13,11 @@ import static br.com.caelum.stella.boleto.utils.StellaStringUtils.suffixNotNullS
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public String logradouro;
-	public String bairro;
-	public String cep;
-	public String cidade;
-	public String uf;
+	private String logradouro;
+	private String bairro;
+	private String cep;
+	private String cidade;
+	private String uf;
 
 	private Endereco() {
 	}

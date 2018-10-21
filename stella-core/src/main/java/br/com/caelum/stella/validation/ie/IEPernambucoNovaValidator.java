@@ -2,19 +2,19 @@ package br.com.caelum.stella.validation.ie;
 
 import java.util.regex.Pattern;
 
+import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.DigitoPara;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 
 class IEPernambucoNovaValidator extends AbstractIEValidator {
 
-    // 0321418-40
-    public static final Pattern FORMATED = Pattern.compile("(\\d{7})[-](\\d{2})");
+	// 0321418-40
+	public static final Pattern FORMATED = Pattern.compile("(\\d{7})[-](\\d{2})");
 
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{7})(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("(\\d{7})(\\d{2})");
 
-	
-    /**
+	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
 	 * {@linkplain SimpleMessageProducer} para geração de mensagens.
 	 */
@@ -36,7 +36,6 @@ class IEPernambucoNovaValidator extends AbstractIEValidator {
 	public IEPernambucoNovaValidator(MessageProducer messageProducer, boolean isFormatted) {
 		super(messageProducer, isFormatted);
 	}
-
 
 	@Override
 	protected Pattern getUnformattedPattern() {
@@ -65,5 +64,15 @@ class IEPernambucoNovaValidator extends AbstractIEValidator {
 		String digito2 = digitoPara.calcula();
 
 		return digito1 + digito2;
+	}
+
+	@Override
+	public String generateRandomValid() {
+		final String ieSemDigitos = new DigitoGenerator().generate(7);
+		final String ieComDigitos = ieSemDigitos + calculaDigitos(ieSemDigitos);
+		if (isFormatted) {
+			return super.format(ieComDigitos, "#######-##");
+		}
+		return ieComDigitos;
 	}
 }

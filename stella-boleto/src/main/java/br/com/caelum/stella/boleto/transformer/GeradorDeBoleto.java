@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -18,14 +19,12 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.exception.GeracaoBoletoException;
 
@@ -53,14 +52,8 @@ public class GeradorDeBoleto {
 	 */
 	public GeradorDeBoleto(Collection<Boleto> boletos) {
 		this.boletos = boletos;
-		try {
-			templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default.jasper");
-			parametros.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
-			InputStream template_sub = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-default_instrucoes.jasper");
-			parametros.put("SUB_INSTRUCOES", JRLoader.loadObject(template_sub));
-		} catch (JRException e) {
-			throw new GeracaoBoletoException(e);
-		}
+                templateJasper = GeradorDeBoleto.class.getResourceAsStream("/br/com/caelum/stella/boleto/templates/boleto-sem-sacador-avalista.jasper");
+                parametros.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
 	}
 	
 	/**
@@ -137,11 +130,23 @@ public class GeradorDeBoleto {
 	 * @param arquivo arquivo para gravar o PDF.
 	 */
 	public void geraPDF(File arquivo) {
+		OutputStream out = null;
+		
 		try {
-			OutputStream out = new FileOutputStream(arquivo);
-			geraPDF(out); 
+			out = new FileOutputStream(arquivo);
+			geraPDF(out);
+			
 		} catch (FileNotFoundException e) {
 			throw new GeracaoBoletoException(e);
+		
+		}finally {
+			if(out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					throw new GeracaoBoletoException(e);
+				}
+			}
 		}
 	}
 	

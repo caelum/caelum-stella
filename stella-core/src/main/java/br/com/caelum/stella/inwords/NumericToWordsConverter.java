@@ -2,6 +2,7 @@ package br.com.caelum.stella.inwords;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.MissingResourceException;
 
 /**
@@ -14,16 +15,29 @@ import java.util.MissingResourceException;
 public class NumericToWordsConverter {
 
     private final FormatoDeExtenso formato;
+	private final Locale locale;
 
     /**
      * @param formato
-     *            formato desejado para a transfomação por extenso
+     *            formato desejado para a transformação por extenso
      */
     public NumericToWordsConverter(FormatoDeExtenso formato) {
         this.formato = formato;
+        this.locale = Messages.LOCALE_PT_BR;
     }
 
     /**
+     * @param formato
+     *            formato desejado para a transformação por extenso
+     * @param locale
+     *            idioma desejado para a transformação por extenso
+     */
+    public NumericToWordsConverter(FormatoDeExtenso formato, Locale locale) {
+    	this.formato = formato;
+    	this.locale = locale;
+	}
+
+	/**
      * @param number
      *            número a ser transformado
      * @return Representação do número por extenso.
@@ -137,7 +151,7 @@ public class NumericToWordsConverter {
                     result.append(" ");
                     int length = blocks.length;
                 	if (length > 2 && blocks[length - 1].isZero() && blocks[length - 2].isZero()) {
-                        result.append("de ");
+                        result.append(getFormatSeparator());
                     }
                 	result.append(unit);
                 }
@@ -238,7 +252,7 @@ public class NumericToWordsConverter {
                     result = dezena;
                 } else {
                     String unidade = getNumber(u);
-                    result = dezena + getAndSeparator() + unidade;
+                    result = dezena + getTensSeparator() + unidade;
                 }
             }
             return result;
@@ -250,17 +264,25 @@ public class NumericToWordsConverter {
         return getString("sep.mil");
     }
 
+    private String getTensSeparator() {
+        return getString("sep.dezena");
+    }
+
+    private String getFormatSeparator() {
+        return getString("sep.formato");
+    }
+
     private String getAndSeparator() {
         return getString("sep");
     }
 
     private String getString(String paramMessage) {
-        return Messages.getString("Extenso." + paramMessage);
+        return Messages.getString("Extenso." + paramMessage, locale);
     }
 
     private String getNumber(int number) {
         DecimalFormat formater = new DecimalFormat("000");
         String formatted = formater.format(number);
-        return Messages.getString("Extenso." + formatted);
+        return Messages.getString("Extenso." + formatted, locale);
     }
 }

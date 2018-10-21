@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boleto-default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="7" uuid="ff653490-88f9-4546-aaa6-53f137c26ccc">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="608"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<style name="Celula" forecolor="#646464" fontName="Arial" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.0" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Txt_Normal" fontName="Arial" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<style name="Txt_Negrito" style="Txt_Normal" hAlign="Left" vAlign="Bottom" fontSize="11" isBold="true">
+		<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2"/>
+	</style>
+	<style name="Txt_Peq" style="Txt_Normal" fontSize="7"/>
+	<style name="Txt_valor" style="Txt_Normal" hAlign="Right"  pattern="###0.00">
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="10"/>
+	</style>
+	<style name="Txt_Data" style="Txt_Normal" pattern="dd/MM/yyyy"/>
+	<subDataset name="instrucoes_ds" uuid="e18804b3-b235-49c6-a3b8-d465fd5de92d">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="instrucao" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="documentoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.documento]]></fieldDescription>
+	</field>
+	<field name="nomeBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.nomeBeneficiario]]></fieldDescription>
+	</field>
+	<field name="enderecoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[beneficiario.endereco.enderecoCompleto]]></fieldDescription>
+	</field>
+	<field name="nomePagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.nome]]></fieldDescription>
+	</field>
+	<field name="vencimento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.vencimento]]></fieldDescription>
+	</field>
+	<field name="valorCobrado" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorCobrado]]></fieldDescription>
+	</field>
+	<field name="agenciaECodigoBeneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[agenciaECodigoBeneficiario]]></fieldDescription>
+	</field>
+	<field name="nossoNumeroECodDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[nossoNumeroECodDocumento]]></fieldDescription>
+	</field>
+	<field name="numeroFormatadoComDigito" class="java.lang.String">
+		<fieldDescription><![CDATA[banco.numeroFormatadoComDigito]]></fieldDescription>
+	</field>
+	<field name="locaisDePagamento" class="java.util.List">
+		<fieldDescription><![CDATA[locaisDePagamento]]></fieldDescription>
+	</field>
+	<field name="documento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.documento]]></fieldDescription>
+	</field>
+	<field name="especieDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[especieDocumento]]></fieldDescription>
+	</field>
+	<field name="aceite" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[aceite]]></fieldDescription>
+	</field>
+	<field name="processamento" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datas.processamento]]></fieldDescription>
+	</field>
+	<field name="especieMoeda" class="java.lang.String">
+		<fieldDescription><![CDATA[especieMoeda]]></fieldDescription>
+	</field>
+	<field name="quantidadeDeMoeda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[quantidadeDeMoeda]]></fieldDescription>
+	</field>
+	<field name="valorMoeda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorMoeda]]></fieldDescription>
+	</field>
+	<field name="valorBoleto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorBoleto]]></fieldDescription>
+	</field>
+	<field name="instrucoes" class="java.util.List">
+		<fieldDescription><![CDATA[instrucoes]]></fieldDescription>
+	</field>
+	<field name="valorDescontos" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorDescontos]]></fieldDescription>
+	</field>
+	<field name="valorDeducoes" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorDeducoes]]></fieldDescription>
+	</field>
+	<field name="valorMulta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorMulta]]></fieldDescription>
+	</field>
+	<field name="valorAcrescimos" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorAcrescimos]]></fieldDescription>
+	</field>
+	<field name="logo_banco" class="java.net.URL">
+		<fieldDescription><![CDATA[banco.image]]></fieldDescription>
+	</field>
+	<field name="logradouroPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.logradouro]]></fieldDescription>
+	</field>
+	<field name="documentoPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.documento]]></fieldDescription>
+	</field>
+	<field name="cepPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.cep]]></fieldDescription>
+	</field>
+	<field name="bairroPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.bairro]]></fieldDescription>
+	</field>
+	<field name="cidadePagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.cidade]]></fieldDescription>
+	</field>
+	<field name="ufPagador" class="java.lang.String">
+		<fieldDescription><![CDATA[pagador.endereco.uf]]></fieldDescription>
+	</field>
+	<field name="localDePagamento" class="java.lang.String">
+		<fieldDescription><![CDATA[localDePagamento]]></fieldDescription>
+	</field>
+	<field name="linhaDigitavel" class="java.lang.String">
+		<fieldDescription><![CDATA[linhaDigitavel]]></fieldDescription>
+	</field>
+	<field name="numeroDoDocumentoFormatado" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroDoDocumentoFormatado]]></fieldDescription>
+	</field>
+	<field name="codigoDeBarras" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoDeBarras]]></fieldDescription>
+	</field>
+	<field name="carteira" class="java.lang.String">
+		<fieldDescription><![CDATA[carteira]]></fieldDescription>
+	</field>
+	<field name="digitoNossoNumero" class="java.lang.String"/>
+	<detail>
+		<band height="746" splitType="Prevent">
+			<property name="com.jaspersoft.studio.layout"/>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="292" width="552" height="10" uuid="001ddb45-1c2d-467a-83ba-588c749d3724"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Nome do Beneficiário/CPF/CNPJ/Endereço]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="302" width="552" height="14" uuid="1f153a12-3665-46bb-8314-8460522f1cbc"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario}+ "  CPF/CNPJ: " + $F{documentoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="316" width="552" height="14" uuid="71cf9bf4-c08d-4f0f-b701-cc366ddd6c3a"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{enderecoBeneficiario} == null ? "" : $F{enderecoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="250" y="268" width="100" height="10" uuid="53596950-7e80-4223-9cee-2019bc5f3706"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Data de Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="450" y="268" width="103" height="10" uuid="9476fbf3-dbd9-44db-a458-de45abee4ef1"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[(=) Valor Cobrado]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" positionType="FixRelativeToBottom" x="250" y="278" width="100" height="14" uuid="ba60b891-62a7-4e63-9591-9769ef2ff057"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="450" y="278" width="103" height="14" uuid="1d5919bf-162d-49ff-8b7d-43d64d2a71b8"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[($F{valorCobrado}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorCobrado}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="330" width="552" height="10" uuid="f64a2e9f-7773-4f96-ae5e-2f92a570603e"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Agência / Código do Beneficiário 									Autenticação Mecânica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="268" width="145" height="10" uuid="2d90e325-2061-45a5-bea0-5eea21ec8c25"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Nosso Número]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="340" width="552" height="14" uuid="9b0e8341-a44a-4d63-9135-2753b6fbedc7"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="278" width="145" height="14" uuid="0a386697-5190-4930-a3e4-dada92f6d225"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nossoNumeroECodDocumento}+"-"+$F{digitoNossoNumero}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="178" y="463" width="60" height="14" uuid="02d3cdee-746c-4588-a51b-9c5f37f330f9"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{especieDocumento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="439" width="389" height="14" uuid="abcefd43-93dc-44be-a707-7d3cfce23a63"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nomeBeneficiario} + "       CPF/CNPJ: " + $F{documentoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="477" width="85" height="25" uuid="c95c3b44-8c8c-42ca-ba0b-cbbd70c2b4cd"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Uso do Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="87" y="453" width="90" height="10" uuid="439fd0d5-f592-41f0-85e9-61fa5fbfff99"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Nr. do Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" positionType="FixRelativeToBottom" x="157" y="380" width="396" height="23" uuid="3ba3f307-b123-414a-a01e-36bfb72ab861"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linhaDigitavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="429" width="389" height="10" uuid="8117e3e7-4e84-4b30-b71f-4b251a9d81dd"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Beneficiário/CPF/CNPJ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="87" y="463" width="90" height="14" uuid="1a991ed5-70b4-46f8-9549-e5de61e7caf6"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{numeroDoDocumentoFormatado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="239" y="463" width="61" height="14" uuid="460aeeaa-3a27-4aec-b18b-68524ff57b75"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{aceite} ? "S" : "N"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="178" y="453" width="60" height="10" uuid="0069431a-083b-4e16-87f9-1f9f2620d691"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Espécie Doc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="87" y="477" width="90" height="10" uuid="ce6ddbc7-5635-4fe1-aad3-61131e3af8b1"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Carteira]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="502" width="162" height="10" uuid="9e8779db-d8d9-4705-91e3-6ebb683efa87"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[(-) Desconto / Abatimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="301" y="477" width="89" height="10" uuid="ded10200-9a29-4f0d-849a-ea417069f842"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Valor Moeda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="453" width="162" height="10" uuid="6e671458-fba4-43da-85e8-7727a3a04bfc"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Nosso Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="403" width="389" height="10" uuid="5d86cad9-d805-45fb-a473-dc278bd3454f"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Local de Pagamento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="391" y="512" width="162" height="14" uuid="96cd37ba-bb49-4182-8942-17fdc7885eda"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[($F{valorDescontos}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorDescontos}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="413" width="389" height="16" uuid="4b494dc4-591b-4904-9a88-162a91db21bb"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{localDePagamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="429" width="162" height="10" uuid="d17ced91-6210-4152-8e54-1533c773b6fa"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<text><![CDATA[Agência / Código do Beneficiário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="178" y="477" width="60" height="10" uuid="d92d93a1-1b52-4ea9-bc9d-ad14967d71d2"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Espécie Moeda]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="301" y="487" width="89" height="15" uuid="357bed9f-6afd-4d20-84ac-87a7af9671a1"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{valorMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="648" width="552" height="14" uuid="7ef37737-2749-4c17-8170-04864aef9857"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{logradouroPagador} + ", " + ($F{bairroPagador} == null ? "" : $F{bairroPagador} )]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" positionType="FixRelativeToBottom" x="105" y="380" width="52" height="23" uuid="9e86528e-67c1-44fc-9395-bb9eecf9905c"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{numeroFormatadoComDigito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="526" width="162" height="10" uuid="1dea584a-47c2-4b4f-af48-0dd9176d8cf0"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[(+) Mora / Multa]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="663" width="552" height="14" uuid="eb0fa992-6435-4867-8bc8-1d632bc9ab28"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA["CEP: " + ($F{cepPagador} == null ? "" : $F{cepPagador}) + ($F{cidadePagador} == null ? "" : " - "+$F{cidadePagador} + "-") + ($F{ufPagador} == null ? "" : $F{ufPagador})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="87" y="487" width="90" height="15" uuid="521e7c14-d377-42dd-b770-a2ee0dad878b"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{carteira}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" positionType="FixRelativeToBottom" x="301" y="463" width="89" height="14" uuid="b50cf889-5f4f-490c-9866-1aae93f3fe4e"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{processamento}.getTime()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="453" width="85" height="10" uuid="3a08b48d-7aff-418f-beb0-385b0580d7b5"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Data do Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="391" y="439" width="162" height="14" uuid="f12c8199-760a-46a6-a53c-132422c7158f"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{agenciaECodigoBeneficiario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="301" y="453" width="89" height="10" uuid="f030d527-74ed-46e3-9165-eb498cb0d8e7"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Data de Processamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="239" y="477" width="61" height="10" uuid="2cbd977d-6bf3-49f3-bcba-448288925f82"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Quantidade Moeda]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="700" width="371" height="46" uuid="0af69d88-8b52-4ecc-aaae-c2e7cf75cb7a"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Int2of5" drawText="false" checksumRequired="false" barWidth="0" barHeight="0">
+					<jr:codeExpression><![CDATA[$F{codigoDeBarras}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<image vAlign="Bottom">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="1" y="380" width="104" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="4b8f5794-bf28-4d0e-864c-f3d92c06a3a7"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[$F{logo_banco}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="239" y="487" width="61" height="15" uuid="a378c6fc-4d9c-4e35-aba9-107628703774"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{quantidadeDeMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Data" positionType="FixRelativeToBottom" x="1" y="463" width="85" height="14" uuid="74556a06-6fbc-4440-a857-a10ffe2ebd28"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{documento}.getTime()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="239" y="453" width="61" height="10" uuid="90a931e7-b2a0-4b05-9df6-6e3830695f7d"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Aceite]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="178" y="487" width="60" height="15" uuid="77ba1bbf-ecb9-4203-985f-1657ee237ca8"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{especieMoeda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="391" y="463" width="162" height="14" uuid="22e7b6e7-e99d-485c-9dbd-129d8b1f2bd9"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nossoNumeroECodDocumento}+"-"+$F{digitoNossoNumero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="502" width="389" height="10" uuid="e8d29361-12cd-4e98-a29a-88ceb7b4e383"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Informações de Responsabilidade do Beneficiário]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="391" y="536" width="162" height="14" uuid="0a791ab6-641e-4a4a-b3fd-c907a6320d3d"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[($F{valorMulta}.compareTo(BigDecimal.ZERO) == 0) ? "" : $F{valorMulta}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="370" width="552" height="10" uuid="909d192c-1dc4-457c-8e8b-247507528a54"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="189" width="552" height="13" uuid="f188bfe0-a165-4f8b-b0c1-a7b9756d59bb"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Recibo do Pagador]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" positionType="FixRelativeToBottom" x="105" y="197" width="52" height="23" uuid="4c4e72a6-c8a7-4e95-abd4-748fd6364129"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{numeroFormatadoComDigito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Negrito" positionType="FixRelativeToBottom" x="157" y="197" width="396" height="23" uuid="f2a67a5c-1367-42d2-a39d-eaf9c5149aa8"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linhaDigitavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="220" width="552" height="10" uuid="d1f59c9d-2758-4686-a6f0-8775592ce8a3"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Pagador/CPF/CNPJ/Endereço]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="230" width="552" height="14" uuid="a282aa7d-22d8-46c2-ae24-8ff78043d04a"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nomePagador} + "  CPF/CNPJ: " + $F{documentoPagador}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="244" width="552" height="14" uuid="c81de9ba-7219-4bcf-96a4-942c7261b77f"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{logradouroPagador} + ", " + ($F{bairroPagador} == null ? "" : $F{bairroPagador} + ", CEP: ") + ($F{cepPagador} == null ? "" : $F{cepPagador}) + ($F{cidadePagador} == null ? "" : " - "+$F{cidadePagador} + "-") + ($F{ufPagador} == null ? "" : $F{ufPagador})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="258" width="552" height="10" uuid="fdebbdf3-1e42-4b09-9e5d-98ebe63bfa0b"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pagador/Avalista: ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="147" y="278" width="102" height="14" uuid="ef5fd0a0-7610-480d-bfda-769fe60f5472"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{numeroDoDocumentoFormatado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="147" y="268" width="102" height="10" uuid="b6038914-9f59-4be6-bc12-542aba502a66"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Nº do Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="351" y="268" width="99" height="10" uuid="9977f55a-af8e-42f0-b434-b9c054a254e9"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Valor do Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="351" y="278" width="99" height="14" uuid="a12ecd53-cb57-4853-a4a1-b765ee8dae95"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{valorBoleto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="403" width="162" height="10" uuid="12e379de-1e6b-4398-b9d0-2b13b719417b"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Data de Vencimento]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="391" y="413" width="162" height="16" uuid="dfa7d478-7a59-42a0-8b46-9675da6b3d3f"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{vencimento}.getTime()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="477" width="162" height="10" uuid="4d45ea42-0253-4203-b167-c0e6ea56a516"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[(=) Valor do Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="391" y="487" width="162" height="15" uuid="1e672f0e-1043-4997-881e-dc20cbdb4641"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{valorBoleto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_valor" positionType="FixRelativeToBottom" x="391" y="560" width="162" height="14" uuid="492ad5e3-2468-418e-ba03-ac0b19ba2339"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[($F{valorCobrado}.compareTo(BigDecimal.ZERO) == 0) ? " " : $F{valorCobrado}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" mode="Transparent" x="391" y="550" width="162" height="10" uuid="939b301f-82a3-41c9-8b50-d54681e1eb99"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[(=) Valor Cobrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="391" y="598" width="162" height="24" uuid="ec861222-647b-40d7-85ec-84256b56aa0a"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="622" width="552" height="10" uuid="5f3bf18d-e4e2-47db-aede-0205d4635725"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[Pagador/CPF/CNPJ/Endereço]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Txt_Normal" positionType="FixRelativeToBottom" x="1" y="633" width="552" height="14" uuid="f655edc4-e2de-458e-9845-34521e46c02c"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nomePagador} + "  CPF/CNPJ: " + $F{documentoPagador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="1" y="678" width="552" height="10" uuid="a1b0595a-3739-419a-9fb5-c34035dbcd4e"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineColor="#BAB3B3"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pagador/Avalista: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="380" y="678" width="90" height="10" uuid="9040d4de-1dd2-41ac-b4c5-df84354256a4"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Autenticação Mecânica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="470" y="678" width="82" height="10" uuid="068e0beb-e5dc-4be7-b9d3-a7576dbd33e5"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ficha de Compensação]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="512" width="379" height="14" isRemoveLineWhenBlank="true" uuid="f4d468f7-12ab-4fa9-8e8a-14b76cd7449f"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="instrucoes_ds" uuid="8e53c738-2c7b-4874-b314-ad0597844e94">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{instrucoes})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="14" width="379">
+						<frame>
+							<reportElement x="0" y="0" width="250" height="14" uuid="14cb57d1-f790-4fd5-ae3b-e707c7935d3a"/>
+							<textField>
+								<reportElement style="Txt_Peq" x="0" y="2" width="250" height="10" uuid="4b96d4fc-ae6d-461f-94dc-9d7faba58842"/>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textFieldExpression><![CDATA[($F{instrucao} == null ? "":$F{instrucao})]]></textFieldExpression>
+							</textField>
+						</frame>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement style="Celula" positionType="FixRelativeToBottom" x="391" y="574" width="162" height="24" uuid="1c76ea9e-81c8-4cc2-9cc6-57d995e77687"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#BAB3B3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image vAlign="Bottom">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="1" y="197" width="104" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="09c3816c-8d7d-4c0a-b5fa-6a12f0e19ed5"/>
+				<box topPadding="2" leftPadding="10" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[$F{logo_banco}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>
