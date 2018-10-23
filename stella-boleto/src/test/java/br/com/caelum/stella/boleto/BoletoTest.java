@@ -45,8 +45,19 @@ public class BoletoTest {
 	public void fatorVencimentoComDataMaior2025() {
 		Boleto b = Boleto.novoBoleto();
 		
-		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 12, 2025));
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(21, 2, 2025));
+		assertEquals("9999", b.getFatorVencimento());
 		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(22, 2, 2025));
+		assertEquals("1000", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(23, 2, 2025));
+		assertEquals("1001", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(24, 2, 2025));
+		assertEquals("1002", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 12, 2025));
 		assertEquals("1282", b.getFatorVencimento());
 	}
 	
