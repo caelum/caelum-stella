@@ -17,13 +17,27 @@ Alguns processos são comuns e recorrentes em sistemas voltados para o público 
 
 ### Building
 
-Fork este repositório
-Vá para a página do projeto forked e clone o mesmo em seu computador via ```git clone link-to-your-forked-repo-here```
-Digite ```git remote -v``` confirmando que **origin** aparece e aponte para o repositório remoto que fez o fork
-Em seguida, digite ```git remote add upstream https://github.com/caelum/caelum-stella.git```
-Verifique novamente via ```git remote -v```
-Certifique-se que **origin** e **upstream** estejam configurados
-Pronto, use seu IDE ou o maven
+Fork este repositório. Vá para a página do projeto forked e clone o mesmo em seu computador via
+
+```git clone link-to-your-forked-repo-here```.
+
+Digite 
+
+```git remote -v``` 
+
+confirmando que **origin** aparece e aponte para o repositório remoto que fez o fork.
+
+Em seguida, digite 
+
+```git remote add upstream https://github.com/caelum/caelum-stella.git```.
+
+Verifique novamente via
+
+```git remote -v```.
+
+Certifique-se que **origin** e **upstream** estejam configurados.
+
+Pronto, use seu IDE ou o maven:
 ```
 $ mvn install
 ```
