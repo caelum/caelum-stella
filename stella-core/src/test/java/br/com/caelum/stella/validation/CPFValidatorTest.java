@@ -123,12 +123,6 @@ public class CPFValidatorTest {
     }
 
     @Test
-    public void shouldValidateNullCPF() {
-        String value = null;
-        validator.assertValid(value);
-    }
-
-    @Test
     public void shouldValidateCPFWithLeadingZeros() {
         String value = "01169538452";
         validator.assertValid(value);
@@ -185,6 +179,17 @@ public class CPFValidatorTest {
         } catch (InvalidStateException e) {
             assertTrue(e.getInvalidMessages().size() == 1);
             assertMessage(e, INVALID_FORMAT);
+        }
+    }
+
+    @Test
+    public void shouldNotValidateNullCPF() {
+        CPFValidator validator = new CPFValidator(true);
+        try {
+            validator.assertValid(null);
+        } catch (InvalidStateException e) {
+            assertTrue(e.getInvalidMessages().size() == 1);
+            assertMessage(e, INVALID_DIGITS);
         }
     }
 

@@ -113,36 +113,40 @@ public class CPFValidator implements Validator<String> {
 
 		List<ValidationMessage> errors = new ArrayList<ValidationMessage>();
 
-		if (cpf != null) {
-			if (isFormatted != FORMATED.matcher(cpf).matches()) {
-				errors.add(messageProducer.getMessage(CPFError.INVALID_FORMAT));
-			}
-
-			String unformatedCPF = null;
-			try {
-				unformatedCPF = new CPFFormatter().unformat(cpf);
-			} catch (IllegalArgumentException e) {
-				errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
-				return errors;
-			}
-
-			if (unformatedCPF.length() != 11 || !unformatedCPF.matches("[0-9]*")) {
-				errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
-			}
-
-			if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCPF)) {
-				errors.add(messageProducer.getMessage(CPFError.REPEATED_DIGITS));
-			}
-
-			String cpfSemDigito = unformatedCPF.substring(0, unformatedCPF.length() - 2);
-			String digitos = unformatedCPF.substring(unformatedCPF.length() - 2);
-
-			String digitosCalculados = calculaDigitos(cpfSemDigito);
-
-			if (!digitos.equals(digitosCalculados)) {
-				errors.add(messageProducer.getMessage(CPFError.INVALID_CHECK_DIGITS));
-			}
+		if (cpf == null) {
+			errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
+			return errors;
 		}
+
+		if (isFormatted != FORMATED.matcher(cpf).matches()) {
+			errors.add(messageProducer.getMessage(CPFError.INVALID_FORMAT));
+		}
+
+		String unformatedCPF = null;
+		try {
+			unformatedCPF = new CPFFormatter().unformat(cpf);
+		} catch (IllegalArgumentException e) {
+			errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
+			return errors;
+		}
+
+		if (unformatedCPF.length() != 11 || !unformatedCPF.matches("[0-9]*")) {
+			errors.add(messageProducer.getMessage(CPFError.INVALID_DIGITS));
+		}
+
+		if ((!isIgnoringRepeatedDigits) && hasAllRepeatedDigits(unformatedCPF)) {
+			errors.add(messageProducer.getMessage(CPFError.REPEATED_DIGITS));
+		}
+
+		String cpfSemDigito = unformatedCPF.substring(0, unformatedCPF.length() - 2);
+		String digitos = unformatedCPF.substring(unformatedCPF.length() - 2);
+
+		String digitosCalculados = calculaDigitos(cpfSemDigito);
+
+		if (!digitos.equals(digitosCalculados)) {
+			errors.add(messageProducer.getMessage(CPFError.INVALID_CHECK_DIGITS));
+		}
+
 		return errors;
 	}
 
