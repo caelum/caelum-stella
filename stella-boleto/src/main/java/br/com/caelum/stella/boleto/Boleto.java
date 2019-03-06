@@ -462,8 +462,18 @@ public class Boleto implements Serializable {
 		return valorDescontos;
 	}
 
+	/**
+	 * @deprecated use Boleto#comValorDescontos(BigDecimal)
+	 * @param valorDescontos String que é convertido para BigDecimal com
+	 * o Locale da JVM @see Boleto#comValorDescontos(BigDecimal)
+	 * @return this
+	 */
 	public Boleto comValorDescontos(String valorDescontos) {
-		this.valorDescontos = new BigDecimal(valorDescontos);
+		return comValorDescontos(new BigDecimal(valorDescontos));
+	}
+	
+	public Boleto comValorDescontos(BigDecimal valorDescontos) {
+		this.valorDescontos = valorDescontos;
 		return this;
 	}
 
@@ -471,8 +481,18 @@ public class Boleto implements Serializable {
 		return valorDeducoes;
 	}
 
+	/**
+	 * @deprecated use Boleto#comValorDeducoes(BigDecimal)
+	 * @param valorDeducoes String que é convertido para BigDecimal com
+	 * o Locale da JVM @see Boleto#comValorDeducoes(BigDecimal)
+	 * @return this
+	 */
 	public Boleto comValorDeducoes(String valorDeducoes) {
-		this.valorDeducoes = new BigDecimal(valorDeducoes);
+		return comValorDeducoes(new BigDecimal(valorDeducoes));
+	}
+	
+	public Boleto comValorDeducoes(BigDecimal valorDeducoes) {
+		this.valorDeducoes = valorDeducoes;
 		return this;
 	}
 
@@ -480,8 +500,18 @@ public class Boleto implements Serializable {
 		return valorMulta;
 	}
 
+	/**
+	 * @deprecated use Boleto#comValorMulta(BigDecimal)
+	 * @param valorMulta String que é convertido para BigDecimal com
+	 * o Locale da JVM @see Boleto#comValorMulta(BigDecimal)
+	 * @return this
+	 */
 	public Boleto comValorMulta(String valorMulta) {
-		this.valorMulta = new BigDecimal(valorMulta);
+		return comValorMulta(new BigDecimal(valorMulta));
+	}
+	
+	public Boleto comValorMulta(BigDecimal valorMulta) {
+		this.valorMulta = valorMulta;
 		return this;
 	}
 
@@ -489,8 +519,18 @@ public class Boleto implements Serializable {
 		return valorAcrescimos;
 	}
 
+	/**
+	 * @deprecated use Boleto#comValorAcrescimos(BigDecimal)
+	 * @param valorAcrescimos String que é convertido para BigDecimal com
+	 * o Locale da JVM @see Boleto#comValorAcrescimos(BigDecimal)
+	 * @return this
+	 */
 	public Boleto comValorAcrescimos(String valorAcrescimos) {
-		this.valorAcrescimos = new BigDecimal(valorAcrescimos);
+		return comValorAcrescimos(new BigDecimal(valorAcrescimos));
+	}
+	
+	public Boleto comValorAcrescimos(BigDecimal valorAcrescimos) {
+		this.valorAcrescimos = valorAcrescimos;
 		return this;
 	}
 
