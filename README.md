@@ -44,5 +44,5 @@ $ mvn install
 
 ### Running
 
-Use o artefato construído, colocando-o no classpath de sua aplicação através do maven ou diretamente
+Use o artefato construído, colocando-o no classpath de sua aplicação através do maven ou diretamente.
 Veja, como exemplo, o seguinte [projeto utilizado para experimentar a API de boleto](https://github.com/angeliski/caelum-boleto-test).
