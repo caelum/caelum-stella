@@ -35,7 +35,7 @@ Em seguida, digite
 
 Verifique novamente via
 
-```git remote -v```, se certificando que **origin** e **upstream** estejam configurados.
+```git remote -v```, se certificando que **origin** e **upstream** estejam configurados (este setup lhe dará condições de [realizar uma sincronização com a ramificação principal do projeto](https://help.github.com/en/articles/syncing-a-fork)).
 
 Pronto, use seu IDE ou o maven:
 ```
