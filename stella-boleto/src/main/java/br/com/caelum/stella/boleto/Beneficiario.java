@@ -72,7 +72,7 @@ public class Beneficiario implements Serializable {
 	}
 
 	/**
-	 * @param digito - verificador (DV) da agencia
+	 * @param digitoAgencia - dígito verificador (DV) da agencia
 	 * @return este beneficiario
 	 */	
 	public Beneficiario comDigitoAgencia(String digitoAgencia) {
@@ -88,7 +88,7 @@ public class Beneficiario implements Serializable {
 	}
 
 	/**
-	 * @param código fornecido pela agência do beneficiário.
+	 * @param codigoBeneficiario - código fornecido pela agência do beneficiário.
 	 * @return este beneficiario
 	 */	
 	public Beneficiario comCodigoBeneficiario(String codigoBeneficiario) {
@@ -105,7 +105,7 @@ public class Beneficiario implements Serializable {
 	}
 
 	/**
-	 * @param digito - verificador (DV) do código do beneficiário
+	 * @param digitoCodigoBeneficiario - dígito verificador (DV) do código do beneficiário
 	 * @return este beneficiario
 	 */	
 	public Beneficiario comDigitoCodigoBeneficiario(String digitoCodigoBeneficiario) {
@@ -176,7 +176,7 @@ public class Beneficiario implements Serializable {
 	}
 
 	/**
-	 * @param nome do beneficiário. Por exemplo: razão social ou nome 
+	 * @param nomeBeneficiario - nome do beneficiário. Por exemplo: razão social ou nome
 	 * fantasia do Beneficiário.
 	 * @return esse beneficiario
 	 */	
