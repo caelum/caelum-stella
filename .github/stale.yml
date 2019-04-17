@@ -8,6 +8,7 @@ exemptLabels:
   - epic
   - Aceitando contribuições
   - bug
+  - waiting admin
 # Label to use when marking an issue as stale
 staleLabel: waiting feedback
 # Comment to post when marking an issue as stale. Set to `false` to disable
