@@ -7,6 +7,8 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
+import br.com.caelum.stella.boleto.exception.DataLimiteUltrapassadaException;
+
 public class BoletoTest {
 
 	@Test
@@ -34,14 +36,34 @@ public class BoletoTest {
 		assertEquals("3860", b.getFatorVencimento());
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = DataLimiteUltrapassadaException.class)
 	public void fatorVencimentoComDataMuitoAntiga() {
 		Datas.novasDatas().comDocumento(01, 01, 1996).comProcessamento(01, 1, 1996).comVencimento(1, 2, 1996);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void fatorVencimentoComDataMaiorQueOPermitido() {
-		Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 2, 2025);
+	@Test
+	public void fatorVencimentoComDataMaior2025() {
+		Boleto b = Boleto.novoBoleto();
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(21, 2, 2025));
+		assertEquals("9999", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(22, 2, 2025));
+		assertEquals("1000", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(23, 2, 2025));
+		assertEquals("1001", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(24, 2, 2025));
+		assertEquals("1002", b.getFatorVencimento());
+		
+		b.comDatas(Datas.novasDatas().comDocumento(01, 01, 2025).comProcessamento(01, 1, 2025).comVencimento(1, 12, 2025));
+		assertEquals("1282", b.getFatorVencimento());
+	}
+	
+	@Test(expected = DataLimiteUltrapassadaException.class)
+	public void fatorVencimentoComDataMaiorQueORange() {
+		Datas.novasDatas().comDocumento(01, 01, 2018).comVencimento(1, 1, 2099);
 	}
 
 	public void regraDoFatorVencimentoParaDataDaNoite() {
@@ -162,18 +184,18 @@ public class BoletoTest {
 		assertEquals(5, b.getDescricoes().size());
 	}
 
-        @Test(expected = IllegalArgumentException.class)
-        public void boletoNaoDeveAceitarDescricaoNula() {
-            Boleto b = Boleto.novoBoleto();
-            b.comDescricao(null);
-        }
+	@Test(expected = IllegalArgumentException.class)
+	public void boletoNaoDeveAceitarDescricaoNula() {
+		Boleto b = Boleto.novoBoleto();
+		b.comDescricao(null);
+	}
 
-        @Test(expected = UnsupportedOperationException.class)
-        public void boletoNaoDeveAceitarDescricaoQuandoTemCincoDescricoes() {
-            Boleto b = Boleto.novoBoleto();
-            b.comDescricoes("","","","","");
-            b.comDescricao("");
-        }
+	@Test(expected = UnsupportedOperationException.class)
+	public void boletoNaoDeveAceitarDescricaoQuandoTemCincoDescricoes() {
+		Boleto b = Boleto.novoBoleto();
+		b.comDescricoes("", "", "", "", "");
+		b.comDescricao("");
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void boletoNaoDeveAceitarMaisDeDoisLocais() {
@@ -185,31 +207,34 @@ public class BoletoTest {
 	public void boletoDeveAceitarNoMaximoDoisLocais() {
 		Boleto b = Boleto.novoBoleto();
 		b.comLocaisDePagamento("", "");
+		
 		assertEquals(2, b.getLocaisDePagamento().size());
 	}
 
 	@Test
 	public void valorCobradoDeveSerZeroSemAcrescimoOuDescontos() {
 		Boleto b = Boleto.novoBoleto();
-                b.comValorBoleto("40.00");
+		b.comValorBoleto("40.00");
 		assertEquals(BigDecimal.ZERO, b.getValorCobrado());
 	}
-        
+
 	@Test
 	public void valorCobradoDeveSerMaiorComAcrescimo() {
 		Boleto b = Boleto.novoBoleto();
-                b.comValorBoleto("40.00");
-                b.comValorAcrescimos("2.00");
-                b.comValorMulta("1.00");
+		b.comValorBoleto("40.00");
+		b.comValorAcrescimos("2.00");
+		b.comValorMulta("1.00");
+
 		assertEquals(new BigDecimal("43.00"), b.getValorCobrado());
 	}
-        
+
 	@Test
 	public void valorCobradoDeveSerMenorComDesconto() {
 		Boleto b = Boleto.novoBoleto();
-                b.comValorBoleto("40.00");
-                b.comValorDeducoes("2.00");
-                b.comValorDescontos("1.00");
+		b.comValorBoleto("40.00");
+		b.comValorDeducoes("2.00");
+		b.comValorDescontos("1.00");
+
 		assertEquals(new BigDecimal("37.00"), b.getValorCobrado());
 	}
 }

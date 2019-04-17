@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import br.com.caelum.stella.boleto.exception.DataLimiteUltrapassadaException;
+
 /**
  * Bean que representa as datas relacionadas a um Boleto.
  * 
@@ -12,18 +14,34 @@ import java.util.GregorianCalendar;
  * @author Leonardo Bessa
  * 
  */
+@SuppressWarnings("unused")
 public class Datas implements Serializable {
-
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Utilizar o range de 3000 dias antes da data de emissão do documento
+	 */
+	@Deprecated
+	private static final Calendar MINIMUM_DATE = new GregorianCalendar(1997, 10, 7);
+	
+	/**
+	 * Utilizar o range de 5500 dias a partir da data de emissão do documento
+	 */
+	@Deprecated
+	private static final Calendar MAXIMUM_DATE = new GregorianCalendar(2025, 1, 21);
+
+	/**
+	 * Data inicial com fator de vencimento de 1000. (03/07/2000)
+	 */
+	private static final Calendar INIT_DATE = new GregorianCalendar(2000, 6, 3);
+
+	private static final int RANGE_MINIMO = 3000;
+	private static final int RANGE_MAXIMO = 5500;
 
 	private Calendar documento;
 	private Calendar processamento;
 	private Calendar vencimento;
-	private static final Calendar MINIMUM_DATE = new GregorianCalendar(1997, 10, 7);
-	private static final Calendar MAXIMUM_DATE = new GregorianCalendar(2024, 1, 1);
-
-	private Datas() {
-	}
+	private Datas() { }
 
 	/**
 	 * Cria novas datas<br>
@@ -55,13 +73,17 @@ public class Datas implements Serializable {
 	 * @return this
 	 */
 	public Datas comDocumento(Calendar documento) {
-		if (documento.getTime().before(MINIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do documento deve ser maior do que 1997.");
+		Calendar dataLimite = Calendar.getInstance();
+		dataLimite.setTime(documento.getTime());
+		dataLimite.add(Calendar.DAY_OF_YEAR, RANGE_MAXIMO);
+		
+		if (documento.getTime().before(INIT_DATE.getTime())) {
+			throw new DataLimiteUltrapassadaException("A data do documento deve ser a partir de 03/07/2000.");
 		}
-		if (documento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do documento deve ser menor do que 2024.");
-		}
+		//else if()
+		
 		this.documento = documento;
+		
 		return this;
 	}
 
@@ -99,13 +121,12 @@ public class Datas implements Serializable {
 	 * @return this
 	 */
 	public Datas comProcessamento(Calendar processamento) {
-		if (processamento.getTime().before(MINIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do processamento deve ser maior do que 1997.");
+		if (processamento.getTime().before(INIT_DATE.getTime())) {
+			throw new DataLimiteUltrapassadaException("A data do documento deve ser a partir de 03/07/2000.");
 		}
-		if (processamento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do processamento deve ser menor do que 2024.");
-		}
+
 		this.processamento = processamento;
+
 		return this;
 	}
 
@@ -140,13 +161,22 @@ public class Datas implements Serializable {
 	 * @return this
 	 */
 	public Datas comVencimento(Calendar vencimento) {
-		if (vencimento.getTime().before(MINIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do vencimento deve ser maior do que 1997.");
+		if (vencimento.getTime().before(INIT_DATE.getTime())) {
+			throw new DataLimiteUltrapassadaException("A data do documento deve ser a partir de 03/07/2000.");
 		}
-		if (vencimento.getTime().after(MAXIMUM_DATE.getTime())) {
-			throw new IllegalArgumentException("O ano do vencimento deve ser menor do que 2024.");
+		
+		Calendar dataLimite = Calendar.getInstance();
+		if(documento != null)
+			dataLimite.setTime(documento.getTime());
+		
+		dataLimite.add(Calendar.DAY_OF_YEAR, RANGE_MAXIMO);
+		
+		if (vencimento.getTime().after(dataLimite.getTime())) {
+			throw new DataLimiteUltrapassadaException("A data de vencimento ultrapassa o range permitido para emissão do boleto.");
 		}
+		
 		this.vencimento = vencimento;
+		
 		return this;
 	}
 
