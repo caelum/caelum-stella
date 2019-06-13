@@ -90,7 +90,7 @@ public class SantanderTest {
 	public void naoAparecerNuloEmAgenciaECodigoBeneficiarioFormatado() throws Exception {
 		this.banco = new Santander();
 		
-		beneficiario.comAgencia("12345").comDigitoAgencia(null).comNumeroConvenio("1234567");
+		beneficiario.comAgencia("12345").comDigitoAgencia(null).comCodigoBeneficiario("1234567");
 		
 		assertThat(banco.getAgenciaECodigoBeneficiario(beneficiario), is("12345/1234567"));
 	}
