@@ -9,7 +9,7 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  * 
  * @author Rodrigo Turini
  */
-class CodigoDeBarrasBuilder {
+public class CodigoDeBarrasBuilder {
 	
 	private StringBuilder codigoDeBarras;
 	private Banco banco;
