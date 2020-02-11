@@ -65,7 +65,7 @@
 			<id>JBoss</id>
 			<name>The "public-jboss" repository group provides a combined view all JBoss community project artifacts</name>
 			<layout>default</layout>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss</url>
 		</repository>
 	</repositories>
 

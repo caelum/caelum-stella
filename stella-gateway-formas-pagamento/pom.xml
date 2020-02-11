@@ -70,12 +70,12 @@
 
 	<repositories>
 		<repository>
-			<url>http://nexus.openqa.org/content/repositories/releases/</url>
+			<url>https://nexus.openqa.org/content/repositories/releases/</url>
 			<id>selenium</id>
 		</repository>
 		<repository>
 			<id>vidageek.net</id>
-			<url>http://maven.vidageek.net/</url>
+			<url>https://maven.vidageek.net/</url>
 		</repository>
 	</repositories>
 
