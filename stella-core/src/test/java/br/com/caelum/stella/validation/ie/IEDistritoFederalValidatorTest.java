@@ -25,8 +25,8 @@ public class IEDistritoFederalValidatorTest extends IEValidatorTest {
 
 	private static final String validFormattedString = "07.408.738/002-50";
 
-	private static final String[] validValues = { validFormattedString, "07.343.623/001-77", "07.451.530/001-68",
-			"07.389.634/001-01", "07.336.802/001-60", "07.346.779/001-46", "07.548.137/001-52", "07.300.001/001-09" };
+	private static final String[] validValues = { validFormattedString, "07.343.623/001-77", "07.451.530/001-68", "07.389.634/001-01",
+			"07.336.802/001-60", "07.346.779/001-46", "07.548.137/001-52", "07.300.001/001-09", "08.006.816/001-02" };
 
 	public IEDistritoFederalValidatorTest() {
 		super(wrongFirstCheckDigitUnformattedString, validUnformattedString, validFormattedString, validValues);
