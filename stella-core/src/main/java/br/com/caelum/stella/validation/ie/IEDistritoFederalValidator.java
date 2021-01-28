@@ -24,9 +24,9 @@ public class IEDistritoFederalValidator extends AbstractIEValidator {
 	 * Formato: 07.408.738/002-50
 	 */
 
-	public static final Pattern FORMATED = Pattern.compile("(07)[.]([3-9]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
+	public static final Pattern FORMATED = Pattern.compile("(0[7-8])[.]([0-9]\\d{2})[.](\\d{3})[/](\\d{3})[-](\\d{2})");
 
-	public static final Pattern UNFORMATED = Pattern.compile("(07)([3-9]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
+	public static final Pattern UNFORMATED = Pattern.compile("(0[7-8])([0-9]\\d{2})(\\d{3})(\\d{3})(\\d{2})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
