@@ -79,13 +79,13 @@
 			<id>apache-repo</id>
 			<name>apache-repo</name>
 			<url>
-        http://myfaces.zones.apache.org/dist/maven-repository
+        https://myfaces.zones.apache.org/dist/maven-repository
       </url>
 		</repository>
 
 		<repository>
 			<id>softeu-repo</id>
-			<url>http://maven.softeu.cz/</url>
+			<url>https://maven.softeu.cz/</url>
 		</repository>
 	</repositories>
 </project>
