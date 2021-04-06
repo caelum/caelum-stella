@@ -4,7 +4,7 @@ jdk:
 - oraclejdk8
 - openjdk8
 before_install:
-  - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+  - wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.0/apache-maven-3.6.0-bin.tar.gz
   - tar xzvf apache-maven-3.6.0-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.0/bin:$PATH
   - mvn -v
