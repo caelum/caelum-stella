@@ -9,7 +9,7 @@ import br.com.caelum.stella.SimpleMessageProducer;
 
 public class IERioDeJaneiroValidator extends AbstractIEValidator {
 
-	public static final Pattern FORMATED = Pattern.compile("\\d{2}(\\.\\d{3}){2}");
+	public static final Pattern FORMATED = Pattern.compile("\\d{2}(\\.\\d{3})\\.\\d{2}\\-\\d");
 
 	public static final Pattern UNFORMATED = Pattern.compile("\\d{8}");
 
@@ -67,7 +67,7 @@ public class IERioDeJaneiroValidator extends AbstractIEValidator {
 		final String ieSemDigito = new DigitoGenerator().generate(7);
 		final String ieComDigito = ieSemDigito + calculaDigito(ieSemDigito);
 		if (isFormatted) {
-			return super.format(ieComDigito, "##.###.###");
+			return super.format(ieComDigito, "##.###.##-#");
 		}
 		return ieComDigito;
 	}
