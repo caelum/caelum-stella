@@ -11,3 +11,7 @@ before_install:
 
 script:
 - mvn test verify --batch-mode
+
+cache:
+  directories:
+  - $HOME/.m2
