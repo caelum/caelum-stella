@@ -1,13 +1,12 @@
 language: java
 
 jdk:
-- openjdk8
 - openjdk11
 
 before_install:
-  - wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz
-  - tar xzvf apache-maven-3.6.3-bin.tar.gz
-  - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
+  - wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.2/apache-maven-3.8.2-bin.tar.gz
+  - tar xzvf apache-maven-3.8.2-bin.tar.gz
+  - export PATH=`pwd`/apache-maven-3.8.2/bin:$PATH
   - mvn -v
 
 script:
