@@ -21,7 +21,7 @@ import br.com.caelum.stella.validation.error.CPFError;
 public class CPFValidator implements Validator<String> {
 
     public static final Pattern FORMATED = Pattern.compile("(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})");
-    public static final Pattern UNFORMATED = Pattern.compile("(\\d{3})(\\d{3})(\\d{3})(\\d{2})");
+    public static final Pattern UNFORMATED = Pattern.compile("(\\d{11})");
 
     private final boolean isFormatted;
     private final boolean isIgnoringRepeatedDigits;
