@@ -22,9 +22,9 @@ import br.com.caelum.stella.SimpleMessageProducer;
  */
 public class IEGoiasValidator extends AbstractIEValidator {
 
-	public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+	public static final Pattern FORMATED = Pattern.compile("([12][019])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-	public static final Pattern UNFORMATED = Pattern.compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
+	public static final Pattern UNFORMATED = Pattern.compile("([12][019])(\\d{3})(\\d{3})(\\d{1})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
@@ -94,7 +94,7 @@ public class IEGoiasValidator extends AbstractIEValidator {
 
 	@Override
 	public String generateRandomValid() {
-		final int[] segundoDigitosPossiveis = new int[] { 0, 1, 5 };
+		final int[] segundoDigitosPossiveis = new int[] { 0, 1, 9 };
 		final int segundoDigitoSorteado = new Random().nextInt(segundoDigitosPossiveis.length);
 		final String ieSemDigito = "1" + segundoDigitosPossiveis[segundoDigitoSorteado]
 				+ new DigitoGenerator().generate(6);
