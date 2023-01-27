@@ -94,7 +94,7 @@ public class IEGoiasValidator extends AbstractIEValidator {
 
 	@Override
 	public String generateRandomValid() {
-		final int[] segundoDigitosPossiveis = new int[] { 0, 1, 5 };
+		final int[] segundoDigitosPossiveis = new int[] { 0, 1, 9 };
 		final int segundoDigitoSorteado = new Random().nextInt(segundoDigitosPossiveis.length);
 		final String ieSemDigito = "1" + segundoDigitosPossiveis[segundoDigitoSorteado]
 				+ new DigitoGenerator().generate(6);
