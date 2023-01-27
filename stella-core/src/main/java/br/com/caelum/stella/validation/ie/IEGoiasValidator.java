@@ -22,9 +22,9 @@ import br.com.caelum.stella.SimpleMessageProducer;
  */
 public class IEGoiasValidator extends AbstractIEValidator {
 
-	public static final Pattern FORMATED = Pattern.compile("(1[015])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
+    	public static final Pattern FORMATED = Pattern.compile("([12][019])[.](\\d{3})[.](\\d{3})[-](\\d{1})");
 
-	public static final Pattern UNFORMATED = Pattern.compile("(1[015])(\\d{3})(\\d{3})(\\d{1})");
+    	public static final Pattern UNFORMATED = Pattern.compile("([12][019])(\\d{3})(\\d{3})(\\d{1})");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
