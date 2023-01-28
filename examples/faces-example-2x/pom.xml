@@ -121,7 +121,7 @@
 	</repositories>
 
 	<properties>
-		<myfaces.version>2.0.4</myfaces.version>
+		<myfaces.version>2.0.12</myfaces.version>
 		<mojarra.version>2.0.1</mojarra.version>
 	</properties>
 
