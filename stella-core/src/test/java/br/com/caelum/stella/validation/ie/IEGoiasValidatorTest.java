@@ -16,7 +16,7 @@ public class IEGoiasValidatorTest extends IEValidatorTest {
 
     private static final String validFormattedString = "10.987.654-7";
 
-    private static final String[] validValues = { validFormattedString, "10.103.119-1", "15.368.273-6" };
+    private static final String[] validValues = { validFormattedString, "10.103.119-1", "20.003.152-0" };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
