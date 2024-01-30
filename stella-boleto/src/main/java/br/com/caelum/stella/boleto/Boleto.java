@@ -553,7 +553,7 @@ public class Boleto implements Serializable {
                     valorCobrado = valorCobrado.add(acrescimos);
                 }
                 if (valorCobrado.compareTo(valorBoleto) == 0){
-                        return BigDecimal.ZERO;
+                    valorCobrado = valorBoleto;
                 }
                 
 		return valorCobrado;
