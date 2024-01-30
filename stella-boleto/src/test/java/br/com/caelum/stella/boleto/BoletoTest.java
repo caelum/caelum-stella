@@ -212,10 +212,10 @@ public class BoletoTest {
 	}
 
 	@Test
-	public void valorCobradoDeveSerZeroSemAcrescimoOuDescontos() {
+	public void valorCobradoDeveSerIgualAValorBoletoQuandoSemAcrescimoOuDescontos() {
 		Boleto b = Boleto.novoBoleto();
 		b.comValorBoleto("40.00");
-		assertEquals(BigDecimal.ZERO, b.getValorCobrado());
+		assertEquals(b.getValorBoleto(), b.getValorCobrado());
 	}
 
 	@Test
