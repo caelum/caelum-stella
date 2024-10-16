@@ -1,16 +1,15 @@
 package br.com.caelum.stella.validation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import br.com.caelum.stella.DigitoGenerator;
 import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.validation.error.AgenciaBancariaError;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Representa um validador de agencia bancária.
@@ -80,7 +79,7 @@ public class AgenciaBancariaValidator implements Validator<String> {
 	@Override
 	public boolean isEligible(String value) {
 		
-		if (Objects.isNull(value) || value.isBlank()) {
+		if (value == null || value.trim().isEmpty()) {
 			return false;
 		}
 		
