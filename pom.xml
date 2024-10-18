@@ -146,7 +146,6 @@
                 <goal>jar</goal>
               </goals>
               <configuration>
-                <source>8</source> <!-- ajuste pois o Travis está uma versão openjdk11 antiga -->
                 <links>
                   <link>
                     http://java.sun.com/j2se/1.5/docs/api
