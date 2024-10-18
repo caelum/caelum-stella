@@ -38,163 +38,163 @@ import br.com.caelum.stella.validation.ie.IETocantinsValidator;
  */
 public enum Estado {
 
-    AC(12) {
+    AC(12, "24") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAcreValidator(messageProducer, isFormatted);
         }
         
     },
-    AL(27) {
+    AL(27, "17") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAlagoasValidator(messageProducer, isFormatted);
         }
 
     },
-    AP(16) {
+    AP(16, "25") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAmapaValidator(messageProducer, isFormatted);
         }
 
     },
-    AM(13) {
+    AM(13, "22") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEAmazonasValidator(messageProducer, isFormatted);
         }
 
     },
-    BA(29) {
+    BA(29, "05") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEBahiaValidator(messageProducer, isFormatted);
         }
 
     },
-    CE(23) {
+    CE(23, "07") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IECearaValidator(messageProducer, isFormatted);
         }
 
     },
-    DF(53) {
+    DF(53, "20") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEDistritoFederalValidator(messageProducer, isFormatted);
         }
 
     },
-    ES(32) {
+    ES(32, "14") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEEspiritoSantoValidator(messageProducer, isFormatted);
         }
 
     },
-    GO(52) {
+    GO(52, "10") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEGoiasValidator(messageProducer, isFormatted);
         }
 
     },
-    MA(21) {
+    MA(21, "11") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMaranhaoValidator(messageProducer, isFormatted);
         }
 
     },
-    MT(51) {
+    MT(51, "18") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMatoGrossoValidator(messageProducer, isFormatted);
         }
 
     },
-    MS(50) {
+    MS(50, "19") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMatoGrossoDoSulValidator(messageProducer, isFormatted);
         }
 
     },
-    MG(31) {
+    MG(31, "02") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEMinasGeraisValidator(messageProducer, isFormatted);
         }
 
     },
-    PA(15) {
+    PA(15, "13") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParaValidator(messageProducer, isFormatted);
         }
 
     },
-    PB(25) {
+    PB(25, "12") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParaibaValidator(messageProducer, isFormatted);
         }
 
     },
-    PR(41) {
+    PR(41, "06") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEParanaValidator(messageProducer, isFormatted);
         }
 
     },
-    PE(26) {
+    PE(26, "08") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEPernambucoValidator(messageProducer, isFormatted);
         }
 
     },
-    PI(22) {
+    PI(22, "15") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IEPiauiValidator(messageProducer, isFormatted);
         }
 
     },
-    RJ(33) {
+    RJ(33, "03") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioDeJaneiroValidator(messageProducer, isFormatted);
         }
 
     },
-    RN(24) {
+    RN(24, "16") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioGrandeDoNorteValidator(messageProducer, isFormatted);
         }
 
     },
-    RS(43) {
+    RS(43, "04") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERioGrandeDoSulValidator(messageProducer, isFormatted);
         }
 
     },
-    RO(11) {
+    RO(11, "23") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERondoniaValidator(messageProducer, isFormatted);
         }
 
     },
-    RR(14) {
+    RR(14, "26") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IERoraimaValidator(messageProducer, isFormatted);
         }
 
     },
-    SC(42) {
+    SC(42, "09") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESantaCatarinaValidator(messageProducer, isFormatted);
         }
 
     },
-    SP(35) {
+    SP(35, "01") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESaoPauloValidator(messageProducer, isFormatted);
         }
 
     },
-    SE(28) {
+    SE(28, "21") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IESergipeValidator(messageProducer, isFormatted);
         }
 
     },
-    TO(17) {
+    TO(17, "27") {
         public Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted) {
             return new IETocantinsValidator(messageProducer, isFormatted);
         }
@@ -202,6 +202,8 @@ public enum Estado {
     };
 
     private final int codigoIBGE;
+    
+    private final String codigoEleitoral;
 
 	/**
      * Retorna um validador de Inscrição Estadual.
@@ -215,15 +217,20 @@ public enum Estado {
      */
     public abstract Validator<String> getIEValidator(MessageProducer messageProducer, boolean isFormatted);
     
-    private Estado(int codigoIBGE) {
+    private Estado(int codigoIBGE, String codigoEleitoral) {
     	this.codigoIBGE = codigoIBGE;
+    	this.codigoEleitoral = codigoEleitoral;
 	}
     
     public int getCodigoIBGE() {
 		return codigoIBGE;
 	}
+    
+    public String getCodigoEleitoral() {
+		return codigoEleitoral;
+	}
 
-    /**
+	/**
 	 * A região do território brasileiro em que esse estado está localizado.
 	 *
 	 * @return Retorna a região em que esse estado está localizado.
@@ -248,5 +255,18 @@ public enum Estado {
 	 */
 	public boolean localizadoEm(Regiao regiao) {
 		return regiao() == regiao;
+	}
+	
+	public static Estado deCodigoEleitoral(String codigo) {
+		
+		Estado[] estados = Estado.values();
+		
+		for (Estado estado : estados) {
+			if (estado.getCodigoEleitoral().equals(codigo)) {
+				return estado;
+			}
+		}
+		
+		throw new IllegalStateException("Não foi possível determinar o estado a partir do código eleitoral " + codigo);
 	}
 }
