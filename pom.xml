@@ -73,6 +73,18 @@
         <version>1.8.5</version>
         <scope>test</scope>
       </dependency>
+      <!-- API, java.xml.bind module -->
+      <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>2.3.2</version>
+      </dependency>
+      <!-- Runtime, com.sun.xml.bind module -->
+      <dependency>
+        <groupId>org.glassfish.jaxb</groupId>
+        <artifactId>jaxb-runtime</artifactId>
+        <version>2.3.2</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -94,6 +106,14 @@
       <artifactId>mockito-all</artifactId>
       <version>1.8.5</version>
     </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+    </dependency>    
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+    </dependency>            
   </dependencies>
 
   <build>
@@ -106,15 +126,18 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-            <encoding>UTF-8</encoding>
-          </configuration>
+          <version>3.8.1</version>
+            <configuration>
+                <release>11</release>
+                <source>1.8</source>
+                <target>1.8</target>
+                <showDeprecation>true</showDeprecation>
+            </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.3.0</version>
           <executions>
             <execution>
               <id>attach-javadoc</id>
@@ -128,8 +151,6 @@
                     http://java.sun.com/j2se/1.5/docs/api
                   </link>
                 </links>
-                <encoding>utf-8</encoding>
-                <charset>utf-8</charset>
               </configuration>
             </execution>
           </executions>
@@ -149,7 +170,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.4.2</version>
+          <version>3.0.0-M5</version>
           <configuration>
             <forkMode>once</forkMode>
             <printSummary>true</printSummary>
@@ -207,7 +228,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.8.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -216,7 +237,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.8</version>
+        <version>3.3.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -454,12 +475,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.8</version>
+        <version>3.3.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.8.1</version>
+        <version>3.0.0-M5</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
