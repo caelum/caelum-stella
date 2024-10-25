@@ -1,6 +1,7 @@
 package br.com.caelum.stella.validation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -11,6 +12,7 @@ import br.com.caelum.stella.MessageProducer;
 import br.com.caelum.stella.SimpleMessageProducer;
 import br.com.caelum.stella.ValidationMessage;
 import br.com.caelum.stella.format.TituloEleitoralFormatter;
+import br.com.caelum.stella.type.Estado;
 import br.com.caelum.stella.validation.error.TituloEleitoralError;
 
 /**
@@ -79,6 +81,8 @@ public class TituloEleitoralValidator implements Validator<String> {
 
     public static final Pattern FORMATED = Pattern.compile("(\\d{10})/(\\d{2})");
     public static final Pattern UNFORMATED = Pattern.compile("(\\d{10})(\\d{2})");
+    
+    private static final List<Estado> estadosSubstitoresDigito = Arrays.asList(Estado.SP, Estado.MG);
     
     private boolean isFormatted = false;
     private MessageProducer messageProducer;
@@ -160,24 +164,46 @@ public class TituloEleitoralValidator implements Validator<String> {
         }
         return errors;
     }
-
+    
     private String calculaDigitos(String tituloSemDigito) {
+    	
     	int length = tituloSemDigito.length();
 
     	String sequencial = tituloSemDigito.substring(0,length - 2);
-		String digito1 = new DigitoPara(sequencial).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
+    	String codigoEstado = tituloSemDigito.substring(length - 2, length);
+    	boolean ehEstadoSubstitutorDigito = estadosSubstitoresDigito.contains(Estado.deCodigoEleitoral(codigoEstado));
     	
-		String codigoEstado = tituloSemDigito.substring(length - 2, length);
-		String digito2 = new DigitoPara(codigoEstado + digito1).complementarAoModulo().trocandoPorSeEncontrar("0",10,11).mod(11).calcula();
-
+    	String digito1 = this.geraDigito(ehEstadoSubstitutorDigito, sequencial);
+    	String digito2 = this.geraDigito(ehEstadoSubstitutorDigito, codigoEstado + digito1);
+    	
 		return digito1 + digito2;
 	}
 
+    private String geraDigito(boolean ehEstadoSubstitutorDigito, String base) {
+    	
+    	String digito = new DigitoPara(base).mod(11).calcula();
+    	
+    	if (ehEstadoSubstitutorDigito) {
+    		if (digito.equals("1")) {
+    			digito = "0";
+    		} else if (digito.equals("0")) {
+    			digito = "1";
+    		} else {
+    			digito = new DigitoPara(base).complementarAoModulo().mod(11).calcula();
+    		}
+    	} else {
+    		digito = digito.equals("1") || digito.equals("0") ? "0" :
+    			new DigitoPara(base).complementarAoModulo().mod(11).calcula();
+    	}
+    	
+    	return digito;
+    }
+    
 	private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
         int codigo= Integer.parseInt(tituloDeEleitor.substring(tituloDeEleitor.length() - 4, tituloDeEleitor.length() - 2));
         return !(codigo >= 01 && codigo <= 28);
     }
-
+	
 	public boolean isEligible(String value) {
 		boolean result;
 		if (isFormatted) {
