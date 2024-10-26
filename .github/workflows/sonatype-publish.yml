@@ -37,7 +37,8 @@ jobs:
           git-release-bot-name: "bot-release"
           git-release-bot-email: "release@caelum.com.br"
 
-          maven-args: "-DskipTests -DskipITs -Dmaven.deploy.skip=true -PsonatypeDeploy"
+          maven-args: "-DskipTests -PsonatypeDeploy"
+          maven-servers: ${{ secrets.MVN_REPO_SERVERS }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           gpg-enabled: true
