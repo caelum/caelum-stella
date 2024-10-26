@@ -1,0 +1,47 @@
+name: Maven Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Cache Maven packages'
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: 'cache'
+          restore-keys: 'cache'
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: 'Build with Maven'
+        run: mvn -B install --file pom.xml
+
+      - name: Release
+        uses: qcastel/github-actions-maven-release@master
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
+        with:
+          git-release-bot-name: "angeliski"
+          git-release-bot-email: "angeliski@hotmail.com"
+
+          maven-args: "-DskipTests -PsonatypeDeploy"
+          maven-servers: ${{ secrets.MVN_REPO_SERVERS }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+          gpg-enabled: true
+          gpg-key-id: ${{ secrets.GPG_KEY_ID }}
+          gpg-key: ${{ secrets.GPG_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} 
+
+      - name: 'Remove Snapshots Before Caching'
+        run: find ~/.m2 -name '*SNAPSHOT' | xargs rm -Rf
