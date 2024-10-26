@@ -2,9 +2,6 @@ name: Maven Release
 
 on:
   workflow_dispatch:
-  push:
-  release:
-    types: [ created ]
 
 jobs:
   publish:
@@ -45,8 +42,6 @@ jobs:
           gpg-key-id: ${{ secrets.GPG_KEY_ID }}
           gpg-key: ${{ secrets.GPG_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} 
-
-          release-branch-name: "enable-auto-publish"
 
       - name: 'Remove Snapshots Before Caching'
         run: find ~/.m2 -name '*SNAPSHOT' | xargs rm -Rf
