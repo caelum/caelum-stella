@@ -31,8 +31,8 @@ jobs:
         env:
           JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
         with:
-          git-release-bot-name: "bot-release"
-          git-release-bot-email: "release@caelum.com.br"
+          git-release-bot-name: "angeliski"
+          git-release-bot-email: "angeliski@hotmail.com"
 
           maven-args: "-DskipTests -PsonatypeDeploy"
           maven-servers: ${{ secrets.MVN_REPO_SERVERS }}
