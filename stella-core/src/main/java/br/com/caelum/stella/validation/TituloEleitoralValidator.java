@@ -179,24 +179,28 @@ public class TituloEleitoralValidator implements Validator<String> {
 		return digito1 + digito2;
 	}
 
-    private String geraDigito(boolean ehEstadoSubstitutorDigito, String base) {
+   private String geraDigito(boolean ehEstadoSubstitutorDigito, String base) {
     	
     	String digito = new DigitoPara(base).mod(11).calcula();
     	
-    	if (ehEstadoSubstitutorDigito) {
-    		if (digito.equals("1")) {
-    			digito = "0";
-    		} else if (digito.equals("0")) {
-    			digito = "1";
-    		} else {
-    			digito = new DigitoPara(base).complementarAoModulo().mod(11).calcula();
+    	if (!ehEstadoSubstitutorDigito) {
+    		
+    		if (digito.equals("1") || digito.equals("0")) {
+    			return "0";
     		}
-    	} else {
-    		digito = digito.equals("1") || digito.equals("0") ? "0" :
-    			new DigitoPara(base).complementarAoModulo().mod(11).calcula();
-    	}
+    		
+    		return new DigitoPara(base).complementarAoModulo().mod(11).calcula();
+    	} 
     	
-    	return digito;
+    	if (digito.equals("1")) {
+    		return "0";
+    	} 
+    	
+    	if (digito.equals("0")) {
+    		return "1";
+    	} 
+    	
+    	return new DigitoPara(base).complementarAoModulo().mod(11).calcula();
     }
     
 	private boolean hasCodigoDeEstadoInvalido(String tituloDeEleitor) {
