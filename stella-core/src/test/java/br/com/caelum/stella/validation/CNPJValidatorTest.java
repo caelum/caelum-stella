@@ -21,7 +21,11 @@ public class CNPJValidatorTest {
 	private final String validString = "26.637.142/0001-58";
 	private final String validStringNotFormatted = "26637142000158";
 
+    private final String validStringAlpha = "12.ABC.345/01DE-35";
+    private final String validStringAlphaNotFormatted = "12ABC34501DE35";
+
     private final String firstCheckDigitWrongNotFormatted = "26637142000168";
+    private final String alphaFirstCheckDigitWrongNotFormatted = "12ABC34501DE45";
 
     @Test
     public void shouldHaveDefaultConstructorThatUsesSimpleMessageProducerAndAssumesThatStringIsNotFormatted() {
@@ -29,6 +33,14 @@ public class CNPJValidatorTest {
     	new CNPJValidator().assertValid(validStringNotFormatted);
         try {
             new CNPJValidator().assertValid(firstCheckDigitWrongNotFormatted);
+            fail("Test expected to throw exception");
+        } catch (InvalidStateException e) {
+            InvalidStateException invalidStateException = (InvalidStateException) e;
+            assertMessage(invalidStateException, INVALID_CHECK_DIGITS);
+        }
+
+        try {
+            new CNPJValidator().assertValid(alphaFirstCheckDigitWrongNotFormatted);
             fail("Test expected to throw exception");
         } catch (InvalidStateException e) {
             InvalidStateException invalidStateException = (InvalidStateException) e;
@@ -87,6 +99,7 @@ public class CNPJValidatorTest {
         validator.assertValid("63025530002409");
         validator.assertValid("61519128000150");
         validator.assertValid("68745386000102");
+        validator.assertValid("12ABC34501DE35");
     }
 
     @Test
@@ -186,6 +199,9 @@ public class CNPJValidatorTest {
         final CNPJValidator cnpjValidator = new CNPJValidator();
         assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
         assertFalse(cnpjValidator.isEligible(validString));
+
+        assertTrue(cnpjValidator.isEligible(validStringAlphaNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validStringAlpha));
     }
 
     @Test
@@ -193,6 +209,9 @@ public class CNPJValidatorTest {
         final CNPJValidator cnpjValidator = new CNPJValidator(false);
         assertTrue(cnpjValidator.isEligible(validStringNotFormatted));
         assertFalse(cnpjValidator.isEligible(validString));
+
+        assertTrue(cnpjValidator.isEligible(validStringAlphaNotFormatted));
+        assertFalse(cnpjValidator.isEligible(validStringAlpha));
     }
 
     @Test
@@ -200,6 +219,9 @@ public class CNPJValidatorTest {
         final CNPJValidator cnpjValidator = new CNPJValidator(true);
         assertFalse(cnpjValidator.isEligible(validStringNotFormatted));
         assertTrue(cnpjValidator.isEligible(validString));
+
+        assertFalse(cnpjValidator.isEligible(validStringAlphaNotFormatted));
+        assertTrue(cnpjValidator.isEligible(validStringAlpha));
     }
 
     @Test

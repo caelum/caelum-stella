@@ -1,0 +1,77 @@
+
+name:  Maven Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: "Define the release version"
+        required: true
+        default: ""
+      developmentVersion:
+        description: "Define the snapshot version"
+        required: true
+        default: ""
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Configure Git User
+      run: |
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions"
+        echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    - name: Import SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        name: id_rsa
+        known_hosts: unnecessary_just_github
+
+    - name: Import GPG Key
+      uses: crazy-max/ghaction-import-gpg@v5.0.0
+      with:
+        gpg_private_key: ${{ secrets.GPG_KEY }}
+        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+    - name: 'Cache Maven packages'
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: 'cache'
+        restore-keys: 'cache'
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: 11
+
+    - name: 'Build with Maven'
+      run: mvn -B install --file pom.xml
+      
+    - name: Verify Whether a Release is Ready
+      id: release
+      shell: bash
+      run: |
+        if [ "${{ github.event.inputs.releaseVersion }}" != "" ] && [ "${{ github.event.inputs.developmentVersion }}" != "" ]; then
+          echo "auto_release=true" >> $GITHUB_ENV
+        else
+          echo "auto_release=false" >> $GITHUB_ENV
+        fi
+    - name: Release With Maven
+      run: |
+        mvn -B -U \
+          -PsonatypeDeploy \
+          release:prepare \
+          release:perform \
+          javadoc:jar \
+          source:jar \
+          -s settings.xml \
+          -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
+          -DreleaseVersion=${{ github.event.inputs.releaseVersion }} \
+          -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }} 
+      env:
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}

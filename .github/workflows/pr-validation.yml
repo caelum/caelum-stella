@@ -1,0 +1,28 @@
+name: Pull Request
+on:
+  pull_request:
+    branches:
+    - master
+
+env:
+  MAVEN_OPTS: -Dmaven.artifact.threads=256 -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 11
+      - name: 'Cache Maven packages'
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: 'cache'
+          restore-keys: 'cache'
+      - name: 'Build with Maven'
+        run: mvn -B install --file pom.xml
+      - name: 'Remove Snapshots Before Caching'
+        run: find ~/.m2 -name '*SNAPSHOT' | xargs rm -Rf
