@@ -35,6 +35,7 @@ import java.util.Map;
  */
 public class DigitoPara {
 
+	private static final int ZERO_ASCII = 48;
 	private LinkedList<Integer> numero;
 	private List<Integer> multiplicadores = new ArrayList<Integer>();
 	private boolean complementar;
@@ -56,7 +57,7 @@ public class DigitoPara {
 		this.numero = new LinkedList<Integer>();
 		char[] digitos = trecho.toCharArray();
 		for (char digito : digitos) {
-			this.numero.add(Character.getNumericValue(digito));
+			this.numero.add(((int) digito) - ZERO_ASCII);
 		}
 		Collections.reverse(numero);
 	}
