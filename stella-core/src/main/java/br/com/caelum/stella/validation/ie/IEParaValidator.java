@@ -18,9 +18,9 @@ import br.com.caelum.stella.SimpleMessageProducer;
  */
 public class IEParaValidator extends AbstractIEValidator {
 
-	public static final Pattern FORMATED = Pattern.compile("15(\\.\\d{3}){2}\\-\\d{1}");
+	public static final Pattern FORMATED = Pattern.compile("(15|7[5-9])(\\.\\d{3}){2}\\-\\d{1}");
 
-	public static final Pattern UNFORMATED = Pattern.compile("15\\d{7}");
+	public static final Pattern UNFORMATED = Pattern.compile("(15|7[5-9])\\d{7}");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um
