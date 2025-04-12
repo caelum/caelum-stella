@@ -18,9 +18,9 @@ public class IERioGrandeDoSulValidator extends AbstractIEValidator {
 
 	private final boolean isFormatted;
 
-	public static final Pattern FORMATED = Pattern.compile("[0-4]\\d{2}\\/\\d{7}");
+	public static final Pattern FORMATED = Pattern.compile("([0-4]\\d{2}|800|900)\\/\\d{7}");
 
-	public static final Pattern UNFORMATED = Pattern.compile("([0-4]\\d{2})\\d{7}");
+	public static final Pattern UNFORMATED = Pattern.compile("([0-4]\\d{2}|800|900)\\d{7}");
 
 	/**
 	 * Este considera, por padrão, que as cadeias estão formatadas e utiliza um

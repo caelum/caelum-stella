@@ -12,8 +12,15 @@ public class IERioGrandeDoSulValidatorTest extends IEValidatorTest {
 	private static final String validFormattedString = "224/3658792";
 	private static final String validUnformattedString = "2243658792";
 	private static final String wrongCheckDigitUnformattedString = "2243658791";
-	
-	private static final String[] validValues = { validFormattedString, "050/0068836", "224/3224326", "468/0001479" };
+
+  private static final String[] validValues = {
+    validFormattedString,
+    "050/0068836",
+    "224/3224326",
+    "468/0001479",
+    "800/1234507",
+    "900/5678939"
+  };
 
 	@Override
 	protected Validator<String> getValidator(MessageProducer messageProducer, boolean isFormatted) {
