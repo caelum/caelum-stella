@@ -237,4 +237,22 @@ public class CNPJValidatorTest {
         final String generated = cnpjValidator.generateRandomValid();
         cnpjValidator.assertValid(generated);
     }
+
+    @Test
+    public void shouldNotMatchAlphanumericDv(){
+        final String formattedCNPJWithInvalidDv = "12.ABC.345/01DE-9B";
+        final String unformattedCNPJWithInvalidDv = "12ABC34501DE9B";
+
+        assertFalse( CNPJValidator.FORMATTED.matcher( formattedCNPJWithInvalidDv ).matches() );
+        assertFalse( CNPJValidator.UNFORMATTED.matcher( unformattedCNPJWithInvalidDv ).matches() );
+    }
+
+    @Test
+    public void shouldMatchNumericDv(){
+        final String formattedCNPJWithInvalidDv = "12.ABC.345/01DE-35";
+        final String unformattedCNPJWithInvalidDv = "12ABC34501DE35";
+
+        assertTrue( CNPJValidator.FORMATTED.matcher( formattedCNPJWithInvalidDv ).matches() );
+        assertTrue( CNPJValidator.UNFORMATTED.matcher( unformattedCNPJWithInvalidDv ).matches() );
+    }
 }
