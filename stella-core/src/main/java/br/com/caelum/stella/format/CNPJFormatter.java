@@ -10,7 +10,7 @@ public class CNPJFormatter implements Formatter {
     private final BaseFormatter base;
 
     public CNPJFormatter() {
-        this.base = new BaseFormatter(CNPJValidator.FORMATED, "$1.$2.$3/$4-$5", CNPJValidator.UNFORMATED, "$1$2$3$4$5");
+        this.base = new BaseFormatter(CNPJValidator.FORMATTED, "$1.$2.$3/$4-$5", CNPJValidator.UNFORMATTED, "$1$2$3$4$5");
     }
 
     @Override
