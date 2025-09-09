@@ -3,7 +3,7 @@
   <groupId>br.com.caelum.stella</groupId>
   <artifactId>caelum-stella</artifactId>
   <packaging>pom</packaging>
-  <version>2.2.2-SNAPSHOT</version>
+  <version>2.2.2</version>
   <name>Caelum Stella</name>
   <description>
     Caelum Stella is a set of validators, formatters and converters
@@ -507,7 +507,7 @@
     <connection>scm:git:git://github.com/caelum/caelum-stella</connection>
     <developerConnection>scm:git:git@github.com:caelum/caelum-stella.git</developerConnection>
     <url>https://github.com/caelum/caelum-stella</url>
-    <tag>HEAD</tag>
+    <tag>2.2.2</tag>
   </scm>
 
   <mailingLists>
