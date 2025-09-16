@@ -460,7 +460,7 @@
             <extensions>true</extensions>
             <configuration>
               <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <nexusUrl>https://ossrh-staging-api.central.sonatype.com/</nexusUrl>
               <!-- we need to release from staging to avoid errors and ensure double check -->
               <autoReleaseAfterClose>false</autoReleaseAfterClose>
             </configuration>
