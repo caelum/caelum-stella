@@ -64,32 +64,11 @@ public class IEGoiasValidator extends AbstractIEValidator {
 		String digito = unformattedIE.substring(unformattedIE.length() - 1);
 		String digitoCalculado = calculaDigito(iESemDigito);
 
-		return regraBizarraDeGoias(iESemDigito, digito) || digito.equals(digitoCalculado);
-	}
-
-	private boolean regraBizarraDeGoias(String iESemDigito, String digito) {
-		if (iESemDigito.equals("11094402")) {
-			if (digito.equals("0") || digito.equals("1")) {
-				return true;
-			}
-		}
-		return false;
+		return digito.equals(digitoCalculado);
 	}
 
 	private String calculaDigito(String iESemDigito) {
-		int ie = Integer.parseInt(iESemDigito);
-		/*
-		 * http://www.sintegra.gov.br/Cad_Estados/cad_GO.html
-		 * 
-		 * De 10103105X a 10119997X => d=1
-		 */
-		String d = "0";
-		if ((10103105 <= ie) && (ie <= 10119997)) {
-			d = "1";
-		}
-
-		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar(d, 10)
-				.trocandoPorSeEncontrar("0", 11).calcula();
+		return new DigitoPara(iESemDigito).complementarAoModulo().trocandoPorSeEncontrar("0", 10, 11).calcula();
 	}
 
 	@Override
