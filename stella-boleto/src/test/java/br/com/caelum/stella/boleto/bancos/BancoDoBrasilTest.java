@@ -10,6 +10,8 @@ import br.com.caelum.stella.boleto.Pagador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class BancoDoBrasilTest {
 
@@ -166,6 +168,21 @@ public class BancoDoBrasilTest {
 		this.boleto.comBeneficiario(beneficiario);
 
 		assertEquals("00191386000000040000000002670001000000000017", this.banco.geraCodigoDeBarrasPara(boleto));
+	}
+
+	@Test
+	public void mensagemDeCampoLivreInvalidoDeveInformarOTamanhoReal() {
+		Beneficiario beneficiarioComNossoNumeroCurto = Beneficiario.novoBeneficiario()
+				.comNumeroConvenio("1207113").comCarteira("18").comNossoNumero("123");
+		Boleto boletoInvalido = Boleto.novoBoleto().comBanco(this.banco)
+				.comBeneficiario(beneficiarioComNossoNumeroCurto);
+
+		try {
+			this.banco.geraCodigoDeBarrasPara(boletoInvalido);
+			fail("Era esperado erro de tamanho do campo livre");
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getMessage(), e.getMessage().contains("tem 11 caracteres"));
+		}
 	}
 
 }
