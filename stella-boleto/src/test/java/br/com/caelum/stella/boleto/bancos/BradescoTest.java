@@ -81,4 +81,22 @@ public class BradescoTest {
 	public void testGetImage() {
 		assertNotNull(this.banco.getImage());
 	}
+
+	@Test
+	public void nossoNumeroECodigoDocumentoDeveCalcularDigitoDeAutoConferenciaQuandoNaoInformado() {
+		Beneficiario beneficiarioSemDigito = Beneficiario.novoBeneficiario()
+				.comCarteira("19").comNossoNumero("2");
+		Boleto boletoSemDigito = Boleto.novoBoleto().comBeneficiario(beneficiarioSemDigito);
+
+		assertEquals("19/00000000002-8", this.banco.getNossoNumeroECodigoDocumento(boletoSemDigito));
+	}
+
+	@Test
+	public void nossoNumeroECodigoDocumentoDeveManterDigitoInformado() {
+		Beneficiario beneficiarioComDigito = Beneficiario.novoBeneficiario()
+				.comCarteira("19").comNossoNumero("2").comDigitoNossoNumero("9");
+		Boleto boletoComDigito = Boleto.novoBoleto().comBeneficiario(beneficiarioComDigito);
+
+		assertEquals("19/00000000002-9", this.banco.getNossoNumeroECodigoDocumento(boletoComDigito));
+	}
 }
