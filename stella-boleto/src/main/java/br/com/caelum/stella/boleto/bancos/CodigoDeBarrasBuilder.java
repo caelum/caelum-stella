@@ -9,7 +9,7 @@ import br.com.caelum.stella.boleto.exception.CriacaoBoletoException;
  * 
  * @author Rodrigo Turini
  */
-class CodigoDeBarrasBuilder {
+public class CodigoDeBarrasBuilder {
 	
 	private StringBuilder codigoDeBarras;
 	private Banco banco;
@@ -22,7 +22,7 @@ class CodigoDeBarrasBuilder {
 	 * 
 	 * @param boleto para o qual será gerado o código de barras.
 	 */
-	CodigoDeBarrasBuilder(Boleto boleto) {
+	public CodigoDeBarrasBuilder(Boleto boleto) {
 		this.banco = boleto.getBanco();
 		this.codigoDeBarras = new StringBuilder(44);
 		this.codigoDeBarras.append(banco.getNumeroFormatado());		
