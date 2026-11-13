@@ -8,6 +8,10 @@ import br.com.caelum.stella.boleto.Boleto;
 import static br.com.caelum.stella.boleto.utils.StellaStringUtils.leftPadWithZeros;
 import static java.lang.String.format;
 
+/**
+ * Para cobranca registrada SIGCB, utilize a carteira "14".
+ * A carteira "1" mantem o layout legado SINCO.
+ */
 public class Caixa extends AbstractBanco implements Banco {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +40,7 @@ public class Caixa extends AbstractBanco implements Banco {
 			campoLivre.append(nossoNumeroCompleto.substring(1, 2));
 			campoLivre.append(nossoNumeroCompleto.substring(8));
 			campoLivre.append(geradorDeDigito.geraDigitoMod11(campoLivre.toString()));
-		} else if (carteiraDoEmissor.equals("24")) {
+		} else if (carteiraDoEmissor.equals("14") || carteiraDoEmissor.equals("24")) {
 			String nossoNumeroCompleto = getNossoNumeroFormatado(beneficiario);
 			campoLivre.append(leftPadWithZeros(beneficiario.getCodigoBeneficiario(), 6));
 			campoLivre.append(beneficiario.getDigitoCodigoBeneficiario());
